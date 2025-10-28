@@ -69,7 +69,7 @@ export default function TableDetail() {
                   return (
                     <th
                       key={idx}
-                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : ''}`}
+                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : 'text-center'}`}
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
                       style={hasNoSub ? {
@@ -79,7 +79,9 @@ export default function TableDetail() {
                         lineHeight: '1.2'
                       } : { minWidth: '50px' }}
                     >
-                      {column.label}
+                      {column.label.split('\n').map((line, lineIdx) => (
+                        <div key={lineIdx}>{line}</div>
+                      ))}
                     </th>
                   );
                 })}

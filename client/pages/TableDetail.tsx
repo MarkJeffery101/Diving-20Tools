@@ -213,18 +213,70 @@ export default function TableDetail() {
           </table>
         </div>
 
-        {/* Info Section */}
-        <div className="mt-12 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-lg p-6 sm:p-8">
+        {/* Info Cards Section - Below Table */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+          {/* Left: Depth Info */}
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
+            <div className="space-y-3">
+              {selectedDepth && (
+                <div>
+                  <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-900">{selectedDepth}m</p>
+                </div>
+              )}
+              {showDvis5 && (
+                <div className="pt-2 border-t border-blue-200">
+                  <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
+                  <p className="text-xl sm:text-2xl font-bold text-blue-900">{tableData.dvis5Value !== null ? tableData.dvis5Value : '-'} min</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Center: Nitrox Info */}
+          {showNitroxInfo && (
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Equivalent Air Depth</p>
+                  <p className="text-xl sm:text-2xl font-bold text-amber-900">— m/sw</p>
+                </div>
+                <div className="pt-2 border-t border-amber-200">
+                  <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum PO₂</p>
+                  <p className="text-xl sm:text-2xl font-bold text-amber-900">—</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Right: Safety Info */}
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
+            <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">Safety Guidelines</p>
+            <ul className="space-y-2 text-xs sm:text-sm text-green-900">
+              <li className="flex items-start gap-2">
+                <span className="font-bold text-green-600 mt-0.5">•</span>
+                <span>Stop time starts after arrival at the stop</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="font-bold text-green-600 mt-0.5">•</span>
+                <span>Maximum ascent speed is 10 m/min</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Additional Table Information */}
+        <div className="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-lg p-6 sm:p-8">
           <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-6">Table Information</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
               <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Code</p>
               <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{code}</p>
             </div>
-            {depth && (
+            {selectedDepth && (
               <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
                 <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Depth</p>
-                <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{depth}m</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{selectedDepth}m</p>
               </div>
             )}
             <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">

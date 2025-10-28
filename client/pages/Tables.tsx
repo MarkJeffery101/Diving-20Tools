@@ -17,7 +17,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nd15",
     name: "Air Diving, No-Stop Limits in Minutes",
-    type: "air",
+    type: "No Stops Air",
     category: "No-Stop Air Diving Tables",
     code: "ND15",
     description:
@@ -26,7 +26,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "lnd15",
     name: "Air Diving, Long No-Stop Limits in Minutes",
-    type: "air",
+    type: "No Stops Air",
     category: "No-Stop Air Diving Tables",
     code: "LND15",
     description:
@@ -37,7 +37,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "sil15",
     name: "Standard Air Repetitive Interval 12 Hours",
-    type: "air",
+    type: "Standard Air",
     category: "Standard Air Tables",
     code: "SIL15",
     description: "Air diving tables with 12-hour repetitive diving intervals",
@@ -45,7 +45,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "h2sil15",
     name: "Standard Air Repetitive Interval 2 Hours",
-    type: "air",
+    type: "Standard Air",
     category: "Standard Air Tables",
     code: "H2SIL15",
     description: "Air diving tables with 2-hour repetitive diving intervals",
@@ -53,7 +53,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "h4sil15",
     name: "Standard Air Repetitive Interval 4 Hours",
-    type: "air",
+    type: "Standard Air",
     category: "Standard Air Tables",
     code: "H4SIL15",
     description: "Air diving tables with 4-hour repetitive diving intervals",
@@ -63,7 +63,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "sox15",
     name: "Surface Decompression with Oxygen Repetitive Interval 12 Hours",
-    type: "commercial",
+    type: "SurD O2",
     category: "Surface/OX Tables",
     code: "SOX15",
     description:
@@ -72,7 +72,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "hsox15",
     name: "Surface Decompression with Oxygen Repetitive Interval 4 Hours",
-    type: "commercial",
+    type: "SurD O2",
     category: "Surface/OX Tables",
     code: "HSOX15",
     description:
@@ -83,7 +83,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "sab15",
     name: "Backup Air Repetitive Interval 12 Hours",
-    type: "commercial",
+    type: "Backup Air",
     category: "Backup Air Tables",
     code: "SAB15",
     description: "Backup air diving tables with 12-hour repetitive intervals",
@@ -91,7 +91,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "hsab15",
     name: "Backup Air Repetitive Interval 4 Hours",
-    type: "commercial",
+    type: "Backup Air",
     category: "Backup Air Tables",
     code: "HSAB15",
     description: "Backup air diving tables with 4-hour repetitive intervals",
@@ -101,7 +101,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "ndnia15",
     name: "Nitrox 40/60 Diving, No-Stop Limits in Minutes",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NDNIA15",
     description:
@@ -110,7 +110,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "ndnib15",
     name: "Nitrox 35/65 Diving, No-Stop Limits in Minutes",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NDNIB15",
     description:
@@ -121,7 +121,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nia15",
     name: "Nitrox 40/60 Repetitive Interval 12 Hours",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NIA15",
     description: "Nitrox 40/60 diving tables with 12-hour repetitive intervals",
@@ -129,7 +129,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nia2-3",
     name: "Nitrox 40/60 Repetitive Interval 2 Hours (2-3 minutes)",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NIA 2-3",
     description: "Nitrox 40/60 diving tables with 2-hour repetitive intervals",
@@ -137,7 +137,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nia2-6",
     name: "Nitrox 40/60 Repetitive Interval 2 Hours (2-6 minutes)",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NIA 2-6",
     description: "Nitrox 40/60 diving tables with 2-hour repetitive intervals",
@@ -145,7 +145,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "h2nia15",
     name: "Nitrox 40/60 Repetitive Interval 2 Hours",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "H2NIA15",
     description: "Nitrox 40/60 diving tables with 2-hour repetitive intervals",
@@ -153,7 +153,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nib15",
     name: "Nitrox 35/65 Repetitive Interval 12 Hours",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "NIB15",
     description: "Nitrox 35/65 diving tables with 12-hour repetitive intervals",
@@ -161,7 +161,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "h2nib15",
     name: "Nitrox 35/65 Repetitive Interval 2 Hours",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "H2NIB15",
     description: "Nitrox 35/65 diving tables with 2-hour repetitive intervals",
@@ -169,7 +169,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "h4nib15",
     name: "Nitrox 35/65 Repetitive Interval 4 Hours",
-    type: "nitrox",
+    type: "Nitrox",
     category: "Nitrox Tables",
     code: "H4NIB15",
     description: "Nitrox 35/65 diving tables with 4-hour repetitive intervals",
@@ -179,77 +179,77 @@ const diveTablesData: DiveTable[] = [
   {
     id: "ead-40",
     name: "Nitrox 40% O2 / 60% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 40% oxygen mixture",
   },
   {
     id: "ead-39",
     name: "Nitrox 39% O2 / 61% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 39% oxygen mixture",
   },
   {
     id: "ead-38",
     name: "Nitrox 38% O2 / 62% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 38% oxygen mixture",
   },
   {
     id: "ead-37",
     name: "Nitrox 37% O2 / 63% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 37% oxygen mixture",
   },
   {
     id: "ead-36",
     name: "Nitrox 36% O2 / 64% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 36% oxygen mixture",
   },
   {
     id: "ead-35",
     name: "Nitrox 35% O2 / 65% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 35% oxygen mixture",
   },
   {
     id: "ead-34",
     name: "Nitrox 34% O2 / 66% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 34% oxygen mixture",
   },
   {
     id: "ead-33",
     name: "Nitrox 33% O2 / 67% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 33% oxygen mixture",
   },
   {
     id: "ead-32",
     name: "Nitrox 32% O2 / 68% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 32% oxygen mixture",
   },
   {
     id: "ead-31",
     name: "Nitrox 31% O2 / 69% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 31% oxygen mixture",
   },
   {
     id: "ead-30",
     name: "Nitrox 30% O2 / 70% N2 - Equivalent Air Depth",
-    type: "nitrox",
+    type: "EAD",
     category: "Nitrox Equivalent Air Depth (EAD) Tables",
     description: "EAD conversion table for Nitrox 30% oxygen mixture",
   },
@@ -258,7 +258,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "sox15-esot",
     name: "Surface Decompression with Oxygen (ESOT)",
-    type: "commercial",
+    type: "SurD O2",
     category: "OTU/ESOT Tables",
     code: "SOX15",
     description: "Surface decompression tables using oxygen",
@@ -266,7 +266,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nia15-esot",
     name: "Nitrox 40/60 (ESOT)",
-    type: "nitrox",
+    type: "Nitrox",
     category: "OTU/ESOT Tables",
     code: "NIA15",
     description: "Nitrox 40/60 diving tables from ESOT documentation",
@@ -274,7 +274,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "nib15-esot",
     name: "Nitrox 35/75 (ESOT)",
-    type: "nitrox",
+    type: "Nitrox",
     category: "OTU/ESOT Tables",
     code: "NIB15",
     description: "Nitrox 35/75 diving tables from ESOT documentation",
@@ -282,7 +282,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "box15",
     name: "ESOT Dry or Wet Bell Tables",
-    type: "commercial",
+    type: "Wet/Dry Bell",
     category: "OTU/ESOT Tables",
     code: "BOX15",
     description: "Decompression tables for dry or wet bell diving operations",
@@ -292,7 +292,7 @@ const diveTablesData: DiveTable[] = [
   {
     id: "box15-bell",
     name: "Wet or Dry Bell Air/Oxygen Tables",
-    type: "commercial",
+    type: "Wet/Dry Bell",
     category: "Wet or Dry Bell Air/Oxygen Tables",
     code: "BOX15",
     description: "Air and oxygen decompression schedules for bell diving",
@@ -302,90 +302,58 @@ const diveTablesData: DiveTable[] = [
   {
     id: "comex-cx12",
     name: "COMEX Treatment Table CX 12",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "COMEX hyperbaric treatment table CX 12 for decompression sickness",
   },
   {
     id: "usn-table5",
     name: "US Navy Oxygen Treatment Table 5",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "US Navy standard oxygen recompression treatment table 5",
   },
   {
     id: "usn-table6",
     name: "US Navy Oxygen Treatment Table 6",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "US Navy standard oxygen recompression treatment table 6",
   },
   {
     id: "comex-cx30",
     name: "COMEX Treatment Table CX 30",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "COMEX hyperbaric treatment table CX 30 for severe cases",
   },
   {
     id: "air-treat-1a",
     name: "Air Treatment Table 1A",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "Air-based hyperbaric treatment table 1A",
   },
   {
     id: "air-treat-2a",
     name: "Air Treatment Table 2A",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "Air-based hyperbaric treatment table 2A",
   },
   {
     id: "air-treat-3",
     name: "Air Treatment Table 3",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "Air-based hyperbaric treatment table 3",
   },
   {
     id: "air-treat-4",
     name: "Air Treatment Table 4",
-    type: "treatment",
+    type: "Treatment",
     category: "Treatment Tables",
     description: "Air-based hyperbaric treatment table 4",
-  },
-
-  // REFERENCE TABLES
-  {
-    id: "oxygen-limits",
-    name: "NOAA Oxygen Exposure Limits",
-    type: "reference",
-    category: "Reference Tables",
-    description:
-      "NOAA updated oxygen exposure limits (DMAC 35 from DCD/NDC Addendum 2023)",
-  },
-  {
-    id: "hes-depth",
-    name: "HES Depth Table",
-    type: "reference",
-    category: "Reference Tables",
-    description: "Helium-Oxygen-Saturation depth reference table",
-  },
-  {
-    id: "min-flying",
-    name: "Minimum Time Between Diving and Flying",
-    type: "reference",
-    category: "Reference Tables",
-    description:
-      "Guidelines for minimum surface intervals before flying after diving",
-  },
-  {
-    id: "pneumofathometer",
-    name: "Pneumofathometer Depth Correction Factor",
-    type: "reference",
-    category: "Reference Tables",
-    description: "Pressure-to-depth conversion correction factors",
   },
 ];
 

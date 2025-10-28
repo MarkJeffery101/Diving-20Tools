@@ -361,3 +361,36 @@ export function getTableHeader(
 ): TableHeaderConfig | undefined {
   return tableHeaderConfigs[tableCode];
 }
+
+// Map of table codes to their available depths
+const tableDepthMap: Record<string, number[]> = {
+  // Standard Air Tables
+  SIL15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  H2SIL15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  H4SIL15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+
+  // Surface/OX Tables
+  SOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  HSOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+
+  // Backup Air Tables
+  SAB15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  HSAB15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+
+  // Nitrox Tables
+  NIA15: [18, 21, 24, 27],
+  "NIA 2-3": [21, 23, 25, 27],
+  "NIA 2-6": [21, 23, 25, 27],
+  H2NIA15: [18, 21, 24, 27],
+  H4NIA15: [18, 21, 24, 27],
+  NIB15: [18, 21, 24, 27, 30, 33],
+  H2NIB15: [18, 21, 24, 27, 30, 33],
+  H4NIB15: [18, 21, 24, 27, 30, 33],
+
+  // Wet or Dry Bell Tables
+  BOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+};
+
+export function getAvailableDepths(tableCode: string): number[] | undefined {
+  return tableDepthMap[tableCode];
+}

@@ -168,7 +168,7 @@ export default function TableDetail() {
 
               {/* Sub-header row if needed */}
               {headerConfig.columns.some((col) => col.sub) && (
-                <tr className="border-b-2 border-gray-300 bg-blue-700 text-white">
+                <tr className="sticky top-14 z-10 border-b-2 border-gray-300 bg-blue-700 text-white shadow-md">
                   {headerConfig.columns.map((column, idx) => (
                     column.sub && column.sub.length > 0 ? (
                       column.sub.map((subCol, subIdx) => (

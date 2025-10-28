@@ -13,15 +13,15 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
   SIL15: {
     title: "SIL15 - Standard Air, Repetitive Interval 12 Hours",
     columns: [
-      { label: "Dive Time (min)" },
-      { label: "Till 1st Stop" },
+      { label: "Dive Time\n(min)" },
+      { label: "Till 1st\nStop" },
       {
         label: "Stop Depth (metres)",
         sub: ["24", "21", "18", "15", "12", "9", "6", "3"],
       },
-      { label: "Tot. Deco Time (min)" },
-      { label: "Tot. OTU" },
-      { label: "Tot. ESOT" },
+      { label: "Tot. Deco Time\n(min)" },
+      { label: "Tot.\nOTU" },
+      { label: "Tot.\nESOT" },
     ],
   },
   H2SIL15: {

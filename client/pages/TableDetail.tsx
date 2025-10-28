@@ -80,76 +80,46 @@ export default function TableDetail() {
       <Navigation />
 
       <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-7xl">
-        {/* Back Button */}
-        <button
-          onClick={() => navigate("/tables")}
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors mb-6 font-medium text-sm sm:text-base"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Tables
-        </button>
-
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-            {headerConfig.title}
-          </h1>
-
-          {/* Info Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {/* Left: Depth Info */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
-              <div className="space-y-3">
-                {depth && (
-                  <div>
-                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
-                    <p className="text-2xl sm:text-3xl font-bold text-blue-900">{depth}m</p>
-                  </div>
-                )}
-                {showDvis5 && (
-                  <div className="pt-2 border-t border-blue-200">
-                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
-                    <p className="text-xl sm:text-2xl font-bold text-blue-900">{tableData.dvis5Value !== null ? tableData.dvis5Value : '-'} min</p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Center: Nitrox Info */}
-            {showNitroxInfo && (
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Equivalent Air Depth</p>
-                    <p className="text-xl sm:text-2xl font-bold text-amber-900">— m/sw</p>
-                  </div>
-                  <div className="pt-2 border-t border-amber-200">
-                    <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum PO₂</p>
-                    <p className="text-xl sm:text-2xl font-bold text-amber-900">—</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Right: Safety Info */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
-              <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">Safety Guidelines</p>
-              <ul className="space-y-2 text-xs sm:text-sm text-green-900">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-green-600 mt-0.5">•</span>
-                  <span>Stop time starts after arrival at the stop</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-green-600 mt-0.5">•</span>
-                  <span>Maximum ascent speed is 10 m/min</span>
-                </li>
-              </ul>
-            </div>
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-3 mb-6">
+          <button
+            onClick={() => navigate("/tables")}
+            className="inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-gray-200 transition-colors text-gray-700 flex-shrink-0"
+            title="Back to Tables"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <div className="flex-1">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+              {headerConfig.title}
+            </h1>
           </div>
         </div>
 
+        {/* Depth Selector */}
+        {availableDepths && availableDepths.length > 0 && (
+          <div className="mb-8">
+            <p className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">Select Depth</p>
+            <div className="flex flex-wrap gap-2">
+              {availableDepths.map((depth) => (
+                <button
+                  key={depth}
+                  onClick={() => handleDepthChange(depth)}
+                  className={`px-4 py-2 rounded-lg font-semibold transition-all border-2 ${
+                    selectedDepth === depth
+                      ? 'bg-blue-600 border-blue-600 text-white shadow-md'
+                      : 'bg-white border-gray-300 text-gray-700 hover:border-blue-400 hover:text-blue-600'
+                  }`}
+                >
+                  {depth}m
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow mb-8">
           <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
             <thead className="sticky top-0 z-10 bg-gradient-to-b from-blue-700 to-blue-600 text-white shadow-md">
               <tr className="border-b border-gray-300">

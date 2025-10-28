@@ -63,21 +63,25 @@ export default function TableDetail() {
         <div className="bg-white rounded-lg border border-border overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b-2 border-border bg-ocean-50">
-                {headerConfig.columns.map((column, idx) => (
-                  <th
-                    key={idx}
-                    className="px-4 py-3 text-left font-bold text-foreground"
-                    colSpan={column.sub ? column.sub.length : 1}
-                  >
-                    {column.label}
-                  </th>
-                ))}
+              <tr className="border-b border-border bg-ocean-50">
+                {headerConfig.columns.map((column, idx) => {
+                  const hasNoSub = !column.sub || column.sub.length === 0;
+                  return (
+                    <th
+                      key={idx}
+                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : ''}`}
+                      colSpan={column.sub ? column.sub.length : 1}
+                      rowSpan={hasNoSub ? 2 : 1}
+                    >
+                      {column.label}
+                    </th>
+                  );
+                })}
               </tr>
 
               {/* Sub-header row if needed */}
               {headerConfig.columns.some((col) => col.sub) && (
-                <tr className="border-b border-border bg-ocean-25">
+                <tr className="border-b-2 border-border bg-ocean-25">
                   {headerConfig.columns.map((column, idx) => (
                     column.sub && column.sub.length > 0 ? (
                       column.sub.map((subCol, subIdx) => (
@@ -88,12 +92,7 @@ export default function TableDetail() {
                           {subCol}
                         </th>
                       ))
-                    ) : (
-                      <th
-                        key={`${idx}-empty`}
-                        className="px-4 py-2 text-xs font-semibold text-foreground border-r border-border"
-                      />
-                    )
+                    ) : null
                   ))}
                 </tr>
               )}

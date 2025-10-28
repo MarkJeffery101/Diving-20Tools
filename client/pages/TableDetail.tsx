@@ -65,14 +65,14 @@ export default function TableDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-7xl">
         {/* Back Button */}
         <button
           onClick={() => navigate("/tables")}
-          className="inline-flex items-center gap-2 text-primary hover:opacity-80 transition-opacity mb-8 font-medium"
+          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors mb-6 font-medium text-sm sm:text-base"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Tables
@@ -80,37 +80,65 @@ export default function TableDetail() {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
             {headerConfig.title}
           </h1>
-          <div className="flex justify-between items-start gap-8">
-            <div>
-              {depth && (
-                <p className="text-lg text-primary font-semibold mb-2">
-                  Maximum Diving Depth: {depth}m
-                </p>
-              )}
-              {showDvis5 && (
-                <p className="text-lg text-primary font-semibold">
-                  Dvis 5 time = {tableData.dvis5Value !== null ? tableData.dvis5Value : '-'}
-                </p>
-              )}
+
+          {/* Info Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {/* Left: Depth Info */}
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
+              <div className="space-y-3">
+                {depth && (
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-blue-900">{depth}m</p>
+                  </div>
+                )}
+                {showDvis5 && (
+                  <div className="pt-2 border-t border-blue-200">
+                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
+                    <p className="text-xl sm:text-2xl font-bold text-blue-900">{tableData.dvis5Value !== null ? tableData.dvis5Value : '-'} sec</p>
+                  </div>
+                )}
+              </div>
             </div>
+
+            {/* Center: Nitrox Info */}
             {showNitroxInfo && (
-              <div className="text-lg text-primary font-semibold space-y-2">
-                <p>Equivalent Air Depth m/sw: </p>
-                <p>Maximum PO2 =</p>
+              <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Equivalent Air Depth</p>
+                    <p className="text-xl sm:text-2xl font-bold text-amber-900">— m/sw</p>
+                  </div>
+                  <div className="pt-2 border-t border-amber-200">
+                    <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum PO₂</p>
+                    <p className="text-xl sm:text-2xl font-bold text-amber-900">—</p>
+                  </div>
+                </div>
               </div>
             )}
-            <div className="text-sm text-foreground space-y-1">
-              <p>Stop time starts after arrival at the stop.</p>
-              <p>Maximum ascent speed is 10 metres per minute</p>
+
+            {/* Right: Safety Info */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
+              <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">Safety Guidelines</p>
+              <ul className="space-y-2 text-xs sm:text-sm text-green-900">
+                <li className="flex items-start gap-2">
+                  <span className="font-bold text-green-600 mt-0.5">•</span>
+                  <span>Stop time starts after arrival at the stop</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="font-bold text-green-600 mt-0.5">•</span>
+                  <span>Maximum ascent speed is 10 m/min</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-border overflow-x-auto">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow">
           <table className="w-full text-sm" style={{ tableLayout: 'auto' }}>
             <thead>
               <tr className="border-b border-border bg-ocean-50">

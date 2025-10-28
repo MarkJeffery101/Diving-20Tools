@@ -411,7 +411,8 @@ export default function Tables() {
                   ].depths?.map((depth, idx) => (
                     <button
                       key={idx}
-                      className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-ocean-50 transition-all text-center bg-white font-semibold text-foreground"
+                      onClick={() => handleDepthClick(depth)}
+                      className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-ocean-50 transition-all text-center bg-white font-semibold text-foreground hover:text-primary cursor-pointer"
                     >
                       {depth}m
                     </button>

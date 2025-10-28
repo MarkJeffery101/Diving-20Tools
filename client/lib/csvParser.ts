@@ -32,12 +32,20 @@ export async function parseTableCSV(
     }
 
     const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-    const depthIndex = headers.findIndex(h => h.includes('depth') && !h.includes('deco'));
-    const diveTimeIndex = headers.findIndex(h => h.includes('dive time'));
-    const tillStopIndex = headers.findIndex(h => h.includes('till'));
-    const decoTimeIndex = headers.findIndex(h => h.includes('total deco'));
-    const otuIndex = headers.findIndex(h => h.includes('otu'));
-    const esotIndex = headers.findIndex(h => h.includes('esot'));
+    const depthIndex = headers.findIndex(h =>
+      h.includes('depth') && !h.includes('deco') && !h.includes('stop depth')
+    );
+    const diveTimeIndex = headers.findIndex(h =>
+      h.includes('dive') && h.includes('time')
+    );
+    const tillStopIndex = headers.findIndex(h =>
+      h.includes('till') || h.includes('1st')
+    );
+    const decoTimeIndex = headers.findIndex(h =>
+      h.includes('deco') && h.includes('time')
+    );
+    const otuIndex = headers.findIndex(h => h === 'total otu' || h === 'otu');
+    const esotIndex = headers.findIndex(h => h === 'total esot' || h === 'esot');
 
     // Find where the stop depths start (after till 1st stop)
     const stopDepthStartIndex = tillStopIndex + 1;

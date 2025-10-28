@@ -20,24 +20,39 @@ export default function TableDetail() {
   const headerConfig = getTableHeader(code);
   const availableDepths = getAvailableDepths(code);
 
-  // Calculate total colspan for the table
-  const totalColSpan = headerConfig ?
-    headerConfig.columns.reduce((sum, col) => sum + (col.sub ? col.sub.length : 1), 0)
-    : 0;
+  // Initialize selected depth from URL or use first available depth
+  useEffect(() => {
+    if (depthNum) {
+      setSelectedDepth(depthNum);
+    } else if (availableDepths && availableDepths.length > 0) {
+      setSelectedDepth(availableDepths[0]);
+    }
+  }, [depthNum, availableDepths]);
 
-  // Load CSV data when component mounts or code/depth changes
+  // Load CSV data when selected depth changes
   useEffect(() => {
     const loadData = async () => {
-      if (code && depthNum && headerConfig) {
+      if (code && selectedDepth && headerConfig) {
         setIsLoading(true);
-        const data = await parseTableCSV(code, depthNum);
+        const data = await parseTableCSV(code, selectedDepth);
         setTableData(data);
         setIsLoading(false);
       }
     };
 
     loadData();
-  }, [code, depthNum, headerConfig]);
+  }, [code, selectedDepth, headerConfig]);
+
+  // Handle depth selection and URL update
+  const handleDepthChange = (depth: number) => {
+    setSelectedDepth(depth);
+    navigate(`/tables/${id}?depth=${depth}`, { replace: false });
+  };
+
+  // Calculate total colspan for the table
+  const totalColSpan = headerConfig ?
+    headerConfig.columns.reduce((sum, col) => sum + (col.sub ? col.sub.length : 1), 0)
+    : 0;
 
   // Tables that require Dvis 5 time information
   const tablesWithDvis5 = ['SIL15', 'H2SIL15', 'H4SIL15', 'SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];

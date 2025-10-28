@@ -189,14 +189,14 @@ export default function TableDetail() {
             {/* Data rows */}
             <tbody>
               {isLoading ? (
-                <tr className="border-b border-border hover:bg-ocean-50">
-                  <td colSpan={totalColSpan} className="px-4 py-8 text-center text-muted-foreground italic">
+                <tr className="border-b border-gray-200">
+                  <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
                     Loading table data...
                   </td>
                 </tr>
               ) : tableData.rows.length === 0 ? (
-                <tr className="border-b border-border hover:bg-ocean-50">
-                  <td colSpan={totalColSpan} className="px-4 py-8 text-center text-muted-foreground italic">
+                <tr className="border-b border-gray-200">
+                  <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
                     No data available for this depth
                   </td>
                 </tr>
@@ -204,22 +204,27 @@ export default function TableDetail() {
                 tableData.rows.map((row, rowIdx) => (
                   <tr
                     key={rowIdx}
-                    className="hover:bg-ocean-50"
+                    className={`border-b transition-colors duration-150 cursor-pointer ${
+                      row.marker === 3
+                        ? 'bg-red-50 hover:bg-red-100'
+                        : rowIdx % 2 === 0
+                          ? 'bg-white hover:bg-blue-50'
+                          : 'bg-gray-50 hover:bg-blue-50'
+                    }`}
                     style={{
-                      backgroundColor: row.marker === 3 ? '#FFE8E8' : undefined,
-                      borderBottom: row.marker === 2 ? '3px solid #000' : '1px solid var(--border)',
+                      borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
                     }}
                   >
-                    <td className="px-4 py-2 text-center">{row.diveTime}</td>
-                    <td className="px-4 py-2 text-center">{row.tillFirstStop}</td>
+                    <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                    <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
                     {row.stopDepths.map((depth, depthIdx) => (
-                      <td key={depthIdx} className="px-2 py-2 text-center">
-                        {depth !== null ? depth : '-'}
+                      <td key={depthIdx} className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                        {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
                       </td>
                     ))}
-                    <td className="px-4 py-2 text-center">{row.totalDecoTime}</td>
-                    <td className="px-4 py-2 text-center">{row.totalOTU}</td>
-                    <td className="px-4 py-2 text-center">{row.totalESOT}</td>
+                    <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
+                    <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
+                    <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
                   </tr>
                 ))
               )}

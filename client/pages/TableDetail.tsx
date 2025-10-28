@@ -44,7 +44,7 @@ export default function TableDetail() {
   }, [code, depthNum, headerConfig]);
 
   // Tables that require Dvis 5 time information
-  const tablesWithDvis5 = ['SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];
+  const tablesWithDvis5 = ['SIL15', 'H2SIL15', 'H4SIL15', 'SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];
   const showDvis5 = tablesWithDvis5.includes(code);
 
   // Tables that require Equivalent Air Depth and Maximum PO2 information

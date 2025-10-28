@@ -457,17 +457,7 @@ export default function Tables() {
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
-                All Types
-              </button>
-              <button
-                onClick={() => setSelectedType("commercial")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "commercial"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-foreground hover:bg-muted/80"
-                }`}
-              >
-                Commercial
+                All
               </button>
               <button
                 onClick={() => setSelectedType("air")}
@@ -488,6 +478,36 @@ export default function Tables() {
                 }`}
               >
                 Nitrox
+              </button>
+              <button
+                onClick={() => setSelectedType("commercial")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  selectedType === "commercial"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Commercial
+              </button>
+              <button
+                onClick={() => setSelectedType("treatment")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  selectedType === "treatment"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Treatment
+              </button>
+              <button
+                onClick={() => setSelectedType("reference")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  selectedType === "reference"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Reference
               </button>
             </div>
           </div>

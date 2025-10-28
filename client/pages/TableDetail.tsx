@@ -73,7 +73,7 @@ export default function TableDetail() {
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
                       style={hasNoSub ? {
-                        maxWidth: column.label.includes('Deco') ? '110px' : '55px',
+                        maxWidth: column.label.includes('Deco') ? '65px' : '55px',
                         wordWrap: 'break-word',
                         whiteSpace: 'normal'
                       } : {}}

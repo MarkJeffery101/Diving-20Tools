@@ -540,19 +540,24 @@ export default function Tables() {
                           <div>
                             <span
                               className={`inline-block px-2 py-1 text-xs font-semibold rounded mb-2 ${
-                                table.type === "commercial"
-                                  ? "bg-orange-100 text-orange-700"
-                                  : table.type === "air"
-                                    ? "bg-blue-100 text-blue-700"
-                                    : table.type === "nitrox"
-                                      ? "bg-green-100 text-green-700"
-                                      : table.type === "treatment"
-                                        ? "bg-red-100 text-red-700"
-                                        : "bg-purple-100 text-purple-700"
+                                table.type === "No Stops Air"
+                                  ? "bg-blue-100 text-blue-700"
+                                  : table.type === "Standard Air"
+                                    ? "bg-cyan-100 text-cyan-700"
+                                    : table.type === "SurD O2"
+                                      ? "bg-orange-100 text-orange-700"
+                                      : table.type === "Backup Air"
+                                        ? "bg-yellow-100 text-yellow-700"
+                                        : table.type === "Nitrox"
+                                          ? "bg-green-100 text-green-700"
+                                          : table.type === "EAD"
+                                            ? "bg-emerald-100 text-emerald-700"
+                                            : table.type === "Wet/Dry Bell"
+                                              ? "bg-indigo-100 text-indigo-700"
+                                              : "bg-red-100 text-red-700"
                               }`}
                             >
-                              {table.type.charAt(0).toUpperCase() +
-                                table.type.slice(1)}
+                              {table.type}
                             </span>
                           </div>
                           <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />

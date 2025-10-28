@@ -140,8 +140,8 @@ export default function TableDetail() {
         {/* Table */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow">
           <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
-            <thead className="sticky top-0 z-10 shadow-md">
-              <tr className="border-b-2 border-gray-300 bg-gradient-to-b from-blue-700 to-blue-600 text-white">
+            <thead>
+              <tr className="sticky top-0 z-10 border-b-2 border-gray-300 bg-gradient-to-b from-blue-700 to-blue-600 text-white shadow-md">
                 {headerConfig.columns.map((column, idx) => {
                   const hasNoSub = !column.sub || column.sub.length === 0;
                   return (

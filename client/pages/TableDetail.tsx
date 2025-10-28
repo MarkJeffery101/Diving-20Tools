@@ -161,13 +161,13 @@ export default function TableDetail() {
             <tbody>
               {isLoading ? (
                 <tr className="border-b border-border hover:bg-ocean-50">
-                  <td colSpan={headerConfig.columns.length} className="px-4 py-8 text-center text-muted-foreground italic">
+                  <td colSpan={totalColSpan} className="px-4 py-8 text-center text-muted-foreground italic">
                     Loading table data...
                   </td>
                 </tr>
               ) : tableData.rows.length === 0 ? (
                 <tr className="border-b border-border hover:bg-ocean-50">
-                  <td colSpan={headerConfig.columns.length} className="px-4 py-8 text-center text-muted-foreground italic">
+                  <td colSpan={totalColSpan} className="px-4 py-8 text-center text-muted-foreground italic">
                     No data available for this depth
                   </td>
                 </tr>

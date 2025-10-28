@@ -69,7 +69,7 @@ export default function TableDetail() {
                   return (
                     <th
                       key={idx}
-                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : 'text-center'}`}
+                      className={`px-4 py-3 font-bold text-foreground ${hasNoSub ? 'bg-ocean-25 text-center' : 'text-center'}`}
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
                       style={hasNoSub ? {

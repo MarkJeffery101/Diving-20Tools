@@ -61,14 +61,14 @@ export default function TableDetail() {
 
         {/* Table */}
         <div className="bg-white rounded-lg border border-border overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b-2 border-border bg-ocean-50">
                 {headerConfig.columns.map((column, idx) => (
                   <th
                     key={idx}
-                    className="px-4 py-3 text-left font-bold text-foreground"
-                    colSpan={column.sub ? 1 : 1}
+                    className="px-4 py-3 text-left font-bold text-foreground border-r border-border last:border-r-0"
+                    colSpan={column.sub ? column.sub.length : 1}
                   >
                     {column.label}
                   </th>
@@ -79,20 +79,16 @@ export default function TableDetail() {
               {headerConfig.columns.some((col) => col.sub) && (
                 <tr className="border-b border-border bg-ocean-25">
                   {headerConfig.columns.map((column, idx) => (
-                    <th key={idx} className="text-left">
-                      {column.sub && column.sub.length > 0 ? (
-                        <div className="flex">
-                          {column.sub.map((subCol, subIdx) => (
-                            <div
-                              key={subIdx}
-                              className="px-4 py-2 text-xs font-semibold text-foreground flex-1 border-r border-border last:border-r-0"
-                            >
-                              {subCol}
-                            </div>
-                          ))}
-                        </div>
-                      ) : null}
-                    </th>
+                    column.sub && column.sub.length > 0 ? (
+                      column.sub.map((subCol, subIdx) => (
+                        <th
+                          key={`${idx}-${subIdx}`}
+                          className="px-4 py-2 text-xs font-semibold text-foreground border-r border-border last:border-r-0"
+                        >
+                          {subCol}
+                        </th>
+                      ))
+                    ) : null
                   ))}
                 </tr>
               )}

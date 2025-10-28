@@ -73,10 +73,11 @@ export default function TableDetail() {
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
                       style={hasNoSub ? {
-                        maxWidth: column.label.includes('Deco') ? '75px' : '55px',
+                        minWidth: idx === 0 || idx === 1 ? '80px' : idx >= headerConfig.columns.length - 3 ? '70px' : 'auto',
                         wordWrap: 'break-word',
-                        whiteSpace: 'normal'
-                      } : {}}
+                        whiteSpace: 'normal',
+                        lineHeight: '1.2'
+                      } : { minWidth: '50px' }}
                     >
                       {column.label}
                     </th>

@@ -122,7 +122,6 @@ export async function parseTableCSV(
       });
     }
 
-    console.log(`Parsed ${rows.length} rows for depth ${depth}, DVIS 5 value: ${dvis5Value}`);
     return { dvis5Value, rows };
   } catch (error) {
     console.error('Error parsing CSV:', error);

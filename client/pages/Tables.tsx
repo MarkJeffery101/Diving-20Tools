@@ -255,7 +255,7 @@ export default function Tables() {
   const handleDepthClick = (depth: number) => {
     const level2Item = tablesData[selectedLevel1Index!].children[selectedLevel2Index!];
     const code = level2Item.code?.toLowerCase() || "";
-    navigate(`/tables/${code}-${depth}`);
+    navigate(`/tables/${code}?depth=${depth}`);
   };
 
   const getTagColor = (tag: string) => {

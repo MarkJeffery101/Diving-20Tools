@@ -87,7 +87,7 @@ export default function TableDetail() {
               )}
               {showDvis5 && (
                 <p className="text-lg text-primary font-semibold">
-                  Dvis 5 time =
+                  Dvis 5 time = {tableData.dvis5Value !== null ? tableData.dvis5Value : '-'}
                 </p>
               )}
             </div>

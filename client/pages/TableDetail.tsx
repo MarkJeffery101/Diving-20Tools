@@ -175,11 +175,10 @@ export default function TableDetail() {
                 tableData.rows.map((row, rowIdx) => (
                   <tr
                     key={rowIdx}
-                    className="border-b border-border hover:bg-ocean-50"
+                    className={`${row.marker !== 2 ? 'border-b border-border' : ''} hover:bg-ocean-50`}
                     style={{
                       backgroundColor: row.marker === 3 ? '#FFE8E8' : undefined,
-                      borderBottomWidth: row.marker === 2 ? '3px' : undefined,
-                      borderBottomColor: row.marker === 2 ? '#000' : undefined,
+                      borderBottom: row.marker === 2 ? '3px solid #000' : undefined,
                     }}
                   >
                     <td className="px-4 py-2 text-center">{row.diveTime}</td>

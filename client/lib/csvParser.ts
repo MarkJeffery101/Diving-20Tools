@@ -18,9 +18,12 @@ export async function parseTableCSV(
   depth: number
 ): Promise<ParsedTableData> {
   try {
-    const response = await fetch(`/data/tables/${tableCode}.csv`);
+    const csvPath = `/data/tables/${tableCode}.csv`;
+    console.log(`Fetching CSV from: ${csvPath} for depth ${depth}`);
+
+    const response = await fetch(csvPath);
     if (!response.ok) {
-      console.error(`Failed to fetch CSV for ${tableCode}`);
+      console.error(`Failed to fetch CSV for ${tableCode}: ${response.status} ${response.statusText}`);
       return { dvis5Value: null, rows: [] };
     }
 

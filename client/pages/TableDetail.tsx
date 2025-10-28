@@ -69,9 +69,10 @@ export default function TableDetail() {
                   return (
                     <th
                       key={idx}
-                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25 break-words whitespace-normal max-w-xs' : ''}`}
+                      className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : ''}`}
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
+                      style={hasNoSub ? { maxWidth: '80px', wordWrap: 'break-word', whiteSpace: 'normal' } : {}}
                     >
                       {column.label}
                     </th>

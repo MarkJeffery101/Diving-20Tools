@@ -95,7 +95,7 @@ export default function TableDetail() {
                       column.sub.map((subCol, subIdx) => (
                         <th
                           key={`${idx}-${subIdx}`}
-                          className="px-2 py-2 text-xs font-semibold text-foreground border-r border-border last:border-r-0"
+                          className="px-2 py-2 text-xs font-semibold text-foreground border-r border-border last:border-r-0 text-center"
                           style={{ minWidth: '45px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.2' }}
                         >
                           {subCol}

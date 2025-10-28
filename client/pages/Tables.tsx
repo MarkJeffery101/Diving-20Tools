@@ -546,7 +546,11 @@ export default function Tables() {
                                   ? "bg-orange-100 text-orange-700"
                                   : table.type === "air"
                                     ? "bg-blue-100 text-blue-700"
-                                    : "bg-green-100 text-green-700"
+                                    : table.type === "nitrox"
+                                      ? "bg-green-100 text-green-700"
+                                      : table.type === "treatment"
+                                        ? "bg-red-100 text-red-700"
+                                        : "bg-purple-100 text-purple-700"
                               }`}
                             >
                               {table.type.charAt(0).toUpperCase() +
@@ -560,16 +564,24 @@ export default function Tables() {
                           {table.name}
                         </h3>
 
+                        {table.code && (
+                          <div className="text-xs font-mono font-bold text-primary mb-2">
+                            Code: {table.code}
+                          </div>
+                        )}
+
                         <p className="text-sm text-muted-foreground mb-4">
                           {table.description}
                         </p>
 
                         <div className="flex items-center justify-between pt-4 border-t border-border">
                           <span className="text-xs font-medium text-muted-foreground">
-                            Max Depth: {table.maxDepth}m
+                            {table.type === "treatment" || table.type === "reference"
+                              ? "Reference Table"
+                              : "Dive Table"}
                           </span>
                           <span className="text-xs text-primary font-semibold group-hover:underline">
-                            View Table →
+                            View →
                           </span>
                         </div>
                       </Link>

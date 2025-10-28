@@ -25,6 +25,12 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/tables" element={<Tables />} />
+          <Route path="/tables/:id" element={<TableDetail />} />
+          <Route path="/table-selection" element={<TableSelection />} />
+          <Route path="/emergency-procedures" element={<EmergencyProcedures />} />
+          <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
+          <Route path="/supporting-info" element={<SupportingInfo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

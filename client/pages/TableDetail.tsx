@@ -152,13 +152,44 @@ export default function TableDetail() {
               )}
             </thead>
 
-            {/* Data rows (placeholder - will be populated with CSV data) */}
+            {/* Data rows */}
             <tbody>
-              <tr className="border-b border-border hover:bg-ocean-50">
-                <td colSpan={headerConfig.columns.length} className="px-4 py-8 text-center text-muted-foreground italic">
-                  Table data loading...
-                </td>
-              </tr>
+              {isLoading ? (
+                <tr className="border-b border-border hover:bg-ocean-50">
+                  <td colSpan={headerConfig.columns.length} className="px-4 py-8 text-center text-muted-foreground italic">
+                    Loading table data...
+                  </td>
+                </tr>
+              ) : tableData.rows.length === 0 ? (
+                <tr className="border-b border-border hover:bg-ocean-50">
+                  <td colSpan={headerConfig.columns.length} className="px-4 py-8 text-center text-muted-foreground italic">
+                    No data available for this depth
+                  </td>
+                </tr>
+              ) : (
+                tableData.rows.map((row, rowIdx) => (
+                  <tr
+                    key={rowIdx}
+                    className="border-b border-border hover:bg-ocean-50"
+                    style={{
+                      backgroundColor: row.marker === 3 ? '#FFE8E8' : undefined,
+                      borderBottomWidth: row.marker === 2 ? '3px' : undefined,
+                      borderBottomColor: row.marker === 2 ? '#000' : undefined,
+                    }}
+                  >
+                    <td className="px-4 py-2 text-center">{row.diveTime}</td>
+                    <td className="px-4 py-2 text-center">{row.tillFirstStop}</td>
+                    {row.stopDepths.map((depth, depthIdx) => (
+                      <td key={depthIdx} className="px-2 py-2 text-center">
+                        {depth !== null ? depth : '-'}
+                      </td>
+                    ))}
+                    <td className="px-4 py-2 text-center">{row.totalDecoTime}</td>
+                    <td className="px-4 py-2 text-center">{row.totalOTU}</td>
+                    <td className="px-4 py-2 text-center">{row.totalESOT}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

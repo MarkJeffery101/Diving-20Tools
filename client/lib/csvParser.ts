@@ -63,6 +63,7 @@ export async function parseTableCSV(
 
     let dvis5Value: number | null = null;
     const rows: TableRow[] = [];
+    let processedCount = 0;
 
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -72,7 +73,12 @@ export async function parseTableCSV(
 
       // Check if this row's depth matches our target depth
       const rowDepth = parseInt(values[depthIndex]);
-      if (isNaN(rowDepth) || rowDepth !== depth) continue;
+      if (isNaN(rowDepth) || rowDepth !== depth) {
+        if (!isNaN(rowDepth)) {
+          processedCount++;
+        }
+        continue;
+      }
 
       // Extract DVIS 5 value from first matching row
       if (dvis5Value === null && dvis5Index >= 0) {

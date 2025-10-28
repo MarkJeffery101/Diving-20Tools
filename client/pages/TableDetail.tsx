@@ -52,11 +52,17 @@ export default function TableDetail() {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {headerConfig.title}
           </h1>
-          {depth && (
-            <p className="text-lg text-primary font-semibold">
-              Depth: {depth}m
-            </p>
-          )}
+          <div className="flex justify-between items-start gap-8">
+            {depth && (
+              <p className="text-lg text-primary font-semibold">
+                Maximum Diving Depth: {depth}m
+              </p>
+            )}
+            <div className="text-sm text-foreground space-y-1">
+              <p>Stop time starts after arrival at the stop.</p>
+              <p>Maximum ascent speed is 10 metres per minute</p>
+            </div>
+          </div>
         </div>
 
         {/* Table */}

@@ -57,11 +57,18 @@ export default function TableDetail() {
             {headerConfig.title}
           </h1>
           <div className="flex justify-between items-start gap-8">
-            {depth && (
-              <p className="text-lg text-primary font-semibold">
-                Maximum Diving Depth: {depth}m
-              </p>
-            )}
+            <div>
+              {depth && (
+                <p className="text-lg text-primary font-semibold mb-2">
+                  Maximum Diving Depth: {depth}m
+                </p>
+              )}
+              {showDvis5 && (
+                <p className="text-lg text-primary font-semibold">
+                  Dvis 5 time =
+                </p>
+              )}
+            </div>
             <div className="text-sm text-foreground space-y-1">
               <p>Stop time starts after arrival at the stop.</p>
               <p>Maximum ascent speed is 10 metres per minute</p>

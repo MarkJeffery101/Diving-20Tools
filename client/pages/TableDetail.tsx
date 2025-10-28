@@ -1,28 +1,24 @@
 import Navigation from "@/components/Navigation";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { getTableHeader } from "@/lib/tableHeaders";
+import { getTableHeader, getAvailableDepths } from "@/lib/tableHeaders";
 import { parseTableCSV, type ParsedTableData } from "@/lib/csvParser";
 import { useState, useEffect } from "react";
 
 export default function TableDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [tableData, setTableData] = useState<ParsedTableData>({ dvis5Value: null, rows: [] });
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedDepth, setSelectedDepth] = useState<number | null>(null);
 
-  // Extract table code and depth from id (e.g., "sil15-12" -> code: "SIL15", depth: "12")
-  const parseTableId = (tableId: string) => {
-    const parts = tableId?.split("-") || [];
-    const depth = parts[parts.length - 1];
-    const code = parts.slice(0, -1).join("-").toUpperCase();
-
-    return { code, depth };
-  };
-
-  const { code, depth } = parseTableId(id || "");
-  const depthNum = parseInt(depth);
+  // Extract table code from id (e.g., "sil15" -> code: "SIL15")
+  const code = id?.toUpperCase() || "";
+  const queryDepth = searchParams.get("depth");
+  const depthNum = queryDepth ? parseInt(queryDepth) : null;
   const headerConfig = getTableHeader(code);
+  const availableDepths = getAvailableDepths(code);
 
   // Calculate total colspan for the table
   const totalColSpan = headerConfig ?

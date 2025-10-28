@@ -106,11 +106,13 @@ export async function parseTableCSV(
         }
       }
 
-      // Check for marker (last column or near last)
+      // Check for marker (column right after ESOT)
       let marker: number | undefined;
-      const lastValue = values[values.length - 1];
-      if (lastValue === '2' || lastValue === '3') {
-        marker = parseInt(lastValue);
+      if (markerIndex < values.length) {
+        const markerValue = values[markerIndex].trim();
+        if (markerValue === '2' || markerValue === '3') {
+          marker = parseInt(markerValue);
+        }
       }
 
       rows.push({

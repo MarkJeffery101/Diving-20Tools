@@ -88,7 +88,12 @@ export default function TableDetail() {
                           {subCol}
                         </th>
                       ))
-                    ) : null
+                    ) : (
+                      <th
+                        key={`${idx}-empty`}
+                        className="px-4 py-2 text-xs font-semibold text-foreground border-r border-border"
+                      />
+                    )
                   ))}
                 </tr>
               )}

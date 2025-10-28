@@ -419,7 +419,7 @@ export default function Tables() {
             <div className="flex gap-2 flex-wrap md:flex-nowrap">
               <button
                 onClick={() => setSelectedType(null)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
                   !selectedType
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground hover:bg-muted/80"
@@ -428,19 +428,49 @@ export default function Tables() {
                 All
               </button>
               <button
-                onClick={() => setSelectedType("air")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "air"
+                onClick={() => setSelectedType("No Stops Air")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "No Stops Air"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
-                Air
+                No Stops Air
               </button>
               <button
-                onClick={() => setSelectedType("nitrox")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "nitrox"
+                onClick={() => setSelectedType("Standard Air")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "Standard Air"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Standard Air
+              </button>
+              <button
+                onClick={() => setSelectedType("SurD O2")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "SurD O2"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                SurD O2
+              </button>
+              <button
+                onClick={() => setSelectedType("Backup Air")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "Backup Air"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Backup Air
+              </button>
+              <button
+                onClick={() => setSelectedType("Nitrox")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "Nitrox"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
@@ -448,34 +478,34 @@ export default function Tables() {
                 Nitrox
               </button>
               <button
-                onClick={() => setSelectedType("commercial")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "commercial"
+                onClick={() => setSelectedType("EAD")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "EAD"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
-                Commercial
+                EAD
               </button>
               <button
-                onClick={() => setSelectedType("treatment")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "treatment"
+                onClick={() => setSelectedType("Wet/Dry Bell")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "Wet/Dry Bell"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                Wet/Dry Bell
+              </button>
+              <button
+                onClick={() => setSelectedType("Treatment")}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                  selectedType === "Treatment"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
                 Treatment
-              </button>
-              <button
-                onClick={() => setSelectedType("reference")}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedType === "reference"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-foreground hover:bg-muted/80"
-                }`}
-              >
-                Reference
               </button>
             </div>
           </div>

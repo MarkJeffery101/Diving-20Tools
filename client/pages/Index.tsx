@@ -1,62 +1,201 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import Navigation from "@/components/Navigation";
+import { Link } from "react-router-dom";
+import {
+  BookOpen,
+  AlertTriangle,
+  Pill,
+  TrendingDown,
+  Database,
+  MapPin,
+} from "lucide-react";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
+  const sections = [
+    {
+      title: "Dive Tables",
+      description:
+        "Comprehensive index and detailed views of all commercial, air, and nitrox dive tables with depth, time, and decompression information.",
+      icon: Database,
+      href: "/tables",
+      color: "bg-ocean-50 text-ocean-700",
+      borderColor: "border-ocean-200",
+    },
+    {
+      title: "Table Selection Logic",
+      description:
+        "Interactive decision tree to help you select the right table based on documentation criteria and dive parameters.",
+      icon: TrendingDown,
+      href: "/table-selection",
+      color: "bg-blue-50 text-blue-700",
+      borderColor: "border-blue-200",
+    },
+    {
+      title: "Emergency Procedures",
+      description:
+        "Detailed logic trees and protocols for identifying and responding to diving emergencies with actionable steps.",
+      icon: AlertTriangle,
+      href: "/emergency-procedures",
+      color: "bg-red-50 text-red-700",
+      borderColor: "border-red-200",
+    },
+    {
+      title: "Treatment Protocols",
+      description:
+        "Comprehensive treatment protocols and decision trees for managing diving-related medical conditions.",
+      icon: Pill,
+      href: "/treatment-protocols",
+      color: "bg-green-50 text-green-700",
+      borderColor: "border-green-200",
+    },
+    {
+      title: "Supporting Information",
+      description:
+        "Safe and maximum limits, guidance documentation, rules, and all supporting information for table selection.",
+      icon: BookOpen,
+      href: "/supporting-info",
+      color: "bg-purple-50 text-purple-700",
+      borderColor: "border-purple-200",
+    },
+  ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
+      <Navigation />
+
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-ocean-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute -bottom-8 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-ocean-100 text-ocean-700 px-4 py-2 rounded-full mb-6 font-medium text-sm">
+              <MapPin className="h-4 w-4" />
+              Professional Dive Planning System
+            </div>
+
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+              DivePlan: Professional Dive Planning Reference
+            </h1>
+
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              A comprehensive, interlinked dive planning system for commercial,
+              air, and nitrox diving. Access decompression tables, emergency
+              procedures, treatment protocols, and decision logic trees in one
+              integrated platform.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/tables"
+                className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Start with Tables
+              </Link>
+              <Link
+                to="/table-selection"
+                className="px-8 py-3 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors"
+              >
+                Find Your Table
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-4 bg-white relative">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Integrated Dive Planning Resources
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              All essential dive planning information, interconnected and
+              organized for quick reference
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sections.map((section) => {
+              const IconComponent = section.icon;
+              return (
+                <Link
+                  key={section.href}
+                  to={section.href}
+                  className="group p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
+                  style={{
+                    background: section.color,
+                    borderColor: section.borderColor,
+                  }}
+                >
+                  <div className="mb-4">
+                    <IconComponent className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:opacity-90">
+                    {section.title}
+                  </h3>
+                  <p className="text-sm opacity-80 group-hover:opacity-100">
+                    {section.description}
+                  </p>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Features Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-ocean-900 to-ocean-800 text-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            Why DivePlan?
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Complete Information</h3>
+              <p className="text-ocean-100">
+                All dive tables, limits, and documentation in one accessible
+                place for all diving types.
+              </p>
+            </div>
+
+            <div>
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Smart Interlinks</h3>
+              <p className="text-ocean-100">
+                Seamlessly navigate between tables, procedures, and protocols
+                with contextual cross-references.
+              </p>
+            </div>
+
+            <div>
+              <div className="mb-4">
+                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-3">Decision Support</h3>
+              <p className="text-ocean-100">
+                Interactive logic trees help you navigate complex decisions from
+                table selection to emergency response.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

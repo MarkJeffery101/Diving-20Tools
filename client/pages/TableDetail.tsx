@@ -73,6 +73,12 @@ export default function TableDetail() {
                 </p>
               )}
             </div>
+            {showNitroxInfo && (
+              <div className="text-lg text-primary font-semibold space-y-2">
+                <p>Equivalent Air Depth m/sw: </p>
+                <p>Maximum PO2 =</p>
+              </div>
+            )}
             <div className="text-sm text-foreground space-y-1">
               <p>Stop time starts after arrival at the stop.</p>
               <p>Maximum ascent speed is 10 metres per minute</p>

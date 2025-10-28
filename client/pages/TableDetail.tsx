@@ -61,7 +61,7 @@ export default function TableDetail() {
 
         {/* Table */}
         <div className="bg-white rounded-lg border border-border overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm" style={{ tableLayout: 'auto' }}>
             <thead>
               <tr className="border-b border-border bg-ocean-50">
                 {headerConfig.columns.map((column, idx) => {

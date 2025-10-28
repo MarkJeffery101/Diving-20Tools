@@ -243,11 +243,19 @@ export default function Tables() {
     setSelectedLevel2Index(index);
 
     if (!level2Item.depths || level2Item.depths.length === 0) {
-      // No depths, would navigate to table directly
-      // For now just show level 2
+      // No depths, navigate to table directly using code
+      if (level2Item.code) {
+        navigate(`/tables/${level2Item.code.toLowerCase()}`);
+      }
     } else {
       setCurrentView("level3");
     }
+  };
+
+  const handleDepthClick = (depth: number) => {
+    const level2Item = tablesData[selectedLevel1Index!].children[selectedLevel2Index!];
+    const code = level2Item.code?.toLowerCase() || "";
+    navigate(`/tables/${code}-${depth}`);
   };
 
   const getTagColor = (tag: string) => {

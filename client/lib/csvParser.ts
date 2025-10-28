@@ -33,7 +33,6 @@ export async function parseTableCSV(
     }
 
     const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-    console.log('CSV Headers:', headers);
 
     const depthIndex = headers.findIndex(h =>
       h.includes('depth') && !h.includes('deco') && !h.includes('stop depth')
@@ -49,8 +48,6 @@ export async function parseTableCSV(
     );
     const otuIndex = headers.findIndex(h => h === 'total otu' || h === 'otu');
     const esotIndex = headers.findIndex(h => h === 'total esot' || h === 'esot');
-
-    console.log(`Header indices - Depth: ${depthIndex}, DiveTime: ${diveTimeIndex}, Till: ${tillStopIndex}, Deco: ${decoTimeIndex}, OTU: ${otuIndex}, ESOT: ${esotIndex}`);
 
     // Find where the stop depths start (after till 1st stop)
     const stopDepthStartIndex = tillStopIndex + 1;

@@ -63,40 +63,45 @@ export default function TableDetail() {
         <div className="bg-white rounded-lg border border-border overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="border-b-2 border-border bg-ocean-50">
-                {headerConfig.columns.map((column, idx) => (
-                  <th
-                    key={idx}
-                    className="px-4 py-3 text-left font-bold text-foreground border-r border-border last:border-r-0"
-                    colSpan={column.sub ? column.sub.length : 1}
-                  >
-                    {column.label}
-                  </th>
-                ))}
-              </tr>
-
-              {/* Sub-header row if needed */}
+              {/* First row: only show column headers that have sub-columns */}
               {headerConfig.columns.some((col) => col.sub) && (
-                <tr className="border-b border-border bg-ocean-25">
+                <tr className="border-b border-border bg-ocean-50">
                   {headerConfig.columns.map((column, idx) => (
-                    column.sub && column.sub.length > 0 ? (
-                      column.sub.map((subCol, subIdx) => (
-                        <th
-                          key={`${idx}-${subIdx}`}
-                          className="px-4 py-2 text-xs font-semibold text-foreground border-r border-border last:border-r-0"
-                        >
-                          {subCol}
-                        </th>
-                      ))
-                    ) : (
+                    column.sub ? (
                       <th
-                        key={`${idx}-empty`}
-                        className="px-4 py-2 text-xs font-semibold text-foreground border-r border-border"
-                      />
-                    )
+                        key={idx}
+                        className="px-4 py-3 text-left font-bold text-foreground border-r border-border"
+                        colSpan={column.sub.length}
+                      >
+                        {column.label}
+                      </th>
+                    ) : null
                   ))}
                 </tr>
               )}
+
+              {/* Sub-header row: contains all sub-column labels and simple column labels */}
+              <tr className="border-b-2 border-border bg-ocean-50">
+                {headerConfig.columns.map((column, idx) =>
+                  column.sub && column.sub.length > 0 ? (
+                    column.sub.map((subCol, subIdx) => (
+                      <th
+                        key={`${idx}-${subIdx}`}
+                        className="px-4 py-3 text-left font-bold text-foreground border-r border-border last:border-r-0"
+                      >
+                        {subCol}
+                      </th>
+                    ))
+                  ) : (
+                    <th
+                      key={`${idx}-simple`}
+                      className="px-4 py-3 text-left font-bold text-foreground border-r border-border last:border-r-0"
+                    >
+                      {column.label}
+                    </th>
+                  )
+                )}
+              </tr>
             </thead>
 
             {/* Data rows (placeholder - will be populated with CSV data) */}

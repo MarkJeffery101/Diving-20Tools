@@ -396,7 +396,8 @@ export default function Tables() {
   const filteredTables = diveTablesData.filter((table) => {
     const matchesSearch =
       table.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      table.description.toLowerCase().includes(searchTerm.toLowerCase());
+      table.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (table.code?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false);
     const matchesType = !selectedType || table.type === selectedType;
     return matchesSearch && matchesType;
   });

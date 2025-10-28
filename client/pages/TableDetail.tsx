@@ -72,7 +72,11 @@ export default function TableDetail() {
                       className={`px-4 py-3 text-left font-bold text-foreground ${hasNoSub ? 'bg-ocean-25' : ''}`}
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
-                      style={hasNoSub ? { maxWidth: '80px', wordWrap: 'break-word', whiteSpace: 'normal' } : {}}
+                      style={hasNoSub ? {
+                        maxWidth: column.label.includes('Deco') ? '110px' : '55px',
+                        wordWrap: 'break-word',
+                        whiteSpace: 'normal'
+                      } : {}}
                     >
                       {column.label}
                     </th>

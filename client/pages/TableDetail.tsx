@@ -2,11 +2,14 @@ import Navigation from "@/components/Navigation";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { getTableHeader } from "@/lib/tableHeaders";
-import { useState } from "react";
+import { parseTableCSV, type ParsedTableData } from "@/lib/csvParser";
+import { useState, useEffect } from "react";
 
 export default function TableDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [tableData, setTableData] = useState<ParsedTableData>({ dvis5Value: null, rows: [] });
+  const [isLoading, setIsLoading] = useState(true);
 
   // Extract table code and depth from id (e.g., "sil15-12" -> code: "SIL15", depth: "12")
   const parseTableId = (tableId: string) => {
@@ -18,7 +21,22 @@ export default function TableDetail() {
   };
 
   const { code, depth } = parseTableId(id || "");
+  const depthNum = parseInt(depth);
   const headerConfig = getTableHeader(code);
+
+  // Load CSV data when component mounts or code/depth changes
+  useEffect(() => {
+    const loadData = async () => {
+      if (code && depthNum && headerConfig) {
+        setIsLoading(true);
+        const data = await parseTableCSV(code, depthNum);
+        setTableData(data);
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, [code, depthNum, headerConfig]);
 
   // Tables that require Dvis 5 time information
   const tablesWithDvis5 = ['SIL15', 'H2SIL15', 'H4SIL15', 'SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];

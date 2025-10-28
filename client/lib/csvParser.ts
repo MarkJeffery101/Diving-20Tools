@@ -19,11 +19,9 @@ export async function parseTableCSV(
 ): Promise<ParsedTableData> {
   try {
     const csvPath = `/data/tables/${tableCode}.csv`;
-    console.log(`Fetching CSV from: ${csvPath} for depth ${depth}`);
-
     const response = await fetch(csvPath);
     if (!response.ok) {
-      console.error(`Failed to fetch CSV for ${tableCode}: ${response.status} ${response.statusText}`);
+      console.error(`Failed to fetch CSV for ${tableCode}`);
       return { dvis5Value: null, rows: [] };
     }
 

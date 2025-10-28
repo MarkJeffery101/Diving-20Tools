@@ -233,20 +233,34 @@ export default function TableDetail() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h2 className="font-bold text-blue-900 mb-3">Table Information</h2>
-          <ul className="space-y-2 text-sm text-blue-800">
-            <li>• <span className="font-semibold">Code:</span> {code}</li>
-            {depth && <li>• <span className="font-semibold">Depth:</span> {depth}m</li>}
-            <li>• <span className="font-semibold">Columns:</span> {headerConfig.columns.length}</li>
-            {headerConfig.columns.some((col) => col.sub) && (
-              <li>• <span className="font-semibold">Sub-columns:</span> {
-                headerConfig.columns
-                  .filter((col) => col.sub)
-                  .reduce((total, col) => total + (col.sub?.length || 0), 0)
-              }</li>
+        <div className="mt-12 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-lg p-6 sm:p-8">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-6">Table Information</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Code</p>
+              <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{code}</p>
+            </div>
+            {depth && (
+              <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Depth</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{depth}m</p>
+              </div>
             )}
-          </ul>
+            <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
+              <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Main Columns</p>
+              <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{headerConfig.columns.length}</p>
+            </div>
+            {headerConfig.columns.some((col) => col.sub) && (
+              <div className="p-3 sm:p-4 bg-white rounded border border-slate-200 hover:border-blue-300 transition-colors">
+                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Sub-columns</p>
+                <p className="text-lg sm:text-xl font-bold text-gray-900 mt-1">{
+                  headerConfig.columns
+                    .filter((col) => col.sub)
+                    .reduce((total, col) => total + (col.sub?.length || 0), 0)
+                }</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

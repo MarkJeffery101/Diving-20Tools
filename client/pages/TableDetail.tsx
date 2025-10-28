@@ -24,6 +24,11 @@ export default function TableDetail() {
   const depthNum = parseInt(depth);
   const headerConfig = getTableHeader(code);
 
+  // Calculate total colspan for the table
+  const totalColSpan = headerConfig ?
+    headerConfig.columns.reduce((sum, col) => sum + (col.sub ? col.sub.length : 1), 0)
+    : 0;
+
   // Load CSV data when component mounts or code/depth changes
   useEffect(() => {
     const loadData = async () => {

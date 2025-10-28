@@ -579,9 +579,7 @@ export default function Tables() {
 
                         <div className="flex items-center justify-between pt-4 border-t border-border">
                           <span className="text-xs font-medium text-muted-foreground">
-                            {table.type === "treatment" || table.type === "reference"
-                              ? "Reference Table"
-                              : "Dive Table"}
+                            {table.type === "Treatment" ? "Treatment Table" : "Dive Table"}
                           </span>
                           <span className="text-xs text-primary font-semibold group-hover:underline">
                             View →

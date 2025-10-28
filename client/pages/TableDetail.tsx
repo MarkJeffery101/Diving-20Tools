@@ -139,26 +139,27 @@ export default function TableDetail() {
 
         {/* Table */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow">
-          <table className="w-full text-sm" style={{ tableLayout: 'auto' }}>
-            <thead>
-              <tr className="border-b border-border bg-ocean-50">
+          <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
+            <thead className="sticky top-0 z-10 shadow-md">
+              <tr className="border-b-2 border-gray-300 bg-gradient-to-b from-blue-700 to-blue-600 text-white">
                 {headerConfig.columns.map((column, idx) => {
                   const hasNoSub = !column.sub || column.sub.length === 0;
                   return (
                     <th
                       key={idx}
-                      className={`px-4 py-3 font-bold text-foreground ${hasNoSub ? 'bg-ocean-25 text-center' : 'text-center'}`}
+                      className={`px-2 sm:px-3 py-2 sm:py-3 font-bold text-center ${hasNoSub ? 'bg-blue-800' : ''}`}
                       colSpan={column.sub ? column.sub.length : 1}
                       rowSpan={hasNoSub ? 2 : 1}
                       style={hasNoSub ? {
-                        minWidth: idx === 0 || idx === 1 ? '80px' : idx >= headerConfig.columns.length - 3 ? '70px' : 'auto',
+                        minWidth: idx === 0 || idx === 1 ? '70px' : idx >= headerConfig.columns.length - 3 ? '60px' : 'auto',
                         wordWrap: 'break-word',
                         whiteSpace: 'normal',
-                        lineHeight: '1.2'
-                      } : { minWidth: '50px' }}
+                        lineHeight: '1.1',
+                        fontSize: '0.75rem'
+                      } : { minWidth: '40px', fontSize: '0.7rem' }}
                     >
                       {column.label.split('\n').map((line, lineIdx) => (
-                        <div key={lineIdx}>{line}</div>
+                        <div key={lineIdx} className="leading-snug">{line}</div>
                       ))}
                     </th>
                   );
@@ -167,14 +168,14 @@ export default function TableDetail() {
 
               {/* Sub-header row if needed */}
               {headerConfig.columns.some((col) => col.sub) && (
-                <tr className="border-b-2 border-border bg-ocean-25">
+                <tr className="border-b-2 border-gray-300 bg-blue-700 text-white">
                   {headerConfig.columns.map((column, idx) => (
                     column.sub && column.sub.length > 0 ? (
                       column.sub.map((subCol, subIdx) => (
                         <th
                           key={`${idx}-${subIdx}`}
-                          className="px-2 py-2 text-xs font-semibold text-foreground border-r border-border last:border-r-0 text-center"
-                          style={{ minWidth: '45px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.2' }}
+                          className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
+                          style={{ minWidth: '35px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.1' }}
                         >
                           {subCol}
                         </th>

@@ -177,6 +177,7 @@ interface BreadcrumbItem {
 }
 
 export default function Tables() {
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<ViewLevel>("level1");
   const [selectedLevel1Index, setSelectedLevel1Index] = useState<number | null>(
     null

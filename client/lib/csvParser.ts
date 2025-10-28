@@ -46,8 +46,10 @@ export async function parseTableCSV(
     const decoTimeIndex = headers.findIndex(h =>
       h.includes('deco') && h.includes('time')
     );
-    const otuIndex = headers.findIndex(h => h === 'total otu' || h === 'otu');
-    const esotIndex = headers.findIndex(h => h === 'total esot' || h === 'esot');
+    const otuIndex = headers.findIndex(h => h === 'total otu' || h === 'otu' || h.includes('otu'));
+    const esotIndex = headers.findIndex(h => h === 'total esot' || h === 'esot' || h.includes('esot'));
+    // Marker is typically the column right after ESOT
+    const markerIndex = esotIndex + 1;
 
     // Find where the stop depths start (after till 1st stop)
     const stopDepthStartIndex = tillStopIndex + 1;

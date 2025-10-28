@@ -6,7 +6,7 @@ import { useState } from "react";
 interface DiveTable {
   id: string;
   name: string;
-  type: "commercial" | "air" | "nitrox" | "treatment" | "reference";
+  type: "No Stops Air" | "Standard Air" | "SurD O2" | "Backup Air" | "Nitrox" | "EAD" | "Wet/Dry Bell" | "Treatment";
   description: string;
   category: string;
   code?: string;

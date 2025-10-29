@@ -102,7 +102,20 @@ export default function TableDetail() {
           </button>
           <div className="flex-1">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-              {headerConfig.title}
+              {(() => {
+                const match = headerConfig.title.match(/^(.*?)\s*(\([^)]*\))$/);
+                if (match) {
+                  return (
+                    <>
+                      {match[1]}
+                      <span className="text-sm sm:text-base font-normal ml-2">
+                        {match[2]}
+                      </span>
+                    </>
+                  );
+                }
+                return headerConfig.title;
+              })()}
             </h1>
           </div>
         </div>

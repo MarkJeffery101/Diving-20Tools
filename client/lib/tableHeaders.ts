@@ -151,7 +151,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Till 1st\nStop" },
       {
         label: "Stop Depth (metres)",
-        sub: ["12", "9", "6", "3"],
+        sub: ["Last Stop", "*", "*", "12", "9", "6", "3"],
       },
       { label: "Tot. Deco Time\n(min)" },
       { label: "Tot.\nOTU" },
@@ -165,7 +165,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Till 1st\nStop" },
       {
         label: "Stop Depth (metres)",
-        sub: ["12", "9", "6", "3"],
+        sub: ["Last Stop", "*", "*", "12", "9", "6", "3"],
       },
       { label: "Tot. Deco Time\n(min)" },
       { label: "Tot.\nOTU" },

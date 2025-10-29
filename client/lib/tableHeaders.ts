@@ -144,28 +144,28 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Tot.\nESOT" },
     ],
   },
-  "NIA 2-3": {
-    title: "NIA 2-3 - Nitrox 40/60, Repetitive Interval 2 Hours (2-3 min)",
+  NIA2_3: {
+    title: "NIA2_3 - Nitrox 40/60, Repetitive Interval 2 Hours (2-3 min)",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
       {
         label: "Stop Depth (metres)",
-        sub: ["Last Stop", "*", "*", "12", "9", "6", "3"],
+        sub: ["12", "9", "6", "3"],
       },
       { label: "Tot. Deco Time\n(min)" },
       { label: "Tot.\nOTU" },
       { label: "Tot.\nESOT" },
     ],
   },
-  "NIA 2-6": {
-    title: "NIA 2-6 - Nitrox 40/60, Repetitive Interval 2 Hours (2-6 min)",
+  NIA2_6: {
+    title: "NIA2_6 - Nitrox 40/60, Repetitive Interval 2 Hours (2-6 min)",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
       {
         label: "Stop Depth (metres)",
-        sub: ["Last Stop", "*", "*", "12", "9", "6", "3"],
+        sub: ["12", "9", "6", "3"],
       },
       { label: "Tot. Deco Time\n(min)" },
       { label: "Tot.\nOTU" },

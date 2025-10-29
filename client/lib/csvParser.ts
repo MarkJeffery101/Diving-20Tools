@@ -281,9 +281,9 @@ async function parseNiaNibCSV(
       // Column 9: till 1st stop
       const tillFirstStop = parseFloat(values[9]) || 0;
 
-      // Columns 10-20: Stop depths (11 columns)
+      // Columns 10-17: Stop depths (8 columns for NIA/NIB: 24, 21, 18, 15, 12, 9, 6, 3)
       const stopDepths: (number | null)[] = [];
-      for (let j = 0; j < 11; j++) {
+      for (let j = 0; j < 8; j++) {
         const val = values[10 + j];
         if (val === '' || val === undefined) {
           stopDepths.push(null);
@@ -293,19 +293,19 @@ async function parseNiaNibCSV(
         }
       }
 
-      // Column 21: Total deco time
-      const totalDecoTime = parseInt(values[21]) || 0;
+      // Column 18: Total deco time
+      const totalDecoTime = parseInt(values[18]) || 0;
 
-      // Column 22: Total OTU
-      const totalOTU = parseInt(values[22]) || 0;
+      // Column 19: Total OTU
+      const totalOTU = parseInt(values[19]) || 0;
 
-      // Column 23: Total ESOT
-      const totalESOT = parseInt(values[23]) || 0;
+      // Column 20: Total ESOT
+      const totalESOT = parseInt(values[20]) || 0;
 
-      // Column 24: Marker (3 for red background)
+      // Column 21: Marker (3 for red background)
       let marker: number | undefined;
-      if (values.length > 24) {
-        const markerValue = values[24].trim();
+      if (values.length > 21) {
+        const markerValue = values[21].trim();
         if (markerValue === '3') {
           marker = 3;
         }

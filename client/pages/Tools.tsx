@@ -89,6 +89,13 @@ export default function Tools() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4 font-medium"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Home
+          </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             Calculator Tools
           </h1>

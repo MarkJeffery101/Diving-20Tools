@@ -125,6 +125,11 @@ export async function parseTableCSV(
   tableCode: string,
   depth: number
 ): Promise<ParsedTableData> {
+  // Use specialized parser for SOX15
+  if (tableCode === 'SOX15' || tableCode === 'HSOX15') {
+    return parseSox15CSV(depth);
+  }
+
   try {
     const csvPath = `/data/tables/${tableCode}.csv`;
     const response = await fetch(csvPath);

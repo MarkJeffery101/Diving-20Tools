@@ -59,7 +59,7 @@ export default function TableDetail() {
   const showDvis5 = tablesWithDvis5.includes(code);
 
   // Tables that require Equivalent Air Depth and Maximum PO2 information
-  const tablesWithNitroxInfo = ['NIA15', 'NIA 2-3', 'NIA 2-6', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15'];
+  const tablesWithNitroxInfo = ['NIA15', 'NIA2_3', 'NIA2_6', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15'];
   const showNitroxInfo = tablesWithNitroxInfo.includes(code);
 
   // Tables with oxygen columns that need blue background

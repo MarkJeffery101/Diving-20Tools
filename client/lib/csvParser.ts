@@ -13,6 +13,8 @@ export interface ParsedTableData {
   dvis5Value: number | null;
   rows: TableRow[];
   blueColumns?: boolean[]; // Track which stop depth columns should be blue
+  eadValue?: number | null; // Equivalent Air Depth for this depth
+  po2Value?: number | null; // Maximum PO2 for this depth
 }
 
 async function parseSox15CSV(

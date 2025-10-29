@@ -360,7 +360,13 @@ async function parseNia2CSV(
 
       const values = line.split(',').map(v => v.trim());
 
-      // Skip rows with insufficient columns (NIA2 has 21 columns: 0-20)
+      // Debug: log column count and values for first row
+      if (i === 1) {
+        console.log(`${tableCode} row 1 - Total columns: ${values.length}`);
+        console.log('Column values:', values);
+      }
+
+      // Skip rows with insufficient columns (NIA2 has 21+ columns)
       if (values.length < 21) continue;
 
       // Column 7 (0-based) is Depth (msw)

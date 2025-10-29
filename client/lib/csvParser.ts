@@ -407,20 +407,30 @@ async function parseNia2CSV(
         }
       }
 
-      // Column 17: Total deco time
-      const totalDecoTime = parseFloat(values[17]) || 0;
+      // Determine column offsets based on total column count
+      // If 22 columns, totals are at 18, 19, 20, 21
+      // If 21 columns, totals are at 17, 18, 19, 20
+      const decoCol = values.length >= 22 ? 18 : 17;
+      const otuCol = decoCol + 1;
+      const esotCol = decoCol + 2;
+      const markerCol = decoCol + 3;
 
-      // Column 18: Total OTU
-      const totalOTU = parseInt(values[18]) || 0;
+      // Total deco time
+      const totalDecoTime = parseFloat(values[decoCol]) || 0;
 
-      // Column 19: Total ESOT
-      const totalESOT = parseInt(values[19]) || 0;
+      // Total OTU
+      const totalOTU = parseInt(values[otuCol]) || 0;
 
-      // Column 20: Marker (3 for red background)
+      // Total ESOT
+      const totalESOT = parseInt(values[esotCol]) || 0;
+
+      // Marker (3 for red background)
       let marker: number | undefined;
-      const markerValue = values[20].trim();
-      if (markerValue === '3') {
-        marker = 3;
+      if (markerCol < values.length) {
+        const markerValue = values[markerCol].trim();
+        if (markerValue === '3') {
+          marker = 3;
+        }
       }
 
       rows.push({

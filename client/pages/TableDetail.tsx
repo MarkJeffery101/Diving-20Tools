@@ -246,12 +246,10 @@ export default function TableDetail() {
                       <p className="text-2xl sm:text-3xl font-bold text-blue-900">{selectedDepth}m</p>
                     </div>
                   )}
-                  {showDvis5 && (
-                    <div className="pt-2 border-t border-blue-200">
-                      <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
-                      <p className="text-xl sm:text-2xl font-bold text-blue-900">{tableData.dvis5Value !== null ? tableData.dvis5Value : '-'} min</p>
-                    </div>
-                  )}
+                  <div className="pt-2 border-t border-blue-200">
+                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
+                    <p className="text-xl sm:text-2xl font-bold text-blue-900">{showDvis5 ? (tableData.dvis5Value !== null ? tableData.dvis5Value : '-') : 'TBD'} min</p>
+                  </div>
                 </div>
               </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu, X, Waves, Home, Grid3x3, Layers, AlertCircle, Activity, HelpCircle } from "lucide-react";
+import { Menu, X, Waves, Home, Grid3x3, Layers, AlertCircle, Activity, HelpCircle, Calculator, Share2 } from "lucide-react";
 import { useState } from "react";
 
 export default function Navigation() {
@@ -9,9 +9,11 @@ export default function Navigation() {
     { label: "Home", href: "/", icon: Home },
     { label: "Tables", href: "/tables", icon: Grid3x3 },
     { label: "Table Selection", href: "/table-selection", icon: Layers },
+    { label: "Tools", href: "/tools", icon: Calculator },
     { label: "Emergency Procedures", href: "/emergency-procedures", icon: AlertCircle },
     { label: "Treatment Protocols", href: "/treatment-protocols", icon: Activity },
     { label: "Supporting Info", href: "/supporting-info", icon: HelpCircle },
+    { label: "Share", href: "/share", icon: Share2 },
   ];
 
   return (

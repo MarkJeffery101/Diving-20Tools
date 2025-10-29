@@ -31,6 +31,7 @@ async function parseSox15CSV(
     const lines = csvText.trim().split('\n');
 
     if (lines.length < 2) {
+      console.error(`No data found in CSV for ${tableCode}`);
       return { dvis5Value: null, rows: [], blueColumns: [] };
     }
 

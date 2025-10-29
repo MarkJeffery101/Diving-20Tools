@@ -343,8 +343,8 @@ export async function parseTableCSV(
     return parseSab15CSV(tableCode, depth);
   }
 
-  // Use specialized parser for NIA, H2NIA, H4NIA, NIB, H2NIB, HNIB
-  const niaNibCodes = ['NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'HNIB15', 'NIA 2-3', 'NIA 2-6'];
+  // Use specialized parser for NIA, H2NIA, H4NIA, NIB, H2NIB, H4NIB
+  const niaNibCodes = ['NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'NIA 2-3', 'NIA 2-6'];
   if (niaNibCodes.includes(tableCode)) {
     return parseNiaNibCSV(tableCode, depth);
   }

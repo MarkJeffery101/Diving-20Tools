@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/tables" element={<Tables />} />
           <Route path="/tables/:id" element={<TableDetail />} />
           <Route path="/table-selection" element={<TableSelection />} />
+          <Route path="/tools" element={<Tools />} />
           <Route path="/emergency-procedures" element={<EmergencyProcedures />} />
           <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
           <Route path="/supporting-info" element={<SupportingInfo />} />

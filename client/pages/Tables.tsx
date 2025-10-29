@@ -108,6 +108,11 @@ const tablesData: Level1Item[] = [
         depths: [18, 21, 24, 27],
       },
       {
+        name: "Nitrox 40/60 Repetitive Interval 4 Hours",
+        code: "H4NIA15",
+        depths: [18, 21, 24, 27],
+      },
+      {
         name: "Nitrox 35/65 Repetitive Interval 12 Hours",
         code: "NIB15",
         depths: [18, 21, 24, 27, 30, 33],

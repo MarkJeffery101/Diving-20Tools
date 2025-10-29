@@ -145,7 +145,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
   NIA2_3: {
-    title: "NIA2_3 - Nitrox 40/60, Repetitive Interval 2 Hours (2-3 min)",
+    title: "NIA2_3 - Nitrox 40/60, Last Stop = 3 m/sw",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -159,7 +159,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
   NIA2_6: {
-    title: "NIA2_6 - Nitrox 40/60, Repetitive Interval 2 Hours (2-6 min)",
+    title: "NIA2_6 - Nitrox 40/60, Last Stop = 6 m/sw",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },

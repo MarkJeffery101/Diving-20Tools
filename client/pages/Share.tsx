@@ -1,5 +1,6 @@
-import { Copy, Check, Mail, Link as LinkIcon } from "lucide-react";
+import { Copy, Check, Mail, Link as LinkIcon, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Share() {
   const [copied, setCopied] = useState(false);

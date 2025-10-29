@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Plus, Trash2, RotateCcw } from "lucide-react";
+import { Plus, Trash2, RotateCcw, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface CalculatorRow {
   id: string;

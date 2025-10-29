@@ -389,10 +389,10 @@ async function parseNia2CSV(
       // Column 9: till 1st stop
       const tillFirstStop = parseFloat(values[9]) || 0;
 
-      // Columns 14-17: Stop depths (4 columns for NIA2: 12, 9, 6, 3)
+      // Columns 10-16: Stop depths (7 columns for NIA2: Last Stop, *, *, 12, 9, 6, 3)
       const stopDepths: (number | null)[] = [];
-      for (let j = 0; j < 4; j++) {
-        const val = values[14 + j];
+      for (let j = 0; j < 7; j++) {
+        const val = values[10 + j];
         if (val === '' || val === undefined) {
           stopDepths.push(null);
         } else {
@@ -401,19 +401,19 @@ async function parseNia2CSV(
         }
       }
 
-      // Column 18: Total deco time
-      const totalDecoTime = parseFloat(values[18]) || 0;
+      // Column 17: Total deco time
+      const totalDecoTime = parseFloat(values[17]) || 0;
 
-      // Column 19: Total OTU
-      const totalOTU = parseInt(values[19]) || 0;
+      // Column 18: Total OTU
+      const totalOTU = parseInt(values[18]) || 0;
 
-      // Column 20: Total ESOT
-      const totalESOT = parseInt(values[20]) || 0;
+      // Column 19: Total ESOT
+      const totalESOT = parseInt(values[19]) || 0;
 
-      // Column 21: Marker (3 for red background) - if it exists
+      // Column 20: Marker (3 for red background) - if it exists
       let marker: number | undefined;
-      if (values.length > 21) {
-        const markerValue = values[21].trim();
+      if (values.length > 20) {
+        const markerValue = values[20].trim();
         if (markerValue === '3') {
           marker = 3;
         }

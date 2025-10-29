@@ -172,7 +172,9 @@ export default function TableDetail() {
                           column.sub.map((subCol, subIdx) => (
                             <th
                               key={`${idx}-${subIdx}`}
-                              className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
+                              className={`px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center ${
+                                hasOxygenColumns && isOxygenColumn(subCol) ? 'bg-blue-100' : ''
+                              }`}
                               style={{ minWidth: '35px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.1' }}
                             >
                               {subCol}

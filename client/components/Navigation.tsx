@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import { Menu, X, Waves } from "lucide-react";
+import { Menu, X, Waves, Home, Grid3x3, Layers, AlertCircle, Activity, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { label: "Home", href: "/" },
-    { label: "Tables", href: "/tables" },
-    { label: "Table Selection", href: "/table-selection" },
-    { label: "Emergency Procedures", href: "/emergency-procedures" },
-    { label: "Treatment Protocols", href: "/treatment-protocols" },
-    { label: "Supporting Info", href: "/supporting-info" },
+    { label: "Home", href: "/", icon: Home },
+    { label: "Tables", href: "/tables", icon: Grid3x3 },
+    { label: "Table Selection", href: "/table-selection", icon: Layers },
+    { label: "Emergency Procedures", href: "/emergency-procedures", icon: AlertCircle },
+    { label: "Treatment Protocols", href: "/treatment-protocols", icon: Activity },
+    { label: "Supporting Info", href: "/supporting-info", icon: HelpCircle },
   ];
 
   return (

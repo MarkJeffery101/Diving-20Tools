@@ -401,19 +401,19 @@ async function parseNia2CSV(
         }
       }
 
-      // Column 17: Total deco time
-      const totalDecoTime = parseFloat(values[17]) || 0;
+      // Column 18: Total deco time
+      const totalDecoTime = parseFloat(values[18]) || 0;
 
-      // Column 18: Total OTU
-      const totalOTU = parseInt(values[18]) || 0;
+      // Column 19: Total OTU
+      const totalOTU = parseInt(values[19]) || 0;
 
-      // Column 19: Total ESOT
-      const totalESOT = parseInt(values[19]) || 0;
+      // Column 20: Total ESOT
+      const totalESOT = parseInt(values[20]) || 0;
 
-      // Column 20: Marker (3 for red background) - if it exists
+      // Column 21: Marker (3 for red background) - if it exists
       let marker: number | undefined;
-      if (values.length > 20) {
-        const markerValue = values[20].trim();
+      if (values.length > 21) {
+        const markerValue = values[21].trim();
         if (markerValue === '3') {
           marker = 3;
         }

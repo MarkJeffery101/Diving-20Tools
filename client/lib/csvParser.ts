@@ -2,6 +2,7 @@ export interface TableRow {
   diveTime: number;
   tillFirstStop: number;
   stopDepths: (number | null)[];
+  stopDepthsBlue?: boolean[]; // Track which columns need blue background (for oxygen)
   totalDecoTime: number;
   totalOTU: number;
   totalESOT: number;
@@ -11,6 +12,7 @@ export interface TableRow {
 export interface ParsedTableData {
   dvis5Value: number | null;
   rows: TableRow[];
+  blueColumns?: boolean[]; // Track which stop depth columns should be blue
 }
 
 export async function parseTableCSV(

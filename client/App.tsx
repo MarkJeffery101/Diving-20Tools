@@ -14,6 +14,7 @@ import TableSelection from "./pages/TableSelection";
 import EmergencyProcedures from "./pages/EmergencyProcedures";
 import TreatmentProtocols from "./pages/TreatmentProtocols";
 import SupportingInfo from "./pages/SupportingInfo";
+import Tools from "./pages/Tools";
 
 const queryClient = new QueryClient();
 

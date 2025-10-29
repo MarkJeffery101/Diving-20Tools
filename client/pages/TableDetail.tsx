@@ -62,6 +62,17 @@ export default function TableDetail() {
   const tablesWithNitroxInfo = ['NIA15', 'NIA 2-3', 'NIA 2-6', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15'];
   const showNitroxInfo = tablesWithNitroxInfo.includes(code);
 
+  // Tables with oxygen columns that need blue background
+  const tablesWithOxygenColumns = ['SOX15', 'HSOX15'];
+  const hasOxygenColumns = tablesWithOxygenColumns.includes(code);
+
+  // Map oxygen column names for SOX15 tables
+  const oxygenColumnNames = ['12 oxygen', '12 ox', '9 oxygen', '9 ox', '6 oxygen', '6 ox', '3 oxygen', '3 ox'];
+
+  const isOxygenColumn = (columnName: string): boolean => {
+    return oxygenColumnNames.some(name => columnName.toLowerCase().includes(name.toLowerCase()));
+  };
+
   if (!headerConfig) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">

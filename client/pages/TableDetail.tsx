@@ -254,16 +254,16 @@ export default function TableDetail() {
               </div>
 
               {/* Center: Nitrox Info */}
-              {showNitroxInfo && (
+              {(showNitroxInfo || tableData.eadValue !== undefined) && (
                 <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
                   <div className="space-y-3">
                     <div>
                       <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Equivalent Air Depth</p>
-                      <p className="text-xl sm:text-2xl font-bold text-amber-900">— m/sw</p>
+                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{tableData.eadValue !== undefined && tableData.eadValue !== null ? tableData.eadValue : '—'} m/sw</p>
                     </div>
                     <div className="pt-2 border-t border-amber-200">
                       <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum PO₂</p>
-                      <p className="text-xl sm:text-2xl font-bold text-amber-900">—</p>
+                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{tableData.po2Value !== undefined && tableData.po2Value !== null ? tableData.po2Value : '—'}</p>
                     </div>
                   </div>
                 </div>

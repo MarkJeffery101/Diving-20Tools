@@ -15,6 +15,112 @@ export interface ParsedTableData {
   blueColumns?: boolean[]; // Track which stop depth columns should be blue
 }
 
+async function parseSox15CSV(
+  depth: number
+): Promise<ParsedTableData> {
+  try {
+    const csvPath = `/data/tables/SOX15.csv`;
+    const response = await fetch(csvPath);
+    if (!response.ok) {
+      console.error(`Failed to fetch CSV for SOX15`);
+      return { dvis5Value: null, rows: [], blueColumns: [] };
+    }
+
+    const csvText = await response.text();
+    const lines = csvText.trim().split('\n');
+
+    if (lines.length < 2) {
+      return { dvis5Value: null, rows: [], blueColumns: [] };
+    }
+
+    let dvis5Value: number | null = null;
+    const rows: TableRow[] = [];
+
+    // Blue columns for oxygen: indices 5, 7, 9, 11 in the stopDepths array
+    // These correspond to: 12 oxygen (col 13), 9 oxygen (col 15), 6 oxygen (col 17), 3 oxygen (col 19)
+    const blueColumns = [false, false, false, false, false, false, false, false, false, false, false, false];
+    blueColumns[5] = true;  // 12 oxygen
+    blueColumns[7] = true;  // 9 oxygen
+    blueColumns[9] = true;  // 6 oxygen
+    blueColumns[11] = true; // 3 oxygen
+
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      const values = line.split(',').map(v => v.trim());
+
+      // Skip rows with insufficient columns
+      if (values.length < 24) continue;
+
+      // Column 5 (0-based) is Depth (msw)
+      const rowDepth = parseInt(values[5]);
+      if (isNaN(rowDepth) || rowDepth !== depth) continue;
+
+      // Extract DVIS 5 value from column 3 (0-based) on first matching row
+      if (dvis5Value === null) {
+        const dvis5 = parseInt(values[3]);
+        if (!isNaN(dvis5)) {
+          dvis5Value = dvis5;
+        }
+      }
+
+      // Column 6: Dive Time
+      const diveTime = parseInt(values[6]);
+      if (isNaN(diveTime)) continue;
+
+      // Column 7: till 1st stop
+      const tillFirstStop = parseFloat(values[7]) || 0;
+
+      // Columns 8-19: Stop depths (12 columns)
+      const stopDepths: (number | null)[] = [];
+      for (let j = 0; j < 12; j++) {
+        const val = values[8 + j];
+        if (val === '' || val === undefined) {
+          stopDepths.push(null);
+        } else {
+          const num = parseInt(val);
+          stopDepths.push(isNaN(num) ? null : num);
+        }
+      }
+
+      // Column 20: Total deco time
+      const totalDecoTime = parseInt(values[20]) || 0;
+
+      // Column 21: Total OTU
+      const totalOTU = parseInt(values[21]) || 0;
+
+      // Column 22: Total ESOT
+      const totalESOT = parseInt(values[22]) || 0;
+
+      // Column 23: Marker
+      let marker: number | undefined;
+      if (values.length > 23) {
+        const markerValue = values[23].trim();
+        if (markerValue === '2' || markerValue === '3') {
+          marker = parseInt(markerValue);
+        }
+      }
+
+      rows.push({
+        diveTime,
+        tillFirstStop,
+        stopDepths,
+        stopDepthsBlue: blueColumns,
+        totalDecoTime,
+        totalOTU,
+        totalESOT,
+        marker,
+      });
+    }
+
+    return { dvis5Value, rows, blueColumns };
+  } catch (error) {
+    console.error('Error parsing SOX15 CSV:', error);
+    return { dvis5Value: null, rows: [], blueColumns: [] };
+  }
+}
+
 export async function parseTableCSV(
   tableCode: string,
   depth: number

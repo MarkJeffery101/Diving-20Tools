@@ -54,7 +54,7 @@ export default function TableDetail() {
     headerConfig.columns.reduce((sum, col) => sum + (col.sub ? col.sub.length : 1), 0)
     : 0;
 
-  // Tables that require Dvis 5 time information
+  // Tables that require Dvis 5 time information (exclude SAB15/HSAB15 as they don't have DVIS values)
   const tablesWithDvis5 = ['SIL15', 'H2SIL15', 'H4SIL15', 'SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];
   const showDvis5 = tablesWithDvis5.includes(code);
 

@@ -94,12 +94,12 @@ const tablesData: Level1Item[] = [
       },
       {
         name: "Nitrox 40/60 Repetitive Interval 2 Hours (2-3)",
-        code: "NIA 2-3",
+        code: "NIA2_3",
         depths: [21, 23, 25, 27],
       },
       {
         name: "Nitrox 40/60 Repetitive Interval 2 Hours (2-6)",
-        code: "NIA 2-6",
+        code: "NIA2_6",
         depths: [21, 23, 25, 27],
       },
       {

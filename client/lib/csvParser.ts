@@ -127,9 +127,9 @@ export async function parseTableCSV(
   tableCode: string,
   depth: number
 ): Promise<ParsedTableData> {
-  // Use specialized parser for SOX15
+  // Use specialized parser for SOX15 and HSOX15
   if (tableCode === 'SOX15' || tableCode === 'HSOX15') {
-    return parseSox15CSV(depth);
+    return parseSox15CSV(tableCode, depth);
   }
 
   try {

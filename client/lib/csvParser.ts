@@ -23,7 +23,7 @@ async function parseSox15CSV(
     const csvPath = `/data/tables/${tableCode}.csv`;
     const response = await fetch(csvPath);
     if (!response.ok) {
-      console.error(`Failed to fetch CSV for SOX15`);
+      console.error(`Failed to fetch CSV for ${tableCode}`);
       return { dvis5Value: null, rows: [], blueColumns: [] };
     }
 

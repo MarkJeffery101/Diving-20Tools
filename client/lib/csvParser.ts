@@ -360,39 +360,39 @@ async function parseNia2CSV(
 
       const values = line.split(',').map(v => v.trim());
 
-      // Skip rows with insufficient columns (NIA2 has 21+ columns)
-      if (values.length < 21) continue;
+      // Skip rows with insufficient columns (NIA2 has 18 columns: 0-17)
+      if (values.length < 18) continue;
 
-      // Column 7 (0-based) is Depth (msw)
-      const rowDepth = parseInt(values[7]);
+      // Column 4 (0-based) is Depth (msw)
+      const rowDepth = parseInt(values[4]);
       if (isNaN(rowDepth) || rowDepth !== depth) continue;
 
       // Extract values only on first row of this depth
       if (isFirstRowAtDepth) {
-        // Column 5: EAD m/sw
-        const ead = values[5].trim();
+        // Column 2: EAD m/sw
+        const ead = values[2].trim();
         if (ead) {
           eadValue = parseFloat(ead);
         }
-        // Column 6: PO2 Bar
-        const po2 = values[6].trim();
+        // Column 3: PO2 Bar
+        const po2 = values[3].trim();
         if (po2) {
           po2Value = parseFloat(po2);
         }
         isFirstRowAtDepth = false;
       }
 
-      // Column 8: Dive Time
-      const diveTime = parseInt(values[8]);
+      // Column 5: Dive Time
+      const diveTime = parseInt(values[5]);
       if (isNaN(diveTime)) continue;
 
-      // Column 9: Till 1st stop
-      const tillFirstStop = parseFloat(values[9]) || 0;
+      // Column 6: Till 1st stop
+      const tillFirstStop = parseFloat(values[6]) || 0;
 
-      // Columns 10-16: Stop depths (7 columns for NIA2: Last Stop, blank, blank, 12, 9, 6, 3)
+      // Columns 7-13: Stop depths (7 columns for NIA2: Last Stop, *, *, 12, 9, 6, 3)
       const stopDepths: (number | null)[] = [];
       for (let j = 0; j < 7; j++) {
-        const val = values[10 + j];
+        const val = values[7 + j];
         if (val === '' || val === undefined) {
           stopDepths.push(null);
         } else {
@@ -401,30 +401,20 @@ async function parseNia2CSV(
         }
       }
 
-      // Determine column offsets based on total column count
-      // If 22 columns, totals are at 18, 19, 20, 21
-      // If 21 columns, totals are at 17, 18, 19, 20
-      const decoCol = values.length >= 22 ? 18 : 17;
-      const otuCol = decoCol + 1;
-      const esotCol = decoCol + 2;
-      const markerCol = decoCol + 3;
+      // Column 14: Total deco time
+      const totalDecoTime = parseFloat(values[14]) || 0;
 
-      // Total deco time
-      const totalDecoTime = parseFloat(values[decoCol]) || 0;
+      // Column 15: Total OTU
+      const totalOTU = parseInt(values[15]) || 0;
 
-      // Total OTU
-      const totalOTU = parseInt(values[otuCol]) || 0;
+      // Column 16: Total ESOT
+      const totalESOT = parseInt(values[16]) || 0;
 
-      // Total ESOT
-      const totalESOT = parseInt(values[esotCol]) || 0;
-
-      // Marker (3 for red background)
+      // Column 17: Marker (3 for red background)
       let marker: number | undefined;
-      if (markerCol < values.length) {
-        const markerValue = values[markerCol].trim();
-        if (markerValue === '3') {
-          marker = 3;
-        }
+      const markerValue = values[17].trim();
+      if (markerValue === '3') {
+        marker = 3;
       }
 
       rows.push({

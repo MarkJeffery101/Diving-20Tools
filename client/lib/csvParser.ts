@@ -118,7 +118,7 @@ async function parseSox15CSV(
 
     return { dvis5Value, rows, blueColumns };
   } catch (error) {
-    console.error('Error parsing SOX15 CSV:', error);
+    console.error(`Error parsing ${tableCode} CSV:`, error);
     return { dvis5Value: null, rows: [], blueColumns: [] };
   }
 }

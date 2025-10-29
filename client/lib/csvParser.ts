@@ -247,8 +247,8 @@ async function parseNiaNibCSV(
 
       const values = line.split(',').map(v => v.trim());
 
-      // Skip rows with insufficient columns
-      if (values.length < 24) continue;
+      // Skip rows with insufficient columns (NIA/NIB need at least 22 columns)
+      if (values.length < 22) continue;
 
       // Column 7 (0-based) is Depth (msw)
       const rowDepth = parseInt(values[7]);

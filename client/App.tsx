@@ -15,6 +15,7 @@ import EmergencyProcedures from "./pages/EmergencyProcedures";
 import TreatmentProtocols from "./pages/TreatmentProtocols";
 import SupportingInfo from "./pages/SupportingInfo";
 import Tools from "./pages/Tools";
+import Share from "./pages/Share";
 
 const queryClient = new QueryClient();
 

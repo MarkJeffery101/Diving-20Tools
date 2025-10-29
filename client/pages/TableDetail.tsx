@@ -108,7 +108,7 @@ export default function TableDetail() {
                   return (
                     <>
                       {match[1]}
-                      <span className="text-sm sm:text-base font-normal ml-2">
+                      <span className="text-lg sm:text-xl font-bold ml-2">
                         {match[2]}
                       </span>
                     </>

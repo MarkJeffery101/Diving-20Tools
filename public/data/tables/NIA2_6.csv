@@ -1,7 +1,7 @@
 Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,Last Stop,,,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,
 "Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,65,2.1,0,,,,,,,2.1,90,106,0
 "Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,70,1.5,6,,,,,4,,6.1,100,117,1
-"Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,80,1.5,6,,,,,9,,"11,1",115,135,0
+"Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,80,1.5,6,,,,,9,,11.1,115,135,0
 "Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,90,1.5,6,,,,,13,,15.1,131,153,1
 "Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,100,1.5,6,,,,,16,,18.1,146,171,0
 "Nitrox  40%O2 - 60%N2 decompression tables, Last stop 6 mw",NIA2_6,40,,12,14.4,1.24,21,110,1.5,6,,,,,18,,20.1,160,188,1

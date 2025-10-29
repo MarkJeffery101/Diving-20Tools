@@ -329,6 +329,114 @@ async function parseNiaNibCSV(
   }
 }
 
+async function parseNia2CSV(
+  tableCode: string,
+  depth: number
+): Promise<ParsedTableData> {
+  try {
+    const csvPath = `/data/tables/${tableCode}.csv`;
+    const response = await fetch(csvPath);
+    if (!response.ok) {
+      console.error(`Failed to fetch CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const csvText = await response.text();
+    const lines = csvText.trim().split('\n');
+
+    if (lines.length < 2) {
+      console.error(`No data found in CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const rows: TableRow[] = [];
+    let eadValue: number | null = null;
+    let po2Value: number | null = null;
+    let isFirstRowAtDepth = true;
+
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      const values = line.split(',').map(v => v.trim());
+
+      // Skip rows with insufficient columns (NIA2 needs at least 21 columns)
+      if (values.length < 21) continue;
+
+      // Column 7 (0-based) is Depth (msw)
+      const rowDepth = parseInt(values[7]);
+      if (isNaN(rowDepth) || rowDepth !== depth) continue;
+
+      // Extract values only on first row of this depth
+      if (isFirstRowAtDepth) {
+        // Column 5: EAD m/sw
+        const ead = values[5].trim();
+        if (ead) {
+          eadValue = parseFloat(ead);
+        }
+        // Column 6: PO2 Bar
+        const po2 = values[6].trim();
+        if (po2) {
+          po2Value = parseFloat(po2);
+        }
+        isFirstRowAtDepth = false;
+      }
+
+      // Column 8: Dive Time
+      const diveTime = parseInt(values[8]);
+      if (isNaN(diveTime)) continue;
+
+      // Column 9: till 1st stop
+      const tillFirstStop = parseFloat(values[9]) || 0;
+
+      // Columns 13-16: Stop depths (4 columns for NIA2: 12, 9, 6, 3)
+      const stopDepths: (number | null)[] = [];
+      for (let j = 0; j < 4; j++) {
+        const val = values[13 + j];
+        if (val === '' || val === undefined) {
+          stopDepths.push(null);
+        } else {
+          const num = parseInt(val);
+          stopDepths.push(isNaN(num) ? null : num);
+        }
+      }
+
+      // Column 17: Total deco time
+      const totalDecoTime = parseInt(values[17]) || 0;
+
+      // Column 18: Total OTU
+      const totalOTU = parseInt(values[18]) || 0;
+
+      // Column 19: Total ESOT
+      const totalESOT = parseInt(values[19]) || 0;
+
+      // Column 20: Marker (3 for red background)
+      let marker: number | undefined;
+      if (values.length > 20) {
+        const markerValue = values[20].trim();
+        if (markerValue === '3') {
+          marker = 3;
+        }
+      }
+
+      rows.push({
+        diveTime,
+        tillFirstStop,
+        stopDepths,
+        totalDecoTime,
+        totalOTU,
+        totalESOT,
+        marker,
+      });
+    }
+
+    return { rows, eadValue, po2Value };
+  } catch (error) {
+    console.error(`Error parsing ${tableCode} CSV:`, error);
+    return { dvis5Value: null, rows: [] };
+  }
+}
+
 export async function parseTableCSV(
   tableCode: string,
   depth: number

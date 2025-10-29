@@ -16,10 +16,11 @@ export interface ParsedTableData {
 }
 
 async function parseSox15CSV(
+  tableCode: string,
   depth: number
 ): Promise<ParsedTableData> {
   try {
-    const csvPath = `/data/tables/SOX15.csv`;
+    const csvPath = `/data/tables/${tableCode}.csv`;
     const response = await fetch(csvPath);
     if (!response.ok) {
       console.error(`Failed to fetch CSV for SOX15`);

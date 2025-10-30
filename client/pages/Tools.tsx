@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus, Trash2, RotateCcw, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { EAD_DATA } from "../lib/eadData";
+import { EAD_DATA, type EADRow } from "../lib/eadData";
 
 interface CalculatorRow {
   id: string;
@@ -13,24 +13,14 @@ interface CalculatorRow {
   esot?: number;
 }
 
-interface EADCalculatorRow {
-  id: string;
-  depth_m: string;
-  o2_percent: string;
-  pO2_ATA?: number;
-  eadCalc?: number;
-  eadSafe?: number | null;
-  safetyColor?: "green" | "yellow" | "red";
-}
-
 export default function Tools() {
   const [otuRows, setOtuRows] = useState<CalculatorRow[]>([
     { id: "1", depth_m: "", o2_percent: "", time_min: "" },
   ]);
 
-  const [eadRows, setEadRows] = useState<EADCalculatorRow[]>([
-    { id: "1", depth_m: "", o2_percent: "" },
-  ]);
+  const [eadDepth, setEadDepth] = useState<string>("");
+  const [eadO2, setEadO2] = useState<string>("");
+  const [eadResult, setEadResult] = useState<EADRow | null>(null);
 
   const calculateOtuRow = (row: CalculatorRow): CalculatorRow => {
     const depth = parseFloat(row.depth_m);

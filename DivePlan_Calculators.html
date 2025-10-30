@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DivePlan Calculator Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, segoe ui, roboto, ubuntu, calibri, arial, sans-serif;
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .back-link:hover {
+            color: #1d4ed8;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        thead {
+            background: #1e3a8a;
+            color: white;
+        }
+        
+        th {
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background: white;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            ring: 2px solid #2563eb;
+            border-color: #2563eb;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #d1d5db;
+            color: #111827;
+        }
+        
+        .btn-secondary:hover {
+            background: #9ca3af;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .totals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .total-card {
+            padding: 1.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .total-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .total-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .total-card.blue {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+        
+        .total-card.blue .total-label {
+            color: #1e40af;
+        }
+        
+        .total-card.blue .total-value {
+            color: #1e3a8a;
+        }
+        
+        .total-card.green {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+        
+        .total-card.green .total-label {
+            color: #166534;
+        }
+        
+        .total-card.green .total-value {
+            color: #15803d;
+        }
+        
+        .instructions {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 0.25rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .instructions h3 {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ul {
+            list-style: none;
+        }
+        
+        .instructions li {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .result-box {
+            padding: 1.5rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            border: 2px solid;
+        }
+        
+        .result-box.empty {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+        
+        .result-box.empty p {
+            color: #666;
+        }
+        
+        .result-box.error {
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+        
+        .result-box.error p {
+            color: #991b1b;
+        }
+        
+        .result-box.success {
+            padding: 0;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        
+        .result-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 0.25rem;
+        }
+        
+        .result-item-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        .result-item-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .green-bg { background: #dcfce7; border-color: #bbf7d0; }
+        .yellow-bg { background: #fef3c7; border-color: #fde68a; }
+        .red-bg { background: #fee2e2; border-color: #fca5a5; }
+        
+        .result-notes {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+        }
+        
+        .result-notes h4 {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-notes p {
+            color: #374151;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#" class="back-link">← Home</a>
+            <h1>Calculator Tools</h1>
+            <p class="subtitle">Professional diving calculation tools for planning and analysis</p>
+        </div>
+
+        <!-- OTU/ESOT Calculator -->
+        <div class="card">
+            <h2 class="card-title">Segments OTU / ESOT</h2>
+            <p class="card-description">
+                Calculate Oxygen Toxicity Units (OTU) and Equivalent Single Oxygen Exposure Time (ESOT) for dive segments
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Depth (m)</th>
+                        <th>O2 in Gas (%)</th>
+                        <th>Exposure Time (min)</th>
+                        <th style="text-align: center;">pO2 (ATA)</th>
+                        <th style="text-align: center;">OTU</th>
+                        <th style="text-align: center;">ESOT (min)</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="otuTableBody"></tbody>
+            </table>
+
+            <div class="totals-grid">
+                <div class="total-card blue">
+                    <div class="total-label">Total OTU</div>
+                    <div class="total-value" id="totalOTU">0.0</div>
+                </div>
+                <div class="total-card green">
+                    <div class="total-label">Total ESOT (min)</div>
+                    <div class="total-value" id="totalESOT">0.0</div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="addOtuRow()">+ Add Row</button>
+                <button class="btn-secondary" onclick="resetOtu()">Reset</button>
+            </div>
+
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <ul>
+                    <li><strong>Depth:</strong> Enter the depth of the dive segment in meters</li>
+                    <li><strong>O2 in Gas:</strong> Enter the oxygen percentage of the gas mix</li>
+                    <li><strong>Exposure Time:</strong> Enter the time spent at this depth in minutes</li>
+                    <li><strong>pO2:</strong> Calculated partial pressure of oxygen in ATA (atmospheres absolute)</li>
+                    <li><strong>OTU:</strong> Calculated oxygen toxicity units for the segment</li>
+                    <li><strong>ESOT:</strong> Calculated equivalent single oxygen exposure time in minutes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EAD Calculator -->
+        <div class="card">
+            <h2 class="card-title">Equivalent Air Depth (EAD)</h2>
+            <p class="card-description">
+                Look up Equivalent Air Depth values for nitrox gas mixtures at varying depths
+            </p>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="eadDepth">Depth (m)</label>
+                    <input type="number" id="eadDepth" placeholder="e.g., 30" min="10" max="50">
+                </div>
+                <div class="input-group">
+                    <label for="eadO2">O2 in Gas (%)</label>
+                    <input type="number" id="eadO2" placeholder="e.g., 32" min="30" max="40">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="lookupEAD()">🔍 Look Up</button>
+                <button class="btn-secondary" onclick="clearEAD()">Clear</button>
+            </div>
+
+            <div id="eadResult" class="result-box empty">
+                <p>Enter a depth and O2% to look up EAD data.</p>
+            </div>
+
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <ul>
+                    <li><strong>Depth:</strong> Enter the planned dive depth in meters (10–50 m)</li>
+                    <li><strong>O2 in Gas:</strong> Enter the oxygen percentage of your nitrox mix (30–40%)</li>
+                    <li><strong>pO2:</strong> Calculated partial pressure of oxygen at the given depth</li>
+                    <li><strong>EAD:</strong> The equivalent depth if you were breathing air instead of your nitrox mix</li>
+                    <li><strong>EAD Safe:</strong> A conservative EAD value for safer dive planning</li>
+                    <li><strong>Air Table To Use:</strong> The decompression table to reference from</li>
+                    <li><strong>Color Code:</strong> Green (pO2 ≤1.4 ATA - safe), Yellow (1.4–1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // EAD Data
+        const EAD_DATA = [
+  { depth: 30, o2: 40, po2: 1.6, eadCalc: 20.0, eadSafe: 21.0, airTable: 22, col: "red", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 29, o2: 40, po2: 1.6, eadCalc: 20.0, eadSafe: 21.0, airTable: 21, col: "red", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 28, o2: 40, po2: 1.5, eadCalc: 19.0, eadSafe: 20.0, airTable: 20, col: "red", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 27, o2: 40, po2: 1.5, eadCalc: 18.0, eadSafe: 19.0, airTable: 20, col: "yellow", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 26, o2: 40, po2: 1.4, eadCalc: 17.0, eadSafe: 18.0, airTable: 19, col: "yellow", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 25, o2: 40, po2: 1.4, eadCalc: 17.0, eadSafe: 18.0, airTable: 18, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 24, o2: 40, po2: 1.4, eadCalc: 16.0, eadSafe: 17.0, airTable: 18, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 23, o2: 40, po2: 1.3, eadCalc: 15.0, eadSafe: 16.0, airTable: 18, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 22, o2: 40, po2: 1.3, eadCalc: 14.0, eadSafe: 15.0, airTable: 18, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 21, o2: 40, po2: 1.2, eadCalc: 14.0, eadSafe: 14.0, airTable: 15, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 20, o2: 40, po2: 1.2, eadCalc: 13.0, eadSafe: 14.0, airTable: 15, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 19, o2: 40, po2: 1.2, eadCalc: 12.0, eadSafe: 13.0, airTable: 15, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 18, o2: 40, po2: 1.1, eadCalc: 11.0, eadSafe: 12.0, airTable: 12, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 17, o2: 40, po2: 1.1, eadCalc: 11.0, eadSafe: 11.0, airTable: 12, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 16, o2: 40, po2: 1.0, eadCalc: 10.0, eadSafe: 11.0, airTable: 12, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 15, o2: 40, po2: 1.0, eadCalc: 9.0, eadSafe: 10.0, airTable: 12, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 14, o2: 40, po2: 1.0, eadCalc: 8.0, eadSafe: 9.0, airTable: 9, col: "green", h2: "Nitrox 40% O2 / 60% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 25 msw." },
+  { depth: 30, o2: 35, po2: 1.4, eadCalc: 23.0, eadSafe: 24.0, airTable: 24, col: "green", h2: "Nitrox 35% O2 / 65% N2. Mixture + or – 1% O2.", h3: "For normal use maximum PO2= 1.4 bar", h4: "maximum Dive Depth = 30 msw." },
+  { depth: 30, o2: 30, po2: 1.2, eadCalc: 25.0, eadSafe: 27.0, airTable: 27, col: "green", h2: "Nitrox 30% O2 / 70% N2. Mixture + or – 1% O2.", h3: "For normal use maximum PO2= 1.4 bar", h4: "maximum Dive Depth = 36 msw." },
+  { depth: 30, o2: 32, po2: 1.3, eadCalc: 24.0, eadSafe: 26.0, airTable: 26, col: "green", h2: "Nitrox 32% O2 / 68% N2. Mixture + or – 1% O2.", h3: "For normal use maximum PO2= 1.4 bar", h4: "maximum Dive Depth = 34 msw." },
+  { depth: 30, o2: 33, po2: 1.3, eadCalc: 24.0, eadSafe: 25.0, airTable: 25, col: "green", h2: "Nitrox 33% O2 / 67% N2. Mixture + or – 1% O2.", h3: "For normal use maximum PO2= 1.4 bar", h4: "maximum Dive Depth = 32 msw." },
+  { depth: 30, o2: 34, po2: 1.4, eadCalc: 23.0, eadSafe: 25.0, airTable: 25, col: "green", h2: "Nitrox 34% O2 / 66% N2. Mixture + or – 1% O2.", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 31 msw." },
+  { depth: 30, o2: 36, po2: 1.5, eadCalc: 22.0, eadSafe: 24.0, airTable: 24, col: "yellow", h2: "Nitrox 36% O2 / 64% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 29 msw." },
+  { depth: 30, o2: 37, po2: 1.5, eadCalc: 22.0, eadSafe: 23.0, airTable: 23, col: "yellow", h2: "Nitrox 37% O2 / 63% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " and maximum Dive Depth = 28 msw." },
+  { depth: 30, o2: 38, po2: 1.5, eadCalc: 21.0, eadSafe: 23.0, airTable: 23, col: "red", h2: "Nitrox 38% O2 / 62% N2. Mixture + or – 1% O2", h3: "For normal use maximum PO2= 1.4 bar", h4: "maximum Dive Depth = 27 msw." },
+  { depth: 30, o2: 39, po2: 1.6, eadCalc: 21.0, eadSafe: 22.0, airTable: 22, col: "red", h2: "Nitrox 39% O2 / 61% N2. Mixture + or – 1% O2. ", h3: "For normal use maximum PO2= 1.4 bar", h4: " maximum Dive Depth = 26 msw." }
+        ];
+
+        let otuRowCount = 1;
+
+        function calculateOTU(depth, o2, time) {
+            if (isNaN(depth) || isNaN(o2) || isNaN(time)) return { pO2: null, otu: null, esot: null };
+            const pO2 = (o2 / 100) * (depth / 10 + 1);
+            const otuExponent = Math.pow((pO2 - 0.5) / 0.5, 0.833);
+            const otu = time * otuExponent;
+            const esot = time * Math.pow(pO2, 2.285);
+            return {
+                pO2: parseFloat(pO2.toFixed(3)),
+                otu: parseFloat(otu.toFixed(1)),
+                esot: parseFloat(esot.toFixed(1))
+            };
+        }
+
+        function renderOtuTable() {
+            const tbody = document.getElementById('otuTableBody');
+            tbody.innerHTML = '';
+            for (let i = 1; i <= otuRowCount; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="number" class="otu-depth" data-row="${i}" placeholder="0"></td>
+                    <td><input type="number" class="otu-o2" data-row="${i}" placeholder="0"></td>
+                    <td><input type="number" class="otu-time" data-row="${i}" placeholder="0"></td>
+                    <td style="text-align: center;"><span class="otu-po2" data-row="${i}">—</span></td>
+                    <td style="text-align: center;"><span class="otu-otu" data-row="${i}">—</span></td>
+                    <td style="text-align: center;"><span class="otu-esot" data-row="${i}">—</span></td>
+                    <td style="text-align: center;">
+                        ${otuRowCount > 1 ? `<button class="btn-danger" onclick="deleteOtuRow(${i})">×</button>` : ''}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+            attachOtuHandlers();
+        }
+
+        function attachOtuHandlers() {
+            document.querySelectorAll('.otu-depth, .otu-o2, .otu-time').forEach(input => {
+                input.addEventListener('change', updateOtuRow);
+                input.addEventListener('input', updateOtuRow);
+            });
+        }
+
+        function updateOtuRow() {
+            const rows = {};
+            document.querySelectorAll('[data-row]').forEach(el => {
+                const row = el.getAttribute('data-row');
+                if (!rows[row]) rows[row] = {};
+                const depth = document.querySelector(`.otu-depth[data-row="${row}"]`).value;
+                const o2 = document.querySelector(`.otu-o2[data-row="${row}"]`).value;
+                const time = document.querySelector(`.otu-time[data-row="${row}"]`).value;
+                const calc = calculateOTU(parseFloat(depth), parseFloat(o2), parseFloat(time));
+                document.querySelector(`.otu-po2[data-row="${row}"]`).textContent = calc.pO2 !== null ? calc.pO2 : '—';
+                document.querySelector(`.otu-otu[data-row="${row}"]`).textContent = calc.otu !== null ? calc.otu : '—';
+                document.querySelector(`.otu-esot[data-row="${row}"]`).textContent = calc.esot !== null ? calc.esot : '—';
+            });
+            updateOtuTotals();
+            if (otuRowCount < 10 && document.querySelector('.otu-depth').value && document.querySelector('.otu-o2').value && document.querySelector('.otu-time').value) {
+                otuRowCount++;
+                renderOtuTable();
+            }
+        }
+
+        function updateOtuTotals() {
+            let totalOTU = 0, totalESOT = 0;
+            document.querySelectorAll('.otu-otu').forEach(el => {
+                const val = parseFloat(el.textContent);
+                if (!isNaN(val)) totalOTU += val;
+            });
+            document.querySelectorAll('.otu-esot').forEach(el => {
+                const val = parseFloat(el.textContent);
+                if (!isNaN(val)) totalESOT += val;
+            });
+            document.getElementById('totalOTU').textContent = totalOTU.toFixed(1);
+            document.getElementById('totalESOT').textContent = totalESOT.toFixed(1);
+        }
+
+        function addOtuRow() {
+            if (otuRowCount < 10) {
+                otuRowCount++;
+                renderOtuTable();
+            }
+        }
+
+        function deleteOtuRow(row) {
+            otuRowCount--;
+            renderOtuTable();
+        }
+
+        function resetOtu() {
+            otuRowCount = 1;
+            renderOtuTable();
+        }
+
+        function lookupEAD() {
+            const depth = parseInt(document.getElementById('eadDepth').value);
+            const o2 = parseInt(document.getElementById('eadO2').value);
+            const resultBox = document.getElementById('eadResult');
+
+            if (isNaN(depth) || isNaN(o2)) {
+                resultBox.className = 'result-box error';
+                resultBox.innerHTML = '<p>Please enter valid depth and O2% values.</p>';
+                return;
+            }
+
+            const result = EAD_DATA.find(row => row.depth === depth && row.o2 === o2);
+
+            if (!result) {
+                resultBox.className = 'result-box error';
+                resultBox.innerHTML = '<p>No matching data found. Please check your depth and O2% inputs.</p>';
+                return;
+            }
+
+            const colorClass = result.col === 'red' ? 'red-bg' : result.col === 'yellow' ? 'yellow-bg' : 'green-bg';
+            const colorText = result.col === 'red' ? '#991b1b' : result.col === 'yellow' ? '#92400e' : '#166534';
+
+            resultBox.className = `result-box success ${colorClass}`;
+            resultBox.innerHTML = `
+                <div class="result-grid">
+                    <div class="result-item">
+                        <div class="result-item-label">Depth (m)</div>
+                        <div class="result-item-value">${result.depth}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">O2 in Gas (%)</div>
+                        <div class="result-item-value">${result.o2}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">pO2 (ATA)</div>
+                        <div class="result-item-value" style="color: ${colorText};">${result.po2.toFixed(2)}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">EAD (m)</div>
+                        <div class="result-item-value">${result.eadCalc.toFixed(1)}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">EAD Safe (m)</div>
+                        <div class="result-item-value">${result.eadSafe !== null ? result.eadSafe.toFixed(1) : '—'}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Air Table To Use (m)</div>
+                        <div class="result-item-value">${result.airTable}</div>
+                    </div>
+                </div>
+                <div class="result-notes">
+                    <h4>Dive Notes</h4>
+                    <p>${result.h2}</p>
+                    <p><strong>${result.h3}</strong></p>
+                    <p>${result.h4}</p>
+                </div>
+            `;
+        }
+
+        function clearEAD() {
+            document.getElementById('eadDepth').value = '';
+            document.getElementById('eadO2').value = '';
+            const resultBox = document.getElementById('eadResult');
+            resultBox.className = 'result-box empty';
+            resultBox.innerHTML = '<p>Enter a depth and O2% to look up EAD data.</p>';
+        }
+
+        // Initial render
+        renderOtuTable();
+    </script>
+</body>
+</html>

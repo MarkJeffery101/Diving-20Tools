@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Trash2, RotateCcw, ArrowLeft } from "lucide-react";
+import { Plus, Trash2, RotateCcw, ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { EAD_DATA, type EADRow } from "../lib/eadData";
 
@@ -44,35 +44,6 @@ export default function Tools() {
     };
   };
 
-  const calculateEadRow = (row: EADCalculatorRow): EADCalculatorRow => {
-    const depth = parseFloat(row.depth_m);
-    const o2 = parseFloat(row.o2_percent);
-
-    if (isNaN(depth) || isNaN(o2)) {
-      return row;
-    }
-
-    const pO2 = (o2 / 100) * (depth / 10 + 1);
-    let safetyColor: "green" | "yellow" | "red" = "green";
-    if (pO2 > 1.5) {
-      safetyColor = "red";
-    } else if (pO2 > 1.4) {
-      safetyColor = "yellow";
-    }
-
-    const matchedData = EAD_DATA.find(
-      (row) => row.depth === depth && row.o2 === o2
-    );
-
-    return {
-      ...row,
-      pO2_ATA: parseFloat(pO2.toFixed(3)),
-      eadCalc: matchedData?.eadCalc,
-      eadSafe: matchedData?.eadSafe,
-      safetyColor,
-    };
-  };
-
   const handleOtuInputChange = (
     id: string,
     field: keyof Omit<CalculatorRow, "id" | "pO2_ATA" | "otu" | "esot">,
@@ -104,45 +75,9 @@ export default function Tools() {
     }
   };
 
-  const handleEadInputChange = (
-    id: string,
-    field: keyof Omit<EADCalculatorRow, "id" | "pO2_ATA" | "eadCalc" | "eadSafe" | "safetyColor">,
-    value: string
-  ) => {
-    const updatedRows = eadRows.map((row) => {
-      if (row.id === id) {
-        const updated = { ...row, [field]: value };
-        return calculateEadRow(updated);
-      }
-      return row;
-    });
-
-    setEadRows(updatedRows);
-
-    const lastRow = updatedRows[updatedRows.length - 1];
-    if (
-      lastRow.depth_m &&
-      lastRow.o2_percent &&
-      updatedRows.length < 10 &&
-      lastRow.eadCalc !== undefined
-    ) {
-      const newId = Math.max(...updatedRows.map((r) => parseInt(r.id)), 0) + 1;
-      setEadRows([
-        ...updatedRows,
-        { id: newId.toString(), depth_m: "", o2_percent: "" },
-      ]);
-    }
-  };
-
   const handleOtuDeleteRow = (id: string) => {
     if (otuRows.length > 1) {
       setOtuRows(otuRows.filter((row) => row.id !== id));
-    }
-  };
-
-  const handleEadDeleteRow = (id: string) => {
-    if (eadRows.length > 1) {
-      setEadRows(eadRows.filter((row) => row.id !== id));
     }
   };
 
@@ -150,12 +85,39 @@ export default function Tools() {
     setOtuRows([{ id: "1", depth_m: "", o2_percent: "", time_min: "" }]);
   };
 
+  const handleEadLookup = () => {
+    const depth = parseInt(eadDepth);
+    const o2 = parseInt(eadO2);
+
+    if (isNaN(depth) || isNaN(o2)) {
+      setEadResult(null);
+      return;
+    }
+
+    const result = EAD_DATA.find((row) => row.depth === depth && row.o2 === o2);
+    setEadResult(result || null);
+  };
+
   const handleEadReset = () => {
-    setEadRows([{ id: "1", depth_m: "", o2_percent: "" }]);
+    setEadDepth("");
+    setEadO2("");
+    setEadResult(null);
   };
 
   const totalOTU = otuRows.reduce((sum, row) => sum + (row.otu || 0), 0);
   const totalESOT = otuRows.reduce((sum, row) => sum + (row.esot || 0), 0);
+
+  const getSafetyColor = (po2: number): string => {
+    if (po2 > 1.5) return "bg-red-50 border-red-200";
+    if (po2 > 1.4) return "bg-yellow-50 border-yellow-200";
+    return "bg-green-50 border-green-200";
+  };
+
+  const getSafetyText = (po2: number): string => {
+    if (po2 > 1.5) return "text-red-700";
+    if (po2 > 1.4) return "text-yellow-700";
+    return "text-green-700";
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
@@ -367,141 +329,137 @@ export default function Tools() {
               Equivalent Air Depth (EAD)
             </h2>
             <p className="text-gray-600">
-              Calculate the Equivalent Air Depth (EAD) for nitrox gas mixtures
-              at varying depths. This helps you determine the decompression
+              Look up Equivalent Air Depth values for nitrox gas mixtures at
+              varying depths. This helps you determine the decompression
               requirements as if you were diving air at a shallower depth.
             </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-blue-800 text-white">
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    Depth (m)
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold">
-                    O2 in Gas (%)
-                  </th>
-                  <th className="px-4 py-3 text-center text-sm font-semibold">
-                    pO2 (ATA)
-                  </th>
-                  <th className="px-4 py-3 text-center text-sm font-semibold">
-                    EAD (m)
-                  </th>
-                  <th className="px-4 py-3 text-center text-sm font-semibold">
-                    EAD Safe (m)
-                  </th>
-                  <th className="px-4 py-3 text-center text-sm font-semibold">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {eadRows.map((row, index) => {
-                  const safetyColor = row.safetyColor || "green";
-                  const colorClass =
-                    safetyColor === "red"
-                      ? "bg-red-50"
-                      : safetyColor === "yellow"
-                        ? "bg-yellow-50"
-                        : "bg-green-50";
-
-                  return (
-                    <tr
-                      key={row.id}
-                      className={`border-b ${
-                        index % 2 === 0 ? "bg-white" : "bg-slate-50"
-                      }`}
-                    >
-                      <td className="px-4 py-3">
-                        <input
-                          type="number"
-                          value={row.depth_m}
-                          onChange={(e) =>
-                            handleEadInputChange(row.id, "depth_m", e.target.value)
-                          }
-                          placeholder="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="number"
-                          value={row.o2_percent}
-                          onChange={(e) =>
-                            handleEadInputChange(row.id, "o2_percent", e.target.value)
-                          }
-                          placeholder="0"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                      </td>
-                      <td className={`px-4 py-3 text-center text-gray-700 font-medium ${colorClass}`}>
-                        {row.pO2_ATA !== undefined ? row.pO2_ATA.toFixed(3) : "—"}
-                      </td>
-                      <td className={`px-4 py-3 text-center text-gray-700 font-medium ${colorClass}`}>
-                        {row.eadCalc !== undefined ? row.eadCalc.toFixed(1) : "—"}
-                      </td>
-                      <td className={`px-4 py-3 text-center text-gray-700 font-medium ${colorClass}`}>
-                        {row.eadSafe !== undefined && row.eadSafe !== null
-                          ? row.eadSafe.toFixed(1)
-                          : "—"}
-                      </td>
-                      <td className="px-4 py-3 text-center">
-                        {eadRows.length > 1 && (
-                          <button
-                            onClick={() => handleEadDeleteRow(row.id)}
-                            className="inline-flex items-center justify-center p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                            title="Delete row"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Depth (m)
+              </label>
+              <input
+                type="number"
+                value={eadDepth}
+                onChange={(e) => setEadDepth(e.target.value)}
+                placeholder="e.g., 30"
+                min="10"
+                max="50"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                O2 in Gas (%)
+              </label>
+              <input
+                type="number"
+                value={eadO2}
+                onChange={(e) => setEadO2(e.target.value)}
+                placeholder="e.g., 32"
+                min="30"
+                max="40"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
           </div>
 
-          <div className="mt-8 flex gap-4">
-            {eadRows.length < 10 && (
-              <button
-                onClick={() => {
-                  const newId = Math.max(
-                    ...eadRows.map((r) => parseInt(r.id)),
-                    0
-                  ) + 1;
-                  setEadRows([
-                    ...eadRows,
-                    { id: newId.toString(), depth_m: "", o2_percent: "" },
-                  ]);
-                }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              >
-                <Plus className="h-4 w-4" />
-                Add Row
-              </button>
-            )}
+          <div className="flex gap-4 mb-8">
+            <button
+              onClick={handleEadLookup}
+              className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              <Search className="h-4 w-4" />
+              Look Up
+            </button>
             <button
               onClick={handleEadReset}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-6 py-2 bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 transition-colors font-medium"
             >
               <RotateCcw className="h-4 w-4" />
-              Reset
+              Clear
             </button>
           </div>
+
+          {eadResult ? (
+            <div
+              className={`p-6 rounded-lg border-2 ${getSafetyColor(eadResult.po2)}`}
+            >
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Depth (m)</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {eadResult.depth}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">O2 in Gas (%)</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {eadResult.o2}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">pO2 (ATA)</p>
+                  <p className={`text-2xl font-bold ${getSafetyText(eadResult.po2)}`}>
+                    {eadResult.po2.toFixed(2)}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">EAD (m)</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {eadResult.eadCalc.toFixed(1)}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">EAD Safe (m)</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {eadResult.eadSafe !== null
+                      ? eadResult.eadSafe.toFixed(1)
+                      : "—"}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Air Table To Use (m)</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {eadResult.airTable}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 p-4 bg-white rounded border">
+                <h4 className="font-semibold text-gray-900 mb-2">Dive Notes</h4>
+                <p className="text-sm text-gray-700 mb-2">{eadResult.h2}</p>
+                <p className="text-sm text-gray-700 mb-1">
+                  <strong>{eadResult.h3}</strong>
+                </p>
+                <p className="text-sm text-gray-700">{eadResult.h4}</p>
+              </div>
+            </div>
+          ) : eadDepth || eadO2 ? (
+            <div className="p-6 rounded-lg border-2 border-red-200 bg-red-50">
+              <p className="text-red-700 font-medium">
+                No matching data found. Please check your depth and O2% inputs.
+              </p>
+            </div>
+          ) : (
+            <div className="p-6 rounded-lg border-2 border-gray-200 bg-gray-50">
+              <p className="text-gray-600">
+                Enter a depth and O2% to look up EAD data.
+              </p>
+            </div>
+          )}
 
           <div className="mt-8 p-6 bg-amber-50 border border-amber-200 rounded-lg">
             <h3 className="font-semibold text-amber-900 mb-3">Instructions</h3>
             <ul className="space-y-2 text-sm text-amber-900">
               <li>
                 • <strong>Depth:</strong> Enter the planned dive depth in meters
+                (10–50 m)
               </li>
               <li>
                 • <strong>O2 in Gas:</strong> Enter the oxygen percentage of your
-                nitrox mix
+                nitrox mix (30–40%)
               </li>
               <li>
                 • <strong>pO2:</strong> Calculated partial pressure of oxygen at
@@ -512,12 +470,16 @@ export default function Tools() {
                 air instead of your nitrox mix
               </li>
               <li>
-                • <strong>EAD Safe:</strong> A conservative EAD value for dive
-                planning safety
+                • <strong>EAD Safe:</strong> A conservative EAD value for safer
+                dive planning
+              </li>
+              <li>
+                • <strong>Air Table To Use:</strong> The decompression table to
+                reference from
               </li>
               <li>
                 • <strong>Color Code:</strong> Green (pO2 ≤1.4 ATA - safe), Yellow
-                (1.4-1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)
+                (1.4–1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)
               </li>
             </ul>
           </div>

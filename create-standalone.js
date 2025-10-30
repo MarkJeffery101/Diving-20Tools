@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const cssPath = 'dist/spa/assets/index-DbnQtAqF.css';
 const jsPath = 'dist/spa/assets/index-BZEQeZZ_.js';

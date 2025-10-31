@@ -276,18 +276,18 @@ export default function TableDetail() {
             </div>
 
             {/* Info Cards Section - Below Table */}
-            <div className={`grid ${isOtuEsotTable ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
+            <div className={`grid ${isOtuEsotTable ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
               {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
               {isOtuEsotTable ? (
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
-                  <div className="space-y-3">
+                <div className="w-1/2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">O2 %</p>
                       <p className="text-2xl sm:text-3xl font-bold text-amber-900">{tableData.o2Percent !== undefined && tableData.o2Percent !== null ? tableData.o2Percent.toFixed(1) : '-'}</p>
                     </div>
-                    <div className="pt-2 border-t border-amber-200">
+                    <div>
                       <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum Diving Depth</p>
-                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{selectedDepth !== null ? `${selectedDepth}m` : '-'}</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-amber-900">{selectedDepth !== null ? `${selectedDepth}m` : '-'}</p>
                     </div>
                   </div>
                 </div>

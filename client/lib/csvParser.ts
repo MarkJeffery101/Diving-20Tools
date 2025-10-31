@@ -390,15 +390,15 @@ async function parseOtuEsotCSV(
       let marker: number | undefined;
 
       if (tableCode === 'SOX15_OTU') {
-        // SOX15: Columns 5-6 (2h), 7-8 (4h)
+        // SOX15: Columns 5-6 (12h), 7-8 (4h)
         repetIntervals.push(
           {
             otu: values[5] ? parseInt(values[5]) : null,
-            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+            esot: values[6] ? parseFloat(values[6]) : null,
           },
           {
             otu: values[7] ? parseInt(values[7]) : null,
-            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+            esot: values[8] ? parseFloat(values[8]) : null,
           }
         );
         // Check for marker in column 11
@@ -410,15 +410,15 @@ async function parseOtuEsotCSV(
         repetIntervals.push(
           {
             otu: values[5] ? parseInt(values[5]) : null,
-            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+            esot: values[6] ? parseFloat(values[6]) : null,
           },
           {
             otu: values[7] ? parseInt(values[7]) : null,
-            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+            esot: values[8] ? parseFloat(values[8]) : null,
           },
           {
             otu: values[9] ? parseInt(values[9]) : null,
-            esot: values[10] ? parseFloat(values[10].replace('.', '')) : null,
+            esot: values[10] ? parseFloat(values[10]) : null,
           }
         );
         // Check for marker in column 11
@@ -430,15 +430,15 @@ async function parseOtuEsotCSV(
         repetIntervals.push(
           {
             otu: values[5] ? parseInt(values[5]) : null,
-            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+            esot: values[6] ? parseFloat(values[6]) : null,
           },
           {
             otu: values[7] ? parseInt(values[7]) : null,
-            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+            esot: values[8] ? parseFloat(values[8]) : null,
           },
           {
             otu: values[9] ? parseInt(values[9]) : null,
-            esot: values[10] ? parseFloat(values[10].replace('.', '')) : null,
+            esot: values[10] ? parseFloat(values[10]) : null,
           }
         );
         // Check for marker in column 11
@@ -450,7 +450,7 @@ async function parseOtuEsotCSV(
         repetIntervals.push(
           {
             otu: values[5] ? parseInt(values[5]) : null,
-            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+            esot: values[6] ? parseFloat(values[6]) : null,
           }
         );
         // Check for marker in column 7

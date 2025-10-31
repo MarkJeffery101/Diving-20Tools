@@ -249,11 +249,15 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     columns: [
       { label: "Dive Time\n(min)" },
       {
-        label: "Repet Interval 12h",
+        label: "Repet Interval 2h",
         sub: ["OTU", "ESOT"],
       },
       {
         label: "Repet Interval 4h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 12h",
         sub: ["OTU", "ESOT"],
       },
     ],
@@ -285,15 +289,15 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     columns: [
       { label: "Dive Time\n(min)" },
       {
-        label: "Repet Interval 12h",
-        sub: ["OTU", "ESOT"],
-      },
-      {
         label: "Repet Interval 2h",
         sub: ["OTU", "ESOT"],
       },
       {
         label: "Repet Interval 4h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 12h",
         sub: ["OTU", "ESOT"],
       },
     ],

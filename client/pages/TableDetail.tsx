@@ -274,21 +274,36 @@ export default function TableDetail() {
 
             {/* Info Cards Section - Below Table */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
-              {/* Left: Depth Info */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
-                <div className="space-y-3">
-                  {selectedDepth && (
+              {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
+              {isOtuEsotTable ? (
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+                  <div className="space-y-3">
                     <div>
-                      <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
-                      <p className="text-2xl sm:text-3xl font-bold text-blue-900">{selectedDepth}m</p>
+                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">O2 %</p>
+                      <p className="text-2xl sm:text-3xl font-bold text-amber-900">{tableData.o2Percent !== undefined && tableData.o2Percent !== null ? tableData.o2Percent.toFixed(1) : '-'}</p>
                     </div>
-                  )}
-                  <div className="pt-2 border-t border-blue-200">
-                    <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
-                    <p className="text-xl sm:text-2xl font-bold text-blue-900">{showDvis5 ? (tableData.dvis5Value !== null ? tableData.dvis5Value : '-') : '-'} min</p>
+                    <div className="pt-2 border-t border-amber-200">
+                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum Diving Depth</p>
+                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{selectedDepth !== null ? `${selectedDepth}m` : '-'}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
+                  <div className="space-y-3">
+                    {selectedDepth && (
+                      <div>
+                        <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
+                        <p className="text-2xl sm:text-3xl font-bold text-blue-900">{selectedDepth}m</p>
+                      </div>
+                    )}
+                    <div className="pt-2 border-t border-blue-200">
+                      <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
+                      <p className="text-xl sm:text-2xl font-bold text-blue-900">{showDvis5 ? (tableData.dvis5Value !== null ? tableData.dvis5Value : '-') : '-'} min</p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Center: Nitrox Info */}
               {(showNitroxInfo || tableData.eadValue !== undefined) && (

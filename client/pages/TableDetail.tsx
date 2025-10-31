@@ -309,7 +309,7 @@ export default function TableDetail() {
               )}
 
               {/* Center: Nitrox Info */}
-              {(showNitroxInfo || tableData.eadValue !== undefined) && (
+              {(isOtuEsotTable || showNitroxInfo || tableData.eadValue !== undefined) && (
                 <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
                   <div className="space-y-3">
                     <div>

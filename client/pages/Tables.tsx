@@ -89,22 +89,22 @@ const tablesData: Level1Item[] = [
     children: [
       {
         name: "SOX15 - Surface OX Repetitive Times",
-        code: "SOX15",
+        code: "SOX15_OTU",
         depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
       },
       {
         name: "NIA15 - Nitrox 40/60 Repetitive Times",
-        code: "NIA15",
+        code: "NIA15_OTU",
         depths: [18, 21, 24, 27],
       },
       {
         name: "NIB15 - Nitrox 35/65 Repetitive Times",
-        code: "NIB15",
+        code: "NIB15_OTU",
         depths: [18, 21, 24, 27, 30, 33],
       },
       {
         name: "BOX15 - Bell Air/Oxygen Repetitive Times",
-        code: "BOX15",
+        code: "BOX15_OTU",
         depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
       },
     ],

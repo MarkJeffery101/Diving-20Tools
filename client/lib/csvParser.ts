@@ -330,6 +330,154 @@ async function parseNiaNibCSV(
   }
 }
 
+async function parseOtuEsotCSV(
+  tableCode: string,
+  depth: number
+): Promise<ParsedTableData> {
+  try {
+    const csvPath = `/data/tables/ESOT_TABLES.csv`;
+    const response = await fetch(csvPath);
+    if (!response.ok) {
+      console.error(`Failed to fetch CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const csvText = await response.text();
+    const lines = csvText.trim().split('\n');
+
+    if (lines.length < 2) {
+      console.error(`No data found in CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const rows: TableRow[] = [];
+    let codeToMatch = '';
+
+    // Map table codes to CSV codes
+    if (tableCode === 'SOX15_OTU') {
+      codeToMatch = 'sox15';
+    } else if (tableCode === 'NIA15_OTU') {
+      codeToMatch = 'nia15';
+    } else if (tableCode === 'NIB15_OTU') {
+      codeToMatch = 'nib15';
+    } else if (tableCode === 'BOX15_OTU') {
+      codeToMatch = 'box15';
+    }
+
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      const values = line.split(',').map(v => v.trim());
+
+      // Skip if insufficient columns
+      if (values.length < 5) continue;
+
+      // Column 1: Code
+      const csvCode = values[1];
+      if (csvCode !== codeToMatch) continue;
+
+      // Column 3: Depth
+      const rowDepth = parseInt(values[3]);
+      if (isNaN(rowDepth) || rowDepth !== depth) continue;
+
+      // Column 4: Dive Time
+      const diveTime = parseInt(values[4]);
+      if (isNaN(diveTime)) continue;
+
+      // Parse repet intervals based on table code
+      const repetIntervals: Array<{otu: number | null, esot: number | null}> = [];
+      let marker: number | undefined;
+
+      if (tableCode === 'SOX15_OTU') {
+        // SOX15: Columns 5-6 (2h), 7-8 (4h)
+        repetIntervals.push(
+          {
+            otu: values[5] ? parseInt(values[5]) : null,
+            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+          },
+          {
+            otu: values[7] ? parseInt(values[7]) : null,
+            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+          }
+        );
+        // Check for marker in column 11
+        if (values.length > 11 && values[11] === '3') {
+          marker = 3;
+        }
+      } else if (tableCode === 'NIA15_OTU') {
+        // NIA15: Columns 5-6 (2h), 7-8 (4h), 9-10 (12h)
+        repetIntervals.push(
+          {
+            otu: values[5] ? parseInt(values[5]) : null,
+            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+          },
+          {
+            otu: values[7] ? parseInt(values[7]) : null,
+            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+          },
+          {
+            otu: values[9] ? parseInt(values[9]) : null,
+            esot: values[10] ? parseFloat(values[10].replace('.', '')) : null,
+          }
+        );
+        // Check for marker in column 11
+        if (values.length > 11 && values[11] === '3') {
+          marker = 3;
+        }
+      } else if (tableCode === 'NIB15_OTU') {
+        // NIB15: Columns 5-6 (12h), 7-8 (2h), 9-10 (4h)
+        repetIntervals.push(
+          {
+            otu: values[5] ? parseInt(values[5]) : null,
+            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+          },
+          {
+            otu: values[7] ? parseInt(values[7]) : null,
+            esot: values[8] ? parseFloat(values[8].replace('.', '')) : null,
+          },
+          {
+            otu: values[9] ? parseInt(values[9]) : null,
+            esot: values[10] ? parseFloat(values[10].replace('.', '')) : null,
+          }
+        );
+        // Check for marker in column 11
+        if (values.length > 11 && values[11] === '3') {
+          marker = 3;
+        }
+      } else if (tableCode === 'BOX15_OTU') {
+        // BOX15: Columns 5-6 (OTU, ESOT)
+        repetIntervals.push(
+          {
+            otu: values[5] ? parseInt(values[5]) : null,
+            esot: values[6] ? parseFloat(values[6].replace('.', '')) : null,
+          }
+        );
+        // Check for marker in column 7
+        if (values.length > 7 && values[7] === '3') {
+          marker = 3;
+        }
+      }
+
+      rows.push({
+        diveTime,
+        tillFirstStop: 0,
+        stopDepths: [],
+        totalDecoTime: 0,
+        totalOTU: 0,
+        totalESOT: 0,
+        repetIntervals,
+        marker,
+      });
+    }
+
+    return { dvis5Value: null, rows };
+  } catch (error) {
+    console.error(`Error parsing ${tableCode} CSV:`, error);
+    return { dvis5Value: null, rows: [] };
+  }
+}
+
 async function parseNia2CSV(
   tableCode: string,
   depth: number

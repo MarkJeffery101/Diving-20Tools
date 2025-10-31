@@ -7,6 +7,7 @@ export interface TableRow {
   totalOTU: number;
   totalESOT: number;
   marker?: number; // 2 for bold border, 3 for red background
+  repetIntervals?: Array<{otu: number | null, esot: number | null}>; // For OTU/ESOT tables
 }
 
 export interface ParsedTableData {

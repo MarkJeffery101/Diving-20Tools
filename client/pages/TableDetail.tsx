@@ -324,6 +324,23 @@ export default function TableDetail() {
                 </div>
               )}
 
+              {/* Right: Safety Guidelines - Only for non-OTU/ESOT tables */}
+              {!isOtuEsotTable && (
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
+                  <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">Safety Guidelines</p>
+                  <ul className="space-y-2 text-xs sm:text-sm text-green-900">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-green-600 mt-0.5">•</span>
+                      <span>Stop time starts after arrival at the stop</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-green-600 mt-0.5">•</span>
+                      <span>Maximum ascent speed is 10 m/min</span>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
             </div>
 
           </div>

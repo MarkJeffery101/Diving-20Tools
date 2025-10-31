@@ -8,6 +8,7 @@ export interface TableRow {
   totalESOT: number;
   marker?: number; // 2 for bold border, 3 for red background
   repetIntervals?: Array<{otu: number | null, esot: number | null}>; // For OTU/ESOT tables
+  o2Percent?: number | null; // Oxygen percentage for gas mix
 }
 
 export interface ParsedTableData {
@@ -16,6 +17,7 @@ export interface ParsedTableData {
   blueColumns?: boolean[]; // Track which stop depth columns should be blue
   eadValue?: number | null; // Equivalent Air Depth for this depth
   po2Value?: number | null; // Maximum PO2 for this depth
+  o2Percent?: number | null; // Oxygen percentage for gas mix (OTU/ESOT tables)
 }
 
 async function parseSox15CSV(
@@ -352,6 +354,8 @@ async function parseOtuEsotCSV(
 
     const rows: TableRow[] = [];
     let codeToMatch = '';
+    let o2Percent: number | null = null;
+    let isFirstRowAtDepth = true;
 
     // Map table codes to CSV codes
     if (tableCode === 'SOX15_OTU') {
@@ -380,6 +384,16 @@ async function parseOtuEsotCSV(
       // Column 3: Depth
       const rowDepth = parseInt(values[3]);
       if (isNaN(rowDepth) || rowDepth !== depth) continue;
+
+      // Extract O2% only on first row of this depth
+      if (isFirstRowAtDepth) {
+        // Column 2: O2 %
+        const o2Value = values[2];
+        if (o2Value) {
+          o2Percent = parseFloat(o2Value);
+        }
+        isFirstRowAtDepth = false;
+      }
 
       // Column 4: Dive Time
       const diveTime = parseInt(values[4]);
@@ -472,10 +486,11 @@ async function parseOtuEsotCSV(
         totalESOT: 0,
         repetIntervals,
         marker,
+        o2Percent,
       });
     }
 
-    return { dvis5Value: null, rows };
+    return { dvis5Value: null, rows, o2Percent };
   } catch (error) {
     console.error(`Error parsing ${tableCode} CSV:`, error);
     return { dvis5Value: null, rows: [] };

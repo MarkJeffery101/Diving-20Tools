@@ -230,21 +230,41 @@ export default function TableDetail() {
                           borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
                         }}
                       >
-                        <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                        <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
-                        {row.stopDepths.map((depth, depthIdx) => (
-                          <td
-                            key={depthIdx}
-                            className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
-                              row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
-                            }`}
-                          >
-                            {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
-                          </td>
-                        ))}
-                        <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
-                        <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
-                        <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
+                        {isOtuEsotTable ? (
+                          // OTU/ESOT Table Rendering
+                          <>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                            {row.repetIntervals?.map((interval, intervalIdx) => (
+                              <>
+                                <td key={`otuIdx-${intervalIdx}`} className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                  {interval.otu !== null ? <span className="font-medium">{interval.otu}</span> : <span className="text-gray-400">—</span>}
+                                </td>
+                                <td key={`esotIdx-${intervalIdx}`} className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                  {interval.esot !== null ? <span className="font-medium">{interval.esot}</span> : <span className="text-gray-400">—</span>}
+                                </td>
+                              </>
+                            ))}
+                          </>
+                        ) : (
+                          // Standard Decompression Table Rendering
+                          <>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
+                            {row.stopDepths.map((depth, depthIdx) => (
+                              <td
+                                key={depthIdx}
+                                className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
+                                  row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
+                                }`}
+                              >
+                                {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
+                              </td>
+                            ))}
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
+                          </>
+                        )}
                       </tr>
                     ))
                   )}

@@ -149,21 +149,21 @@ export default function Index() {
       </section>
 
       {/* Key Features Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-ocean-900 to-ocean-800 text-white">
-        <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+      <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4 bg-gradient-to-br from-ocean-900 to-ocean-800 text-white">
+        <div className="container mx-auto px-2 sm:px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 md:mb-16">
             Why DivePlan?
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
             <div>
               <div className="mb-4">
-                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
                   1
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">Complete Information</h3>
-              <p className="text-ocean-100">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Complete Information</h3>
+              <p className="text-sm sm:text-base text-ocean-100">
                 All dive tables, limits, and documentation in one accessible
                 place for all diving types.
               </p>
@@ -171,12 +171,12 @@ export default function Index() {
 
             <div>
               <div className="mb-4">
-                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
                   2
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">Smart Interlinks</h3>
-              <p className="text-ocean-100">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Smart Interlinks</h3>
+              <p className="text-sm sm:text-base text-ocean-100">
                 Seamlessly navigate between tables, procedures, and protocols
                 with contextual cross-references.
               </p>
@@ -184,12 +184,12 @@ export default function Index() {
 
             <div>
               <div className="mb-4">
-                <div className="w-12 h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
                   3
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">Decision Support</h3>
-              <p className="text-ocean-100">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Decision Support</h3>
+              <p className="text-sm sm:text-base text-ocean-100">
                 Interactive logic trees help you navigate complex decisions from
                 table selection to emergency response.
               </p>

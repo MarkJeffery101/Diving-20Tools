@@ -216,11 +216,13 @@ export default function TableDetail() {
                       </td>
                     </tr>
                   ) : (
-                    tableData.rows.map((row, rowIdx) => (
+                    tableData.rows.map((row, rowIdx) => {
+                      const isLastRow = rowIdx === tableData.rows.length - 1;
+                      return (
                       <tr
                         key={rowIdx}
                         className={`border-b transition-colors duration-150 cursor-pointer ${
-                          row.marker === 3
+                          isLastRow
                             ? 'bg-red-50 hover:bg-red-100'
                             : rowIdx % 2 === 0
                               ? 'bg-white hover:bg-blue-50'
@@ -266,7 +268,8 @@ export default function TableDetail() {
                           </Fragment>
                         )}
                       </tr>
-                    ))
+                    );
+                    })
                   )}
                 </tbody>
               </table>

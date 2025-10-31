@@ -84,6 +84,32 @@ const tablesData: Level1Item[] = [
     ],
   },
   {
+    name: "OTU & ESOT Tables",
+    tag: "OTU/ESOT",
+    children: [
+      {
+        name: "SOX15 - Surface OX Repetitive Times",
+        code: "SOX15",
+        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+      },
+      {
+        name: "NIA15 - Nitrox 40/60 Repetitive Times",
+        code: "NIA15",
+        depths: [18, 21, 24, 27],
+      },
+      {
+        name: "NIB15 - Nitrox 35/65 Repetitive Times",
+        code: "NIB15",
+        depths: [18, 21, 24, 27, 30, 33],
+      },
+      {
+        name: "BOX15 - Bell Air/Oxygen Repetitive Times",
+        code: "BOX15",
+        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+      },
+    ],
+  },
+  {
     name: "Nitrox Decompression Tables",
     tag: "Nitrox",
     children: [
@@ -127,23 +153,6 @@ const tablesData: Level1Item[] = [
         code: "H4NIB15",
         depths: [18, 21, 24, 27, 30, 33],
       },
-    ],
-  },
-  {
-    name: "Nitrox Equivalent Air Depth Tables",
-    tag: "EAD",
-    children: [
-      { name: "NITROX 40% O2 / 60% N2", code: "EAD40" },
-      { name: "NITROX 39% O2 / 61% N2", code: "EAD39" },
-      { name: "NITROX 38% O2 / 62% N2", code: "EAD38" },
-      { name: "NITROX 37% O2 / 63% N2", code: "EAD37" },
-      { name: "NITROX 36% O2 / 64% N2", code: "EAD36" },
-      { name: "NITROX 35% O2 / 65% N2", code: "EAD35" },
-      { name: "NITROX 34% O2 / 66% N2", code: "EAD34" },
-      { name: "NITROX 33% O2 / 67% N2", code: "EAD33" },
-      { name: "NITROX 32% O2 / 68% N2", code: "EAD32" },
-      { name: "NITROX 31% O2 / 69% N2", code: "EAD31" },
-      { name: "NITROX 30% O2 / 70% N2", code: "EAD30" },
     ],
   },
   {

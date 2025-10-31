@@ -77,7 +77,7 @@ export default function Index() {
               <span className="sm:hidden">Dive Planning</span>
             </div>
 
-            <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               DivePlan: Professional Dive Planning Reference
             </h1>
 

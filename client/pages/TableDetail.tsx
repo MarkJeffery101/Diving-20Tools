@@ -226,7 +226,7 @@ export default function TableDetail() {
                             ? 'bg-red-50 hover:bg-red-100'
                             : rowIdx % 2 === 0
                               ? 'bg-white hover:bg-blue-50'
-                              : 'bg-gray-50 hover:bg-blue-50'
+                              : 'bg-lime-50 hover:bg-blue-50'
                         }`}
                         style={{
                           borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',

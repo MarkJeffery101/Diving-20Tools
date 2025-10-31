@@ -588,6 +588,12 @@ export async function parseTableCSV(
   tableCode: string,
   depth: number
 ): Promise<ParsedTableData> {
+  // Use specialized parser for OTU/ESOT tables
+  const otuEsotCodes = ['SOX15_OTU', 'NIA15_OTU', 'NIB15_OTU', 'BOX15_OTU'];
+  if (otuEsotCodes.includes(tableCode)) {
+    return parseOtuEsotCSV(tableCode, depth);
+  }
+
   // Use specialized parser for SOX15 and HSOX15
   if (tableCode === 'SOX15' || tableCode === 'HSOX15') {
     return parseSox15CSV(tableCode, depth);

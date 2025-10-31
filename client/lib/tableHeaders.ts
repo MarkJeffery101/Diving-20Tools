@@ -438,6 +438,7 @@ const tableDepthMap: Record<string, number[]> = {
   // Surface/OX Tables
   SOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
   HSOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  SOX15_OTU: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
 
   // Backup Air Tables
   SAB15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
@@ -445,16 +446,19 @@ const tableDepthMap: Record<string, number[]> = {
 
   // Nitrox Tables
   NIA15: [18, 21, 24, 27],
+  NIA15_OTU: [18, 21, 24, 27],
   NIA2_3: [21, 23, 25, 27],
   NIA2_6: [21, 23, 25, 27],
   H2NIA15: [18, 21, 24, 27],
   H4NIA15: [18, 21, 24, 27],
   NIB15: [18, 21, 24, 27, 30, 33],
+  NIB15_OTU: [18, 21, 24, 27, 30, 33],
   H2NIB15: [18, 21, 24, 27, 30, 33],
   H4NIB15: [18, 21, 24, 27, 30, 33],
 
   // Wet or Dry Bell Tables
   BOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+  BOX15_OTU: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
 };
 
 export function getAvailableDepths(tableCode: string): number[] | undefined {

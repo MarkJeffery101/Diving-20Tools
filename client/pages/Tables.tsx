@@ -158,13 +158,7 @@ const tablesData: Level1Item[] = [
   {
     name: "Wet or Dry Bell Air/Oxygen Tables",
     tag: "Wet/Dry Bell",
-    children: [
-      {
-        name: "BOX15",
-        code: "BOX15",
-        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-      },
-    ],
+    children: [],
   },
   {
     name: "Treatment Tables DCS & AGE",

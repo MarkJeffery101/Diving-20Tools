@@ -272,8 +272,8 @@ export default function Tables() {
       "Standard Air": "bg-cyan-100 text-cyan-700",
       "SurD O2": "bg-orange-100 text-orange-700",
       "Backup Air": "bg-yellow-100 text-yellow-700",
+      "OTU/ESOT": "bg-purple-100 text-purple-700",
       Nitrox: "bg-green-100 text-green-700",
-      EAD: "bg-emerald-100 text-emerald-700",
       "Wet/Dry Bell": "bg-indigo-100 text-indigo-700",
       Treatment: "bg-red-100 text-red-700",
     };

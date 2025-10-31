@@ -243,6 +243,72 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
 
+  // OTU & ESOT Repetitive Times - SOX15
+  SOX15_OTU: {
+    title: "SOX15 - Surface OX Repetitive Times",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      {
+        label: "Repet Interval 12h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 4h",
+        sub: ["OTU", "ESOT"],
+      },
+    ],
+  },
+
+  // OTU & ESOT Repetitive Times - NIA15
+  NIA15_OTU: {
+    title: "NIA15 - Nitrox 40/60 Repetitive Times",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      {
+        label: "Repet Interval 2h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 4h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 12h",
+        sub: ["OTU", "ESOT"],
+      },
+    ],
+  },
+
+  // OTU & ESOT Repetitive Times - NIB15
+  NIB15_OTU: {
+    title: "NIB15 - Nitrox 35/65 Repetitive Times",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      {
+        label: "Repet Interval 12h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 2h",
+        sub: ["OTU", "ESOT"],
+      },
+      {
+        label: "Repet Interval 4h",
+        sub: ["OTU", "ESOT"],
+      },
+    ],
+  },
+
+  // OTU & ESOT Repetitive Times - BOX15
+  BOX15_OTU: {
+    title: "BOX15 - Bell Air/Oxygen Repetitive Times",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      { label: "OTU" },
+      { label: "ESOT" },
+    ],
+  },
+
   // Wet or Dry Bell Tables
   BOX15: {
     title: "BOX15 - Wet or Dry Bell Air/Oxygen Tables",

@@ -63,40 +63,41 @@ export default function Index() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 px-4 overflow-hidden">
+      <section className="relative py-12 sm:py-16 md:py-32 px-3 sm:px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 right-10 w-72 h-72 bg-ocean-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute -bottom-8 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-ocean-100 text-ocean-700 px-4 py-2 rounded-full mb-6 font-medium text-sm">
-              <MapPin className="h-4 w-4" />
-              Professional Dive Planning System
+        <div className="container mx-auto relative z-10 px-2 sm:px-4">
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-ocean-100 text-ocean-700 px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 font-medium text-xs sm:text-sm">
+              <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Professional Dive Planning System</span>
+              <span className="sm:hidden">Dive Planning</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               DivePlan: Professional Dive Planning Reference
             </h1>
 
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               A comprehensive, interlinked dive planning system for commercial,
               air, and nitrox diving. Access decompression tables, emergency
               procedures, treatment protocols, and decision logic trees in one
               integrated platform.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/tables"
-                className="px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
               >
                 Start with Tables
               </Link>
               <Link
                 to="/table-selection"
-                className="px-8 py-3 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors"
+                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-sm sm:text-base"
               >
                 Find Your Table
               </Link>
@@ -106,38 +107,38 @@ export default function Index() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-white relative">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+      <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4 bg-white relative">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Integrated Dive Planning Resources
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
               All essential dive planning information, interconnected and
               organized for quick reference
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {sections.map((section) => {
               const IconComponent = section.icon;
               return (
                 <Link
                   key={section.href}
                   to={section.href}
-                  className="group p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
+                  className="group p-4 sm:p-6 md:p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
                   style={{
                     background: section.color,
                     borderColor: section.borderColor,
                   }}
                 >
-                  <div className="mb-4">
-                    <IconComponent className="h-10 w-10" />
+                  <div className="mb-3 sm:mb-4">
+                    <IconComponent className="h-8 sm:h-10 w-8 sm:w-10" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:opacity-90">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:opacity-90">
                     {section.title}
                   </h3>
-                  <p className="text-sm opacity-80 group-hover:opacity-100">
+                  <p className="text-xs sm:text-sm opacity-80 group-hover:opacity-100">
                     {section.description}
                   </p>
                 </Link>

@@ -3,7 +3,7 @@ import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { getTableHeader, getAvailableDepths } from "@/lib/tableHeaders";
 import { parseTableCSV, type ParsedTableData } from "@/lib/csvParser";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 export default function TableDetail() {
   const { id } = useParams();
@@ -232,27 +232,27 @@ export default function TableDetail() {
                       >
                         {isOtuEsotTable ? (
                           // OTU/ESOT Table Rendering
-                          <>
+                          <Fragment key={`otu-row-${rowIdx}`}>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
                             {row.repetIntervals?.map((interval, intervalIdx) => (
-                              <>
-                                <td key={`otuIdx-${intervalIdx}`} className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                              <Fragment key={`interval-${rowIdx}-${intervalIdx}`}>
+                                <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
                                   {interval.otu !== null ? <span className="font-medium">{interval.otu}</span> : <span className="text-gray-400">—</span>}
                                 </td>
-                                <td key={`esotIdx-${intervalIdx}`} className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
                                   {interval.esot !== null ? <span className="font-medium">{interval.esot}</span> : <span className="text-gray-400">—</span>}
                                 </td>
-                              </>
+                              </Fragment>
                             ))}
-                          </>
+                          </Fragment>
                         ) : (
                           // Standard Decompression Table Rendering
-                          <>
+                          <Fragment key={`std-row-${rowIdx}`}>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
                             {row.stopDepths.map((depth, depthIdx) => (
                               <td
-                                key={depthIdx}
+                                key={`depth-${rowIdx}-${depthIdx}`}
                                 className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
                                   row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
                                 }`}
@@ -263,7 +263,7 @@ export default function TableDetail() {
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
-                          </>
+                          </Fragment>
                         )}
                       </tr>
                     ))

@@ -124,34 +124,29 @@ export default function TableDetail() {
           </div>
         </div>
 
-        {/* Main Content with Sidebar */}
-        <div className="flex gap-6 max-w-7xl mx-auto">
-          {/* Left Sidebar - Depth Selector */}
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto w-full">
+          {/* Depth Toggle Buttons - Horizontal */}
           {availableDepths && availableDepths.length > 0 && (
-            <div className="w-32 flex-shrink-0">
-              <div className="sticky top-24 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                <p className="text-xs font-semibold text-gray-700 mb-3 uppercase tracking-wide">Select Depth</p>
-                <div className="flex flex-col gap-2">
-                  {availableDepths.map((depth) => (
-                    <button
-                      key={depth}
-                      onClick={() => handleDepthChange(depth)}
-                      className={`px-3 py-2 rounded-lg font-semibold transition-all border-2 text-sm ${
-                        selectedDepth === depth
-                          ? 'bg-blue-600 border-blue-600 text-white shadow-md'
-                          : 'bg-white border-gray-300 text-gray-700 hover:border-blue-400 hover:text-blue-600'
-                      }`}
-                    >
-                      {depth}m
-                    </button>
-                  ))}
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {availableDepths.map((depth) => (
+                <button
+                  key={depth}
+                  onClick={() => handleDepthChange(depth)}
+                  className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                    selectedDepth === depth
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {depth}m
+                </button>
+              ))}
             </div>
           )}
 
-          {/* Right Content Area */}
-          <div className="flex-1 min-w-0">
+          {/* Content Area */}
+          <div className="w-full">
             {/* Table */}
             <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow mb-8">
               <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>

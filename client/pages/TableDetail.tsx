@@ -276,7 +276,7 @@ export default function TableDetail() {
             </div>
 
             {/* Info Cards Section - Below Table */}
-            <div className={`grid ${isOtuEsotTable ? 'md:grid-cols-2' : 'md:grid-cols-3'} grid-cols-1 gap-4 sm:gap-6 mb-8`}>
+            <div className={`grid ${isOtuEsotTable ? 'grid-cols-2' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
               {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
               {isOtuEsotTable ? (
                 <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">

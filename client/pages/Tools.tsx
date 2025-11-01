@@ -484,7 +484,7 @@ export default function Tools() {
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-orange-600" />
                 <h2 className="text-sm font-bold text-gray-900">
-                  Modified EAD (Nitrox to Air)
+                  Nitrox Failure
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">
@@ -581,7 +581,7 @@ export default function Tools() {
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-red-600" />
                 <h2 className="text-sm font-bold text-gray-900">
-                  Emergency Bailout Gas Calculator
+                  Bail Out Opened
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">

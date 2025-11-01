@@ -258,6 +258,87 @@ export default function Tools() {
       <section className="py-6 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-max">
+            {/* Residual ESOT Card */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+              <h2 className="text-sm font-bold text-gray-900 mb-2">
+                Residual ESOT (Carry-Over)
+              </h2>
+              <p className="text-[9px] text-gray-600 mb-2">
+                Calculating residual ESOT when planning repetitive hyperoxic exposures.
+              </p>
+
+              {/* Inputs */}
+              <div className="space-y-1.5 mb-2">
+                <div>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">ESOT from previous dive (units)</label>
+                  <input
+                    type="number"
+                    value={residualEsotPrev}
+                    onChange={(e) => setResidualEsotPrev(e.target.value)}
+                    placeholder="200"
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">pO₂ of previous dive (bar abs)</label>
+                  <input
+                    type="number"
+                    value={residualPo2Prev}
+                    onChange={(e) => setResidualPo2Prev(e.target.value)}
+                    placeholder="1.4"
+                    step="0.01"
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Surface interval (hours)</label>
+                  <input
+                    type="number"
+                    value={residualSiHours}
+                    onChange={(e) => setResidualSiHours(e.target.value)}
+                    placeholder="10"
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              {/* Results */}
+              {residualResult ? (
+                <div className="bg-blue-50 p-2 rounded mb-2 space-y-1 text-[10px]">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Residual ESOT:</span>
+                    <span className="font-bold text-gray-900">{residualResult.residualEsot.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">% of previous:</span>
+                    <span className="font-bold text-gray-900">{residualResult.percentPrev.toFixed(1)}%</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-gray-50 p-2 rounded mb-2 text-[10px] text-gray-600">
+                  Enter values to calculate
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="flex gap-1">
+                <button
+                  onClick={handleResidualEsotCalculate}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                >
+                  <Search className="h-2.5 w-2.5" />
+                  Calculate
+                </button>
+                <button
+                  onClick={handleResidualEsotReset}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded hover:bg-gray-400"
+                >
+                  <RotateCcw className="h-2.5 w-2.5" />
+                  Reset
+                </button>
+              </div>
+            </div>
+
             {/* OTU/ESOT Card */}
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
               <h2 className="text-sm font-bold text-gray-900 mb-2">

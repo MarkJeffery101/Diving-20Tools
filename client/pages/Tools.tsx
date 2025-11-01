@@ -39,6 +39,12 @@ export default function Tools() {
   const [bailoutVolume, setBailoutVolume] = useState<string>("");
   const [bailoutResult, setBailoutResult] = useState<{ o2: number; ead: number } | null>(null);
 
+  // Residual ESOT Calculator
+  const [residualEsotPrev, setResidualEsotPrev] = useState<string>("200");
+  const [residualPo2Prev, setResidualPo2Prev] = useState<string>("1.4");
+  const [residualSiHours, setResidualSiHours] = useState<string>("10");
+  const [residualResult, setResidualResult] = useState<{ residualEsot: number; percentPrev: number; decayFactor: number } | null>(null);
+
   const calculateOtuRow = (row: CalculatorRow): CalculatorRow => {
     const depth = parseFloat(row.depth_m);
     const o2 = parseFloat(row.o2_percent);

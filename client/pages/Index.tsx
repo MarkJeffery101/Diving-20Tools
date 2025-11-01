@@ -70,42 +70,47 @@ export default function Index() {
         </div>
 
         <div className="container mx-auto relative z-10 px-2 sm:px-4">
-          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-ocean-100 text-ocean-700 px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 font-medium text-xs sm:text-sm">
-              <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="hidden sm:inline">Professional Dive Planning System</span>
-              <span className="sm:hidden">Dive Planning</span>
+          <div className="max-w-4xl mx-auto">
+            {/* Logo Section */}
+            <div className="flex justify-center mb-8 sm:mb-10 md:mb-12">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
+                alt="DFS Logo"
+                className="h-40 sm:h-48 md:h-64 w-auto object-contain"
+              />
             </div>
 
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F4053f12f8ce84360acd2c6b95e9838ee?format=webp&width=800"
-              alt="DivePlan App Preview"
-              className="max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12 rounded-lg shadow-lg border border-gray-200"
-            />
-            <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
-              DivePlan: Professional Dive Planning Reference
-            </h1>
+            {/* Text Content - Centered */}
+            <div className="text-center mb-10 sm:mb-12 md:mb-14">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+                DivePlan
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl text-ocean-700 font-semibold mb-6 sm:mb-8">
+                Professional Dive Planning Reference
+              </p>
 
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
-              A comprehensive, interlinked dive planning system for commercial,
-              air, and nitrox diving. Access decompression tables, emergency
-              procedures, treatment protocols, and decision logic trees in one
-              integrated platform.
-            </p>
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
+                A comprehensive, interlinked dive planning system for commercial,
+                air, and nitrox diving. Access decompression tables, emergency
+                procedures, treatment protocols, and decision logic trees in one
+                integrated platform.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Link
-                to="/tables"
-                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
-              >
-                Start with Tables
-              </Link>
-              <Link
-                to="/table-selection"
-                className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-sm sm:text-base"
-              >
-                Find Your Table
-              </Link>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <Link
+                  to="/tables"
+                  className="px-8 sm:px-10 py-3 sm:py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
+                >
+                  Start with Tables
+                </Link>
+                <Link
+                  to="/table-selection"
+                  className="px-8 sm:px-10 py-3 sm:py-3.5 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-sm sm:text-base"
+                >
+                  Find Your Table
+                </Link>
+              </div>
             </div>
           </div>
         </div>

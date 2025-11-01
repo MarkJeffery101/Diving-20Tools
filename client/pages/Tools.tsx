@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Plus, Trash2, RotateCcw, ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { EAD_DATA, type EADRow } from "../lib/eadData";
+import Navigation from "@/components/Navigation";
 
 interface CalculatorRow {
   id: string;
@@ -47,7 +48,7 @@ export default function Tools() {
   const handleOtuInputChange = (
     id: string,
     field: keyof Omit<CalculatorRow, "id" | "pO2_ATA" | "otu" | "esot">,
-    value: string,
+    value: string
   ) => {
     const updatedRows = otuRows.map((row) => {
       if (row.id === id) {
@@ -107,409 +108,331 @@ export default function Tools() {
   const totalOTU = otuRows.reduce((sum, row) => sum + (row.otu || 0), 0);
   const totalESOT = otuRows.reduce((sum, row) => sum + (row.esot || 0), 0);
 
-  const getSafetyColor = (po2: number): string => {
-    if (po2 > 1.5) return "bg-red-50 border-red-200";
-    if (po2 > 1.4) return "bg-yellow-50 border-yellow-200";
-    return "bg-green-50 border-green-200";
-  };
-
-  const getSafetyText = (po2: number): string => {
-    if (po2 > 1.5) return "text-red-700";
-    if (po2 > 1.4) return "text-yellow-700";
-    return "text-green-700";
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
-      <div className="container mx-auto px-4 py-4">
-        <div className="mb-4">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-2 font-medium text-sm"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
+      <Navigation />
+
+      {/* Page Header */}
+      <section className="py-4 px-4 bg-white border-b border-border">
+        <div className="container mx-auto">
+          <div className="flex items-center gap-2 mb-2">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Home
+            </Link>
+          </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-1">
-            Calculator Tools
+            Diving Calculator Tools
           </h1>
-          <p className="text-sm text-gray-600">
-            Professional diving calculation tools for planning and analysis
+          <p className="text-xs text-gray-600">
+            Quick calculators for dive planning and safety
           </p>
         </div>
+      </section>
 
-        {/* OTU/ESOT Calculator Card */}
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-6">
-          <div className="mb-4">
-            <h2 className="text-lg font-bold text-gray-900 mb-1">
-              Segments OTU / ESOT
-            </h2>
-            <p className="text-xs text-gray-600">
-              Calculate Oxygen Toxicity Units (OTU) and Equivalent Single Oxygen
-              Exposure Time (ESOT) for dive segments
-            </p>
-          </div>
+      {/* Tools Grid */}
+      <section className="py-6 px-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-max">
+            {/* OTU/ESOT Card */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+              <h2 className="text-sm font-bold text-gray-900 mb-2">
+                Segments OTU / ESOT
+              </h2>
+              
+              {/* Input Row */}
+              <div className="mb-2 space-y-1">
+                <div className="grid grid-cols-3 gap-1.5 text-xs">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <input
+                      type="number"
+                      value={otuRows[0]?.depth_m || ""}
+                      onChange={(e) =>
+                        handleOtuInputChange("1", "depth_m", e.target.value)
+                      }
+                      placeholder="0"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                    <input
+                      type="number"
+                      value={otuRows[0]?.o2_percent || ""}
+                      onChange={(e) =>
+                        handleOtuInputChange("1", "o2_percent", e.target.value)
+                      }
+                      placeholder="0"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <input
+                      type="number"
+                      value={otuRows[0]?.time_min || ""}
+                      onChange={(e) =>
+                        handleOtuInputChange("1", "time_min", e.target.value)
+                      }
+                      placeholder="0"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      maxLength={4}
+                    />
+                  </div>
+                </div>
+              </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-blue-800 text-white">
-                  <th className="px-2 py-2 text-left text-xs font-semibold">
-                    Depth (m)
-                  </th>
-                  <th className="px-2 py-2 text-left text-xs font-semibold">
-                    O2 in Gas (%)
-                  </th>
-                  <th className="px-2 py-2 text-left text-xs font-semibold">
-                    Exposure Time (min)
-                  </th>
-                  <th className="px-2 py-2 text-center text-xs font-semibold">
-                    pO2 (ATA)
-                  </th>
-                  <th className="px-2 py-2 text-center text-xs font-semibold">
-                    OTU
-                  </th>
-                  <th className="px-2 py-2 text-center text-xs font-semibold">
-                    ESOT (min)
-                  </th>
-                  <th className="px-2 py-2 text-center text-xs font-semibold">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {otuRows.map((row, index) => (
-                  <tr
-                    key={row.id}
-                    className={`border-b text-sm ${
-                      index % 2 === 0 ? "bg-white" : "bg-slate-50"
-                    }`}
-                  >
-                    <td className="px-2 py-2">
+              {/* Results */}
+              <div className="bg-blue-50 p-2 rounded mb-2 grid grid-cols-3 gap-1">
+                <div className="text-center">
+                  <p className="text-[9px] text-blue-700 font-semibold">pO2</p>
+                  <p className="text-xs font-bold text-blue-900">
+                    {otuRows[0]?.pO2_ATA !== undefined ? otuRows[0].pO2_ATA.toFixed(2) : "—"}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <p className="text-[9px] text-blue-700 font-semibold">OTU</p>
+                  <p className="text-xs font-bold text-blue-900">
+                    {otuRows[0]?.otu !== undefined ? otuRows[0].otu.toFixed(1) : "—"}
+                  </p>
+                </div>
+                <div className="text-center">
+                  <p className="text-[9px] text-blue-700 font-semibold">ESOT</p>
+                  <p className="text-xs font-bold text-blue-900">
+                    {otuRows[0]?.esot !== undefined ? otuRows[0].esot.toFixed(1) : "—"}
+                  </p>
+                </div>
+              </div>
+
+              {/* Totals */}
+              {otuRows.length > 1 && (
+                <div className="bg-green-50 p-2 rounded mb-2 grid grid-cols-2 gap-1">
+                  <div className="text-center">
+                    <p className="text-[9px] text-green-700 font-semibold">Total OTU</p>
+                    <p className="text-xs font-bold text-green-900">{totalOTU.toFixed(1)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[9px] text-green-700 font-semibold">Total ESOT</p>
+                    <p className="text-xs font-bold text-green-900">{totalESOT.toFixed(1)}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Additional Rows */}
+              {otuRows.slice(1).map((row, idx) => (
+                <div key={row.id} className="mb-2 pb-2 border-t border-gray-200 pt-2">
+                  <div className="grid grid-cols-3 gap-1.5 text-xs mb-1">
+                    <div>
                       <input
                         type="number"
                         value={row.depth_m}
                         onChange={(e) =>
-                          handleOtuInputChange(
-                            row.id,
-                            "depth_m",
-                            e.target.value,
-                          )
+                          handleOtuInputChange(row.id, "depth_m", e.target.value)
                         }
                         placeholder="0"
-                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
-                    </td>
-                    <td className="px-2 py-2">
+                    </div>
+                    <div>
                       <input
                         type="number"
                         value={row.o2_percent}
                         onChange={(e) =>
-                          handleOtuInputChange(
-                            row.id,
-                            "o2_percent",
-                            e.target.value,
-                          )
+                          handleOtuInputChange(row.id, "o2_percent", e.target.value)
                         }
                         placeholder="0"
-                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
-                    </td>
-                    <td className="px-2 py-2">
+                    </div>
+                    <div className="flex gap-1">
                       <input
                         type="number"
                         value={row.time_min}
                         onChange={(e) =>
-                          handleOtuInputChange(
-                            row.id,
-                            "time_min",
-                            e.target.value,
-                          )
+                          handleOtuInputChange(row.id, "time_min", e.target.value)
                         }
                         placeholder="0"
-                        className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
-                    </td>
-                    <td className="px-2 py-2 text-center text-gray-700 font-medium text-xs">
-                      {row.pO2_ATA !== undefined ? row.pO2_ATA.toFixed(3) : "—"}
-                    </td>
-                    <td className="px-2 py-2 text-center text-gray-700 font-medium text-xs">
-                      {row.otu !== undefined ? row.otu.toFixed(1) : "—"}
-                    </td>
-                    <td className="px-2 py-2 text-center text-gray-700 font-medium text-xs">
-                      {row.esot !== undefined ? row.esot.toFixed(1) : "—"}
-                    </td>
-                    <td className="px-2 py-2 text-center">
                       {otuRows.length > 1 && (
                         <button
                           onClick={() => handleOtuDeleteRow(row.id)}
-                          className="inline-flex items-center justify-center p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Delete row"
+                          className="px-1 text-red-600 hover:bg-red-50 rounded"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-3 w-3" />
                         </button>
                       )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-              <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-1">
-                Total OTU
-              </p>
-              <p className="text-2xl font-bold text-blue-900">
-                {totalOTU.toFixed(1)}
-              </p>
-            </div>
-            <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-              <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">
-                Total ESOT (min)
-              </p>
-              <p className="text-2xl font-bold text-green-900">
-                {totalESOT.toFixed(1)}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-4 flex gap-2">
-            {otuRows.length < 10 && (
-              <button
-                onClick={() => {
-                  const newId =
-                    Math.max(...otuRows.map((r) => parseInt(r.id)), 0) + 1;
-                  setOtuRows([
-                    ...otuRows,
-                    {
-                      id: newId.toString(),
-                      depth_m: "",
-                      o2_percent: "",
-                      time_min: "",
-                    },
-                  ]);
-                }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              >
-                <Plus className="h-3 w-3" />
-                Add Row
-              </button>
-            )}
-            <button
-              onClick={handleOtuReset}
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 transition-colors font-medium"
-            >
-              <RotateCcw className="h-3 w-3" />
-              Reset
-            </button>
-          </div>
-
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <h3 className="font-semibold text-amber-900 text-sm mb-2">
-              Instructions
-            </h3>
-            <ul className="space-y-1 text-xs text-amber-900">
-              <li>
-                • <strong>Depth:</strong> Enter the depth of the dive segment in
-                meters
-              </li>
-              <li>
-                • <strong>O2 in Gas:</strong> Enter the oxygen percentage of the
-                gas mix
-              </li>
-              <li>
-                • <strong>Exposure Time:</strong> Enter the time spent at this
-                depth in minutes
-              </li>
-              <li>
-                • <strong>pO2:</strong> Calculated partial pressure of oxygen in
-                ATA (atmospheres absolute)
-              </li>
-              <li>
-                • <strong>OTU:</strong> Calculated oxygen toxicity units for the
-                segment
-              </li>
-              <li>
-                • <strong>ESOT:</strong> Calculated equivalent single oxygen
-                exposure time in minutes
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* EAD Calculator Card */}
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-6">
-          <div className="mb-4">
-            <h2 className="text-lg font-bold text-gray-900 mb-1">
-              Equivalent Air Depth (EAD)
-            </h2>
-            <p className="text-xs text-gray-600">
-              Look up Equivalent Air Depth values for nitrox gas mixtures at
-              varying depths. This helps you determine the decompression
-              requirements as if you were diving air at a shallower depth.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                Depth (m)
-              </label>
-              <input
-                type="number"
-                value={eadDepth}
-                onChange={(e) => setEadDepth(e.target.value)}
-                placeholder="e.g., 30"
-                min="10"
-                max="50"
-                className="w-full px-3 py-1 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                O2 in Gas (%)
-              </label>
-              <input
-                type="number"
-                value={eadO2}
-                onChange={(e) => setEadO2(e.target.value)}
-                placeholder="e.g., 32"
-                min="30"
-                max="40"
-                className="w-full px-3 py-1 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-2 mb-4">
-            <button
-              onClick={handleEadLookup}
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            >
-              <Search className="h-3 w-3" />
-              Look Up
-            </button>
-            <button
-              onClick={handleEadReset}
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-300 text-gray-900 rounded-lg hover:bg-gray-400 transition-colors font-medium"
-            >
-              <RotateCcw className="h-3 w-3" />
-              Clear
-            </button>
-          </div>
-
-          {eadResult ? (
-            <div
-              className={`p-3 rounded-lg border-2 ${getSafetyColor(eadResult.po2)}`}
-            >
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Depth (m)</p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {eadResult.depth}
-                  </p>
+                    </div>
+                  </div>
+                  <div className="bg-blue-50 p-1 rounded grid grid-cols-3 gap-1">
+                    <div className="text-center text-[9px]">
+                      <p className="text-blue-900 font-bold">{row.pO2_ATA?.toFixed(2) || "—"}</p>
+                    </div>
+                    <div className="text-center text-[9px]">
+                      <p className="text-blue-900 font-bold">{row.otu?.toFixed(1) || "—"}</p>
+                    </div>
+                    <div className="text-center text-[9px]">
+                      <p className="text-blue-900 font-bold">{row.esot?.toFixed(1) || "—"}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">O2 in Gas (%)</p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {eadResult.o2}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">pO2 (ATA)</p>
-                  <p
-                    className={`text-xl font-bold ${getSafetyText(eadResult.po2)}`}
+              ))}
+
+              {/* Buttons */}
+              <div className="flex gap-1">
+                {otuRows.length < 10 && (
+                  <button
+                    onClick={() => {
+                      const newId = Math.max(
+                        ...otuRows.map((r) => parseInt(r.id)),
+                        0
+                      ) + 1;
+                      setOtuRows([
+                        ...otuRows,
+                        { id: newId.toString(), depth_m: "", o2_percent: "", time_min: "" },
+                      ]);
+                    }}
+                    className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
                   >
-                    {eadResult.po2.toFixed(2)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">EAD (m)</p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {eadResult.eadCalc.toFixed(1)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">EAD Safe (m)</p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {eadResult.eadSafe !== null
-                      ? eadResult.eadSafe.toFixed(1)
-                      : "—"}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-0.5">
-                    Air Table To Use (m)
-                  </p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {eadResult.airTable}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-3 p-2 bg-white rounded border">
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">
-                  Dive Notes
-                </h4>
-                <p className="text-xs text-gray-700 mb-1">{eadResult.h2}</p>
-                <p className="text-xs text-gray-700 mb-0.5">
-                  <strong>{eadResult.h3}</strong>
-                </p>
-                <p className="text-xs text-gray-700">{eadResult.h4}</p>
+                    <Plus className="h-2.5 w-2.5" />
+                    Add
+                  </button>
+                )}
+                <button
+                  onClick={handleOtuReset}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded hover:bg-gray-400"
+                >
+                  <RotateCcw className="h-2.5 w-2.5" />
+                  Reset
+                </button>
               </div>
             </div>
-          ) : eadDepth || eadO2 ? (
-            <div className="p-3 rounded-lg border-2 border-red-200 bg-red-50">
-              <p className="text-red-700 font-medium text-xs">
-                No matching data found. Please check your depth and O2% inputs.
-              </p>
-            </div>
-          ) : (
-            <div className="p-3 rounded-lg border-2 border-gray-200 bg-gray-50">
-              <p className="text-gray-600 text-xs">
-                Enter a depth and O2% to look up EAD data.
-              </p>
-            </div>
-          )}
 
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <h3 className="font-semibold text-amber-900 text-sm mb-2">
-              Instructions
-            </h3>
-            <ul className="space-y-1 text-xs text-amber-900">
-              <li>
-                • <strong>Depth:</strong> Enter the planned dive depth in meters
-                (10–50 m)
-              </li>
-              <li>
-                • <strong>O2 in Gas:</strong> Enter the oxygen percentage of
-                your nitrox mix (30–40%)
-              </li>
-              <li>
-                • <strong>pO2:</strong> Calculated partial pressure of oxygen at
-                the given depth
-              </li>
-              <li>
-                • <strong>EAD:</strong> The equivalent depth if you were
-                breathing air instead of your nitrox mix
-              </li>
-              <li>
-                • <strong>EAD Safe:</strong> A conservative EAD value for safer
-                dive planning
-              </li>
-              <li>
-                • <strong>Air Table To Use:</strong> The decompression table to
-                reference from
-              </li>
-              <li>
-                • <strong>Color Code:</strong> Green (pO2 ≤1.4 ATA - safe),
-                Yellow (1.4–1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)
-              </li>
-            </ul>
+            {/* EAD Card */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+              <h2 className="text-sm font-bold text-gray-900 mb-2">
+                Equivalent Air Depth
+              </h2>
+
+              {/* Inputs */}
+              <div className="grid grid-cols-2 gap-1.5 mb-2">
+                <div>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                  <input
+                    type="number"
+                    value={eadDepth}
+                    onChange={(e) => setEadDepth(e.target.value)}
+                    placeholder="30"
+                    min="10"
+                    max="50"
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                  <input
+                    type="number"
+                    value={eadO2}
+                    onChange={(e) => setEadO2(e.target.value)}
+                    placeholder="32"
+                    min="30"
+                    max="40"
+                    className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-1 mb-2">
+                <button
+                  onClick={handleEadLookup}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  <Search className="h-2.5 w-2.5" />
+                  Lookup
+                </button>
+                <button
+                  onClick={handleEadReset}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded hover:bg-gray-400"
+                >
+                  <RotateCcw className="h-2.5 w-2.5" />
+                  Clear
+                </button>
+              </div>
+
+              {/* Results */}
+              {eadResult ? (
+                <div className="bg-green-50 p-2 rounded space-y-1 text-[10px]">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">EAD:</span>
+                    <span className="font-bold text-gray-900">{eadResult.eadCalc.toFixed(1)}m</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">pO2:</span>
+                    <span className="font-bold text-gray-900">{eadResult.po2.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Table:</span>
+                    <span className="font-bold text-gray-900">{eadResult.airTable}m</span>
+                  </div>
+                </div>
+              ) : eadDepth || eadO2 ? (
+                <div className="bg-red-50 p-2 rounded text-[10px] text-red-700">
+                  No data found
+                </div>
+              ) : (
+                <div className="bg-gray-50 p-2 rounded text-[10px] text-gray-600">
+                  Enter values to look up
+                </div>
+              )}
+            </div>
+
+            {/* Placeholder Cards for Future Tools */}
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-white rounded-lg shadow-md border border-gray-300 border-dashed p-3 flex items-center justify-center">
+                <p className="text-xs text-gray-500 text-center">Coming soon</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Instructions */}
+      <section className="py-6 px-4 bg-white border-t border-border">
+        <div className="container mx-auto max-w-2xl">
+          <h2 className="text-sm font-bold text-gray-900 mb-3">Instructions</h2>
+          <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-700">
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-2">OTU / ESOT Segments</h3>
+              <ul className="space-y-1 text-[11px]">
+                <li>• Enter depth in meters</li>
+                <li>• Enter O₂ percentage of gas mix</li>
+                <li>• Enter time at that depth in minutes</li>
+                <li>• Results update automatically</li>
+                <li>• Add rows for multi-segment dives</li>
+                <li>• Totals show at bottom</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-2">Equivalent Air Depth (EAD)</h3>
+              <ul className="space-y-1 text-[11px]">
+                <li>• Enter planned dive depth (10-50m)</li>
+                <li>• Enter nitrox O₂ percentage (30-40%)</li>
+                <li>• Click Lookup to see EAD values</li>
+                <li>• EAD helps determine decompression schedule</li>
+                <li>• pO₂ shows oxygen toxicity risk</li>
+                <li>• Table shows which air table to use</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

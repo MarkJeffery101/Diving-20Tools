@@ -291,9 +291,9 @@ export default function Tools() {
             </button>
           </div>
 
-          <div className="mt-8 p-6 bg-amber-50 border border-amber-200 rounded-lg">
-            <h3 className="font-semibold text-amber-900 mb-3">Instructions</h3>
-            <ul className="space-y-2 text-sm text-amber-900">
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+            <h3 className="font-semibold text-amber-900 text-sm mb-2">Instructions</h3>
+            <ul className="space-y-1 text-xs text-amber-900">
               <li>
                 • <strong>Depth:</strong> Enter the depth of the dive segment in
                 meters

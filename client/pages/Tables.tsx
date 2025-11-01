@@ -285,12 +285,12 @@ export default function Tables() {
       <Navigation />
 
       {/* Page Header */}
-      <section className="py-12 px-4 bg-white border-b border-border">
+      <section className="py-4 px-4 bg-white border-b border-border">
         <div className="container mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             Dive Tables Index
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-xs md:text-sm text-muted-foreground max-w-2xl">
             Browse all dive tables organized by type and category. Navigate
             through table groups, select specific decompression schedules, and
             view depth-specific tables.
@@ -299,19 +299,19 @@ export default function Tables() {
       </section>
 
       {/* Breadcrumbs */}
-      <section className="py-4 px-4 bg-white border-b border-border sticky top-16 z-40">
+      <section className="py-2 px-4 bg-white border-b border-border sticky top-16 z-40">
         <div className="container mx-auto">
           <div className="flex items-center gap-2 flex-wrap">
             {getBreadcrumbs().map((breadcrumb, idx) => (
               <div key={idx} className="flex items-center gap-2">
                 <button
                   onClick={() => handleBreadcrumbClick(breadcrumb)}
-                  className="text-primary hover:underline font-medium text-sm"
+                  className="text-primary hover:underline font-medium text-xs"
                 >
                   {breadcrumb.label}
                 </button>
                 {idx < getBreadcrumbs().length - 1 && (
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  <ChevronRight className="h-3 w-3 text-muted-foreground" />
                 )}
               </div>
             ))}
@@ -320,30 +320,30 @@ export default function Tables() {
       </section>
 
       {/* Content */}
-      <section className="py-12 px-4">
+      <section className="py-4 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Level 1: All Table Groups */}
           {currentView === "level1" && (
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="space-y-3">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {tablesData.map((level1, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleLevel1Click(idx)}
-                    className="group p-6 rounded-lg border-2 border-border hover:border-primary hover:shadow-lg transition-all text-left bg-white"
+                    className="group p-3 rounded-lg border-2 border-border hover:border-primary hover:shadow-lg transition-all text-left bg-white"
                   >
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-2">
                       <span
-                        className={`inline-block px-2 py-1 text-xs font-semibold rounded ${getTagColor(level1.tag)}`}
+                        className={`inline-block px-2 py-0.5 text-xs font-semibold rounded ${getTagColor(level1.tag)}`}
                       >
                         {level1.tag}
                       </span>
-                      <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                       {level1.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-2">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {level1.children.length} table
                       {level1.children.length !== 1 ? "s" : ""}
                     </p>
@@ -355,32 +355,32 @@ export default function Tables() {
 
           {/* Level 2: Tables within a Group */}
           {currentView === "level2" && selectedLevel1Index !== null && (
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-3">
+              <div className="grid md:grid-cols-2 gap-3">
                 {tablesData[selectedLevel1Index].children.map((level2, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleLevel2Click(idx)}
-                    className="group p-6 rounded-lg border-2 border-border hover:border-primary hover:shadow-lg transition-all text-left bg-white"
+                    className="group p-3 rounded-lg border-2 border-border hover:border-primary hover:shadow-lg transition-all text-left bg-white"
                   >
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-2">
                       <span
-                        className={`inline-block px-2 py-1 text-xs font-semibold rounded ${getTagColor(tablesData[selectedLevel1Index].tag)}`}
+                        className={`inline-block px-2 py-0.5 text-xs font-semibold rounded ${getTagColor(tablesData[selectedLevel1Index].tag)}`}
                       >
                         {tablesData[selectedLevel1Index].tag}
                       </span>
-                      <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                       {level2.name}
                     </h3>
                     {level2.code && (
-                      <div className="text-xs font-mono font-bold text-primary mt-2">
+                      <div className="text-xs font-mono font-bold text-primary mt-1">
                         Code: {level2.code}
                       </div>
                     )}
                     {level2.depths && level2.depths.length > 0 && (
-                      <p className="text-sm text-muted-foreground mt-2">
+                      <p className="text-xs text-muted-foreground mt-1">
                         {level2.depths.length} depth variant
                         {level2.depths.length !== 1 ? "s" : ""}
                       </p>
@@ -395,13 +395,13 @@ export default function Tables() {
           {currentView === "level3" &&
             selectedLevel1Index !== null &&
             selectedLevel2Index !== null && (
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg border border-border p-6 mb-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-2">
+              <div className="space-y-3">
+                <div className="bg-white rounded-lg border border-border p-3 mb-3">
+                  <h2 className="text-sm font-bold text-foreground mb-1">
                     {tablesData[selectedLevel1Index].children[selectedLevel2Index]
                       .name}
                   </h2>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     Code:{" "}
                     <span className="font-mono font-bold">
                       {
@@ -413,14 +413,14 @@ export default function Tables() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-4 gap-4">
+                <div className="grid md:grid-cols-5 lg:grid-cols-6 gap-2">
                   {tablesData[selectedLevel1Index].children[
                     selectedLevel2Index
                   ].depths?.map((depth, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleDepthClick(depth)}
-                      className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-ocean-50 transition-all text-center bg-white font-semibold text-foreground hover:text-primary cursor-pointer"
+                      className="p-2 rounded-lg border-2 border-border hover:border-primary hover:bg-ocean-50 transition-all text-center bg-white font-semibold text-xs text-foreground hover:text-primary cursor-pointer"
                     >
                       {depth}m
                     </button>

@@ -484,11 +484,11 @@ export default function Tools() {
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-orange-600" />
                 <h2 className="text-sm font-bold text-gray-900">
-                  Nitrox Failure
+                  Modified EAD (Nitrox to Air)
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">
-                Switch to Air: When Nitrox is lost and air is used, recalculate EAD to select the correct decompression table.
+                Emergency gas switch: Calculate new Equivalent Air Depth when switching from Nitrox to air mid-dive. Determines correct decompression table for modified gas mix.
               </p>
 
               {/* Inputs */}
@@ -581,11 +581,11 @@ export default function Tools() {
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-red-600" />
                 <h2 className="text-sm font-bold text-gray-900">
-                  Bail Out Opened
+                  Emergency Bailout Gas Calculator
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">
-                Emergency bailout: Determine bailout gas usage and Equivalent Air Depth (EAD) during emergency.
+                Backup gas emergency: Calculate bailout cylinder gas consumption and effective oxygen percentage during emergency ascent. Determines EAD for decompression requirements.
               </p>
 
               {/* Inputs */}

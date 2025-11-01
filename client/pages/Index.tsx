@@ -72,24 +72,24 @@ export default function Index() {
         <div className="container mx-auto relative z-10 px-2 sm:px-4">
           <div className="max-w-4xl mx-auto">
             {/* Logo Section */}
-            <div className="flex justify-center mb-8 sm:mb-10 md:mb-12">
+            <div className="flex justify-center mb-6 sm:mb-10 md:mb-12">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"
-                className="h-40 sm:h-48 md:h-64 w-auto object-contain"
+                className="h-28 sm:h-40 md:h-64 w-auto object-contain"
               />
             </div>
 
             {/* Text Content - Centered */}
             <div className="text-center mb-10 sm:mb-12 md:mb-14">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 sm:mb-6 leading-tight">
                 DivePlan
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-ocean-700 font-semibold mb-6 sm:mb-8">
+              <p className="text-base sm:text-xl md:text-2xl text-ocean-700 font-semibold mb-4 sm:mb-8">
                 Professional Dive Planning Reference
               </p>
 
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-xs sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
                 A comprehensive, interlinked dive planning system for commercial,
                 air, and nitrox diving. Access decompression tables, emergency
                 procedures, treatment protocols, and decision logic trees in one
@@ -97,16 +97,16 @@ export default function Index() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
                 <Link
                   to="/tables"
-                  className="px-8 sm:px-10 py-3 sm:py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
+                  className="px-6 sm:px-10 py-2 sm:py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-xs sm:text-base"
                 >
                   Start with Tables
                 </Link>
                 <Link
                   to="/table-selection"
-                  className="px-8 sm:px-10 py-3 sm:py-3.5 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-sm sm:text-base"
+                  className="px-6 sm:px-10 py-2 sm:py-3.5 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-xs sm:text-base"
                 >
                   Find Your Table
                 </Link>
@@ -119,33 +119,33 @@ export default function Index() {
       {/* Features Section */}
       <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4 bg-white relative">
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
+          <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-12 md:mb-16">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 sm:mb-4">
               Integrated Dive Planning Resources
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
+            <p className="text-xs sm:text-base md:text-lg text-muted-foreground">
               All essential dive planning information, interconnected and
               organized for quick reference
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {sections.map((section) => {
               const IconComponent = section.icon;
               return (
                 <Link
                   key={section.href}
                   to={section.href}
-                  className="group p-4 sm:p-6 md:p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
+                  className="group p-3 sm:p-6 md:p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
                   style={{
                     background: section.color,
                     borderColor: section.borderColor,
                   }}
                 >
-                  <div className="mb-3 sm:mb-4">
-                    <IconComponent className="h-8 sm:h-10 w-8 sm:w-10" />
+                  <div className="mb-2 sm:mb-4">
+                    <IconComponent className="h-6 sm:h-10 w-6 sm:w-10" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:opacity-90">
+                  <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-2 group-hover:opacity-90">
                     {section.title}
                   </h3>
                   <p className="text-xs sm:text-sm opacity-80 group-hover:opacity-100">
@@ -161,45 +161,45 @@ export default function Index() {
       {/* Key Features Section */}
       <section className="py-12 sm:py-16 md:py-20 px-3 sm:px-4 bg-gradient-to-br from-ocean-900 to-ocean-800 text-white">
         <div className="container mx-auto px-2 sm:px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-12 md:mb-16">
             Why DivePlan?
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12">
             <div>
-              <div className="mb-4">
-                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
+              <div className="mb-3">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-xs sm:text-lg">
                   1
                 </div>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Complete Information</h3>
-              <p className="text-sm sm:text-base text-ocean-100">
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Complete Information</h3>
+              <p className="text-xs sm:text-base text-ocean-100">
                 All dive tables, limits, and documentation in one accessible
                 place for all diving types.
               </p>
             </div>
 
             <div>
-              <div className="mb-4">
-                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
+              <div className="mb-3">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-xs sm:text-lg">
                   2
                 </div>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Smart Interlinks</h3>
-              <p className="text-sm sm:text-base text-ocean-100">
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Smart Interlinks</h3>
+              <p className="text-xs sm:text-base text-ocean-100">
                 Seamlessly navigate between tables, procedures, and protocols
                 with contextual cross-references.
               </p>
             </div>
 
             <div>
-              <div className="mb-4">
-                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base sm:text-lg">
+              <div className="mb-3">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-xs sm:text-lg">
                   3
                 </div>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Decision Support</h3>
-              <p className="text-sm sm:text-base text-ocean-100">
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Decision Support</h3>
+              <p className="text-xs sm:text-base text-ocean-100">
                 Interactive logic trees help you navigate complex decisions from
                 table selection to emergency response.
               </p>

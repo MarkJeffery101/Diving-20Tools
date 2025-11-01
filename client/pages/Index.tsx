@@ -81,14 +81,6 @@ export default function Index() {
               DivePlan: Professional Dive Planning Reference
             </h1>
 
-            <div className="mb-6 sm:mb-8 md:mb-10">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fe5feeac674774f058b6b6c1bb7995645?format=webp&width=800"
-                alt="DivePlan Logo"
-                className="h-32 sm:h-40 md:h-48 mx-auto object-contain drop-shadow-lg"
-              />
-            </div>
-
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               A comprehensive, interlinked dive planning system for commercial,
               air, and nitrox diving. Access decompression tables, emergency

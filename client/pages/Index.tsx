@@ -90,10 +90,10 @@ export default function Index() {
               </p>
 
               <p className="text-xs sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
-                A comprehensive, interlinked dive planning system for commercial,
-                air, and nitrox diving. Access decompression tables, emergency
-                procedures, treatment protocols, and decision logic trees in one
-                integrated platform.
+                A comprehensive, interlinked dive planning system for
+                commercial, air, and nitrox diving. Access decompression tables,
+                emergency procedures, treatment protocols, and decision logic
+                trees in one integrated platform.
               </p>
 
               {/* CTA Buttons */}
@@ -172,7 +172,9 @@ export default function Index() {
                   1
                 </div>
               </div>
-              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Complete Information</h3>
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">
+                Complete Information
+              </h3>
               <p className="text-xs sm:text-base text-ocean-100">
                 All dive tables, limits, and documentation in one accessible
                 place for all diving types.
@@ -185,7 +187,9 @@ export default function Index() {
                   2
                 </div>
               </div>
-              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Smart Interlinks</h3>
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">
+                Smart Interlinks
+              </h3>
               <p className="text-xs sm:text-base text-ocean-100">
                 Seamlessly navigate between tables, procedures, and protocols
                 with contextual cross-references.
@@ -198,7 +202,9 @@ export default function Index() {
                   3
                 </div>
               </div>
-              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">Decision Support</h3>
+              <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-3">
+                Decision Support
+              </h3>
               <p className="text-xs sm:text-base text-ocean-100">
                 Interactive logic trees help you navigate complex decisions from
                 table selection to emergency response.

@@ -47,7 +47,7 @@ export default function Tools() {
   const handleOtuInputChange = (
     id: string,
     field: keyof Omit<CalculatorRow, "id" | "pO2_ATA" | "otu" | "esot">,
-    value: string
+    value: string,
   ) => {
     const updatedRows = otuRows.map((row) => {
       if (row.id === id) {
@@ -190,7 +190,11 @@ export default function Tools() {
                         type="number"
                         value={row.depth_m}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "depth_m", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "depth_m",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -201,7 +205,11 @@ export default function Tools() {
                         type="number"
                         value={row.o2_percent}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "o2_percent", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "o2_percent",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -212,7 +220,11 @@ export default function Tools() {
                         type="number"
                         value={row.time_min}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "time_min", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "time_min",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="w-full px-2 py-1 text-xs border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -267,13 +279,16 @@ export default function Tools() {
             {otuRows.length < 10 && (
               <button
                 onClick={() => {
-                  const newId = Math.max(
-                    ...otuRows.map((r) => parseInt(r.id)),
-                    0
-                  ) + 1;
+                  const newId =
+                    Math.max(...otuRows.map((r) => parseInt(r.id)), 0) + 1;
                   setOtuRows([
                     ...otuRows,
-                    { id: newId.toString(), depth_m: "", o2_percent: "", time_min: "" },
+                    {
+                      id: newId.toString(),
+                      depth_m: "",
+                      o2_percent: "",
+                      time_min: "",
+                    },
                   ]);
                 }}
                 className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
@@ -292,7 +307,9 @@ export default function Tools() {
           </div>
 
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <h3 className="font-semibold text-amber-900 text-sm mb-2">Instructions</h3>
+            <h3 className="font-semibold text-amber-900 text-sm mb-2">
+              Instructions
+            </h3>
             <ul className="space-y-1 text-xs text-amber-900">
               <li>
                 • <strong>Depth:</strong> Enter the depth of the dive segment in
@@ -402,7 +419,9 @@ export default function Tools() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-600 mb-0.5">pO2 (ATA)</p>
-                  <p className={`text-xl font-bold ${getSafetyText(eadResult.po2)}`}>
+                  <p
+                    className={`text-xl font-bold ${getSafetyText(eadResult.po2)}`}
+                  >
                     {eadResult.po2.toFixed(2)}
                   </p>
                 </div>
@@ -421,14 +440,18 @@ export default function Tools() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-600 mb-0.5">Air Table To Use (m)</p>
+                  <p className="text-xs text-gray-600 mb-0.5">
+                    Air Table To Use (m)
+                  </p>
                   <p className="text-xl font-bold text-gray-900">
                     {eadResult.airTable}
                   </p>
                 </div>
               </div>
               <div className="mt-3 p-2 bg-white rounded border">
-                <h4 className="font-semibold text-gray-900 text-sm mb-1">Dive Notes</h4>
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">
+                  Dive Notes
+                </h4>
                 <p className="text-xs text-gray-700 mb-1">{eadResult.h2}</p>
                 <p className="text-xs text-gray-700 mb-0.5">
                   <strong>{eadResult.h3}</strong>
@@ -451,23 +474,25 @@ export default function Tools() {
           )}
 
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <h3 className="font-semibold text-amber-900 text-sm mb-2">Instructions</h3>
+            <h3 className="font-semibold text-amber-900 text-sm mb-2">
+              Instructions
+            </h3>
             <ul className="space-y-1 text-xs text-amber-900">
               <li>
                 • <strong>Depth:</strong> Enter the planned dive depth in meters
                 (10–50 m)
               </li>
               <li>
-                • <strong>O2 in Gas:</strong> Enter the oxygen percentage of your
-                nitrox mix (30–40%)
+                • <strong>O2 in Gas:</strong> Enter the oxygen percentage of
+                your nitrox mix (30–40%)
               </li>
               <li>
                 • <strong>pO2:</strong> Calculated partial pressure of oxygen at
                 the given depth
               </li>
               <li>
-                • <strong>EAD:</strong> The equivalent depth if you were breathing
-                air instead of your nitrox mix
+                • <strong>EAD:</strong> The equivalent depth if you were
+                breathing air instead of your nitrox mix
               </li>
               <li>
                 • <strong>EAD Safe:</strong> A conservative EAD value for safer
@@ -478,8 +503,8 @@ export default function Tools() {
                 reference from
               </li>
               <li>
-                • <strong>Color Code:</strong> Green (pO2 ≤1.4 ATA - safe), Yellow
-                (1.4–1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)
+                • <strong>Color Code:</strong> Green (pO2 ≤1.4 ATA - safe),
+                Yellow (1.4–1.5 ATA - caution), Red (&gt;1.5 ATA - high risk)
               </li>
             </ul>
           </div>

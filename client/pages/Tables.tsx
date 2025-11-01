@@ -188,10 +188,10 @@ export default function Tables() {
   const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<ViewLevel>("level1");
   const [selectedLevel1Index, setSelectedLevel1Index] = useState<number | null>(
-    null
+    null,
   );
   const [selectedLevel2Index, setSelectedLevel2Index] = useState<number | null>(
-    null
+    null,
   );
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -217,7 +217,8 @@ export default function Tables() {
       (currentView === "level3" || selectedLevel2Index !== null) &&
       selectedLevel1Index !== null
     ) {
-      const level2 = tablesData[selectedLevel1Index].children[selectedLevel2Index!];
+      const level2 =
+        tablesData[selectedLevel1Index].children[selectedLevel2Index!];
       breadcrumbs.push({
         label: level2.name,
         level: "level3",
@@ -261,7 +262,8 @@ export default function Tables() {
   };
 
   const handleDepthClick = (depth: number) => {
-    const level2Item = tablesData[selectedLevel1Index!].children[selectedLevel2Index!];
+    const level2Item =
+      tablesData[selectedLevel1Index!].children[selectedLevel2Index!];
     const code = level2Item.code?.toLowerCase() || "";
     navigate(`/tables/${code}?depth=${depth}`);
   };
@@ -398,8 +400,11 @@ export default function Tables() {
               <div className="space-y-3">
                 <div className="bg-white rounded-lg border border-border p-3 mb-3">
                   <h2 className="text-sm font-bold text-foreground mb-1">
-                    {tablesData[selectedLevel1Index].children[selectedLevel2Index]
-                      .name}
+                    {
+                      tablesData[selectedLevel1Index].children[
+                        selectedLevel2Index
+                      ].name
+                    }
                   </h2>
                   <p className="text-xs text-muted-foreground">
                     Code:{" "}

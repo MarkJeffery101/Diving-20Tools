@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Plus, Trash2, RotateCcw, ArrowLeft, Search, AlertTriangle } from "lucide-react";
+import {
+  Plus,
+  Trash2,
+  RotateCcw,
+  ArrowLeft,
+  Search,
+  AlertTriangle,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { EAD_DATA, type EADRow } from "../lib/eadData";
 import Navigation from "@/components/Navigation";
@@ -28,7 +35,10 @@ export default function Tools() {
   const [nitroxTime, setNitroxTime] = useState<string>("");
   const [nitroxO2, setNitroxO2] = useState<string>("");
   const [airTime, setAirTime] = useState<string>("");
-  const [nitroxResult, setNitroxResult] = useState<{ o2: number; ead: number } | null>(null);
+  const [nitroxResult, setNitroxResult] = useState<{
+    o2: number;
+    ead: number;
+  } | null>(null);
 
   // Bail Out Calculator
   const [bailoutDepth, setBailoutDepth] = useState<string>("");
@@ -37,13 +47,20 @@ export default function Tools() {
   const [bailoutStartBar, setBailoutStartBar] = useState<string>("");
   const [bailoutEndBar, setBailoutEndBar] = useState<string>("");
   const [bailoutVolume, setBailoutVolume] = useState<string>("");
-  const [bailoutResult, setBailoutResult] = useState<{ o2: number; ead: number } | null>(null);
+  const [bailoutResult, setBailoutResult] = useState<{
+    o2: number;
+    ead: number;
+  } | null>(null);
 
   // Residual ESOT Calculator
   const [residualEsotPrev, setResidualEsotPrev] = useState<string>("200");
   const [residualPo2Prev, setResidualPo2Prev] = useState<string>("1.4");
   const [residualSiHours, setResidualSiHours] = useState<string>("10");
-  const [residualResult, setResidualResult] = useState<{ residualEsot: number; percentPrev: number; decayFactor: number } | null>(null);
+  const [residualResult, setResidualResult] = useState<{
+    residualEsot: number;
+    percentPrev: number;
+    decayFactor: number;
+  } | null>(null);
 
   const calculateOtuRow = (row: CalculatorRow): CalculatorRow => {
     const depth = parseFloat(row.depth_m);
@@ -70,7 +87,7 @@ export default function Tools() {
   const handleOtuInputChange = (
     id: string,
     field: keyof Omit<CalculatorRow, "id" | "pO2_ATA" | "otu" | "esot">,
-    value: string
+    value: string,
   ) => {
     const updatedRows = otuRows.map((row) => {
       if (row.id === id) {
@@ -136,7 +153,12 @@ export default function Tools() {
     const nitroxPercent = parseFloat(nitroxO2);
     const airMinutes = parseFloat(airTime);
 
-    if (isNaN(depth) || isNaN(time) || isNaN(nitroxPercent) || isNaN(airMinutes)) {
+    if (
+      isNaN(depth) ||
+      isNaN(time) ||
+      isNaN(nitroxPercent) ||
+      isNaN(airMinutes)
+    ) {
       setNitroxResult(null);
       return;
     }
@@ -145,8 +167,11 @@ export default function Tools() {
     const eadNitrox = (depth + 10) * (fractionN2Nitrox / 0.79) - 10;
     const fractionN2Air = 0.79;
     const eadAir = (depth + 10) * (fractionN2Air / 0.79) - 10;
-    const weightedEAD = (eadNitrox * (time - airMinutes) + eadAir * airMinutes) / time;
-    const finalN2Percentage = (fractionN2Nitrox * (time - airMinutes) + fractionN2Air * airMinutes) / time;
+    const weightedEAD =
+      (eadNitrox * (time - airMinutes) + eadAir * airMinutes) / time;
+    const finalN2Percentage =
+      (fractionN2Nitrox * (time - airMinutes) + fractionN2Air * airMinutes) /
+      time;
     const finalO2Percentage = 100 - finalN2Percentage * 100;
 
     setNitroxResult({
@@ -171,13 +196,20 @@ export default function Tools() {
     const endBar = parseFloat(bailoutEndBar);
     const volume = parseFloat(bailoutVolume);
 
-    if (isNaN(depth) || isNaN(time) || isNaN(o2) || isNaN(startBar) || isNaN(endBar) || isNaN(volume)) {
+    if (
+      isNaN(depth) ||
+      isNaN(time) ||
+      isNaN(o2) ||
+      isNaN(startBar) ||
+      isNaN(endBar) ||
+      isNaN(volume)
+    ) {
       setBailoutResult(null);
       return;
     }
 
     const pAbs = depth / 10 + 1;
-    const bUsed = (startBar - endBar) * volume / pAbs;
+    const bUsed = ((startBar - endBar) * volume) / pAbs;
     const tAir = bUsed / 20;
     const tNitrox = time - tAir;
     const actOxRaw = (tAir * 20.9 + tNitrox * o2) / time;
@@ -264,13 +296,16 @@ export default function Tools() {
                 Residual ESOT (Carry-Over)
               </h2>
               <p className="text-[9px] text-gray-600 mb-2">
-                Calculating residual ESOT when planning repetitive hyperoxic exposures.
+                Calculating residual ESOT when planning repetitive hyperoxic
+                exposures.
               </p>
 
               {/* Inputs */}
               <div className="space-y-1.5 mb-2">
                 <div>
-                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">ESOT from previous dive (units)</label>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                    ESOT from previous dive (units)
+                  </label>
                   <input
                     type="number"
                     value={residualEsotPrev}
@@ -280,7 +315,9 @@ export default function Tools() {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">pO₂ of previous dive (bar abs)</label>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                    pO₂ of previous dive (bar abs)
+                  </label>
                   <input
                     type="number"
                     value={residualPo2Prev}
@@ -291,7 +328,9 @@ export default function Tools() {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Surface interval (hours)</label>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                    Surface interval (hours)
+                  </label>
                   <input
                     type="number"
                     value={residualSiHours}
@@ -307,11 +346,15 @@ export default function Tools() {
                 <div className="bg-blue-50 p-2 rounded mb-2 space-y-1 text-[10px]">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Residual ESOT:</span>
-                    <span className="font-bold text-gray-900">{residualResult.residualEsot.toFixed(2)}</span>
+                    <span className="font-bold text-gray-900">
+                      {residualResult.residualEsot.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">% of previous:</span>
-                    <span className="font-bold text-gray-900">{residualResult.percentPrev.toFixed(1)}%</span>
+                    <span className="font-bold text-gray-900">
+                      {residualResult.percentPrev.toFixed(1)}%
+                    </span>
                   </div>
                 </div>
               ) : (
@@ -344,12 +387,14 @@ export default function Tools() {
               <h2 className="text-sm font-bold text-gray-900 mb-2">
                 Segments OTU / ESOT
               </h2>
-              
+
               {/* Input Row */}
               <div className="mb-2 space-y-1">
                 <div className="grid grid-cols-3 gap-1.5 text-xs">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Depth (m)
+                    </label>
                     <input
                       type="number"
                       value={otuRows[0]?.depth_m || ""}
@@ -362,7 +407,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      O2 (%)
+                    </label>
                     <input
                       type="number"
                       value={otuRows[0]?.o2_percent || ""}
@@ -375,7 +422,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Time (min)
+                    </label>
                     <input
                       type="number"
                       value={otuRows[0]?.time_min || ""}
@@ -395,33 +444,46 @@ export default function Tools() {
                 <div className="text-center">
                   <p className="text-[9px] text-blue-700 font-semibold">pO2</p>
                   <p className="text-xs font-bold text-blue-900">
-                    {otuRows[0]?.pO2_ATA !== undefined ? otuRows[0].pO2_ATA.toFixed(2) : "—"}
+                    {otuRows[0]?.pO2_ATA !== undefined
+                      ? otuRows[0].pO2_ATA.toFixed(2)
+                      : "—"}
                   </p>
                 </div>
                 <div className="text-center">
                   <p className="text-[9px] text-blue-700 font-semibold">OTU</p>
                   <p className="text-xs font-bold text-blue-900">
-                    {otuRows[0]?.otu !== undefined ? otuRows[0].otu.toFixed(1) : "—"}
+                    {otuRows[0]?.otu !== undefined
+                      ? otuRows[0].otu.toFixed(1)
+                      : "—"}
                   </p>
                 </div>
                 <div className="text-center">
                   <p className="text-[9px] text-blue-700 font-semibold">ESOT</p>
                   <p className="text-xs font-bold text-blue-900">
-                    {otuRows[0]?.esot !== undefined ? otuRows[0].esot.toFixed(1) : "—"}
+                    {otuRows[0]?.esot !== undefined
+                      ? otuRows[0].esot.toFixed(1)
+                      : "—"}
                   </p>
                 </div>
               </div>
 
               {/* Additional Rows */}
               {otuRows.slice(1).map((row, idx) => (
-                <div key={row.id} className="mb-2 pb-2 border-t border-gray-200 pt-2">
+                <div
+                  key={row.id}
+                  className="mb-2 pb-2 border-t border-gray-200 pt-2"
+                >
                   <div className="grid grid-cols-3 gap-1.5 text-xs mb-1">
                     <div>
                       <input
                         type="number"
                         value={row.depth_m}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "depth_m", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "depth_m",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -432,7 +494,11 @@ export default function Tools() {
                         type="number"
                         value={row.o2_percent}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "o2_percent", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "o2_percent",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -443,7 +509,11 @@ export default function Tools() {
                         type="number"
                         value={row.time_min}
                         onChange={(e) =>
-                          handleOtuInputChange(row.id, "time_min", e.target.value)
+                          handleOtuInputChange(
+                            row.id,
+                            "time_min",
+                            e.target.value,
+                          )
                         }
                         placeholder="0"
                         className="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -460,13 +530,19 @@ export default function Tools() {
                   </div>
                   <div className="bg-blue-50 p-1 rounded grid grid-cols-3 gap-1">
                     <div className="text-center text-[9px]">
-                      <p className="text-blue-900 font-bold">{row.pO2_ATA?.toFixed(2) || "—"}</p>
+                      <p className="text-blue-900 font-bold">
+                        {row.pO2_ATA?.toFixed(2) || "—"}
+                      </p>
                     </div>
                     <div className="text-center text-[9px]">
-                      <p className="text-blue-900 font-bold">{row.otu?.toFixed(1) || "—"}</p>
+                      <p className="text-blue-900 font-bold">
+                        {row.otu?.toFixed(1) || "—"}
+                      </p>
                     </div>
                     <div className="text-center text-[9px]">
-                      <p className="text-blue-900 font-bold">{row.esot?.toFixed(1) || "—"}</p>
+                      <p className="text-blue-900 font-bold">
+                        {row.esot?.toFixed(1) || "—"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -476,12 +552,20 @@ export default function Tools() {
               {otuRows.length > 1 && (
                 <div className="bg-green-50 p-2 rounded mb-2 grid grid-cols-2 gap-1">
                   <div className="text-center">
-                    <p className="text-[9px] text-green-700 font-semibold">Total OTU</p>
-                    <p className="text-xs font-bold text-green-900">{totalOTU.toFixed(1)}</p>
+                    <p className="text-[9px] text-green-700 font-semibold">
+                      Total OTU
+                    </p>
+                    <p className="text-xs font-bold text-green-900">
+                      {totalOTU.toFixed(1)}
+                    </p>
                   </div>
                   <div className="text-center">
-                    <p className="text-[9px] text-green-700 font-semibold">Total ESOT</p>
-                    <p className="text-xs font-bold text-green-900">{totalESOT.toFixed(1)}</p>
+                    <p className="text-[9px] text-green-700 font-semibold">
+                      Total ESOT
+                    </p>
+                    <p className="text-xs font-bold text-green-900">
+                      {totalESOT.toFixed(1)}
+                    </p>
                   </div>
                 </div>
               )}
@@ -491,13 +575,16 @@ export default function Tools() {
                 {otuRows.length < 10 && (
                   <button
                     onClick={() => {
-                      const newId = Math.max(
-                        ...otuRows.map((r) => parseInt(r.id)),
-                        0
-                      ) + 1;
+                      const newId =
+                        Math.max(...otuRows.map((r) => parseInt(r.id)), 0) + 1;
                       setOtuRows([
                         ...otuRows,
-                        { id: newId.toString(), depth_m: "", o2_percent: "", time_min: "" },
+                        {
+                          id: newId.toString(),
+                          depth_m: "",
+                          o2_percent: "",
+                          time_min: "",
+                        },
                       ]);
                     }}
                     className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
@@ -525,7 +612,9 @@ export default function Tools() {
               {/* Inputs */}
               <div className="grid grid-cols-2 gap-1.5 mb-2">
                 <div>
-                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                    Depth (m)
+                  </label>
                   <input
                     type="number"
                     value={eadDepth}
@@ -537,7 +626,9 @@ export default function Tools() {
                   />
                 </div>
                 <div>
-                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                  <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                    O2 (%)
+                  </label>
                   <input
                     type="number"
                     value={eadO2}
@@ -573,15 +664,21 @@ export default function Tools() {
                 <div className="bg-green-50 p-2 rounded space-y-1 text-[10px]">
                   <div className="flex justify-between">
                     <span className="text-gray-600">EAD:</span>
-                    <span className="font-bold text-gray-900">{eadResult.eadCalc.toFixed(1)}m</span>
+                    <span className="font-bold text-gray-900">
+                      {eadResult.eadCalc.toFixed(1)}m
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">pO2:</span>
-                    <span className="font-bold text-gray-900">{eadResult.po2.toFixed(2)}</span>
+                    <span className="font-bold text-gray-900">
+                      {eadResult.po2.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Table:</span>
-                    <span className="font-bold text-gray-900">{eadResult.airTable}m</span>
+                    <span className="font-bold text-gray-900">
+                      {eadResult.airTable}m
+                    </span>
                   </div>
                 </div>
               ) : eadDepth || eadO2 ? (
@@ -604,14 +701,18 @@ export default function Tools() {
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">
-                Emergency gas switch: Calculate new Equivalent Air Depth when switching from Nitrox to air mid-dive. Determines correct decompression table for modified gas mix.
+                Emergency gas switch: Calculate new Equivalent Air Depth when
+                switching from Nitrox to air mid-dive. Determines correct
+                decompression table for modified gas mix.
               </p>
 
               {/* Inputs */}
               <div className="space-y-1.5 mb-2">
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Depth (meters)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Dive Depth (meters)
+                    </label>
                     <input
                       type="number"
                       value={nitroxDepth}
@@ -621,7 +722,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Time (minutes)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Dive Time (minutes)
+                    </label>
                     <input
                       type="number"
                       value={nitroxTime}
@@ -633,7 +736,9 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox Oxygen %</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Nitrox Oxygen %
+                    </label>
                     <input
                       type="number"
                       value={nitroxO2}
@@ -643,7 +748,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time on Air (minutes)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Time on Air (minutes)
+                    </label>
                     <input
                       type="number"
                       value={airTime}
@@ -660,11 +767,15 @@ export default function Tools() {
                 <div className="bg-orange-50 p-2 rounded mb-2 space-y-1 text-[10px]">
                   <div className="flex justify-between">
                     <span className="text-gray-600">New O2 %:</span>
-                    <span className="font-bold text-gray-900">{nitroxResult.o2.toFixed(2)}%</span>
+                    <span className="font-bold text-gray-900">
+                      {nitroxResult.o2.toFixed(2)}%
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">EAD:</span>
-                    <span className="font-bold text-gray-900">{nitroxResult.ead}m</span>
+                    <span className="font-bold text-gray-900">
+                      {nitroxResult.ead}m
+                    </span>
                   </div>
                 </div>
               ) : (
@@ -701,14 +812,18 @@ export default function Tools() {
                 </h2>
               </div>
               <p className="text-[9px] text-gray-600 mb-2">
-                Backup gas emergency: Calculate bailout cylinder gas consumption and effective oxygen percentage during emergency ascent. Determines EAD for decompression requirements.
+                Backup gas emergency: Calculate bailout cylinder gas consumption
+                and effective oxygen percentage during emergency ascent.
+                Determines EAD for decompression requirements.
               </p>
 
               {/* Inputs */}
               <div className="space-y-1.5 mb-2">
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (meters)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Depth (meters)
+                    </label>
                     <input
                       type="number"
                       value={bailoutDepth}
@@ -718,7 +833,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Time (minutes)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Dive Time (minutes)
+                    </label>
                     <input
                       type="number"
                       value={bailoutTime}
@@ -730,7 +847,9 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox Oxygen %</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Nitrox Oxygen %
+                    </label>
                     <input
                       type="number"
                       value={bailoutO2}
@@ -740,7 +859,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Cylinder Volume (liters)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Cylinder Volume (liters)
+                    </label>
                     <input
                       type="number"
                       value={bailoutVolume}
@@ -752,7 +873,9 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Start Pressure (bar)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      Start Pressure (bar)
+                    </label>
                     <input
                       type="number"
                       value={bailoutStartBar}
@@ -762,7 +885,9 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">End Pressure (bar)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">
+                      End Pressure (bar)
+                    </label>
                     <input
                       type="number"
                       value={bailoutEndBar}
@@ -779,11 +904,15 @@ export default function Tools() {
                 <div className="bg-red-50 p-2 rounded mb-2 space-y-1 text-[10px]">
                   <div className="flex justify-between">
                     <span className="text-gray-600">O2 %:</span>
-                    <span className="font-bold text-gray-900">{bailoutResult.o2.toFixed(1)}%</span>
+                    <span className="font-bold text-gray-900">
+                      {bailoutResult.o2.toFixed(1)}%
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">EAD:</span>
-                    <span className="font-bold text-gray-900">{bailoutResult.ead}m</span>
+                    <span className="font-bold text-gray-900">
+                      {bailoutResult.ead}m
+                    </span>
                   </div>
                 </div>
               ) : (
@@ -813,7 +942,10 @@ export default function Tools() {
 
             {/* Placeholder Cards for Future Tools */}
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg shadow-md border border-gray-300 border-dashed p-3 flex items-center justify-center">
+              <div
+                key={i}
+                className="bg-white rounded-lg shadow-md border border-gray-300 border-dashed p-3 flex items-center justify-center"
+              >
                 <p className="text-xs text-gray-500 text-center">Coming soon</p>
               </div>
             ))}
@@ -827,7 +959,9 @@ export default function Tools() {
           <h2 className="text-sm font-bold text-gray-900 mb-3">Instructions</h2>
           <div className="grid md:grid-cols-2 gap-4 text-xs text-gray-700">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">OTU / ESOT Segments</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                OTU / ESOT Segments
+              </h3>
               <ul className="space-y-1 text-[11px]">
                 <li>• Enter depth in meters</li>
                 <li>• Enter O₂ percentage of gas mix</li>
@@ -838,7 +972,9 @@ export default function Tools() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Equivalent Air Depth (EAD)</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Equivalent Air Depth (EAD)
+              </h3>
               <ul className="space-y-1 text-[11px]">
                 <li>• Enter planned dive depth (10-50m)</li>
                 <li>• Enter nitrox O₂ percentage (30-40%)</li>

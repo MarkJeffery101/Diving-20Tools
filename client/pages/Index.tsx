@@ -77,16 +77,14 @@ export default function Index() {
               <span className="sm:hidden">Dive Planning</span>
             </div>
 
-            <div className="flex items-center justify-center gap-4 mb-4 sm:mb-6">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F75b15b416bb74faa95dd3e0818707c94?format=webp&width=150"
-                alt="DivePlan Logo"
-                className="h-16 sm:h-20 md:h-28 w-auto object-contain"
-              />
-              <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-6xl font-bold text-foreground leading-tight">
-                DivePlan: Professional Dive Planning Reference
-              </h1>
-            </div>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F4053f12f8ce84360acd2c6b95e9838ee?format=webp&width=800"
+              alt="DivePlan App Preview"
+              className="max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12 rounded-lg shadow-lg border border-gray-200"
+            />
+            <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+              DivePlan: Professional Dive Planning Reference
+            </h1>
 
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               A comprehensive, interlinked dive planning system for commercial,

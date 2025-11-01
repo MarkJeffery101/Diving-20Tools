@@ -210,20 +210,6 @@ export default function Tools() {
                 </div>
               </div>
 
-              {/* Totals */}
-              {otuRows.length > 1 && (
-                <div className="bg-green-50 p-2 rounded mb-2 grid grid-cols-2 gap-1">
-                  <div className="text-center">
-                    <p className="text-[9px] text-green-700 font-semibold">Total OTU</p>
-                    <p className="text-xs font-bold text-green-900">{totalOTU.toFixed(1)}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-[9px] text-green-700 font-semibold">Total ESOT</p>
-                    <p className="text-xs font-bold text-green-900">{totalESOT.toFixed(1)}</p>
-                  </div>
-                </div>
-              )}
-
               {/* Additional Rows */}
               {otuRows.slice(1).map((row, idx) => (
                 <div key={row.id} className="mb-2 pb-2 border-t border-gray-200 pt-2">
@@ -283,6 +269,20 @@ export default function Tools() {
                   </div>
                 </div>
               ))}
+
+              {/* Totals - Always at Bottom */}
+              {otuRows.length > 1 && (
+                <div className="bg-green-50 p-2 rounded mb-2 grid grid-cols-2 gap-1">
+                  <div className="text-center">
+                    <p className="text-[9px] text-green-700 font-semibold">Total OTU</p>
+                    <p className="text-xs font-bold text-green-900">{totalOTU.toFixed(1)}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[9px] text-green-700 font-semibold">Total ESOT</p>
+                    <p className="text-xs font-bold text-green-900">{totalESOT.toFixed(1)}</p>
+                  </div>
+                </div>
+              )}
 
               {/* Buttons */}
               <div className="flex gap-1">

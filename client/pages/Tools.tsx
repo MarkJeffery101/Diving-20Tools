@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Trash2, RotateCcw, ArrowLeft, Search } from "lucide-react";
+import { Plus, Trash2, RotateCcw, ArrowLeft, Search, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { EAD_DATA, type EADRow } from "../lib/eadData";
 import Navigation from "@/components/Navigation";
@@ -22,6 +22,22 @@ export default function Tools() {
   const [eadDepth, setEadDepth] = useState<string>("");
   const [eadO2, setEadO2] = useState<string>("");
   const [eadResult, setEadResult] = useState<EADRow | null>(null);
+
+  // Nitrox Failure Calculator
+  const [nitroxDepth, setNitroxDepth] = useState<string>("");
+  const [nitroxTime, setNitroxTime] = useState<string>("");
+  const [nitroxO2, setNitroxO2] = useState<string>("");
+  const [airTime, setAirTime] = useState<string>("");
+  const [nitroxResult, setNitroxResult] = useState<{ o2: number; ead: number } | null>(null);
+
+  // Bail Out Calculator
+  const [bailoutDepth, setBailoutDepth] = useState<string>("");
+  const [bailoutTime, setBailoutTime] = useState<string>("");
+  const [bailoutO2, setBailoutO2] = useState<string>("");
+  const [bailoutStartBar, setBailoutStartBar] = useState<string>("");
+  const [bailoutEndBar, setBailoutEndBar] = useState<string>("");
+  const [bailoutVolume, setBailoutVolume] = useState<string>("");
+  const [bailoutResult, setBailoutResult] = useState<{ o2: number; ead: number } | null>(null);
 
   const calculateOtuRow = (row: CalculatorRow): CalculatorRow => {
     const depth = parseFloat(row.depth_m);
@@ -107,6 +123,76 @@ export default function Tools() {
 
   const totalOTU = otuRows.reduce((sum, row) => sum + (row.otu || 0), 0);
   const totalESOT = otuRows.reduce((sum, row) => sum + (row.esot || 0), 0);
+
+  const handleNitroxFailureCalculate = () => {
+    const depth = parseFloat(nitroxDepth);
+    const time = parseFloat(nitroxTime);
+    const nitroxPercent = parseFloat(nitroxO2);
+    const airMinutes = parseFloat(airTime);
+
+    if (isNaN(depth) || isNaN(time) || isNaN(nitroxPercent) || isNaN(airMinutes)) {
+      setNitroxResult(null);
+      return;
+    }
+
+    const fractionN2Nitrox = 1 - nitroxPercent / 100;
+    const eadNitrox = (depth + 10) * (fractionN2Nitrox / 0.79) - 10;
+    const fractionN2Air = 0.79;
+    const eadAir = (depth + 10) * (fractionN2Air / 0.79) - 10;
+    const weightedEAD = (eadNitrox * (time - airMinutes) + eadAir * airMinutes) / time;
+    const finalN2Percentage = (fractionN2Nitrox * (time - airMinutes) + fractionN2Air * airMinutes) / time;
+    const finalO2Percentage = 100 - finalN2Percentage * 100;
+
+    setNitroxResult({
+      o2: Math.round(finalO2Percentage * 100) / 100,
+      ead: Math.ceil(weightedEAD),
+    });
+  };
+
+  const handleNitroxFailureReset = () => {
+    setNitroxDepth("");
+    setNitroxTime("");
+    setNitroxO2("");
+    setAirTime("");
+    setNitroxResult(null);
+  };
+
+  const handleBailoutCalculate = () => {
+    const depth = parseFloat(bailoutDepth);
+    const time = parseFloat(bailoutTime);
+    const o2 = parseFloat(bailoutO2);
+    const startBar = parseFloat(bailoutStartBar);
+    const endBar = parseFloat(bailoutEndBar);
+    const volume = parseFloat(bailoutVolume);
+
+    if (isNaN(depth) || isNaN(time) || isNaN(o2) || isNaN(startBar) || isNaN(endBar) || isNaN(volume)) {
+      setBailoutResult(null);
+      return;
+    }
+
+    const pAbs = depth / 10 + 1;
+    const bUsed = (startBar - endBar) * volume / pAbs;
+    const tAir = bUsed / 20;
+    const tNitrox = time - tAir;
+    const actOxRaw = (tAir * 20.9 + tNitrox * o2) / time;
+    const actOx = Math.ceil(actOxRaw * 10) / 10;
+    const ead = Math.floor((pAbs - 1) * 10 * 10) / 10;
+
+    setBailoutResult({
+      o2: actOx,
+      ead: ead,
+    });
+  };
+
+  const handleBailoutReset = () => {
+    setBailoutDepth("");
+    setBailoutTime("");
+    setBailoutO2("");
+    setBailoutStartBar("");
+    setBailoutEndBar("");
+    setBailoutVolume("");
+    setBailoutResult(null);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
@@ -393,8 +479,224 @@ export default function Tools() {
               )}
             </div>
 
+            {/* Nitrox Failure Card */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertTriangle className="h-4 w-4 text-orange-600" />
+                <h2 className="text-sm font-bold text-gray-900">
+                  Nitrox Failure
+                </h2>
+              </div>
+              <p className="text-[9px] text-gray-600 mb-2">
+                Switch to Air: When Nitrox is lost and air is used, recalculate EAD to select the correct decompression table.
+              </p>
+
+              {/* Inputs */}
+              <div className="space-y-1.5 mb-2">
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <input
+                      type="number"
+                      value={nitroxDepth}
+                      onChange={(e) => setNitroxDepth(e.target.value)}
+                      placeholder="30"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <input
+                      type="number"
+                      value={nitroxTime}
+                      onChange={(e) => setNitroxTime(e.target.value)}
+                      placeholder="30"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox O2 (%)</label>
+                    <input
+                      type="number"
+                      value={nitroxO2}
+                      onChange={(e) => setNitroxO2(e.target.value)}
+                      placeholder="40"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Air Time (min)</label>
+                    <input
+                      type="number"
+                      value={airTime}
+                      onChange={(e) => setAirTime(e.target.value)}
+                      placeholder="10"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Results */}
+              {nitroxResult ? (
+                <div className="bg-orange-50 p-2 rounded mb-2 space-y-1 text-[10px]">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">New O2 %:</span>
+                    <span className="font-bold text-gray-900">{nitroxResult.o2.toFixed(2)}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">EAD:</span>
+                    <span className="font-bold text-gray-900">{nitroxResult.ead}m</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-gray-50 p-2 rounded mb-2 text-[10px] text-gray-600">
+                  Enter values to calculate
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="flex gap-1">
+                <button
+                  onClick={handleNitroxFailureCalculate}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors"
+                >
+                  <Search className="h-2.5 w-2.5" />
+                  Calculate
+                </button>
+                <button
+                  onClick={handleNitroxFailureReset}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded hover:bg-gray-400"
+                >
+                  <RotateCcw className="h-2.5 w-2.5" />
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            {/* Bail Out Opened Card */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertTriangle className="h-4 w-4 text-red-600" />
+                <h2 className="text-sm font-bold text-gray-900">
+                  Bail Out Opened
+                </h2>
+              </div>
+              <p className="text-[9px] text-gray-600 mb-2">
+                Emergency bailout: Determine bailout gas usage and Equivalent Air Depth (EAD) during emergency.
+              </p>
+
+              {/* Inputs */}
+              <div className="space-y-1.5 mb-2">
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <input
+                      type="number"
+                      value={bailoutDepth}
+                      onChange={(e) => setBailoutDepth(e.target.value)}
+                      placeholder="30"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <input
+                      type="number"
+                      value={bailoutTime}
+                      onChange={(e) => setBailoutTime(e.target.value)}
+                      placeholder="30"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                    <input
+                      type="number"
+                      value={bailoutO2}
+                      onChange={(e) => setBailoutO2(e.target.value)}
+                      placeholder="40"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Vol (L)</label>
+                    <input
+                      type="number"
+                      value={bailoutVolume}
+                      onChange={(e) => setBailoutVolume(e.target.value)}
+                      placeholder="10"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Start (bar)</label>
+                    <input
+                      type="number"
+                      value={bailoutStartBar}
+                      onChange={(e) => setBailoutStartBar(e.target.value)}
+                      placeholder="200"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">End (bar)</label>
+                    <input
+                      type="number"
+                      value={bailoutEndBar}
+                      onChange={(e) => setBailoutEndBar(e.target.value)}
+                      placeholder="50"
+                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-red-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Results */}
+              {bailoutResult ? (
+                <div className="bg-red-50 p-2 rounded mb-2 space-y-1 text-[10px]">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">O2 %:</span>
+                    <span className="font-bold text-gray-900">{bailoutResult.o2.toFixed(1)}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">EAD:</span>
+                    <span className="font-bold text-gray-900">{bailoutResult.ead}m</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-gray-50 p-2 rounded mb-2 text-[10px] text-gray-600">
+                  Enter values to calculate
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="flex gap-1">
+                <button
+                  onClick={handleBailoutCalculate}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                >
+                  <Search className="h-2.5 w-2.5" />
+                  Calculate
+                </button>
+                <button
+                  onClick={handleBailoutReset}
+                  className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1 text-xs bg-gray-300 text-gray-900 rounded hover:bg-gray-400"
+                >
+                  <RotateCcw className="h-2.5 w-2.5" />
+                  Reset
+                </button>
+              </div>
+            </div>
+
             {/* Placeholder Cards for Future Tools */}
-            {[...Array(4)].map((_, i) => (
+            {[...Array(2)].map((_, i) => (
               <div key={i} className="bg-white rounded-lg shadow-md border border-gray-300 border-dashed p-3 flex items-center justify-center">
                 <p className="text-xs text-gray-500 text-center">Coming soon</p>
               </div>

@@ -495,7 +495,7 @@ export default function Tools() {
               <div className="space-y-1.5 mb-2">
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Depth (meters)</label>
                     <input
                       type="number"
                       value={nitroxDepth}
@@ -505,7 +505,7 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Time (minutes)</label>
                     <input
                       type="number"
                       value={nitroxTime}
@@ -517,7 +517,7 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox O2 (%)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox Oxygen %</label>
                     <input
                       type="number"
                       value={nitroxO2}
@@ -527,7 +527,7 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Air Time (min)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time on Air (minutes)</label>
                     <input
                       type="number"
                       value={airTime}
@@ -592,7 +592,7 @@ export default function Tools() {
               <div className="space-y-1.5 mb-2">
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (m)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Depth (meters)</label>
                     <input
                       type="number"
                       value={bailoutDepth}
@@ -602,7 +602,7 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Time (min)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Dive Time (minutes)</label>
                     <input
                       type="number"
                       value={bailoutTime}
@@ -614,7 +614,7 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">O2 (%)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Nitrox Oxygen %</label>
                     <input
                       type="number"
                       value={bailoutO2}
@@ -624,7 +624,7 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Vol (L)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Cylinder Volume (liters)</label>
                     <input
                       type="number"
                       value={bailoutVolume}
@@ -636,7 +636,7 @@ export default function Tools() {
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Start (bar)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">Start Pressure (bar)</label>
                     <input
                       type="number"
                       value={bailoutStartBar}
@@ -646,7 +646,7 @@ export default function Tools() {
                     />
                   </div>
                   <div>
-                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">End (bar)</label>
+                    <label className="text-gray-700 font-semibold block text-[10px] mb-0.5">End Pressure (bar)</label>
                     <input
                       type="number"
                       value={bailoutEndBar}

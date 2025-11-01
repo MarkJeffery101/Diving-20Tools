@@ -21,8 +21,12 @@ export default function Navigation() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 font-bold text-lg text-primary">
-            <Waves className="h-6 w-6" />
-            <span>DivePlan</span>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F75b15b416bb74faa95dd3e0818707c94?format=webp&width=100"
+              alt="DivePlan Logo"
+              className="h-8 w-8 object-contain"
+            />
+            <span className="hidden sm:inline">DivePlan</span>
           </Link>
 
           {/* Desktop Navigation */}

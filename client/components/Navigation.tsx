@@ -18,9 +18,9 @@ export default function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white border-b border-border shadow-sm">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-bold text-lg text-primary">
+          <Link to="/" className="flex items-center gap-1 sm:gap-2 font-bold text-sm sm:text-lg text-primary">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F75b15b416bb74faa95dd3e0818707c94?format=webp&width=100"
               alt="DivePlan Logo"

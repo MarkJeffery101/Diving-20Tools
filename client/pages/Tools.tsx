@@ -200,6 +200,35 @@ export default function Tools() {
     setBailoutResult(null);
   };
 
+  const handleResidualEsotCalculate = () => {
+    const esotPrev = parseFloat(residualEsotPrev);
+    const po2Prev = parseFloat(residualPo2Prev);
+    const siHours = parseFloat(residualSiHours);
+
+    if (isNaN(esotPrev) || isNaN(po2Prev) || isNaN(siHours)) {
+      setResidualResult(null);
+      return;
+    }
+
+    const po2Capped = Math.max(po2Prev, 1.1);
+    const decayFactor = Math.exp((0.21 - 0.192 * po2Capped) * siHours);
+    const residualEsot = esotPrev * decayFactor;
+    const percentPrev = (residualEsot / esotPrev) * 100;
+
+    setResidualResult({
+      residualEsot: parseFloat(residualEsot.toFixed(2)),
+      percentPrev: parseFloat(percentPrev.toFixed(1)),
+      decayFactor: parseFloat(decayFactor.toFixed(6)),
+    });
+  };
+
+  const handleResidualEsotReset = () => {
+    setResidualEsotPrev("200");
+    setResidualPo2Prev("1.4");
+    setResidualSiHours("10");
+    setResidualResult(null);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
       <Navigation />

@@ -44,7 +44,7 @@ export default function SupportingInfo() {
     {
       id: "ppo2",
       title: "Partial Pressure of Oxygen (PPO2)",
-      icon: "⚗️",
+      icon: "⚗���",
       subsections: [
         {
           subtitle: "What is PPO2?",
@@ -366,7 +366,83 @@ export default function SupportingInfo() {
 
             {/* Modal Body */}
             <div className="p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white">
-              {openModalId === "evacuationSurfaceDeco" ? (
+              {openModalId === "regulations" ? (
+                <>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview & Applicability
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Standard tables (DCD/NDC 2015). TUP tables are in the 2024 TUP Manual; general rules still apply and tables may be combined.
+                    </p>
+                    <div className="bg-white border border-blue-300 rounded-lg p-2 mt-2 text-[10px] text-muted-foreground">
+                      These points include additional guidance from the company diving physician adopted by N-Sea.
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Core Rules
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>DCS can occur even within no-decompression limits; manage uncertainty conservatively.</li>
+                        <li>Do not exceed table maximum depth or time; if exceeded, use O₂ Treatment Table 5.</li>
+                        <li>For planning, use the second-to-last time entry as the maximum dive time.</li>
+                        <li>≤ 8 h in any 24 h under pressure (dive + decompression); exceptions need contractor + supervising MO approval.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Repetitive & Combined Dives
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Use the correct repeat-interval table for repetitive dives.</li>
+                        <li>If interval &lt; 2 h, a combined dive may be used (not permitted for SurD).</li>
+                        <li>For combined dives: make the first dive deepest; add times and decompress using the deepest depth on 12-h interval tables.</li>
+                        <li>No combined diving after any emergency procedure; if an emergency occurs on dive 2, apply the emergency rules using the deepest depth.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        After Dives & Intervals
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>After a normal dive: further dives ≤ 6 m permitted.</li>
+                        <li>After an emergency procedure: no diving for 12 h.</li>
+                        <li>After routine in-water decompression: ≤ 6 m dives allowed without a surface interval.</li>
+                        <li>Recommend 12-h repeat interval after repetitive dives; as good practice, limit to ≤ 2 repetitive dives.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Switching Table Systems & Stop Control
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>If previous diving used other table systems (Norwegian, DCIEM, US Navy), wait ≥ 16 h before using DCD tables.</li>
+                        <li>Hold stop depth steady; typical tolerance ±0.5 m.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Oxygen Use During Decompression
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>O₂ during decompression is safer than air alone, especially when air-only decompression &gt; 30 min; consider when selecting a table.</li>
+                      </ul>
+                    </details>
+                  </div>
+                </>
+              ) : openModalId === "evacuationSurfaceDeco" ? (
                 <>
                   <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">

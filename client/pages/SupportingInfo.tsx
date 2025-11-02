@@ -306,7 +306,7 @@ export default function SupportingInfo() {
       {openModalId && (
         <div
           className="fixed inset-0 bg-black bg-opacity-25 z-50 flex items-center justify-center p-4"
-          onClick={() => setOtuEsotModalOpen(false)}
+          onClick={() => setOpenModalId(null)}
         >
           <div
             className="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-auto"

@@ -781,7 +781,7 @@ export default function SupportingInfo() {
                 </>
               ) : openModalId === "oxygenToxicity" ? (
                 <>
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
@@ -791,7 +791,7 @@ export default function SupportingInfo() {
                   </div>
 
                   <div className="space-y-3">
-                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-purple-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
                         Acute (CNS) Toxicity — Overview
@@ -801,7 +801,7 @@ export default function SupportingInfo() {
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
-                          <thead className="bg-yellow-50">
+                          <thead className="bg-purple-100">
                             <tr>
                               <th className="p-2 border-b border-border">pO₂ (atm)</th>
                               <th className="p-2 border-b border-border">Max Single Exposure (min)</th>
@@ -810,29 +810,29 @@ export default function SupportingInfo() {
                           </thead>
                           <tbody className="text-[9px]">
                             <tr className="border-b border-border"><td className="p-2">1.6</td><td className="p-2 text-center">45</td><td className="p-2 text-center">150</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.55</td><td className="p-2 text-center">83</td><td className="p-2 text-center">165</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.55</td><td className="p-2 text-center">83</td><td className="p-2 text-center">165</td></tr>
                             <tr className="border-b border-border"><td className="p-2">1.5</td><td className="p-2 text-center">120</td><td className="p-2 text-center">180</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.45</td><td className="p-2 text-center">135</td><td className="p-2 text-center">180</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.45</td><td className="p-2 text-center">135</td><td className="p-2 text-center">180</td></tr>
                             <tr className="border-b border-border"><td className="p-2">1.4</td><td className="p-2 text-center">150</td><td className="p-2 text-center">180</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.35</td><td className="p-2 text-center">165</td><td className="p-2 text-center">195</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.35</td><td className="p-2 text-center">165</td><td className="p-2 text-center">195</td></tr>
                             <tr className="border-b border-border"><td className="p-2">1.3</td><td className="p-2 text-center">180</td><td className="p-2 text-center">210</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.25</td><td className="p-2 text-center">195</td><td className="p-2 text-center">225</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.25</td><td className="p-2 text-center">195</td><td className="p-2 text-center">225</td></tr>
                             <tr className="border-b border-border"><td className="p-2">1.2</td><td className="p-2 text-center">210</td><td className="p-2 text-center">240</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.1</td><td className="p-2 text-center">240</td><td className="p-2 text-center">270</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.1</td><td className="p-2 text-center">240</td><td className="p-2 text-center">270</td></tr>
                             <tr className="border-b border-border"><td className="p-2">1.0</td><td className="p-2 text-center">300</td><td className="p-2 text-center">300</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">0.9</td><td className="p-2 text-center">360</td><td className="p-2 text-center">360</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">0.9</td><td className="p-2 text-center">360</td><td className="p-2 text-center">360</td></tr>
                             <tr className="border-b border-border"><td className="p-2">0.8</td><td className="p-2 text-center">450</td><td className="p-2 text-center">450</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">0.7</td><td className="p-2 text-center">570</td><td className="p-2 text-center">570</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">0.7</td><td className="p-2 text-center">570</td><td className="p-2 text-center">570</td></tr>
                             <tr><td className="p-2">0.6</td><td className="p-2 text-center">720</td><td className="p-2 text-center">720</td></tr>
                           </tbody>
                         </table>
                       </div>
-                      <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-2 mt-2 text-[10px] text-foreground">
+                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-2 text-[10px] text-foreground">
                         CNS oxygen "hits" may resolve in dry settings but can be fatal underwater. Treat IMCA and NOAA limits as hard operational controls.
                       </div>
                     </details>
 
-                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-purple-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
                         Long-Term Oxygen Toxicity — OTU (UPTD)
@@ -842,7 +842,7 @@ export default function SupportingInfo() {
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
-                          <thead className="bg-yellow-50">
+                          <thead className="bg-purple-100">
                             <tr>
                               <th className="p-2 border-b border-border">Depth (m)</th>
                               <th className="p-2 border-b border-border">OTU / 10 min</th>
@@ -851,13 +851,13 @@ export default function SupportingInfo() {
                           </thead>
                           <tbody className="text-[9px]">
                             <tr className="border-b border-border"><td className="p-2">18</td><td className="p-2 text-center">35.7</td><td className="p-2 text-center">71.3</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">15</td><td className="p-2 text-center">31.7</td><td className="p-2 text-center">63.5</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">15</td><td className="p-2 text-center">31.7</td><td className="p-2 text-center">63.5</td></tr>
                             <tr className="border-b border-border"><td className="p-2">13.5</td><td className="p-2 text-center">29.8</td><td className="p-2 text-center">59.5</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">12</td><td className="p-2 text-center">27.7</td><td className="p-2 text-center">55.5</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">12</td><td className="p-2 text-center">27.7</td><td className="p-2 text-center">55.5</td></tr>
                             <tr className="border-b border-border"><td className="p-2">9</td><td className="p-2 text-center">23.6</td><td className="p-2 text-center">47.2</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">6</td><td className="p-2 text-center">19.3</td><td className="p-2 text-center">38.6</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">6</td><td className="p-2 text-center">19.3</td><td className="p-2 text-center">38.6</td></tr>
                             <tr className="border-b border-border"><td className="p-2">4.5</td><td className="p-2 text-center">17.1</td><td className="p-2 text-center">34.1</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">3</td><td className="p-2 text-center">14.8</td><td className="p-2 text-center">29.6</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">3</td><td className="p-2 text-center">14.8</td><td className="p-2 text-center">29.6</td></tr>
                             <tr><td className="p-2">0</td><td className="p-2 text-center">10.0</td><td className="p-2 text-center">20.0</td></tr>
                           </tbody>
                         </table>
@@ -867,7 +867,7 @@ export default function SupportingInfo() {
                         <li>If an OTU limit is exceeded: observe an absolute <strong>no-diving period of ≥ 48 hours</strong>. After each 48-hour no-dive period the OTU count restarts at zero.</li>
                         <li>If chronic oxygen-toxicity symptoms are suspected: impose a diving ban and consult a qualified diving medical advisor.</li>
                       </ul>
-                      <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
+                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
                         <strong>Oxygen Limits — OTU</strong><br />
                         • Daily dose should not exceed <strong>450 OTU</strong> (except emergencies).<br />
                         • For 7-day schedules: week 1 ≤ <strong>2500 OTU</strong>; weeks 2–3 ≤ <strong>2100 OTU</strong>; then 48 h no diving.<br />
@@ -876,7 +876,7 @@ export default function SupportingInfo() {
                       </div>
                     </details>
 
-                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-purple-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
                         ESOT (DMAC 35) — Guidance & Limits
@@ -886,7 +886,7 @@ export default function SupportingInfo() {
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
-                          <thead className="bg-yellow-50">
+                          <thead className="bg-purple-100">
                             <tr>
                               <th className="p-2 border-b border-border">Daily max ESOT</th>
                               <th className="p-2 border-b border-border">Max successive days</th>
@@ -895,15 +895,15 @@ export default function SupportingInfo() {
                           </thead>
                           <tbody className="text-[9px]">
                             <tr className="border-b border-border"><td className="p-2">&gt; 660</td><td className="p-2 text-center">0</td><td className="p-2 text-center">24</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">501 – 660</td><td className="p-2 text-center">2</td><td className="p-2 text-center">12</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="p-2">501 – 660</td><td className="p-2 text-center">2</td><td className="p-2 text-center">12</td></tr>
                             <tr className="border-b border-border"><td className="p-2">420 – 500</td><td className="p-2 text-center">5</td><td className="p-2 text-center">12</td></tr>
-                            <tr><td className="p-2">&lt; 420</td><td className="p-2 text-center">10</td><td className="p-2 text-center">12</td></tr>
+                            <tr className="bg-purple-50"><td className="p-2">&lt; 420</td><td className="p-2 text-center">10</td><td className="p-2 text-center">12</td></tr>
                           </tbody>
                         </table>
                       </div>
                     </details>
 
-                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-purple-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
                         OTU and ESOT in DCD/NDC Tables

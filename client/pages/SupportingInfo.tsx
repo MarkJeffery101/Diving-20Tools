@@ -785,6 +785,172 @@ export default function SupportingInfo() {
                     </div>
                   </div>
                 </>
+              ) : openModalId === "oxygenToxicity" ? (
+                <>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Oxygen toxicity has two forms: acute Central Nervous System (CNS) toxicity causing convulsions, and long-term pulmonary toxicity. Both are managed through pO₂ limits, Oxygen Toxicity Units (OTU), and ESOT (DMAC 35) exposure guidance.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Acute (CNS) Toxicity — Overview
+                      </summary>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                        To prevent acute oxygen toxicity (Central Nervous System), it has been good practice to limit the oxygen partial pressure (pO₂) to <strong>1.5 bar</strong>.
+                        However, infrequent convulsions due to acute oxygen toxicity have been reported at pressures as low as 1.5 bar.
+                        Although in a dry environment the convulsions of an oxygen hit clear without residual effects, it can be deadly while diving.
+                      </p>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        Therefore, <strong>NOAA</strong> (National Oceanic and Atmospheric Administration) produced a table of oxygen partial pressures and the duration they can be respired with minimal risk of an oxygen fit.
+                        The <strong>IMCA</strong> (International Marine Contractors Association) has independently advised a maximum pO₂ of <strong>1.4 bar</strong> for nitrox diving as the upper limit, regardless of diving time (IMCA D048, 2012).
+                      </p>
+                      <div className="mt-3">
+                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                          <thead className="bg-yellow-50">
+                            <tr>
+                              <th className="p-2 border-b border-border">pO₂ (atm)</th>
+                              <th className="p-2 border-b border-border">Max Single Exposure (min)</th>
+                              <th className="p-2 border-b border-border">Max per 24 h (min)</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-[9px]">
+                            <tr className="border-b border-border"><td className="p-2">1.6</td><td className="p-2 text-center">45</td><td className="p-2 text-center">150</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.55</td><td className="p-2 text-center">83</td><td className="p-2 text-center">165</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.5</td><td className="p-2 text-center">120</td><td className="p-2 text-center">180</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.45</td><td className="p-2 text-center">135</td><td className="p-2 text-center">180</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.4</td><td className="p-2 text-center">150</td><td className="p-2 text-center">180</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.35</td><td className="p-2 text-center">165</td><td className="p-2 text-center">195</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.3</td><td className="p-2 text-center">180</td><td className="p-2 text-center">210</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.25</td><td className="p-2 text-center">195</td><td className="p-2 text-center">225</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.2</td><td className="p-2 text-center">210</td><td className="p-2 text-center">240</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.1</td><td className="p-2 text-center">240</td><td className="p-2 text-center">270</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">1.0</td><td className="p-2 text-center">300</td><td className="p-2 text-center">300</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">0.9</td><td className="p-2 text-center">360</td><td className="p-2 text-center">360</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">0.8</td><td className="p-2 text-center">450</td><td className="p-2 text-center">450</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">0.7</td><td className="p-2 text-center">570</td><td className="p-2 text-center">570</td></tr>
+                            <tr><td className="p-2">0.6</td><td className="p-2 text-center">720</td><td className="p-2 text-center">720</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-2 mt-2 text-[10px] text-foreground">
+                        CNS oxygen "hits" may resolve in dry settings but can be fatal underwater. Treat IMCA and NOAA limits as hard operational controls.
+                      </div>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Long-Term Oxygen Toxicity — OTU (UPTD)
+                      </summary>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                        The chance of long-term oxygen toxicity symptoms can be predicted by <strong>Oxygen Toxicity Units (OTU)</strong>, accumulated during dive and decompression.
+                        Historically, exposure below CNS-toxicity thresholds was thought to affect only the lungs (Lorain Smith syndrome), and the <strong>Unit Pulmonary Toxic Dose (UPTD)</strong> was developed.
+                        Later research showed effects on other organ systems; the term <strong>OTU</strong> was introduced, calculated with the same formula as UPTD. Thus, <strong>1 OTU = 1 UPTD</strong>.
+                      </p>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        The DCD tables incorporate accumulated OTUs in relation to dive and decompression times.
+                        Additionally, a separate OTU table is provided for breathing <strong>100% oxygen up to 18 m</strong>, so that OTU may be calculated during non-standard procedures.
+                        <em>Note: the OTU & ESOT calculator in the Tools can do this for you.</em>
+                      </p>
+                      <div className="mt-3">
+                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                          <thead className="bg-yellow-50">
+                            <tr>
+                              <th className="p-2 border-b border-border">Depth (m)</th>
+                              <th className="p-2 border-b border-border">OTU / 10 min</th>
+                              <th className="p-2 border-b border-border">OTU / 20 min</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-[9px]">
+                            <tr className="border-b border-border"><td className="p-2">18</td><td className="p-2 text-center">35.7</td><td className="p-2 text-center">71.3</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">15</td><td className="p-2 text-center">31.7</td><td className="p-2 text-center">63.5</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">13.5</td><td className="p-2 text-center">29.8</td><td className="p-2 text-center">59.5</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">12</td><td className="p-2 text-center">27.7</td><td className="p-2 text-center">55.5</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">9</td><td className="p-2 text-center">23.6</td><td className="p-2 text-center">47.2</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">6</td><td className="p-2 text-center">19.3</td><td className="p-2 text-center">38.6</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">4.5</td><td className="p-2 text-center">17.1</td><td className="p-2 text-center">34.1</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">3</td><td className="p-2 text-center">14.8</td><td className="p-2 text-center">29.6</td></tr>
+                            <tr><td className="p-2">0</td><td className="p-2 text-center">10.0</td><td className="p-2 text-center">20.0</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>A precise registration of OTU is imperative to avoid exceeding limits; the preceding <strong>two weeks</strong> are most relevant. Prior "oxygen history" should be on record but is not directly relevant.</li>
+                        <li>If an OTU limit is exceeded: observe an absolute <strong>no-diving period of ≥ 48 hours</strong>. After each 48-hour no-dive period the OTU count restarts at zero.</li>
+                        <li>If chronic oxygen-toxicity symptoms are suspected: impose a diving ban and consult a qualified diving medical advisor.</li>
+                      </ul>
+                      <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
+                        <strong>Oxygen Limits — OTU</strong><br />
+                        • Daily dose should not exceed <strong>450 OTU</strong> (except emergencies).<br />
+                        • For 7-day schedules: week 1 ≤ <strong>2500 OTU</strong>; weeks 2–3 ≤ <strong>2100 OTU</strong>; then 48 h no diving.<br />
+                        • For &gt;3 weeks continuous (7 d/wk): ≤ <strong>2100 OTU/week</strong>.<br />
+                        • If limits are exceeded, contact a diving doctor for advice on the required no-dive period.
+                      </div>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        ESOT (DMAC 35) — Guidance & Limits
+                      </summary>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                        IMCA/DMAC advise that <strong>ESOT</strong> should replace UPTD as an exposure measure for pulmonary oxygen toxicity (POT) in surface-oriented diving.
+                        Diving should be planned to keep <strong>ESOT &lt; 660</strong> for any single dive.
+                        For multi-day diving, daily exposure should be limited to <strong>660</strong>, <strong>500</strong> and <strong>420</strong> for a maximum of two, five and ten consecutive days of diving respectively.
+                        <strong>Two days off</strong> diving should be planned after multi-day hyperoxic exposures.
+                        Air in-water decompression dives are not expected to cause POT and can take place even on the two days "off diving".
+                      </p>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        These limits should only be relaxed if a <strong>risk assessment</strong>, reviewed by a competent diving physician, has concluded that the exposures will not increase the likelihood or extent of POT.
+                      </p>
+                      <div className="mt-3">
+                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                          <thead className="bg-yellow-50">
+                            <tr>
+                              <th className="p-2 border-b border-border">Daily max ESOT</th>
+                              <th className="p-2 border-b border-border">Max successive days</th>
+                              <th className="p-2 border-b border-border">Min surface interval (h)</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-[9px]">
+                            <tr className="border-b border-border"><td className="p-2">&gt; 660</td><td className="p-2 text-center">0</td><td className="p-2 text-center">24</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">501 – 660</td><td className="p-2 text-center">2</td><td className="p-2 text-center">12</td></tr>
+                            <tr className="border-b border-border"><td className="p-2">420 – 500</td><td className="p-2 text-center">5</td><td className="p-2 text-center">12</td></tr>
+                            <tr><td className="p-2">&lt; 420</td><td className="p-2 text-center">10</td><td className="p-2 text-center">12</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-yellow-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        OTU and ESOT in DCD/NDC Tables
+                      </summary>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                        The standard DCD/NDC tables provide surface decompression with oxygen (<strong>SOX15</strong>), nitrox tables for <strong>40/60</strong> (<strong>NIA15</strong>) and <strong>35/65</strong> (<strong>NIB15</strong>), and wet-bell tables with oxygen (<strong>BOX15</strong>).
+                        In these tables OTU is indicated to prevent long-term oxygen toxicity. As DMAC 35 suggests that ESOT may be a better tool, <strong>OTU and ESOT tables have been prepared</strong> to compare toxic oxygen levels with both tools.
+                      </p>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        For the basic tables with a surface interval of <strong>12 hours</strong>, OTU and ESOT values for each depth/time are presented in the second and third column.
+                        As ESOT declines with time, the recovery ESOT (<strong>recESOT</strong>) must be added to the next dive.
+                        <strong>OTU simply sums</strong> (no intra-day decay). Use the OTU/ESOT calculator in the Tools to compute recESOT and totals.
+                      </p>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Reference: OTU-ESOT Calculator Tool — <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em></li>
+                        <li>Reference: OTU-ESOT Engineering Instruction Video — <em>N-Sea N Drive Folder Training Videos</em></li>
+                        <li>It remains to be seen which method is best; DMAC 35 is guidance, not law.</li>
+                      </ul>
+                    </details>
+                  </div>
+                </>
               ) : openModalId === "otuEsot" ? (
                 <>
                   {/* Overview Section - Moved to Top */}

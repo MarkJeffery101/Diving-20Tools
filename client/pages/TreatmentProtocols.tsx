@@ -153,17 +153,6 @@ export default function TreatmentProtocols() {
           <h2 className="text-sm font-bold text-foreground mb-3">Related Resources</h2>
           <div className="grid md:grid-cols-3 gap-3">
             <Link
-              to="/emergency-procedures"
-              className="p-3 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
-            >
-              <h3 className="font-bold text-foreground group-hover:text-primary text-sm mb-1">
-                Emergency Procedures
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Immediate response protocols
-              </p>
-            </Link>
-            <Link
               to="/tables"
               className="p-3 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
             >

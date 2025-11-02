@@ -47,14 +47,6 @@ export default function NotFound() {
               </li>
               <li>
                 <Link
-                  to="/treatment-protocols"
-                  className="text-primary hover:underline font-medium"
-                >
-                  → Treatment Protocols
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/supporting-info"
                   className="text-primary hover:underline font-medium"
                 >

@@ -406,7 +406,115 @@ export default function SupportingInfo() {
 
             {/* Modal Body */}
             <div className="p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white">
-              {openModalId === "otuEsot" ? (
+              {openModalId === "tableSelection" ? (
+                <>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Selecting the correct decompression table is critical for safe diving. Consider your planned depth, bottom time, gas mix, and personal experience level. Different table systems serve different purposes, from recreational air diving to technical and commercial operations.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Factors to Consider
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Dive depth and planned bottom time</li>
+                        <li>Gas mix (air vs nitrox)</li>
+                        <li>Decompression requirements</li>
+                        <li>Personal experience level</li>
+                        <li>Environmental conditions</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Table Types
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Air tables: Standard no-decompression and decompression schedules</li>
+                        <li>Nitrox tables: Adjusted for oxygen partial pressure</li>
+                        <li>Commercial tables: Extended depth and time protocols</li>
+                        <li>TUP tables: Technical diving profiles</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Selection Process
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Identify your maximum planned depth</li>
+                        <li>Estimate bottom time with safety margin</li>
+                        <li>Choose appropriate table system</li>
+                        <li>Cross-reference with gas available</li>
+                        <li>Verify decompression stop requirements</li>
+                      </ul>
+                    </details>
+                  </div>
+                </>
+              ) : openModalId === "evacuationSurfaceDeco" ? (
+                <>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Emergency evacuation procedures are critical when a diver must be brought to the surface due to platform emergency, uncontrollable hazard, or medical emergency. Accelerated decompression (AED) at 1 msw/minute with mandatory oxygen is the standard protocol for surface-based evacuation scenarios.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Evacuation Criteria
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Platform emergency or loss of chamber capability</li>
+                        <li>Uncontrollable fire or mechanical hazard</li>
+                        <li>Medical emergency requiring immediate evacuation</li>
+                        <li>Dive time within IMCA D014 guidelines</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        AED Protocol
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Linear ascent rate: 1 meter per minute</li>
+                        <li>Helicopter altitude: ≤ 1000 feet if possible</li>
+                        <li>Oxygen breathing mandatory during transfer</li>
+                        <li>Maintain hydration: ~1 liter per hour</li>
+                        <li>Recompression facility coordination essential</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Risk Assessment
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Compare risk of continuing vs accelerated decompression</li>
+                        <li>Consider table used, planned depth, and bottom time</li>
+                        <li>Evaluate actual emergency context</li>
+                        <li>Physician approval required for evacuation plan</li>
+                        <li>AED may be safer than hyperbaric rescue unit (HRU) in many scenarios</li>
+                      </ul>
+                    </details>
+                  </div>
+                </>
+              ) : openModalId === "otuEsot" ? (
                 <>
                   {/* Overview Section - Moved to Top */}
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">

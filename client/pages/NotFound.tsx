@@ -47,14 +47,6 @@ export default function NotFound() {
               </li>
               <li>
                 <Link
-                  to="/emergency-procedures"
-                  className="text-primary hover:underline font-medium"
-                >
-                  → Emergency Procedures
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/treatment-protocols"
                   className="text-primary hover:underline font-medium"
                 >

@@ -239,10 +239,6 @@ export default function SupportingInfo() {
     },
   ];
 
-  const toggleExpanded = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
       <Navigation />
@@ -533,7 +529,7 @@ export default function SupportingInfo() {
                           Exposure as function of pO₂ × time
                         </td>
                         <td className="p-2 text-muted-foreground">
-                          Equivalent surface O₂ time; includes recovery
+                          Equivalent surface O��� time; includes recovery
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">

@@ -499,7 +499,7 @@ export default function TableUse() {
           </div>
 
           {/* Diving Tables Section */}
-          <div>
+          <div className="mt-6">
             <Card>
               <CardHeader className="border-b">
                 <CardTitle className="text-lg flex items-center gap-2">

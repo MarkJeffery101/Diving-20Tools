@@ -11,6 +11,7 @@ import {
   HelpCircle,
   Calculator,
   Share2,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
 

@@ -30,15 +30,6 @@ export default function Index() {
       borderColor: "border-blue-200",
     },
     {
-      title: "Emergency Procedures",
-      description:
-        "Detailed logic trees and protocols for identifying and responding to diving emergencies with actionable steps.",
-      icon: AlertTriangle,
-      href: "/emergency-procedures",
-      color: "bg-red-50 text-red-700",
-      borderColor: "border-red-200",
-    },
-    {
       title: "Treatment Protocols",
       description:
         "Comprehensive treatment protocols and decision trees for managing diving-related medical conditions.",

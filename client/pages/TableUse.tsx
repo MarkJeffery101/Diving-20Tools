@@ -140,55 +140,6 @@ export default function TableUse() {
     },
   ];
 
-  const DetailButton = ({ section, category }: { section: string; category: string }) => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm" onClick={() => setOpenDialog(section)}>
-          View Details
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{section}</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-6 py-4 text-sm">
-          {getDetailContent(section, category).subsections.map((sub, idx) => (
-            <div key={idx}>
-              <h4 className="font-bold text-base mb-2">{sub.title}</h4>
-              <div className="space-y-2">
-                {sub.text.map((line, lineIdx) => (
-                  <p key={lineIdx} className="text-gray-700 leading-relaxed">
-                    {line}
-                  </p>
-                ))}
-                {sub.items && (
-                  <ul className="list-decimal pl-5 space-y-1 mt-2">
-                    {sub.items.map((item, itemIdx) => (
-                      <li key={itemIdx} className="text-gray-700">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {sub.example && (
-                  <p className="text-gray-600 italic mt-2 p-2 bg-blue-50 rounded">
-                    {sub.example}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-          {getDetailContent(section, category).flowchart && (
-            <div className="mt-6 p-4 bg-white rounded-lg border-2 border-gray-200">
-              <h4 className="font-bold text-gray-900 mb-4">Emergency Decision Flowchart</h4>
-              {getDetailContent(section, category).flowchart}
-            </div>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-
   const getDetailContent = (
     section: string,
     category: string

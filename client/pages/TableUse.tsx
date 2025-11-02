@@ -498,67 +498,90 @@ export default function TableUse() {
             ))}
           </div>
 
-          {/* Diving Tables Section */}
-          <div className="mt-6">
-            <Card>
-              <CardHeader className="border-b">
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  Diving Tables
-                </CardTitle>
-                <CardDescription className="text-xs">
-                  Select table and procedure type
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-4 space-y-4">
-                {tables.map((table) => (
-                  <div key={table.id} className="border-b pb-4 last:border-b-0 last:pb-0">
-                    <div className="mb-2">
-                      <h3 className="font-semibold text-sm text-gray-900">
-                        {table.name}
-                      </h3>
-                      <p className="text-xs text-gray-600 mt-0.5">
-                        {table.description}
-                      </p>
-                    </div>
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            {/* Left: Diving Tables */}
+            <div>
+              <Card className="h-full">
+                <CardHeader className="border-b">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <BookOpen className="w-5 h-5" />
+                    Diving Tables
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    Select table and procedure type
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-4 space-y-4">
+                  {tables.map((table) => (
+                    <div key={table.id} className="border-b pb-4 last:border-b-0 last:pb-0">
+                      <div className="mb-2">
+                        <h3 className="font-semibold text-sm text-gray-900">
+                          {table.name}
+                        </h3>
+                        <p className="text-xs text-gray-600 mt-0.5">
+                          {table.description}
+                        </p>
+                      </div>
 
-                    {/* Badge codes */}
-                    <div className="flex flex-wrap gap-1 mb-2">
-                      {table.codes.map((code) => (
-                        <Badge key={code} variant="outline" className="text-xs font-mono h-6">
-                          {code}
-                        </Badge>
-                      ))}
-                    </div>
+                      {/* Badge codes */}
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        {table.codes.map((code) => (
+                          <Badge key={code} variant="outline" className="text-xs font-mono h-6">
+                            {code}
+                          </Badge>
+                        ))}
+                      </div>
 
-                    {/* Procedure buttons */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {table.procedures.normal && (
-                        <ProcedureButton
-                          procedure={table.procedures.normal}
-                          label="Normal Use"
-                          tableId={table.id}
-                        />
-                      )}
-                      {table.procedures.emergency && (
-                        <ProcedureButton
-                          procedure={table.procedures.emergency}
-                          label="Emergency"
-                          tableId={table.id}
-                        />
-                      )}
-                      {table.procedures.crashDive && (
-                        <ProcedureButton
-                          procedure={table.procedures.crashDive}
-                          label="Crash Dive"
-                          tableId={table.id}
-                        />
-                      )}
+                      {/* Procedure buttons */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {table.procedures.normal && (
+                          <ProcedureButton
+                            procedure={table.procedures.normal}
+                            label="Normal Use"
+                            tableId={table.id}
+                          />
+                        )}
+                        {table.procedures.emergency && (
+                          <ProcedureButton
+                            procedure={table.procedures.emergency}
+                            label="Emergency"
+                            tableId={table.id}
+                          />
+                        )}
+                        {table.procedures.crashDive && (
+                          <ProcedureButton
+                            procedure={table.procedures.crashDive}
+                            label="Crash Dive"
+                            tableId={table.id}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right: Emergency Flowcharts (placeholder) */}
+            <div>
+              <Card className="h-full">
+                <CardHeader className="border-b">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5" />
+                    Emergency Flowcharts
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    Interactive decision trees
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <p className="text-xs text-gray-600">
+                    Emergency flowcharts and decision trees will be displayed here.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>

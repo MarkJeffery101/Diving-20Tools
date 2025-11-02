@@ -1429,17 +1429,6 @@ export default function SupportingInfo() {
                 Find the right table
               </p>
             </Link>
-            <Link
-              to="/emergency-procedures"
-              className="p-3 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all group"
-            >
-              <h3 className="font-bold text-foreground group-hover:text-primary text-sm mb-1">
-                Emergency Procedures
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Emergency response protocols
-              </p>
-            </Link>
           </div>
         </div>
       </section>

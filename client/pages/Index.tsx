@@ -86,6 +86,13 @@ export default function Index() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-4 justify-center">
+                <button
+                  onClick={() => startTour(appTourSteps)}
+                  className="px-4 sm:px-10 py-1.5 sm:py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity text-[11px] sm:text-base flex items-center justify-center gap-2"
+                >
+                  <Play className="w-4 h-4" />
+                  Start Guided Tour
+                </button>
                 <Link
                   to="/tables"
                   className="px-4 sm:px-10 py-1.5 sm:py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-[11px] sm:text-base"

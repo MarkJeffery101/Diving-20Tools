@@ -20,6 +20,10 @@ export default function TableDetail() {
   const headerConfig = getTableHeader(code);
   const availableDepths = getAvailableDepths(code);
 
+  // Reference table codes (no depth variants) - must be defined before useEffect
+  const referenceTableCodes = ['ND15', 'LND15'];
+  const isReferenceTable = referenceTableCodes.includes(code);
+
   // Initialize selected depth from URL or use first available depth
   useEffect(() => {
     if (isReferenceTable) {

@@ -746,9 +746,8 @@ export async function parseTableCSV(
     return parseOtuEsotCSV(tableCode, depth);
   }
 
-  // Use specialized parser for BOX15 and variants
-  const box15Codes = ['BOX15', 'H2BOX15', 'H4BOX15'];
-  if (box15Codes.includes(tableCode)) {
+  // Use specialized parser for BOX15
+  if (tableCode === 'BOX15') {
     return parseBox15CSV(tableCode, depth);
   }
 

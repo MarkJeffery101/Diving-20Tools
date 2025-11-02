@@ -302,8 +302,8 @@ export default function SupportingInfo() {
         </div>
       </section>
 
-      {/* OTU/ESOT Modal Overlay */}
-      {otuEsotModalOpen && (
+      {/* Modal Overlay for All Cards */}
+      {openModalId && (
         <div
           className="fixed inset-0 bg-black bg-opacity-25 z-50 flex items-center justify-center p-4"
           onClick={() => setOtuEsotModalOpen(false)}

@@ -11,6 +11,8 @@ import { useTour } from "@/contexts/TourContext";
 import { appTourSteps } from "@/lib/tourSteps";
 
 export default function Index() {
+  const { startTour } = useTour();
+
   const sections = [
     {
       title: "Dive Tables",
@@ -20,6 +22,7 @@ export default function Index() {
       href: "/tables",
       color: "bg-ocean-50 text-ocean-700",
       borderColor: "border-ocean-200",
+      id: "tour-dive-tables",
     },
     {
       title: "Table Selection Logic",
@@ -29,6 +32,7 @@ export default function Index() {
       href: "/table-selection",
       color: "bg-blue-50 text-blue-700",
       borderColor: "border-blue-200",
+      id: "tour-table-selection",
     },
     {
       title: "Supporting Information",
@@ -38,6 +42,7 @@ export default function Index() {
       href: "/supporting-info",
       color: "bg-purple-50 text-purple-700",
       borderColor: "border-purple-200",
+      id: "tour-supporting-info",
     },
   ];
 

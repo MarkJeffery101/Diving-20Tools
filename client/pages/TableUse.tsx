@@ -12,6 +12,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { AlertTriangle, Zap, Clock, BookOpen } from 'lucide-react';
+import {
+  SIL15FlowchartEmergency,
+  SOX15FlowchartEmergency1,
+  NitroxFlowchartEmergency1,
+} from '@/components/flowcharts/EmergencyFlowcharts';
 
 interface ProcedureData {
   title: string;

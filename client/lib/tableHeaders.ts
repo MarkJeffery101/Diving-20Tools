@@ -459,6 +459,10 @@ const tableDepthMap: Record<string, number[]> = {
   // Wet or Dry Bell Tables
   BOX15: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
   BOX15_OTU: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+
+  // No-Stop Air Tables (reference tables - no depth variants)
+  ND15: [],
+  LND15: [],
 };
 
 export function getAvailableDepths(tableCode: string): number[] | undefined {

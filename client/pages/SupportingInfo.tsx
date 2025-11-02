@@ -337,11 +337,8 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed mb-2">
-                      Elevated oxygen partial pressure (↑pO₂) is routinely encountered in nitrox diving, surface decompression with oxygen (SurDO₂), wet bell operations, and Transfer-Under-Pressure (TUP). While beneficial for decompression efficiency, elevated pO₂ carries risks of acute CNS oxygen toxicity and long-term cumulative toxicity affecting the lungs and potentially other systems.
-                    </p>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      To manage exposure, several indices have been developed. Historically, diving practice relied upon UPTD/OTU for cumulative oxygen-dose tracking. In recent years, DMAC-35 has recommended ESOT (Equivalent Surface Oxygen Time) as a better indicator of pulmonary oxygen toxicity, particularly because it accounts for recovery between exposures. <strong>Use UPTD/OTU and ESOT as complementary tools, each with distinct operational strengths and weaknesses.</strong>
+                      High inspired oxygen (↑pO₂) can cause CNS toxicity and lung injury. Two measures assess these risks: OTU (UPTD), which tracks total oxygen dose for systemic effects, and ESOT, which estimates exposure time at a reference pO₂ and accounts for recovery between exposures to better gauge lung injury. Using both OTU and ESOT together offers a more complete assessment of oxygen exposure than either alone.
                     </p>
                   </div>
 

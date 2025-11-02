@@ -316,7 +316,7 @@ export default function SupportingInfo() {
             <div className="sticky top-0 bg-white border-b border-border p-4 flex justify-between items-center">
               <h2 className="text-lg font-bold text-foreground">
                 {openModalId === "otuEsot"
-                  ? "Oxygen Exposure Indices — Academic Overview"
+                  ? "Oxygen Exposure Indices Overview"
                   : sections.find((s) => s.id === openModalId)?.title}
               </h2>
               <button

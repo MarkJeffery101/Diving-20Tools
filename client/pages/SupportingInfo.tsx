@@ -273,6 +273,62 @@ export default function SupportingInfo() {
         },
       ],
     },
+    {
+      id: "tableSelectionConsiderations",
+      title: "Table Selection Considerations",
+      icon: "📊",
+      subsections: [
+        {
+          subtitle: "General Principles",
+          items: [
+            "SIL15: in-water decompression (wet bell or chamber) with flexible repetitive options (H*SIL15); suitable for multiple short dives",
+            "If decompression > 30 min: prefer oxygen-supported staged tables — BOX15 (bell O₂) or SOX15/H4SOX (surface O₂) — when bell/chamber available",
+            "BAB15 / SAB15 / H4SAB15 are backup only if the oxygen system fails",
+          ],
+        },
+        {
+          subtitle: "Effects of Sea State",
+          items: [
+            "Significant waves (≈ ±0.5 m; ~1 m crest-to-trough) destabilise shallow 3 m stops",
+            "If in-water stops are unsafe, consider SOX15: diver in chamber under pressure within 3 minutes of surfacing (delays markedly ↑ DCS risk)",
+            "BOX15 with a bell tolerates larger sea states due to final O₂ stop at 6 m; do not use BOX15 without a bell",
+          ],
+        },
+        {
+          subtitle: "Nitrox Use",
+          items: [
+            "NIA15 (40/60) and NIB15 (35/65) may be used subject to allowable pO₂",
+            "Max pO₂ 1.6 bar; recommended ≤ 1.5 bar. Other mixes on request",
+          ],
+        },
+        {
+          subtitle: "Repetitive Interval, Depth & Time",
+          items: [
+            "Repetitive diving is not standard N-Sea practice; only allowed in emergencies",
+            "Actual repeat interval must be longer than the table's interval (e.g., 5 h since prior dive ⇒ use 4-h table)",
+            "Actual max depth must be less than table depth (e.g., 30 m ⇒ select 33 m table)",
+            "Actual dive time must be less than table time (e.g., 35 min ⇒ choose 40 min in table)",
+          ],
+        },
+        {
+          subtitle: "Ascent Speed",
+          items: [
+            "Max ascent speed 10 m/min; ascent time is not counted as stop time (if exceeded, add excess to stop time)",
+            "Ascent to first stop must be ≥ 5 m/min (if slower, add excess to bottom time)",
+            "Between stops deeper than 6 m: transit ≤ 1 min. At ≤ 6 m: ascent speed is less critical",
+          ],
+        },
+        {
+          subtitle: "Diving Conditions & Choice of Tables",
+          items: [
+            "North Sea: limit in-water stop time to ~30 min (solid black line in SIL15)",
+            "Maintain shallow-stop pressure variation within ±0.5 msw (~0.05 bar)",
+            "Low temperature ⇒ hot-water suits; strong currents may restrict operations",
+            "Supervisor decides suitability; perform LMRA per asset and conditions",
+          ],
+        },
+      ],
+    },
   ];
 
   return (

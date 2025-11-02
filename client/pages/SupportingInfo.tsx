@@ -909,7 +909,7 @@ export default function SupportingInfo() {
                         OTU and ESOT in DCD/NDC Tables
                       </summary>
                       <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
-                        DCD/NDC tables (SOX15, NIA15, NIB15, BOX15) include OTU values. DMAC 35 recommends ESOT as alternative. <strong>OTU and ESOT tables</strong> allow comparison. For 12-h surface intervals, OTU and ESOT shown per depth/time. ESOT decays; add recovery ESOT (recESOT) to next dive. OTU accumulates (no decay). Use Tools calculator for totals.
+                        DCD/NDC tables (<Link to="/tables" className="text-blue-600 hover:text-blue-800 underline">SOX15</Link>, <Link to="/tables" className="text-blue-600 hover:text-blue-800 underline">NIA15</Link>, <Link to="/tables" className="text-blue-600 hover:text-blue-800 underline">NIB15</Link>, <Link to="/tables" className="text-blue-600 hover:text-blue-800 underline">BOX15</Link>) include OTU values. DMAC 35 recommends ESOT as alternative. <strong>OTU and ESOT tables</strong> allow comparison. For 12-h surface intervals, OTU and ESOT shown per depth/time. ESOT decays; add recovery ESOT (recESOT) to next dive. OTU accumulates (no decay). Use Tools calculator for totals.
                       </p>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
                         <li>Reference: OTU-ESOT Calculator Tool — <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em></li>
@@ -1070,7 +1070,7 @@ export default function SupportingInfo() {
                           Dose from pO₂ + time
                         </td>
                         <td className="p-2 text-muted-foreground text-[9px] font-mono">
-                          t × pO₂²·²⁸⁵
+                          t × pO₂²��²⁸⁵
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">

@@ -56,9 +56,9 @@ export function TourPopup() {
 
   useEffect(() => {
     if (isTourActive && currentStepData?.route && currentStepData.route !== window.location.pathname) {
-      window.location.href = currentStepData.route;
+      navigate(currentStepData.route);
     }
-  }, [isTourActive, currentStepData?.route]);
+  }, [isTourActive, currentStepData?.route, navigate]);
 
   if (!isTourActive || !currentStepData) {
     return null;

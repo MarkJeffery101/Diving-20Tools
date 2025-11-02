@@ -29,6 +29,7 @@ export default function App() {
             <Route path="/tables" element={<Tables />} />
             <Route path="/tables/:id" element={<TableDetail />} />
             <Route path="/table-selection" element={<TableSelection />} />
+            <Route path="/table-use" element={<TableUse />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/share" element={<Share />} />
             <Route path="/supporting-info" element={<SupportingInfo />} />

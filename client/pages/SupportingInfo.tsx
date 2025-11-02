@@ -590,6 +590,16 @@ export default function SupportingInfo() {
                 </div>
               </div>
 
+              {/* Key Takeaway */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
+                <h3 className="text-sm font-bold text-foreground mb-2">
+                  Key Takeaway
+                </h3>
+                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                  <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are complementary models. Using both indices together gives a more complete safety picture than using either alone. OTU maintains awareness of systemic burden over multi-week operations, while ESOT better predicts pulmonary risk for daily and repetitive diving with accurate recovery modeling.
+                </p>
+              </div>
+
                 </>
               ) : (
                 <>

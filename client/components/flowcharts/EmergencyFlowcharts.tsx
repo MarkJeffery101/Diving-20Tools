@@ -1,361 +1,297 @@
-// Crash Dive Procedure - Based on PDF
+// Crash Dive Procedure
 export function CrashDiveProcedure() {
   return (
-    <div className="w-full overflow-auto bg-white p-4">
-      <svg viewBox="0 0 500 700" className="mx-auto" preserveAspectRatio="xMidYMid meet">
+    <div className="w-full">
+      <svg viewBox="0 0 300 450" className="w-full h-auto">
         <defs>
-          <style>{`
-            .rounded-box { fill: #0ea5e9; stroke: #0369a1; stroke-width: 2; }
-            .diamond { fill: #06b6d4; stroke: #0369a1; stroke-width: 2; }
-            .rect { fill: #0284c7; stroke: #0369a1; stroke-width: 2; }
-            .text-white { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .text-dark { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .arrow { stroke: #1f2937; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
-          `}</style>
           <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <polygon points="0 0, 10 3, 0 6" fill="#1f2937" />
           </marker>
         </defs>
 
-        {/* Start */}
-        <rect x="150" y="20" width="200" height="60" rx="30" className="rounded-box" />
-        <text x="250" y="55" className="text-white">Dive is interrupted</text>
+        {/* Start: Dive is interrupted */}
+        <rect x="75" y="10" width="150" height="40" rx="20" fill="#0ea5e9" stroke="#0369a1" strokeWidth="2" />
+        <text x="150" y="35" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">Dive is interrupted</text>
 
-        {/* Arrow down */}
-        <path d="M 250 80 L 250 130" className="arrow" />
+        {/* Arrow */}
+        <path d="M 150 50 L 150 75" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
 
-        {/* Decision Diamond */}
-        <polygon points="250,130 350,190 250,250 150,190" className="diamond" />
-        <text x="250" y="185" className="text-white">Repeat interval</text>
-        <text x="250" y="205" className="text-white">&gt; 4 hrs?</text>
+        {/* Decision: Repeat > 4 hrs? */}
+        <polygon points="150,75 210,110 150,145 90,110" fill="#06b6d4" stroke="#0369a1" strokeWidth="2" />
+        <text x="150" y="110" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Repeat</text>
+        <text x="150" y="125" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">&gt; 4 hrs?</text>
 
-        {/* YES arrow right */}
-        <path d="M 350 190 L 420 190" className="arrow" />
-        <text x="380" y="180" className="text-dark">YES</text>
-        <rect x="420" y="160" width="60" height="60" rx="5" className="rect" />
-        <text x="450" y="190" className="text-white">Surface/</text>
-        <text x="450" y="205" className="text-white">ox-table</text>
+        {/* YES - Surface/ox-table */}
+        <path d="M 210 110 L 240 110" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
+        <text x="225" y="105" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
+        <rect x="240" y="90" width="50" height="40" rx="4" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
+        <text x="265" y="115" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">Surface/</text>
+        <text x="265" y="127" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">ox-table</text>
 
-        {/* NO arrow down */}
-        <path d="M 250 250 L 250 310" className="arrow" />
-        <text x="270" y="285" className="text-dark">NO</text>
+        {/* NO - Down */}
+        <path d="M 150 145 L 150 180" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
+        <text x="165" y="165" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* Emergency decompression box */}
-        <rect x="50" y="310" width="400" height="60" rx="5" className="rect" />
-        <text x="250" y="340" className="text-white">Emergency decompression crash dive</text>
-        <text x="250" y="360" className="text-white">procedure (§ 9.3)</text>
+        {/* Emergency box */}
+        <rect x="30" y="180" width="240" height="50" rx="4" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
+        <text x="150" y="205" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Emergency decompression crash dive</text>
 
-        {/* Arrow down */}
-        <path d="M 250 370 L 250 420" className="arrow" />
+        {/* Arrow */}
+        <path d="M 150 230 L 150 260" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
 
-        {/* Decision Diamond */}
-        <polygon points="250,420 350,480 250,540 150,480" className="diamond" />
-        <text x="250" y="480" className="text-white">Oxygen</text>
-        <text x="250" y="500" className="text-white">available?</text>
+        {/* Decision: Oxygen available? */}
+        <polygon points="150,260 210,295 150,330 90,295" fill="#06b6d4" stroke="#0369a1" strokeWidth="2" />
+        <text x="150" y="295" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Oxygen</text>
+        <text x="150" y="310" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">available?</text>
 
-        {/* YES arrow right */}
-        <path d="M 350 480 L 420 480" className="arrow" />
-        <text x="380" y="470" className="text-dark">YES</text>
-        <rect x="420" y="450" width="60" height="60" rx="5" className="rect" />
-        <text x="450" y="480" className="text-white">From 12m</text>
-        <text x="450" y="495" className="text-white">20min O₂</text>
+        {/* YES - Oxygen protocol */}
+        <path d="M 210 295 L 240 295" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
+        <text x="225" y="290" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
+        <rect x="240" y="275" width="50" height="40" rx="4" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
+        <text x="265" y="295" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">20min O₂</text>
+        <text x="265" y="307" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">5min air</text>
 
-        {/* NO arrow down */}
-        <path d="M 250 540 L 250 600" className="arrow" />
-        <text x="270" y="575" className="text-dark">NO</text>
+        {/* NO - Down */}
+        <path d="M 150 330 L 150 360" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
+        <text x="165" y="350" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* Bottom outcomes */}
-        <rect x="70" y="600" width="140" height="80" rx="5" className="rect" />
-        <text x="140" y="625" className="text-white">4 hrs near</text>
-        <text x="140" y="645" className="text-white">decompression</text>
-        <text x="140" y="665" className="text-white">chamber</text>
+        {/* Bottom: 4 hrs outcome */}
+        <rect x="60" y="360" width="90" height="60" rx="4" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
+        <text x="105" y="380" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">4 hrs near</text>
+        <text x="105" y="395" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">decompression</text>
+        <text x="105" y="410" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">chamber</text>
 
-        <rect x="290" y="600" width="140" height="80" rx="5" className="rect" />
-        <text x="360" y="625" className="text-white">2 hrs near</text>
-        <text x="360" y="645" className="text-white">decompression</text>
-        <text x="360" y="665" className="text-white">chamber</text>
+        {/* Connect YES oxygen down and to right outcome */}
+        <path d="M 265 315 L 265 340 L 195 340 L 195 360" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
 
-        {/* Connect YES outcome down */}
-        <path d="M 450 510 L 450 550 L 360 550 L 360 600" className="arrow" />
+        {/* Bottom: 2 hrs outcome */}
+        <rect x="150" y="360" width="90" height="60" rx="4" fill="#0284c7" stroke="#0369a1" strokeWidth="2" />
+        <text x="195" y="380" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">2 hrs near</text>
+        <text x="195" y="395" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">decompression</text>
+        <text x="195" y="410" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">chamber</text>
       </svg>
     </div>
   );
 }
 
-// Oxygen Failure During Decompression - Based on PDF
+// Oxygen Failure During Decompression
 export function OxygenFailureDuringDecompression() {
   return (
-    <div className="w-full overflow-auto bg-white p-4">
-      <svg viewBox="0 0 500 800" className="mx-auto" preserveAspectRatio="xMidYMid meet">
+    <div className="w-full">
+      <svg viewBox="0 0 320 480" className="w-full h-auto">
         <defs>
-          <style>{`
-            .rounded-box { fill: #f97316; stroke: #c2410c; stroke-width: 2; }
-            .diamond { fill: #fb923c; stroke: #c2410c; stroke-width: 2; }
-            .rect { fill: #fdba74; stroke: #c2410c; stroke-width: 2; }
-            .text-white { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .text-dark { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .arrow { stroke: #1f2937; stroke-width: 2; fill: none; marker-end: url(#arrowhead2); }
-          `}</style>
           <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <polygon points="0 0, 10 3, 0 6" fill="#1f2937" />
           </marker>
         </defs>
 
-        {/* Start */}
-        <rect x="140" y="20" width="220" height="60" rx="30" className="rounded-box" />
-        <text x="250" y="55" className="text-white">Oxygen failure</text>
+        {/* Start: Oxygen failure */}
+        <rect x="80" y="10" width="160" height="40" rx="20" fill="#f97316" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="35" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">Oxygen failure</text>
 
-        {/* Arrow down */}
-        <path d="M 250 80 L 250 130" className="arrow" />
+        {/* Arrow */}
+        <path d="M 160 50 L 160 75" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
 
-        {/* Surface air table */}
-        <rect x="100" y="130" width="300" height="50" rx="5" className="rect" />
-        <text x="250" y="160" className="text-white">Surface air table (SAB)</text>
+        {/* Process: Surface air table */}
+        <rect x="70" y="75" width="180" height="40" rx="4" fill="#fdba74" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="101" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Surface air table (SAB)</text>
 
-        {/* Arrow down */}
-        <path d="M 250 180 L 250 230" className="arrow" />
+        {/* Arrow */}
+        <path d="M 160 115 L 160 140" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
 
-        {/* Decision Diamond - Oxygen restored? */}
-        <polygon points="250,230 350,290 250,350 150,290" className="diamond" />
-        <text x="250" y="295" className="text-white">Oxygen</text>
-        <text x="250" y="315" className="text-white">restored?</text>
+        {/* Decision: Oxygen restored? */}
+        <polygon points="160,140 220,175 160,210 100,175" fill="#fb923c" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="175" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Oxygen</text>
+        <text x="160" y="190" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">restored?</text>
 
         {/* NO loop back */}
-        <path d="M 150 290 L 80 290 L 80 155 L 100 155" className="arrow" />
-        <text x="100" y="280" className="text-dark">NO</text>
+        <path d="M 100 175 L 50 175 L 50 95 L 70 95" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
+        <text x="70" y="170" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* YES arrow down */}
-        <path d="M 250 350 L 250 400" className="arrow" />
-        <text x="270" y="380" className="text-dark">YES</text>
+        {/* YES down */}
+        <path d="M 160 210 L 160 240" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
+        <text x="175" y="230" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
 
-        {/* From 12 metres 20 min oxygen */}
-        <rect x="70" y="400" width="360" height="50" rx="5" className="rect" />
-        <text x="250" y="430" className="text-white">From 12 metres 20 min. oxygen and 5 min. air</text>
+        {/* 20min O2, 5min air */}
+        <rect x="60" y="240" width="200" height="40" rx="4" fill="#fdba74" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="266" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">20min O₂ and 5min air</text>
 
-        {/* Arrow down */}
-        <path d="M 250 450 L 250 500" className="arrow" />
+        {/* Arrow */}
+        <path d="M 160 280 L 160 305" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
 
-        {/* Decision Diamond - OTU > 450? */}
-        <polygon points="250,500 350,560 250,620 150,560" className="diamond" />
-        <text x="250" y="560" className="text-white">OTU</text>
-        <text x="250" y="580" className="text-white">&gt; 450?</text>
+        {/* Decision: OTU > 450? */}
+        <polygon points="160,305 220,340 160,375 100,340" fill="#fb923c" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="340" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">OTU</text>
+        <text x="160" y="355" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">&gt; 450?</text>
 
         {/* NO loop back to oxygen */}
-        <path d="M 150 560 L 80 560 L 80 425 L 70 425" className="arrow" />
-        <text x="100" y="550" className="text-dark">NO</text>
+        <path d="M 100 340 L 50 340 L 50 260 L 60 260" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
+        <text x="70" y="335" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* YES arrow down */}
-        <path d="M 250 620 L 250 670" className="arrow" />
-        <text x="270" y="650" className="text-dark">YES</text>
+        {/* YES down */}
+        <path d="M 160 375 L 160 400" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead2)" />
+        <text x="175" y="390" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
 
-        {/* Decision Diamond - Oxygen intake > 1/3? */}
-        <polygon points="250,670 350,730 250,790 150,730" className="diamond" />
-        <text x="250" y="730" className="text-white">O₂ intake</text>
-        <text x="250" y="750" className="text-white">&gt; 1/3?</text>
-
-        {/* NO outcome - 4 hrs */}
-        <path d="M 150 730 L 80 730 L 80 660" className="arrow" />
-        <text x="100" y="720" className="text-dark">NO</text>
-        <rect x="20" y="660" width="120" height="80" rx="5" className="rect" />
-        <text x="80" y="690" className="text-white">4 hrs near</text>
-        <text x="80" y="710" className="text-white">decompression</text>
-        <text x="80" y="730" className="text-white">chamber</text>
-
-        {/* YES outcome - 2 hrs */}
-        <path d="M 350 730 L 420 730 L 420 660" className="arrow" />
-        <text x="380" y="720" className="text-dark">YES</text>
-        <rect x="360" y="660" width="120" height="80" rx="5" className="rect" />
-        <text x="420" y="690" className="text-white">2 hrs near</text>
-        <text x="420" y="710" className="text-white">decompression</text>
-        <text x="420" y="730" className="text-white">chamber</text>
+        {/* Decision: O2 intake > 1/3? */}
+        <polygon points="160,400 220,435 160,470 100,435" fill="#fb923c" stroke="#c2410c" strokeWidth="2" />
+        <text x="160" y="435" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">O₂ &gt; 1/3?</text>
       </svg>
     </div>
   );
 }
 
-// Surface Decompression Required - Based on PDF
+// Surface Decompression Required
 export function SurfaceDecompressionRequired() {
   return (
-    <div className="w-full overflow-auto bg-white p-4">
-      <svg viewBox="0 0 500 800" className="mx-auto" preserveAspectRatio="xMidYMid meet">
+    <div className="w-full">
+      <svg viewBox="0 0 340 460" className="w-full h-auto">
         <defs>
-          <style>{`
-            .rounded-box { fill: #06b6d4; stroke: #0369a1; stroke-width: 2; }
-            .diamond { fill: #22d3ee; stroke: #0369a1; stroke-width: 2; }
-            .rect { fill: #67e8f9; stroke: #0369a1; stroke-width: 2; }
-            .text-white { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .text-dark { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .arrow { stroke: #1f2937; stroke-width: 2; fill: none; marker-end: url(#arrowhead3); }
-          `}</style>
           <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <polygon points="0 0, 10 3, 0 6" fill="#1f2937" />
           </marker>
         </defs>
 
-        {/* Start */}
-        <rect x="100" y="20" width="300" height="60" rx="30" className="rounded-box" />
-        <text x="250" y="55" className="text-white">Need for surface decompression</text>
+        {/* Start: Need surface decompression */}
+        <rect x="60" y="10" width="220" height="40" rx="20" fill="#06b6d4" stroke="#0369a1" strokeWidth="2" />
+        <text x="170" y="35" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">Need surface decompression</text>
 
-        {/* Arrow down */}
-        <path d="M 250 80 L 250 130" className="arrow" />
+        {/* Arrow */}
+        <path d="M 170 50 L 170 75" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
 
-        {/* Decision Diamond */}
-        <polygon points="250,130 350,190 250,250 150,190" className="diamond" />
-        <text x="250" y="185" className="text-white">Repeat interval</text>
-        <text x="250" y="205" className="text-white">&gt; 4 hrs?</text>
+        {/* Decision: Repeat > 4 hrs? */}
+        <polygon points="170,75 230,110 170,145 110,110" fill="#22d3ee" stroke="#0369a1" strokeWidth="2" />
+        <text x="170" y="110" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Repeat</text>
+        <text x="170" y="125" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">&gt; 4 hrs?</text>
 
-        {/* YES arrow right */}
-        <path d="M 350 190 L 420 190" className="arrow" />
-        <text x="380" y="180" className="text-dark">YES</text>
-        <rect x="420" y="160" width="70" height="60" rx="5" className="rect" />
-        <text x="455" y="190" className="text-white">Air or surface</text>
-        <text x="455" y="210" className="text-white">ox table</text>
+        {/* YES - Air or SOX */}
+        <path d="M 230 110 L 265 110" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
+        <text x="250" y="105" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
+        <rect x="265" y="90" width="60" height="40" rx="4" fill="#67e8f9" stroke="#0369a1" strokeWidth="2" />
+        <text x="295" y="115" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">Air/SOX</text>
 
-        {/* NO arrow down */}
-        <path d="M 250 250 L 250 310" className="arrow" />
-        <text x="270" y="285" className="text-dark">NO</text>
+        {/* NO - Down */}
+        <path d="M 170 145 L 170 180" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
+        <text x="185" y="165" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* Emergency decompression */}
-        <rect x="30" y="310" width="440" height="60" rx="5" className="rect" />
-        <text x="250" y="335" className="text-white">Emergency decompression crash dive</text>
-        <text x="250" y="355" className="text-white">procedure</text>
+        {/* Emergency crash dive */}
+        <rect x="35" y="180" width="270" height="50" rx="4" fill="#67e8f9" stroke="#0369a1" strokeWidth="2" />
+        <text x="170" y="205" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Emergency decompression crash dive</text>
 
-        {/* Arrow down */}
-        <path d="M 250 370 L 250 420" className="arrow" />
+        {/* Arrow */}
+        <path d="M 170 230 L 170 260" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
 
-        {/* Decision Diamond */}
-        <polygon points="250,420 350,480 250,540 150,480" className="diamond" />
-        <text x="250" y="485" className="text-white">Oxygen</text>
-        <text x="250" y="505" className="text-white">available?</text>
+        {/* Decision: Oxygen available? */}
+        <polygon points="170,260 230,295 170,330 110,295" fill="#22d3ee" stroke="#0369a1" strokeWidth="2" />
+        <text x="170" y="295" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Oxygen</text>
+        <text x="170" y="310" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">available?</text>
 
-        {/* YES arrow right */}
-        <path d="M 350 480 L 420 480" className="arrow" />
-        <text x="380" y="470" className="text-dark">YES</text>
+        {/* YES - Right */}
+        <path d="M 230 295 L 265 295" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
+        <text x="250" y="290" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
 
-        {/* Decision Diamond - OTU */}
-        <polygon points="420,465 490,520 420,575 350,520" className="diamond" />
-        <text x="420" y="520" className="text-white">OTU</text>
-        <text x="420" y="540" className="text-white">&gt;450?</text>
+        {/* Decision: OTU */}
+        <polygon points="280,280 310,295 280,310 250,295" fill="#22d3ee" stroke="#0369a1" strokeWidth="2" />
+        <text x="280" y="298" fontSize="9" fontWeight="bold" fill="white" textAnchor="middle">OTU?</text>
 
-        {/* YES - Air only */}
-        <path d="M 490 520 L 430 625" className="arrow" />
-        <text x="470" y="570" className="text-dark">YES</text>
-        <rect x="370" y="625" width="120" height="50" rx="5" className="rect" />
-        <text x="430" y="655" className="text-white">Air only</text>
+        {/* NO - Down */}
+        <path d="M 170 330 L 170 365" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
+        <text x="185" y="350" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
 
-        {/* NO - Continue down */}
-        <path d="M 250 540 L 250 625" className="arrow" />
-        <text x="270" y="580" className="text-dark">NO</text>
-        <rect x="170" y="625" width="160" height="50" rx="5" className="rect" />
-        <text x="250" y="655" className="text-white">20min O₂, 5min air</text>
+        {/* 20min O2 */}
+        <rect x="100" y="365" width="140" height="40" rx="4" fill="#67e8f9" stroke="#0369a1" strokeWidth="2" />
+        <text x="170" y="391" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">20min O₂, 5min air</text>
 
-        {/* Final outcomes */}
-        <rect x="50" y="700" width="140" height="80" rx="5" className="rect" />
-        <text x="120" y="730" className="text-white">4 hrs near</text>
-        <text x="120" y="750" className="text-white">decompression</text>
-        <text x="120" y="770" className="text-white">chamber</text>
+        {/* Outcomes - left */}
+        <rect x="40" y="420" width="110" height="35" rx="4" fill="#67e8f9" stroke="#0369a1" strokeWidth="2" />
+        <text x="95" y="442" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">4 hrs near</text>
 
-        <rect x="310" y="700" width="140" height="80" rx="5" className="rect" />
-        <text x="380" y="730" className="text-white">2 hrs near</text>
-        <text x="380" y="750" className="text-white">decompression</text>
-        <text x="380" y="770" className="text-white">chamber</text>
+        {/* Outcomes - right */}
+        <rect x="190" y="420" width="110" height="35" rx="4" fill="#67e8f9" stroke="#0369a1" strokeWidth="2" />
+        <text x="245" y="442" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">2 hrs near</text>
 
-        {/* Connect to outcomes */}
-        <path d="M 250 675 L 250 700" className="arrow" />
-        <path d="M 430 675 L 380 700" className="arrow" />
+        {/* Connect down to outcomes */}
+        <path d="M 170 405 L 170 420" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead3)" />
       </svg>
     </div>
   );
 }
 
-// Irregularity During Decompression - Based on PDF
+// Irregularity During Decompression
 export function IrregularityDuringDecompression() {
   return (
-    <div className="w-full overflow-auto bg-white p-4">
-      <svg viewBox="0 0 500 800" className="mx-auto" preserveAspectRatio="xMidYMid meet">
+    <div className="w-full">
+      <svg viewBox="0 0 320 480" className="w-full h-auto">
         <defs>
-          <style>{`
-            .rounded-box { fill: #3b82f6; stroke: #1e40af; stroke-width: 2; }
-            .diamond { fill: #60a5fa; stroke: #1e40af; stroke-width: 2; }
-            .rect { fill: #93c5fd; stroke: #1e40af; stroke-width: 2; }
-            .text-white { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .text-dark { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .arrow { stroke: #1f2937; stroke-width: 2; fill: none; marker-end: url(#arrowhead4); }
-          `}</style>
           <marker id="arrowhead4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <polygon points="0 0, 10 3, 0 6" fill="#1f2937" />
           </marker>
         </defs>
 
         {/* Start */}
-        <rect x="110" y="20" width="280" height="60" rx="30" className="rounded-box" />
-        <text x="250" y="55" className="text-white">Irregularity in decompression</text>
+        <rect x="55" y="10" width="210" height="40" rx="20" fill="#3b82f6" stroke="#1e40af" strokeWidth="2" />
+        <text x="160" y="35" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle">Irregularity in decompression</text>
+
+        {/* Arrow */}
+        <path d="M 160 50 L 160 75" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+
+        {/* Decision: Oxygen available? */}
+        <polygon points="160,75 220,110 160,145 100,110" fill="#60a5fa" stroke="#1e40af" strokeWidth="2" />
+        <text x="160" y="110" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">Oxygen</text>
+        <text x="160" y="125" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">available?</text>
+
+        {/* NO - Left to Table 3 */}
+        <path d="M 100 110 L 50 110 L 50 155" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+        <text x="70" y="105" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
+        <rect x="20" y="155" width="60" height="35" rx="4" fill="#93c5fd" stroke="#1e40af" strokeWidth="2" />
+        <text x="50" y="177" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">Table 3</text>
+
+        {/* YES - Down */}
+        <path d="M 160 145 L 160 180" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+        <text x="175" y="165" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
+
+        {/* Table 5 */}
+        <rect x="110" y="180" width="100" height="35" rx="4" fill="#93c5fd" stroke="#1e40af" strokeWidth="2" />
+        <text x="160" y="202" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">Table 5</text>
+
+        {/* Arrow */}
+        <path d="M 160 215 L 160 245" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+
+        {/* Decision: DCS Symptoms? */}
+        <polygon points="160,245 220,280 160,315 100,280" fill="#60a5fa" stroke="#1e40af" strokeWidth="2" />
+        <text x="160" y="280" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">DCS</text>
+        <text x="160" y="295" fontSize="11" fontWeight="bold" fill="white" textAnchor="middle">symptoms?</text>
+
+        {/* NO - Right */}
+        <path d="M 220 280 L 255 280 L 255 345" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+        <text x="240" y="275" fontSize="10" fontWeight="bold" fill="#1f2937">NO</text>
+
+        {/* YES - Down */}
+        <path d="M 160 315 L 160 350" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
+        <text x="175" y="335" fontSize="10" fontWeight="bold" fill="#1f2937">YES</text>
+
+        {/* Table 6 or 4 */}
+        <rect x="100" y="350" width="120" height="35" rx="4" fill="#93c5fd" stroke="#1e40af" strokeWidth="2" />
+        <text x="160" y="372" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">Table 6 or 4</text>
 
         {/* Arrow down */}
-        <path d="M 250 80 L 250 130" className="arrow" />
+        <path d="M 160 385 L 160 410" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
 
-        {/* Decision Diamond */}
-        <polygon points="250,130 350,190 250,250 150,190" className="diamond" />
-        <text x="250" y="195" className="text-white">Oxygen</text>
-        <text x="250" y="215" className="text-white">available?</text>
+        {/* Left outcome - 4 hrs */}
+        <rect x="50" y="410" width="110" height="35" rx="4" fill="#93c5fd" stroke="#1e40af" strokeWidth="2" />
+        <text x="105" y="432" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">4 hrs near</text>
 
-        {/* NO arrow left */}
-        <path d="M 150 190 L 70 190" className="arrow" />
-        <text x="100" y="180" className="text-dark">NO</text>
-        <rect x="20" y="160" width="100" height="60" rx="5" className="rect" />
-        <text x="70" y="195" className="text-white">Treatment</text>
-        <text x="70" y="215" className="text-white">table 3</text>
+        {/* Right outcome - 2 hrs */}
+        <rect x="160" y="410" width="110" height="35" rx="4" fill="#93c5fd" stroke="#1e40af" strokeWidth="2" />
+        <text x="215" y="432" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">2 hrs near</text>
 
-        {/* YES arrow down */}
-        <path d="M 250 250 L 250 310" className="arrow" />
-        <text x="270" y="285" className="text-dark">YES</text>
-
-        {/* Treatment table 5 */}
-        <rect x="150" y="310" width="200" height="50" rx="5" className="rect" />
-        <text x="250" y="340" className="text-white">Treatment table 5</text>
-
-        {/* Arrow down */}
-        <path d="M 250 360 L 250 410" className="arrow" />
-
-        {/* Decision Diamond - DCS Symptoms */}
-        <polygon points="250,410 350,470 250,530 150,470" className="diamond" />
-        <text x="250" y="470" className="text-white">Symptoms of</text>
-        <text x="250" y="490" className="text-white">DCS?</text>
-
-        {/* NO arrow right */}
-        <path d="M 350 470 L 420 470 L 420 570" className="arrow" />
-        <text x="380" y="460" className="text-dark">NO</text>
-
-        {/* YES arrow down */}
-        <path d="M 250 530 L 250 580" className="arrow" />
-        <text x="270" y="560" className="text-dark">YES</text>
-
-        {/* Treatment table 6 or 4 */}
-        <rect x="130" y="580" width="240" height="50" rx="5" className="rect" />
-        <text x="250" y="610" className="text-white">Treatment table 6 or 4</text>
-
-        {/* Arrow down */}
-        <path d="M 250 630 L 250 680" className="arrow" />
-
-        {/* Final outcomes */}
-        <rect x="70" y="680" width="140" height="80" rx="5" className="rect" />
-        <text x="140" y="710" className="text-white">4 hrs near</text>
-        <text x="140" y="730" className="text-white">decompression</text>
-        <text x="140" y="750" className="text-white">chamber</text>
-
-        <rect x="290" y="680" width="140" height="80" rx="5" className="rect" />
-        <text x="360" y="710" className="text-white">2 hrs near</text>
-        <text x="360" y="730" className="text-white">decompression</text>
-        <text x="360" y="750" className="text-white">chamber</text>
-
-        {/* Connect NO path down */}
-        <path d="M 420 570 L 420 650 L 360 650 L 360 680" className="arrow" />
+        {/* Connect NO down */}
+        <path d="M 255 345 L 255 365 L 215 365 L 215 410" stroke="#1f2937" strokeWidth="2" fill="none" markerEnd="url(#arrowhead4)" />
       </svg>
     </div>
   );
 }
 
-// Backward compatibility - export with old names
+// Backward compatibility
 export const SIL15FlowchartEmergency = CrashDiveProcedure;
 export const SOX15FlowchartEmergency1 = OxygenFailureDuringDecompression;
 export const NitroxFlowchartEmergency1 = SurfaceDecompressionRequired;

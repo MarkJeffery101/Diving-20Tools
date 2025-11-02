@@ -86,10 +86,6 @@ export default function TableDetail() {
   const otuEsotCodes = ['SOX15_OTU', 'NIA15_OTU', 'NIB15_OTU', 'BOX15_OTU'];
   const isOtuEsotTable = otuEsotCodes.includes(code);
 
-  // Reference table codes (no depth variants)
-  const referenceTableCodes = ['ND15', 'LND15'];
-  const isReferenceTable = referenceTableCodes.includes(code);
-
   // Map oxygen column names for SOX15 tables
   const oxygenColumnNames = ['12 oxygen', '12 ox', '9 oxygen', '9 ox', '6 oxygen', '6 ox', '3 oxygen', '3 ox'];
 

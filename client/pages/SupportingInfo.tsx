@@ -14,7 +14,12 @@ export default function SupportingInfo() {
     return parts.map((part, idx) => {
       if (tableCodes.includes(part)) {
         return (
-          <Link key={idx} to="/tables" className="text-blue-600 hover:text-blue-800 underline font-semibold">
+          <Link
+            key={idx}
+            to="/tables"
+            state={{ from: "supporting-info", modalId: openModalId }}
+            className="text-blue-600 hover:text-blue-800 underline font-semibold"
+          >
             {part}
           </Link>
         );
@@ -628,7 +633,7 @@ export default function SupportingInfo() {
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
                         <li>O₂ or high-pO₂ gas before and during AED is recommended but must not delay the start.</li>
-                        <li>If a fire hazard exists near the chamber, proceed without O₂/high-pO₂ gas.</li>
+                        <li>If a fire hazard exists near the chamber, proceed without O₂/high-pO��� gas.</li>
                         <li>O₂ breathing during transfer to the next recompression facility is mandatory (via semi-closed O₂ rebreathers).</li>
                       </ul>
                     </details>

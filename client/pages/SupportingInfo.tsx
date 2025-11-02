@@ -384,10 +384,12 @@ export default function SupportingInfo() {
                 {/* ESOT Card */}
                 <div className="bg-white border border-border rounded-lg p-3">
                   <h3 className="text-sm font-bold text-foreground mb-1">
-                    ESOT (Equivalent Surface Oxygen Time)
+                    ESOT
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    <span className="font-semibold">Pulmonary Focus:</span> DMAC-35 recommended. Represents exposure as "equivalent minutes of 100% O₂ at the surface," enabling dose + recovery modelling for <em>pulmonary</em> risk. Derived from Arieli-type modelling and best predicts lung injury, especially for varying pO₂ segments and repetitive exposures.
+                    Represents exposure as "equivalent minutes of 100% O₂ at the
+                    surface," enabling dose + recovery modelling for pulmonary
+                    risk.
                   </p>
 
                   <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">

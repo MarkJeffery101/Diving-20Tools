@@ -335,27 +335,63 @@ export default function SupportingInfo() {
       <section className="py-6 px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sections.map((section) => (
-              <div
-                key={section.id}
-                className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
-                <button
-                  onClick={() => setOpenModalId(section.id)}
-                  className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
+            {sections.map((section) => {
+              const isExpanded = expandedId === section.id;
+              const isAccordionCard = ["tableSelection", "evacuationSurfaceDeco"].includes(section.id);
+
+              return (
+                <div
+                  key={section.id}
+                  className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg">{section.icon}</span>
-                      <h2 className="text-sm font-bold text-foreground">
-                        {section.title}
-                      </h2>
+                  <button
+                    onClick={() => {
+                      if (isAccordionCard) {
+                        toggleExpanded(section.id);
+                      } else {
+                        setOpenModalId(section.id);
+                      }
+                    }}
+                    className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
+                  >
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-lg">{section.icon}</span>
+                        <h2 className="text-sm font-bold text-foreground">
+                          {section.title}
+                        </h2>
+                      </div>
                     </div>
-                  </div>
-                  <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                </button>
-              </div>
-            ))}
+                    <ChevronDown
+                      className={`h-4 w-4 text-muted-foreground flex-shrink-0 transition-transform ${
+                        isAccordionCard && isExpanded ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Accordion Content */}
+                  {isAccordionCard && isExpanded && (
+                    <div className="border-t border-border p-3 bg-gray-50 space-y-3">
+                      {section.subsections.map((sub, idx) => (
+                        <div key={idx}>
+                          <h3 className="text-sm font-bold text-foreground mb-2">
+                            {sub.subtitle}
+                          </h3>
+                          <ul className="space-y-2 text-xs text-muted-foreground">
+                            {sub.items.map((item, itemIdx) => (
+                              <li key={itemIdx} className="flex gap-2">
+                                <span className="text-primary font-bold flex-shrink-0">▶</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
             {/* OTU/ESOT Overview Card */}
             <div className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">

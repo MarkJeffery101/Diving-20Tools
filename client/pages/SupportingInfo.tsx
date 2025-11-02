@@ -330,8 +330,10 @@ export default function SupportingInfo() {
 
             {/* Modal Body */}
             <div className="p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white">
-              {/* Intro Section */}
-              <div className="bg-white border border-border rounded-lg p-3">
+              {openModalId === "otuEsot" ? (
+                <>
+                  {/* Intro Section */}
+                  <div className="bg-white border border-border rounded-lg p-3">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Elevated inspired oxygen (↑pO₂) carries risks of acute CNS
                   toxicity and long-term cumulative effects. Two complementary
@@ -572,6 +574,26 @@ export default function SupportingInfo() {
                   either alone.
                 </p>
               </div>
+                </>
+              ) : (
+                <>
+                  {sections.find((s) => s.id === openModalId)?.subsections.map((sub, idx) => (
+                    <div key={idx}>
+                      <h3 className="text-sm font-bold text-foreground mb-2">
+                        {sub.subtitle}
+                      </h3>
+                      <ul className="space-y-2 text-xs text-muted-foreground">
+                        {sub.items.map((item, itemIdx) => (
+                          <li key={itemIdx} className="flex gap-2">
+                            <span className="text-primary font-bold flex-shrink-0">▶</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>

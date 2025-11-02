@@ -291,6 +291,15 @@ export default function Tables() {
       {/* Page Header */}
       <section className="py-4 px-4 bg-white border-b border-border">
         <div className="container mx-auto">
+          {backState?.from === "supporting-info" && (
+            <button
+              onClick={() => navigate("/supporting-info", { state: { modalId: backState.modalId } })}
+              className="flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-3 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span className="text-sm font-medium">Back to Guidance</span>
+            </button>
+          )}
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             Dive Tables Index
           </h1>

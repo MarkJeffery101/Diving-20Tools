@@ -504,12 +504,12 @@ export default function TableUse() {
                                 <h4 className="font-semibold text-gray-900">
                                   {sub.title}
                                 </h4>
-                                {sub.text.length <= 2 && !sub.items && (
+                                {sub.text && sub.text.length <= 2 && !sub.items && (
                                   <p className="text-sm text-gray-700">
                                     {sub.text[0]}
                                   </p>
                                 )}
-                                {sub.text.length > 2 && !sub.items && (
+                                {sub.text && sub.text.length > 2 && !sub.items && (
                                   <p className="text-sm text-gray-600">
                                     {sub.text[0]}
                                   </p>

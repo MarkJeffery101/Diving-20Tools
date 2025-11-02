@@ -158,7 +158,23 @@ const tablesData: Level1Item[] = [
   {
     name: "Wet or Dry Bell Air/Oxygen Tables",
     tag: "Wet/Dry Bell",
-    children: [],
+    children: [
+      {
+        name: "Repetitive Interval 12 Hours",
+        code: "BOX15",
+        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+      },
+      {
+        name: "Repetitive Interval 2 Hours",
+        code: "H2BOX15",
+        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+      },
+      {
+        name: "Repetitive Interval 4 Hours",
+        code: "H4BOX15",
+        depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+      },
+    ],
   },
   {
     name: "Treatment Tables DCS & AGE",

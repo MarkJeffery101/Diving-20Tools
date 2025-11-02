@@ -129,6 +129,24 @@ export default function TableDetail() {
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto w-full">
+          {/* Descriptive Text for Reference Tables */}
+          {isReferenceTable && (
+            <div className="mb-6 text-sm sm:text-base text-gray-700 space-y-2">
+              {code === 'ND15' && (
+                <>
+                  <p>Maximum ascent speed: 10 metres/minute</p>
+                  <p>Maximum descent speed: 30 metres/minute (or 60 metres/minute for first 30 metres)</p>
+                </>
+              )}
+              {code === 'LND15' && (
+                <>
+                  <p>Maximum ascent speed: 10 metres/minute</p>
+                  <p>Maximum descent speed: 30 metres/minute (or 60 metres/minute for first 30 metres)</p>
+                </>
+              )}
+            </div>
+          )}
+
           {/* Depth Toggle Buttons - Horizontal (hidden for reference tables) */}
           {!isReferenceTable && availableDepths && availableDepths.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">

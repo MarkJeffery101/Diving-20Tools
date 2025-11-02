@@ -1204,6 +1204,111 @@ export default function SupportingInfo() {
               </div>
 
                 </>
+              ) : openModalId === "flyingAfterDiving" ? (
+                <>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mt-4">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Standby Period
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>After a routine dive with decompression: remain in the immediate vicinity of the chamber for <strong>1 hour</strong> after the last stop.</li>
+                        <li>After a dive on standard air tables below the thick line ("backup"): remain for <strong>≥ 2 hours</strong>.</li>
+                        <li>After a compromised dive (decompression errors) or emergency procedures: remain for <strong>≥ 4 hours</strong>, unless the diving medical officer decides otherwise.</li>
+                        <li>In all cases: remain within <strong>2 hours travel</strong> of a chamber for <strong>12 hours</strong> after a dive.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Flight Restrictions — General
+                      </summary>
+                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                        Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. Shorter intervals only after consultation with a diving medical advisor. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
+                      </p>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Minimum Time Between Diving and Flying (Table)
+                      </summary>
+                      <div className="mt-3 overflow-x-auto">
+                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                          <thead className="bg-blue-50">
+                            <tr>
+                              <th className="p-2 text-left border-b border-border font-bold">Dive</th>
+                              <th className="p-2 border-b border-border font-bold">&lt; 600 m (2,000 ft)<br /><span className="font-normal text-[9px]">Controlled flight plan</span></th>
+                              <th className="p-2 border-b border-border font-bold">&lt; 2,600 m (8,000 ft)<br /><span className="font-normal text-[9px]">All other flights</span></th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-[9px]">
+                            <tr className="border-b border-border">
+                              <td className="p-2 text-left font-semibold">
+                                <strong>No-stop dives</strong><br />
+                                <span className="font-normal text-[8px] text-muted-foreground">Total time under pressure &lt; 60 min in last 12 h</span>
+                              </td>
+                              <td className="p-2 text-center">2 h</td>
+                              <td className="p-2 text-center">8 h* (24 h)</td>
+                            </tr>
+                            <tr className="border-b border-border bg-blue-50">
+                              <td className="p-2 text-left font-semibold">
+                                <strong>Other dives</strong> on air, nitrox, heliox and mixed-gas bounce dives<br />
+                                <span className="font-normal text-[8px] text-muted-foreground">&lt; 4 h under pressure</span>
+                              </td>
+                              <td className="p-2 text-center">12 h</td>
+                              <td className="p-2 text-center">24 h</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="p-2 text-left font-semibold">
+                                <strong>Saturation dives</strong> (heliox/air/nitrox/trimix)<br />
+                                <span className="font-normal text-[8px] text-muted-foreground">&gt; 4 h under pressure</span>
+                              </td>
+                              <td className="p-2 text-center">24 h</td>
+                              <td className="p-2 text-center">48 h</td>
+                            </tr>
+                            <tr className="border-b border-border bg-blue-50">
+                              <td className="p-2 text-left font-semibold">
+                                <strong>After decompression sickness</strong><br />
+                                <span className="font-normal text-[8px] text-muted-foreground">Immediate &amp; total disappearance after first recompression</span>
+                              </td>
+                              <td className="p-2 text-center">24 h</td>
+                              <td className="p-2 text-center">48 h</td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 text-left font-semibold">
+                                <strong>After decompression sickness</strong><br />
+                                <span className="font-normal text-[8px] text-muted-foreground">Remaining symptoms / no immediate response</span>
+                              </td>
+                              <td colSpan={2} className="p-2">Fly only after consultation with a diving medical officer. General recommendation: delay flying as long as possible.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="text-[9px] text-muted-foreground mt-2">
+                        * <strong>18 h</strong> applies to short flights only. For long flights (e.g., intercontinental), extend to <strong>24 h</strong>.
+                      </p>
+                    </details>
+
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-3">
+                      <p className="text-[10px] font-semibold text-yellow-900 mb-1">⚠️ Important Reminder</p>
+                      <p className="text-[10px] text-yellow-900">
+                        These intervals are minimum guidelines only. Longer delays are strongly recommended, especially for long or high-altitude flights. Always consult a diving medicine professional if you have any symptoms or concerns.
+                      </p>
+                    </div>
+                  </div>
+                </>
               ) : (
                 <>
                   {sections.find((s) => s.id === openModalId)?.subsections.map((sub, idx) => (

@@ -587,24 +587,28 @@ export default function TableUse() {
                       title: 'SIL15 Emergency Procedure',
                       description: 'Decision tree for surface decompression confirmation',
                       icon: '⚠️',
+                      component: <SIL15FlowchartEmergency />,
                     },
                     {
                       id: 'sox15-emergency',
                       title: 'SOX15 - Surface Interval Exceeded',
                       description: 'Response to exceeding 3-minute surface limit',
-                      icon: '⏱️',
+                      icon: '⏱���',
+                      component: <SOX15FlowchartEmergency1 />,
                     },
                     {
                       id: 'nitrox-emergency',
                       title: 'Nitrox - Surface Decompression',
                       description: 'Emergency procedures for nitrox decompression',
                       icon: '💨',
+                      component: <NitroxFlowchartEmergency1 />,
                     },
                     {
                       id: 'nd15-emergency',
                       title: 'ND15 - No-Stop Limits',
                       description: 'Ascent speed critical procedure',
                       icon: '📈',
+                      component: null,
                     },
                   ].map((flowchart) => (
                     <Dialog key={flowchart.id}>
@@ -623,19 +627,18 @@ export default function TableUse() {
                           </div>
                         </button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+                      <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
                         <DialogHeader>
                           <DialogTitle className="text-lg">{flowchart.title}</DialogTitle>
                         </DialogHeader>
-                        <div className="bg-blue-50 p-4 rounded border border-blue-200 mt-4">
-                          <p className="text-sm text-blue-900">
-                            {flowchart.description}
-                          </p>
-                          <div className="mt-4 p-4 bg-white rounded border border-blue-100">
-                            <p className="text-xs text-gray-600">
-                              Interactive flowchart content for {flowchart.title}
+                        <div className="mt-6 p-4 bg-white rounded border border-blue-200">
+                          {flowchart.component ? (
+                            flowchart.component
+                          ) : (
+                            <p className="text-sm text-gray-600">
+                              Flowchart for {flowchart.title}
                             </p>
-                          </div>
+                          )}
                         </div>
                       </DialogContent>
                     </Dialog>

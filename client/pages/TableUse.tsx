@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -366,20 +365,14 @@ export default function TableUse() {
     },
   ];
 
-  const FlowchartButton = ({
-    id,
-    title,
-    description,
-    icon,
-    component,
-  }: {
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-    component: React.ReactNode | null;
-  }) => (
-    <Dialog>
+  const renderFlowchartButton = (
+    id: string,
+    title: string,
+    description: string,
+    icon: string,
+    component: React.ReactNode | null
+  ) => (
+    <Dialog key={id}>
       <DialogTrigger asChild>
         <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
           <div className="flex items-start gap-2">
@@ -406,90 +399,75 @@ export default function TableUse() {
     </Dialog>
   );
 
-  const ProcedureButton = ({
-    procedure,
-    label,
-    tableId,
-  }: {
-    procedure: ProcedureData;
-    label: string;
-    tableId: string;
-  }) => {
-    const dialogId = `${tableId}-${label.toLowerCase().replace(/\s+/g, '-')}`;
+  const renderProcedureButton = (procedure: ProcedureData, label: string, tableId: string) => (
+    <Dialog key={`${tableId}-${label}`}>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="xs" className="h-7 px-3 text-xs justify-center">
+          {label}
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <div className="flex items-start justify-between gap-4">
+            <DialogTitle className="text-xl">{procedure.title}</DialogTitle>
+            <Badge className={`${procedure.badgeColor} text-white shrink-0`}>
+              {procedure.badgeText}
+            </Badge>
+          </div>
+        </DialogHeader>
 
-    return (
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline" size="xs" className="h-7 px-3 text-xs justify-center">
-            {label}
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          <DialogHeader>
-            <div className="flex items-start justify-between gap-4">
-              <DialogTitle className="text-xl">{procedure.title}</DialogTitle>
-              <Badge className={`${procedure.badgeColor} text-white shrink-0`}>
-                {procedure.badgeText}
-              </Badge>
-            </div>
-          </DialogHeader>
-
-          <div className="space-y-4 py-4">
-            {procedure.warning && (
-              <div className="p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
-                <div className="flex gap-3">
-                  <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-orange-800 font-medium">
-                    {procedure.warningText}
-                  </p>
-                </div>
+        <div className="space-y-4 py-4">
+          {procedure.warning && (
+            <div className="p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
+              <div className="flex gap-3">
+                <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-orange-800 font-medium">
+                  {procedure.warningText}
+                </p>
               </div>
-            )}
+            </div>
+          )}
 
-            <div className="space-y-3">
-              {procedure.content.map((item, idx) => {
-                if (typeof item === 'string') {
-                  return (
-                    <p key={idx} className="text-sm text-gray-700">
-                      {item}
-                    </p>
-                  );
-                }
-
-                if (item.type === 'title') {
-                  return (
-                    <div
-                      key={idx}
-                      className="flex gap-3 items-start text-sm"
-                    >
-                      <div className="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">
-                        {idx + 1}
-                      </div>
-                      <p className="text-gray-700 pt-0.5">{item.text}</p>
-                    </div>
-                  );
-                }
-
-                if (item.type === 'section') {
-                  return (
-                    <p key={idx} className="text-sm font-bold text-orange-600 mt-4 mb-2">
-                      {item.text}
-                    </p>
-                  );
-                }
-
+          <div className="space-y-3">
+            {procedure.content.map((item, idx) => {
+              if (typeof item === 'string') {
                 return (
-                  <p key={idx} className="text-sm text-gray-700 ml-4">
-                    • {item.text}
+                  <p key={idx} className="text-sm text-gray-700">
+                    {item}
                   </p>
                 );
-              })}
-            </div>
+              }
+
+              if (item.type === 'title') {
+                return (
+                  <div key={idx} className="flex gap-3 items-start text-sm">
+                    <div className="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                      {idx + 1}
+                    </div>
+                    <p className="text-gray-700 pt-0.5">{item.text}</p>
+                  </div>
+                );
+              }
+
+              if (item.type === 'section') {
+                return (
+                  <p key={idx} className="text-sm font-bold text-orange-600 mt-4 mb-2">
+                    {item.text}
+                  </p>
+                );
+              }
+
+              return (
+                <p key={idx} className="text-sm text-gray-700 ml-4">
+                  • {item.text}
+                </p>
+              );
+            })}
           </div>
-        </DialogContent>
-      </Dialog>
-    );
-  };
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">
@@ -534,7 +512,7 @@ export default function TableUse() {
                   <ul className="space-y-1.5">
                     {card.points.map((point, idx) => (
                       <li key={idx} className="text-xs text-gray-700">
-                        • {point}
+                        ��� {point}
                       </li>
                     ))}
                   </ul>
@@ -580,27 +558,9 @@ export default function TableUse() {
 
                       {/* Procedure buttons */}
                       <div className="flex flex-wrap gap-1.5">
-                        {table.procedures.normal && (
-                          <ProcedureButton
-                            procedure={table.procedures.normal}
-                            label="Normal Use"
-                            tableId={table.id}
-                          />
-                        )}
-                        {table.procedures.emergency && (
-                          <ProcedureButton
-                            procedure={table.procedures.emergency}
-                            label="Emergency"
-                            tableId={table.id}
-                          />
-                        )}
-                        {table.procedures.crashDive && (
-                          <ProcedureButton
-                            procedure={table.procedures.crashDive}
-                            label="Crash Dive"
-                            tableId={table.id}
-                          />
-                        )}
+                        {table.procedures.normal && renderProcedureButton(table.procedures.normal, 'Normal Use', table.id)}
+                        {table.procedures.emergency && renderProcedureButton(table.procedures.emergency, 'Emergency', table.id)}
+                        {table.procedures.crashDive && renderProcedureButton(table.procedures.crashDive, 'Crash Dive', table.id)}
                       </div>
                     </div>
                   ))}
@@ -621,34 +581,34 @@ export default function TableUse() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
-                  <FlowchartButton
-                    id="sil15-emergency"
-                    title="SIL15 Emergency Procedure"
-                    description="Decision tree for surface decompression confirmation"
-                    icon="⚠️"
-                    component={<SIL15FlowchartEmergency />}
-                  />
-                  <FlowchartButton
-                    id="sox15-emergency"
-                    title="SOX15 - Surface Interval Exceeded"
-                    description="Response to exceeding 3-minute surface limit"
-                    icon="⏱️"
-                    component={<SOX15FlowchartEmergency1 />}
-                  />
-                  <FlowchartButton
-                    id="nitrox-emergency"
-                    title="Nitrox - Surface Decompression"
-                    description="Emergency procedures for nitrox decompression"
-                    icon="💨"
-                    component={<NitroxFlowchartEmergency1 />}
-                  />
-                  <FlowchartButton
-                    id="nd15-emergency"
-                    title="ND15 - No-Stop Limits"
-                    description="Ascent speed critical procedure"
-                    icon="📈"
-                    component={null}
-                  />
+                  {renderFlowchartButton(
+                    'sil15-emergency',
+                    'SIL15 Emergency Procedure',
+                    'Decision tree for surface decompression confirmation',
+                    '⚠️',
+                    <SIL15FlowchartEmergency />
+                  )}
+                  {renderFlowchartButton(
+                    'sox15-emergency',
+                    'SOX15 - Surface Interval Exceeded',
+                    'Response to exceeding 3-minute surface limit',
+                    '⏱️',
+                    <SOX15FlowchartEmergency1 />
+                  )}
+                  {renderFlowchartButton(
+                    'nitrox-emergency',
+                    'Nitrox - Surface Decompression',
+                    'Emergency procedures for nitrox decompression',
+                    '💨',
+                    <NitroxFlowchartEmergency1 />
+                  )}
+                  {renderFlowchartButton(
+                    'nd15-emergency',
+                    'ND15 - No-Stop Limits',
+                    'Ascent speed critical procedure',
+                    '📈',
+                    null
+                  )}
                 </CardContent>
               </Card>
             </div>

@@ -22,11 +22,6 @@ export default function Navigation() {
     { label: "Tables", href: "/tables", icon: Grid3x3 },
     { label: "Table Selection", href: "/table-selection", icon: Layers },
     { label: "Tools", href: "/tools", icon: Calculator },
-    {
-      label: "Treatment Protocols",
-      href: "/treatment-protocols",
-      icon: Activity,
-    },
     { label: "Supporting Info", href: "/supporting-info", icon: HelpCircle },
     { label: "Share", href: "/share", icon: Share2 },
   ];

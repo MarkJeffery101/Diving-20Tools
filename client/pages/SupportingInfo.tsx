@@ -4,7 +4,15 @@ import { BookOpen, ChevronDown, X, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function SupportingInfo() {
-  const [openModalId, setOpenModalId] = useState<string | null>(null);
+  const location = useLocation();
+  const returnState = location.state as { modalId?: string } | null;
+  const [openModalId, setOpenModalId] = useState<string | null>(returnState?.modalId || null);
+
+  useEffect(() => {
+    if (returnState?.modalId) {
+      setOpenModalId(returnState.modalId);
+    }
+  }, [returnState?.modalId]);
 
   const renderTextWithTableLinks = (text: string) => {
     const tableCodes = ["SOX15", "NIA15", "NIB15", "BOX15", "SIL15", "SAB15", "BAB15", "H4SOX", "H2NIA15", "H2NIB15", "BOX15"];

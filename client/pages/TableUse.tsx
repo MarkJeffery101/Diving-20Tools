@@ -375,7 +375,7 @@ export default function TableUse() {
     return (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="sm" className="w-full justify-center">
+          <Button variant="outline" size="xs" className="h-7 px-3 text-xs justify-center">
             {label}
           </Button>
         </DialogTrigger>

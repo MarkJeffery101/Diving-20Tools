@@ -337,9 +337,37 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      High inspired oxygen (↑pO₂) can cause CNS toxicity and lung injury. Two measures assess these risks: OTU (UPTD), which tracks total oxygen dose for systemic effects, and ESOT, which estimates exposure time at a reference pO₂ and accounts for recovery between exposures to better gauge lung injury. Using both OTU and ESOT together offers a more complete assessment of oxygen exposure than either alone.
+                    <p className="text-[10px] text-muted-foreground leading-relaxed mb-2">
+                      Elevated oxygen partial pressure (↑pO₂) is routinely encountered in nitrox diving, surface decompression with oxygen (SurDO₂), wet bell operations, and Transfer-Under-Pressure (TUP). While beneficial for decompression efficiency, elevated pO₂ carries risks of acute CNS oxygen toxicity and long-term cumulative toxicity affecting the lungs and potentially other systems.
                     </p>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      To manage exposure, several indices have been developed. Historically, diving practice relied upon UPTD/OTU for cumulative oxygen-dose tracking. In recent years, DMAC-35 has recommended ESOT (Equivalent Surface Oxygen Time) as a better indicator of pulmonary oxygen toxicity, particularly because it accounts for recovery between exposures. <strong>Use UPTD/OTU and ESOT as complementary tools, each with distinct operational strengths and weaknesses.</strong>
+                    </p>
+                  </div>
+
+                  {/* Recommended Limits & Caveats */}
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Recommended Exposure Limits
+                    </h3>
+                    <div className="space-y-2 text-[10px] text-muted-foreground">
+                      <div>
+                        <span className="font-semibold text-foreground">OTU-based Management:</span>
+                        <p className="mt-1">Daily dose limit ≈ <strong>~450 OTU</strong></p>
+                      </div>
+                      <div className="border-t border-amber-200 pt-2">
+                        <span className="font-semibold text-foreground">ESOT-based Management (DMAC-35):</span>
+                        <p className="mt-1 font-mono">ESOT = time × pO₂<sup>2.285</sup></p>
+                      </div>
+                      <div className="border-t border-amber-200 pt-2 space-y-1">
+                        <p className="font-semibold text-foreground">Important Caveats:</p>
+                        <ul className="space-y-1 ml-4 list-disc">
+                          <li>Large variability in individual susceptibility</li>
+                          <li>Mathematical indices <strong>cannot replace clinical judgement</strong></li>
+                          <li>These are guidance tools, not absolute safety limits</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Two Column Section */}

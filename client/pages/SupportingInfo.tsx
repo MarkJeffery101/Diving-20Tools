@@ -44,7 +44,7 @@ export default function SupportingInfo() {
     {
       id: "ppo2",
       title: "Partial Pressure of Oxygen (PPO2)",
-      icon: "⚗️",
+      icon: "��️",
       subsections: [
         {
           subtitle: "What is PPO2?",
@@ -378,9 +378,7 @@ export default function SupportingInfo() {
                     UPTD / OTU
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    Origin in pulmonary dose modelling; OTU broadened
-                    interpretation to include potential <em>systemic</em>{" "}
-                    manifestations.
+                    <span className="font-semibold">Systemic Focus:</span> UPTD evolved into OTU when operational experience suggested that oxygen exposure influences <em>more than the lungs alone</em>. OTU tracks total oxygen dose and recognizes systemic symptoms including fatigue, headache, and musculoskeletal discomfort that may not correlate with lung-function changes.
                   </p>
 
                   <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
@@ -388,13 +386,11 @@ export default function SupportingInfo() {
                       Strengths
                     </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>
-                        Simple cumulative exposure concept, widely understood.
-                      </li>
-                      <li>
-                        Keeps attention on possible <strong>systemic</strong>{" "}
-                        effects beyond lungs.
-                      </li>
+                      <li>Long operational history and proven field effectiveness</li>
+                      <li>Quantifies cumulative oxygen exposure over multi-day operations</li>
+                      <li>Conservative approach; maintains awareness of <strong>systemic effects</strong> beyond lungs (fatigue, headache, myalgia)</li>
+                      <li>Simple to apply and understand</li>
+                      <li>Best for tracking multi-week cumulative burden</li>
                     </ul>
                   </details>
 
@@ -403,13 +399,10 @@ export default function SupportingInfo() {
                       Weaknesses
                     </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>
-                        No validated recovery/decay model (exposure only
-                        accumulates).
-                      </li>
-                      <li>
-                        Limited precision for short or multi-segment exposures.
-                      </li>
+                      <li>No validated recovery/decay model; exposure only accumulates</li>
+                      <li>Limited accuracy for short exposures</li>
+                      <li>Poor correlation with segmented exposures</li>
+                      <li>Less precise pulmonary toxicity prediction than ESOT</li>
                     </ul>
                   </details>
                 </div>

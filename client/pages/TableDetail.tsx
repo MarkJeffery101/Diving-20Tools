@@ -22,26 +22,38 @@ export default function TableDetail() {
 
   // Initialize selected depth from URL or use first available depth
   useEffect(() => {
-    if (depthNum) {
+    if (isReferenceTable) {
+      // Reference tables don't use depth selection
+      setSelectedDepth(0);
+    } else if (depthNum) {
       setSelectedDepth(depthNum);
     } else if (availableDepths && availableDepths.length > 0) {
       setSelectedDepth(availableDepths[0]);
     }
-  }, [depthNum, availableDepths]);
+  }, [depthNum, availableDepths, isReferenceTable]);
 
   // Load CSV data when selected depth changes
   useEffect(() => {
     const loadData = async () => {
-      if (code && selectedDepth && headerConfig) {
-        setIsLoading(true);
-        const data = await parseTableCSV(code, selectedDepth);
-        setTableData(data);
-        setIsLoading(false);
+      if (code && headerConfig) {
+        if (isReferenceTable) {
+          // Reference tables don't need depth parameter
+          setIsLoading(true);
+          const data = await parseTableCSV(code, 0);
+          setTableData(data);
+          setIsLoading(false);
+        } else if (selectedDepth) {
+          // Depth-specific tables need depth parameter
+          setIsLoading(true);
+          const data = await parseTableCSV(code, selectedDepth);
+          setTableData(data);
+          setIsLoading(false);
+        }
       }
     };
 
     loadData();
-  }, [code, selectedDepth, headerConfig]);
+  }, [code, selectedDepth, headerConfig, isReferenceTable]);
 
   // Handle depth selection and URL update
   const handleDepthChange = (depth: number) => {

@@ -5,6 +5,7 @@ import { useTour } from '@/contexts/TourContext';
 import { Button } from '@/components/ui/button';
 
 export function TourPopup() {
+  const navigate = useNavigate();
   const { isTourActive, currentStep, steps, nextStep, previousStep, endTour, getCurrentStep } =
     useTour();
   const [position, setPosition] = useState<{ top: number; left: number }>({ top: 100, left: 100 });

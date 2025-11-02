@@ -142,8 +142,8 @@ export default function TableDetail() {
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto w-full">
-          {/* Depth Toggle Buttons - Horizontal */}
-          {availableDepths && availableDepths.length > 0 && (
+          {/* Depth Toggle Buttons - Horizontal (hidden for reference tables) */}
+          {!isReferenceTable && availableDepths && availableDepths.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
               {availableDepths.map((depth) => (
                 <button

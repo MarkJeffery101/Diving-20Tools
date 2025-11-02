@@ -150,10 +150,24 @@ export function OxygenFailureDuringDecompression() {
 
         {/* Decision Diamond - Oxygen intake > 1/3? */}
         <polygon points="250,670 350,730 250,790 150,730" className="diamond" />
-        <text x="250" y="735" className="text-white">Oxygen intake</text>
-        <text x="250" y="755" className="text-white">&gt; 1/3 deco?</text>
+        <text x="250" y="730" className="text-white">O₂ intake</text>
+        <text x="250" y="750" className="text-white">&gt; 1/3?</text>
 
-        {/* Final outcomes (off canvas) - note flow would continue below */}
+        {/* NO outcome - 4 hrs */}
+        <path d="M 150 730 L 80 730 L 80 660" className="arrow" />
+        <text x="100" y="720" className="text-dark">NO</text>
+        <rect x="20" y="660" width="120" height="80" rx="5" className="rect" />
+        <text x="80" y="690" className="text-white">4 hrs near</text>
+        <text x="80" y="710" className="text-white">decompression</text>
+        <text x="80" y="730" className="text-white">chamber</text>
+
+        {/* YES outcome - 2 hrs */}
+        <path d="M 350 730 L 420 730 L 420 660" className="arrow" />
+        <text x="380" y="720" className="text-dark">YES</text>
+        <rect x="360" y="660" width="120" height="80" rx="5" className="rect" />
+        <text x="420" y="690" className="text-white">2 hrs near</text>
+        <text x="420" y="710" className="text-white">decompression</text>
+        <text x="420" y="730" className="text-white">chamber</text>
       </svg>
     </div>
   );

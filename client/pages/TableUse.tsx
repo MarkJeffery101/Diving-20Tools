@@ -563,7 +563,7 @@ export default function TableUse() {
               </Card>
             </div>
 
-            {/* Right: Emergency Flowcharts (placeholder) */}
+            {/* Right: Emergency Flowcharts */}
             <div>
               <Card className="h-full">
                 <CardHeader className="border-b">
@@ -575,10 +575,66 @@ export default function TableUse() {
                     Interactive decision trees
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <p className="text-xs text-gray-600">
-                    Emergency flowcharts and decision trees will be displayed here.
-                  </p>
+                <CardContent className="pt-4 space-y-3">
+                  {[
+                    {
+                      id: 'sil15-emergency',
+                      title: 'SIL15 Emergency Procedure',
+                      description: 'Decision tree for surface decompression confirmation',
+                      icon: '⚠️',
+                    },
+                    {
+                      id: 'sox15-emergency',
+                      title: 'SOX15 - Surface Interval Exceeded',
+                      description: 'Response to exceeding 3-minute surface limit',
+                      icon: '⏱️',
+                    },
+                    {
+                      id: 'nitrox-emergency',
+                      title: 'Nitrox - Surface Decompression',
+                      description: 'Emergency procedures for nitrox decompression',
+                      icon: '💨',
+                    },
+                    {
+                      id: 'nd15-emergency',
+                      title: 'ND15 - No-Stop Limits',
+                      description: 'Ascent speed critical procedure',
+                      icon: '📈',
+                    },
+                  ].map((flowchart) => (
+                    <Dialog key={flowchart.id}>
+                      <DialogTrigger asChild>
+                        <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
+                          <div className="flex items-start gap-2">
+                            <span className="text-lg flex-shrink-0">{flowchart.icon}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold text-xs text-gray-900">
+                                {flowchart.title}
+                              </p>
+                              <p className="text-xs text-gray-600 mt-0.5">
+                                {flowchart.description}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="text-lg">{flowchart.title}</DialogTitle>
+                        </DialogHeader>
+                        <div className="bg-blue-50 p-4 rounded border border-blue-200 mt-4">
+                          <p className="text-sm text-blue-900">
+                            {flowchart.description}
+                          </p>
+                          <div className="mt-4 p-4 bg-white rounded border border-blue-100">
+                            <p className="text-xs text-gray-600">
+                              Interactive flowchart content for {flowchart.title}
+                            </p>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  ))}
                 </CardContent>
               </Card>
             </div>

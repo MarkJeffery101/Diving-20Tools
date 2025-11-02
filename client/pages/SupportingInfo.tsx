@@ -332,16 +332,13 @@ export default function SupportingInfo() {
             <div className="p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white">
               {openModalId === "otuEsot" ? (
                 <>
-                  {/* Summary Section - Moved to Top */}
+                  {/* Overview Section - Moved to Top */}
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
-                      Academic Overview
+                      Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed mb-2">
-                      Elevated inspired oxygen (↑pO₂) carries risks of acute CNS toxicity and long-term cumulative effects. Two complementary indices are commonly referenced: <span className="inline-block px-2 py-1 bg-white text-blue-900 rounded text-[10px] font-semibold mx-1">UPTD/OTU</span> and <span className="inline-block px-2 py-1 bg-white text-blue-900 rounded text-[10px] font-semibold mx-1">ESOT</span>.
-                    </p>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are complementary abstractions of oxygen exposure: OTU's cumulative framing maintains awareness of potential <em>systemic</em> manifestations of chronic hyperoxia, whereas ESOT's equivalent-time + recovery formalism better quantifies <em>pulmonary</em> risk across variable pO₂ segments. Used together, they provide broader physiological insight than either alone.
+                      High inspired oxygen (↑pO₂) can cause CNS toxicity and lung injury. Two measures assess these risks: OTU (UPTD), which tracks total oxygen dose for systemic effects, and ESOT, which estimates exposure time at a reference pO₂ and accounts for recovery between exposures to better gauge lung injury. Using both OTU and ESOT together offers a more complete assessment of oxygen exposure than either alone.
                     </p>
                   </div>
 

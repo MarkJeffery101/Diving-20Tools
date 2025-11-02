@@ -77,6 +77,43 @@ export default function SupportingInfo() {
         { subtitle: "No-Decompression Limits", items: ["Maximum time before stops required", "Depends on depth & gas", "Conservative approach recommended"] },
       ],
     },
+    {
+      id: "otuEsot",
+      title: "Oxygen Exposure Indices: OTU vs ESOT",
+      icon: "⚡",
+      subsections: [
+        {
+          subtitle: "UPTD / OTU",
+          items: [
+            "Origin: Pulmonary dose research; expanded to systemic awareness",
+            "Focus: Pulmonary + systemic effects (fatigue, headache, myalgia)",
+            "Strength: Simple cumulative concept, recognizes systemic effects",
+            "Weakness: No recovery model, limited precision for segments",
+            "Time horizon: Multi-day / multi-week awareness"
+          ]
+        },
+        {
+          subtitle: "ESOT",
+          items: [
+            "Origin: Refined from Arieli-type modelling; modern standard",
+            "Focus: Pulmonary oxygen toxicity risk (lung-centric model)",
+            "Strength: Includes recovery modelling, handles varying pO₂ segments",
+            "Weakness: Systemic effects not represented",
+            "Time horizon: Short-term / repetitive dive planning"
+          ]
+        },
+        {
+          subtitle: "Comparison",
+          items: [
+            "OTU: 'Whole-body stress thermometer'",
+            "ESOT: 'Lung-stress calculator'",
+            "Use together: Broader physiological insight than either alone",
+            "Mathematical: OTU = pO₂ × time; ESOT = equivalent surface O₂ time",
+            "Recovery: OTU has none; ESOT includes recovery modelling"
+          ]
+        },
+      ],
+    },
   ];
 
   const toggleExpanded = (id: string) => {

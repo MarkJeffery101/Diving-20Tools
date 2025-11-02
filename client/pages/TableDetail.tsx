@@ -36,28 +36,29 @@ export default function TableDetail() {
     }
   }, [depthNum, availableDepths, isReferenceTable]);
 
-  // Load CSV data when selected depth changes
+  // Load CSV data when code or depth changes
   useEffect(() => {
     const loadData = async () => {
-      if (code && headerConfig) {
+      if (!code || !headerConfig) return;
+
+      setIsLoading(true);
+      try {
         if (isReferenceTable) {
           // Reference tables don't need depth parameter
-          setIsLoading(true);
           const data = await parseTableCSV(code, 0);
           setTableData(data);
-          setIsLoading(false);
         } else if (selectedDepth) {
           // Depth-specific tables need depth parameter
-          setIsLoading(true);
           const data = await parseTableCSV(code, selectedDepth);
           setTableData(data);
-          setIsLoading(false);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
 
     loadData();
-  }, [code, selectedDepth, headerConfig, isReferenceTable]);
+  }, [code, headerConfig, selectedDepth, isReferenceTable]);
 
   // Handle depth selection and URL update
   const handleDepthChange = (depth: number) => {

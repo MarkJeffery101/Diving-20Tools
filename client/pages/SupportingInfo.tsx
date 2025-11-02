@@ -472,14 +472,11 @@ export default function SupportingInfo() {
                 <>
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
-                      Overview & Applicability
+                      Overview
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      Standard tables (DCD/NDC 2015). TUP tables are in the 2024 TUP Manual; general rules still apply and tables may be combined.
+                      Standard DCD/NDC 2015 tables. TUP tables are in 2024 TUP Manual; general rules apply to both.
                     </p>
-                    <div className="bg-white border border-blue-300 rounded-lg p-2 mt-2 text-[10px] text-muted-foreground">
-                      These points include additional guidance from the company diving physician adopted by N-Sea.
-                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -548,14 +545,11 @@ export default function SupportingInfo() {
                 <>
                   <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
-                      Purpose & Context
+                      Overview
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      If abandonment occurs, divers may need evacuation while still under pressure. AED + omitted-decompression treatment is usually preferred; HRU is rarely available and may carry higher risk.
+                      Emergency evacuation procedures for divers under pressure. AED (accelerated decompression) at 1 msw/min is preferred over HRU. Perform risk assessment before diving.
                     </p>
-                    <div className="bg-white border border-red-300 rounded-lg p-2 mt-2 text-[10px] text-muted-foreground">
-                      Perform a formal risk assessment covering threats (fire, mechanical damage, loss of platform) that could compromise safe decompression.
-                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -641,7 +635,7 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      Choose tables based on conditions, expected stop time, equipment, and available gases. Tables include SIL15, SOX15, BOX15, BAB/SAB, NIA15, and NIB15 for different operational requirements.
+                      Select tables based on dive conditions, expected stop time, equipment, and available gases (SIL15, SOX15, BOX15, NIA15, NIB15, etc.).
                     </p>
                   </div>
 
@@ -792,7 +786,7 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      Oxygen toxicity has two forms: acute Central Nervous System (CNS) toxicity causing convulsions, and long-term pulmonary toxicity. Both are managed through pO₂ limits, Oxygen Toxicity Units (OTU), and ESOT (DMAC 35) exposure guidance.
+                      Acute CNS toxicity (convulsions) and long-term pulmonary toxicity managed via pO₂ limits, OTU, and ESOT exposure guidance.
                     </p>
                   </div>
 
@@ -803,13 +797,7 @@ export default function SupportingInfo() {
                         Acute (CNS) Toxicity — Overview
                       </summary>
                       <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
-                        To prevent acute oxygen toxicity (Central Nervous System), it has been good practice to limit the oxygen partial pressure (pO₂) to <strong>1.5 bar</strong>.
-                        However, infrequent convulsions due to acute oxygen toxicity have been reported at pressures as low as 1.5 bar.
-                        Although in a dry environment the convulsions of an oxygen hit clear without residual effects, it can be deadly while diving.
-                      </p>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
-                        Therefore, <strong>NOAA</strong> (National Oceanic and Atmospheric Administration) produced a table of oxygen partial pressures and the duration they can be respired with minimal risk of an oxygen fit.
-                        The <strong>IMCA</strong> (International Marine Contractors Association) has independently advised a maximum pO₂ of <strong>1.4 bar</strong> for nitrox diving as the upper limit, regardless of diving time (IMCA D048, 2012).
+                        Acute CNS toxicity causes convulsions and can be fatal underwater. Limit pO₂ to <strong>1.5 bar</strong> traditionally, but convulsions occur at this level. <strong>NOAA</strong> provides pO₂/time limits; <strong>IMCA</strong> advises maximum <strong>1.4 bar</strong> regardless of time (IMCA D048, 2012).
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
@@ -850,14 +838,7 @@ export default function SupportingInfo() {
                         Long-Term Oxygen Toxicity — OTU (UPTD)
                       </summary>
                       <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
-                        The chance of long-term oxygen toxicity symptoms can be predicted by <strong>Oxygen Toxicity Units (OTU)</strong>, accumulated during dive and decompression.
-                        Historically, exposure below CNS-toxicity thresholds was thought to affect only the lungs (Lorain Smith syndrome), and the <strong>Unit Pulmonary Toxic Dose (UPTD)</strong> was developed.
-                        Later research showed effects on other organ systems; the term <strong>OTU</strong> was introduced, calculated with the same formula as UPTD. Thus, <strong>1 OTU = 1 UPTD</strong>.
-                      </p>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
-                        The DCD tables incorporate accumulated OTUs in relation to dive and decompression times.
-                        Additionally, a separate OTU table is provided for breathing <strong>100% oxygen up to 18 m</strong>, so that OTU may be calculated during non-standard procedures.
-                        <em>Note: the OTU & ESOT calculator in the Tools can do this for you.</em>
+                        <strong>Oxygen Toxicity Units (OTU)</strong> predict long-term toxicity risk, accumulated during dive and decompression. <strong>1 OTU = 1 UPTD</strong> (Unit Pulmonary Toxic Dose). DCD tables incorporate OTU; a separate table covers <strong>100% O₂ up to 18 m</strong> for non-standard procedures. <em>Use OTU/ESOT calculator in Tools.</em>
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
@@ -901,14 +882,7 @@ export default function SupportingInfo() {
                         ESOT (DMAC 35) — Guidance & Limits
                       </summary>
                       <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
-                        IMCA/DMAC advise that <strong>ESOT</strong> should replace UPTD as an exposure measure for pulmonary oxygen toxicity (POT) in surface-oriented diving.
-                        Diving should be planned to keep <strong>ESOT &lt; 660</strong> for any single dive.
-                        For multi-day diving, daily exposure should be limited to <strong>660</strong>, <strong>500</strong> and <strong>420</strong> for a maximum of two, five and ten consecutive days of diving respectively.
-                        <strong>Two days off</strong> diving should be planned after multi-day hyperoxic exposures.
-                        Air in-water decompression dives are not expected to cause POT and can take place even on the two days "off diving".
-                      </p>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
-                        These limits should only be relaxed if a <strong>risk assessment</strong>, reviewed by a competent diving physician, has concluded that the exposures will not increase the likelihood or extent of POT.
+                        IMCA/DMAC recommend <strong>ESOT &lt; 660</strong> for single dives. Multi-day limits: <strong>660</strong> (2 days), <strong>500</strong> (5 days), <strong>420</strong> (10 days). Plan <strong>two days off</strong> after multi-day exposures. Air in-water decompression allowed during "off" days. Relax limits only with physician-reviewed risk assessment.
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
@@ -935,13 +909,7 @@ export default function SupportingInfo() {
                         OTU and ESOT in DCD/NDC Tables
                       </summary>
                       <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
-                        The standard DCD/NDC tables provide surface decompression with oxygen (<strong>SOX15</strong>), nitrox tables for <strong>40/60</strong> (<strong>NIA15</strong>) and <strong>35/65</strong> (<strong>NIB15</strong>), and wet-bell tables with oxygen (<strong>BOX15</strong>).
-                        In these tables OTU is indicated to prevent long-term oxygen toxicity. As DMAC 35 suggests that ESOT may be a better tool, <strong>OTU and ESOT tables have been prepared</strong> to compare toxic oxygen levels with both tools.
-                      </p>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed">
-                        For the basic tables with a surface interval of <strong>12 hours</strong>, OTU and ESOT values for each depth/time are presented in the second and third column.
-                        As ESOT declines with time, the recovery ESOT (<strong>recESOT</strong>) must be added to the next dive.
-                        <strong>OTU simply sums</strong> (no intra-day decay). Use the OTU/ESOT calculator in the Tools to compute recESOT and totals.
+                        DCD/NDC tables (SOX15, NIA15, NIB15, BOX15) include OTU values. DMAC 35 recommends ESOT as alternative. <strong>OTU and ESOT tables</strong> allow comparison. For 12-h surface intervals, OTU and ESOT shown per depth/time. ESOT decays; add recovery ESOT (recESOT) to next dive. OTU accumulates (no decay). Use Tools calculator for totals.
                       </p>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
                         <li>Reference: OTU-ESOT Calculator Tool — <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em></li>

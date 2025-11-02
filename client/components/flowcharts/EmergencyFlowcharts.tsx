@@ -68,14 +68,14 @@ export function OxygenFailureDuringDecompression() {
     F{"O₂ intake<br/>>&nbsp;1/3 deco?"}
     G["4 hrs near<br/>decompression<br/>chamber"]
     H["2 hrs near<br/>decompression<br/>chamber"]
-    
+
     A --> B
     B --> C
     C -->|NO| B
-    C -->|YES| D
-    D --> E
+    C -->|YES| E
     E -->|NO| D
-    E -->|YES| F
+    E -->|YES| B
+    D --> F
     F -->|NO| G
     F -->|YES| H
     

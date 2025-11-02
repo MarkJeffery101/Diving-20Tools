@@ -44,7 +44,7 @@ export default function SupportingInfo() {
     {
       id: "ppo2",
       title: "Partial Pressure of Oxygen (PPO2)",
-      icon: "��️",
+      icon: "⚗️",
       subsections: [
         {
           subtitle: "What is PPO2?",
@@ -410,12 +410,10 @@ export default function SupportingInfo() {
                 {/* ESOT Card */}
                 <div className="bg-white border border-border rounded-lg p-3">
                   <h3 className="text-sm font-bold text-foreground mb-1">
-                    ESOT
+                    ESOT (Equivalent Surface Oxygen Time)
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    Represents exposure as "equivalent minutes of 100% O₂ at the
-                    surface," enabling dose + recovery modelling for pulmonary
-                    risk.
+                    <span className="font-semibold">Pulmonary Focus:</span> DMAC-35 recommended. Represents exposure as "equivalent minutes of 100% O₂ at the surface," enabling dose + recovery modelling for <em>pulmonary</em> risk. Derived from Arieli-type modelling and best predicts lung injury, especially for varying pO₂ segments and repetitive exposures.
                   </p>
 
                   <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
@@ -423,14 +421,12 @@ export default function SupportingInfo() {
                       Strengths
                     </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>
-                        Improved prediction for <strong>pulmonary</strong>{" "}
-                        oxygen toxicity.
-                      </li>
-                      <li>
-                        Handles varying pO₂ segments and models recovery between
-                        exposures.
-                      </li>
+                      <li>Best model of <strong>pulmonary</strong> dose + recovery</li>
+                      <li>Improved prediction for pulmonary oxygen toxicity</li>
+                      <li>Handles varying pO₂ segments and multi-segment dives</li>
+                      <li>Models recovery between exposures (decay function)</li>
+                      <li>Excellent for daily/short-term and repetitive dive planning</li>
+                      <li>Accounts for physiological recovery during surface intervals</li>
                     </ul>
                   </details>
 
@@ -439,11 +435,9 @@ export default function SupportingInfo() {
                       Weaknesses
                     </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>
-                        Focuses on pulmonary injury; systemic effects are not
-                        modelled.
-                      </li>
-                      <li>Requires calculation support for practical use.</li>
+                      <li>Focuses on pulmonary injury; <strong>systemic effects are not represented</strong></li>
+                      <li>Does not capture fatigue, headache, or musculoskeletal discomfort</li>
+                      <li>Requires calculation support for practical use</li>
                     </ul>
                   </details>
                 </div>

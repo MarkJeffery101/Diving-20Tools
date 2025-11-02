@@ -1,10 +1,12 @@
 import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
-import { BookOpen, ChevronDown } from "lucide-react";
+import { BookOpen, ChevronDown, X } from "lucide-react";
 import { useState } from "react";
 
 export default function SupportingInfo() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [otuEsotModalOpen, setOtuEsotModalOpen] = useState(false);
+  const [otuEsotExpanded, setOtuEsotExpanded] = useState<string | null>(null);
 
   const sections = [
     {

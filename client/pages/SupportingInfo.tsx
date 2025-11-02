@@ -803,27 +803,27 @@ export default function SupportingInfo() {
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="p-2 border-b border-border">pO₂ (atm)</th>
-                              <th className="p-2 border-b border-border">Max Single Exposure (min)</th>
-                              <th className="p-2 border-b border-border">Max per 24 h (min)</th>
+                              <th className="px-2 py-1 border-b border-border">pO₂ (atm)</th>
+                              <th className="px-2 py-1 border-b border-border">Max Single Exposure (min)</th>
+                              <th className="px-2 py-1 border-b border-border">Max per 24 h (min)</th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="p-2">1.6</td><td className="p-2 text-center">45</td><td className="p-2 text-center">150</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.55</td><td className="p-2 text-center">83</td><td className="p-2 text-center">165</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.5</td><td className="p-2 text-center">120</td><td className="p-2 text-center">180</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.45</td><td className="p-2 text-center">135</td><td className="p-2 text-center">180</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.4</td><td className="p-2 text-center">150</td><td className="p-2 text-center">180</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.35</td><td className="p-2 text-center">165</td><td className="p-2 text-center">195</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.3</td><td className="p-2 text-center">180</td><td className="p-2 text-center">210</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.25</td><td className="p-2 text-center">195</td><td className="p-2 text-center">225</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.2</td><td className="p-2 text-center">210</td><td className="p-2 text-center">240</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">1.1</td><td className="p-2 text-center">240</td><td className="p-2 text-center">270</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">1.0</td><td className="p-2 text-center">300</td><td className="p-2 text-center">300</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">0.9</td><td className="p-2 text-center">360</td><td className="p-2 text-center">360</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">0.8</td><td className="p-2 text-center">450</td><td className="p-2 text-center">450</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">0.7</td><td className="p-2 text-center">570</td><td className="p-2 text-center">570</td></tr>
-                            <tr><td className="p-2">0.6</td><td className="p-2 text-center">720</td><td className="p-2 text-center">720</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.6</td><td className="px-2 py-1 text-center">45</td><td className="px-2 py-1 text-center">150</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.55</td><td className="px-2 py-1 text-center">83</td><td className="px-2 py-1 text-center">165</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.5</td><td className="px-2 py-1 text-center">120</td><td className="px-2 py-1 text-center">180</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.45</td><td className="px-2 py-1 text-center">135</td><td className="px-2 py-1 text-center">180</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.4</td><td className="px-2 py-1 text-center">150</td><td className="px-2 py-1 text-center">180</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.35</td><td className="px-2 py-1 text-center">165</td><td className="px-2 py-1 text-center">195</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.3</td><td className="px-2 py-1 text-center">180</td><td className="px-2 py-1 text-center">210</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.25</td><td className="px-2 py-1 text-center">195</td><td className="px-2 py-1 text-center">225</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.2</td><td className="px-2 py-1 text-center">210</td><td className="px-2 py-1 text-center">240</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.1</td><td className="px-2 py-1 text-center">240</td><td className="px-2 py-1 text-center">270</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">1.0</td><td className="px-2 py-1 text-center">300</td><td className="px-2 py-1 text-center">300</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">0.9</td><td className="px-2 py-1 text-center">360</td><td className="px-2 py-1 text-center">360</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">0.8</td><td className="px-2 py-1 text-center">450</td><td className="px-2 py-1 text-center">450</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">0.7</td><td className="px-2 py-1 text-center">570</td><td className="px-2 py-1 text-center">570</td></tr>
+                            <tr><td className="px-2 py-1">0.6</td><td className="px-2 py-1 text-center">720</td><td className="px-2 py-1 text-center">720</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -844,21 +844,21 @@ export default function SupportingInfo() {
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="p-2 border-b border-border">Depth (m)</th>
-                              <th className="p-2 border-b border-border">OTU / 10 min</th>
-                              <th className="p-2 border-b border-border">OTU / 20 min</th>
+                              <th className="px-2 py-1 border-b border-border">Depth (m)</th>
+                              <th className="px-2 py-1 border-b border-border">OTU / 10 min</th>
+                              <th className="px-2 py-1 border-b border-border">OTU / 20 min</th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="p-2">18</td><td className="p-2 text-center">35.7</td><td className="p-2 text-center">71.3</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">15</td><td className="p-2 text-center">31.7</td><td className="p-2 text-center">63.5</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">13.5</td><td className="p-2 text-center">29.8</td><td className="p-2 text-center">59.5</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">12</td><td className="p-2 text-center">27.7</td><td className="p-2 text-center">55.5</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">9</td><td className="p-2 text-center">23.6</td><td className="p-2 text-center">47.2</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">6</td><td className="p-2 text-center">19.3</td><td className="p-2 text-center">38.6</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">4.5</td><td className="p-2 text-center">17.1</td><td className="p-2 text-center">34.1</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">3</td><td className="p-2 text-center">14.8</td><td className="p-2 text-center">29.6</td></tr>
-                            <tr><td className="p-2">0</td><td className="p-2 text-center">10.0</td><td className="p-2 text-center">20.0</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">18</td><td className="px-2 py-1 text-center">35.7</td><td className="px-2 py-1 text-center">71.3</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">15</td><td className="px-2 py-1 text-center">31.7</td><td className="px-2 py-1 text-center">63.5</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">13.5</td><td className="px-2 py-1 text-center">29.8</td><td className="px-2 py-1 text-center">59.5</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">12</td><td className="px-2 py-1 text-center">27.7</td><td className="px-2 py-1 text-center">55.5</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">9</td><td className="px-2 py-1 text-center">23.6</td><td className="px-2 py-1 text-center">47.2</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">6</td><td className="px-2 py-1 text-center">19.3</td><td className="px-2 py-1 text-center">38.6</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">4.5</td><td className="px-2 py-1 text-center">17.1</td><td className="px-2 py-1 text-center">34.1</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">3</td><td className="px-2 py-1 text-center">14.8</td><td className="px-2 py-1 text-center">29.6</td></tr>
+                            <tr><td className="px-2 py-1">0</td><td className="px-2 py-1 text-center">10.0</td><td className="px-2 py-1 text-center">20.0</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -888,16 +888,16 @@ export default function SupportingInfo() {
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="p-2 border-b border-border">Daily max ESOT</th>
-                              <th className="p-2 border-b border-border">Max successive days</th>
-                              <th className="p-2 border-b border-border">Min surface interval (h)</th>
+                              <th className="px-2 py-1 border-b border-border">Daily max ESOT</th>
+                              <th className="px-2 py-1 border-b border-border">Max successive days</th>
+                              <th className="px-2 py-1 border-b border-border">Min surface interval (h)</th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="p-2">&gt; 660</td><td className="p-2 text-center">0</td><td className="p-2 text-center">24</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="p-2">501 – 660</td><td className="p-2 text-center">2</td><td className="p-2 text-center">12</td></tr>
-                            <tr className="border-b border-border"><td className="p-2">420 – 500</td><td className="p-2 text-center">5</td><td className="p-2 text-center">12</td></tr>
-                            <tr className="bg-purple-50"><td className="p-2">&lt; 420</td><td className="p-2 text-center">10</td><td className="p-2 text-center">12</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">&gt; 660</td><td className="px-2 py-1 text-center">0</td><td className="px-2 py-1 text-center">24</td></tr>
+                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">501 – 660</td><td className="px-2 py-1 text-center">2</td><td className="px-2 py-1 text-center">12</td></tr>
+                            <tr className="border-b border-border"><td className="px-2 py-1">420 – 500</td><td className="px-2 py-1 text-center">5</td><td className="px-2 py-1 text-center">12</td></tr>
+                            <tr className="bg-purple-50"><td className="px-2 py-1">&lt; 420</td><td className="px-2 py-1 text-center">10</td><td className="px-2 py-1 text-center">12</td></tr>
                           </tbody>
                         </table>
                       </div>

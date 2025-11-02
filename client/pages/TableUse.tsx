@@ -534,7 +534,7 @@ export default function TableUse() {
                     </div>
 
                     {/* Procedure buttons */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {table.procedures.normal && (
                         <ProcedureButton
                           procedure={table.procedures.normal}

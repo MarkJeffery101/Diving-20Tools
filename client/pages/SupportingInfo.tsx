@@ -466,6 +466,24 @@ export default function SupportingInfo() {
                 <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
               </button>
             </div>
+
+            {/* Flying After Diving Card */}
+            <div className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <button
+                onClick={() => setOpenModalId("flyingAfterDiving")}
+                className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
+              >
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">✈️</span>
+                    <h2 className="text-sm font-bold text-foreground">
+                      Flying After Diving
+                    </h2>
+                  </div>
+                </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

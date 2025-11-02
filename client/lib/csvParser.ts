@@ -265,6 +265,62 @@ async function parseBox15CSV(
   }
 }
 
+async function parseReferenceTableCSV(tableCode: string): Promise<ParsedTableData> {
+  try {
+    const csvPath = `/data/tables/${tableCode}.csv`;
+    const response = await fetch(csvPath);
+    if (!response.ok) {
+      console.error(`Failed to fetch CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const csvText = await response.text();
+    const lines = csvText.trim().split('\n');
+
+    if (lines.length < 2) {
+      console.error(`No data found in CSV for ${tableCode}`);
+      return { dvis5Value: null, rows: [] };
+    }
+
+    const rows: TableRow[] = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+
+      const values = line.split(',').map(v => v.trim());
+
+      if (values.length < 3) continue;
+
+      // Column 0: Max Depth
+      const depth = parseInt(values[0]);
+      if (isNaN(depth)) continue;
+
+      // Column 1: First value (Repeat Interval 8h or Normal ND15)
+      const val1 = values[1];
+      const col1 = val1 === '' ? null : parseInt(val1);
+
+      // Column 2: Second value (Repeat Interval 2h or Long LND15)
+      const val2 = values[2];
+      const col2 = val2 === '' ? null : parseInt(val2);
+
+      rows.push({
+        diveTime: depth,
+        tillFirstStop: 0,
+        stopDepths: [col1, col2],
+        totalDecoTime: 0,
+        totalOTU: 0,
+        totalESOT: 0,
+      });
+    }
+
+    return { dvis5Value: null, rows };
+  } catch (error) {
+    console.error(`Error parsing ${tableCode} CSV:`, error);
+    return { dvis5Value: null, rows: [] };
+  }
+}
+
 async function parseSab15CSV(
   tableCode: string,
   depth: number

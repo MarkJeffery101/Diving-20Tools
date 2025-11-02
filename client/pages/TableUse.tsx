@@ -581,68 +581,34 @@ export default function TableUse() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
-                  {[
-                    {
-                      id: 'sil15-emergency',
-                      title: 'SIL15 Emergency Procedure',
-                      description: 'Decision tree for surface decompression confirmation',
-                      icon: '⚠️',
-                      component: <SIL15FlowchartEmergency />,
-                    },
-                    {
-                      id: 'sox15-emergency',
-                      title: 'SOX15 - Surface Interval Exceeded',
-                      description: 'Response to exceeding 3-minute surface limit',
-                      icon: '⏱���',
-                      component: <SOX15FlowchartEmergency1 />,
-                    },
-                    {
-                      id: 'nitrox-emergency',
-                      title: 'Nitrox - Surface Decompression',
-                      description: 'Emergency procedures for nitrox decompression',
-                      icon: '💨',
-                      component: <NitroxFlowchartEmergency1 />,
-                    },
-                    {
-                      id: 'nd15-emergency',
-                      title: 'ND15 - No-Stop Limits',
-                      description: 'Ascent speed critical procedure',
-                      icon: '📈',
-                      component: null,
-                    },
-                  ].map((flowchart) => (
-                    <Dialog key={flowchart.id}>
-                      <DialogTrigger asChild>
-                        <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
-                          <div className="flex items-start gap-2">
-                            <span className="text-lg flex-shrink-0">{flowchart.icon}</span>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-semibold text-xs text-gray-900">
-                                {flowchart.title}
-                              </p>
-                              <p className="text-xs text-gray-600 mt-0.5">
-                                {flowchart.description}
-                              </p>
-                            </div>
-                          </div>
-                        </button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle className="text-lg">{flowchart.title}</DialogTitle>
-                        </DialogHeader>
-                        <div className="mt-6 p-4 bg-white rounded border border-blue-200">
-                          {flowchart.component ? (
-                            flowchart.component
-                          ) : (
-                            <p className="text-sm text-gray-600">
-                              Flowchart for {flowchart.title}
-                            </p>
-                          )}
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  ))}
+                  <FlowchartButton
+                    id="sil15-emergency"
+                    title="SIL15 Emergency Procedure"
+                    description="Decision tree for surface decompression confirmation"
+                    icon="⚠️"
+                    component={<SIL15FlowchartEmergency />}
+                  />
+                  <FlowchartButton
+                    id="sox15-emergency"
+                    title="SOX15 - Surface Interval Exceeded"
+                    description="Response to exceeding 3-minute surface limit"
+                    icon="⏱️"
+                    component={<SOX15FlowchartEmergency1 />}
+                  />
+                  <FlowchartButton
+                    id="nitrox-emergency"
+                    title="Nitrox - Surface Decompression"
+                    description="Emergency procedures for nitrox decompression"
+                    icon="💨"
+                    component={<NitroxFlowchartEmergency1 />}
+                  />
+                  <FlowchartButton
+                    id="nd15-emergency"
+                    title="ND15 - No-Stop Limits"
+                    description="Ascent speed critical procedure"
+                    icon="📈"
+                    component={null}
+                  />
                 </CardContent>
               </Card>
             </div>

@@ -234,21 +234,36 @@ export default function TableDetail() {
                   ) : (
                     tableData.rows.map((row, rowIdx) => {
                       const isLastRow = rowIdx === tableData.rows.length - 1;
+                      const rowBgClass = isReferenceTable
+                        ? rowIdx % 2 === 0
+                          ? 'bg-orange-100 hover:bg-orange-200'
+                          : 'bg-white hover:bg-orange-50'
+                        : isLastRow
+                        ? 'bg-red-50 hover:bg-red-100'
+                        : rowIdx % 2 === 0
+                        ? 'bg-white hover:bg-blue-50'
+                        : 'bg-green-50 hover:bg-blue-50';
+
                       return (
                       <tr
                         key={rowIdx}
-                        className={`border-b transition-colors duration-150 cursor-pointer ${
-                          isLastRow
-                            ? 'bg-red-50 hover:bg-red-100'
-                            : rowIdx % 2 === 0
-                              ? 'bg-white hover:bg-blue-50'
-                              : 'bg-green-50 hover:bg-blue-50'
-                        }`}
+                        className={`border-b transition-colors duration-150 cursor-pointer ${rowBgClass}`}
                         style={{
                           borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
                         }}
                       >
-                        {isOtuEsotTable ? (
+                        {isReferenceTable ? (
+                          // Reference Table Rendering (ND15, LND15) - 3 columns only
+                          <>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                              {row.stopDepths[0] !== null ? <span className="font-medium">{row.stopDepths[0]}</span> : <span className="text-gray-400">—</span>}
+                            </td>
+                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                              {row.stopDepths[1] !== null ? <span className="font-medium">{row.stopDepths[1]}</span> : <span className="text-gray-400">—</span>}
+                            </td>
+                          </>
+                        ) : isOtuEsotTable ? (
                           // OTU/ESOT Table Rendering
                           <Fragment key={`otu-row-${rowIdx}`}>
                             <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>

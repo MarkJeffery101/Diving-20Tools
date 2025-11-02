@@ -235,22 +235,34 @@ export function SurfaceDecompressionRequired() {
         {/* Decision Diamond - OTU */}
         <polygon points="420,465 490,520 420,575 350,520" className="diamond" />
         <text x="420" y="520" className="text-white">OTU</text>
-        <text x="420" y="540" className="text-white">&gt; 450?</text>
+        <text x="420" y="540" className="text-white">&gt;450?</text>
+
+        {/* YES - Air only */}
+        <path d="M 490 520 L 430 625" className="arrow" />
+        <text x="470" y="570" className="text-dark">YES</text>
+        <rect x="370" y="625" width="120" height="50" rx="5" className="rect" />
+        <text x="430" y="655" className="text-white">Air only</text>
 
         {/* NO - Continue down */}
-        <path d="M 250 540 L 250 620" className="arrow" />
+        <path d="M 250 540 L 250 625" className="arrow" />
         <text x="270" y="580" className="text-dark">NO</text>
+        <rect x="170" y="625" width="160" height="50" rx="5" className="rect" />
+        <text x="250" y="655" className="text-white">20min O₂, 5min air</text>
 
         {/* Final outcomes */}
-        <rect x="70" y="620" width="140" height="80" rx="5" className="rect" />
-        <text x="140" y="650" className="text-white">2 hrs near</text>
-        <text x="140" y="670" className="text-white">decompression</text>
-        <text x="140" y="690" className="text-white">chamber</text>
+        <rect x="50" y="700" width="140" height="80" rx="5" className="rect" />
+        <text x="120" y="730" className="text-white">4 hrs near</text>
+        <text x="120" y="750" className="text-white">decompression</text>
+        <text x="120" y="770" className="text-white">chamber</text>
 
-        <rect x="290" y="620" width="140" height="80" rx="5" className="rect" />
-        <text x="360" y="650" className="text-white">4 hrs near</text>
-        <text x="360" y="670" className="text-white">decompression</text>
-        <text x="360" y="690" className="text-white">chamber</text>
+        <rect x="310" y="700" width="140" height="80" rx="5" className="rect" />
+        <text x="380" y="730" className="text-white">2 hrs near</text>
+        <text x="380" y="750" className="text-white">decompression</text>
+        <text x="380" y="770" className="text-white">chamber</text>
+
+        {/* Connect to outcomes */}
+        <path d="M 250 675 L 250 700" className="arrow" />
+        <path d="M 430 675 L 380 700" className="arrow" />
       </svg>
     </div>
   );

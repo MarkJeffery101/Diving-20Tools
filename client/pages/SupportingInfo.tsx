@@ -315,10 +315,12 @@ export default function SupportingInfo() {
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-border p-4 flex justify-between items-center">
               <h2 className="text-lg font-bold text-foreground">
-                Oxygen Exposure Indices — Academic Overview
+                {openModalId === "otuEsot"
+                  ? "Oxygen Exposure Indices — Academic Overview"
+                  : sections.find((s) => s.id === openModalId)?.title}
               </h2>
               <button
-                onClick={() => setOtuEsotModalOpen(false)}
+                onClick={() => setOpenModalId(null)}
                 className="text-muted-foreground hover:text-foreground transition-colors p-1"
                 aria-label="Close"
               >

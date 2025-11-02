@@ -323,7 +323,7 @@ export default function SupportingInfo() {
       <section className="py-4 px-4 bg-white border-b border-border">
         <div className="container mx-auto">
           <h1 className="text-2xl font-bold text-foreground mb-1">
-            Supporting Information
+            Guidance
           </h1>
           <p className="text-xs text-muted-foreground">
             Safety limits, regulations, and technical reference

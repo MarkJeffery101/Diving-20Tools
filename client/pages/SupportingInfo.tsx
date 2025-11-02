@@ -150,9 +150,196 @@ export default function SupportingInfo() {
                 )}
               </div>
             ))}
+
+            {/* OTU/ESOT Overview Card */}
+            <div className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <button
+                onClick={() => setOtuEsotModalOpen(true)}
+                className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
+              >
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">⚡</span>
+                    <h2 className="text-sm font-bold text-foreground">
+                      Oxygen Exposure Indices
+                    </h2>
+                  </div>
+                </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* OTU/ESOT Modal Overlay */}
+      {otuEsotModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-25 z-50 flex items-center justify-center p-4"
+          onClick={() => setOtuEsotModalOpen(false)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-border p-4 flex justify-between items-center">
+              <h2 className="text-lg font-bold text-foreground">
+                Oxygen Exposure Indices — Academic Overview
+              </h2>
+              <button
+                onClick={() => setOtuEsotModalOpen(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-4 space-y-4 bg-gradient-to-br from-gray-50 to-white">
+              {/* Intro Section */}
+              <div className="bg-white border border-border rounded-lg p-3">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Elevated inspired oxygen (↑pO₂) carries risks of acute CNS toxicity and long-term cumulative effects.
+                  Two complementary indices are commonly referenced: <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">UPTD/OTU</span> and <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">ESOT</span>.
+                </p>
+              </div>
+
+              {/* Two Column Section */}
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* OTU Card */}
+                <div className="bg-white border border-border rounded-lg p-3">
+                  <h3 className="text-sm font-bold text-foreground mb-1">
+                    UPTD / OTU
+                  </h3>
+                  <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
+                    Origin in pulmonary dose modelling; OTU broadened interpretation to include potential <em>systemic</em> manifestations.
+                  </p>
+
+                  <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Strengths</summary>
+                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                      <li>Simple cumulative exposure concept, widely understood.</li>
+                      <li>Keeps attention on possible <strong>systemic</strong> effects beyond lungs.</li>
+                    </ul>
+                  </details>
+
+                  <details className="bg-red-50 border border-red-200 rounded-lg p-2">
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Weaknesses</summary>
+                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                      <li>No validated recovery/decay model (exposure only accumulates).</li>
+                      <li>Limited precision for short or multi-segment exposures.</li>
+                    </ul>
+                  </details>
+                </div>
+
+                {/* ESOT Card */}
+                <div className="bg-white border border-border rounded-lg p-3">
+                  <h3 className="text-sm font-bold text-foreground mb-1">
+                    ESOT
+                  </h3>
+                  <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
+                    Represents exposure as "equivalent minutes of 100% O₂ at the surface," enabling dose + recovery modelling for pulmonary risk.
+                  </p>
+
+                  <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Strengths</summary>
+                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                      <li>Improved prediction for <strong>pulmonary</strong> oxygen toxicity.</li>
+                      <li>Handles varying pO₂ segments and models recovery between exposures.</li>
+                    </ul>
+                  </details>
+
+                  <details className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Weaknesses</summary>
+                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                      <li>Focuses on pulmonary injury; systemic effects are not modelled.</li>
+                      <li>Requires calculation support for practical use.</li>
+                    </ul>
+                  </details>
+                </div>
+              </div>
+
+              {/* Comparison Table */}
+              <div className="bg-white border border-border rounded-lg overflow-hidden">
+                <h3 className="text-sm font-bold text-foreground p-3 border-b border-border bg-gray-50">
+                  Comparison Table
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[10px]">
+                    <thead>
+                      <tr className="bg-gray-50 border-b border-border">
+                        <th className="p-2 text-left font-bold text-foreground">Category</th>
+                        <th className="p-2 text-left font-bold text-foreground">UPTD / OTU</th>
+                        <th className="p-2 text-left font-bold text-foreground">ESOT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Origin</td>
+                        <td className="p-2 text-muted-foreground">Pulmonary dose research; expanded to systemic context</td>
+                        <td className="p-2 text-muted-foreground">Refined from Arieli-type modelling; modern guidance favours use</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Physiological focus</td>
+                        <td className="p-2 text-muted-foreground">Pulmonary + <em>systemic</em> operational awareness</td>
+                        <td className="p-2 text-muted-foreground">Pulmonary-centric model</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Systemic symptoms</td>
+                        <td className="p-2 text-muted-foreground">Recognized in practice (fatigue, headache, myalgia/arthralgia)</td>
+                        <td className="p-2 text-muted-foreground">Not represented</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Mathematical form</td>
+                        <td className="p-2 text-muted-foreground">Exposure as function of pO₂ × time</td>
+                        <td className="p-2 text-muted-foreground">Equivalent surface O₂ time; includes recovery</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Recovery modelling</td>
+                        <td className="p-2 text-muted-foreground">None</td>
+                        <td className="p-2 text-muted-foreground">Included</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Multi-segment exposures</td>
+                        <td className="p-2 text-muted-foreground">Limited handling</td>
+                        <td className="p-2 text-muted-foreground">Strong handling</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Time horizon</td>
+                        <td className="p-2 text-muted-foreground">Multi-day / multi-week systemic awareness</td>
+                        <td className="p-2 text-muted-foreground">Short-term / repetitive pulmonary planning</td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Primary utility</td>
+                        <td className="p-2 text-muted-foreground">Broad whole-body stress awareness</td>
+                        <td className="p-2 text-muted-foreground">Pulmonary dose + recovery planning</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">Simplified view</td>
+                        <td className="p-2 text-muted-foreground">"Whole-body stress thermometer"</td>
+                        <td className="p-2 text-muted-foreground">"Lung-stress calculator"</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Summary Section */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <h3 className="text-sm font-bold text-foreground mb-2">Academic Summary</h3>
+                <p className="text-[10px] text-muted-foreground leading-relaxed">
+                  <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are complementary abstractions of oxygen exposure:
+                  OTU's cumulative framing maintains awareness of potential <em>systemic</em> manifestations of chronic hyperoxia,
+                  whereas ESOT's equivalent-time + recovery formalism better quantifies <em>pulmonary</em> risk across variable pO₂ segments.
+                  Used together, they provide broader physiological insight than either alone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Quick Reference Cards */}
       <section className="py-6 px-4 bg-white border-t border-border">

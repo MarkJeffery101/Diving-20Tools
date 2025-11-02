@@ -264,9 +264,8 @@ export default function SupportingInfo() {
                 key={section.id}
                 className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                {/* Card Header */}
                 <button
-                  onClick={() => toggleExpanded(section.id)}
+                  onClick={() => setOpenModalId(section.id)}
                   className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
                 >
                   <div className="flex-1">
@@ -277,48 +276,15 @@ export default function SupportingInfo() {
                       </h2>
                     </div>
                   </div>
-                  <ChevronDown
-                    className={`h-4 w-4 text-muted-foreground transition-transform flex-shrink-0 ${
-                      expandedId === section.id ? "rotate-180" : ""
-                    }`}
-                  />
+                  <ChevronDown className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 </button>
-
-                {/* Expanded Content */}
-                {expandedId === section.id && (
-                  <div className="border-t border-border p-3 space-y-2 text-xs">
-                    {section.subsections.map((sub, idx) => (
-                      <div
-                        key={idx}
-                        className="pb-2 border-b border-gray-200 last:pb-0 last:border-0"
-                      >
-                        <h3 className="font-bold text-foreground text-[11px] mb-1">
-                          {sub.subtitle}
-                        </h3>
-                        <ul className="space-y-1">
-                          {sub.items.map((item, itemIdx) => (
-                            <li
-                              key={itemIdx}
-                              className="flex gap-2 text-foreground"
-                            >
-                              <span className="text-primary font-bold flex-shrink-0">
-                                ▶
-                              </span>
-                              <span className="text-[10px]">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
 
             {/* OTU/ESOT Overview Card */}
             <div className="bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <button
-                onClick={() => setOtuEsotModalOpen(true)}
+                onClick={() => setOpenModalId("otuEsot")}
                 className="w-full p-3 flex items-start justify-between hover:bg-blue-50 transition-colors text-left"
               >
                 <div className="flex-1">
@@ -529,7 +495,7 @@ export default function SupportingInfo() {
                           Exposure as function of pO₂ × time
                         </td>
                         <td className="p-2 text-muted-foreground">
-                          Equivalent surface O��� time; includes recovery
+                          Equivalent surface O₂ time; includes recovery
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">

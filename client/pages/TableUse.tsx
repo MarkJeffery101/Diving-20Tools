@@ -583,32 +583,32 @@ export default function TableUse() {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
                   {renderFlowchartButton(
-                    'sil15-emergency',
-                    'SIL15 Emergency Procedure',
-                    'Decision tree for surface decompression continuation',
+                    'crash-dive',
+                    'Crash Dive Procedure',
+                    'Emergency decompression when dive is interrupted',
                     '⚠️',
-                    <SIL15FlowchartEmergency />
+                    <CrashDiveProcedure />
                   )}
                   {renderFlowchartButton(
-                    'sox15-emergency',
-                    'SOX15 Oxygen Failure',
-                    'Response to Oxygen supply failure',
+                    'oxygen-failure',
+                    'Oxygen Failure During Decompression',
+                    'Response when oxygen supply fails',
                     '⏱️',
-                    <SOX15FlowchartEmergency1 />
+                    <OxygenFailureDuringDecompression />
                   )}
                   {renderFlowchartButton(
-                    'nitrox-emergency',
-                    'Nitrox Surface Decompression',
-                    'Response when Surface decompression is needed',
+                    'surface-decompression',
+                    'Surface Decompression Required',
+                    'Decision tree for surface decompression scenarios',
                     '💨',
-                    <NitroxFlowchartEmergency1 />
+                    <SurfaceDecompressionRequired />
                   )}
                   {renderFlowchartButton(
-                    'nd15-emergency',
-                    'Nitro Crash Dive',
-                    'Step by step crash dive procedure',
+                    'irregularity-decompression',
+                    'Irregularity During Decompression',
+                    'Treatment procedure for decompression irregularities',
                     '📈',
-                    null
+                    <IrregularityDuringDecompression />
                   )}
                 </CardContent>
               </Card>

@@ -329,6 +329,52 @@ export default function SupportingInfo() {
         },
       ],
     },
+    {
+      id: "oxygenToxicity",
+      title: "Oxygen Toxicity",
+      icon: "☠️",
+      subsections: [
+        {
+          subtitle: "Acute (CNS) Toxicity Overview",
+          items: [
+            "Limit oxygen partial pressure (pO₂) to 1.5 bar to prevent convulsions",
+            "Convulsions can occur at pressures as low as 1.5 bar",
+            "NOAA produced limits for pO₂ and duration with minimal risk",
+            "IMCA advises maximum pO₂ of 1.4 bar for nitrox diving regardless of time (IMCA D048, 2012)",
+          ],
+        },
+        {
+          subtitle: "Long-Term Toxicity (OTU)",
+          items: [
+            "Oxygen Toxicity Units (OTU) predict long-term oxygen toxicity symptoms",
+            "1 OTU = 1 UPTD (Unit Pulmonary Toxic Dose)",
+            "Daily dose should not exceed 450 OTU (except emergencies)",
+            "OTU is included in DCD tables; calculator available in Tools",
+            "After 48-hour no-dive period, OTU count restarts at zero",
+          ],
+        },
+        {
+          subtitle: "ESOT (DMAC 35) Limits",
+          items: [
+            "ESOT should replace UPTD as exposure measure for pulmonary oxygen toxicity",
+            "Single dive: keep ESOT < 660",
+            "Multi-day: 660 (2 days), 500 (5 days), 420 (10 days)",
+            "Two days off diving should be planned after multi-day hyperoxic exposures",
+            "Air in-water decompression dives are not expected to cause toxicity",
+          ],
+        },
+        {
+          subtitle: "OTU and ESOT in DCD/NDC Tables",
+          items: [
+            "DCD/NDC tables include SOX15, NIA15, NIB15, and BOX15 with oxygen",
+            "OTU and ESOT values provided for each depth/time combination",
+            "ESOT declines with time; recovery ESOT (recESOT) must be added to next dive",
+            "OTU simply sums (no intra-day decay)",
+            "Use OTU/ESOT Calculator in Tools for computation",
+          ],
+        },
+      ],
+    },
   ];
 
   return (

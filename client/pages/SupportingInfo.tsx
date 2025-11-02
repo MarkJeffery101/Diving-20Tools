@@ -83,7 +83,7 @@ export default function SupportingInfo() {
         {
           subtitle: "Examples",
           items: [
-            "Air 21% @ 30m: 0.84 bar ✓",
+            "Air 21% @ 30m: 0.84 bar ���",
             "Air 21% @ 60m: 1.68 bar ✗",
             "Nitrox 32% @ 40m: 1.44 bar ✓",
           ],
@@ -1184,7 +1184,7 @@ export default function SupportingInfo() {
                         {sub.items.map((item, itemIdx) => (
                           <li key={itemIdx} className="flex gap-2">
                             <span className="text-primary font-bold flex-shrink-0">▶</span>
-                            <span>{item}</span>
+                            <span>{renderTextWithTableLinks(item)}</span>
                           </li>
                         ))}
                       </ul>

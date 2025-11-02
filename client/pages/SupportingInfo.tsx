@@ -6,6 +6,23 @@ import { useState } from "react";
 export default function SupportingInfo() {
   const [openModalId, setOpenModalId] = useState<string | null>(null);
 
+  const renderTextWithTableLinks = (text: string) => {
+    const tableCodes = ["SOX15", "NIA15", "NIB15", "BOX15", "SIL15", "SAB15", "BAB15", "H4SOX", "H2NIA15", "H2NIB15", "BOX15"];
+    const regex = new RegExp(`(${tableCodes.join("|")})`, "g");
+    const parts = text.split(regex);
+
+    return parts.map((part, idx) => {
+      if (tableCodes.includes(part)) {
+        return (
+          <Link key={idx} to="/tables" className="text-blue-600 hover:text-blue-800 underline font-semibold">
+            {part}
+          </Link>
+        );
+      }
+      return part;
+    });
+  };
+
   const sections = [
     {
       id: "limits",
@@ -868,7 +885,7 @@ export default function SupportingInfo() {
                         <li>If chronic oxygen-toxicity symptoms are suspected: impose a diving ban and consult a qualified diving medical advisor.</li>
                       </ul>
                       <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
-                        <strong>Oxygen Limits — OTU</strong><br />
+                        <strong>Oxygen Limits �� OTU</strong><br />
                         • Daily dose should not exceed <strong>450 OTU</strong> (except emergencies).<br />
                         • For 7-day schedules: week 1 ≤ <strong>2500 OTU</strong>; weeks 2–3 ≤ <strong>2100 OTU</strong>; then 48 h no diving.<br />
                         • For &gt;3 weeks continuous (7 d/wk): ≤ <strong>2100 OTU/week</strong>.<br />

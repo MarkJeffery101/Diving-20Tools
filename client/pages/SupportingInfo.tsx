@@ -242,6 +242,77 @@ export default function SupportingInfo() {
         },
       ],
     },
+    {
+      id: "tableSelection",
+      title: "Table Selection",
+      icon: "📚",
+      subsections: [
+        {
+          subtitle: "Factors to Consider",
+          items: [
+            "Dive depth and planned bottom time",
+            "Gas mix (air vs nitrox)",
+            "Decompression requirements",
+            "Personal experience level",
+            "Environmental conditions",
+          ],
+        },
+        {
+          subtitle: "Table Types",
+          items: [
+            "Air tables: Standard no-decompression and decompression schedules",
+            "Nitrox tables: Adjusted for oxygen partial pressure",
+            "Commercial tables: Extended depth and time protocols",
+            "TUP tables: Technical diving profiles",
+          ],
+        },
+        {
+          subtitle: "Selection Process",
+          items: [
+            "Identify your maximum planned depth",
+            "Estimate bottom time with safety margin",
+            "Choose appropriate table system",
+            "Cross-reference with gas available",
+            "Verify decompression stop requirements",
+          ],
+        },
+      ],
+    },
+    {
+      id: "evacuationSurfaceDeco",
+      title: "Evacuation: Surface Deco Based Diving",
+      icon: "🚤",
+      subsections: [
+        {
+          subtitle: "Overview",
+          items: [
+            "Emergency evacuation procedures for divers under pressure",
+            "Accelerated decompression at 1 msw/minute",
+            "Oxygen mandatory during transfer",
+            "Risk assessment required before diving",
+          ],
+        },
+        {
+          subtitle: "Evacuation Criteria",
+          items: [
+            "Platform emergency or loss of chamber capability",
+            "Uncontrollable fire or mechanical hazard",
+            "Medical emergency requiring immediate evacuation",
+            "Dive time within IMCA D014 guidelines",
+          ],
+        },
+        {
+          subtitle: "AED Protocol",
+          items: [
+            "Linear ascent rate: 1 meter per minute",
+            "Helicopter altitude: ≤ 1000 feet if possible",
+            "Oxygen breathing mandatory during transfer",
+            "Maintain hydration: ~1 liter per hour",
+            "Recompression facility coordination essential",
+          ],
+        },
+      ],
+    },
   ];
 
   return (

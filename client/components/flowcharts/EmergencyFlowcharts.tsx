@@ -1,791 +1,352 @@
-// SIL15 Emergency Procedure Flowchart
-export function SIL15FlowchartEmergency() {
+// Crash Dive Procedure Flowchart
+export function CrashDiveProcedure() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 400 600" className="min-w-full" preserveAspectRatio="xMidYMid meet">
-        {/* Rounded rectangles and diamonds */}
+      <svg viewBox="0 0 300 380" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .flowchart-start { fill: #60a5fa; stroke: #1e40af; stroke-width: 2; }
-            .flowchart-decision { fill: #0ea5e9; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-process { fill: #3b82f6; stroke: #1e40af; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+            .start { fill: #0ea5e9; stroke: #0369a1; stroke-width: 1.5; }
+            .decision { fill: #06b6d4; stroke: #0369a1; stroke-width: 1.5; }
+            .process { fill: #0284c7; stroke: #0369a1; stroke-width: 1.5; }
+            .outcome { fill: #0369a1; stroke: #082f49; stroke-width: 1.5; }
+            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
+            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow1); }
           `}</style>
-          <marker
-            id="arrowhead"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
+          <marker id="arrow1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
           </marker>
         </defs>
 
         {/* Start */}
-        <rect x="100" y="20" width="200" height="50" rx="25" className="flowchart-start" />
-        <text x="200" y="50" className="flowchart-text">
-          Dive is interrupted
-        </text>
+        <rect x="75" y="10" width="150" height="35" rx="18" className="start" />
+        <text x="150" y="32" className="text">Dive is interrupted</text>
 
-        {/* Arrow down */}
-        <path d="M 200 70 L 200 110" className="flowchart-arrow" />
+        {/* Arrow */}
+        <path d="M 150 45 L 150 70" className="arrow" />
 
-        {/* Decision: Repeat interval > 4 hrs? */}
-        <polygon
-          points="200,110 280,150 200,190 120,150"
-          className="flowchart-decision"
-        />
-        <text x="200" y="150" className="flowchart-text">
-          Repeat interval
-        </text>
-        <text x="200" y="165" className="flowchart-text">
-          &gt; 4 hrs?
-        </text>
+        {/* Decision: Repeat interval > 4hrs? */}
+        <polygon points="150,70 200,95 150,120 100,95" className="decision" />
+        <text x="150" y="99" className="text">Repeat</text>
+        <text x="150" y="110" className="text">&gt; 4hrs?</text>
 
-        {/* YES path - Surface/ox-table */}
-        <path d="M 280 150 L 320 150" className="flowchart-arrow" />
-        <text x="300" y="145" className="flowchart-label">
-          YES
-        </text>
-        <rect x="320" y="130" width="70" height="40" rx="5" className="flowchart-process" />
-        <text x="355" y="155" className="flowchart-text">
-          Surface/
-        </text>
-        <text x="355" y="168" className="flowchart-text">
-          ox-table
-        </text>
+        {/* YES path */}
+        <path d="M 200 95 L 245 95" className="arrow" />
+        <text x="220" y="90" className="label">YES</text>
+        <rect x="245" y="80" width="50" height="30" rx="4" className="process" />
+        <text x="270" y="100" className="text">Surface/</text>
+        <text x="270" y="110" className="text">ox-table</text>
 
-        {/* NO path - Emergency procedure */}
-        <path d="M 200 190 L 200 230" className="flowchart-arrow" />
-        <text x="205" y="215" className="flowchart-label">
-          NO
-        </text>
-        <rect x="75" y="230" width="250" height="50" rx="5" className="flowchart-process" />
-        <text x="200" y="255" className="flowchart-text">
-          Emergency decompression
-        </text>
-        <text x="200" y="270" className="flowchart-text">
-          crash dive procedure (§ 9.3)
-        </text>
+        {/* NO path */}
+        <path d="M 150 120 L 150 155" className="arrow" />
+        <text x="160" y="140" className="label">NO</text>
 
-        {/* Arrow down */}
-        <path d="M 200 280 L 200 320" className="flowchart-arrow" />
+        {/* Emergency decompression */}
+        <rect x="40" y="155" width="220" height="30" rx="4" className="process" />
+        <text x="150" y="175" className="text">Emergency decompression crash dive</text>
+
+        {/* Arrow */}
+        <path d="M 150 185 L 150 210" className="arrow" />
 
         {/* Decision: Oxygen available? */}
-        <polygon
-          points="200,320 280,360 200,400 120,360"
-          className="flowchart-decision"
-        />
-        <text x="200" y="360" className="flowchart-text">
-          Oxygen
-        </text>
-        <text x="200" y="375" className="flowchart-text">
-          available?
-        </text>
-
-        {/* YES - Oxygen protocol */}
-        <path d="M 280 360 L 320 360" className="flowchart-arrow" />
-        <text x="300" y="355" className="flowchart-label">
-          YES
-        </text>
-        <rect x="320" y="340" width="70" height="40" rx="5" className="flowchart-process" />
-        <text x="355" y="360" className="flowchart-text">
-          From 12m
-        </text>
-        <text x="355" y="373" className="flowchart-text">
-          20min O₂
-        </text>
-
-        {/* Final outcomes */}
-        {/* YES path outcome */}
-        <path d="M 355 380 L 355 420" className="flowchart-arrow" />
-        <rect x="305" y="420" width="100" height="60" rx="5" className="flowchart-process" />
-        <text x="355" y="440" className="flowchart-text">
-          2 hrs near
-        </text>
-        <text x="355" y="453" className="flowchart-text">
-          decompression
-        </text>
-        <text x="355" y="466" className="flowchart-text">
-          chamber
-        </text>
-
-        {/* NO path outcome */}
-        <path d="M 200 400 L 200 420" className="flowchart-arrow" />
-        <text x="205" y="415" className="flowchart-label">
-          NO
-        </text>
-        <rect x="50" y="420" width="100" height="60" rx="5" className="flowchart-process" />
-        <text x="100" y="440" className="flowchart-text">
-          4 hrs near
-        </text>
-        <text x="100" y="453" className="flowchart-text">
-          decompression
-        </text>
-        <text x="100" y="466" className="flowchart-text">
-          chamber
-        </text>
-
-        {/* Final note */}
-        <text x="200" y="530" className="flowchart-label">
-          Repeat interval: 12 hours
-        </text>
-      </svg>
-    </div>
-  );
-}
-
-// SOX15 Emergency Procedure Flowchart 1
-export function SOX15FlowchartEmergency1() {
-  return (
-    <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 400 650" className="min-w-full" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <style>{`
-            .flowchart-start { fill: #f97316; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-decision { fill: #fb923c; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-process { fill: #fdba74; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-treatment { fill: #dc2626; stroke: #991b1b; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead2); }
-          `}</style>
-          <marker
-            id="arrowhead2"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
-          </marker>
-        </defs>
-
-        {/* Start */}
-        <rect x="80" y="20" width="240" height="50" rx="25" className="flowchart-start" />
-        <text x="200" y="50" className="flowchart-text">
-          Irregularity in decompression
-        </text>
-
-        {/* Arrow */}
-        <path d="M 200 70 L 200 110" className="flowchart-arrow" />
-
-        {/* Decision */}
-        <polygon
-          points="200,110 280,150 200,190 120,150"
-          className="flowchart-decision"
-        />
-        <text x="200" y="155" className="flowchart-text">
-          Oxygen
-        </text>
-        <text x="200" y="170" className="flowchart-text">
-          available?
-        </text>
-
-        {/* NO path */}
-        <path d="M 120 150 L 40 150 L 40 210" className="flowchart-arrow" />
-        <text x="70" y="145" className="flowchart-label">
-          NO
-        </text>
-        <rect x="0" y="210" width="80" height="40" rx="5" className="flowchart-treatment" />
-        <text x="40" y="235" className="flowchart-text">
-          Treatment
-        </text>
-        <text x="40" y="248" className="flowchart-text">
-          table 3
-        </text>
+        <polygon points="150,210 200,235 150,260 100,235" className="decision" />
+        <text x="150" y="239" className="text">Oxygen</text>
+        <text x="150" y="250" className="text">available?</text>
 
         {/* YES path */}
-        <path d="M 200 190 L 200 230" className="flowchart-arrow" />
-        <text x="205" y="215" className="flowchart-label">
-          YES
-        </text>
-        <rect x="100" y="230" width="200" height="40" rx="5" className="flowchart-treatment" />
-        <text x="200" y="255" className="flowchart-text">
-          Treatment table 5
-        </text>
-
-        {/* Arrow */}
-        <path d="M 200 270 L 200 310" className="flowchart-arrow" />
-
-        {/* Decision: Symptoms? */}
-        <polygon
-          points="200,310 280,350 200,390 120,350"
-          className="flowchart-decision"
-        />
-        <text x="200" y="350" className="flowchart-text">
-          Symptoms of DCS?
-        </text>
+        <path d="M 200 235 L 245 235" className="arrow" />
+        <text x="220" y="230" className="label">YES</text>
+        <rect x="245" y="220" width="50" height="30" rx="4" className="process" />
+        <text x="270" y="240" className="text">20min O₂</text>
+        <text x="270" y="250" className="text">5min air</text>
 
         {/* NO path */}
-        <path d="M 280 350 L 340 350 L 340 410" className="flowchart-arrow" />
-        <text x="310" y="345" className="flowchart-label">
-          NO
-        </text>
-
-        {/* YES path */}
-        <path d="M 200 390 L 200 430" className="flowchart-arrow" />
-        <text x="205" y="415" className="flowchart-label">
-          YES
-        </text>
-        <rect x="70" y="430" width="130" height="40" rx="5" className="flowchart-treatment" />
-        <text x="135" y="450" className="flowchart-text">
-          Table 6 or 4
-        </text>
+        <path d="M 150 260 L 150 285" className="arrow" />
+        <text x="160" y="275" className="label">NO</text>
 
         {/* Final outcomes */}
-        <path d="M 135 470 L 135 510" className="flowchart-arrow" />
-        <rect x="55" y="510" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="135" y="530" className="flowchart-text">
-          4 hrs near chamber
-        </text>
-        <text x="135" y="543" className="flowchart-text">
-          Repeat interval 12 hrs
-        </text>
+        {/* YES outcome */}
+        <path d="M 270 250 L 270 300" className="arrow" />
+        <rect x="230" y="300" width="80" height="40" rx="4" className="outcome" />
+        <text x="270" y="315" className="text">2 hrs near</text>
+        <text x="270" y="327" className="text">chamber</text>
 
         {/* NO outcome */}
-        <path d="M 340 410 L 340 510" className="flowchart-arrow" />
-        <rect x="270" y="510" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="350" y="530" className="flowchart-text">
-          2 hrs near chamber
-        </text>
-        <text x="350" y="543" className="flowchart-text">
-          Repeat interval 12 hrs
-        </text>
+        <rect x="60" y="285" width="80" height="40" rx="4" className="outcome" />
+        <text x="100" y="300" className="text">4 hrs near</text>
+        <text x="100" y="312" className="text">chamber</text>
+
+        {/* Repeat interval note */}
+        <text x="150" y="365" className="label">Repeat interval: 12 hours</text>
       </svg>
     </div>
   );
 }
 
-// SOX15 Emergency Procedure Flowchart 2
-export function SOX15FlowchartEmergency2() {
+// Oxygen Failure During Decompression Flowchart
+export function OxygenFailureDuringDecompression() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 500 700" className="min-w-full" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 320 400" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .flowchart-start { fill: #f97316; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-decision { fill: #fb923c; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-process { fill: #fdba74; stroke: #c2410c; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 12px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 11px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead3); }
+            .start { fill: #f97316; stroke: #c2410c; stroke-width: 1.5; }
+            .decision { fill: #fb923c; stroke: #c2410c; stroke-width: 1.5; }
+            .process { fill: #fdba74; stroke: #c2410c; stroke-width: 1.5; }
+            .outcome { fill: #dc2626; stroke: #7f1d1d; stroke-width: 1.5; }
+            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
+            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow2); }
           `}</style>
-          <marker
-            id="arrowhead3"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
+          <marker id="arrow2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
           </marker>
         </defs>
 
         {/* Start */}
-        <rect x="140" y="20" width="220" height="50" rx="25" className="flowchart-start" />
-        <text x="250" y="50" className="flowchart-text">
-          Oxygen failure
-        </text>
+        <rect x="60" y="10" width="200" height="35" rx="18" className="start" />
+        <text x="160" y="32" className="text">Oxygen failure</text>
 
         {/* Arrow */}
-        <path d="M 250 70 L 250 110" className="flowchart-arrow" />
+        <path d="M 160 45 L 160 70" className="arrow" />
 
-        {/* Process */}
-        <rect x="150" y="110" width="200" height="40" rx="5" className="flowchart-process" />
-        <text x="250" y="135" className="flowchart-text">
-          Surface air table (SAB)
-        </text>
+        {/* Process: Surface air table */}
+        <rect x="80" y="70" width="160" height="30" rx="4" className="process" />
+        <text x="160" y="90" className="text">Surface air table (SAB)</text>
 
         {/* Arrow */}
-        <path d="M 250 150 L 250 190" className="flowchart-arrow" />
+        <path d="M 160 100 L 160 125" className="arrow" />
 
-        {/* Decision */}
-        <polygon
-          points="250,190 330,230 250,270 170,230"
-          className="flowchart-decision"
-        />
-        <text x="250" y="235" className="flowchart-text">
-          Oxygen
-        </text>
-        <text x="250" y="250" className="flowchart-text">
-          restored?
-        </text>
+        {/* Decision: Oxygen restored? */}
+        <polygon points="160,125 210,150 160,175 110,150" className="decision" />
+        <text x="160" y="150" className="text">Oxygen</text>
+        <text x="160" y="161" className="text">restored?</text>
 
-        {/* NO path - stays on SAB */}
-        <path d="M 170 230 L 80 230 L 80 310" className="flowchart-arrow" />
-        <text x="120" y="225" className="flowchart-label">
-          NO
-        </text>
+        {/* NO path - Loop back to SAB */}
+        <path d="M 110 150 L 40 150 L 40 85 L 80 85" className="arrow" />
+        <text x="70" y="145" className="label">NO</text>
 
         {/* YES path */}
-        <path d="M 250 270 L 250 310" className="flowchart-arrow" />
-        <text x="255" y="295" className="flowchart-label">
-          YES
-        </text>
+        <path d="M 160 175 L 160 200" className="arrow" />
+        <text x="170" y="190" className="label">YES</text>
 
-        {/* Process: Oxygen from 12m */}
-        <rect x="140" y="310" width="220" height="40" rx="5" className="flowchart-process" />
-        <text x="250" y="335" className="flowchart-text">
-          From 12m: 20min O₂ and 5min air
-        </text>
+        {/* Oxygen protocol */}
+        <rect x="70" y="200" width="180" height="30" rx="4" className="process" />
+        <text x="160" y="220" className="text">20min O₂ and 5min air</text>
 
         {/* Arrow */}
-        <path d="M 250 350 L 250 390" className="flowchart-arrow" />
+        <path d="M 160 230 L 160 255" className="arrow" />
 
         {/* Decision: OTU > 450? */}
-        <polygon
-          points="250,390 330,430 250,470 170,430"
-          className="flowchart-decision"
-        />
-        <text x="250" y="435" className="flowchart-text">
-          OTU &gt;
-        </text>
-        <text x="250" y="450" className="flowchart-text">
-          450?
-        </text>
+        <polygon points="160,255 210,280 160,305 110,280" className="decision" />
+        <text x="160" y="283" className="text">OTU &gt;</text>
+        <text x="160" y="294" className="text">450?</text>
 
-        {/* YES path - Stop O2 */}
-        <path d="M 330 430 L 390 430" className="flowchart-arrow" />
-        <text x="360" y="425" className="flowchart-label">
-          YES
-        </text>
+        {/* YES - Stop O2 */}
+        <path d="M 210 280 L 250 280 L 250 320" className="arrow" />
+        <text x="230" y="275" className="label">YES</text>
 
-        {/* NO path */}
-        <path d="M 170 430 L 80 430 L 80 310 L 140 330" className="flowchart-arrow" />
-        <text x="110" y="425" className="flowchart-label">
-          NO
-        </text>
+        {/* NO - Continue O2 */}
+        <path d="M 160 305 L 160 330" className="arrow" />
+        <text x="170" y="320" className="label">NO</text>
 
-        {/* Decision: Oxygen intake > 1/3? */}
-        <path d="M 250 470 L 250 510" className="flowchart-arrow" />
-        <polygon
-          points="250,510 330,550 250,590 170,550"
-          className="flowchart-decision"
-        />
-        <text x="250" y="550" className="flowchart-text">
-          O₂ intake &gt;
-        </text>
-        <text x="250" y="565" className="flowchart-text">
-          1/3 deco?
-        </text>
+        {/* Decision: O2 intake > 1/3? */}
+        <polygon points="160,330 210,355 160,380 110,355" className="decision" />
+        <text x="160" y="351" className="text">O₂ intake</text>
+        <text x="160" y="362" className="text">&gt; 1/3 deco?</text>
 
         {/* Final outcomes */}
         {/* Left outcome - 4 hrs */}
-        <path d="M 170 550 L 100 550 L 100 600" className="flowchart-arrow" />
-        <text x="130" y="545" className="flowchart-label">
-          NO
-        </text>
-        <rect x="20" y="600" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="100" y="620" className="flowchart-text">
-          4 hrs near chamber
-        </text>
-        <text x="100" y="633" className="flowchart-text">
-          Repeat: 12 hrs
-        </text>
+        <path d="M 110 355 L 60 355 L 60 345" className="arrow" />
+        <text x="80" y="350" className="label">NO</text>
+        <rect x="20" y="345" width="80" height="35" rx="4" className="outcome" />
+        <text x="60" y="360" className="text">4 hrs</text>
+        <text x="60" y="372" className="text">chamber</text>
 
         {/* Right outcome - 2 hrs */}
-        <path d="M 330 550 L 400 550 L 400 600" className="flowchart-arrow" />
-        <text x="370" y="545" className="flowchart-label">
-          YES
-        </text>
-        <rect x="320" y="600" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="400" y="620" className="flowchart-text">
-          2 hrs near chamber
-        </text>
-        <text x="400" y="633" className="flowchart-text">
-          Repeat: 12 hrs
-        </text>
+        <path d="M 210 355 L 250 355 L 250 345" className="arrow" />
+        <text x="230" y="350" className="label">YES</text>
+        <rect x="220" y="345" width="80" height="35" rx="4" className="outcome" />
+        <text x="260" y="360" className="text">2 hrs</text>
+        <text x="260" y="372" className="text">chamber</text>
       </svg>
     </div>
   );
 }
 
-// Nitrox Emergency Procedure Flowchart 1
-export function NitroxFlowchartEmergency1() {
+// Surface Decompression Required Flowchart
+export function SurfaceDecompressionRequired() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 450 650" className="min-w-full" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 320 400" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .flowchart-start { fill: #06b6d4; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-decision { fill: #22d3ee; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-process { fill: #67e8f9; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 11px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 10px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead4); }
+            .start { fill: #06b6d4; stroke: #0369a1; stroke-width: 1.5; }
+            .decision { fill: #22d3ee; stroke: #0369a1; stroke-width: 1.5; }
+            .process { fill: #67e8f9; stroke: #0369a1; stroke-width: 1.5; }
+            .outcome { fill: #0284c7; stroke: #082f49; stroke-width: 1.5; }
+            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
+            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow3); }
           `}</style>
-          <marker
-            id="arrowhead4"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
+          <marker id="arrow3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
           </marker>
         </defs>
 
         {/* Start */}
-        <rect x="90" y="20" width="270" height="50" rx="25" className="flowchart-start" />
-        <text x="225" y="50" className="flowchart-text">
-          Need for surface decompression
-        </text>
+        <rect x="50" y="10" width="220" height="35" rx="18" className="start" />
+        <text x="160" y="32" className="text">Need for surface decompression</text>
 
         {/* Arrow */}
-        <path d="M 225 70 L 225 110" className="flowchart-arrow" />
+        <path d="M 160 45 L 160 70" className="arrow" />
 
-        {/* Decision */}
-        <polygon
-          points="225,110 305,150 225,190 145,150"
-          className="flowchart-decision"
-        />
-        <text x="225" y="155" className="flowchart-text">
-          Repeat
-        </text>
-        <text x="225" y="170" className="flowchart-text">
-          &gt; 4 hrs?
-        </text>
+        {/* Decision: Repeat > 4hrs? */}
+        <polygon points="160,70 210,95 160,120 110,95" className="decision" />
+        <text x="160" y="99" className="text">Repeat</text>
+        <text x="160" y="110" className="text">&gt; 4hrs?</text>
 
         {/* YES path */}
-        <path d="M 305 150 L 360 150" className="flowchart-arrow" />
-        <text x="335" y="145" className="flowchart-label">
-          YES
-        </text>
-        <rect x="360" y="130" width="80" height="40" rx="5" className="flowchart-process" />
-        <text x="400" y="155" className="flowchart-text">
-          Air/SOX
-        </text>
-        <text x="400" y="168" className="flowchart-text">
-          Table
-        </text>
+        <path d="M 210 95 L 255 95" className="arrow" />
+        <text x="235" y="90" className="label">YES</text>
+        <rect x="255" y="80" width="55" height="30" rx="4" className="process" />
+        <text x="282" y="100" className="text">Air/SOX</text>
+        <text x="282" y="110" className="text">table</text>
 
         {/* NO path */}
-        <path d="M 225 190 L 225 230" className="flowchart-arrow" />
-        <text x="230" y="215" className="flowchart-label">
-          NO
-        </text>
-        <rect x="50" y="230" width="250" height="40" rx="5" className="flowchart-process" />
-        <text x="225" y="255" className="flowchart-text">
-          Emergency crash dive procedure
-        </text>
+        <path d="M 160 120 L 160 155" className="arrow" />
+        <text x="170" y="140" className="label">NO</text>
+
+        {/* Emergency crash dive */}
+        <rect x="40" y="155" width="240" height="30" rx="4" className="process" />
+        <text x="160" y="175" className="text">Emergency decompression crash dive</text>
 
         {/* Arrow */}
-        <path d="M 225 270 L 225 310" className="flowchart-arrow" />
+        <path d="M 160 185 L 160 210" className="arrow" />
 
-        {/* Decision: Oxygen? */}
-        <polygon
-          points="225,310 305,350 225,390 145,350"
-          className="flowchart-decision"
-        />
-        <text x="225" y="355" className="flowchart-text">
-          Oxygen
-        </text>
-        <text x="225" y="370" className="flowchart-text">
-          available?
-        </text>
+        {/* Decision: Oxygen available? */}
+        <polygon points="160,210 210,235 160,260 110,235" className="decision" />
+        <text x="160" y="239" className="text">Oxygen</text>
+        <text x="160" y="250" className="text">available?</text>
 
-        {/* YES - Oxygen protocol */}
-        <path d="M 305 350 L 360 350" className="flowchart-arrow" />
-        <text x="335" y="345" className="flowchart-label">
-          YES
-        </text>
-        <rect x="360" y="330" width="80" height="40" rx="5" className="flowchart-process" />
-        <text x="400" y="355" className="flowchart-text">
-          20min O₂
-        </text>
-        <text x="400" y="368" className="flowchart-text">
-          5min air
-        </text>
+        {/* YES path */}
+        <path d="M 210 235 L 255 235" className="arrow" />
+        <text x="235" y="230" className="label">YES</text>
 
-        {/* NO path */}
-        <path d="M 225 390 L 225 430" className="flowchart-arrow" />
-        <text x="230" y="415" className="flowchart-label">
-          NO
-        </text>
+        {/* Decision: OTU > 450? */}
+        <polygon points="255,220 305,245 255,270 205,245" className="decision" />
+        <text x="255" y="248" className="text">OTU &gt;</text>
+        <text x="255" y="259" className="text">450?</text>
 
-        {/* Decision: OTU? */}
-        <polygon
-          points="225,430 305,470 225,510 145,470"
-          className="flowchart-decision"
-        />
-        <text x="225" y="475" className="flowchart-text">
-          OTU &gt;
-        </text>
-        <text x="225" y="490" className="flowchart-text">
-          450?
-        </text>
+        {/* YES - Air only */}
+        <path d="M 305 245 L 250 300" className="arrow" />
+        <text x="290" y="270" className="label">YES</text>
+        <rect x="230" y="300" width="40" height="25" rx="4" className="outcome" />
+        <text x="250" y="318" className="text">Air</text>
 
-        {/* Outcomes */}
-        {/* Left - Air only */}
-        <path d="M 145 470 L 80 470 L 80 550" className="flowchart-arrow" />
-        <text x="110" y="465" className="flowchart-label">
-          YES
-        </text>
-        <rect x="20" y="550" width="120" height="40" rx="5" className="flowchart-process" />
-        <text x="80" y="575" className="flowchart-text">
-          Air only
-        </text>
-
-        {/* Right - Continue O2 */}
-        <path d="M 305 470 L 360 470 L 360 550" className="flowchart-arrow" />
-        <text x="335" y="465" className="flowchart-label">
-          NO
-        </text>
-
-        {/* Continue O2 to outcomes */}
-        <path d="M 360 350 L 360 510 L 280 510" className="flowchart-arrow" />
+        {/* NO path - Continue O2 */}
+        <path d="M 160 260 L 160 300" className="arrow" />
+        <text x="170" y="280" className="label">NO</text>
 
         {/* Final outcomes */}
-        <path d="M 225 510 L 225 550" className="flowchart-arrow" />
-        <rect x="145" y="550" width="160" height="40" rx="5" className="flowchart-process" />
-        <text x="225" y="575" className="flowchart-text">
-          2 hrs chamber / 12 hrs repeat
-        </text>
+        {/* Left - 4 hrs */}
+        <rect x="60" y="300" width="80" height="40" rx="4" className="outcome" />
+        <text x="100" y="315" className="text">4 hrs</text>
+        <text x="100" y="327" className="text">chamber</text>
+
+        {/* Right - 2 hrs */}
+        <rect x="180" y="300" width="80" height="40" rx="4" className="outcome" />
+        <text x="220" y="315" className="text">2 hrs</text>
+        <text x="220" y="327" className="text">chamber</text>
       </svg>
     </div>
   );
 }
 
-// Nitrox Emergency Procedure Flowchart 2
-export function NitroxFlowchartEmergency2() {
+// Irregularity During Decompression Flowchart
+export function IrregularityDuringDecompression() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 400 650" className="min-w-full" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 300 380" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .flowchart-start { fill: #06b6d4; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-decision { fill: #22d3ee; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-process { fill: #67e8f9; stroke: #0369a1; stroke-width: 2; }
-            .flowchart-treatment { fill: #dc2626; stroke: #991b1b; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 11px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 10px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead5); }
+            .start { fill: #0ea5e9; stroke: #0369a1; stroke-width: 1.5; }
+            .decision { fill: #0284c7; stroke: #0369a1; stroke-width: 1.5; }
+            .process { fill: #3b82f6; stroke: #1e40af; stroke-width: 1.5; }
+            .outcome { fill: #1e40af; stroke: #082f49; stroke-width: 1.5; }
+            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
+            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow4); }
           `}</style>
-          <marker
-            id="arrowhead5"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
+          <marker id="arrow4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
           </marker>
         </defs>
 
         {/* Start */}
-        <rect x="50" y="20" width="300" height="50" rx="25" className="flowchart-start" />
-        <text x="200" y="50" className="flowchart-text">
-          Irregularity in decompression
-        </text>
+        <rect x="55" y="10" width="190" height="35" rx="18" className="start" />
+        <text x="150" y="32" className="text">Irregularity in decompression</text>
 
         {/* Arrow */}
-        <path d="M 200 70 L 200 110" className="flowchart-arrow" />
+        <path d="M 150 45 L 150 70" className="arrow" />
 
-        {/* Decision */}
-        <polygon
-          points="200,110 280,150 200,190 120,150"
-          className="flowchart-decision"
-        />
-        <text x="200" y="155" className="flowchart-text">
-          Oxygen
-        </text>
-        <text x="200" y="170" className="flowchart-text">
-          available?
-        </text>
+        {/* Decision: Oxygen available? */}
+        <polygon points="150,70 200,95 150,120 100,95" className="decision" />
+        <text x="150" y="99" className="text">Oxygen</text>
+        <text x="150" y="110" className="text">available?</text>
 
         {/* NO path */}
-        <path d="M 120 150 L 40 150 L 40 210" className="flowchart-arrow" />
-        <text x="70" y="145" className="flowchart-label">
-          NO
-        </text>
-        <rect x="0" y="210" width="80" height="40" rx="5" className="flowchart-treatment" />
-        <text x="40" y="235" className="flowchart-text">
-          Table 3
-        </text>
+        <path d="M 100 95 L 40 95 L 40 145" className="arrow" />
+        <text x="65" y="90" className="label">NO</text>
+        <rect x="15" y="145" width="50" height="30" rx="4" className="process" />
+        <text x="40" y="165" className="text">Table 3</text>
 
         {/* YES path */}
-        <path d="M 200 190 L 200 230" className="flowchart-arrow" />
-        <text x="205" y="215" className="flowchart-label">
-          YES
-        </text>
-        <rect x="100" y="230" width="200" height="40" rx="5" className="flowchart-treatment" />
-        <text x="200" y="255" className="flowchart-text">
-          Treatment table 5
-        </text>
+        <path d="M 150 120 L 150 155" className="arrow" />
+        <text x="160" y="140" className="label">YES</text>
+        <rect x="100" y="155" width="100" height="30" rx="4" className="process" />
+        <text x="150" y="175" className="text">Table 5</text>
 
         {/* Arrow */}
-        <path d="M 200 270 L 200 310" className="flowchart-arrow" />
+        <path d="M 150 185 L 150 210" className="arrow" />
 
-        {/* Decision: Symptoms? */}
-        <polygon
-          points="200,310 280,350 200,390 120,350"
-          className="flowchart-decision"
-        />
-        <text x="200" y="350" className="flowchart-text">
-          Symptoms of
-        </text>
-        <text x="200" y="365" className="flowchart-text">
-          DCS?
-        </text>
+        {/* Decision: DCS Symptoms? */}
+        <polygon points="150,210 200,235 150,260 100,235" className="decision" />
+        <text x="150" y="239" className="text">DCS</text>
+        <text x="150" y="250" className="text">symptoms?</text>
 
         {/* NO path */}
-        <path d="M 280 350 L 340 350 L 340 410" className="flowchart-arrow" />
-        <text x="310" y="345" className="flowchart-label">
-          NO
-        </text>
+        <path d="M 200 235 L 245 235 L 245 300" className="arrow" />
+        <text x="220" y="230" className="label">NO</text>
 
         {/* YES path */}
-        <path d="M 200 390 L 200 430" className="flowchart-arrow" />
-        <text x="205" y="415" className="flowchart-label">
-          YES
-        </text>
-        <rect x="70" y="430" width="130" height="40" rx="5" className="flowchart-treatment" />
-        <text x="135" y="450" className="flowchart-text">
-          Table 6 or 4
-        </text>
+        <path d="M 150 260 L 150 285" className="arrow" />
+        <text x="160" y="275" className="label">YES</text>
+        <rect x="90" y="285" width="120" height="30" rx="4" className="process" />
+        <text x="150" y="305" className="text">Table 6 or 4</text>
+
+        {/* Arrow down */}
+        <path d="M 150 315 L 150 340" className="arrow" />
+
+        {/* Arrow from NO */}
+        <path d="M 245 300 L 245 340" className="arrow" />
 
         {/* Final outcomes */}
-        <path d="M 135 470 L 135 510" className="flowchart-arrow" />
-        <rect x="55" y="510" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="135" y="530" className="flowchart-text">
-          4 hrs near
-        </text>
-        <text x="135" y="543" className="flowchart-text">
-          Repeat: 12 hrs
-        </text>
+        {/* YES outcome */}
+        <rect x="70" y="340" width="80" height="35" rx="4" className="outcome" />
+        <text x="110" y="355" className="text">4 hrs near</text>
+        <text x="110" y="367" className="text">chamber</text>
 
         {/* NO outcome */}
-        <path d="M 340 410 L 340 510" className="flowchart-arrow" />
-        <rect x="270" y="510" width="160" height="50" rx="5" className="flowchart-process" />
-        <text x="350" y="530" className="flowchart-text">
-          2 hrs near
-        </text>
-        <text x="350" y="543" className="flowchart-text">
-          Repeat: 12 hrs
-        </text>
+        <rect x="210" y="340" width="80" height="35" rx="4" className="outcome" />
+        <text x="250" y="355" className="text">2 hrs near</text>
+        <text x="250" y="367" className="text">chamber</text>
       </svg>
     </div>
   );
 }
 
-// SIL15 Interrupted Dive Flowchart
-export function SIL15FlowchartInterrupted() {
-  return (
-    <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 350 500" className="min-w-full" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <style>{`
-            .flowchart-start { fill: #3b82f6; stroke: #1e40af; stroke-width: 2; }
-            .flowchart-decision { fill: #60a5fa; stroke: #1e40af; stroke-width: 2; }
-            .flowchart-process { fill: #93c5fd; stroke: #1e40af; stroke-width: 2; }
-            .flowchart-text { fill: white; font-size: 11px; font-weight: bold; text-anchor: middle; }
-            .flowchart-label { fill: #1f2937; font-size: 10px; font-weight: bold; }
-            .flowchart-arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead6); }
-          `}</style>
-          <marker
-            id="arrowhead6"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="3"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3, 0 6" fill="#374151" />
-          </marker>
-        </defs>
-
-        {/* Start */}
-        <rect x="75" y="20" width="200" height="50" rx="25" className="flowchart-start" />
-        <text x="175" y="50" className="flowchart-text">
-          Dive is interrupted
-        </text>
-
-        {/* Arrow */}
-        <path d="M 175 70 L 175 110" className="flowchart-arrow" />
-
-        {/* Decision */}
-        <polygon
-          points="175,110 255,150 175,190 95,150"
-          className="flowchart-decision"
-        />
-        <text x="175" y="160" className="flowchart-text">
-          Repeat interval &gt; 4 hrs?
-        </text>
-
-        {/* YES path */}
-        <path d="M 255 150 L 300 150" className="flowchart-arrow" />
-        <text x="280" y="145" className="flowchart-label">
-          YES
-        </text>
-        <rect x="300" y="130" width="50" height="40" rx="5" className="flowchart-process" />
-        <text x="325" y="155" className="flowchart-text">
-          SOX15
-        </text>
-
-        {/* NO path */}
-        <path d="M 175 190 L 175 230" className="flowchart-arrow" />
-        <text x="180" y="215" className="flowchart-label">
-          NO
-        </text>
-        <rect x="50" y="230" width="250" height="40" rx="5" className="flowchart-process" />
-        <text x="175" y="255" className="flowchart-text">
-          Emergency crash dive procedure
-        </text>
-
-        {/* Arrow */}
-        <path d="M 175 270 L 175 310" className="flowchart-arrow" />
-
-        {/* Final decision */}
-        <polygon
-          points="175,310 255,350 175,390 95,350"
-          className="flowchart-decision"
-        />
-        <text x="175" y="360" className="flowchart-text">
-          Oxygen available?
-        </text>
-
-        {/* Outcomes */}
-        <path d="M 255 350 L 300 350" className="flowchart-arrow" />
-        <text x="280" y="345" className="flowchart-label">
-          YES
-        </text>
-        <rect x="300" y="330" width="50" height="40" rx="5" className="flowchart-process" />
-        <text x="325" y="355" className="flowchart-text">
-          O₂ at 12m
-        </text>
-
-        <path d="M 95 350 L 40 350 L 40 410" className="flowchart-arrow" />
-        <text x="60" y="345" className="flowchart-label">
-          NO
-        </text>
-
-        {/* Final boxes */}
-        <rect x="20" y="410" width="120" height="50" rx="5" className="flowchart-process" />
-        <text x="80" y="430" className="flowchart-text">
-          4 hrs near
-        </text>
-        <text x="80" y="443" className="flowchart-text">
-          12 hrs repeat
-        </text>
-
-        <path d="M 325 370 L 325 410" className="flowchart-arrow" />
-        <rect x="265" y="410" width="120" height="50" rx="5" className="flowchart-process" />
-        <text x="325" y="430" className="flowchart-text">
-          2 hrs near
-        </text>
-        <text x="325" y="443" className="flowchart-text">
-          12 hrs repeat
-        </text>
-      </svg>
-    </div>
-  );
-}
+// Backward compatibility - export with old names
+export const SIL15FlowchartEmergency = CrashDiveProcedure;
+export const SOX15FlowchartEmergency1 = OxygenFailureDuringDecompression;
+export const NitroxFlowchartEmergency1 = SurfaceDecompressionRequired;

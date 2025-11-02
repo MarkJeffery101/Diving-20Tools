@@ -91,10 +91,12 @@ export function TourPopup() {
       )}
 
       <div
-        className="fixed bg-white rounded-lg shadow-2xl border border-gray-200 p-5 z-50 max-w-sm w-full mx-2 sm:w-96"
+        className="fixed bg-white rounded-lg shadow-2xl border border-gray-200 p-5 z-50 w-full sm:max-w-sm"
         style={{
-          top: `${position.top}px`,
-          left: `${position.left}px`,
+          top: `${Math.max(20, position.top)}px`,
+          left: `${Math.max(20, Math.min(position.left, typeof window !== 'undefined' ? window.innerWidth - 360 : 20))}px`,
+          minWidth: '300px',
+          maxWidth: 'calc(100vw - 40px)',
         }}
       >
         <div className="flex items-start justify-between mb-3">

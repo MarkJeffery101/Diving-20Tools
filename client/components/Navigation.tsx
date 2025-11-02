@@ -23,11 +23,6 @@ export default function Navigation() {
     { label: "Table Selection", href: "/table-selection", icon: Layers },
     { label: "Tools", href: "/tools", icon: Calculator },
     {
-      label: "Emergency Procedures",
-      href: "/emergency-procedures",
-      icon: AlertCircle,
-    },
-    {
       label: "Treatment Protocols",
       href: "/treatment-protocols",
       icon: Activity,

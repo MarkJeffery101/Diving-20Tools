@@ -350,7 +350,9 @@ export default function SupportingInfo() {
                     UPTD / OTU
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    <span className="font-semibold">Systemic Focus:</span> UPTD evolved into OTU when operational experience suggested that oxygen exposure influences <em>more than the lungs alone</em>. OTU tracks total oxygen dose and recognizes systemic symptoms including fatigue, headache, and musculoskeletal discomfort that may not correlate with lung-function changes.
+                    Origin in pulmonary dose modelling; OTU broadened
+                    interpretation to include potential <em>systemic</em>{" "}
+                    manifestations.
                   </p>
 
                   <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">

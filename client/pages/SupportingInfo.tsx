@@ -588,6 +588,157 @@ export default function SupportingInfo() {
                     </details>
                   </div>
                 </>
+              ) : openModalId === "tableSelectionConsiderations" ? (
+                <>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <h3 className="text-sm font-bold text-foreground mb-2">
+                      Overview
+                    </h3>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      Choose tables based on conditions, expected stop time, equipment, and available gases. Tables include SIL15, SOX15, BOX15, BAB/SAB, NIA15, and NIB15 for different operational requirements.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        General Principles
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li><strong>SIL15</strong>: in-water decompression (wet bell or chamber) with flexible repetitive options (H*SIL15); suitable for multiple short dives.</li>
+                        <li>If decompression &gt; <strong>30 min</strong>: prefer oxygen-supported staged tables — <strong>BOX15</strong> (bell O₂) or <strong>SOX15/H4SOX</strong> (surface O₂) — when bell/chamber available.</li>
+                        <li><strong>BAB15 / SAB15 / H4SAB15</strong> are <em>backup only</em> if the oxygen system fails.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Effects of Sea State
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Significant waves (≈ ±0.5 m; ~1 m crest-to-trough) destabilise shallow 3 m stops.</li>
+                        <li>If in-water stops are unsafe, consider <strong>SOX15</strong>: diver in chamber under pressure within <strong>3 minutes</strong> of surfacing (delays markedly ↑ DCS risk).</li>
+                        <li><strong>BOX15</strong> with a bell tolerates larger sea states due to final O₂ stop at 6 m; <em>do not use BOX15 without a bell</em>.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Nitrox Use
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li><strong>NIA15 (40/60)</strong> and <strong>NIB15 (35/65)</strong> may be used subject to allowable pO₂.</li>
+                        <li>Max pO₂ <strong>1.6 bar</strong>; recommended ≤ <strong>1.5 bar</strong>. Other mixes on request.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Repetitive Interval, Depth & Time
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Repetitive diving is not standard N-Sea practice; only allowed in emergencies.</li>
+                        <li>Actual repeat interval must be <strong>longer</strong> than the table's interval (e.g., 5 h since prior dive ⇒ use 4-h table).</li>
+                        <li>Actual max depth must be <strong>less</strong> than table depth (e.g., 30 m ⇒ select 33 m table).</li>
+                        <li>Actual dive time must be <strong>less</strong> than table time (e.g., 35 min ⇒ choose 40 min in table).</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Ascent Speed
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Max ascent speed <strong>10 m/min</strong>; ascent time is not counted as stop time (if exceeded, add excess to stop time).</li>
+                        <li>Ascent to first stop must be <strong>≥ 5 m/min</strong> (if slower, add excess to bottom time).</li>
+                        <li>Between stops deeper than 6 m: transit ≤ 1 min. At ≤ 6 m: ascent speed is less critical.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Diving Conditions & Choice of Tables
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>North Sea: limit in-water stop time to ~30 min (solid black line in SIL15).</li>
+                        <li>Maintain shallow-stop pressure variation within <strong>±0.5 msw (~0.05 bar)</strong>.</li>
+                        <li>Low temperature ⇒ hot-water suits; strong currents may restrict operations.</li>
+                        <li>Supervisor decides suitability; perform LMRA per asset and conditions.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Sea-State Matrix
+                      </summary>
+                      <div className="mt-3">
+                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                          <thead className="bg-blue-50">
+                            <tr>
+                              <th className="p-2 text-left border-b border-border">Wave Height (m)</th>
+                              <th className="p-2 border-b border-border">In-water 3m stop</th>
+                              <th className="p-2 border-b border-border">In-water 6m stop</th>
+                              <th className="p-2 border-b border-border">SurD (9m)</th>
+                              <th className="p-2 border-b border-border">In-water no-stop</th>
+                              <th className="p-2 border-b border-border">TUP</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="border-b border-border">
+                              <td className="p-2 text-left font-semibold">1.0</td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="p-2 text-left font-semibold">2.0</td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="p-2 text-left font-semibold">2.5</td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                            </tr>
+                            <tr>
+                              <td className="p-2 text-left font-semibold">3.0</td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
+                              <td className="p-2"><span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[9px] font-bold">Assess</span></td>
+                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p className="text-[9px] text-muted-foreground mt-2">
+                          • Assess swell/wave height where divers <em>enter/exit</em> the water and perform decompression.<br />
+                          • Consider vessel positioning to provide lee at the decompression/transfer point.<br />
+                          • The supervisor is the sole authority to start a dive.<br />
+                          • Asset-specific limits apply; perform risk assessment and LMRA for each dive and asset.
+                        </p>
+                      </div>
+                    </details>
+
+                    <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
+                      <strong>Reminder:</strong> SOX15 transfers must place the diver in the chamber under pressure within <strong>3 minutes</strong> of surfacing.
+                    </div>
+                  </div>
+                </>
               ) : openModalId === "otuEsot" ? (
                 <>
                   {/* Overview Section - Moved to Top */}

@@ -405,52 +405,74 @@ export default function SupportingInfo() {
                 <>
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
-                      Overview
+                      Overview & Applicability
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      Selecting the correct decompression table is critical for safe diving. Consider your planned depth, bottom time, gas mix, and personal experience level. Different table systems serve different purposes, from recreational air diving to technical and commercial operations.
+                      Standard tables (DCD/NDC 2015). TUP tables are in the 2024 TUP Manual; general rules still apply and tables may be combined.
                     </p>
+                    <div className="bg-white border border-blue-300 rounded-lg p-2 mt-2 text-[10px] text-muted-foreground">
+                      These points include additional guidance from the company diving physician adopted by N-Sea.
+                    </div>
                   </div>
 
                   <div className="space-y-3">
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        Factors to Consider
+                        Core Rules
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Dive depth and planned bottom time</li>
-                        <li>Gas mix (air vs nitrox)</li>
-                        <li>Decompression requirements</li>
-                        <li>Personal experience level</li>
-                        <li>Environmental conditions</li>
+                        <li>DCS can occur even within no-decompression limits; manage uncertainty conservatively.</li>
+                        <li>Do not exceed table maximum depth or time; if exceeded, use O₂ Treatment Table 5.</li>
+                        <li>For planning, use the second-to-last time entry as the maximum dive time.</li>
+                        <li>≤ 8 h in any 24 h under pressure (dive + decompression); exceptions need contractor + supervising MO approval.</li>
                       </ul>
                     </details>
 
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        Table Types
+                        Repetitive & Combined Dives
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Air tables: Standard no-decompression and decompression schedules</li>
-                        <li>Nitrox tables: Adjusted for oxygen partial pressure</li>
-                        <li>Commercial tables: Extended depth and time protocols</li>
-                        <li>TUP tables: Technical diving profiles</li>
+                        <li>Use the correct repeat-interval table for repetitive dives.</li>
+                        <li>If interval &lt; 2 h, a combined dive may be used (not permitted for SurD).</li>
+                        <li>For combined dives: make the first dive deepest; add times and decompress using the deepest depth on 12-h interval tables.</li>
+                        <li>No combined diving after any emergency procedure; if an emergency occurs on dive 2, apply the emergency rules using the deepest depth.</li>
                       </ul>
                     </details>
 
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        Selection Process
+                        After Dives & Intervals
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Identify your maximum planned depth</li>
-                        <li>Estimate bottom time with safety margin</li>
-                        <li>Choose appropriate table system</li>
-                        <li>Cross-reference with gas available</li>
-                        <li>Verify decompression stop requirements</li>
+                        <li>After a normal dive: further dives ≤ 6 m permitted.</li>
+                        <li>After an emergency procedure: no diving for 12 h.</li>
+                        <li>After routine in-water decompression: ≤ 6 m dives allowed without a surface interval.</li>
+                        <li>Recommend 12-h repeat interval after repetitive dives; as good practice, limit to ≤ 2 repetitive dives.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Switching Table Systems & Stop Control
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>If previous diving used other table systems (Norwegian, DCIEM, US Navy), wait ≥ 16 h before using DCD tables.</li>
+                        <li>Hold stop depth steady; typical tolerance ±0.5 m.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-blue-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Oxygen Use During Decompression
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>O₂ during decompression is safer than air alone, especially when air-only decompression &gt; 30 min; consider when selecting a table.</li>
                       </ul>
                     </details>
                   </div>
@@ -459,52 +481,88 @@ export default function SupportingInfo() {
                 <>
                   <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <h3 className="text-sm font-bold text-foreground mb-2">
-                      Overview
+                      Purpose & Context
                     </h3>
                     <p className="text-[10px] text-muted-foreground leading-relaxed">
-                      Emergency evacuation procedures are critical when a diver must be brought to the surface due to platform emergency, uncontrollable hazard, or medical emergency. Accelerated decompression (AED) at 1 msw/minute with mandatory oxygen is the standard protocol for surface-based evacuation scenarios.
+                      If abandonment occurs, divers may need evacuation while still under pressure. AED + omitted-decompression treatment is usually preferred; HRU is rarely available and may carry higher risk.
                     </p>
+                    <div className="bg-white border border-red-300 rounded-lg p-2 mt-2 text-[10px] text-muted-foreground">
+                      Perform a formal risk assessment covering threats (fire, mechanical damage, loss of platform) that could compromise safe decompression.
+                    </div>
                   </div>
 
                   <div className="space-y-3">
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        Evacuation Criteria
+                        Risk Assessment Criteria
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Platform emergency or loss of chamber capability</li>
-                        <li>Uncontrollable fire or mechanical hazard</li>
-                        <li>Medical emergency requiring immediate evacuation</li>
-                        <li>Dive time within IMCA D014 guidelines</li>
+                        <li>Compare risk of continuing (in-water or in-chamber) vs accelerated decompression.</li>
+                        <li>Consider table used, planned depth, bottom time, and actual emergency context.</li>
+                        <li>If AED is not feasible, do not dive or provide an alternative, risk-assessed and physician-approved evacuation plan.</li>
+                        <li>For SIL15, SOX15, NIA15, NIB15, BOX15, AED may be safer than HRU when:
+                          <ul className="mt-2 ml-4 space-y-1">
+                            <li>Dive time within IMCA D014 (above bold line) and evac+recompression ≤ 3 h (preferably) and not more than 6 h from surfacing; or</li>
+                            <li>Dive time exceeds IMCA D014 (below bold line) and evac+recompression ≤ 3 h.</li>
+                          </ul>
+                        </li>
                       </ul>
                     </details>
 
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        AED Protocol
+                        When to Begin AED
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Linear ascent rate: 1 meter per minute</li>
-                        <li>Helicopter altitude: ≤ 1000 feet if possible</li>
-                        <li>Oxygen breathing mandatory during transfer</li>
-                        <li>Maintain hydration: ~1 liter per hour</li>
-                        <li>Recompression facility coordination essential</li>
+                        <li>Begin only when chamber/occupant safety cannot be guaranteed, or when evacuation cannot be delayed and transport will be available immediately after AED.</li>
+                        <li>Otherwise continue normal decompression until time constraints force acceleration.</li>
                       </ul>
                     </details>
 
                     <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
                       <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
                         <ChevronDown className="h-4 w-4" />
-                        Risk Assessment
+                        AED Profile & Rate
                       </summary>
                       <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
-                        <li>Compare risk of continuing vs accelerated decompression</li>
-                        <li>Consider table used, planned depth, and bottom time</li>
-                        <li>Evaluate actual emergency context</li>
-                        <li>Physician approval required for evacuation plan</li>
-                        <li>AED may be safer than hyperbaric rescue unit (HRU) in many scenarios</li>
+                        <li>Conduct AED linearly at <strong>1 msw per minute</strong>.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Helicopter Evacuation
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Target altitude ≤ 1000 ft where possible.</li>
+                        <li>Document that oxygen use and delivery method are accepted by the emergency response organisation.</li>
+                        <li>Post-dive flight restrictions in DCD tables do not apply in emergency evacuation.</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Oxygen Use
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>O₂ or high-pO₂ gas before and during AED is recommended but must not delay the start.</li>
+                        <li>If a fire hazard exists near the chamber, proceed without O₂/high-pO₂ gas.</li>
+                        <li>O₂ breathing during transfer to the next recompression facility is mandatory (via semi-closed O₂ rebreathers).</li>
+                      </ul>
+                    </details>
+
+                    <details className="bg-white border border-border rounded-lg p-3 open:bg-red-50">
+                      <summary className="font-bold text-sm cursor-pointer text-foreground flex items-center gap-2">
+                        <ChevronDown className="h-4 w-4" />
+                        Hydration
+                      </summary>
+                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                        <li>Maintain hydration; aim ~1 L/hour oral intake during evacuation.</li>
+                        <li>Keep water or oral rehydration solution available for the full expected endurance.</li>
                       </ul>
                     </details>
                   </div>

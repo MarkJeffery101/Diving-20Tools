@@ -554,22 +554,6 @@ export default function SupportingInfo() {
                 </div>
               </div>
 
-              {/* Summary Section */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <h3 className="text-sm font-bold text-foreground mb-2">
-                  Academic Summary
-                </h3>
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are
-                  complementary abstractions of oxygen exposure: OTU's
-                  cumulative framing maintains awareness of potential{" "}
-                  <em>systemic</em> manifestations of chronic hyperoxia, whereas
-                  ESOT's equivalent-time + recovery formalism better quantifies{" "}
-                  <em>pulmonary</em> risk across variable pO₂ segments. Used
-                  together, they provide broader physiological insight than
-                  either alone.
-                </p>
-              </div>
                 </>
               ) : (
                 <>

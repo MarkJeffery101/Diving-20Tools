@@ -192,7 +192,7 @@ async function parseBox15CSV(
       const line = lines[i].trim();
       if (!line) continue;
 
-      const values = line.split(',').map(v => v.trim());
+      const values = parseCSVLine(line);
 
       // Skip rows with insufficient columns
       if (values.length < 23) continue;

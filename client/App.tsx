@@ -14,6 +14,10 @@ import TableUse from "./pages/TableUse";
 import SupportingInfo from "./pages/SupportingInfo";
 import Tools from "./pages/Tools";
 import Share from "./pages/Share";
+import TreatmentProtocols from "./pages/TreatmentProtocols";
+import EmergencyProcedures from "./pages/EmergencyProcedures";
+import { TourProvider } from "@/contexts/TourContext";
+import { TourPopup } from "@/components/TourPopup";
 
 const queryClient = new QueryClient();
 

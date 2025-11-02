@@ -468,96 +468,120 @@ export default function SupportingInfo() {
                         <td className="p-2 font-semibold text-foreground">
                           Origin
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Pulmonary dose research; expanded to systemic context
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Pulmonary VC-loss studies; expanded to systemic interpretation
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Refined from Arieli-type modelling; modern guidance
-                          favours use
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Physiological focus
-                        </td>
-                        <td className="p-2 text-muted-foreground">
-                          Pulmonary + <em>systemic</em> operational awareness
-                        </td>
-                        <td className="p-2 text-muted-foreground">
-                          Pulmonary-centric model
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Derived from Arieli K; DMAC-35 recommended
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Systemic symptoms
+                          Physiological Target
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Recognized in practice (fatigue, headache,
-                          myalgia/arthralgia)
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Pulmonary + <em>systemic</em> operational interpretation
                         </td>
-                        <td className="p-2 text-muted-foreground">
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Pulmonary only
+                        </td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">
+                          Systemic Symptoms
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Recognized (fatigue, headache, myalgia/arthralgia)
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
                           Not represented
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Mathematical form
+                          Calculation
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Exposure as function of pO₂ × time
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Dose from pO₂ + time
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Equivalent surface O₂ time; includes recovery
+                        <td className="p-2 text-muted-foreground text-[9px] font-mono">
+                          t × pO₂²·²⁸⁵
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Recovery modelling
+                          Recovery Model
                         </td>
-                        <td className="p-2 text-muted-foreground">None</td>
-                        <td className="p-2 text-muted-foreground">Included</td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          None
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Yes (exponential decay)
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Multi-segment exposures
+                          Multi-Segment pO₂
                         </td>
-                        <td className="p-2 text-muted-foreground">
+                        <td className="p-2 text-muted-foreground text-[9px]">
                           Limited handling
                         </td>
-                        <td className="p-2 text-muted-foreground">
+                        <td className="p-2 text-muted-foreground text-[9px]">
                           Strong handling
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Time horizon
+                          Time Horizon
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Multi-day / multi-week systemic awareness
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Multi-week cumulative
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Short-term / repetitive pulmonary planning
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Daily/short-term/repetitive
                         </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Primary utility
+                          Best Use
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Broad whole-body stress awareness
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Long-term systemic burden tracking
                         </td>
-                        <td className="p-2 text-muted-foreground">
-                          Pulmonary dose + recovery planning
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Pulmonary dose & recovery planning
+                        </td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">
+                          Strengths
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Conservative; systemic awareness; simple
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          Accurate pulmonary dose; decay; segment-friendly
+                        </td>
+                      </tr>
+                      <tr className="border-b border-border hover:bg-gray-50">
+                        <td className="p-2 font-semibold text-foreground">
+                          Weaknesses
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          No decay; poor pulmonary correlation
+                        </td>
+                        <td className="p-2 text-muted-foreground text-[9px]">
+                          No systemic dimension; requires tools
                         </td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="p-2 font-semibold text-foreground">
-                          Simplified view
+                          Simplified View
                         </td>
-                        <td className="p-2 text-muted-foreground">
+                        <td className="p-2 text-muted-foreground text-[9px] italic">
                           "Whole-body stress thermometer"
                         </td>
-                        <td className="p-2 text-muted-foreground">
+                        <td className="p-2 text-muted-foreground text-[9px] italic">
                           "Lung-stress calculator"
                         </td>
                       </tr>

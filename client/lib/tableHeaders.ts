@@ -340,19 +340,19 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
 
   // No-Stop Air Tables (simple headers - no sub-columns needed)
   ND15: {
-    title: "ND15 - Air Diving, No-Stop Limits",
+    title: "AIR DIVING, NO-STOP LIMITS IN MINUTES CODE: ND15",
     columns: [
-      { label: "Max Depth\n(metres)" },
-      { label: "Repeat Interval\n8 Hours (min)" },
-      { label: "Repeat Interval\n2 Hours (min)" },
+      { label: "maximum diving\ndepth\n(metres)" },
+      { label: "repeat interval\n8 hours\n(minutes)" },
+      { label: "repeat interval\n2 hours\n(minutes)" },
     ],
   },
   LND15: {
-    title: "LND15 - Air Diving, Extended No-Stop Limits",
+    title: "AIR DIVING, LONG NO-STOP LIMITS IN MINUTES CODE: LND15",
     columns: [
-      { label: "Max Depth\n(metres)" },
-      { label: "Normal ND15\n(min)" },
-      { label: "Long LND15\n(min)" },
+      { label: "maximum diving\ndepth\n(metres)" },
+      { label: "normal no-stop\nlimits (ND15)\n(minutes)" },
+      { label: "long no-stop\nlimits (LND15)\n(minutes)" },
     ],
   },
 

@@ -74,10 +74,12 @@ export function OxygenFailureDuringDecompression() {
     C -->|NO| B
     C -->|YES| E
     E -->|NO| D
-    E -->|YES| B
+    E -->|YES| G
     D --> F
+    D --> E
     F -->|NO| G
     F -->|YES| H
+    B --> G
     
     style A fill:#f97316,stroke:#c2410c,stroke-width:2px,color:#fff
     style B fill:#fdba74,stroke:#c2410c,stroke-width:2px,color:#fff
@@ -141,7 +143,7 @@ export function SurfaceDecompressionRequired() {
 // Irregularity During Decompression
 export function IrregularityDuringDecompression() {
   const definition = `graph TD
-    A["🔴 Irregularity in decompression"]
+    A["���� Irregularity in decompression"]
     B{"Oxygen<br/>available?"}
     C["Treatment table 3"]
     D["Treatment table 5"]

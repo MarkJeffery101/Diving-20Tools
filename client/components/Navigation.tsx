@@ -21,6 +21,7 @@ export default function Navigation() {
     { label: "Home", href: "/", icon: Home },
     { label: "Tables", href: "/tables", icon: Grid3x3 },
     { label: "Table Selection", href: "/table-selection", icon: Layers },
+    { label: "Table Use", href: "/table-use", icon: BookOpen },
     { label: "Tools", href: "/tools", icon: Calculator },
     { label: "Supporting Info", href: "/supporting-info", icon: HelpCircle },
     { label: "Share", href: "/share", icon: Share2 },

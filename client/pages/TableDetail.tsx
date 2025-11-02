@@ -286,7 +286,8 @@ export default function TableDetail() {
               </table>
             </div>
 
-            {/* Info Cards Section - Below Table */}
+            {/* Info Cards Section - Below Table (hidden for reference tables) */}
+            {!isReferenceTable && (
             <div className={`grid ${isOtuEsotTable ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
               {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
               {isOtuEsotTable ? (
@@ -353,6 +354,7 @@ export default function TableDetail() {
               )}
 
             </div>
+            )}
 
           </div>
         </div>

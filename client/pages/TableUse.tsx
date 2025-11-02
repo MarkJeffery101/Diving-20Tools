@@ -510,9 +510,9 @@ export default function TableUse() {
                   Select table and procedure type
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-6 space-y-6">
+              <CardContent className="pt-4 space-y-4">
                 {tables.map((table) => (
-                  <div key={table.id} className="border-b pb-6 last:border-b-0 last:pb-0">
+                  <div key={table.id} className="border-b pb-4 last:border-b-0 last:pb-0">
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div className="flex-1">
                         <h3 className="font-semibold text-base text-gray-900">

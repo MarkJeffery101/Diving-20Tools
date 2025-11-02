@@ -12,9 +12,10 @@ import {
 } from '@/components/ui/dialog';
 import { AlertTriangle, Zap, Clock, BookOpen } from 'lucide-react';
 import {
-  SIL15FlowchartEmergency,
-  SOX15FlowchartEmergency1,
-  NitroxFlowchartEmergency1,
+  CrashDiveProcedure,
+  OxygenFailureDuringDecompression,
+  SurfaceDecompressionRequired,
+  IrregularityDuringDecompression,
 } from '@/components/flowcharts/EmergencyFlowcharts';
 
 interface ProcedureData {

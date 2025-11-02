@@ -239,42 +239,6 @@ export default function SupportingInfo() {
       ],
     },
     {
-      id: "tableSelection",
-      title: "Table Selection",
-      icon: "📚",
-      subsections: [
-        {
-          subtitle: "Factors to Consider",
-          items: [
-            "Dive depth and planned bottom time",
-            "Gas mix (air vs nitrox)",
-            "Decompression requirements",
-            "Personal experience level",
-            "Environmental conditions",
-          ],
-        },
-        {
-          subtitle: "Table Types",
-          items: [
-            "Air tables: Standard no-decompression and decompression schedules",
-            "Nitrox tables: Adjusted for oxygen partial pressure",
-            "Commercial tables: Extended depth and time protocols",
-            "TUP tables: Technical diving profiles",
-          ],
-        },
-        {
-          subtitle: "Selection Process",
-          items: [
-            "Identify your maximum planned depth",
-            "Estimate bottom time with safety margin",
-            "Choose appropriate table system",
-            "Cross-reference with gas available",
-            "Verify decompression stop requirements",
-          ],
-        },
-      ],
-    },
-    {
       id: "evacuationSurfaceDeco",
       title: "Evacuation: Surface Deco Based Diving",
       icon: "🚤",

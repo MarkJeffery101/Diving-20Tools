@@ -30,15 +30,6 @@ export default function Index() {
       borderColor: "border-blue-200",
     },
     {
-      title: "Treatment Protocols",
-      description:
-        "Comprehensive treatment protocols and decision trees for managing diving-related medical conditions.",
-      icon: Pill,
-      href: "/treatment-protocols",
-      color: "bg-green-50 text-green-700",
-      borderColor: "border-green-200",
-    },
-    {
       title: "Supporting Information",
       description:
         "Safe and maximum limits, guidance documentation, rules, and all supporting information for table selection.",

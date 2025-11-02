@@ -340,11 +340,11 @@ export default function TableUse() {
           <DialogTitle>{section}</DialogTitle>
         </DialogHeader>
         <div className="space-y-6 py-4 text-sm">
-          {getDetailContent(section, category).subsections.map((sub, idx) => (
+          {getDetailContent(section, category).subsections?.map((sub, idx) => (
             <div key={idx}>
               <h4 className="font-bold text-base mb-2">{sub.title}</h4>
               <div className="space-y-2">
-                {sub.text.map((line, lineIdx) => (
+                {sub.text && sub.text.map((line, lineIdx) => (
                   <p key={lineIdx} className="text-gray-700 leading-relaxed">
                     {line}
                   </p>
@@ -365,7 +365,7 @@ export default function TableUse() {
                 )}
               </div>
             </div>
-          ))}
+          )) || null}
           {getDetailContent(section, category).flowchart && (
             <div className="mt-6 p-4 bg-white rounded-lg border-2 border-gray-200">
               <h4 className="font-bold text-gray-900 mb-4">Emergency Decision Flowchart</h4>

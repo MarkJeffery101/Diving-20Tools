@@ -740,6 +740,12 @@ export async function parseTableCSV(
   tableCode: string,
   depth: number
 ): Promise<ParsedTableData> {
+  // Use specialized parser for reference tables (ND15, LND15)
+  const referenceTableCodes = ['ND15', 'LND15'];
+  if (referenceTableCodes.includes(tableCode)) {
+    return parseReferenceTableCSV(tableCode);
+  }
+
   // Use specialized parser for OTU/ESOT tables
   const otuEsotCodes = ['SOX15_OTU', 'NIA15_OTU', 'NIB15_OTU', 'BOX15_OTU'];
   if (otuEsotCodes.includes(tableCode)) {

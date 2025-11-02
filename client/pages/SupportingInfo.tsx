@@ -5,6 +5,11 @@ import { useState } from "react";
 
 export default function SupportingInfo() {
   const [openModalId, setOpenModalId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const toggleExpanded = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   const sections = [
     {

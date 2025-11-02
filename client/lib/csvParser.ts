@@ -713,6 +713,12 @@ export async function parseTableCSV(
     return parseOtuEsotCSV(tableCode, depth);
   }
 
+  // Use specialized parser for BOX15 and variants
+  const box15Codes = ['BOX15', 'H2BOX15', 'H4BOX15'];
+  if (box15Codes.includes(tableCode)) {
+    return parseBox15CSV(tableCode, depth);
+  }
+
   // Use specialized parser for SOX15 and HSOX15
   if (tableCode === 'SOX15' || tableCode === 'HSOX15') {
     return parseSox15CSV(tableCode, depth);

@@ -525,7 +525,7 @@ export default function TableUse() {
                     {/* Badge codes */}
                     <div className="flex flex-wrap gap-1 mb-2">
                       {table.codes.map((code) => (
-                        <Badge key={code} variant="outline" className="text-xs font-mono">
+                        <Badge key={code} variant="outline" className="text-xs font-mono h-6">
                           {code}
                         </Badge>
                       ))}

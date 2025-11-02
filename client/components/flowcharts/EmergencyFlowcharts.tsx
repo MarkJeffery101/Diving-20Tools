@@ -2,82 +2,93 @@
 export function CrashDiveProcedure() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 300 380" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 300 420" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .start { fill: #0ea5e9; stroke: #0369a1; stroke-width: 1.5; }
-            .decision { fill: #06b6d4; stroke: #0369a1; stroke-width: 1.5; }
-            .process { fill: #0284c7; stroke: #0369a1; stroke-width: 1.5; }
-            .outcome { fill: #0369a1; stroke: #082f49; stroke-width: 1.5; }
-            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
-            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
-            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow1); }
+            .start { fill: url(#grad-blue); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .decision { fill: url(#grad-cyan); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .process { fill: url(#grad-blue-dark); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .outcome { fill: url(#grad-slate); stroke: #082f49; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .text { fill: white; font-size: 10px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #334155; font-size: 8px; font-weight: 700; }
+            .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow1); }
           `}</style>
           <marker id="arrow1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
+            <polygon points="0 0, 6 3, 0 6" fill="#475569" />
           </marker>
+          <linearGradient id="grad-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#3b82f6', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#1e40af', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#06b6d4', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-blue-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#0284c7', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-slate" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#1e293b', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#082f49', stopOpacity: 0.95}} />
+          </linearGradient>
         </defs>
 
         {/* Start */}
-        <rect x="75" y="10" width="150" height="35" rx="18" className="start" />
-        <text x="150" y="32" className="text">Dive is interrupted</text>
+        <rect x="65" y="10" width="170" height="35" rx="18" className="start" />
+        <text x="150" y="32" className="text">Dive interrupted</text>
 
         {/* Arrow */}
-        <path d="M 150 45 L 150 70" className="arrow" />
+        <path d="M 150 45 L 150 75" className="arrow" />
 
         {/* Decision: Repeat interval > 4hrs? */}
-        <polygon points="150,70 200,95 150,120 100,95" className="decision" />
-        <text x="150" y="99" className="text">Repeat</text>
-        <text x="150" y="110" className="text">&gt; 4hrs?</text>
+        <polygon points="150,75 225,120 150,165 75,120" className="decision" />
+        <text x="150" y="115" className="text">Repeat</text>
+        <text x="150" y="128" className="text">&gt; 4hrs?</text>
 
         {/* YES path */}
-        <path d="M 200 95 L 245 95" className="arrow" />
-        <text x="220" y="90" className="label">YES</text>
-        <rect x="245" y="80" width="50" height="30" rx="4" className="process" />
-        <text x="270" y="100" className="text">Surface/</text>
-        <text x="270" y="110" className="text">ox-table</text>
+        <path d="M 225 120 L 260 120" className="arrow" />
+        <text x="240" y="115" className="label">YES</text>
+        <rect x="260" y="105" width="35" height="30" rx="4" className="process" />
+        <text x="277" y="125" className="text">SOX</text>
 
         {/* NO path */}
-        <path d="M 150 120 L 150 155" className="arrow" />
-        <text x="160" y="140" className="label">NO</text>
+        <path d="M 150 165 L 150 200" className="arrow" />
+        <text x="165" y="185" className="label">NO</text>
 
         {/* Emergency decompression */}
-        <rect x="40" y="155" width="220" height="30" rx="4" className="process" />
-        <text x="150" y="175" className="text">Emergency decompression crash dive</text>
+        <rect x="30" y="200" width="240" height="35" rx="4" className="process" />
+        <text x="150" y="223" className="text">Emergency crash dive</text>
 
         {/* Arrow */}
-        <path d="M 150 185 L 150 210" className="arrow" />
+        <path d="M 150 235 L 150 265" className="arrow" />
 
         {/* Decision: Oxygen available? */}
-        <polygon points="150,210 200,235 150,260 100,235" className="decision" />
-        <text x="150" y="239" className="text">Oxygen</text>
-        <text x="150" y="250" className="text">available?</text>
+        <polygon points="150,265 225,310 150,355 75,310" className="decision" />
+        <text x="150" y="305" className="text">Oxygen</text>
+        <text x="150" y="318" className="text">avail?</text>
 
         {/* YES path */}
-        <path d="M 200 235 L 245 235" className="arrow" />
-        <text x="220" y="230" className="label">YES</text>
-        <rect x="245" y="220" width="50" height="30" rx="4" className="process" />
-        <text x="270" y="240" className="text">20min O₂</text>
-        <text x="270" y="250" className="text">5min air</text>
+        <path d="M 225 310 L 260 310" className="arrow" />
+        <text x="240" y="305" className="label">YES</text>
+        <rect x="260" y="295" width="35" height="30" rx="4" className="process" />
+        <text x="277" y="315" className="text">O₂</text>
 
         {/* NO path */}
-        <path d="M 150 260 L 150 285" className="arrow" />
-        <text x="160" y="275" className="label">NO</text>
+        <path d="M 150 355 L 150 380" className="arrow" />
+        <text x="165" y="370" className="label">NO</text>
 
         {/* Final outcomes */}
         {/* YES outcome */}
-        <path d="M 270 250 L 270 300" className="arrow" />
-        <rect x="230" y="300" width="80" height="40" rx="4" className="outcome" />
-        <text x="270" y="315" className="text">2 hrs near</text>
-        <text x="270" y="327" className="text">chamber</text>
+        <path d="M 277 325 L 277 360" className="arrow" />
+        <rect x="245" y="360" width="65" height="35" rx="4" className="outcome" />
+        <text x="277" y="375" className="text">2 hrs</text>
+        <text x="277" y="387" className="text">near</text>
 
         {/* NO outcome */}
-        <rect x="60" y="285" width="80" height="40" rx="4" className="outcome" />
-        <text x="100" y="300" className="text">4 hrs near</text>
-        <text x="100" y="312" className="text">chamber</text>
-
-        {/* Repeat interval note */}
-        <text x="150" y="365" className="label">Repeat interval: 12 hours</text>
+        <rect x="85" y="380" width="65" height="35" rx="4" className="outcome" />
+        <text x="117" y="395" className="text">4 hrs</text>
+        <text x="117" y="407" className="text">near</text>
       </svg>
     </div>
   );
@@ -87,88 +98,95 @@ export function CrashDiveProcedure() {
 export function OxygenFailureDuringDecompression() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 320 400" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 320 440" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .start { fill: #f97316; stroke: #c2410c; stroke-width: 1.5; }
-            .decision { fill: #fb923c; stroke: #c2410c; stroke-width: 1.5; }
-            .process { fill: #fdba74; stroke: #c2410c; stroke-width: 1.5; }
-            .outcome { fill: #dc2626; stroke: #7f1d1d; stroke-width: 1.5; }
-            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
-            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
-            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow2); }
+            .start { fill: url(#grad-orange); stroke: #c2410c; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .decision { fill: url(#grad-amber); stroke: #c2410c; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .process { fill: url(#grad-orange-light); stroke: #c2410c; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .outcome { fill: url(#grad-red); stroke: #7f1d1d; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .text { fill: white; font-size: 10px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #334155; font-size: 8px; font-weight: 700; }
+            .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow2); }
           `}</style>
           <marker id="arrow2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
+            <polygon points="0 0, 6 3, 0 6" fill="#475569" />
           </marker>
+          <linearGradient id="grad-orange" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#f97316', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#c2410c', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-amber" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#fb923c', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#c2410c', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-orange-light" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#fdba74', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#c2410c', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-red" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#dc2626', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#7f1d1d', stopOpacity: 0.95}} />
+          </linearGradient>
         </defs>
 
         {/* Start */}
-        <rect x="60" y="10" width="200" height="35" rx="18" className="start" />
-        <text x="160" y="32" className="text">Oxygen failure</text>
+        <rect x="50" y="10" width="220" height="35" rx="18" className="start" />
+        <text x="160" y="30" className="text">Oxygen failure</text>
 
         {/* Arrow */}
-        <path d="M 160 45 L 160 70" className="arrow" />
+        <path d="M 160 45 L 160 75" className="arrow" />
 
         {/* Process: Surface air table */}
-        <rect x="80" y="70" width="160" height="30" rx="4" className="process" />
-        <text x="160" y="90" className="text">Surface air table (SAB)</text>
+        <rect x="70" y="75" width="180" height="30" rx="4" className="process" />
+        <text x="160" y="95" className="text">Surface air table (SAB)</text>
 
         {/* Arrow */}
-        <path d="M 160 100 L 160 125" className="arrow" />
+        <path d="M 160 105 L 160 135" className="arrow" />
 
         {/* Decision: Oxygen restored? */}
-        <polygon points="160,125 210,150 160,175 110,150" className="decision" />
-        <text x="160" y="150" className="text">Oxygen</text>
-        <text x="160" y="161" className="text">restored?</text>
+        <polygon points="160,135 235,180 160,225 85,180" className="decision" />
+        <text x="160" y="175" className="text">Oxygen</text>
+        <text x="160" y="188" className="text">restored?</text>
 
         {/* NO path - Loop back to SAB */}
-        <path d="M 110 150 L 40 150 L 40 85 L 80 85" className="arrow" />
-        <text x="70" y="145" className="label">NO</text>
+        <path d="M 85 180 L 35 180 L 35 90 L 70 90" className="arrow" />
+        <text x="50" y="175" className="label">NO</text>
 
         {/* YES path */}
-        <path d="M 160 175 L 160 200" className="arrow" />
-        <text x="170" y="190" className="label">YES</text>
+        <path d="M 160 225 L 160 255" className="arrow" />
+        <text x="175" y="245" className="label">YES</text>
 
         {/* Oxygen protocol */}
-        <rect x="70" y="200" width="180" height="30" rx="4" className="process" />
-        <text x="160" y="220" className="text">20min O₂ and 5min air</text>
+        <rect x="60" y="255" width="200" height="30" rx="4" className="process" />
+        <text x="160" y="275" className="text">20min O₂ and 5min air</text>
 
         {/* Arrow */}
-        <path d="M 160 230 L 160 255" className="arrow" />
+        <path d="M 160 285 L 160 315" className="arrow" />
 
         {/* Decision: OTU > 450? */}
-        <polygon points="160,255 210,280 160,305 110,280" className="decision" />
-        <text x="160" y="283" className="text">OTU &gt;</text>
-        <text x="160" y="294" className="text">450?</text>
+        <polygon points="160,315 235,360 160,405 85,360" className="decision" />
+        <text x="160" y="360" className="text">OTU &gt;</text>
+        <text x="160" y="373" className="text">450?</text>
 
         {/* YES - Stop O2 */}
-        <path d="M 210 280 L 250 280 L 250 320" className="arrow" />
-        <text x="230" y="275" className="label">YES</text>
+        <path d="M 235 360 L 270 360 L 270 395" className="arrow" />
+        <text x="260" y="355" className="label">YES</text>
 
         {/* NO - Continue O2 */}
-        <path d="M 160 305 L 160 330" className="arrow" />
-        <text x="170" y="320" className="label">NO</text>
-
-        {/* Decision: O2 intake > 1/3? */}
-        <polygon points="160,330 210,355 160,380 110,355" className="decision" />
-        <text x="160" y="351" className="text">O₂ intake</text>
-        <text x="160" y="362" className="text">&gt; 1/3 deco?</text>
+        <path d="M 160 405 L 160 425" className="arrow" />
+        <text x="175" y="420" className="label">NO</text>
 
         {/* Final outcomes */}
         {/* Left outcome - 4 hrs */}
-        <path d="M 110 355 L 60 355 L 60 345" className="arrow" />
-        <text x="80" y="350" className="label">NO</text>
-        <rect x="20" y="345" width="80" height="35" rx="4" className="outcome" />
-        <text x="60" y="360" className="text">4 hrs</text>
-        <text x="60" y="372" className="text">chamber</text>
+        <rect x="40" y="395" width="65" height="35" rx="4" className="outcome" />
+        <text x="72" y="410" className="text">4 hrs</text>
+        <text x="72" y="422" className="text">near</text>
 
         {/* Right outcome - 2 hrs */}
-        <path d="M 210 355 L 250 355 L 250 345" className="arrow" />
-        <text x="230" y="350" className="label">YES</text>
-        <rect x="220" y="345" width="80" height="35" rx="4" className="outcome" />
-        <text x="260" y="360" className="text">2 hrs</text>
-        <text x="260" y="372" className="text">chamber</text>
+        <rect x="235" y="395" width="65" height="35" rx="4" className="outcome" />
+        <text x="267" y="410" className="text">2 hrs</text>
+        <text x="267" y="422" className="text">near</text>
       </svg>
     </div>
   );
@@ -178,86 +196,101 @@ export function OxygenFailureDuringDecompression() {
 export function SurfaceDecompressionRequired() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 320 400" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 340 440" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .start { fill: #06b6d4; stroke: #0369a1; stroke-width: 1.5; }
-            .decision { fill: #22d3ee; stroke: #0369a1; stroke-width: 1.5; }
-            .process { fill: #67e8f9; stroke: #0369a1; stroke-width: 1.5; }
-            .outcome { fill: #0284c7; stroke: #082f49; stroke-width: 1.5; }
-            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
-            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
-            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow3); }
+            .start { fill: url(#grad-cyan2); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .decision { fill: url(#grad-sky); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .process { fill: url(#grad-cyan-light); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .outcome { fill: url(#grad-blue2); stroke: #082f49; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .text { fill: white; font-size: 10px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #334155; font-size: 8px; font-weight: 700; }
+            .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow3); }
           `}</style>
           <marker id="arrow3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
+            <polygon points="0 0, 6 3, 0 6" fill="#475569" />
           </marker>
+          <linearGradient id="grad-cyan2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#06b6d4', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#22d3ee', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-cyan-light" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#67e8f9', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-blue2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#0284c7', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#082f49', stopOpacity: 0.95}} />
+          </linearGradient>
         </defs>
 
         {/* Start */}
-        <rect x="50" y="10" width="220" height="35" rx="18" className="start" />
-        <text x="160" y="32" className="text">Need for surface decompression</text>
+        <rect x="40" y="10" width="260" height="35" rx="18" className="start" />
+        <text x="170" y="30" className="text">Need surface decompression</text>
 
         {/* Arrow */}
-        <path d="M 160 45 L 160 70" className="arrow" />
+        <path d="M 170 45 L 170 75" className="arrow" />
 
         {/* Decision: Repeat > 4hrs? */}
-        <polygon points="160,70 210,95 160,120 110,95" className="decision" />
-        <text x="160" y="99" className="text">Repeat</text>
-        <text x="160" y="110" className="text">&gt; 4hrs?</text>
+        <polygon points="170,75 245,120 170,165 95,120" className="decision" />
+        <text x="170" y="115" className="text">Repeat</text>
+        <text x="170" y="128" className="text">&gt; 4hrs?</text>
 
         {/* YES path */}
-        <path d="M 210 95 L 255 95" className="arrow" />
-        <text x="235" y="90" className="label">YES</text>
-        <rect x="255" y="80" width="55" height="30" rx="4" className="process" />
-        <text x="282" y="100" className="text">Air/SOX</text>
-        <text x="282" y="110" className="text">table</text>
+        <path d="M 245 120 L 285 120" className="arrow" />
+        <text x="270" y="115" className="label">YES</text>
+        <rect x="285" y="105" width="40" height="30" rx="4" className="process" />
+        <text x="305" y="125" className="text">SOX</text>
 
         {/* NO path */}
-        <path d="M 160 120 L 160 155" className="arrow" />
-        <text x="170" y="140" className="label">NO</text>
+        <path d="M 170 165 L 170 200" className="arrow" />
+        <text x="185" y="185" className="label">NO</text>
 
         {/* Emergency crash dive */}
-        <rect x="40" y="155" width="240" height="30" rx="4" className="process" />
-        <text x="160" y="175" className="text">Emergency decompression crash dive</text>
+        <rect x="30" y="200" width="280" height="35" rx="4" className="process" />
+        <text x="170" y="223" className="text">Emergency crash dive</text>
 
         {/* Arrow */}
-        <path d="M 160 185 L 160 210" className="arrow" />
+        <path d="M 170 235 L 170 265" className="arrow" />
 
         {/* Decision: Oxygen available? */}
-        <polygon points="160,210 210,235 160,260 110,235" className="decision" />
-        <text x="160" y="239" className="text">Oxygen</text>
-        <text x="160" y="250" className="text">available?</text>
+        <polygon points="170,265 245,310 170,355 95,310" className="decision" />
+        <text x="170" y="305" className="text">Oxygen</text>
+        <text x="170" y="318" className="text">avail?</text>
 
         {/* YES path */}
-        <path d="M 210 235 L 255 235" className="arrow" />
-        <text x="235" y="230" className="label">YES</text>
+        <path d="M 245 310 L 285 310" className="arrow" />
+        <text x="270" y="305" className="label">YES</text>
 
         {/* Decision: OTU > 450? */}
-        <polygon points="255,220 305,245 255,270 205,245" className="decision" />
-        <text x="255" y="248" className="text">OTU &gt;</text>
-        <text x="255" y="259" className="text">450?</text>
+        <polygon points="285,295 320,330 285,365 250,330" className="decision" />
+        <text x="285" y="333" className="text">OTU</text>
+        <text x="285" y="346" className="text">&gt;450?</text>
 
         {/* YES - Air only */}
-        <path d="M 305 245 L 250 300" className="arrow" />
-        <text x="290" y="270" className="label">YES</text>
-        <rect x="230" y="300" width="40" height="25" rx="4" className="outcome" />
-        <text x="250" y="318" className="text">Air</text>
+        <path d="M 320 330 L 280 395" className="arrow" />
+        <text x="310" y="360" className="label">YES</text>
+        <rect x="260" y="395" width="40" height="30" rx="4" className="outcome" />
+        <text x="280" y="415" className="text">Air</text>
 
         {/* NO path - Continue O2 */}
-        <path d="M 160 260 L 160 300" className="arrow" />
-        <text x="170" y="280" className="label">NO</text>
+        <path d="M 170 355 L 170 395" className="arrow" />
+        <text x="185" y="375" className="label">NO</text>
 
         {/* Final outcomes */}
         {/* Left - 4 hrs */}
-        <rect x="60" y="300" width="80" height="40" rx="4" className="outcome" />
-        <text x="100" y="315" className="text">4 hrs</text>
-        <text x="100" y="327" className="text">chamber</text>
+        <rect x="75" y="395" width="65" height="35" rx="4" className="outcome" />
+        <text x="107" y="410" className="text">4 hrs</text>
+        <text x="107" y="422" className="text">near</text>
 
         {/* Right - 2 hrs */}
-        <rect x="180" y="300" width="80" height="40" rx="4" className="outcome" />
-        <text x="220" y="315" className="text">2 hrs</text>
-        <text x="220" y="327" className="text">chamber</text>
+        <rect x="195" y="395" width="65" height="35" rx="4" className="outcome" />
+        <text x="227" y="410" className="text">2 hrs</text>
+        <text x="227" y="422" className="text">near</text>
       </svg>
     </div>
   );
@@ -267,80 +300,96 @@ export function SurfaceDecompressionRequired() {
 export function IrregularityDuringDecompression() {
   return (
     <div className="w-full overflow-x-auto">
-      <svg viewBox="0 0 300 380" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 300 420" className="min-w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <style>{`
-            .start { fill: #0ea5e9; stroke: #0369a1; stroke-width: 1.5; }
-            .decision { fill: #0284c7; stroke: #0369a1; stroke-width: 1.5; }
-            .process { fill: #3b82f6; stroke: #1e40af; stroke-width: 1.5; }
-            .outcome { fill: #1e40af; stroke: #082f49; stroke-width: 1.5; }
-            .text { fill: white; font-size: 11px; font-weight: 600; text-anchor: middle; }
-            .label { fill: #1f2937; font-size: 9px; font-weight: 700; }
-            .arrow { stroke: #334155; stroke-width: 1.5; fill: none; marker-end: url(#arrow4); }
+            .start { fill: url(#grad-blue3); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .decision { fill: url(#grad-sky2); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .process { fill: url(#grad-blue-mid); stroke: #0369a1; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .outcome { fill: url(#grad-slate2); stroke: #082f49; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+            .text { fill: white; font-size: 10px; font-weight: 600; text-anchor: middle; }
+            .label { fill: #334155; font-size: 8px; font-weight: 700; }
+            .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow4); }
           `}</style>
           <marker id="arrow4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="#334155" />
+            <polygon points="0 0, 6 3, 0 6" fill="#475569" />
           </marker>
+          <linearGradient id="grad-blue3" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#0ea5e9', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-sky2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#0284c7', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#0369a1', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-blue-mid" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#3b82f6', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#1e40af', stopOpacity: 0.95}} />
+          </linearGradient>
+          <linearGradient id="grad-slate2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: '#1e293b', stopOpacity: 0.9}} />
+            <stop offset="100%" style={{stopColor: '#082f49', stopOpacity: 0.95}} />
+          </linearGradient>
         </defs>
 
         {/* Start */}
-        <rect x="55" y="10" width="190" height="35" rx="18" className="start" />
-        <text x="150" y="32" className="text">Irregularity in decompression</text>
+        <rect x="35" y="10" width="230" height="35" rx="18" className="start" />
+        <text x="150" y="30" className="text">Irregularity in decompression</text>
 
         {/* Arrow */}
-        <path d="M 150 45 L 150 70" className="arrow" />
+        <path d="M 150 45 L 150 75" className="arrow" />
 
         {/* Decision: Oxygen available? */}
-        <polygon points="150,70 200,95 150,120 100,95" className="decision" />
-        <text x="150" y="99" className="text">Oxygen</text>
-        <text x="150" y="110" className="text">available?</text>
+        <polygon points="150,75 225,120 150,165 75,120" className="decision" />
+        <text x="150" y="115" className="text">Oxygen</text>
+        <text x="150" y="128" className="text">avail?</text>
 
         {/* NO path */}
-        <path d="M 100 95 L 40 95 L 40 145" className="arrow" />
-        <text x="65" y="90" className="label">NO</text>
-        <rect x="15" y="145" width="50" height="30" rx="4" className="process" />
-        <text x="40" y="165" className="text">Table 3</text>
+        <path d="M 75 120 L 35 120 L 35 170" className="arrow" />
+        <text x="50" y="115" className="label">NO</text>
+        <rect x="15" y="170" width="40" height="30" rx="4" className="process" />
+        <text x="35" y="190" className="text">T3</text>
 
         {/* YES path */}
-        <path d="M 150 120 L 150 155" className="arrow" />
-        <text x="160" y="140" className="label">YES</text>
-        <rect x="100" y="155" width="100" height="30" rx="4" className="process" />
-        <text x="150" y="175" className="text">Table 5</text>
+        <path d="M 150 165 L 150 200" className="arrow" />
+        <text x="165" y="185" className="label">YES</text>
+        <rect x="110" y="200" width="80" height="30" rx="4" className="process" />
+        <text x="150" y="220" className="text">Table 5</text>
 
         {/* Arrow */}
-        <path d="M 150 185 L 150 210" className="arrow" />
+        <path d="M 150 230 L 150 260" className="arrow" />
 
         {/* Decision: DCS Symptoms? */}
-        <polygon points="150,210 200,235 150,260 100,235" className="decision" />
-        <text x="150" y="239" className="text">DCS</text>
-        <text x="150" y="250" className="text">symptoms?</text>
+        <polygon points="150,260 225,305 150,350 75,305" className="decision" />
+        <text x="150" y="300" className="text">DCS</text>
+        <text x="150" y="313" className="text">sympt?</text>
 
         {/* NO path */}
-        <path d="M 200 235 L 245 235 L 245 300" className="arrow" />
-        <text x="220" y="230" className="label">NO</text>
+        <path d="M 225 305 L 260 305 L 260 370" className="arrow" />
+        <text x="245" y="300" className="label">NO</text>
 
         {/* YES path */}
-        <path d="M 150 260 L 150 285" className="arrow" />
-        <text x="160" y="275" className="label">YES</text>
-        <rect x="90" y="285" width="120" height="30" rx="4" className="process" />
-        <text x="150" y="305" className="text">Table 6 or 4</text>
+        <path d="M 150 350 L 150 375" className="arrow" />
+        <text x="165" y="365" className="label">YES</text>
+        <rect x="100" y="375" width="100" height="30" rx="4" className="process" />
+        <text x="150" y="395" className="text">Table 6/4</text>
 
         {/* Arrow down */}
-        <path d="M 150 315 L 150 340" className="arrow" />
+        <path d="M 150 405 L 150 360" className="arrow" />
 
         {/* Arrow from NO */}
-        <path d="M 245 300 L 245 340" className="arrow" />
+        <path d="M 260 370 L 260 360" className="arrow" />
 
         {/* Final outcomes */}
         {/* YES outcome */}
-        <rect x="70" y="340" width="80" height="35" rx="4" className="outcome" />
-        <text x="110" y="355" className="text">4 hrs near</text>
-        <text x="110" y="367" className="text">chamber</text>
+        <rect x="85" y="360" width="65" height="35" rx="4" className="outcome" />
+        <text x="117" y="375" className="text">4 hrs</text>
+        <text x="117" y="387" className="text">near</text>
 
         {/* NO outcome */}
-        <rect x="210" y="340" width="80" height="35" rx="4" className="outcome" />
-        <text x="250" y="355" className="text">2 hrs near</text>
-        <text x="250" y="367" className="text">chamber</text>
+        <rect x="230" y="360" width="65" height="35" rx="4" className="outcome" />
+        <text x="262" y="375" className="text">2 hrs</text>
+        <text x="262" y="387" className="text">near</text>
       </svg>
     </div>
   );

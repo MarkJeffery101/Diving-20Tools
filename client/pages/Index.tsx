@@ -2,8 +2,6 @@ import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
 import {
   BookOpen,
-  AlertTriangle,
-  Pill,
   TrendingDown,
   Database,
   MapPin,

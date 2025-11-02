@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Tables from "./pages/Tables";
 import TableDetail from "./pages/TableDetail";
 import TableSelection from "./pages/TableSelection";
+import TableUse from "./pages/TableUse";
 import SupportingInfo from "./pages/SupportingInfo";
 import Tools from "./pages/Tools";
 import Share from "./pages/Share";

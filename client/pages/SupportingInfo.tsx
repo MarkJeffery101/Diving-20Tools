@@ -345,31 +345,6 @@ export default function SupportingInfo() {
                     </p>
                   </div>
 
-                  {/* Recommended Limits & Caveats */}
-                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                    <h3 className="text-sm font-bold text-foreground mb-2">
-                      Recommended Exposure Limits
-                    </h3>
-                    <div className="space-y-2 text-[10px] text-muted-foreground">
-                      <div>
-                        <span className="font-semibold text-foreground">OTU-based Management:</span>
-                        <p className="mt-1">Daily dose limit ≈ <strong>~450 OTU</strong></p>
-                      </div>
-                      <div className="border-t border-amber-200 pt-2">
-                        <span className="font-semibold text-foreground">ESOT-based Management (DMAC-35):</span>
-                        <p className="mt-1 font-mono">ESOT = time × pO₂<sup>2.285</sup></p>
-                      </div>
-                      <div className="border-t border-amber-200 pt-2 space-y-1">
-                        <p className="font-semibold text-foreground">Important Caveats:</p>
-                        <ul className="space-y-1 ml-4 list-disc">
-                          <li>Large variability in individual susceptibility</li>
-                          <li>Mathematical indices <strong>cannot replace clinical judgement</strong></li>
-                          <li>These are guidance tools, not absolute safety limits</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Two Column Section */}
               <div className="grid md:grid-cols-2 gap-4">
                 {/* OTU Card */}

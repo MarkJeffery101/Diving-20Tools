@@ -64,6 +64,16 @@ export function TourPopup() {
 
   return (
     <>
+      {/* Semi-transparent overlay background */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          zIndex: 39,
+        }}
+      />
+
+      {/* Highlight box with spotlight effect */}
       {targetRect && currentStepData.highlight && (
         <div
           className="fixed pointer-events-none border-2 border-blue-500 rounded-lg"
@@ -79,7 +89,7 @@ export function TourPopup() {
       )}
 
       <div
-        className="fixed bg-white rounded-lg shadow-2xl border border-gray-200 p-5 z-50 max-w-sm"
+        className="fixed bg-white rounded-lg shadow-2xl border border-gray-200 p-5 z-50 max-w-sm w-full mx-2 sm:w-96"
         style={{
           top: `${position.top}px`,
           left: `${position.left}px`,

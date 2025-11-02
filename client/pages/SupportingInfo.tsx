@@ -14,9 +14,33 @@ export default function SupportingInfo() {
       title: "Safe and Maximum Limits",
       icon: "📏",
       subsections: [
-        { subtitle: "Recreational", items: ["Max Depth: 40m", "10m/min ascent", "3-5m safety stops", "1hr minimum surface interval"] },
-        { subtitle: "Commercial", items: ["Max Depth: 100m+", "Mandatory decompression", "Daily oxygen limits", "Certified training required"] },
-        { subtitle: "Nitrox", items: ["MOD by PPO2 limit", "Nitrox 32%: ~42m", "Shorter decompression", "Reduced narcosis vs air"] },
+        {
+          subtitle: "Recreational",
+          items: [
+            "Max Depth: 40m",
+            "10m/min ascent",
+            "3-5m safety stops",
+            "1hr minimum surface interval",
+          ],
+        },
+        {
+          subtitle: "Commercial",
+          items: [
+            "Max Depth: 100m+",
+            "Mandatory decompression",
+            "Daily oxygen limits",
+            "Certified training required",
+          ],
+        },
+        {
+          subtitle: "Nitrox",
+          items: [
+            "MOD by PPO2 limit",
+            "Nitrox 32%: ~42m",
+            "Shorter decompression",
+            "Reduced narcosis vs air",
+          ],
+        },
       ],
     },
     {
@@ -24,9 +48,31 @@ export default function SupportingInfo() {
       title: "Partial Pressure of Oxygen (PPO2)",
       icon: "⚗️",
       subsections: [
-        { subtitle: "What is PPO2?", items: ["PPO2 = O2% × Absolute Pressure", "Determines toxicity risk", "Measured in bar (ATA)"] },
-        { subtitle: "Safe Limits", items: ["Recreational Max: 1.4 bar", "Commercial Max: 1.6 bar", "Min Functional: 0.16 bar", "Warning: 1.5-1.6 bar"] },
-        { subtitle: "Examples", items: ["Air 21% @ 30m: 0.84 bar ✓", "Air 21% @ 60m: 1.68 bar ✗", "Nitrox 32% @ 40m: 1.44 bar ✓"] },
+        {
+          subtitle: "What is PPO2?",
+          items: [
+            "PPO2 = O2% × Absolute Pressure",
+            "Determines toxicity risk",
+            "Measured in bar (ATA)",
+          ],
+        },
+        {
+          subtitle: "Safe Limits",
+          items: [
+            "Recreational Max: 1.4 bar",
+            "Commercial Max: 1.6 bar",
+            "Min Functional: 0.16 bar",
+            "Warning: 1.5-1.6 bar",
+          ],
+        },
+        {
+          subtitle: "Examples",
+          items: [
+            "Air 21% @ 30m: 0.84 bar ✓",
+            "Air 21% @ 60m: 1.68 bar ✗",
+            "Nitrox 32% @ 40m: 1.44 bar ✓",
+          ],
+        },
       ],
     },
     {
@@ -34,9 +80,31 @@ export default function SupportingInfo() {
       title: "Equivalent Air Depth (EAD)",
       icon: "🎯",
       subsections: [
-        { subtitle: "What is EAD?", items: ["Accounts for reduced nitrogen", "Formula: (depth × N2%) / 0.79 - depth", "Shows equivalent air decompression depth"] },
-        { subtitle: "Nitrogen Narcosis", items: ["0-9m: No narcosis", "18-35m: Mild (caution)", "55-75m: Severe", "75m+: Extreme (not recommended)"] },
-        { subtitle: "Benefits", items: ["Less narcosis than air", "Extended bottom times", "Reduced decompression"] },
+        {
+          subtitle: "What is EAD?",
+          items: [
+            "Accounts for reduced nitrogen",
+            "Formula: (depth × N2%) / 0.79 - depth",
+            "Shows equivalent air decompression depth",
+          ],
+        },
+        {
+          subtitle: "Nitrogen Narcosis",
+          items: [
+            "0-9m: No narcosis",
+            "18-35m: Mild (caution)",
+            "55-75m: Severe",
+            "75m+: Extreme (not recommended)",
+          ],
+        },
+        {
+          subtitle: "Benefits",
+          items: [
+            "Less narcosis than air",
+            "Extended bottom times",
+            "Reduced decompression",
+          ],
+        },
       ],
     },
     {
@@ -44,9 +112,30 @@ export default function SupportingInfo() {
       title: "Surface Intervals & Repetitive Diving",
       icon: "⏱️",
       subsections: [
-        { subtitle: "Requirements", items: ["Minimum 1 hour between dives", "2-6 hours preferred for deep dives", "Allows nitrogen elimination"] },
-        { subtitle: "Residual Nitrogen", items: ["Nitrogen remaining after dive", "Conservative planning recommended", "Stay within table limits"] },
-        { subtitle: "Multi-Dive Rules", items: ["Max 4 dives per day", "Shallower dives later in day", "Rest day recommended after multiple days"] },
+        {
+          subtitle: "Requirements",
+          items: [
+            "Minimum 1 hour between dives",
+            "2-6 hours preferred for deep dives",
+            "Allows nitrogen elimination",
+          ],
+        },
+        {
+          subtitle: "Residual Nitrogen",
+          items: [
+            "Nitrogen remaining after dive",
+            "Conservative planning recommended",
+            "Stay within table limits",
+          ],
+        },
+        {
+          subtitle: "Multi-Dive Rules",
+          items: [
+            "Max 4 dives per day",
+            "Shallower dives later in day",
+            "Rest day recommended after multiple days",
+          ],
+        },
       ],
     },
     {
@@ -54,9 +143,34 @@ export default function SupportingInfo() {
       title: "Safety Rules & Regulations",
       icon: "📋",
       subsections: [
-        { subtitle: "Equipment", items: ["Serviced and maintained", "Backup air source", "Depth gauge & timer", "Thermal protection", "Signaling devices"] },
-        { subtitle: "Mandatory Procedures", items: ["Dive plan briefing", "Buddy system", "Controlled entry/exit", "Safety stops (3-5m)", "10m/min ascent rate"] },
-        { subtitle: "Certification", items: ["Appropriate cert required", "Training for gas type", "CPR & first aid recommended"] },
+        {
+          subtitle: "Equipment",
+          items: [
+            "Serviced and maintained",
+            "Backup air source",
+            "Depth gauge & timer",
+            "Thermal protection",
+            "Signaling devices",
+          ],
+        },
+        {
+          subtitle: "Mandatory Procedures",
+          items: [
+            "Dive plan briefing",
+            "Buddy system",
+            "Controlled entry/exit",
+            "Safety stops (3-5m)",
+            "10m/min ascent rate",
+          ],
+        },
+        {
+          subtitle: "Certification",
+          items: [
+            "Appropriate cert required",
+            "Training for gas type",
+            "CPR & first aid recommended",
+          ],
+        },
       ],
     },
     {
@@ -64,9 +178,32 @@ export default function SupportingInfo() {
       title: "Altitude & Environmental Corrections",
       icon: "🌍",
       subsections: [
-        { subtitle: "Altitude", items: ["Pressure decreases with elevation", "Sea level: 1.013 bar", "2,400m: ~0.78 bar", "Use altitude-adjusted tables"] },
-        { subtitle: "Water Type", items: ["Saltwater: Standard", "Freshwater: Slightly less dense", "Brackish: Variable", "Affects buoyancy"] },
-        { subtitle: "Temperature", items: ["Cold: Increases nitrogen absorption", "Thermal protection essential", "Warm: Standard application"] },
+        {
+          subtitle: "Altitude",
+          items: [
+            "Pressure decreases with elevation",
+            "Sea level: 1.013 bar",
+            "2,400m: ~0.78 bar",
+            "Use altitude-adjusted tables",
+          ],
+        },
+        {
+          subtitle: "Water Type",
+          items: [
+            "Saltwater: Standard",
+            "Freshwater: Slightly less dense",
+            "Brackish: Variable",
+            "Affects buoyancy",
+          ],
+        },
+        {
+          subtitle: "Temperature",
+          items: [
+            "Cold: Increases nitrogen absorption",
+            "Thermal protection essential",
+            "Warm: Standard application",
+          ],
+        },
       ],
     },
     {
@@ -74,9 +211,32 @@ export default function SupportingInfo() {
       title: "Decompression Theory Basics",
       icon: "💨",
       subsections: [
-        { subtitle: "How It Works", items: ["Pressure forces gas into tissues", "Ascent allows nitrogen elimination", "Decompression stops prevent DCS", "Controlled ascent is critical"] },
-        { subtitle: "Tissue Types", items: ["Fast tissues: Brain, blood", "Slow tissues: Bones, fat", "Longer dives: Slower tissues saturate", "Requirements increase with depth"] },
-        { subtitle: "No-Decompression Limits", items: ["Maximum time before stops required", "Depends on depth & gas", "Conservative approach recommended"] },
+        {
+          subtitle: "How It Works",
+          items: [
+            "Pressure forces gas into tissues",
+            "Ascent allows nitrogen elimination",
+            "Decompression stops prevent DCS",
+            "Controlled ascent is critical",
+          ],
+        },
+        {
+          subtitle: "Tissue Types",
+          items: [
+            "Fast tissues: Brain, blood",
+            "Slow tissues: Bones, fat",
+            "Longer dives: Slower tissues saturate",
+            "Requirements increase with depth",
+          ],
+        },
+        {
+          subtitle: "No-Decompression Limits",
+          items: [
+            "Maximum time before stops required",
+            "Depends on depth & gas",
+            "Conservative approach recommended",
+          ],
+        },
       ],
     },
   ];
@@ -134,12 +294,22 @@ export default function SupportingInfo() {
                 {expandedId === section.id && (
                   <div className="border-t border-border p-3 space-y-2 text-xs">
                     {section.subsections.map((sub, idx) => (
-                      <div key={idx} className="pb-2 border-b border-gray-200 last:pb-0 last:border-0">
-                        <h3 className="font-bold text-foreground text-[11px] mb-1">{sub.subtitle}</h3>
+                      <div
+                        key={idx}
+                        className="pb-2 border-b border-gray-200 last:pb-0 last:border-0"
+                      >
+                        <h3 className="font-bold text-foreground text-[11px] mb-1">
+                          {sub.subtitle}
+                        </h3>
                         <ul className="space-y-1">
                           {sub.items.map((item, itemIdx) => (
-                            <li key={itemIdx} className="flex gap-2 text-foreground">
-                              <span className="text-primary font-bold flex-shrink-0">▶</span>
+                            <li
+                              key={itemIdx}
+                              className="flex gap-2 text-foreground"
+                            >
+                              <span className="text-primary font-bold flex-shrink-0">
+                                ▶
+                              </span>
                               <span className="text-[10px]">{item}</span>
                             </li>
                           ))}
@@ -201,8 +371,17 @@ export default function SupportingInfo() {
               {/* Intro Section */}
               <div className="bg-white border border-border rounded-lg p-3">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Elevated inspired oxygen (↑pO₂) carries risks of acute CNS toxicity and long-term cumulative effects.
-                  Two complementary indices are commonly referenced: <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">UPTD/OTU</span> and <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">ESOT</span>.
+                  Elevated inspired oxygen (↑pO₂) carries risks of acute CNS
+                  toxicity and long-term cumulative effects. Two complementary
+                  indices are commonly referenced:{" "}
+                  <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">
+                    UPTD/OTU
+                  </span>{" "}
+                  and{" "}
+                  <span className="inline-block px-2 py-1 bg-blue-100 text-blue-900 rounded text-[10px] font-semibold mx-1">
+                    ESOT
+                  </span>
+                  .
                 </p>
               </div>
 
@@ -214,22 +393,38 @@ export default function SupportingInfo() {
                     UPTD / OTU
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    Origin in pulmonary dose modelling; OTU broadened interpretation to include potential <em>systemic</em> manifestations.
+                    Origin in pulmonary dose modelling; OTU broadened
+                    interpretation to include potential <em>systemic</em>{" "}
+                    manifestations.
                   </p>
 
                   <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Strengths</summary>
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                      Strengths
+                    </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>Simple cumulative exposure concept, widely understood.</li>
-                      <li>Keeps attention on possible <strong>systemic</strong> effects beyond lungs.</li>
+                      <li>
+                        Simple cumulative exposure concept, widely understood.
+                      </li>
+                      <li>
+                        Keeps attention on possible <strong>systemic</strong>{" "}
+                        effects beyond lungs.
+                      </li>
                     </ul>
                   </details>
 
                   <details className="bg-red-50 border border-red-200 rounded-lg p-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Weaknesses</summary>
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                      Weaknesses
+                    </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>No validated recovery/decay model (exposure only accumulates).</li>
-                      <li>Limited precision for short or multi-segment exposures.</li>
+                      <li>
+                        No validated recovery/decay model (exposure only
+                        accumulates).
+                      </li>
+                      <li>
+                        Limited precision for short or multi-segment exposures.
+                      </li>
                     </ul>
                   </details>
                 </div>
@@ -240,21 +435,36 @@ export default function SupportingInfo() {
                     ESOT
                   </h3>
                   <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
-                    Represents exposure as "equivalent minutes of 100% O₂ at the surface," enabling dose + recovery modelling for pulmonary risk.
+                    Represents exposure as "equivalent minutes of 100% O₂ at the
+                    surface," enabling dose + recovery modelling for pulmonary
+                    risk.
                   </p>
 
                   <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Strengths</summary>
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                      Strengths
+                    </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>Improved prediction for <strong>pulmonary</strong> oxygen toxicity.</li>
-                      <li>Handles varying pO₂ segments and models recovery between exposures.</li>
+                      <li>
+                        Improved prediction for <strong>pulmonary</strong>{" "}
+                        oxygen toxicity.
+                      </li>
+                      <li>
+                        Handles varying pO₂ segments and models recovery between
+                        exposures.
+                      </li>
                     </ul>
                   </details>
 
                   <details className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">Weaknesses</summary>
+                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                      Weaknesses
+                    </summary>
                     <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
-                      <li>Focuses on pulmonary injury; systemic effects are not modelled.</li>
+                      <li>
+                        Focuses on pulmonary injury; systemic effects are not
+                        modelled.
+                      </li>
                       <li>Requires calculation support for practical use.</li>
                     </ul>
                   </details>
@@ -270,56 +480,114 @@ export default function SupportingInfo() {
                   <table className="w-full text-[10px]">
                     <thead>
                       <tr className="bg-gray-50 border-b border-border">
-                        <th className="p-2 text-left font-bold text-foreground">Category</th>
-                        <th className="p-2 text-left font-bold text-foreground">UPTD / OTU</th>
-                        <th className="p-2 text-left font-bold text-foreground">ESOT</th>
+                        <th className="p-2 text-left font-bold text-foreground">
+                          Category
+                        </th>
+                        <th className="p-2 text-left font-bold text-foreground">
+                          UPTD / OTU
+                        </th>
+                        <th className="p-2 text-left font-bold text-foreground">
+                          ESOT
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Origin</td>
-                        <td className="p-2 text-muted-foreground">Pulmonary dose research; expanded to systemic context</td>
-                        <td className="p-2 text-muted-foreground">Refined from Arieli-type modelling; modern guidance favours use</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Origin
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Pulmonary dose research; expanded to systemic context
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Refined from Arieli-type modelling; modern guidance
+                          favours use
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Physiological focus</td>
-                        <td className="p-2 text-muted-foreground">Pulmonary + <em>systemic</em> operational awareness</td>
-                        <td className="p-2 text-muted-foreground">Pulmonary-centric model</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Physiological focus
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Pulmonary + <em>systemic</em> operational awareness
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Pulmonary-centric model
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Systemic symptoms</td>
-                        <td className="p-2 text-muted-foreground">Recognized in practice (fatigue, headache, myalgia/arthralgia)</td>
-                        <td className="p-2 text-muted-foreground">Not represented</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Systemic symptoms
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Recognized in practice (fatigue, headache,
+                          myalgia/arthralgia)
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Not represented
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Mathematical form</td>
-                        <td className="p-2 text-muted-foreground">Exposure as function of pO₂ × time</td>
-                        <td className="p-2 text-muted-foreground">Equivalent surface O₂ time; includes recovery</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Mathematical form
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Exposure as function of pO₂ × time
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Equivalent surface O₂ time; includes recovery
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Recovery modelling</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Recovery modelling
+                        </td>
                         <td className="p-2 text-muted-foreground">None</td>
                         <td className="p-2 text-muted-foreground">Included</td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Multi-segment exposures</td>
-                        <td className="p-2 text-muted-foreground">Limited handling</td>
-                        <td className="p-2 text-muted-foreground">Strong handling</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Multi-segment exposures
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Limited handling
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Strong handling
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Time horizon</td>
-                        <td className="p-2 text-muted-foreground">Multi-day / multi-week systemic awareness</td>
-                        <td className="p-2 text-muted-foreground">Short-term / repetitive pulmonary planning</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Time horizon
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Multi-day / multi-week systemic awareness
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Short-term / repetitive pulmonary planning
+                        </td>
                       </tr>
                       <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Primary utility</td>
-                        <td className="p-2 text-muted-foreground">Broad whole-body stress awareness</td>
-                        <td className="p-2 text-muted-foreground">Pulmonary dose + recovery planning</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Primary utility
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Broad whole-body stress awareness
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          Pulmonary dose + recovery planning
+                        </td>
                       </tr>
                       <tr className="hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">Simplified view</td>
-                        <td className="p-2 text-muted-foreground">"Whole-body stress thermometer"</td>
-                        <td className="p-2 text-muted-foreground">"Lung-stress calculator"</td>
+                        <td className="p-2 font-semibold text-foreground">
+                          Simplified view
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          "Whole-body stress thermometer"
+                        </td>
+                        <td className="p-2 text-muted-foreground">
+                          "Lung-stress calculator"
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -328,12 +596,18 @@ export default function SupportingInfo() {
 
               {/* Summary Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <h3 className="text-sm font-bold text-foreground mb-2">Academic Summary</h3>
+                <h3 className="text-sm font-bold text-foreground mb-2">
+                  Academic Summary
+                </h3>
                 <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are complementary abstractions of oxygen exposure:
-                  OTU's cumulative framing maintains awareness of potential <em>systemic</em> manifestations of chronic hyperoxia,
-                  whereas ESOT's equivalent-time + recovery formalism better quantifies <em>pulmonary</em> risk across variable pO₂ segments.
-                  Used together, they provide broader physiological insight than either alone.
+                  <strong>UPTD/OTU</strong> and <strong>ESOT</strong> are
+                  complementary abstractions of oxygen exposure: OTU's
+                  cumulative framing maintains awareness of potential{" "}
+                  <em>systemic</em> manifestations of chronic hyperoxia, whereas
+                  ESOT's equivalent-time + recovery formalism better quantifies{" "}
+                  <em>pulmonary</em> risk across variable pO₂ segments. Used
+                  together, they provide broader physiological insight than
+                  either alone.
                 </p>
               </div>
             </div>
@@ -344,11 +618,15 @@ export default function SupportingInfo() {
       {/* Quick Reference Cards */}
       <section className="py-6 px-4 bg-white border-t border-border">
         <div className="container mx-auto">
-          <h2 className="text-sm font-bold text-foreground mb-3">Quick Reference</h2>
+          <h2 className="text-sm font-bold text-foreground mb-3">
+            Quick Reference
+          </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3 rounded-lg border border-border">
-              <h3 className="font-bold text-foreground text-xs mb-2">Safe Checklist</h3>
+              <h3 className="font-bold text-foreground text-xs mb-2">
+                Safe Checklist
+              </h3>
               <ul className="space-y-1 text-[10px]">
                 <li>✓ Buddy assigned</li>
                 <li>✓ Equipment tested</li>
@@ -361,17 +639,33 @@ export default function SupportingInfo() {
             <div className="p-3 rounded-lg border border-border bg-blue-50">
               <h3 className="font-bold text-blue-900 text-xs mb-2">Formulas</h3>
               <div className="space-y-1 text-[9px] font-mono text-blue-900">
-                <div><span className="font-bold">Abs Pressure:</span> 1 + (d/10)</div>
-                <div><span className="font-bold">PPO2:</span> O2% × AP</div>
-                <div><span className="font-bold">EAD:</span> (d × N2%) / 0.79 - d</div>
+                <div>
+                  <span className="font-bold">Abs Pressure:</span> 1 + (d/10)
+                </div>
+                <div>
+                  <span className="font-bold">PPO2:</span> O2% × AP
+                </div>
+                <div>
+                  <span className="font-bold">EAD:</span> (d × N2%) / 0.79 - d
+                </div>
               </div>
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-green-50">
-              <h3 className="font-bold text-green-900 text-xs mb-2">DCS Help</h3>
+              <h3 className="font-bold text-green-900 text-xs mb-2">
+                DCS Help
+              </h3>
               <ul className="space-y-1 text-[10px] text-green-900">
-                <li><span className="font-bold">DAN:</span><br/>+1-919-684-9111</li>
-                <li><span className="font-bold">Emergency:</span><br/>911</li>
+                <li>
+                  <span className="font-bold">DAN:</span>
+                  <br />
+                  +1-919-684-9111
+                </li>
+                <li>
+                  <span className="font-bold">Emergency:</span>
+                  <br />
+                  911
+                </li>
               </ul>
             </div>
 
@@ -391,7 +685,9 @@ export default function SupportingInfo() {
       {/* Related Resources */}
       <section className="py-6 px-4">
         <div className="container mx-auto">
-          <h2 className="text-sm font-bold text-foreground mb-3">Related Resources</h2>
+          <h2 className="text-sm font-bold text-foreground mb-3">
+            Related Resources
+          </h2>
           <div className="grid md:grid-cols-3 gap-3">
             <Link
               to="/tables"

@@ -311,7 +311,61 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
 
   // Wet or Dry Bell Tables
   BOX15: {
-    title: "BOX15 - Wet or Dry Bell Air/Oxygen Tables",
+    title: "BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      { label: "Till 1st\nStop" },
+      {
+        label: "Stop Depth (metres)",
+        sub: [
+          "24 air",
+          "21 air",
+          "18 air",
+          "15 air",
+          "12 air",
+          "9 ox",
+          "6 air",
+          "6 ox",
+          "6 air",
+          "6 ox",
+          "6 air",
+          "6 ox",
+        ],
+      },
+      { label: "Tot. Deco Time\n(min)" },
+      { label: "Tot.\nOTU" },
+      { label: "Tot.\nESOT" },
+    ],
+  },
+  H2BOX15: {
+    title: "H2BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 2 Hours",
+    columns: [
+      { label: "Dive Time\n(min)" },
+      { label: "Till 1st\nStop" },
+      {
+        label: "Stop Depth (metres)",
+        sub: [
+          "24 air",
+          "21 air",
+          "18 air",
+          "15 air",
+          "12 air",
+          "9 ox",
+          "6 air",
+          "6 ox",
+          "6 air",
+          "6 ox",
+          "6 air",
+          "6 ox",
+        ],
+      },
+      { label: "Tot. Deco Time\n(min)" },
+      { label: "Tot.\nOTU" },
+      { label: "Tot.\nESOT" },
+    ],
+  },
+  H4BOX15: {
+    title: "H4BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 4 Hours",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },

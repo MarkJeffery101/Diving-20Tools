@@ -584,28 +584,28 @@ export default function TableUse() {
                   {renderFlowchartButton(
                     'sil15-emergency',
                     'SIL15 Emergency Procedure',
-                    'Decision tree for surface decompression confirmation',
+                    'Decision tree for surface decompression continuation',
                     '⚠️',
                     <SIL15FlowchartEmergency />
                   )}
                   {renderFlowchartButton(
                     'sox15-emergency',
-                    'SOX15 - Surface Interval Exceeded',
-                    'Response to exceeding 3-minute surface limit',
+                    'SOX15 Oxygen Failure',
+                    'Response to Oxygen supply failure',
                     '⏱️',
                     <SOX15FlowchartEmergency1 />
                   )}
                   {renderFlowchartButton(
                     'nitrox-emergency',
-                    'Nitrox - Surface Decompression',
-                    'Emergency procedures for nitrox decompression',
+                    'Nitrox Surface Decompression',
+                    'Response when Surface decompression is needed',
                     '💨',
                     <NitroxFlowchartEmergency1 />
                   )}
                   {renderFlowchartButton(
                     'nd15-emergency',
-                    'ND15 - No-Stop Limits',
-                    'Ascent speed critical procedure',
+                    'Nitro Crash Dive',
+                    'Step by step crash dive procedure',
                     '📈',
                     null
                   )}

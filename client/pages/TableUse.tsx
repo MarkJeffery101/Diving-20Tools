@@ -790,7 +790,7 @@ export default function TableUse() {
                 <tbody className="text-xs">
                   {table.schedule.map((row, idx) => {
                     let bgClass = 'bg-white hover:bg-gray-50';
-                    if (row.gas === 'O₂') {
+                    if (row.gas && (row.gas.toLowerCase() === 'oxygen' || row.gas === 'O₂' || row.gas === 'O2')) {
                       bgClass = 'bg-sky-100 hover:bg-sky-200';
                     } else if (row.gas === '50/50') {
                       bgClass = 'bg-purple-100 hover:bg-purple-200';
@@ -1306,7 +1306,7 @@ export default function TableUse() {
                         <li>• Descent rate: 7.5 msw/min</li>
                         <li>• Ascent rate: 1 minute between stops</li>
                         <li>• Deeper starting depth (50 msw) for deep pain</li>
-                        <li>• Longer total decompression (10:59 hours)</li>
+                        <li>�� Longer total decompression (10:59 hours)</li>
                       </ul>
                     </div>
 

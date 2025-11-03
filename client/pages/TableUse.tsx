@@ -702,15 +702,25 @@ export default function TableUse() {
                   </tr>
                 </thead>
                 <tbody className="text-xs">
-                  {table.schedule.map((row, idx) => (
-                    <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'}>
-                      <td className="px-2 py-1 text-center border">{row.depth}</td>
-                      <td className="px-2 py-1 text-center border">{row.time}</td>
-                      {row.gas && <td className="px-2 py-1 text-center border">{row.gas}</td>}
-                      <td className="px-2 py-1 text-center border">{row.total}</td>
-                      {row.otuOrOther && <td className="px-2 py-1 text-center border">{row.otuOrOther}</td>}
-                    </tr>
-                  ))}
+                  {table.schedule.map((row, idx) => {
+                    let bgClass = 'bg-white hover:bg-gray-50';
+                    if (row.gas === 'O₂') {
+                      bgClass = 'bg-blue-100 hover:bg-blue-200';
+                    } else if (row.gas === '50/50') {
+                      bgClass = 'bg-purple-100 hover:bg-purple-200';
+                    } else if (idx % 2 !== 0) {
+                      bgClass = 'bg-gray-50 hover:bg-gray-100';
+                    }
+                    return (
+                      <tr key={idx} className={bgClass}>
+                        <td className="px-2 py-1 text-center border">{row.depth}</td>
+                        <td className="px-2 py-1 text-center border">{row.time}</td>
+                        {row.gas && <td className="px-2 py-1 text-center border">{row.gas}</td>}
+                        <td className="px-2 py-1 text-center border">{row.total}</td>
+                        {row.otuOrOther && <td className="px-2 py-1 text-center border">{row.otuOrOther}</td>}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

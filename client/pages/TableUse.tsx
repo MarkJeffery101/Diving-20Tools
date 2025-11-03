@@ -399,7 +399,7 @@ export default function TableUse() {
       schedule: [
         { depth: '18', time: '20', gas: 'O2', total: '00:20', otuOrOther: '71' },
         { depth: '18', time: '5', gas: 'Air', total: '00:25', otuOrOther: '73' },
-        { depth: '18-Sep', time: '30', gas: 'O2', total: '01:45', otuOrOther: '307' },
+        { depth: '18-9', time: '30', gas: 'O2', total: '01:45', otuOrOther: '307' },
         { depth: '9', time: '60', gas: 'O2', total: '03:00', otuOrOther: '448' },
         { depth: '9', time: '60', gas: 'O2', total: '04:15', otuOrOther: '590' },
         { depth: '9-0', time: '30', gas: 'O2', total: '04:45', otuOrOther: '641' },
@@ -450,7 +450,7 @@ export default function TableUse() {
       schedule: [
         { depth: '18', time: '20', gas: 'O2', total: '00:20', otuOrOther: '71' },
         { depth: '18', time: '5', gas: 'Air', total: '00:25', otuOrOther: '73' },
-        { depth: '18-Sep', time: '30', gas: 'O2', total: '01:45', otuOrOther: '307' },
+        { depth: '18-9', time: '30', gas: 'O2', total: '01:45', otuOrOther: '307' },
         { depth: '9', time: '60', gas: 'O2', total: '03:00', otuOrOther: '448' },
         { depth: '9', time: '60', gas: 'O2', total: '04:15', otuOrOther: '590' },
         { depth: '9-0', time: '30', gas: 'O2', total: '04:45', otuOrOther: '641' },

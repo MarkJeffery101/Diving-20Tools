@@ -436,7 +436,6 @@ export default function TableUse() {
       scheduleColumns: ['Depth (MSW)', 'Time (min)', 'Total time (hour:min)', 'Total OTU'],
     },
     {
-    {
       id: 'usnt6',
       code: 'USN-6',
       name: 'US Navy Oxygen Treatment Table 6',

@@ -368,7 +368,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/cx12.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F2d2aade01be942f7b0309050233fb071",
   },
   CX30: {
     title: "COMEX Table CX 30 - Treatment",
@@ -379,7 +379,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/cx30.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fc28ba48f9fc74438bec547c5a67ee8d6",
   },
   "USN-T4": {
     title: "US Navy Oxygen Treatment Table 4",
@@ -390,7 +390,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/usn-t4.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F6cdbac15434541a3ae24cad6951e46b7",
   },
   "USN-T6": {
     title: "US Navy Oxygen Treatment Table 6",
@@ -412,7 +412,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/air-t1a.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F27551b6e05b5474e827639c8c254f3e5",
   },
   "AIR-T2A": {
     title: "Air Treatment Table 2A",
@@ -423,7 +423,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/air-t2a.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fae81c4021fb0416e95fc2bd52330bf0c",
   },
   "AIR-T3": {
     title: "Air Treatment Table 3",
@@ -434,7 +434,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/air-t3.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F3f50b16a33e44617a25ac2eae9cf2e10",
   },
 };
 

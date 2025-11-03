@@ -188,6 +188,90 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* My Dive Plan Section */}
+      <section className="py-4 sm:py-16 md:py-20 px-2 sm:px-4 bg-white">
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-3 sm:mb-12 md:mb-16">
+              <h2 className="text-sm sm:text-3xl md:text-4xl font-bold text-foreground mb-1 sm:mb-4">
+                Your Dive Planning Toolkit
+              </h2>
+              <p className="text-[10px] sm:text-base md:text-lg text-muted-foreground">
+                Everything you need for safe, informed dive planning
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-ocean-200 bg-ocean-50 hover:shadow-md transition-shadow">
+                <Database className="h-6 sm:h-8 w-6 sm:w-8 text-ocean-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Commercial & Air Tables
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  SIL15, ND15, and AIR tables with full decompression schedules
+                </p>
+              </div>
+
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-blue-200 bg-blue-50 hover:shadow-md transition-shadow">
+                <Zap className="h-6 sm:h-8 w-6 sm:w-8 text-blue-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Nitrox & Special Mixes
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  SOX15, SAB15, and NIA/NIB nitrox tables with oxygen limits
+                </p>
+              </div>
+
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-purple-200 bg-purple-50 hover:shadow-md transition-shadow">
+                <Shield className="h-6 sm:h-8 w-6 sm:w-8 text-purple-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Treatment Protocols
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  DCS & AGE treatment tables with step schedules and oxygen protocols
+                </p>
+              </div>
+
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-red-200 bg-red-50 hover:shadow-md transition-shadow">
+                <AlertCircle className="h-6 sm:h-8 w-6 sm:w-8 text-red-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Emergency Procedures
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  Emergency flowcharts and decision trees for rapid response
+                </p>
+              </div>
+
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-amber-200 bg-amber-50 hover:shadow-md transition-shadow">
+                <TrendingDown className="h-6 sm:h-8 w-6 sm:w-8 text-amber-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Table Selection Logic
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  Interactive decision trees to find the right table for your dive
+                </p>
+              </div>
+
+              <div className="p-2 sm:p-6 md:p-8 rounded-lg border border-green-200 bg-green-50 hover:shadow-md transition-shadow">
+                <BookOpen className="h-6 sm:h-8 w-6 sm:w-8 text-green-700 mb-2 sm:mb-4" />
+                <h3 className="text-[12px] sm:text-lg font-bold text-foreground mb-0.5 sm:mb-2">
+                  Safety Limits & Guidance
+                </h3>
+                <p className="text-[9px] sm:text-sm text-muted-foreground mb-1 sm:mb-2">
+                  Oxygen toxicity limits, nitrogen narcosis, and planning considerations
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 sm:mt-8 md:mt-12 p-3 sm:p-6 md:p-8 bg-gradient-to-r from-ocean-50 to-blue-50 rounded-lg border border-ocean-200">
+              <p className="text-[10px] sm:text-base text-muted-foreground text-center">
+                <span className="font-semibold text-foreground">Ready to plan your dive?</span> Start exploring by selecting dive tables, table selection logic, or diving guidance to build your dive profile with confidence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

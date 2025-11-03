@@ -1,0 +1,105 @@
+<svg viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 18px; font-weight: bold; fill: #000; }
+      .subtitle { font-size: 14px; fill: #333; }
+      .header { font-size: 11px; font-weight: bold; fill: #fff; }
+      .content { font-size: 10px; fill: #333; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="700" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  
+  <text x="400" y="30" class="title" text-anchor="middle">Air Treatment Table 3</text>
+  <text x="400" y="50" class="subtitle" text-anchor="middle">Treatment of Serious Decompression Sickness Type II</text>
+  
+  <rect x="40" y="70" width="720" height="25" fill="#0066cc"/>
+  
+  <text x="80" y="90" class="header" fill="#fff">Depth (MSW)</text>
+  <text x="180" y="90" class="header" fill="#fff">Time (min)</text>
+  <text x="300" y="90" class="header" fill="#fff">Total Time (hour/min)</text>
+  <text x="500" y="90" class="header" fill="#fff">Total OTU</text>
+  
+  <line x1="40" y1="95" x2="760" y2="95" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="113" class="content">50</text>
+  <text x="180" y="113" class="content">30</text>
+  <text x="300" y="113" class="content">00:30</text>
+  <text x="500" y="113" class="content">43</text>
+  
+  <line x1="40" y1="118" x2="760" y2="118" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="136" class="content">42</text>
+  <text x="180" y="136" class="content">12</text>
+  <text x="300" y="136" class="content">00:43</text>
+  <text x="500" y="136" class="content">56</text>
+  
+  <line x1="40" y1="141" x2="760" y2="141" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="159" class="content">36</text>
+  <text x="180" y="159" class="content">12</text>
+  <text x="300" y="159" class="content">00:56</text>
+  <text x="500" y="159" class="content">68</text>
+  
+  <line x1="40" y1="164" x2="760" y2="164" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="182" class="content">30</text>
+  <text x="180" y="182" class="content">12</text>
+  <text x="300" y="182" class="content">01:09</text>
+  <text x="500" y="182" class="content">76</text>
+  
+  <line x1="40" y1="187" x2="760" y2="187" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="205" class="content">24</text>
+  <text x="180" y="205" class="content">12</text>
+  <text x="300" y="205" class="content">01:22</text>
+  <text x="500" y="205" class="content">82</text>
+  
+  <line x1="40" y1="210" x2="760" y2="210" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="228" class="content">18</text>
+  <text x="180" y="228" class="content">30</text>
+  <text x="300" y="228" class="content">01:53</text>
+  <text x="500" y="228" class="content">89</text>
+  
+  <line x1="40" y1="233" x2="760" y2="233" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="251" class="content">15</text>
+  <text x="180" y="251" class="content">30</text>
+  <text x="300" y="251" class="content">02:24</text>
+  <text x="500" y="251" class="content">93</text>
+  
+  <line x1="40" y1="256" x2="760" y2="256" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="274" class="content">12</text>
+  <text x="180" y="274" class="content">30</text>
+  <text x="300" y="274" class="content">02:55</text>
+  <text x="500" y="274" class="content">93</text>
+  
+  <line x1="40" y1="279" x2="760" y2="279" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="297" class="content">9</text>
+  <text x="180" y="297" class="content">720</text>
+  <text x="300" y="297" class="content">14:56</text>
+  <text x="500" y="297" class="content">93</text>
+  
+  <line x1="40" y1="302" x2="760" y2="302" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="320" class="content">6</text>
+  <text x="180" y="320" class="content">120</text>
+  <text x="300" y="320" class="content">16:57</text>
+  <text x="500" y="320" class="content">93</text>
+  
+  <line x1="40" y1="325" x2="760" y2="325" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="343" class="content">3</text>
+  <text x="180" y="343" class="content">120</text>
+  <text x="300" y="343" class="content">18:58</text>
+  <text x="500" y="343" class="content">93</text>
+  
+  <line x1="40" y1="348" x2="760" y2="348" stroke="#000" stroke-width="2"/>
+  <text x="80" y="366" class="content">0</text>
+  <text x="180" y="366" class="content">1</text>
+  <text x="300" y="366" class="content">18:59</text>
+  <text x="500" y="366" class="content">93</text>
+  
+  <text x="50" y="410" class="subtitle" font-weight="bold">Use this table for:</text>
+  <text x="70" y="435" class="content">• Treatment of serious symptoms of decompression sickness (type II), if oxygen cannot be used</text>
+  <text x="70" y="460" class="content">• Symptoms disappear within 30 minutes at 50 msw</text>
+  
+  <text x="50" y="500" class="subtitle" font-weight="bold">Important Notes:</text>
+  <text x="70" y="525" class="content">1. Descent rate: as fast as possible</text>
+  <text x="70" y="550" class="content">2. Ascent rate: 1 minute between the stops</text>
+  <text x="70" y="575" class="content">3. The time at 50 msw commences on left surface (includes time from surface!)</text>
+  <text x="70" y="600" class="content">4. Use air as breathing medium throughout</text>
+  <text x="70" y="625" class="content">5. Long decompression table for serious type II symptoms</text>
+</svg>

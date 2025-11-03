@@ -110,26 +110,23 @@ export default function Index() {
       <section className="py-8 sm:py-12 md:py-16 px-2 sm:px-4 bg-white">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {features.map((feature) => {
-              const IconComponent = feature.icon;
-              return (
-                <Link
-                  key={feature.href + feature.title}
-                  to={feature.href}
-                  className={`group p-4 sm:p-5 md:p-6 rounded-lg border transition-all hover:shadow-lg hover:-translate-y-1 ${feature.color}`}
-                >
-                  <div className="mb-2 sm:mb-3">
-                    <IconComponent className="h-5 sm:h-6 w-5 sm:w-6" />
-                  </div>
-                  <h3 className="text-sm sm:text-base font-bold mb-1">
-                    {feature.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm opacity-80 group-hover:opacity-100 leading-snug">
-                    {feature.description}
-                  </p>
-                </Link>
-              );
-            })}
+            {features.map((feature) => (
+              <Link
+                key={feature.href + feature.title}
+                to={feature.href}
+                className={`group p-4 sm:p-5 md:p-6 rounded-lg border transition-all hover:shadow-lg hover:-translate-y-1 ${feature.color}`}
+              >
+                <div className="mb-2 sm:mb-3">
+                  <SvgIcon id={feature.iconId} className="h-6 sm:h-7 w-6 sm:w-7" />
+                </div>
+                <h3 className="text-sm sm:text-base font-bold mb-1">
+                  {feature.title}
+                </h3>
+                <p className="text-xs sm:text-sm opacity-80 group-hover:opacity-100 leading-snug">
+                  {feature.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

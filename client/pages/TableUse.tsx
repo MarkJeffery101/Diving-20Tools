@@ -413,7 +413,7 @@ export default function TableUse() {
       name: 'US Navy Oxygen Treatment Table 5',
       useFor: 'Prevention (omitted decompression with no symptoms) and mild forms of skin-bends',
       keyParameters: [
-        '• Descent rate: 7.5 msw/min',
+        '• Descent rate: Rapid descent',
         '• Ascent rate: 0.3 msw/min',
         '• Time at 18 msw starts on arrival',
         '• Can switch to Table 6 if O₂ problems arise',

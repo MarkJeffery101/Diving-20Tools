@@ -460,7 +460,7 @@ export default function TableUse() {
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
         '• Ascent rate: 1 minute between stops',
-        '• Deeper starting depth (50 msw) for deep pain',
+        '�� Deeper starting depth (50 msw) for deep pain',
         '• Longer total decompression (10:59 hours)',
       ],
       schedule: [
@@ -879,8 +879,8 @@ export default function TableUse() {
             </div>
           </div>
 
-          {/* Treatment Tables Data Section */}
-          <div className="mt-12 pt-8 border-t">
+          {/* Treatment Tables Data Section - Hidden, replaced with cards above */}
+          <div className="mt-12 pt-8 border-t" style={{display: 'none'}}>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Treatment Tables (DCS & CAGE)</h2>
 
             {/* Oxygen Treatment Tables Group */}

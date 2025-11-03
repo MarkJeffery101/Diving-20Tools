@@ -176,146 +176,166 @@ export default function TableDetail() {
 
           {/* Content Area */}
           <div className="w-full">
-            {/* Table */}
-            <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow mb-8">
-              <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
-                <thead className="sticky top-0 z-10 bg-gradient-to-b from-blue-700 to-blue-600 text-white shadow-md">
-                  <tr className="border-b border-gray-300">
-                    {headerConfig.columns.map((column, idx) => {
-                      const hasNoSub = !column.sub || column.sub.length === 0;
-                      return (
-                        <th
-                          key={idx}
-                          className={`px-2 sm:px-3 py-2 sm:py-3 font-bold text-center ${hasNoSub ? 'bg-blue-800' : ''}`}
-                          colSpan={column.sub ? column.sub.length : 1}
-                          rowSpan={hasNoSub ? 2 : 1}
-                          style={hasNoSub ? {
-                            minWidth: idx === 0 || idx === 1 ? '70px' : idx >= headerConfig.columns.length - 3 ? '60px' : 'auto',
-                            wordWrap: 'break-word',
-                            whiteSpace: 'normal',
-                            lineHeight: '1.1',
-                            fontSize: '0.75rem'
-                          } : { minWidth: '40px', fontSize: '0.7rem' }}
-                        >
-                          {column.label.split('\n').map((line, lineIdx) => (
-                            <div key={lineIdx} className="leading-snug">{line}</div>
-                          ))}
-                        </th>
-                      );
-                    })}
-                  </tr>
-
-                  {/* Sub-header row if needed */}
-                  {headerConfig.columns.some((col) => col.sub) && (
-                    <tr className="border-b-2 border-gray-300">
-                      {headerConfig.columns.map((column, idx) => (
-                        column.sub && column.sub.length > 0 ? (
-                          column.sub.map((subCol, subIdx) => (
-                            <th
-                              key={`${idx}-${subIdx}`}
-                              className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
-                              style={{ minWidth: '35px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.1' }}
-                            >
-                              {subCol}
-                            </th>
-                          ))
-                        ) : null
-                      ))}
-                    </tr>
-                  )}
-                </thead>
-
-                {/* Data rows */}
-                <tbody>
-                  {isLoading ? (
-                    <tr className="border-b border-gray-200">
-                      <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
-                        Loading table data...
-                      </td>
-                    </tr>
-                  ) : tableData.rows.length === 0 ? (
-                    <tr className="border-b border-gray-200">
-                      <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
-                        No data available for this depth
-                      </td>
-                    </tr>
+            {/* Treatment Table Image Display */}
+            {isTreatmentTable ? (
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow mb-8 p-6">
+                <div className="flex flex-col items-center justify-center">
+                  {headerConfig.imageUrl ? (
+                    <img
+                      src={headerConfig.imageUrl}
+                      alt={headerConfig.title}
+                      className="max-w-full h-auto rounded-lg border border-gray-300"
+                    />
                   ) : (
-                    tableData.rows.map((row, rowIdx) => {
-                      const isLastRow = rowIdx === tableData.rows.length - 1;
-                      const rowBgClass = isReferenceTable
-                        ? rowIdx % 2 === 0
-                          ? 'bg-orange-100 hover:bg-orange-200'
-                          : 'bg-white hover:bg-orange-50'
-                        : isLastRow
-                        ? 'bg-red-50 hover:bg-red-100'
-                        : rowIdx % 2 === 0
-                        ? 'bg-white hover:bg-blue-50'
-                        : 'bg-green-50 hover:bg-blue-50';
-
-                      return (
-                      <tr
-                        key={rowIdx}
-                        className={`border-b transition-colors duration-150 cursor-pointer ${rowBgClass}`}
-                        style={{
-                          borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
-                        }}
-                      >
-                        {isReferenceTable ? (
-                          // Reference Table Rendering (ND15, LND15) - 3 columns only
-                          <>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
-                              {row.stopDepths[0] !== null ? <span className="font-medium">{row.stopDepths[0]}</span> : <span className="text-gray-400">—</span>}
-                            </td>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
-                              {row.stopDepths[1] !== null ? <span className="font-medium">{row.stopDepths[1]}</span> : <span className="text-gray-400">—</span>}
-                            </td>
-                          </>
-                        ) : isOtuEsotTable ? (
-                          // OTU/ESOT Table Rendering
-                          <Fragment key={`otu-row-${rowIdx}`}>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                            {row.repetIntervals?.map((interval, intervalIdx) => (
-                              <Fragment key={`interval-${rowIdx}-${intervalIdx}`}>
-                                <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
-                                  {interval.otu !== null ? <span className="font-medium">{interval.otu}</span> : <span className="text-gray-400">—</span>}
-                                </td>
-                                <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
-                                  {interval.esot !== null ? <span className="font-medium">{interval.esot}</span> : <span className="text-gray-400">—</span>}
-                                </td>
-                              </Fragment>
-                            ))}
-                          </Fragment>
-                        ) : (
-                          // Standard Decompression Table Rendering
-                          <Fragment key={`std-row-${rowIdx}`}>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
-                            {row.stopDepths.map((depth, depthIdx) => (
-                              <td
-                                key={`depth-${rowIdx}-${depthIdx}`}
-                                className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
-                                  row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
-                                }`}
-                              >
-                                {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
-                              </td>
-                            ))}
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
-                            <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
-                          </Fragment>
-                        )}
-                      </tr>
-                    );
-                    })
+                    <div className="w-full py-12 text-center">
+                      <p className="text-gray-500 text-lg">Table image not available</p>
+                      <p className="text-gray-400 text-sm mt-2">Image file: {headerConfig.imageUrl}</p>
+                    </div>
                   )}
-                </tbody>
-              </table>
-            </div>
+                </div>
+              </div>
+            ) : (
+              /* Standard Data Table Display */
+              <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow mb-8">
+                <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
+                  <thead className="sticky top-0 z-10 bg-gradient-to-b from-blue-700 to-blue-600 text-white shadow-md">
+                    <tr className="border-b border-gray-300">
+                      {headerConfig.columns.map((column, idx) => {
+                        const hasNoSub = !column.sub || column.sub.length === 0;
+                        return (
+                          <th
+                            key={idx}
+                            className={`px-2 sm:px-3 py-2 sm:py-3 font-bold text-center ${hasNoSub ? 'bg-blue-800' : ''}`}
+                            colSpan={column.sub ? column.sub.length : 1}
+                            rowSpan={hasNoSub ? 2 : 1}
+                            style={hasNoSub ? {
+                              minWidth: idx === 0 || idx === 1 ? '70px' : idx >= headerConfig.columns.length - 3 ? '60px' : 'auto',
+                              wordWrap: 'break-word',
+                              whiteSpace: 'normal',
+                              lineHeight: '1.1',
+                              fontSize: '0.75rem'
+                            } : { minWidth: '40px', fontSize: '0.7rem' }}
+                          >
+                            {column.label.split('\n').map((line, lineIdx) => (
+                              <div key={lineIdx} className="leading-snug">{line}</div>
+                            ))}
+                          </th>
+                        );
+                      })}
+                    </tr>
 
-            {/* Info Cards Section - Below Table (hidden for reference tables) */}
-            {!isReferenceTable && (
+                    {/* Sub-header row if needed */}
+                    {headerConfig.columns.some((col) => col.sub) && (
+                      <tr className="border-b-2 border-gray-300">
+                        {headerConfig.columns.map((column, idx) => (
+                          column.sub && column.sub.length > 0 ? (
+                            column.sub.map((subCol, subIdx) => (
+                              <th
+                                key={`${idx}-${subIdx}`}
+                                className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
+                                style={{ minWidth: '35px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.1' }}
+                              >
+                                {subCol}
+                              </th>
+                            ))
+                          ) : null
+                        ))}
+                      </tr>
+                    )}
+                  </thead>
+
+                  {/* Data rows */}
+                  <tbody>
+                    {isLoading ? (
+                      <tr className="border-b border-gray-200">
+                        <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
+                          Loading table data...
+                        </td>
+                      </tr>
+                    ) : tableData.rows.length === 0 ? (
+                      <tr className="border-b border-gray-200">
+                        <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
+                          No data available for this depth
+                        </td>
+                      </tr>
+                    ) : (
+                      tableData.rows.map((row, rowIdx) => {
+                        const isLastRow = rowIdx === tableData.rows.length - 1;
+                        const rowBgClass = isReferenceTable
+                          ? rowIdx % 2 === 0
+                            ? 'bg-orange-100 hover:bg-orange-200'
+                            : 'bg-white hover:bg-orange-50'
+                          : isLastRow
+                          ? 'bg-red-50 hover:bg-red-100'
+                          : rowIdx % 2 === 0
+                          ? 'bg-white hover:bg-blue-50'
+                          : 'bg-green-50 hover:bg-blue-50';
+
+                        return (
+                        <tr
+                          key={rowIdx}
+                          className={`border-b transition-colors duration-150 cursor-pointer ${rowBgClass}`}
+                          style={{
+                            borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
+                          }}
+                        >
+                          {isReferenceTable ? (
+                            // Reference Table Rendering (ND15, LND15) - 3 columns only
+                            <>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                                {row.stopDepths[0] !== null ? <span className="font-medium">{row.stopDepths[0]}</span> : <span className="text-gray-400">—</span>}
+                              </td>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                                {row.stopDepths[1] !== null ? <span className="font-medium">{row.stopDepths[1]}</span> : <span className="text-gray-400">—</span>}
+                              </td>
+                            </>
+                          ) : isOtuEsotTable ? (
+                            // OTU/ESOT Table Rendering
+                            <Fragment key={`otu-row-${rowIdx}`}>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                              {row.repetIntervals?.map((interval, intervalIdx) => (
+                                <Fragment key={`interval-${rowIdx}-${intervalIdx}`}>
+                                  <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                    {interval.otu !== null ? <span className="font-medium">{interval.otu}</span> : <span className="text-gray-400">—</span>}
+                                  </td>
+                                  <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                    {interval.esot !== null ? <span className="font-medium">{interval.esot}</span> : <span className="text-gray-400">—</span>}
+                                  </td>
+                                </Fragment>
+                              ))}
+                            </Fragment>
+                          ) : (
+                            // Standard Decompression Table Rendering
+                            <Fragment key={`std-row-${rowIdx}`}>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
+                              {row.stopDepths.map((depth, depthIdx) => (
+                                <td
+                                  key={`depth-${rowIdx}-${depthIdx}`}
+                                  className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
+                                    row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
+                                  }`}
+                                >
+                                  {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
+                                </td>
+                              ))}
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
+                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
+                            </Fragment>
+                          )}
+                        </tr>
+                      );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Info Cards Section - Below Table (hidden for reference and treatment tables) */}
+            {!isReferenceTable && !isTreatmentTable && (
             <div className={`grid ${isOtuEsotTable ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
               {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
               {isOtuEsotTable ? (

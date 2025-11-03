@@ -5,7 +5,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useAppUpdate } from "@/hooks/use-app-update";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Tables from "./pages/Tables";
@@ -21,9 +20,6 @@ import EmergencyProcedures from "./pages/EmergencyProcedures";
 const queryClient = new QueryClient();
 
 function AppContent() {
-  // Check for app updates on every load and periodically
-  useAppUpdate();
-
   return (
     <BrowserRouter>
       <Routes>

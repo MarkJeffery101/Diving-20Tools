@@ -716,7 +716,7 @@ export default function TableUse() {
                   <ul className="space-y-1.5">
                     {card.points.map((point, idx) => (
                       <li key={idx} className="text-xs text-gray-700">
-                        ��� {point}
+                        ����� {point}
                       </li>
                     ))}
                   </ul>
@@ -725,8 +725,8 @@ export default function TableUse() {
             ))}
           </div>
 
-          {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          {/* Main Content: Diving Tables and Treatment Tables */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
             {/* Left: Diving Tables */}
             <div>
               <Card className="h-full">

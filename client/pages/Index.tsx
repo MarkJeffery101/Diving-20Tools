@@ -4,11 +4,8 @@ import {
   TrendingDown,
   Database,
   MapPin,
-  Play,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
-import { useTour } from "@/contexts/TourContext";
-import { appTourSteps } from "@/lib/tourSteps";
 
 export default function Index() {
   const { startTour } = useTour();

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { BookOpen, TrendingDown, Database, AlertCircle, Zap, Shield } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import SvgIcon from "@/components/SvgIcon";
 
 export default function Index() {
   const features = [

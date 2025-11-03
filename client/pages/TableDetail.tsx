@@ -25,7 +25,7 @@ export default function TableDetail() {
   const isReferenceTable = referenceTableCodes.includes(code);
 
   // Treatment table codes (displayed as images)
-  const treatmentTableCodes = ['CX12', 'CX30', 'USN-T4', 'USN-T6', 'AIR-T1A', 'AIR-T2A', 'AIR-T3'];
+  const treatmentTableCodes = ['CX12', 'CX30', 'USN-T5', 'USN-T6', 'AIR-T1A', 'AIR-T2A', 'AIR-T3'];
   const isTreatmentTable = treatmentTableCodes.includes(code);
 
   // Initialize selected depth from URL or use first available depth

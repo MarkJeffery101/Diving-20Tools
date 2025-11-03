@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import { useEffect, useRef } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export const useAppUpdate = () => {
   const { toast } = useToast();
@@ -11,8 +11,8 @@ export const useAppUpdate = () => {
     // Get initial version from manifest
     const getAppVersion = async () => {
       try {
-        const response = await fetch('/manifest.json?bust=' + Date.now(), {
-          headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' }
+        const response = await fetch("/manifest.json?bust=" + Date.now(), {
+          headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
         });
         const manifest = await response.json();
         return manifest.version || new Date().getTime().toString();
@@ -23,9 +23,9 @@ export const useAppUpdate = () => {
 
     const refreshApp = () => {
       // Clear all caches and reload
-      if ('caches' in window) {
-        caches.keys().then(cacheNames => {
-          cacheNames.forEach(cacheName => {
+      if ("caches" in window) {
+        caches.keys().then((cacheNames) => {
+          cacheNames.forEach((cacheName) => {
             caches.delete(cacheName);
           });
         });
@@ -36,18 +36,22 @@ export const useAppUpdate = () => {
     const checkForUpdates = async () => {
       try {
         const currentVersion = await getAppVersion();
-        
+
         if (lastVersionRef.current === null) {
           // First check - store the version
           lastVersionRef.current = currentVersion;
-        } else if (lastVersionRef.current !== currentVersion && !notificationShownRef.current) {
+        } else if (
+          lastVersionRef.current !== currentVersion &&
+          !notificationShownRef.current
+        ) {
           // Version changed - show update notification
           notificationShownRef.current = true;
-          
+
           // Show notification with description that includes refresh instructions
           toast({
             title: "Update Available",
-            description: "A new version is ready. Refresh your browser to get the latest updates.",
+            description:
+              "A new version is ready. Refresh your browser to get the latest updates.",
             duration: 0, // Persistent notification
           });
 
@@ -59,17 +63,17 @@ export const useAppUpdate = () => {
           // Cancel auto-refresh on any user interaction
           const handleUserInteraction = () => {
             clearTimeout(autoRefreshTimer);
-            document.removeEventListener('click', handleUserInteraction);
-            document.removeEventListener('keydown', handleUserInteraction);
+            document.removeEventListener("click", handleUserInteraction);
+            document.removeEventListener("keydown", handleUserInteraction);
           };
-          
-          document.addEventListener('click', handleUserInteraction);
-          document.addEventListener('keydown', handleUserInteraction);
+
+          document.addEventListener("click", handleUserInteraction);
+          document.addEventListener("keydown", handleUserInteraction);
 
           lastVersionRef.current = currentVersion;
         }
       } catch (error) {
-        console.debug('Update check error:', error);
+        console.debug("Update check error:", error);
       }
     };
 

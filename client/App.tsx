@@ -26,10 +26,10 @@ function UpdateChecker() {
 
   useEffect(() => {
     // Listen for service worker update messages
-    if ('serviceWorker' in navigator) {
+    if ("serviceWorker" in navigator) {
       const handleServiceWorkerMessage = (event: any) => {
-        if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
-          console.log('[App] Update available, version:', event.data.version);
+        if (event.data && event.data.type === "UPDATE_AVAILABLE") {
+          console.log("[App] Update available, version:", event.data.version);
 
           // Show notification and auto-reload after 5 seconds
           toast({
@@ -45,10 +45,16 @@ function UpdateChecker() {
         }
       };
 
-      navigator.serviceWorker.addEventListener('message', handleServiceWorkerMessage);
+      navigator.serviceWorker.addEventListener(
+        "message",
+        handleServiceWorkerMessage,
+      );
 
       return () => {
-        navigator.serviceWorker.removeEventListener('message', handleServiceWorkerMessage);
+        navigator.serviceWorker.removeEventListener(
+          "message",
+          handleServiceWorkerMessage,
+        );
       };
     }
   }, [toast]);
@@ -70,10 +76,7 @@ function AppContent() {
           <Route path="/tools" element={<Tools />} />
           <Route path="/share" element={<Share />} />
           <Route path="/supporting-info" element={<SupportingInfo />} />
-          <Route
-            path="/treatment-protocols"
-            element={<TreatmentProtocols />}
-          />
+          <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
           <Route
             path="/emergency-procedures"
             element={<EmergencyProcedures />}

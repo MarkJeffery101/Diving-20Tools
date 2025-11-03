@@ -35,8 +35,14 @@ export default function App() {
             <Route path="/tools" element={<Tools />} />
             <Route path="/share" element={<Share />} />
             <Route path="/supporting-info" element={<SupportingInfo />} />
-            <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
-            <Route path="/emergency-procedures" element={<EmergencyProcedures />} />
+            <Route
+              path="/treatment-protocols"
+              element={<TreatmentProtocols />}
+            />
+            <Route
+              path="/emergency-procedures"
+              element={<EmergencyProcedures />}
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

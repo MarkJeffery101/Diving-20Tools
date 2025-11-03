@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  BookOpen,
-  TrendingDown,
-  Database,
-  MapPin,
-} from "lucide-react";
+import { BookOpen, TrendingDown, Database, MapPin } from "lucide-react";
 import Navigation from "@/components/Navigation";
 
 export default function Index() {

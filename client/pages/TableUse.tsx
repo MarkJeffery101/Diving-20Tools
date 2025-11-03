@@ -613,49 +613,48 @@ export default function TableUse() {
                     '📈',
                     <IrregularityDuringDecompression />
                   )}
+                  {renderFlowchartButton(
+                    'treatment-tables-guide',
+                    'Treatment Tables (DCS & CAGE)',
+                    'When to use treatment tables - decision tree and logic',
+                    '💊',
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-sm text-gray-900 mb-2">Important First Steps:</h4>
+                        <ul className="text-sm text-gray-700 space-y-1">
+                          <li>• <strong>Most important:</strong> Administer oxygen and fluids as soon as possible</li>
+                          <li>• Start recompression to 18 metres while breathing oxygen</li>
+                          <li>• For very mild symptoms only: treatment at 12 metres (after medical consultation)</li>
+                          <li>• Seek advice from a diving medical specialist as soon as possible</li>
+                          <li>• <strong>Do NOT delay treatment</strong> while awaiting medical advice</li>
+                        </ul>
+                      </div>
+
+                      <div className="border-t pt-4">
+                        <h4 className="font-semibold text-sm text-gray-900 mb-2">Treatment Decision Tree:</h4>
+                        <ul className="text-sm text-gray-700 space-y-2">
+                          <li><strong>Mild skin-bends (purple rash only):</strong> CX12 or USN-T5</li>
+                          <li><strong>Type I DCS / Residual symptoms:</strong> CX12, USN-T5</li>
+                          <li><strong>Type II DCS (serious neurological):</strong> USN-T6, CX30, or AIR-T3</li>
+                          <li><strong>Air Embolism:</strong> USN-T6 or CX30</li>
+                          <li><strong>Air Treatment (no oxygen available):</strong> AIR-T1A, AIR-T2A, or AIR-T3</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
+                        <p className="text-xs font-semibold text-amber-900">⚠️ Note:</p>
+                        <p className="text-xs text-amber-800">Air treatment tables are provided with reluctance and only for oxygen delivery failure. Prevent this at all costs.</p>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
           </div>
 
-          {/* Treatment Tables Section */}
+          {/* Treatment Tables Data Section */}
           <div className="mt-12 pt-8 border-t">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Treatment Tables (DCS & CAGE)</h2>
-
-            {/* Introduction/Logic Tree */}
-            <Card className="mb-6 bg-blue-50 border-blue-200">
-              <CardHeader>
-                <CardTitle className="text-lg">When to Use Treatment Tables</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-sm text-gray-900 mb-2">Important First Steps:</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• <strong>Most important:</strong> Administer oxygen and fluids as soon as possible</li>
-                    <li>• Start recompression to 18 metres while breathing oxygen</li>
-                    <li>• For very mild symptoms only: treatment at 12 metres (after medical consultation)</li>
-                    <li>• Seek advice from a diving medical specialist as soon as possible</li>
-                    <li>• <strong>Do NOT delay treatment</strong> while awaiting medical advice</li>
-                  </ul>
-                </div>
-
-                <div className="border-t pt-4">
-                  <h4 className="font-semibold text-sm text-gray-900 mb-2">Treatment Decision Tree:</h4>
-                  <ul className="text-sm text-gray-700 space-y-2">
-                    <li><strong>Mild skin-bends (purple rash only):</strong> CX12 or USN-T5</li>
-                    <li><strong>Type I DCS / Residual symptoms:</strong> CX12, USN-T5</li>
-                    <li><strong>Type II DCS (serious neurological):</strong> USN-T6, CX30, or AIR-T3</li>
-                    <li><strong>Air Embolism:</strong> USN-T6 or CX30</li>
-                    <li><strong>Air Treatment (no oxygen available):</strong> AIR-T1A, AIR-T2A, or AIR-T3</li>
-                  </ul>
-                </div>
-
-                <div className="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
-                  <p className="text-xs font-semibold text-amber-900">⚠️ Note:</p>
-                  <p className="text-xs text-amber-800">Air treatment tables are provided with reluctance and only for oxygen delivery failure. Prevent this at all costs.</p>
-                </div>
-              </CardContent>
-            </Card>
 
             {/* Oxygen Treatment Tables Group */}
             <div className="mb-8">

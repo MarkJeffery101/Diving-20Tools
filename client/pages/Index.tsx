@@ -8,8 +8,6 @@ import {
 import Navigation from "@/components/Navigation";
 
 export default function Index() {
-  const { startTour } = useTour();
-
   const sections = [
     {
       title: "Dive Tables",

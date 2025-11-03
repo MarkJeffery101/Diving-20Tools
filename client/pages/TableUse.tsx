@@ -653,7 +653,7 @@ export default function TableUse() {
       <DialogTrigger asChild>
         <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className="font-semibold text-sm text-gray-900">{table.name}</h4>
               <Badge className="text-xs font-mono h-6 flex-shrink-0">{table.code}</Badge>
             </div>

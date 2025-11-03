@@ -31,23 +31,28 @@ export const useAppUpdate = () => {
           lastVersionRef.current = currentVersion;
         } else if (lastVersionRef.current !== currentVersion) {
           // Version changed - update is available
+          const handleRefresh = () => {
+            // Clear all caches and reload
+            if ('caches' in window) {
+              caches.keys().then(cacheNames => {
+                cacheNames.forEach(cacheName => {
+                  caches.delete(cacheName);
+                });
+              });
+            }
+            window.location.reload();
+          };
+
+          // Create the action button element
+          const actionButton = document.createElement('button');
+          actionButton.textContent = 'Refresh';
+          actionButton.className = 'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 px-3 bg-primary text-primary-foreground hover:bg-primary/90';
+          actionButton.onclick = handleRefresh;
+
           toast({
             title: "Update Available",
             description: "A new version of the app is available. Please refresh to get the latest features and fixes.",
-            action: {
-              label: "Refresh",
-              onClick: () => {
-                // Clear all caches and reload
-                if ('caches' in window) {
-                  caches.keys().then(cacheNames => {
-                    cacheNames.forEach(cacheName => {
-                      caches.delete(cacheName);
-                    });
-                  });
-                }
-                window.location.reload();
-              }
-            },
+            action: actionButton as any,
             duration: 0, // Show until dismissed
           });
 

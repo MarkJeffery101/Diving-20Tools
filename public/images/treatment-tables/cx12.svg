@@ -1,0 +1,97 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 18px; font-weight: bold; fill: #000; }
+      .subtitle { font-size: 14px; fill: #333; }
+      .header { font-size: 12px; font-weight: bold; fill: #fff; background: #0066cc; }
+      .content { font-size: 11px; fill: #333; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title" text-anchor="middle">COMEX Table CX 12</text>
+  <text x="400" y="50" class="subtitle" text-anchor="middle">Treatment of Decompression Sickness</text>
+  
+  <!-- Table Header Background -->
+  <rect x="50" y="70" width="700" height="30" fill="#0066cc"/>
+  
+  <!-- Table Headers -->
+  <text x="100" y="92" class="header" fill="#fff">Pressure (msw)</text>
+  <text x="250" y="92" class="header" fill="#fff">Time (min)</text>
+  <text x="400" y="92" class="header" fill="#fff">Breathing Gas</text>
+  <text x="570" y="92" class="header" fill="#fff">Total Time (min)</text>
+  <text x="700" y="92" class="header" fill="#fff">Total OTU</text>
+  
+  <!-- Table Data Rows -->
+  <line x1="50" y1="100" x2="750" y2="100" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="120" class="content">18</text>
+  <text x="250" y="120" class="content">20</text>
+  <text x="400" y="120" class="content">Oxygen</text>
+  <text x="570" y="120" class="content">00:20</text>
+  <text x="700" y="120" class="content">71</text>
+  
+  <line x1="50" y1="125" x2="750" y2="125" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="145" class="content">18</text>
+  <text x="250" y="145" class="content">5</text>
+  <text x="400" y="145" class="content">Air</text>
+  <text x="570" y="145" class="content">00:25</text>
+  <text x="700" y="145" class="content">73</text>
+  
+  <line x1="50" y1="150" x2="750" y2="150" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="170" class="content">18</text>
+  <text x="250" y="170" class="content">20</text>
+  <text x="400" y="170" class="content">Oxygen</text>
+  <text x="570" y="170" class="content">00:45</text>
+  <text x="700" y="170" class="content">144</text>
+  
+  <line x1="50" y1="175" x2="750" y2="175" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="195" class="content">18-Sep</text>
+  <text x="250" y="195" class="content">30</text>
+  <text x="400" y="195" class="content">Oxygen</text>
+  <text x="570" y="195" class="content">01:15</text>
+  <text x="700" y="195" class="content">233</text>
+  
+  <line x1="50" y1="200" x2="750" y2="200" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="220" class="content">9</text>
+  <text x="250" y="220" class="content">5</text>
+  <text x="400" y="220" class="content">Air</text>
+  <text x="570" y="220" class="content">01:20</text>
+  <text x="700" y="220" class="content">233</text>
+  
+  <line x1="50" y1="225" x2="750" y2="225" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="245" class="content">9</text>
+  <text x="250" y="245" class="content">20</text>
+  <text x="400" y="245" class="content">Oxygen</text>
+  <text x="570" y="245" class="content">01:40</text>
+  <text x="700" y="245" class="content">280</text>
+  
+  <line x1="50" y1="250" x2="750" y2="250" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="270" class="content">9</text>
+  <text x="250" y="270" class="content">5</text>
+  <text x="400" y="270" class="content">Air</text>
+  <text x="570" y="270" class="content">01:45</text>
+  <text x="700" y="270" class="content">280</text>
+  
+  <line x1="50" y1="275" x2="750" y2="275" stroke="#ccc" stroke-width="1"/>
+  <text x="100" y="295" class="content">9-0</text>
+  <text x="250" y="295" class="content">30</text>
+  <text x="400" y="295" class="content">Oxygen</text>
+  <text x="570" y="295" class="content">02:15</text>
+  <text x="700" y="295" class="content">331</text>
+  
+  <line x1="50" y1="300" x2="750" y2="300" stroke="#000" stroke-width="2"/>
+  
+  <!-- Instructions -->
+  <text x="50" y="340" class="subtitle" font-weight="bold">Use this table only on prescription by a diving physician for:</text>
+  <text x="70" y="365" class="content">• Mild forms of skin-bends (only purple blotching rash, no raised spots)</text>
+  <text x="70" y="390" class="content">• Treatment of residual symptoms</text>
+  
+  <text x="50" y="430" class="subtitle" font-weight="bold">Important Notes:</text>
+  <text x="70" y="455" class="content">1. Descent rate: 2 msw per minute</text>
+  <text x="70" y="480" class="content">2. Symptoms are relieved within 4 minutes at or less than 8 msw</text>
+  <text x="70" y="505" class="content">3. Ascent rate: 0.5 msw per minute</text>
+  <text x="70" y="530" class="content">4. Time at 12 msw does not include compression time or time at 8 msw</text>
+</svg>

@@ -476,25 +476,28 @@ export default function TableUse() {
 
       <div className="px-4 sm:px-6 py-6 sm:py-8">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">
-              Diving Tables Safety Guide
-            </h1>
-            <p className="text-gray-600 text-sm">
-              Interactive procedures & emergency protocols
-            </p>
-          </div>
+          {/* Header with Safety Alert */}
+          <div className="mb-8 flex flex-col lg:flex-row lg:items-start lg:gap-6">
+            <div className="flex-1 mb-6 lg:mb-0">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">
+                Diving Tables Safety Guide
+              </h1>
+              <p className="text-gray-600 text-sm">
+                Interactive procedures & emergency protocols
+              </p>
+            </div>
 
-          {/* Alert Banner */}
-          <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
-            <div className="flex gap-3">
-              <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-bold text-red-900 text-sm">Safety-Critical Information</p>
-                <p className="text-xs text-red-800 mt-1">
-                  Always verify with operations manual and diving supervisor. Click procedures to view details.
-                </p>
+            <div className="lg:flex-shrink-0 w-full lg:w-auto">
+              <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                <div className="flex gap-3">
+                  <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-bold text-red-900 text-sm">Safety-Critical Information</p>
+                    <p className="text-xs text-red-800 mt-1">
+                      Always verify with operations manual and diving supervisor. Click procedures to view details.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

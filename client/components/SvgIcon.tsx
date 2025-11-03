@@ -3,9 +3,9 @@ interface SvgIconProps {
   className?: string;
 }
 
-const icons: Record<string, React.ReactNode> = {
-  "icon-dive-tables": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+const icons: Record<string, (className: string) => JSX.Element> = {
+  "icon-dive-tables": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f2b400" />
@@ -19,8 +19,8 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M47 39l6-6" stroke="#0b2a4a" strokeWidth="2.5" />
     </svg>
   ),
-  "icon-selection-logic": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  "icon-selection-logic": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f2b400" />
@@ -35,8 +35,8 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M29 30l-6 10M35 30l6 10" stroke="#0b2a4a" strokeWidth="2.5" />
     </svg>
   ),
-  "icon-safety-limits": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  "icon-safety-limits": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g3" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f2b400" />
@@ -47,8 +47,8 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M28 34l4 4 8-10" stroke="#0b2a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
-  "icon-treatment": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  "icon-treatment": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g4" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f2b400" />
@@ -60,8 +60,8 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M26 20h12M26 27h12M26 34h12M26 41h10" stroke="#0b2a4a" strokeWidth="2" />
     </svg>
   ),
-  "icon-emergency": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  "icon-emergency": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g5" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f44" />
@@ -72,8 +72,8 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M32 20v24M20 32h24" stroke="url(#g5)" strokeWidth="3" strokeLinecap="round" />
     </svg>
   ),
-  "icon-nitrox": (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+  "icon-nitrox": (className) => (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" className={className}>
       <defs>
         <linearGradient id="g6" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stopColor="#f2b400" />
@@ -89,15 +89,11 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 export default function SvgIcon({ id, className = "w-6 h-6" }: SvgIconProps) {
-  const icon = icons[id];
+  const iconRenderer = icons[id];
   
-  if (!icon) {
+  if (!iconRenderer) {
     return null;
   }
 
-  return (
-    <div className={className}>
-      {icon}
-    </div>
-  );
+  return iconRenderer(className);
 }

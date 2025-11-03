@@ -24,17 +24,21 @@ export default function TableDetail() {
   const referenceTableCodes = ['ND15', 'LND15'];
   const isReferenceTable = referenceTableCodes.includes(code);
 
+  // Treatment table codes (displayed as images)
+  const treatmentTableCodes = ['CX12', 'CX30', 'USN-T4', 'USN-T6', 'AIR-T1A', 'AIR-T2A', 'AIR-T3'];
+  const isTreatmentTable = treatmentTableCodes.includes(code);
+
   // Initialize selected depth from URL or use first available depth
   useEffect(() => {
-    if (isReferenceTable) {
-      // Reference tables don't use depth selection
+    if (isReferenceTable || isTreatmentTable) {
+      // Reference and treatment tables don't use depth selection
       setSelectedDepth(0);
     } else if (depthNum) {
       setSelectedDepth(depthNum);
     } else if (availableDepths && availableDepths.length > 0) {
       setSelectedDepth(availableDepths[0]);
     }
-  }, [depthNum, availableDepths, isReferenceTable]);
+  }, [depthNum, availableDepths, isReferenceTable, isTreatmentTable]);
 
   // Load CSV data when code or depth changes
   useEffect(() => {
@@ -43,7 +47,10 @@ export default function TableDetail() {
 
       setIsLoading(true);
       try {
-        if (isReferenceTable) {
+        if (isTreatmentTable) {
+          // Treatment tables don't load CSV data
+          setTableData({ dvis5Value: null, rows: [] });
+        } else if (isReferenceTable) {
           // Reference tables don't need depth parameter
           const data = await parseTableCSV(code, 0);
           setTableData(data);
@@ -58,7 +65,7 @@ export default function TableDetail() {
     };
 
     loadData();
-  }, [code, headerConfig, selectedDepth, isReferenceTable]);
+  }, [code, headerConfig, selectedDepth, isReferenceTable, isTreatmentTable]);
 
   // Handle depth selection and URL update
   const handleDepthChange = (depth: number) => {

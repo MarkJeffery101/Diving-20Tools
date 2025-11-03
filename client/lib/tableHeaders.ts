@@ -390,7 +390,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F8182431613354c5f9a5c6b8e7d0f5b6d",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F021ce3f06a0243eb92b27b9ff1ef5bb0",
   },
   "USN-T6": {
     title: "US Navy Oxygen Treatment Table 6",

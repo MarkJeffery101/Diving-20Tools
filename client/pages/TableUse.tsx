@@ -531,14 +531,16 @@ export default function TableUse() {
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
         '• Ascent rate: 1 minute between stops',
-        '• Moderate total decompression (4:45 hours)',
+        '• Moderate total decompression (6:20 hours)',
         '• Only when oxygen unavailable',
       ],
       schedule: [
         { depth: '30', time: '30', total: '00:30', otuOrOther: '22' },
         { depth: '24', time: '12', total: '00:43', otuOrOther: '28' },
         { depth: '18', time: '30', total: '01:14', otuOrOther: '35' },
+        { depth: '15', time: '30', total: '01:45', otuOrOther: '37' },
         { depth: '12', time: '30', total: '02:16', otuOrOther: '37' },
+        { depth: '9', time: '60', total: '03:17', otuOrOther: '37' },
         { depth: '6', time: '60', total: '04:18', otuOrOther: '37' },
         { depth: '3', time: '120', total: '06:19', otuOrOther: '37' },
         { depth: '0', time: '1', total: '06:20', otuOrOther: '37' },

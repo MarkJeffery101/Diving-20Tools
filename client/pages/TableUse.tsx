@@ -614,6 +614,410 @@ export default function TableUse() {
               </Card>
             </div>
           </div>
+
+          {/* Treatment Tables Section */}
+          <div className="mt-12 pt-8 border-t">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Treatment Tables (DCS & CAGE)</h2>
+
+            {/* Introduction/Logic Tree */}
+            <Card className="mb-6 bg-blue-50 border-blue-200">
+              <CardHeader>
+                <CardTitle className="text-lg">When to Use Treatment Tables</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-sm text-gray-900 mb-2">Important First Steps:</h4>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• <strong>Most important:</strong> Administer oxygen and fluids as soon as possible</li>
+                    <li>• Start recompression to 18 metres while breathing oxygen</li>
+                    <li>• For very mild symptoms only: treatment at 12 metres (after medical consultation)</li>
+                    <li>• Seek advice from a diving medical specialist as soon as possible</li>
+                    <li>• <strong>Do NOT delay treatment</strong> while awaiting medical advice</li>
+                  </ul>
+                </div>
+
+                <div className="border-t pt-4">
+                  <h4 className="font-semibold text-sm text-gray-900 mb-2">Treatment Decision Tree:</h4>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li><strong>Mild skin-bends (purple rash only):</strong> CX12 or USN-T5</li>
+                    <li><strong>Type I DCS / Residual symptoms:</strong> CX12, USN-T5</li>
+                    <li><strong>Type II DCS (serious neurological):</strong> USN-T6, CX30, or AIR-T3</li>
+                    <li><strong>Air Embolism:</strong> USN-T6 or CX30</li>
+                    <li><strong>Air Treatment (no oxygen available):</strong> AIR-T1A, AIR-T2A, or AIR-T3</li>
+                  </ul>
+                </div>
+
+                <div className="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
+                  <p className="text-xs font-semibold text-amber-900">⚠️ Note:</p>
+                  <p className="text-xs text-amber-800">Air treatment tables are provided with reluctance and only for oxygen delivery failure. Prevent this at all costs.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Oxygen Treatment Tables Group */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Oxygen Treatment Tables</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* CX12 */}
+                <Card>
+                  <CardHeader className="bg-green-50 border-b">
+                    <CardTitle className="text-base">COMEX Table CX 12</CardTitle>
+                    <Badge className="w-fit mt-2">CX12</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Mild forms of skin-bends (purple blotching rash only) and treatment of residual symptoms</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: 2 msw/min</li>
+                        <li>• Ascent rate: 0.5 msw/min</li>
+                        <li>• Symptoms relieved within 4 min at ≤8 msw</li>
+                        <li>• Only on prescription by diving physician</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule:</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-center border">Gas</th>
+                              <th className="px-2 py-1 text-right border">Total (min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:45</td><td className="px-2 py-1 text-right border">144</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:15</td><td className="px-2 py-1 text-right border">233</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:20</td><td className="px-2 py-1 text-right border">233</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:40</td><td className="px-2 py-1 text-right border">280</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">280</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:15</td><td className="px-2 py-1 text-right border">331</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* USN-T5 */}
+                <Card>
+                  <CardHeader className="bg-green-50 border-b">
+                    <CardTitle className="text-base">US Navy Oxygen Treatment Table 5</CardTitle>
+                    <Badge className="w-fit mt-2">USN-T5</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Prevention (omitted decompression with no symptoms) and mild forms of skin-bends</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: 7.5 msw/min</li>
+                        <li>• Ascent rate: 0.3 msw/min</li>
+                        <li>• Time at 18 msw starts on arrival</li>
+                        <li>• Can switch to Table 6 if O₂ problems arise</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule:</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-center border">Gas</th>
+                              <th className="px-2 py-1 text-right border">Total (min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:45</td><td className="px-2 py-1 text-right border">144</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:15</td><td className="px-2 py-1 text-right border">233</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:20</td><td className="px-2 py-1 text-right border">233</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:40</td><td className="px-2 py-1 text-right border">280</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">280</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:15</td><td className="px-2 py-1 text-right border">331</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* USN-T6 */}
+                <Card>
+                  <CardHeader className="bg-orange-50 border-b">
+                    <CardTitle className="text-base">US Navy Oxygen Treatment Table 6</CardTitle>
+                    <Badge className="w-fit mt-2">USN-T6</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Type I & II DCS if symptoms don't disappear within 10 min at 18 msw, and air embolism</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: 7.5 msw/min</li>
+                        <li>• Ascent rate: 0.3 msw/min</li>
+                        <li>• Can be lengthened 25 min at 18 msw or 75 min at 9 msw</li>
+                        <li>• Longest treatment table for serious symptoms</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule (abbreviated):</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-center border">Gas</th>
+                              <th className="px-2 py-1 text-right border">Total (hr:min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">307</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">03:00</td><td className="px-2 py-1 text-right border">448</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:15</td><td className="px-2 py-1 text-right border">590</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:45</td><td className="px-2 py-1 text-right border">641</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* CX30 */}
+                <Card>
+                  <CardHeader className="bg-red-50 border-b">
+                    <CardTitle className="text-base">COMEX Table CX 30</CardTitle>
+                    <Badge className="w-fit mt-2">CX30</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Very serious decompression sickness and air embolism (only on prescription)</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Uses 50/50 mix (oxygen/helium or nitrogen)</li>
+                        <li>• Descent rate: 2-3 minutes</li>
+                        <li>• Ascent rates vary by depth: 5 min/msw</li>
+                        <li>• Longest and deepest treatment table</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule (abbreviated):</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-center border">Gas</th>
+                              <th className="px-2 py-1 text-right border">Total (hr:min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">40</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-right border">00:43</td><td className="px-2 py-1 text-right border">100</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30-24</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:48</td><td className="px-2 py-1 text-right border">103</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">24</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-right border">01:43</td><td className="px-2 py-1 text-right border">214</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:43</td><td className="px-2 py-1 text-right border">352</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">12</td><td className="px-2 py-1 text-center border">45</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:38</td><td className="px-2 py-1 text-right border">646</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">12-0</td><td className="px-2 py-1 text-center border">24</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">07:02</td><td className="px-2 py-1 text-right border">942</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Air Treatment Tables Group */}
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Air Treatment Tables (Backup Only)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* AIR-T1A */}
+                <Card>
+                  <CardHeader className="bg-gray-100 border-b">
+                    <CardTitle className="text-base">Air Treatment Table 1A</CardTitle>
+                    <Badge className="w-fit mt-2">AIR-T1A</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth &lt;20 msw</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: 7.5 msw/min</li>
+                        <li>• Ascent rate: 1 minute between stops</li>
+                        <li>• Use air throughout (no oxygen)</li>
+                        <li>• Slower recompression for pain-only symptoms</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule:</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-right border">Total (hr:min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">22</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">24</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">00:43</td><td className="px-2 py-1 text-right border">28</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:14</td><td className="px-2 py-1 text-right border">35</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">12</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">02:16</td><td className="px-2 py-1 text-right border">37</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">6</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-right border">04:18</td><td className="px-2 py-1 text-right border">37</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">06:19</td><td className="px-2 py-1 text-right border">37</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">06:20</td><td className="px-2 py-1 text-right border">37</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* AIR-T2A */}
+                <Card>
+                  <CardHeader className="bg-gray-100 border-b">
+                    <CardTitle className="text-base">Air Treatment Table 2A</CardTitle>
+                    <Badge className="w-fit mt-2">AIR-T2A</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth &gt;20 msw</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: 7.5 msw/min</li>
+                        <li>• Ascent rate: 1 minute between stops</li>
+                        <li>• Deeper starting depth (50 msw) for deep pain</li>
+                        <li>• Longer total decompression (10:59 hours)</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule (abbreviated):</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-right border">Total (hr:min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">43</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">01:09</td><td className="px-2 py-1 text-right border">76</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:53</td><td className="px-2 py-1 text-right border">89</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">04:56</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">240</td><td className="px-2 py-1 text-right border">10:58</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">10:59</td><td className="px-2 py-1 text-right border">93</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* AIR-T3 */}
+                <Card className="md:col-span-2 lg:col-span-1">
+                  <CardHeader className="bg-gray-100 border-b">
+                    <CardTitle className="text-base">Air Treatment Table 3</CardTitle>
+                    <Badge className="w-fit mt-2">AIR-T3</Badge>
+                  </CardHeader>
+                  <CardContent className="pt-4 space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Use For:</h4>
+                      <p className="text-sm text-gray-700">Serious symptoms (Type II) if oxygen unavailable and symptoms disappear within 30 min at 50 msw</p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-1">Key Parameters:</h4>
+                      <ul className="text-xs text-gray-700 space-y-0.5">
+                        <li>• Descent rate: As fast as possible</li>
+                        <li>• Ascent rate: 1 minute between stops</li>
+                        <li>• Very long decompression (18:59 hours)</li>
+                        <li>• For serious neurological symptoms only</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule (abbreviated):</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border border-gray-300">
+                          <thead className="bg-blue-600 text-white">
+                            <tr>
+                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Time (min)</th>
+                              <th className="px-2 py-1 text-right border">Total (hr:min)</th>
+                              <th className="px-2 py-1 text-right border">OTU</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-xs">
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">43</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">01:09</td><td className="px-2 py-1 text-right border">76</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:53</td><td className="px-2 py-1 text-right border">89</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">720</td><td className="px-2 py-1 text-right border">14:56</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">18:58</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">18:59</td><td className="px-2 py-1 text-right border">93</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
+                <p className="text-xs font-semibold text-red-900">⚠️ Critical Warning:</p>
+                <p className="text-xs text-red-800 mt-1">
+                  Air treatment tables are provided only for oxygen system failure. In the 1960s, these tables showed a 50% recurrence rate of DCS symptoms because air breathing at depth increases nitrogen loading. Use oxygen treatment tables whenever possible. Prevent oxygen delivery failure at all costs.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

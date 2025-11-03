@@ -410,7 +410,7 @@ export default function TableUse() {
     {
       id: 'usnt5',
       code: 'USN-T5',
-      name: 'US Navy Oxygen Treatment Table 5',
+      name: 'US Navy Oxygen Treatment Table T5',
       useFor: 'Prevention (omitted decompression with no symptoms) and mild forms of skin-bends',
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
@@ -434,7 +434,7 @@ export default function TableUse() {
     {
       id: 'usnt6',
       code: 'USN-T6',
-      name: 'US Navy Oxygen Treatment Table 6',
+      name: 'US Navy Oxygen Treatment Table T6',
       useFor: 'Type I & II DCS if symptoms don\'t disappear within 10 min at 18 msw, and air embolism',
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
@@ -478,7 +478,7 @@ export default function TableUse() {
     {
       id: 'airt1a',
       code: 'AIR-T1A',
-      name: 'Air Treatment Table 1A',
+      name: 'Air Treatment Table T1A',
       useFor: 'Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw',
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
@@ -501,7 +501,7 @@ export default function TableUse() {
     {
       id: 'airt2a',
       code: 'AIR-T2A',
-      name: 'Air Treatment Table 2A',
+      name: 'Air Treatment Table T2A',
       useFor: 'Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw',
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
@@ -523,7 +523,7 @@ export default function TableUse() {
     {
       id: 'airt3',
       code: 'AIR-T3',
-      name: 'Air Treatment Table 3',
+      name: 'Air Treatment Table T3',
       useFor: 'Serious symptoms (Type II) if oxygen unavailable and symptoms disappear within 30 min at 50 msw',
       keyParameters: [
         '• Descent rate: As fast as possible',

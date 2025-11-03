@@ -424,7 +424,7 @@ export default function TableUse() {
         { depth: '18', time: '20', gas: 'O₂', total: '00:45', otuOrOther: '144' },
         { depth: '18-Sep', time: '30', gas: 'O₂', total: '01:15', otuOrOther: '233' },
         { depth: '9', time: '5', gas: 'Air', total: '01:20', otuOrOther: '233' },
-        { depth: '9', time: '20', gas: 'O₂', total: '01:40', otuOrOther: '280' },
+        { depth: '9', time: '20', gas: 'O���', total: '01:40', otuOrOther: '280' },
         { depth: '9', time: '5', gas: 'Air', total: '01:45', otuOrOther: '280' },
         { depth: '9-0', time: '30', gas: 'O₂', total: '02:15', otuOrOther: '331' },
       ],
@@ -772,7 +772,7 @@ export default function TableUse() {
           </div>
 
           {/* Main Content: Diving Tables and Treatment Tables */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
             {/* Left: Diving Tables */}
             <div>
               <Card className="h-full">

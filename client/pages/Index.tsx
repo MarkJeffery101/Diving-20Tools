@@ -116,7 +116,6 @@ export default function Index() {
                 <Link
                   key={section.href}
                   to={section.href}
-                  id={section.id}
                   className="group p-2 sm:p-6 md:p-8 rounded-xl border-2 transition-all hover:shadow-lg hover:-translate-y-1"
                   style={{
                     background: section.color,

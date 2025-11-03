@@ -695,7 +695,7 @@ export default function TableUse() {
                 <thead className={`${table.headerBgColor} text-gray-900`}>
                   <tr>
                     {table.scheduleColumns.map((col, idx) => (
-                      <th key={idx} className="px-2 py-1 text-left border">
+                      <th key={idx} className="px-2 py-1 text-center border">
                         {col}
                       </th>
                     ))}
@@ -704,11 +704,11 @@ export default function TableUse() {
                 <tbody className="text-xs">
                   {table.schedule.map((row, idx) => (
                     <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'}>
-                      <td className="px-2 py-1 border">{row.depth}</td>
+                      <td className="px-2 py-1 text-center border">{row.depth}</td>
                       <td className="px-2 py-1 text-center border">{row.time}</td>
                       {row.gas && <td className="px-2 py-1 text-center border">{row.gas}</td>}
-                      <td className="px-2 py-1 text-right border">{row.total}</td>
-                      {row.otuOrOther && <td className="px-2 py-1 text-right border">{row.otuOrOther}</td>}
+                      <td className="px-2 py-1 text-center border">{row.total}</td>
+                      {row.otuOrOther && <td className="px-2 py-1 text-center border">{row.otuOrOther}</td>}
                     </tr>
                   ))}
                 </tbody>
@@ -965,7 +965,7 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Pressure (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-center border">Gas</th>
                               <th className="px-2 py-1 text-right border">Total (min)</th>
@@ -973,14 +973,14 @@ export default function TableUse() {
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:45</td><td className="px-2 py-1 text-right border">144</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:15</td><td className="px-2 py-1 text-right border">233</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:20</td><td className="px-2 py-1 text-right border">233</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:40</td><td className="px-2 py-1 text-right border">280</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">280</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:15</td><td className="px-2 py-1 text-right border">331</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">00:20</td><td className="px-2 py-1 text-center border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">00:25</td><td className="px-2 py-1 text-center border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">00:45</td><td className="px-2 py-1 text-center border">144</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">01:15</td><td className="px-2 py-1 text-center border">233</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">01:20</td><td className="px-2 py-1 text-center border">233</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">01:40</td><td className="px-2 py-1 text-center border">280</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">01:45</td><td className="px-2 py-1 text-center border">280</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">02:15</td><td className="px-2 py-1 text-center border">331</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1016,7 +1016,7 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Pressure (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-center border">Gas</th>
                               <th className="px-2 py-1 text-right border">Total (min)</th>
@@ -1024,14 +1024,14 @@ export default function TableUse() {
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:45</td><td className="px-2 py-1 text-right border">144</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:15</td><td className="px-2 py-1 text-right border">233</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:20</td><td className="px-2 py-1 text-right border">233</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:40</td><td className="px-2 py-1 text-right border">280</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">280</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:15</td><td className="px-2 py-1 text-right border">331</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">00:20</td><td className="px-2 py-1 text-center border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">00:25</td><td className="px-2 py-1 text-center border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">00:45</td><td className="px-2 py-1 text-center border">144</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">01:15</td><td className="px-2 py-1 text-center border">233</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">01:20</td><td className="px-2 py-1 text-center border">233</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">01:40</td><td className="px-2 py-1 text-center border">280</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">01:45</td><td className="px-2 py-1 text-center border">280</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">02:15</td><td className="px-2 py-1 text-center border">331</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1067,7 +1067,7 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Pressure (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-center border">Gas</th>
                               <th className="px-2 py-1 text-right border">Total (hr:min)</th>
@@ -1075,12 +1075,12 @@ export default function TableUse() {
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">00:20</td><td className="px-2 py-1 text-right border">71</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:25</td><td className="px-2 py-1 text-right border">73</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">01:45</td><td className="px-2 py-1 text-right border">307</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">03:00</td><td className="px-2 py-1 text-right border">448</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:15</td><td className="px-2 py-1 text-right border">590</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:45</td><td className="px-2 py-1 text-right border">641</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">20</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">00:20</td><td className="px-2 py-1 text-center border">71</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">00:25</td><td className="px-2 py-1 text-center border">73</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18-Sep</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">01:45</td><td className="px-2 py-1 text-center border">307</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">03:00</td><td className="px-2 py-1 text-center border">448</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">04:15</td><td className="px-2 py-1 text-center border">590</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9-0</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">04:45</td><td className="px-2 py-1 text-center border">641</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1116,7 +1116,7 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Pressure (msw)</th>
+                              <th className="px-2 py-1 text-center border">Pressure (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-center border">Gas</th>
                               <th className="px-2 py-1 text-right border">Total (hr:min)</th>
@@ -1124,12 +1124,12 @@ export default function TableUse() {
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">40</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-right border">00:43</td><td className="px-2 py-1 text-right border">100</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30-24</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-right border">00:48</td><td className="px-2 py-1 text-right border">103</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">24</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-right border">01:43</td><td className="px-2 py-1 text-right border">214</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">02:43</td><td className="px-2 py-1 text-right border">352</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">12</td><td className="px-2 py-1 text-center border">45</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">04:38</td><td className="px-2 py-1 text-right border">646</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">12-0</td><td className="px-2 py-1 text-center border">24</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-right border">07:02</td><td className="px-2 py-1 text-right border">942</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">40</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-center border">00:43</td><td className="px-2 py-1 text-center border">100</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">30-24</td><td className="px-2 py-1 text-center border">5</td><td className="px-2 py-1 text-center border">Air</td><td className="px-2 py-1 text-center border">00:48</td><td className="px-2 py-1 text-center border">103</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">24</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">50/50</td><td className="px-2 py-1 text-center border">01:43</td><td className="px-2 py-1 text-center border">214</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">25</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">02:43</td><td className="px-2 py-1 text-center border">352</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-center border">45</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">04:38</td><td className="px-2 py-1 text-center border">646</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">12-0</td><td className="px-2 py-1 text-center border">24</td><td className="px-2 py-1 text-center border">O₂</td><td className="px-2 py-1 text-center border">07:02</td><td className="px-2 py-1 text-center border">942</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1171,20 +1171,20 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Depth (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-right border">Total (hr:min)</th>
                               <th className="px-2 py-1 text-right border">OTU</th>
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">22</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">24</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">00:43</td><td className="px-2 py-1 text-right border">28</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:14</td><td className="px-2 py-1 text-right border">35</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">12</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">02:16</td><td className="px-2 py-1 text-right border">37</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">6</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-right border">04:18</td><td className="px-2 py-1 text-right border">37</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">06:19</td><td className="px-2 py-1 text-right border">37</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">06:20</td><td className="px-2 py-1 text-right border">37</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">00:30</td><td className="px-2 py-1 text-center border">22</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">24</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-center border">00:43</td><td className="px-2 py-1 text-center border">28</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">01:14</td><td className="px-2 py-1 text-center border">35</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">02:16</td><td className="px-2 py-1 text-center border">37</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">6</td><td className="px-2 py-1 text-center border">60</td><td className="px-2 py-1 text-center border">04:18</td><td className="px-2 py-1 text-center border">37</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-center border">06:19</td><td className="px-2 py-1 text-center border">37</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-center border">06:20</td><td className="px-2 py-1 text-center border">37</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1220,19 +1220,19 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Depth (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-right border">Total (hr:min)</th>
                               <th className="px-2 py-1 text-right border">OTU</th>
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">43</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">01:09</td><td className="px-2 py-1 text-right border">76</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:53</td><td className="px-2 py-1 text-right border">89</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">04:56</td><td className="px-2 py-1 text-right border">93</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">240</td><td className="px-2 py-1 text-right border">10:58</td><td className="px-2 py-1 text-right border">93</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">10:59</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">00:30</td><td className="px-2 py-1 text-center border">43</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-center border">01:09</td><td className="px-2 py-1 text-center border">76</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">01:53</td><td className="px-2 py-1 text-center border">89</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-center border">04:56</td><td className="px-2 py-1 text-center border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">3</td><td className="px-2 py-1 text-center border">240</td><td className="px-2 py-1 text-center border">10:58</td><td className="px-2 py-1 text-center border">93</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-center border">10:59</td><td className="px-2 py-1 text-center border">93</td></tr>
                           </tbody>
                         </table>
                       </div>
@@ -1268,19 +1268,19 @@ export default function TableUse() {
                         <table className="w-full text-xs border border-gray-300">
                           <thead className="bg-blue-600 text-white">
                             <tr>
-                              <th className="px-2 py-1 text-left border">Depth (msw)</th>
+                              <th className="px-2 py-1 text-center border">Depth (msw)</th>
                               <th className="px-2 py-1 text-center border">Time (min)</th>
                               <th className="px-2 py-1 text-right border">Total (hr:min)</th>
                               <th className="px-2 py-1 text-right border">OTU</th>
                             </tr>
                           </thead>
                           <tbody className="text-xs">
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">00:30</td><td className="px-2 py-1 text-right border">43</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-right border">01:09</td><td className="px-2 py-1 text-right border">76</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-right border">01:53</td><td className="px-2 py-1 text-right border">89</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">9</td><td className="px-2 py-1 text-center border">720</td><td className="px-2 py-1 text-right border">14:56</td><td className="px-2 py-1 text-right border">93</td></tr>
-                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-right border">18:58</td><td className="px-2 py-1 text-right border">93</td></tr>
-                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-right border">18:59</td><td className="px-2 py-1 text-right border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">50</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">00:30</td><td className="px-2 py-1 text-center border">43</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">12</td><td className="px-2 py-1 text-center border">01:09</td><td className="px-2 py-1 text-center border">76</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">18</td><td className="px-2 py-1 text-center border">30</td><td className="px-2 py-1 text-center border">01:53</td><td className="px-2 py-1 text-center border">89</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">9</td><td className="px-2 py-1 text-center border">720</td><td className="px-2 py-1 text-center border">14:56</td><td className="px-2 py-1 text-center border">93</td></tr>
+                            <tr className="bg-white hover:bg-gray-50"><td className="px-2 py-1 text-center border">3</td><td className="px-2 py-1 text-center border">120</td><td className="px-2 py-1 text-center border">18:58</td><td className="px-2 py-1 text-center border">93</td></tr>
+                            <tr className="bg-gray-50 hover:bg-gray-100"><td className="px-2 py-1 text-center border">0</td><td className="px-2 py-1 text-center border">1</td><td className="px-2 py-1 text-center border">18:59</td><td className="px-2 py-1 text-center border">93</td></tr>
                           </tbody>
                         </table>
                       </div>

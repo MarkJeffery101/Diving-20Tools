@@ -1,0 +1,137 @@
+<svg viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 18px; font-weight: bold; fill: #000; }
+      .subtitle { font-size: 14px; fill: #333; }
+      .header { font-size: 11px; font-weight: bold; fill: #fff; }
+      .content { font-size: 10px; fill: #333; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="700" fill="#fff" stroke="#ccc" stroke-width="1"/>
+  
+  <text x="400" y="30" class="title" text-anchor="middle">COMEX Table CX 30</text>
+  <text x="400" y="50" class="subtitle" text-anchor="middle">Treatment of Very Serious Decompression Sickness</text>
+  
+  <rect x="40" y="70" width="720" height="25" fill="#0066cc"/>
+  
+  <text x="80" y="90" class="header" fill="#fff">Pressure (msw)</text>
+  <text x="180" y="90" class="header" fill="#fff">Time (min)</text>
+  <text x="280" y="90" class="header" fill="#fff">Breathing Gas</text>
+  <text x="450" y="90" class="header" fill="#fff">Total Time (hrs/min)</text>
+  <text x="650" y="90" class="header" fill="#fff">Total OTU</text>
+  
+  <line x1="40" y1="95" x2="760" y2="95" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="113" class="content">30</text>
+  <text x="180" y="113" class="content">40</text>
+  <text x="280" y="113" class="content">50/50</text>
+  <text x="450" y="113" class="content">00:43</text>
+  <text x="650" y="113" class="content">100</text>
+  
+  <line x1="40" y1="118" x2="760" y2="118" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="136" class="content">30-24</text>
+  <text x="180" y="136" class="content">5</text>
+  <text x="280" y="136" class="content">Air</text>
+  <text x="450" y="136" class="content">00:48</text>
+  <text x="650" y="136" class="content">103</text>
+  
+  <line x1="40" y1="141" x2="760" y2="141" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="159" class="content">30-24</text>
+  <text x="180" y="159" class="content">25</text>
+  <text x="280" y="159" class="content">50/50</text>
+  <text x="450" y="159" class="content">01:13</text>
+  <text x="650" y="159" class="content">160</text>
+  
+  <line x1="40" y1="164" x2="760" y2="164" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="182" class="content">24</text>
+  <text x="180" y="182" class="content">5</text>
+  <text x="280" y="182" class="content">Air</text>
+  <text x="450" y="182" class="content">01:18</text>
+  <text x="650" y="182" class="content">162</text>
+  
+  <line x1="40" y1="187" x2="760" y2="187" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="205" class="content">24</text>
+  <text x="180" y="205" class="content">25</text>
+  <text x="280" y="205" class="content">50/50</text>
+  <text x="450" y="205" class="content">01:43</text>
+  <text x="650" y="205" class="content">214</text>
+  
+  <line x1="40" y1="210" x2="760" y2="210" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="228" class="content">24-18</text>
+  <text x="180" y="228" class="content">5</text>
+  <text x="280" y="228" class="content">Air</text>
+  <text x="450" y="228" class="content">01:48</text>
+  <text x="650" y="228" class="content">216</text>
+  
+  <line x1="40" y1="233" x2="760" y2="233" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="251" class="content">24-18</text>
+  <text x="180" y="251" class="content">25</text>
+  <text x="280" y="251" class="content">50/50</text>
+  <text x="450" y="251" class="content">02:13</text>
+  <text x="650" y="251" class="content">262</text>
+  
+  <line x1="40" y1="256" x2="760" y2="256" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="274" class="content">18</text>
+  <text x="180" y="274" class="content">5</text>
+  <text x="280" y="274" class="content">Air</text>
+  <text x="450" y="274" class="content">02:18</text>
+  <text x="650" y="274" class="content">263</text>
+  
+  <line x1="40" y1="279" x2="760" y2="279" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="297" class="content">18</text>
+  <text x="180" y="297" class="content">25</text>
+  <text x="280" y="297" class="content">Oxygen</text>
+  <text x="450" y="297" class="content">02:43</text>
+  <text x="650" y="297" class="content">352</text>
+  
+  <line x1="40" y1="302" x2="760" y2="302" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="320" class="content">18</text>
+  <text x="180" y="320" class="content">5</text>
+  <text x="280" y="320" class="content">Air</text>
+  <text x="450" y="320" class="content">02:48</text>
+  <text x="650" y="320" class="content">353</text>
+  
+  <line x1="40" y1="325" x2="760" y2="325" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="343" class="content">18</text>
+  <text x="180" y="343" class="content">25</text>
+  <text x="280" y="343" class="content">Oxygen</text>
+  <text x="450" y="343" class="content">03:13</text>
+  <text x="650" y="343" class="content">442</text>
+  
+  <line x1="40" y1="348" x2="760" y2="348" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="366" class="content">18-12</text>
+  <text x="180" y="366" class="content">5</text>
+  <text x="280" y="366" class="content">Air</text>
+  <text x="450" y="366" class="content">03:18</text>
+  <text x="650" y="366" class="content">442</text>
+  
+  <line x1="40" y1="371" x2="760" y2="371" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="389" class="content">18-12</text>
+  <text x="180" y="389" class="content">25</text>
+  <text x="280" y="389" class="content">Oxygen</text>
+  <text x="450" y="389" class="content">03:43</text>
+  <text x="650" y="389" class="content">521</text>
+  
+  <line x1="40" y1="394" x2="760" y2="394" stroke="#ccc" stroke-width="1"/>
+  <text x="80" y="412" class="content">12</text>
+  <text x="180" y="412" class="content">10</text>
+  <text x="280" y="412" class="content">Air</text>
+  <text x="450" y="412" class="content">03:53</text>
+  <text x="650" y="412" class="content">521</text>
+  
+  <line x1="40" y1="417" x2="760" y2="417" stroke="#000" stroke-width="2"/>
+  <text x="80" y="435" class="content">12</text>
+  <text x="180" y="435" class="content">45</text>
+  <text x="280" y="435" class="content">Oxygen</text>
+  <text x="450" y="435" class="content">04:38</text>
+  <text x="650" y="435" class="content">646</text>
+  
+  <text x="50" y="480" class="subtitle" font-weight="bold">Use this table only on prescription by a diving physician for:</text>
+  <text x="70" y="505" class="content">• Treatment of very serious decompression sickness</text>
+  <text x="70" y="530" class="content">• Treatment of air embolism</text>
+  
+  <text x="50" y="570" class="subtitle" font-weight="bold">Important Notes:</text>
+  <text x="70" y="595" class="content">1. Descent rate: 2 to 3 minutes</text>
+  <text x="70" y="620" class="content">2. 50/50 mix preferably 50% oxygen and 50% helium (50% nitrogen is also allowed)</text>
+  <text x="70" y="645" class="content">3. Tender should breathe all three oxygen periods at 12 msw and during ascent to surface</text>
+</svg>

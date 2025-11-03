@@ -25,38 +25,32 @@ function UpdateChecker() {
   const { toast } = useToast();
 
   useEffect(() => {
-    let lastVersion: string | null = null;
+    // Listen for service worker update messages
+    if ('serviceWorker' in navigator) {
+      const handleServiceWorkerMessage = (event: any) => {
+        if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
+          console.log('[App] Update available, version:', event.data.version);
 
-    const checkForUpdates = async () => {
-      try {
-        const response = await fetch('/manifest.json?bust=' + Date.now(), {
-          headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' }
-        });
-        const manifest = await response.json();
-        const currentVersion = manifest.version || new Date().getTime().toString();
-
-        if (lastVersion === null) {
-          lastVersion = currentVersion;
-        } else if (lastVersion !== currentVersion) {
-          // New version detected
+          // Show notification and auto-reload after 5 seconds
           toast({
             title: "App Updated",
-            description: "A new version is available. Please refresh your browser (F5 or Ctrl+R).",
-            duration: 0,
+            description: "A new version is ready. Reloading in 5 seconds...",
+            duration: 5000,
           });
-          lastVersion = currentVersion;
+
+          // Auto-reload after 5 seconds
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
         }
-      } catch (error) {
-        console.debug('Update check failed:', error);
-      }
-    };
+      };
 
-    // Check immediately
-    checkForUpdates();
+      navigator.serviceWorker.addEventListener('message', handleServiceWorkerMessage);
 
-    // Check every 30 seconds
-    const interval = setInterval(checkForUpdates, 30000);
-    return () => clearInterval(interval);
+      return () => {
+        navigator.serviceWorker.removeEventListener('message', handleServiceWorkerMessage);
+      };
+    }
   }, [toast]);
 
   return null;

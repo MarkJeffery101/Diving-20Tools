@@ -773,7 +773,31 @@ export default function TableUse() {
               </Card>
             </div>
 
-            {/* Right: Emergency Flowcharts */}
+            {/* Center: Treatment Tables */}
+            <div>
+              <Card className="h-full">
+                <CardHeader className="border-b pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      💊 Treatment Tables
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      DCS & CAGE protocols
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <div className="grid grid-cols-1 gap-3">
+                    {treatmentTables.map((table) => renderTreatmentTableButton(table))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Emergency Flowcharts - Full Width Below */}
+          <div className="grid grid-cols-1 gap-6 mt-6">
+            {/* Emergency Flowcharts */}
             <div>
               <Card className="h-full">
                 <CardHeader className="border-b pb-3">

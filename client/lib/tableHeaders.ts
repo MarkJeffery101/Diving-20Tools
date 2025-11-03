@@ -436,6 +436,17 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     isImageTable: true,
     imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F3f50b16a33e44617a25ac2eae9cf2e10",
   },
+  "AIR-T4": {
+    title: "Air Treatment Table 4",
+    columns: [
+      { label: "Phase" },
+      { label: "Depth (metres)" },
+      { label: "Time (minutes)" },
+      { label: "Gas Mix" },
+    ],
+    isImageTable: true,
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Ff7457e29d40542c0a126a69e85b820e9",
+  },
 };
 
 export function getTableHeader(

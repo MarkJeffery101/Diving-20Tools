@@ -906,10 +906,10 @@ export default function TableUse() {
                       <div className="border-t pt-4">
                         <h4 className="font-semibold text-sm text-gray-900 mb-2">Treatment Decision Tree:</h4>
                         <ul className="text-sm text-gray-700 space-y-2">
-                          <li><strong>Mild skin-bends (purple rash only):</strong> CX12 or USN-T5</li>
-                          <li><strong>Type I DCS / Residual symptoms:</strong> CX12, USN-T5</li>
+                          <li><strong>Mild skin-bends (purple rash only):</strong> CX12 or USN-5</li>
+                          <li><strong>Type I DCS / Residual symptoms:</strong> CX12, USN-5</li>
                           <li><strong>Type II DCS (serious neurological):</strong> USN-T6, CX30, or AIR-T3</li>
-                          <li><strong>Air Embolism:</strong> USN-T6 or CX30</li>
+                          <li><strong>Air Embolism:</strong> USN-6 or CX30</li>
                           <li><strong>Air Treatment (no oxygen available):</strong> AIR-T1A, AIR-T2A, or AIR-T3</li>
                         </ul>
                       </div>
@@ -984,11 +984,11 @@ export default function TableUse() {
                   </CardContent>
                 </Card>
 
-                {/* USN-T5 */}
+                {/* USN-5 */}
                 <Card>
                   <CardHeader className="bg-green-50 border-b">
                     <CardTitle className="text-base">US Navy Oxygen Treatment Table 5</CardTitle>
-                    <Badge className="w-fit mt-2">USN-T5</Badge>
+                    <Badge className="w-fit mt-2">USN-5</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div>
@@ -1035,11 +1035,11 @@ export default function TableUse() {
                   </CardContent>
                 </Card>
 
-                {/* USN-T6 */}
+                {/* USN-6 */}
                 <Card>
                   <CardHeader className="bg-orange-50 border-b">
                     <CardTitle className="text-base">US Navy Oxygen Treatment Table 6</CardTitle>
-                    <Badge className="w-fit mt-2">USN-T6</Badge>
+                    <Badge className="w-fit mt-2">USN-6</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div>
@@ -1139,11 +1139,11 @@ export default function TableUse() {
             <div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Air Treatment Tables (Backup Only)</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* AIR-T1A */}
+                {/* AIR-1A */}
                 <Card>
                   <CardHeader className="bg-gray-100 border-b">
                     <CardTitle className="text-base">Air Treatment Table 1A</CardTitle>
-                    <Badge className="w-fit mt-2">AIR-T1A</Badge>
+                    <Badge className="w-fit mt-2">AIR-1A</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div>
@@ -1188,11 +1188,11 @@ export default function TableUse() {
                   </CardContent>
                 </Card>
 
-                {/* AIR-T2A */}
+                {/* AIR-2A */}
                 <Card>
                   <CardHeader className="bg-gray-100 border-b">
                     <CardTitle className="text-base">Air Treatment Table 2A</CardTitle>
-                    <Badge className="w-fit mt-2">AIR-T2A</Badge>
+                    <Badge className="w-fit mt-2">AIR-2A</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div>
@@ -1236,11 +1236,11 @@ export default function TableUse() {
                   </CardContent>
                 </Card>
 
-                {/* AIR-T3 */}
+                {/* AIR-3 */}
                 <Card className="md:col-span-2 lg:col-span-1">
                   <CardHeader className="bg-gray-100 border-b">
                     <CardTitle className="text-base">Air Treatment Table 3</CardTitle>
-                    <Badge className="w-fit mt-2">AIR-T3</Badge>
+                    <Badge className="w-fit mt-2">AIR-3</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div>

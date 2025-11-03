@@ -409,7 +409,7 @@ export default function TableUse() {
     },
     {
       id: 'usnt5',
-      code: 'USN-T5',
+      code: 'USN-5',
       name: 'US Navy Oxygen Treatment Table 5',
       useFor: 'Prevention (omitted decompression with no symptoms) and mild forms of skin-bends',
       keyParameters: [
@@ -433,7 +433,7 @@ export default function TableUse() {
     },
     {
       id: 'usnt6',
-      code: 'USN-T6',
+      code: 'USN-6',
       name: 'US Navy Oxygen Treatment Table 6',
       useFor: 'Type I & II DCS if symptoms don\'t disappear within 10 min at 18 msw, and air embolism',
       keyParameters: [
@@ -477,7 +477,7 @@ export default function TableUse() {
     },
     {
       id: 'airt1a',
-      code: 'AIR-T1A',
+      code: 'AIR-1A',
       name: 'Air Treatment Table 1A',
       useFor: 'Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw',
       keyParameters: [
@@ -500,7 +500,7 @@ export default function TableUse() {
     },
     {
       id: 'airt2a',
-      code: 'AIR-T2A',
+      code: 'AIR-2A',
       name: 'Air Treatment Table 2A',
       useFor: 'Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw',
       keyParameters: [
@@ -522,7 +522,7 @@ export default function TableUse() {
     },
     {
       id: 'airt3',
-      code: 'AIR-T3',
+      code: 'AIR-3',
       name: 'Air Treatment Table 3',
       useFor: 'Serious symptoms (Type II) if oxygen unavailable and symptoms disappear within 30 min at 50 msw',
       keyParameters: [

@@ -381,8 +381,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     isImageTable: true,
     imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fc28ba48f9fc74438bec547c5a67ee8d6",
   },
-  "USN-T4": {
-    title: "US Navy Oxygen Treatment Table 4",
+  "USN-T5": {
+    title: "US Navy Oxygen Treatment Table 5",
     columns: [
       { label: "Phase" },
       { label: "Depth (metres)" },
@@ -390,7 +390,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F6cdbac15434541a3ae24cad6951e46b7",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F8182431613354c5f9a5c6b8e7d0f5b6d",
   },
   "USN-T6": {
     title: "US Navy Oxygen Treatment Table 6",

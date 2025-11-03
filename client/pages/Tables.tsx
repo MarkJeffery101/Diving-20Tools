@@ -172,7 +172,7 @@ const tablesData: Level1Item[] = [
     children: [
       { name: "COMEX Table CX 12", code: "CX12" },
       { name: "COMEX Table CX 30", code: "CX30" },
-      { name: "US Navy Oxygen Treatment Table 4", code: "USN-T4" },
+      { name: "US Navy Oxygen Treatment Table 5", code: "USN-T5" },
       { name: "US Navy Oxygen Treatment Table 6", code: "USN-T6" },
       { name: "Air Treatment Table 1A", code: "AIR-T1A" },
       { name: "Air Treatment Table 2A", code: "AIR-T2A" },

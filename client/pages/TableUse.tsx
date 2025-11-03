@@ -40,8 +40,26 @@ interface TableType {
   };
 }
 
+interface TreatmentTableType {
+  id: string;
+  code: string;
+  name: string;
+  useFor: string;
+  keyParameters: string[];
+  schedule: Array<{
+    depth: string;
+    time: string;
+    gas?: string;
+    total: string;
+    otuOrOther?: string;
+  }>;
+  headerBgColor: string;
+  scheduleColumns: string[];
+}
+
 export default function TableUse() {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
+  const [openTreatmentDialog, setOpenTreatmentDialog] = useState<string | null>(null);
 
   const infoCards = [
     {

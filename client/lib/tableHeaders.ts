@@ -401,7 +401,7 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "/images/treatment-tables/usn-t6.svg",
+    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F96c54f96337642b0a061076083cfbc6d",
   },
   "AIR-T1A": {
     title: "Air Treatment Table 1A",

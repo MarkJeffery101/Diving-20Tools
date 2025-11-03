@@ -510,7 +510,7 @@ export default function TableUse() {
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
         '• Ascent rate: 1 minute between stops',
-        '�� Deeper starting depth (50 msw) for deep pain',
+        '• Deeper starting depth (50 msw) for deep pain',
         '• Longer total decompression (10:59 hours)',
       ],
       schedule: [

@@ -436,24 +436,6 @@ export default function TableUse() {
       scheduleColumns: ['Depth (MSW)', 'Time (min)', 'Total time (hour:min)', 'Total OTU'],
     },
     {
-      id: 'usnt6',
-      code: 'USN-6',
-      name: 'US Navy Oxygen Treatment Table 6',
-      useFor: 'Type I & II DCS if symptoms don\'t disappear within 10 min at 18 msw, and air embolism',
-      keyParameters: [
-        '• Descent rate: 7.5 msw/min',
-        '• Ascent rate: 0.3 msw/min',
-        '• Can be lengthened 25 min at 18 msw or 75 min at 9 msw',
-        '• Longest treatment table for serious symptoms',
-      ],
-      schedule: [
-        { depth: '18', time: '20', gas: 'O���', total: '01:40', otuOrOther: '280' },
-        { depth: '9', time: '5', gas: 'Air', total: '01:45', otuOrOther: '280' },
-        { depth: '9-0', time: '30', gas: 'O2', total: '02:15', otuOrOther: '331' },
-      ],
-      headerBgColor: 'bg-green-50',
-      scheduleColumns: ['Pressure (msw)', 'Time (min)', 'Gas', 'Total (min)', 'OTU'],
-    },
     {
       id: 'usnt6',
       code: 'USN-6',

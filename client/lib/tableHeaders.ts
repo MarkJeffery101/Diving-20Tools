@@ -57,7 +57,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
 
   // Surface/OX Tables
   SOX15: {
-    title: "SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours",
+    title:
+      "SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -75,7 +76,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
   HSOX15: {
-    title: "HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours",
+    title:
+      "HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -147,7 +149,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
   NIA2_3: {
-    title: "NIA2_3 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop = 3 m/sw)",
+    title:
+      "NIA2_3 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop = 3 m/sw)",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -161,7 +164,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
     ],
   },
   NIA2_6: {
-    title: "NIA2_6 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop = 6 m/sw)",
+    title:
+      "NIA2_6 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop = 6 m/sw)",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -313,7 +317,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
 
   // Wet or Dry Bell Tables
   BOX15: {
-    title: "BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours",
+    title:
+      "BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours",
     columns: [
       { label: "Dive Time\n(min)" },
       { label: "Till 1st\nStop" },
@@ -368,7 +373,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F2d2aade01be942f7b0309050233fb071",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F2d2aade01be942f7b0309050233fb071",
   },
   CX30: {
     title: "COMEX Table CX 30 - Treatment",
@@ -379,7 +385,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fc28ba48f9fc74438bec547c5a67ee8d6",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fc28ba48f9fc74438bec547c5a67ee8d6",
   },
   "USN-T5": {
     title: "US Navy Oxygen Treatment Table 5",
@@ -390,7 +397,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F021ce3f06a0243eb92b27b9ff1ef5bb0",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F021ce3f06a0243eb92b27b9ff1ef5bb0",
   },
   "USN-T6": {
     title: "US Navy Oxygen Treatment Table 6",
@@ -401,7 +409,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F96c54f96337642b0a061076083cfbc6d",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F96c54f96337642b0a061076083cfbc6d",
   },
   "AIR-T1A": {
     title: "Air Treatment Table 1A",
@@ -412,7 +421,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F27551b6e05b5474e827639c8c254f3e5",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F27551b6e05b5474e827639c8c254f3e5",
   },
   "AIR-T2A": {
     title: "Air Treatment Table 2A",
@@ -423,7 +433,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fae81c4021fb0416e95fc2bd52330bf0c",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fae81c4021fb0416e95fc2bd52330bf0c",
   },
   "AIR-T3": {
     title: "Air Treatment Table 3",
@@ -434,7 +445,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F3f50b16a33e44617a25ac2eae9cf2e10",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F3f50b16a33e44617a25ac2eae9cf2e10",
   },
   "AIR-T4": {
     title: "Air Treatment Table 4",
@@ -445,12 +457,13 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
     isImageTable: true,
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Ff7457e29d40542c0a126a69e85b820e9",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Ff7457e29d40542c0a126a69e85b820e9",
   },
 };
 
 export function getTableHeader(
-  tableCode: string
+  tableCode: string,
 ): TableHeaderConfig | undefined {
   return tableHeaderConfigs[tableCode];
 }

@@ -194,7 +194,10 @@ interface BreadcrumbItem {
 export default function Tables() {
   const navigate = useNavigate();
   const location = useLocation();
-  const backState = location.state as { from?: string; modalId?: string } | null;
+  const backState = location.state as {
+    from?: string;
+    modalId?: string;
+  } | null;
   const [currentView, setCurrentView] = useState<ViewLevel>("level1");
   const [selectedLevel1Index, setSelectedLevel1Index] = useState<number | null>(
     null,
@@ -300,7 +303,11 @@ export default function Tables() {
         <div className="container mx-auto">
           {backState?.from === "supporting-info" && (
             <button
-              onClick={() => navigate("/supporting-info", { state: { modalId: backState.modalId } })}
+              onClick={() =>
+                navigate("/supporting-info", {
+                  state: { modalId: backState.modalId },
+                })
+              }
               className="flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-3 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />

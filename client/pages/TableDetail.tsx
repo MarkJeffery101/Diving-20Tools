@@ -9,7 +9,10 @@ export default function TableDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [tableData, setTableData] = useState<ParsedTableData>({ dvis5Value: null, rows: [] });
+  const [tableData, setTableData] = useState<ParsedTableData>({
+    dvis5Value: null,
+    rows: [],
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDepth, setSelectedDepth] = useState<number | null>(null);
 
@@ -21,11 +24,20 @@ export default function TableDetail() {
   const availableDepths = getAvailableDepths(code);
 
   // Reference table codes (no depth variants) - must be defined before useEffect
-  const referenceTableCodes = ['ND15', 'LND15'];
+  const referenceTableCodes = ["ND15", "LND15"];
   const isReferenceTable = referenceTableCodes.includes(code);
 
   // Treatment table codes (displayed as images)
-  const treatmentTableCodes = ['CX12', 'CX30', 'USN-T5', 'USN-T6', 'AIR-T1A', 'AIR-T2A', 'AIR-T3', 'AIR-T4'];
+  const treatmentTableCodes = [
+    "CX12",
+    "CX30",
+    "USN-T5",
+    "USN-T6",
+    "AIR-T1A",
+    "AIR-T2A",
+    "AIR-T3",
+    "AIR-T4",
+  ];
   const isTreatmentTable = treatmentTableCodes.includes(code);
 
   // Initialize selected depth from URL or use first available depth
@@ -74,31 +86,67 @@ export default function TableDetail() {
   };
 
   // Calculate total colspan for the table
-  const totalColSpan = headerConfig ?
-    headerConfig.columns.reduce((sum, col) => sum + (col.sub ? col.sub.length : 1), 0)
+  const totalColSpan = headerConfig
+    ? headerConfig.columns.reduce(
+        (sum, col) => sum + (col.sub ? col.sub.length : 1),
+        0,
+      )
     : 0;
 
   // Tables that require Dvis 5 time information (exclude SAB15/HSAB15 as they don't have DVIS values)
-  const tablesWithDvis5 = ['SIL15', 'H2SIL15', 'H4SIL15', 'SOX15', 'HSOX15', 'NIA15', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15', 'BOX15'];
+  const tablesWithDvis5 = [
+    "SIL15",
+    "H2SIL15",
+    "H4SIL15",
+    "SOX15",
+    "HSOX15",
+    "NIA15",
+    "H2NIA15",
+    "H4NIA15",
+    "NIB15",
+    "H2NIB15",
+    "H4NIB15",
+    "BOX15",
+  ];
   const showDvis5 = tablesWithDvis5.includes(code);
 
   // Tables that require Equivalent Air Depth and Maximum PO2 information
-  const tablesWithNitroxInfo = ['NIA15', 'NIA2_3', 'NIA2_6', 'H2NIA15', 'H4NIA15', 'NIB15', 'H2NIB15', 'H4NIB15'];
+  const tablesWithNitroxInfo = [
+    "NIA15",
+    "NIA2_3",
+    "NIA2_6",
+    "H2NIA15",
+    "H4NIA15",
+    "NIB15",
+    "H2NIB15",
+    "H4NIB15",
+  ];
   const showNitroxInfo = tablesWithNitroxInfo.includes(code);
 
   // Tables with oxygen columns that need blue background
-  const tablesWithOxygenColumns = ['SOX15', 'HSOX15'];
+  const tablesWithOxygenColumns = ["SOX15", "HSOX15"];
   const hasOxygenColumns = tablesWithOxygenColumns.includes(code);
 
   // OTU/ESOT table codes
-  const otuEsotCodes = ['SOX15_OTU', 'NIA15_OTU', 'NIB15_OTU', 'BOX15_OTU'];
+  const otuEsotCodes = ["SOX15_OTU", "NIA15_OTU", "NIB15_OTU", "BOX15_OTU"];
   const isOtuEsotTable = otuEsotCodes.includes(code);
 
   // Map oxygen column names for SOX15 tables
-  const oxygenColumnNames = ['12 oxygen', '12 ox', '9 oxygen', '9 ox', '6 oxygen', '6 ox', '3 oxygen', '3 ox'];
+  const oxygenColumnNames = [
+    "12 oxygen",
+    "12 ox",
+    "9 oxygen",
+    "9 ox",
+    "6 oxygen",
+    "6 ox",
+    "3 oxygen",
+    "3 ox",
+  ];
 
   const isOxygenColumn = (columnName: string): boolean => {
-    return oxygenColumnNames.some(name => columnName.toLowerCase().includes(name.toLowerCase()));
+    return oxygenColumnNames.some((name) =>
+      columnName.toLowerCase().includes(name.toLowerCase()),
+    );
   };
 
   if (!headerConfig) {
@@ -140,39 +188,47 @@ export default function TableDetail() {
           {/* Descriptive Text for Reference Tables */}
           {isReferenceTable && (
             <div className="mb-6 text-sm sm:text-base text-gray-700 space-y-2">
-              {code === 'ND15' && (
+              {code === "ND15" && (
                 <>
                   <p>Maximum ascent speed: 10 metres/minute</p>
-                  <p>Maximum descent speed: 30 metres/minute (or 60 metres/minute for first 30 metres)</p>
+                  <p>
+                    Maximum descent speed: 30 metres/minute (or 60 metres/minute
+                    for first 30 metres)
+                  </p>
                 </>
               )}
-              {code === 'LND15' && (
+              {code === "LND15" && (
                 <>
                   <p>Maximum ascent speed: 10 metres/minute</p>
-                  <p>Maximum descent speed: 30 metres/minute (or 60 metres/minute for first 30 metres)</p>
+                  <p>
+                    Maximum descent speed: 30 metres/minute (or 60 metres/minute
+                    for first 30 metres)
+                  </p>
                 </>
               )}
             </div>
           )}
 
           {/* Depth Toggle Buttons - Horizontal (hidden for reference tables) */}
-          {!isReferenceTable && availableDepths && availableDepths.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {availableDepths.map((depth) => (
-                <button
-                  key={depth}
-                  onClick={() => handleDepthChange(depth)}
-                  className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
-                    selectedDepth === depth
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {depth}m
-                </button>
-              ))}
-            </div>
-          )}
+          {!isReferenceTable &&
+            availableDepths &&
+            availableDepths.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {availableDepths.map((depth) => (
+                  <button
+                    key={depth}
+                    onClick={() => handleDepthChange(depth)}
+                    className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                      selectedDepth === depth
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {depth}m
+                  </button>
+                ))}
+              </div>
+            )}
 
           {/* Content Area */}
           <div className="w-full">
@@ -188,8 +244,12 @@ export default function TableDetail() {
                     />
                   ) : (
                     <div className="w-full py-12 text-center">
-                      <p className="text-gray-500 text-lg">Table image not available</p>
-                      <p className="text-gray-400 text-sm mt-2">Image file: {headerConfig.imageUrl}</p>
+                      <p className="text-gray-500 text-lg">
+                        Table image not available
+                      </p>
+                      <p className="text-gray-400 text-sm mt-2">
+                        Image file: {headerConfig.imageUrl}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -197,7 +257,10 @@ export default function TableDetail() {
             ) : (
               /* Standard Data Table Display */
               <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto shadow-sm hover:shadow-md transition-shadow mb-8">
-                <table className="w-full text-xs sm:text-sm" style={{ tableLayout: 'auto' }}>
+                <table
+                  className="w-full text-xs sm:text-sm"
+                  style={{ tableLayout: "auto" }}
+                >
                   <thead className="sticky top-0 z-10 bg-gradient-to-b from-blue-700 to-blue-600 text-white shadow-md">
                     <tr className="border-b border-gray-300">
                       {headerConfig.columns.map((column, idx) => {
@@ -205,19 +268,30 @@ export default function TableDetail() {
                         return (
                           <th
                             key={idx}
-                            className={`px-2 sm:px-3 py-2 sm:py-3 font-bold text-center ${hasNoSub ? 'bg-blue-800' : ''}`}
+                            className={`px-2 sm:px-3 py-2 sm:py-3 font-bold text-center ${hasNoSub ? "bg-blue-800" : ""}`}
                             colSpan={column.sub ? column.sub.length : 1}
                             rowSpan={hasNoSub ? 2 : 1}
-                            style={hasNoSub ? {
-                              minWidth: idx === 0 || idx === 1 ? '70px' : idx >= headerConfig.columns.length - 3 ? '60px' : 'auto',
-                              wordWrap: 'break-word',
-                              whiteSpace: 'normal',
-                              lineHeight: '1.1',
-                              fontSize: '0.75rem'
-                            } : { minWidth: '40px', fontSize: '0.7rem' }}
+                            style={
+                              hasNoSub
+                                ? {
+                                    minWidth:
+                                      idx === 0 || idx === 1
+                                        ? "70px"
+                                        : idx >= headerConfig.columns.length - 3
+                                          ? "60px"
+                                          : "auto",
+                                    wordWrap: "break-word",
+                                    whiteSpace: "normal",
+                                    lineHeight: "1.1",
+                                    fontSize: "0.75rem",
+                                  }
+                                : { minWidth: "40px", fontSize: "0.7rem" }
+                            }
                           >
-                            {column.label.split('\n').map((line, lineIdx) => (
-                              <div key={lineIdx} className="leading-snug">{line}</div>
+                            {column.label.split("\n").map((line, lineIdx) => (
+                              <div key={lineIdx} className="leading-snug">
+                                {line}
+                              </div>
                             ))}
                           </th>
                         );
@@ -227,19 +301,24 @@ export default function TableDetail() {
                     {/* Sub-header row if needed */}
                     {headerConfig.columns.some((col) => col.sub) && (
                       <tr className="border-b-2 border-gray-300">
-                        {headerConfig.columns.map((column, idx) => (
-                          column.sub && column.sub.length > 0 ? (
-                            column.sub.map((subCol, subIdx) => (
-                              <th
-                                key={`${idx}-${subIdx}`}
-                                className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
-                                style={{ minWidth: '35px', wordWrap: 'break-word', whiteSpace: 'normal', lineHeight: '1.1' }}
-                              >
-                                {subCol}
-                              </th>
-                            ))
-                          ) : null
-                        ))}
+                        {headerConfig.columns.map((column, idx) =>
+                          column.sub && column.sub.length > 0
+                            ? column.sub.map((subCol, subIdx) => (
+                                <th
+                                  key={`${idx}-${subIdx}`}
+                                  className="px-1 sm:px-2 py-1 sm:py-2 text-xs font-semibold border-r border-blue-500 last:border-r-0 text-center"
+                                  style={{
+                                    minWidth: "35px",
+                                    wordWrap: "break-word",
+                                    whiteSpace: "normal",
+                                    lineHeight: "1.1",
+                                  }}
+                                >
+                                  {subCol}
+                                </th>
+                              ))
+                            : null,
+                        )}
                       </tr>
                     )}
                   </thead>
@@ -248,13 +327,19 @@ export default function TableDetail() {
                   <tbody>
                     {isLoading ? (
                       <tr className="border-b border-gray-200">
-                        <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
+                        <td
+                          colSpan={totalColSpan}
+                          className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm"
+                        >
                           Loading table data...
                         </td>
                       </tr>
                     ) : tableData.rows.length === 0 ? (
                       <tr className="border-b border-gray-200">
-                        <td colSpan={totalColSpan} className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm">
+                        <td
+                          colSpan={totalColSpan}
+                          className="px-3 sm:px-4 py-8 text-center text-gray-500 italic text-sm"
+                        >
                           No data available for this depth
                         </td>
                       </tr>
@@ -263,70 +348,127 @@ export default function TableDetail() {
                         const isLastRow = rowIdx === tableData.rows.length - 1;
                         const rowBgClass = isReferenceTable
                           ? rowIdx % 2 === 0
-                            ? 'bg-orange-100 hover:bg-orange-200'
-                            : 'bg-white hover:bg-orange-50'
+                            ? "bg-orange-100 hover:bg-orange-200"
+                            : "bg-white hover:bg-orange-50"
                           : isLastRow
-                          ? 'bg-red-50 hover:bg-red-100'
-                          : rowIdx % 2 === 0
-                          ? 'bg-white hover:bg-blue-50'
-                          : 'bg-green-50 hover:bg-blue-50';
+                            ? "bg-red-50 hover:bg-red-100"
+                            : rowIdx % 2 === 0
+                              ? "bg-white hover:bg-blue-50"
+                              : "bg-green-50 hover:bg-blue-50";
 
                         return (
-                        <tr
-                          key={rowIdx}
-                          className={`border-b transition-colors duration-150 cursor-pointer ${rowBgClass}`}
-                          style={{
-                            borderBottom: row.marker === 2 ? '3px solid #1f2937' : '1px solid #e5e7eb',
-                          }}
-                        >
-                          {isReferenceTable ? (
-                            // Reference Table Rendering (ND15, LND15) - 3 columns only
-                            <>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
-                                {row.stopDepths[0] !== null ? <span className="font-medium">{row.stopDepths[0]}</span> : <span className="text-gray-400">—</span>}
-                              </td>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
-                                {row.stopDepths[1] !== null ? <span className="font-medium">{row.stopDepths[1]}</span> : <span className="text-gray-400">—</span>}
-                              </td>
-                            </>
-                          ) : isOtuEsotTable ? (
-                            // OTU/ESOT Table Rendering
-                            <Fragment key={`otu-row-${rowIdx}`}>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                              {row.repetIntervals?.map((interval, intervalIdx) => (
-                                <Fragment key={`interval-${rowIdx}-${intervalIdx}`}>
-                                  <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
-                                    {interval.otu !== null ? <span className="font-medium">{interval.otu}</span> : <span className="text-gray-400">—</span>}
-                                  </td>
-                                  <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
-                                    {interval.esot !== null ? <span className="font-medium">{interval.esot}</span> : <span className="text-gray-400">—</span>}
-                                  </td>
-                                </Fragment>
-                              ))}
-                            </Fragment>
-                          ) : (
-                            // Standard Decompression Table Rendering
-                            <Fragment key={`std-row-${rowIdx}`}>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.diveTime}</td>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.tillFirstStop}</td>
-                              {row.stopDepths.map((depth, depthIdx) => (
-                                <td
-                                  key={`depth-${rowIdx}-${depthIdx}`}
-                                  className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
-                                    row.stopDepthsBlue?.[depthIdx] ? 'bg-blue-100' : ''
-                                  }`}
-                                >
-                                  {depth !== null ? <span className="font-medium">{depth}</span> : <span className="text-gray-400">—</span>}
+                          <tr
+                            key={rowIdx}
+                            className={`border-b transition-colors duration-150 cursor-pointer ${rowBgClass}`}
+                            style={{
+                              borderBottom:
+                                row.marker === 2
+                                  ? "3px solid #1f2937"
+                                  : "1px solid #e5e7eb",
+                            }}
+                          >
+                            {isReferenceTable ? (
+                              // Reference Table Rendering (ND15, LND15) - 3 columns only
+                              <>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">
+                                  {row.diveTime}
                                 </td>
-                              ))}
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">{row.totalDecoTime}</td>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalOTU}</td>
-                              <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">{row.totalESOT}</td>
-                            </Fragment>
-                          )}
-                        </tr>
-                      );
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                                  {row.stopDepths[0] !== null ? (
+                                    <span className="font-medium">
+                                      {row.stopDepths[0]}
+                                    </span>
+                                  ) : (
+                                    <span className="text-gray-400">—</span>
+                                  )}
+                                </td>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-600">
+                                  {row.stopDepths[1] !== null ? (
+                                    <span className="font-medium">
+                                      {row.stopDepths[1]}
+                                    </span>
+                                  ) : (
+                                    <span className="text-gray-400">—</span>
+                                  )}
+                                </td>
+                              </>
+                            ) : isOtuEsotTable ? (
+                              // OTU/ESOT Table Rendering
+                              <Fragment key={`otu-row-${rowIdx}`}>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">
+                                  {row.diveTime}
+                                </td>
+                                {row.repetIntervals?.map(
+                                  (interval, intervalIdx) => (
+                                    <Fragment
+                                      key={`interval-${rowIdx}-${intervalIdx}`}
+                                    >
+                                      <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                        {interval.otu !== null ? (
+                                          <span className="font-medium">
+                                            {interval.otu}
+                                          </span>
+                                        ) : (
+                                          <span className="text-gray-400">
+                                            —
+                                          </span>
+                                        )}
+                                      </td>
+                                      <td className="px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600">
+                                        {interval.esot !== null ? (
+                                          <span className="font-medium">
+                                            {interval.esot}
+                                          </span>
+                                        ) : (
+                                          <span className="text-gray-400">
+                                            —
+                                          </span>
+                                        )}
+                                      </td>
+                                    </Fragment>
+                                  ),
+                                )}
+                              </Fragment>
+                            ) : (
+                              // Standard Decompression Table Rendering
+                              <Fragment key={`std-row-${rowIdx}`}>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">
+                                  {row.diveTime}
+                                </td>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">
+                                  {row.tillFirstStop}
+                                </td>
+                                {row.stopDepths.map((depth, depthIdx) => (
+                                  <td
+                                    key={`depth-${rowIdx}-${depthIdx}`}
+                                    className={`px-1 sm:px-2 py-1.5 sm:py-2 text-center text-gray-600 ${
+                                      row.stopDepthsBlue?.[depthIdx]
+                                        ? "bg-blue-100"
+                                        : ""
+                                    }`}
+                                  >
+                                    {depth !== null ? (
+                                      <span className="font-medium">
+                                        {depth}
+                                      </span>
+                                    ) : (
+                                      <span className="text-gray-400">—</span>
+                                    )}
+                                  </td>
+                                ))}
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center font-medium text-gray-900">
+                                  {row.totalDecoTime}
+                                </td>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">
+                                  {row.totalOTU}
+                                </td>
+                                <td className="px-2 sm:px-3 py-1.5 sm:py-2 text-center text-gray-700">
+                                  {row.totalESOT}
+                                </td>
+                              </Fragment>
+                            )}
+                          </tr>
+                        );
                       })
                     )}
                   </tbody>
@@ -336,74 +478,119 @@ export default function TableDetail() {
 
             {/* Info Cards Section - Below Table (hidden for reference and treatment tables) */}
             {!isReferenceTable && !isTreatmentTable && (
-            <div className={`grid ${isOtuEsotTable ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'} gap-4 sm:gap-6 mb-8`}>
-              {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
-              {isOtuEsotTable ? (
-                <div className="w-1/2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">O2 %</p>
-                      <p className="text-2xl sm:text-3xl font-bold text-amber-900">{tableData.o2Percent !== undefined && tableData.o2Percent !== null ? tableData.o2Percent.toFixed(1) : '-'}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum Diving Depth</p>
-                      <p className="text-2xl sm:text-3xl font-bold text-amber-900">{selectedDepth !== null ? `${selectedDepth}m` : '-'}</p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
-                  <div className="space-y-3">
-                    {selectedDepth && (
+              <div
+                className={`grid ${isOtuEsotTable ? "grid-cols-1" : "grid-cols-1 md:grid-cols-3"} gap-4 sm:gap-6 mb-8`}
+              >
+                {/* Left: O2% Info for OTU/ESOT Tables, or Depth Info for others */}
+                {isOtuEsotTable ? (
+                  <div className="w-1/2 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+                    <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Maximum Diving Depth</p>
-                        <p className="text-2xl sm:text-3xl font-bold text-blue-900">{selectedDepth}m</p>
+                        <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">
+                          O2 %
+                        </p>
+                        <p className="text-2xl sm:text-3xl font-bold text-amber-900">
+                          {tableData.o2Percent !== undefined &&
+                          tableData.o2Percent !== null
+                            ? tableData.o2Percent.toFixed(1)
+                            : "-"}
+                        </p>
                       </div>
-                    )}
-                    <div className="pt-2 border-t border-blue-200">
-                      <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">Dvis 5 Time Limit</p>
-                      <p className="text-xl sm:text-2xl font-bold text-blue-900">{showDvis5 ? (tableData.dvis5Value !== null ? tableData.dvis5Value : '-') : '-'} min</p>
+                      <div>
+                        <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">
+                          Maximum Diving Depth
+                        </p>
+                        <p className="text-2xl sm:text-3xl font-bold text-amber-900">
+                          {selectedDepth !== null ? `${selectedDepth}m` : "-"}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-
-              {/* Center: Nitrox Info */}
-              {(showNitroxInfo || tableData.eadValue !== undefined) && (
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
-                  <div className="space-y-3">
-                    <div>
-                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Equivalent Air Depth</p>
-                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{tableData.eadValue !== undefined && tableData.eadValue !== null ? tableData.eadValue : '—'} m/sw</p>
-                    </div>
-                    <div className="pt-2 border-t border-amber-200">
-                      <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">Maximum PO₂</p>
-                      <p className="text-xl sm:text-2xl font-bold text-amber-900">{tableData.po2Value !== undefined && tableData.po2Value !== null ? tableData.po2Value : '—'}</p>
+                ) : (
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 sm:p-5 border border-blue-200">
+                    <div className="space-y-3">
+                      {selectedDepth && (
+                        <div>
+                          <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">
+                            Maximum Diving Depth
+                          </p>
+                          <p className="text-2xl sm:text-3xl font-bold text-blue-900">
+                            {selectedDepth}m
+                          </p>
+                        </div>
+                      )}
+                      <div className="pt-2 border-t border-blue-200">
+                        <p className="text-xs sm:text-sm font-semibold text-blue-700 uppercase tracking-wide">
+                          Dvis 5 Time Limit
+                        </p>
+                        <p className="text-xl sm:text-2xl font-bold text-blue-900">
+                          {showDvis5
+                            ? tableData.dvis5Value !== null
+                              ? tableData.dvis5Value
+                              : "-"
+                            : "-"}{" "}
+                          min
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* Right: Safety Guidelines - Only for non-OTU/ESOT tables */}
-              {!isOtuEsotTable && (
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
-                  <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">Safety Guidelines</p>
-                  <ul className="space-y-2 text-xs sm:text-sm text-green-900">
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold text-green-600 mt-0.5">•</span>
-                      <span>Stop time starts after arrival at the stop</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="font-bold text-green-600 mt-0.5">•</span>
-                      <span>Maximum ascent speed is 10 m/min</span>
-                    </li>
-                  </ul>
-                </div>
-              )}
+                {/* Center: Nitrox Info */}
+                {(showNitroxInfo || tableData.eadValue !== undefined) && (
+                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 sm:p-5 border border-amber-200">
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">
+                          Equivalent Air Depth
+                        </p>
+                        <p className="text-xl sm:text-2xl font-bold text-amber-900">
+                          {tableData.eadValue !== undefined &&
+                          tableData.eadValue !== null
+                            ? tableData.eadValue
+                            : "—"}{" "}
+                          m/sw
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-amber-200">
+                        <p className="text-xs sm:text-sm font-semibold text-amber-700 uppercase tracking-wide">
+                          Maximum PO₂
+                        </p>
+                        <p className="text-xl sm:text-2xl font-bold text-amber-900">
+                          {tableData.po2Value !== undefined &&
+                          tableData.po2Value !== null
+                            ? tableData.po2Value
+                            : "—"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
-            </div>
+                {/* Right: Safety Guidelines - Only for non-OTU/ESOT tables */}
+                {!isOtuEsotTable && (
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 sm:p-5 border border-green-200">
+                    <p className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide mb-2">
+                      Safety Guidelines
+                    </p>
+                    <ul className="space-y-2 text-xs sm:text-sm text-green-900">
+                      <li className="flex items-start gap-2">
+                        <span className="font-bold text-green-600 mt-0.5">
+                          •
+                        </span>
+                        <span>Stop time starts after arrival at the stop</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="font-bold text-green-600 mt-0.5">
+                          •
+                        </span>
+                        <span>Maximum ascent speed is 10 m/min</span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             )}
-
           </div>
         </div>
       </div>

@@ -375,14 +375,16 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Gas Mix" },
     ],
   },
-  "USN-T5": {
-    title: "US Navy Oxygen Treatment Table 5",
+  "USN-T4": {
+    title: "US Navy Oxygen Treatment Table 4",
     columns: [
       { label: "Phase" },
       { label: "Depth (metres)" },
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/usn-t4.png",
   },
   "USN-T6": {
     title: "US Navy Oxygen Treatment Table 6",

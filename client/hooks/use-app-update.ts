@@ -5,21 +5,32 @@ export const useAppUpdate = () => {
   const { toast } = useToast();
   const versionCheckRef = useRef<NodeJS.Timeout | null>(null);
   const lastVersionRef = useRef<string | null>(null);
+  const notificationShownRef = useRef(false);
 
   useEffect(() => {
-    // Get initial version from meta tag or data attribute
+    // Get initial version from manifest
     const getAppVersion = async () => {
       try {
-        // Check the manifest.json which updates on every build
         const response = await fetch('/manifest.json?bust=' + Date.now(), {
           headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' }
         });
         const manifest = await response.json();
         return manifest.version || new Date().getTime().toString();
       } catch (error) {
-        // Fallback: use index.html's last modified time
         return new Date().getTime().toString();
       }
+    };
+
+    const refreshApp = () => {
+      // Clear all caches and reload
+      if ('caches' in window) {
+        caches.keys().then(cacheNames => {
+          cacheNames.forEach(cacheName => {
+            caches.delete(cacheName);
+          });
+        });
+      }
+      window.location.reload();
     };
 
     const checkForUpdates = async () => {
@@ -29,34 +40,32 @@ export const useAppUpdate = () => {
         if (lastVersionRef.current === null) {
           // First check - store the version
           lastVersionRef.current = currentVersion;
-        } else if (lastVersionRef.current !== currentVersion) {
-          // Version changed - update is available
-          const handleRefresh = () => {
-            // Clear all caches and reload
-            if ('caches' in window) {
-              caches.keys().then(cacheNames => {
-                cacheNames.forEach(cacheName => {
-                  caches.delete(cacheName);
-                });
-              });
-            }
-            window.location.reload();
-          };
-
-          // Create the action button element
-          const actionButton = document.createElement('button');
-          actionButton.textContent = 'Refresh';
-          actionButton.className = 'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 px-3 bg-primary text-primary-foreground hover:bg-primary/90';
-          actionButton.onclick = handleRefresh;
-
+        } else if (lastVersionRef.current !== currentVersion && !notificationShownRef.current) {
+          // Version changed - show update notification
+          notificationShownRef.current = true;
+          
+          // Show notification with description that includes refresh instructions
           toast({
             title: "Update Available",
-            description: "A new version of the app is available. Please refresh to get the latest features and fixes.",
-            action: actionButton as any,
-            duration: 0, // Show until dismissed
+            description: "A new version is ready. Refresh your browser to get the latest updates.",
+            duration: 0, // Persistent notification
           });
 
-          // Update the reference
+          // Auto-refresh after 5 seconds if user hasn't interacted
+          const autoRefreshTimer = setTimeout(() => {
+            refreshApp();
+          }, 5000);
+
+          // Cancel auto-refresh on any user interaction
+          const handleUserInteraction = () => {
+            clearTimeout(autoRefreshTimer);
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+          };
+          
+          document.addEventListener('click', handleUserInteraction);
+          document.addEventListener('keydown', handleUserInteraction);
+
           lastVersionRef.current = currentVersion;
         }
       } catch (error) {

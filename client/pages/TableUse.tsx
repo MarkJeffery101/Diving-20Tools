@@ -502,8 +502,8 @@ export default function TableUse() {
             </div>
           </div>
 
-          {/* Info Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          {/* Info Cards Grid - moved to bottom */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" style={{display: 'none'}}>
             {infoCards.map((card) => (
               <Card key={card.id} className={`${card.color} border-2`}>
                 <CardHeader className="pb-3">

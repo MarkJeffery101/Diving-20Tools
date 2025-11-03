@@ -442,7 +442,7 @@ export default function TableUse() {
       useFor: 'Type I & II DCS if symptoms don\'t disappear within 10 min at 18 msw, and air embolism',
       keyParameters: [
         '• Descent rate: 7.5 msw/min',
-        '�� Ascent rate: 0.3 msw/min',
+        '• Ascent rate: 0.3 msw/min',
         '• Can be lengthened 25 min at 18 msw or 75 min at 9 msw',
         '• Longest treatment table for serious symptoms',
       ],

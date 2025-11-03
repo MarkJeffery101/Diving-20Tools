@@ -177,6 +177,7 @@ const tablesData: Level1Item[] = [
       { name: "Air Treatment Table 1A", code: "AIR-1A" },
       { name: "Air Treatment Table 2A", code: "AIR-2A" },
       { name: "Air Treatment Table 3", code: "AIR-3" },
+      { name: "Air Treatment Table 4", code: "AIR-4" },
     ],
   },
 ];

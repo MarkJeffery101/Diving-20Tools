@@ -602,6 +602,74 @@ export default function TableUse() {
     </Dialog>
   );
 
+  const renderTreatmentTableButton = (table: TreatmentTableType) => (
+    <Dialog key={table.id}>
+      <DialogTrigger asChild>
+        <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
+          <div className="space-y-2">
+            <div className="flex items-start gap-2 mb-1">
+              <Badge className="text-xs font-mono h-6">{table.code}</Badge>
+            </div>
+            <h4 className="font-semibold text-sm text-gray-900">{table.name}</h4>
+            <p className="text-xs text-gray-600">{table.useFor}</p>
+          </div>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <div className="flex items-start justify-between gap-4">
+            <DialogTitle className="text-xl">{table.name}</DialogTitle>
+            <Badge className="text-xs font-mono h-6">{table.code}</Badge>
+          </div>
+        </DialogHeader>
+
+        <div className="space-y-4 py-4">
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">Use For:</h4>
+            <p className="text-sm text-gray-700">{table.useFor}</p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">Key Parameters:</h4>
+            <ul className="text-xs text-gray-700 space-y-1">
+              {table.keyParameters.map((param, idx) => (
+                <li key={idx} className="text-gray-700">{param}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">Schedule:</h4>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs border border-gray-300">
+                <thead className={`${table.headerBgColor} text-gray-900`}>
+                  <tr>
+                    {table.scheduleColumns.map((col, idx) => (
+                      <th key={idx} className="px-2 py-1 text-left border">
+                        {col}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-xs">
+                  {table.schedule.map((row, idx) => (
+                    <tr key={idx} className={idx % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'}>
+                      <td className="px-2 py-1 border">{row.depth}</td>
+                      <td className="px-2 py-1 text-center border">{row.time}</td>
+                      {row.gas && <td className="px-2 py-1 text-center border">{row.gas}</td>}
+                      <td className="px-2 py-1 text-right border">{row.total}</td>
+                      {row.otuOrOther && <td className="px-2 py-1 text-right border">{row.otuOrOther}</td>}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">
       <Navigation />

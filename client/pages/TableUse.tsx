@@ -527,14 +527,16 @@ export default function TableUse() {
             {/* Left: Diving Tables */}
             <div>
               <Card className="h-full">
-                <CardHeader className="border-b">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <BookOpen className="w-5 h-5" />
-                    Diving Tables
-                  </CardTitle>
-                  <CardDescription className="text-xs">
-                    Select table and procedure type
-                  </CardDescription>
+                <CardHeader className="border-b pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <BookOpen className="w-5 h-5" />
+                      Diving Tables
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      Select table and procedure type
+                    </CardDescription>
+                  </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   {tables.map((table) => (
@@ -571,14 +573,16 @@ export default function TableUse() {
             {/* Right: Emergency Flowcharts */}
             <div>
               <Card className="h-full">
-                <CardHeader className="border-b">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5" />
-                    Emergency Flowcharts
-                  </CardTitle>
-                  <CardDescription className="text-xs">
-                    Interactive decision trees
-                  </CardDescription>
+                <CardHeader className="border-b pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5" />
+                      Emergency Flowcharts
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      Interactive decision trees
+                    </CardDescription>
+                  </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
                   {renderFlowchartButton(

@@ -539,23 +539,22 @@ export default function TableUse() {
                 <CardContent className="pt-4 space-y-4">
                   {tables.map((table) => (
                     <div key={table.id} className="border-b pb-4 last:border-b-0 last:pb-0">
-                      <div className="mb-2">
+                      {/* Title and Badge codes on same row */}
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <h3 className="font-semibold text-sm text-gray-900">
                           {table.name}
                         </h3>
-                        <p className="text-xs text-gray-600 mt-0.5">
-                          {table.description}
-                        </p>
-                      </div>
-
-                      {/* Badge codes */}
-                      <div className="flex flex-wrap gap-1 mb-2">
                         {table.codes.map((code) => (
                           <Badge key={code} variant="outline" className="text-xs font-mono h-6">
                             {code}
                           </Badge>
                         ))}
                       </div>
+
+                      {/* Description */}
+                      <p className="text-xs text-gray-600 mb-2">
+                        {table.description}
+                      </p>
 
                       {/* Procedure buttons */}
                       <div className="flex flex-wrap gap-1.5">

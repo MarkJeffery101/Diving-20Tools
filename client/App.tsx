@@ -23,27 +23,24 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <TourProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <TourPopup />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/tables" element={<Tables />} />
-              <Route path="/tables/:id" element={<TableDetail />} />
-              <Route path="/table-selection" element={<TableSelection />} />
-              <Route path="/table-use" element={<TableUse />} />
-              <Route path="/tools" element={<Tools />} />
-              <Route path="/share" element={<Share />} />
-              <Route path="/supporting-info" element={<SupportingInfo />} />
-              <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
-              <Route path="/emergency-procedures" element={<EmergencyProcedures />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TourProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/tables" element={<Tables />} />
+            <Route path="/tables/:id" element={<TableDetail />} />
+            <Route path="/table-selection" element={<TableSelection />} />
+            <Route path="/table-use" element={<TableUse />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/share" element={<Share />} />
+            <Route path="/supporting-info" element={<SupportingInfo />} />
+            <Route path="/treatment-protocols" element={<TreatmentProtocols />} />
+            <Route path="/emergency-procedures" element={<EmergencyProcedures />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

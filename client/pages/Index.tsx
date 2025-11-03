@@ -8,7 +8,7 @@ export default function Index() {
       title: "Dive Tables",
       description:
         "Commercial, air, and nitrox tables with depth, time, and decompression schedules",
-      icon: Database,
+      iconId: "icon-dive-tables",
       href: "/tables",
       color: "bg-ocean-50 border-ocean-200 text-ocean-700",
     },
@@ -16,7 +16,7 @@ export default function Index() {
       title: "Table Selection Logic",
       description:
         "Interactive decision tree to find the right table for your dive",
-      icon: TrendingDown,
+      iconId: "icon-selection-logic",
       href: "/table-selection",
       color: "bg-blue-50 border-blue-200 text-blue-700",
     },
@@ -24,7 +24,7 @@ export default function Index() {
       title: "Safety Limits & Guidance",
       description:
         "Oxygen toxicity, nitrogen narcosis, and critical planning considerations",
-      icon: BookOpen,
+      iconId: "icon-safety-limits",
       href: "/supporting-info",
       color: "bg-green-50 border-green-200 text-green-700",
     },
@@ -32,7 +32,7 @@ export default function Index() {
       title: "Treatment Protocols",
       description:
         "DCS & AGE treatment tables with step schedules and oxygen protocols",
-      icon: Shield,
+      iconId: "icon-treatment",
       href: "/supporting-info",
       color: "bg-purple-50 border-purple-200 text-purple-700",
     },
@@ -40,7 +40,7 @@ export default function Index() {
       title: "Emergency Procedures",
       description:
         "Flowcharts and decision trees for rapid emergency response",
-      icon: AlertCircle,
+      iconId: "icon-emergency",
       href: "/emergency-flowcharts",
       color: "bg-red-50 border-red-200 text-red-700",
     },
@@ -48,7 +48,7 @@ export default function Index() {
       title: "Nitrox & Special Mixes",
       description:
         "SOX15, SAB15, and NIA/NIB nitrox tables with oxygen limits",
-      icon: Zap,
+      iconId: "icon-nitrox",
       href: "/tables",
       color: "bg-amber-50 border-amber-200 text-amber-700",
     },

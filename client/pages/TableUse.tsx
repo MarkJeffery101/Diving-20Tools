@@ -410,7 +410,7 @@ export default function TableUse() {
     {
       id: 'usnt5',
       code: 'USN-5',
-      name: 'US Navy Oxygen Treatment Table 5',
+      name: 'US Navy Oxygen Treatment Table 4',
       useFor: 'Prevention (omitted decompression with no symptoms) and mild forms of skin-bends',
       keyParameters: [
         '• Descent rate: Rapid descent',
@@ -1001,7 +1001,7 @@ export default function TableUse() {
                 {/* USN-5 */}
                 <Card>
                   <CardHeader className="bg-green-50 border-b">
-                    <CardTitle className="text-base">US Navy Oxygen Treatment Table 5</CardTitle>
+                    <CardTitle className="text-base">US Navy Oxygen Treatment Table 4</CardTitle>
                     <Badge className="w-fit mt-2">USN-5</Badge>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">

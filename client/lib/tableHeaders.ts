@@ -6,6 +6,8 @@ export interface ColumnHeader {
 export interface TableHeaderConfig {
   title: string;
   columns: ColumnHeader[];
+  isImageTable?: boolean;
+  imageUrl?: string;
 }
 
 export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {

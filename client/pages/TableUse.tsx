@@ -414,9 +414,9 @@ export default function TableUse() {
       useFor: 'Prevention (omitted decompression with no symptoms) and mild forms of skin-bends',
       keyParameters: [
         '• Descent rate: Rapid descent',
-        '• Ascent rate: 0.3 msw/min',
-        '• Time at 18 msw starts on arrival',
-        '• Can switch to Table 6 if O₂ problems arise',
+        '• Air breaks recommended between oxygen periods',
+        '• Can extend initial depth time if needed',
+        '• Total treatment up to 47+ hours at deepest depths',
       ],
       schedule: [
         { depth: '18', time: '20', gas: 'O2', total: '00:20', otuOrOther: '71' },

@@ -387,28 +387,6 @@ export default function TableUse() {
   const treatmentTables: TreatmentTableType[] = [
     {
       id: 'cx12',
-      code: 'CX12',
-      name: 'COMEX Table CX 12',
-      useFor: 'Mild forms of skin-bends (purple blotching rash only) and treatment of residual symptoms',
-      keyParameters: [
-        '• Descent rate: 2 msw/min',
-        '• Ascent rate: 0.5 msw/min',
-        '• Symptoms relieved within 4 min at ≤8 msw',
-        '• Only on prescription by diving physician',
-      ],
-      schedule: [
-        { depth: '18', time: '20', gas: 'O2', total: '00:20', otuOrOther: '71' },
-        { depth: '18', time: '5', gas: 'Air', total: '00:25', otuOrOther: '73' },
-        { depth: '18-9', time: '30', gas: 'O2', total: '01:45', otuOrOther: '307' },
-        { depth: '9', time: '60', gas: 'O2', total: '03:00', otuOrOther: '448' },
-        { depth: '9', time: '60', gas: 'O2', total: '04:15', otuOrOther: '590' },
-        { depth: '9-0', time: '30', gas: 'O2', total: '04:45', otuOrOther: '641' },
-      ],
-      headerBgColor: 'bg-green-50',
-      scheduleColumns: ['Pressure (msw)', 'Time (min)', 'Gas', 'Total (min)', 'OTU'],
-    },
-    {
-      id: 'cx12',
       code: 'CX-12',
       name: 'COMEX Table CX 12',
       useFor: 'Mild decompression sickness and air embolism (only on prescription)',

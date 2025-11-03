@@ -367,6 +367,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/cx12.png",
   },
   CX30: {
     title: "COMEX Table CX 30 - Treatment",
@@ -376,6 +378,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/cx30.png",
   },
   "USN-T4": {
     title: "US Navy Oxygen Treatment Table 4",
@@ -396,6 +400,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/usn-t6.png",
   },
   "AIR-T1A": {
     title: "Air Treatment Table 1A",
@@ -405,6 +411,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/air-t1a.png",
   },
   "AIR-T2A": {
     title: "Air Treatment Table 2A",
@@ -414,6 +422,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/air-t2a.png",
   },
   "AIR-T3": {
     title: "Air Treatment Table 3",
@@ -423,6 +433,8 @@ export const tableHeaderConfigs: Record<string, TableHeaderConfig> = {
       { label: "Time (minutes)" },
       { label: "Gas Mix" },
     ],
+    isImageTable: true,
+    imageUrl: "/images/treatment-tables/air-t3.png",
   },
 };
 

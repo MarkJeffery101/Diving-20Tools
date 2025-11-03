@@ -422,7 +422,7 @@ export default function TableUse() {
         { depth: '18', time: '20', gas: 'O₂', total: '00:20', otuOrOther: '71' },
         { depth: '18', time: '5', gas: 'Air', total: '00:25', otuOrOther: '73' },
         { depth: '18', time: '20', gas: 'O₂', total: '00:45', otuOrOther: '144' },
-        { depth: '18-Sep', time: '30', gas: 'O₂', total: '01:15', otuOrOther: '233' },
+        { depth: '18-9', time: '30', gas: 'O₂', total: '01:15', otuOrOther: '233' },
         { depth: '9', time: '5', gas: 'Air', total: '01:20', otuOrOther: '233' },
         { depth: '9', time: '20', gas: 'O���', total: '01:40', otuOrOther: '280' },
         { depth: '9', time: '5', gas: 'Air', total: '01:45', otuOrOther: '280' },

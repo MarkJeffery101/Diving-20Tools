@@ -419,11 +419,11 @@ export default function TableUse() {
         '• Total treatment up to 47+ hours at deepest depths',
       ],
       schedule: [
-        { depth: '18', time: '20', gas: 'O2', total: '00:20', otuOrOther: '71' },
-        { depth: '18', time: '5', gas: 'Air', total: '00:25', otuOrOther: '73' },
-        { depth: '18', time: '20', gas: 'O2', total: '00:45', otuOrOther: '144' },
-        { depth: '18-9', time: '30', gas: 'O2', total: '01:15', otuOrOther: '233' },
-        { depth: '9', time: '5', gas: 'Air', total: '01:20', otuOrOther: '233' },
+        { depth: '50', time: '30-120', total: '02:00', otuOrOther: '43-170' },
+        { depth: '42', time: '30', total: '02:31', otuOrOther: '209' },
+        { depth: '36', time: '30', total: '03:02', otuOrOther: '239' },
+        { depth: '30', time: '30', total: '03:33', otuOrOther: '262' },
+        { depth: '24', time: '30', total: '04:04', otuOrOther: '278' },
         { depth: '9', time: '20', gas: 'O���', total: '01:40', otuOrOther: '280' },
         { depth: '9', time: '5', gas: 'Air', total: '01:45', otuOrOther: '280' },
         { depth: '9-0', time: '30', gas: 'O2', total: '02:15', otuOrOther: '331' },
@@ -1286,7 +1286,7 @@ export default function TableUse() {
               </div>
 
               <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 rounded">
-                <p className="text-xs font-semibold text-red-900">⚠️ Critical Warning:</p>
+                <p className="text-xs font-semibold text-red-900">��️ Critical Warning:</p>
                 <p className="text-xs text-red-800 mt-1">
                   Air treatment tables are provided only for oxygen system failure. In the 1960s, these tables showed a 50% recurrence rate of DCS symptoms because air breathing at depth increases nitrogen loading. Use oxygen treatment tables whenever possible. Prevent oxygen delivery failure at all costs.
                 </p>

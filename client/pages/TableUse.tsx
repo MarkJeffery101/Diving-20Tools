@@ -1329,33 +1329,35 @@ export default function TableUse() {
     description: string,
     icon: string,
     component: React.ReactNode | null,
-  ) => (
-    <Dialog key={id} open={openDialog === id} onOpenChange={(open) => setOpenDialog(open ? id : null)}>
-      <DialogTrigger asChild>
-        <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
-          <div className="flex items-start gap-2">
-            <span className="text-lg flex-shrink-0">{icon}</span>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-xs text-gray-900">{title}</p>
-              <p className="text-xs text-gray-600 mt-0.5">{description}</p>
+  ) => {
+    return (
+      <Dialog key={id} open={openDialog === id} onOpenChange={(open) => setOpenDialog(open ? id : null)}>
+        <DialogTrigger asChild>
+          <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
+            <div className="flex items-start gap-2">
+              <span className="text-lg flex-shrink-0">{icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-xs text-gray-900">{title}</p>
+                <p className="text-xs text-gray-600 mt-0.5">{description}</p>
+              </div>
             </div>
+          </button>
+        </DialogTrigger>
+        <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-lg">{title}</DialogTitle>
+          </DialogHeader>
+          <div className="mt-6 p-4 bg-white rounded border border-blue-200">
+            {component ? (
+              component
+            ) : (
+              <p className="text-sm text-gray-600">Flowchart for {title}</p>
+            )}
           </div>
-        </button>
-      </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-lg">{title}</DialogTitle>
-        </DialogHeader>
-        <div className="mt-6 p-4 bg-white rounded border border-blue-200">
-          {component ? (
-            component
-          ) : (
-            <p className="text-sm text-gray-600">Flowchart for {title}</p>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
+        </DialogContent>
+      </Dialog>
+    );
+  };
 
   const renderProcedureButton = (
     procedure: ProcedureData,

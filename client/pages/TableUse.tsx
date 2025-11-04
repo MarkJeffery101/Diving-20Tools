@@ -1736,12 +1736,12 @@ export default function TableUse() {
                     icon="📈"
                     component={<IrregularityDuringDecompression />}
                   />
-                  {renderFlowchartButton(
-                    "treatment-tables-guide",
-                    "Treatment Tables (DCS & CAGE)",
-                    "When to use treatment tables - decision tree and logic",
-                    "💊",
-                    <div className="space-y-4">
+                  <FlowchartDialog
+                    id="treatment-tables-guide"
+                    title="Treatment Tables (DCS & CAGE)"
+                    description="When to use treatment tables - decision tree and logic"
+                    icon="💊"
+                    component={<div className="space-y-4">
                       <div>
                         <h4 className="font-semibold text-sm text-gray-900 mb-2">
                           Important First Steps:
@@ -1809,8 +1809,8 @@ export default function TableUse() {
                           costs.
                         </p>
                       </div>
-                    </div>,
-                  )}
+                    </div>}
+                  />
                 </CardContent>
               </Card>
             </div>

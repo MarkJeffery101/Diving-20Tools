@@ -1697,9 +1697,11 @@ export default function TableUse() {
                 </CardHeader>
                 <CardContent className="pt-4">
                   <div className="grid grid-cols-1 gap-3">
-                    {treatmentTables.map((table) =>
-                      renderTreatmentTableButton(table),
-                    )}
+                    {treatmentTables.map((table) => (
+                      <div key={table.id}>
+                        {renderTreatmentTableButton(table)}
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -2362,7 +2364,7 @@ export default function TableUse() {
                                 60
                               </td>
                               <td className="px-2 py-1 text-center border">
-                                O₂
+                                O���
                               </td>
                               <td className="px-2 py-1 text-center border">
                                 03:00

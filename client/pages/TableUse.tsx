@@ -1659,9 +1659,9 @@ export default function TableUse() {
 
                       {/* Procedure buttons */}
                       <div className="flex flex-wrap gap-1.5">
-                        {table.procedures.normal && renderProcedureButton(table.procedures.normal, "Normal Use", table.id)}
-                        {table.procedures.emergency && renderProcedureButton(table.procedures.emergency, "Emergency", table.id)}
-                        {table.procedures.crashDive && renderProcedureButton(table.procedures.crashDive, "Crash Dive", table.id)}
+                        {table.procedures.normal && <ProcedureDialog key={`${table.id}-normal`} procedure={table.procedures.normal} label="Normal Use" tableId={table.id} />}
+                        {table.procedures.emergency && <ProcedureDialog key={`${table.id}-emergency`} procedure={table.procedures.emergency} label="Emergency" tableId={table.id} />}
+                        {table.procedures.crashDive && <ProcedureDialog key={`${table.id}-crashDive`} procedure={table.procedures.crashDive} label="Crash Dive" tableId={table.id} />}
                       </div>
                     </div>
                   ))}
@@ -1801,7 +1801,7 @@ export default function TableUse() {
 
                       <div className="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
                         <p className="text-xs font-semibold text-amber-900">
-                          ���️ Note:
+                          ⚠️ Note:
                         </p>
                         <p className="text-xs text-amber-800">
                           Air treatment tables are provided with reluctance and

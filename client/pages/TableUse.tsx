@@ -69,37 +69,40 @@ interface TreatmentTableType {
 
 export default function TableUse() {
 
-  const infoCards = [
-    {
-      id: "critical-time",
-      icon: <Clock className="w-5 h-5" />,
-      title: "Critical Time Limits",
-      points: [
-        "Surface to chamber: 3 min",
-        "Extended (clearing): 5 min",
-        "Ascent speed: 5-10 m/min",
-      ],
-      color: "bg-red-50 border-red-200",
-    },
-    {
-      id: "oxygen",
-      icon: <Zap className="w-5 h-5" />,
-      title: "Oxygen Limits",
-      points: ["Max PO₂: 1.6 bar", "IMCA limit: 1.4 bar", "Daily OTU: 450 max"],
-      color: "bg-amber-50 border-amber-200",
-    },
-    {
-      id: "standby",
-      icon: <AlertTriangle className="w-5 h-5" />,
-      title: "Standby Periods",
-      points: [
-        "With O₂: 2 hours",
-        "Without O₂: 4 hours",
-        "Min repeat: 2-12 hours",
-      ],
-      color: "bg-cyan-50 border-cyan-200",
-    },
-  ];
+  const infoCards = useMemo(
+    () => [
+      {
+        id: "critical-time",
+        icon: <Clock className="w-5 h-5" />,
+        title: "Critical Time Limits",
+        points: [
+          "Surface to chamber: 3 min",
+          "Extended (clearing): 5 min",
+          "Ascent speed: 5-10 m/min",
+        ],
+        color: "bg-red-50 border-red-200",
+      },
+      {
+        id: "oxygen",
+        icon: <Zap className="w-5 h-5" />,
+        title: "Oxygen Limits",
+        points: ["Max PO₂: 1.6 bar", "IMCA limit: 1.4 bar", "Daily OTU: 450 max"],
+        color: "bg-amber-50 border-amber-200",
+      },
+      {
+        id: "standby",
+        icon: <AlertTriangle className="w-5 h-5" />,
+        title: "Standby Periods",
+        points: [
+          "With O₂: 2 hours",
+          "Without O₂: 4 hours",
+          "Min repeat: 2-12 hours",
+        ],
+        color: "bg-cyan-50 border-cyan-200",
+      },
+    ],
+    []
+  );
 
   const tables = useMemo(() => [
     {

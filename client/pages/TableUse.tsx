@@ -1444,8 +1444,8 @@ export default function TableUse() {
     </Dialog>
   ));
 
-  const renderTreatmentTableButton = (table: TreatmentTableType) => (
-    <Dialog key={table.id}>
+  const TreatmentTableDialog = React.memo(({ table }: { table: TreatmentTableType }) => (
+    <Dialog>
       <DialogTrigger asChild>
         <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
           <div className="space-y-2">
@@ -1551,7 +1551,7 @@ export default function TableUse() {
         </div>
       </DialogContent>
     </Dialog>
-  );
+  ));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">
@@ -1801,7 +1801,7 @@ export default function TableUse() {
 
                       <div className="bg-amber-100 border-l-4 border-amber-500 p-3 rounded">
                         <p className="text-xs font-semibold text-amber-900">
-                          ⚠️ Note:
+                          ���️ Note:
                         </p>
                         <p className="text-xs text-amber-800">
                           Air treatment tables are provided with reluctance and
@@ -2253,7 +2253,7 @@ export default function TableUse() {
                       </h4>
                       <ul className="text-xs text-gray-700 space-y-0.5">
                         <li>• Descent rate: 7.5 msw/min</li>
-                        <li>�� Ascent rate: 0.3 msw/min</li>
+                        <li>• Ascent rate: 0.3 msw/min</li>
                         <li>
                           • Can be lengthened 25 min at 18 msw or 75 min at 9
                           msw

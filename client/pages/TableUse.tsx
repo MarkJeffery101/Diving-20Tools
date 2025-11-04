@@ -1441,7 +1441,7 @@ export default function TableUse() {
   };
 
   const renderTreatmentTableButton = (table: TreatmentTableType) => (
-    <Dialog key={table.id}>
+    <Dialog key={table.id} open={openTreatmentDialog === table.id} onOpenChange={(open) => setOpenTreatmentDialog(open ? table.id : null)}>
       <DialogTrigger asChild>
         <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
           <div className="space-y-2">

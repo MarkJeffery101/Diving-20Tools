@@ -1648,24 +1648,33 @@ export default function TableUse() {
 
                       {/* Procedure buttons */}
                       <div className="flex flex-wrap gap-1.5">
-                        {table.procedures.normal &&
-                          renderProcedureButton(
-                            table.procedures.normal,
-                            "Normal Use",
-                            table.id,
-                          )}
-                        {table.procedures.emergency &&
-                          renderProcedureButton(
-                            table.procedures.emergency,
-                            "Emergency",
-                            table.id,
-                          )}
-                        {table.procedures.crashDive &&
-                          renderProcedureButton(
-                            table.procedures.crashDive,
-                            "Crash Dive",
-                            table.id,
-                          )}
+                        {table.procedures.normal && (
+                          <div key={`${table.id}-normal`}>
+                            {renderProcedureButton(
+                              table.procedures.normal,
+                              "Normal Use",
+                              table.id,
+                            )}
+                          </div>
+                        )}
+                        {table.procedures.emergency && (
+                          <div key={`${table.id}-emergency`}>
+                            {renderProcedureButton(
+                              table.procedures.emergency,
+                              "Emergency",
+                              table.id,
+                            )}
+                          </div>
+                        )}
+                        {table.procedures.crashDive && (
+                          <div key={`${table.id}-crashDive`}>
+                            {renderProcedureButton(
+                              table.procedures.crashDive,
+                              "Crash Dive",
+                              table.id,
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}

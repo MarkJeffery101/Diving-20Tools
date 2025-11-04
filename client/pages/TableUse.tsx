@@ -1319,14 +1319,20 @@ export default function TableUse() {
     },
   ];
 
-  const renderFlowchartButton = (
-    id: string,
-    title: string,
-    description: string,
-    icon: string,
-    component: React.ReactNode | null,
-  ) => (
-    <Dialog key={id}>
+  const FlowchartDialog = React.memo(({
+    id,
+    title,
+    description,
+    icon,
+    component,
+  }: {
+    id: string;
+    title: string;
+    description: string;
+    icon: string;
+    component: React.ReactNode | null;
+  }) => (
+    <Dialog>
       <DialogTrigger asChild>
         <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
           <div className="flex items-start gap-2">
@@ -1351,7 +1357,7 @@ export default function TableUse() {
         </div>
       </DialogContent>
     </Dialog>
-  );
+  ));
 
   const renderProcedureButton = (
     procedure: ProcedureData,

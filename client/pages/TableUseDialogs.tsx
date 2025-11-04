@@ -124,7 +124,7 @@ export const ProcedureDialog = React.memo(
         </div>
       </DialogContent>
     </Dialog>
-  )
+  ),
 );
 
 ProcedureDialog.displayName = "ProcedureDialog";
@@ -237,7 +237,7 @@ export const TreatmentTableDialog = React.memo(
         </div>
       </DialogContent>
     </Dialog>
-  )
+  ),
 );
 
 TreatmentTableDialog.displayName = "TreatmentTableDialog";

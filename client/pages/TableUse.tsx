@@ -101,7 +101,7 @@ export default function TableUse() {
     },
   ];
 
-  const tables: TableType[] = [
+  const tables = useMemo(() => [
     {
       id: "sil15",
       name: "Standard Air Tables",
@@ -513,7 +513,7 @@ export default function TableUse() {
             },
             {
               type: "title",
-              text: "2. Ascend to surface at rate ≤ 10 metres per minute (ignore all stops already made)",
+              text: "2. Ascend to surface at rate �� 10 metres per minute (ignore all stops already made)",
             },
             {
               type: "title",
@@ -745,9 +745,9 @@ export default function TableUse() {
         },
       },
     },
-  ];
+  ], []);
 
-  const treatmentTables: TreatmentTableType[] = [
+  const treatmentTables = useMemo(() => [
     {
       id: "cx12",
       code: "CX-12",
@@ -1317,7 +1317,7 @@ export default function TableUse() {
       headerBgColor: "bg-gray-100",
       scheduleColumns: ["Depth (msw)", "Time (min)", "Total (hr:min)", "OTU"],
     },
-  ];
+  ], []);
 
   const FlowchartDialog = React.memo(({
     id,

@@ -1684,7 +1684,7 @@ export default function TableUse() {
                 </CardHeader>
                 <CardContent className="pt-4">
                   <div className="grid grid-cols-1 gap-3">
-                    {treatmentTables.map((table) => renderTreatmentTableButton(table))}
+                    {treatmentTables.map((table) => <TreatmentTableDialog key={table.id} table={table} />)}
                   </div>
                 </CardContent>
               </Card>

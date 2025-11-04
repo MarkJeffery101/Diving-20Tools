@@ -1441,116 +1441,114 @@ export default function TableUse() {
     );
   };
 
-  const renderTreatmentTableButton = (table: TreatmentTableType) => {
-    return (
-      <Dialog key={table.id} open={openTreatmentDialog === table.id} onOpenChange={(open) => setOpenTreatmentDialog(open ? table.id : null)}>
-        <DialogTrigger asChild>
-          <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <h4 className="font-semibold text-sm text-gray-900">
-                  {table.name}
-                </h4>
-                <Badge className="text-xs font-mono h-6 flex-shrink-0">
-                  {table.code}
-                </Badge>
-              </div>
-              <p className="text-xs text-gray-600">{table.useFor}</p>
-            </div>
-          </button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          <DialogHeader>
-            <div className="flex items-start justify-between gap-4">
-              <DialogTitle className="text-xl">{table.name}</DialogTitle>
-              <Badge className="text-xs font-mono h-6">{table.code}</Badge>
-            </div>
-          </DialogHeader>
-
-          <div className="space-y-4 py-4">
-            <div>
-              <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                Use For:
+  const renderTreatmentTableButton = (table: TreatmentTableType) => (
+    <Dialog key={table.id} open={openTreatmentDialog === table.id} onOpenChange={(open) => setOpenTreatmentDialog(open ? table.id : null)}>
+      <DialogTrigger asChild>
+        <button className="p-3 rounded border border-gray-200 bg-white hover:bg-gray-50 transition-colors text-left h-full">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <h4 className="font-semibold text-sm text-gray-900">
+                {table.name}
               </h4>
-              <p className="text-sm text-gray-700">{table.useFor}</p>
+              <Badge className="text-xs font-mono h-6 flex-shrink-0">
+                {table.code}
+              </Badge>
             </div>
+            <p className="text-xs text-gray-600">{table.useFor}</p>
+          </div>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <div className="flex items-start justify-between gap-4">
+            <DialogTitle className="text-xl">{table.name}</DialogTitle>
+            <Badge className="text-xs font-mono h-6">{table.code}</Badge>
+          </div>
+        </DialogHeader>
 
-            <div>
-              <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                Key Parameters:
-              </h4>
-              <ul className="text-xs text-gray-700 space-y-1">
-                {table.keyParameters.map((param, idx) => (
-                  <li key={idx} className="text-gray-700">
-                    {param}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className="space-y-4 py-4">
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">
+              Use For:
+            </h4>
+            <p className="text-sm text-gray-700">{table.useFor}</p>
+          </div>
 
-            <div>
-              <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                Schedule:
-              </h4>
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs border border-gray-300">
-                  <thead className={`${table.headerBgColor} text-gray-900`}>
-                    <tr>
-                      {table.scheduleColumns.map((col, idx) => (
-                        <th key={idx} className="px-2 py-1 text-center border">
-                          {col}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody className="text-xs">
-                    {table.schedule.map((row, idx) => {
-                      let bgClass = "bg-white hover:bg-gray-50";
-                      if (
-                        row.gas &&
-                        (row.gas.toLowerCase() === "oxygen" ||
-                          row.gas === "O₂" ||
-                          row.gas === "O2")
-                      ) {
-                        bgClass = "bg-sky-100 hover:bg-sky-200";
-                      } else if (row.gas === "50/50") {
-                        bgClass = "bg-purple-100 hover:bg-purple-200";
-                      } else if (idx % 2 !== 0) {
-                        bgClass = "bg-gray-50 hover:bg-gray-100";
-                      }
-                      return (
-                        <tr key={idx} className={bgClass}>
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">
+              Key Parameters:
+            </h4>
+            <ul className="text-xs text-gray-700 space-y-1">
+              {table.keyParameters.map((param, idx) => (
+                <li key={idx} className="text-gray-700">
+                  {param}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-sm text-gray-900 mb-2">
+              Schedule:
+            </h4>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs border border-gray-300">
+                <thead className={`${table.headerBgColor} text-gray-900`}>
+                  <tr>
+                    {table.scheduleColumns.map((col, idx) => (
+                      <th key={idx} className="px-2 py-1 text-center border">
+                        {col}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-xs">
+                  {table.schedule.map((row, idx) => {
+                    let bgClass = "bg-white hover:bg-gray-50";
+                    if (
+                      row.gas &&
+                      (row.gas.toLowerCase() === "oxygen" ||
+                        row.gas === "O₂" ||
+                        row.gas === "O2")
+                    ) {
+                      bgClass = "bg-sky-100 hover:bg-sky-200";
+                    } else if (row.gas === "50/50") {
+                      bgClass = "bg-purple-100 hover:bg-purple-200";
+                    } else if (idx % 2 !== 0) {
+                      bgClass = "bg-gray-50 hover:bg-gray-100";
+                    }
+                    return (
+                      <tr key={idx} className={bgClass}>
+                        <td className="px-2 py-1 text-center border">
+                          {row.depth}
+                        </td>
+                        <td className="px-2 py-1 text-center border">
+                          {row.time}
+                        </td>
+                        {row.gas && (
                           <td className="px-2 py-1 text-center border">
-                            {row.depth}
+                            {row.gas}
                           </td>
+                        )}
+                        <td className="px-2 py-1 text-center border">
+                          {row.total}
+                        </td>
+                        {row.otuOrOther && (
                           <td className="px-2 py-1 text-center border">
-                            {row.time}
+                            {row.otuOrOther}
                           </td>
-                          {row.gas && (
-                            <td className="px-2 py-1 text-center border">
-                              {row.gas}
-                            </td>
-                          )}
-                          <td className="px-2 py-1 text-center border">
-                            {row.total}
-                          </td>
-                          {row.otuOrOther && (
-                            <td className="px-2 py-1 text-center border">
-                              {row.otuOrOther}
-                            </td>
-                          )}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
-        </DialogContent>
-      </Dialog>
-    );
-  };
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50">

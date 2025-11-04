@@ -1708,34 +1708,34 @@ export default function TableUse() {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
-                  {renderFlowchartButton(
-                    "crash-dive",
-                    "Crash Dive Procedure",
-                    "Emergency decompression when dive is interrupted",
-                    "⚠️",
-                    <CrashDiveProcedure />,
-                  )}
-                  {renderFlowchartButton(
-                    "oxygen-failure",
-                    "Oxygen Failure During Decompression",
-                    "Response when oxygen supply fails",
-                    "⏱️",
-                    <OxygenFailureDuringDecompression />,
-                  )}
-                  {renderFlowchartButton(
-                    "surface-decompression",
-                    "Surface Decompression Required",
-                    "Decision tree for surface decompression scenarios",
-                    "💨",
-                    <SurfaceDecompressionRequired />,
-                  )}
-                  {renderFlowchartButton(
-                    "irregularity-decompression",
-                    "Irregularity During Decompression",
-                    "Treatment procedure for decompression irregularities",
-                    "📈",
-                    <IrregularityDuringDecompression />,
-                  )}
+                  <FlowchartDialog
+                    id="crash-dive"
+                    title="Crash Dive Procedure"
+                    description="Emergency decompression when dive is interrupted"
+                    icon="⚠️"
+                    component={<CrashDiveProcedure />}
+                  />
+                  <FlowchartDialog
+                    id="oxygen-failure"
+                    title="Oxygen Failure During Decompression"
+                    description="Response when oxygen supply fails"
+                    icon="⏱️"
+                    component={<OxygenFailureDuringDecompression />}
+                  />
+                  <FlowchartDialog
+                    id="surface-decompression"
+                    title="Surface Decompression Required"
+                    description="Decision tree for surface decompression scenarios"
+                    icon="💨"
+                    component={<SurfaceDecompressionRequired />}
+                  />
+                  <FlowchartDialog
+                    id="irregularity-decompression"
+                    title="Irregularity During Decompression"
+                    description="Treatment procedure for decompression irregularities"
+                    icon="📈"
+                    component={<IrregularityDuringDecompression />}
+                  />
                   {renderFlowchartButton(
                     "treatment-tables-guide",
                     "Treatment Tables (DCS & CAGE)",

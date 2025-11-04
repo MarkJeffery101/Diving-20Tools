@@ -1329,7 +1329,7 @@ export default function TableUse() {
     icon: string,
     component: React.ReactNode | null,
   ) => (
-    <Dialog key={id}>
+    <Dialog key={id} open={openDialog === id} onOpenChange={(open) => setOpenDialog(open ? id : null)}>
       <DialogTrigger asChild>
         <button className="w-full p-3 rounded border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors text-left">
           <div className="flex items-start gap-2">

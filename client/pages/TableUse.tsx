@@ -1359,12 +1359,16 @@ export default function TableUse() {
     </Dialog>
   ));
 
-  const renderProcedureButton = (
-    procedure: ProcedureData,
-    label: string,
-    tableId: string,
-  ) => (
-    <Dialog key={`${tableId}-${label}`}>
+  const ProcedureDialog = React.memo(({
+    procedure,
+    label,
+    tableId,
+  }: {
+    procedure: ProcedureData;
+    label: string;
+    tableId: string;
+  }) => (
+    <Dialog>
       <DialogTrigger asChild>
         <Button
           variant="outline"
@@ -1438,7 +1442,7 @@ export default function TableUse() {
         </div>
       </DialogContent>
     </Dialog>
-  );
+  ));
 
   const renderTreatmentTableButton = (table: TreatmentTableType) => (
     <Dialog key={table.id}>
@@ -2249,7 +2253,7 @@ export default function TableUse() {
                       </h4>
                       <ul className="text-xs text-gray-700 space-y-0.5">
                         <li>• Descent rate: 7.5 msw/min</li>
-                        <li>• Ascent rate: 0.3 msw/min</li>
+                        <li>�� Ascent rate: 0.3 msw/min</li>
                         <li>
                           • Can be lengthened 25 min at 18 msw or 75 min at 9
                           msw

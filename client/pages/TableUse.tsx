@@ -67,10 +67,6 @@ interface TreatmentTableType {
 }
 
 export default function TableUse() {
-  const [openDialog, setOpenDialog] = useState<string | null>(null);
-  const [openTreatmentDialog, setOpenTreatmentDialog] = useState<string | null>(
-    null,
-  );
 
   const infoCards = [
     {

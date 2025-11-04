@@ -1674,11 +1674,7 @@ export default function TableUse() {
                 </CardHeader>
                 <CardContent className="pt-4">
                   <div className="grid grid-cols-1 gap-3">
-                    {treatmentTables.map((table) => (
-                      <div key={table.id}>
-                        {renderTreatmentTableButton(table)}
-                      </div>
-                    ))}
+                    {treatmentTables.map((table) => renderTreatmentTableButton(table))}
                   </div>
                 </CardContent>
               </Card>
@@ -2893,7 +2889,7 @@ export default function TableUse() {
                         Key Parameters:
                       </h4>
                       <ul className="text-xs text-gray-700 space-y-0.5">
-                        <li>�� Descent rate: As fast as possible</li>
+                        <li>• Descent rate: As fast as possible</li>
                         <li>• Ascent rate: 1 minute between stops</li>
                         <li>• Very long decompression (18:59 hours)</li>
                         <li>• For serious neurological symptoms only</li>

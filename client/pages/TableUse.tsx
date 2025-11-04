@@ -1356,85 +1356,82 @@ export default function TableUse() {
     procedure: ProcedureData,
     label: string,
     tableId: string,
-  ) => {
-    const dialogId = `${tableId}-${label}`;
-    return (
-      <Dialog key={dialogId} open={openDialog === dialogId} onOpenChange={(open) => setOpenDialog(open ? dialogId : null)}>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="xs"
-            className="h-7 px-3 text-xs justify-center"
-          >
-            {label}
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          <DialogHeader>
-            <div className="flex items-start justify-between gap-4">
-              <DialogTitle className="text-xl">{procedure.title}</DialogTitle>
-              <Badge className={`${procedure.badgeColor} text-white shrink-0`}>
-                {procedure.badgeText}
-              </Badge>
-            </div>
-          </DialogHeader>
+  ) => (
+    <Dialog key={`${tableId}-${label}`}>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="xs"
+          className="h-7 px-3 text-xs justify-center"
+        >
+          {label}
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <div className="flex items-start justify-between gap-4">
+            <DialogTitle className="text-xl">{procedure.title}</DialogTitle>
+            <Badge className={`${procedure.badgeColor} text-white shrink-0`}>
+              {procedure.badgeText}
+            </Badge>
+          </div>
+        </DialogHeader>
 
-          <div className="space-y-4 py-4">
-            {procedure.warning && (
-              <div className="p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
-                <div className="flex gap-3">
-                  <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-orange-800 font-medium">
-                    {procedure.warningText}
-                  </p>
-                </div>
+        <div className="space-y-4 py-4">
+          {procedure.warning && (
+            <div className="p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
+              <div className="flex gap-3">
+                <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-orange-800 font-medium">
+                  {procedure.warningText}
+                </p>
               </div>
-            )}
+            </div>
+          )}
 
-            <div className="space-y-3">
-              {procedure.content.map((item, idx) => {
-                if (typeof item === "string") {
-                  return (
-                    <p key={idx} className="text-sm text-gray-700">
-                      {item}
-                    </p>
-                  );
-                }
-
-                if (item.type === "title") {
-                  return (
-                    <div key={idx} className="flex gap-3 items-start text-sm">
-                      <div className="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">
-                        {idx + 1}
-                      </div>
-                      <p className="text-gray-700 pt-0.5">{item.text}</p>
-                    </div>
-                  );
-                }
-
-                if (item.type === "section") {
-                  return (
-                    <p
-                      key={idx}
-                      className="text-sm font-bold text-orange-600 mt-4 mb-2"
-                    >
-                      {item.text}
-                    </p>
-                  );
-                }
-
+          <div className="space-y-3">
+            {procedure.content.map((item, idx) => {
+              if (typeof item === "string") {
                 return (
-                  <p key={idx} className="text-sm text-gray-700 ml-4">
-                    • {item.text}
+                  <p key={idx} className="text-sm text-gray-700">
+                    {item}
                   </p>
                 );
-              })}
-            </div>
+              }
+
+              if (item.type === "title") {
+                return (
+                  <div key={idx} className="flex gap-3 items-start text-sm">
+                    <div className="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                      {idx + 1}
+                    </div>
+                    <p className="text-gray-700 pt-0.5">{item.text}</p>
+                  </div>
+                );
+              }
+
+              if (item.type === "section") {
+                return (
+                  <p
+                    key={idx}
+                    className="text-sm font-bold text-orange-600 mt-4 mb-2"
+                  >
+                    {item.text}
+                  </p>
+                );
+              }
+
+              return (
+                <p key={idx} className="text-sm text-gray-700 ml-4">
+                  • {item.text}
+                </p>
+              );
+            })}
           </div>
-        </DialogContent>
-      </Dialog>
-    );
-  };
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   const renderTreatmentTableButton = (table: TreatmentTableType) => (
     <Dialog key={table.id} open={openTreatmentDialog === table.id} onOpenChange={(open) => setOpenTreatmentDialog(open ? table.id : null)}>

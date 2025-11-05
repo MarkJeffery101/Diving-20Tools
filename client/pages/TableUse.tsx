@@ -1565,32 +1565,39 @@ export default function TableUse() {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-3">
                   <FlowchartDialog
-                    id="crash-dive"
-                    title="Crash Dive Procedure"
-                    description="Emergency decompression when dive is interrupted"
-                    icon="⚠️"
-                    component={<CrashDiveProcedure />}
+                    id="sil15-emergency"
+                    title="Emergency Procedure Air Table (SIL15)"
+                    description="Dive interrupted - emergency decompression crash dive procedure"
+                    icon="🔵"
+                    component={<EmergencyProcedureAirTable />}
                   />
                   <FlowchartDialog
-                    id="oxygen-failure"
-                    title="Oxygen Failure During Decompression"
-                    description="Response when oxygen supply fails"
-                    icon="⏱️"
-                    component={<OxygenFailureDuringDecompression />}
+                    id="sox15-emergency-1"
+                    title="Emergency Procedure 1 for Surface/Ox Table (SOX15)"
+                    description="Irregularity in decompression - treatment table selection"
+                    icon="🔴"
+                    component={<EmergencyProcedure1SOX15 />}
                   />
                   <FlowchartDialog
-                    id="surface-decompression"
-                    title="Surface Decompression Required"
-                    description="Decision tree for surface decompression scenarios"
-                    icon="💨"
-                    component={<SurfaceDecompressionRequired />}
+                    id="sox15-emergency-2"
+                    title="Emergency Procedure 2 for Surface/Ox Table (SOX15)"
+                    description="Oxygen failure during decompression - decision tree"
+                    icon="🟠"
+                    component={<EmergencyProcedure2SOX15 />}
                   />
                   <FlowchartDialog
-                    id="irregularity-decompression"
-                    title="Irregularity During Decompression"
-                    description="Treatment procedure for decompression irregularities"
-                    icon="📈"
-                    component={<IrregularityDuringDecompression />}
+                    id="nitrox-emergency-1"
+                    title="Emergency Procedure 1 Nitrox Tables"
+                    description="Need for surface decompression - table selection with EAD"
+                    icon="🟢"
+                    component={<EmergencyProcedure1NitroxTables />}
+                  />
+                  <FlowchartDialog
+                    id="nitrox-emergency-2"
+                    title="Emergency Procedure 2 Nitrox Tables"
+                    description="Irregularity in decompression - nitrox treatment procedures"
+                    icon="🟣"
+                    component={<EmergencyProcedure2NitroxTables />}
                   />
                   <FlowchartDialog
                     id="treatment-tables-guide"

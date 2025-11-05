@@ -6,9 +6,6 @@ export interface RecommendationResult {
   recommendedDepth: number;
   description: string;
   warnings?: string[];
-  actualDiveDepth?: number;
-  eadDepth?: number;
-  o2Percentage?: number;
 }
 
 export interface DiveProfile {

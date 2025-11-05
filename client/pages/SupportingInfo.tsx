@@ -38,40 +38,6 @@ export default function SupportingInfo() {
 
   const sections = [
     {
-      id: "limits",
-      title: "Safe and Maximum Limits",
-      icon: "📏",
-      subsections: [
-        {
-          subtitle: "Recreational",
-          items: [
-            "Max Depth: 40m",
-            "10m/min ascent",
-            "3-5m safety stops",
-            "1hr minimum surface interval",
-          ],
-        },
-        {
-          subtitle: "Commercial",
-          items: [
-            "Max Depth: 100m+",
-            "Mandatory decompression",
-            "Daily oxygen limits",
-            "Certified training required",
-          ],
-        },
-        {
-          subtitle: "Nitrox",
-          items: [
-            "MOD by PPO2 limit",
-            "Nitrox 32%: ~42m",
-            "Shorter decompression",
-            "Reduced narcosis vs air",
-          ],
-        },
-      ],
-    },
-    {
       id: "ppo2",
       title: "Partial Pressure of Oxygen (PPO2)",
       icon: "⚗���",
@@ -198,72 +164,6 @@ export default function SupportingInfo() {
             "Choose appropriate table system",
             "Cross-reference with gas available",
             "Verify decompression stop requirements",
-          ],
-        },
-      ],
-    },
-    {
-      id: "corrections",
-      title: "Altitude & Environmental Corrections",
-      icon: "🌍",
-      subsections: [
-        {
-          subtitle: "Altitude",
-          items: [
-            "Pressure decreases with elevation",
-            "Sea level: 1.013 bar",
-            "2,400m: ~0.78 bar",
-            "Use altitude-adjusted tables",
-          ],
-        },
-        {
-          subtitle: "Water Type",
-          items: [
-            "Saltwater: Standard",
-            "Freshwater: Slightly less dense",
-            "Brackish: Variable",
-            "Affects buoyancy",
-          ],
-        },
-        {
-          subtitle: "Temperature",
-          items: [
-            "Cold: Increases nitrogen absorption",
-            "Thermal protection essential",
-            "Warm: Standard application",
-          ],
-        },
-      ],
-    },
-    {
-      id: "decompression",
-      title: "Decompression Theory Basics",
-      icon: "💨",
-      subsections: [
-        {
-          subtitle: "How It Works",
-          items: [
-            "Pressure forces gas into tissues",
-            "Ascent allows nitrogen elimination",
-            "Decompression stops prevent DCS",
-            "Controlled ascent is critical",
-          ],
-        },
-        {
-          subtitle: "Tissue Types",
-          items: [
-            "Fast tissues: Brain, blood",
-            "Slow tissues: Bones, fat",
-            "Longer dives: Slower tissues saturate",
-            "Requirements increase with depth",
-          ],
-        },
-        {
-          subtitle: "No-Decompression Limits",
-          items: [
-            "Maximum time before stops required",
-            "Depends on depth & gas",
-            "Conservative approach recommended",
           ],
         },
       ],

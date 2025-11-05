@@ -28,10 +28,11 @@ export function EmergencyProcedureAirTable() {
       <text x="300" y="215" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">&gt; 4 hrs?</text>
 
       {/* YES arrow to Surface/ox-table */}
-      <line x1="420" y1="200" x2="500" y2="200" stroke="#0369a1" strokeWidth="2"/>
-      <text x="460" y="190" fill="#0369a1" fontSize="12" fontWeight="bold">YES</text>
-      <rect x="500" y="170" width="80" height="60" rx="5" fill="url(#grad-blue)" stroke="#0369a1" strokeWidth="2"/>
-      <text x="540" y="205" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Surface/ox-table</text>
+      <line x1="420" y1="200" x2="480" y2="200" stroke="#0369a1" strokeWidth="2"/>
+      <text x="445" y="190" fill="#0369a1" fontSize="12" fontWeight="bold">YES</text>
+      <rect x="480" y="155" width="100" height="90" rx="5" fill="url(#grad-blue)" stroke="#0369a1" strokeWidth="2"/>
+      <text x="530" y="195" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Surface</text>
+      <text x="530" y="213" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">ox-table</text>
 
       {/* NO arrow down */}
       <line x1="300" y1="260" x2="300" y2="300" stroke="#0369a1" strokeWidth="2"/>

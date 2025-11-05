@@ -95,11 +95,12 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Benefits",
+          subtitle: "Narcosis Risk Management",
           items: [
-            "Less narcosis than air",
-            "Extended bottom times",
-            "Reduced decompression",
+            "30-40m on air: Mild narcosis (common recreational max)",
+            "100m+ on air: Severe narcosis (requires mixed gas)",
+            "Nitrox extends safe operational depth envelope",
+            "Always reference EAD when selecting decompression table",
           ],
         },
       ],

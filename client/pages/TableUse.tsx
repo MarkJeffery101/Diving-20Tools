@@ -18,10 +18,11 @@ import {
 } from "@/components/ui/dialog";
 import { AlertTriangle, Zap, Clock, BookOpen } from "lucide-react";
 import {
-  CrashDiveProcedure,
-  OxygenFailureDuringDecompression,
-  SurfaceDecompressionRequired,
-  IrregularityDuringDecompression,
+  EmergencyProcedureAirTable,
+  EmergencyProcedure1SOX15,
+  EmergencyProcedure2SOX15,
+  EmergencyProcedure1NitroxTables,
+  EmergencyProcedure2NitroxTables,
 } from "@/components/flowcharts/EmergencyFlowcharts";
 import { ProcedureDialog, TreatmentTableDialog } from "@/pages/TableUseDialogs";
 
@@ -1528,7 +1529,7 @@ export default function TableUse() {
                 <CardHeader className="border-b pb-3">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg flex items-center gap-2">
-                      💊 Treatment Tables
+                      ���� Treatment Tables
                     </CardTitle>
                     <CardDescription className="text-xs">
                       DCS & CAGE protocols
@@ -2114,7 +2115,7 @@ export default function TableUse() {
                       </h4>
                       <ul className="text-xs text-gray-700 space-y-0.5">
                         <li>• Descent rate: 7.5 msw/min</li>
-                        <li>• Ascent rate: 0.3 msw/min</li>
+                        <li>��� Ascent rate: 0.3 msw/min</li>
                         <li>
                           • Can be lengthened 25 min at 18 msw or 75 min at 9
                           msw

@@ -129,11 +129,13 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Multi-Dive Rules",
+          subtitle: "Combined & Repetitive Dive Protocols",
           items: [
-            "Max 4 dives per day",
-            "Shallower dives later in day",
-            "Rest day recommended after multiple days",
+            "If surface interval < 2h: combined dive may be used (not permitted for SurD)",
+            "For combined dives: make first dive deepest; add times and decompress using deepest depth",
+            "After normal dive: further dives ≤ 6m permitted",
+            "After emergency procedure: no diving for 12 hours",
+            "No combined diving after any emergency procedure",
           ],
         },
       ],

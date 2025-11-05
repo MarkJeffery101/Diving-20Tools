@@ -357,37 +357,14 @@ export default function TableSelection() {
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
-          {recommendation.eadDepth !== undefined ? (
-            <div className="space-y-3 bg-white p-3 rounded border border-green-200">
-              <div className="space-y-2">
-                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-                  Decompression Table Depth
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-lg font-bold text-green-700">
-                    {recommendation.recommendedDepth}m
-                  </span>
-                  <span className="text-xs text-gray-600">
-                    (EAD {recommendation.eadDepth}m)
-                  </span>
-                </div>
-              </div>
-              <div className="text-xs text-gray-700 bg-green-100 p-2 rounded italic">
-                Use <span className="font-semibold">{recommendation.tableCode}</span> at{" "}
-                <span className="font-semibold">{recommendation.recommendedDepth}m</span> for decompression despite diving at{" "}
-                <span className="font-semibold">{recommendation.actualDiveDepth}m</span>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between bg-white p-3 rounded border border-green-200">
-              <span className="text-sm font-semibold text-foreground">
-                Recommended Depth:
-              </span>
-              <span className="text-lg font-bold text-green-700">
-                {recommendation.recommendedDepth}m
-              </span>
-            </div>
-          )}
+          <div className="flex items-center justify-between bg-white p-3 rounded border border-green-200">
+            <span className="text-sm font-semibold text-foreground">
+              Recommended Depth:
+            </span>
+            <span className="text-lg font-bold text-green-700">
+              {recommendation.recommendedDepth}m
+            </span>
+          </div>
 
           {recommendation.warnings && recommendation.warnings.length > 0 && (
             <Alert className="bg-amber-50 border-amber-200">

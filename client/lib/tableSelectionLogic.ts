@@ -117,21 +117,45 @@ export function getTableRecommendation(
     techniqueToTables[profile.technique]?.default ||
     ["SIL15"];
 
+  // Calculate EAD if nitrox dive
+  let depthForTableSelection = profile.plannedDepth;
+  let eadDepth: number | undefined;
+  let o2Percentage: number | undefined;
+
+  if (
+    profile.gasType === "nitrox-nia" ||
+    profile.gasType === "nitrox-nib"
+  ) {
+    o2Percentage = getO2PercentageForNitroxType(profile.gasType);
+    eadDepth = calculateEAD(profile.plannedDepth, o2Percentage);
+    depthForTableSelection = eadDepth;
+
+    warnings.push(
+      `Diving depth: ${profile.plannedDepth}m | O₂: ${o2Percentage}% | EAD: ${eadDepth}m`,
+    );
+  }
+
   // Filter and score tables based on profile
   let selectedTable = candidateTables[0];
   let selectedDepth: number | null = null;
 
   // Try to find a table with matching depth
   for (const table of candidateTables) {
-    const depth = findNextAvailableDepth(table, profile.plannedDepth);
+    const depth = findNextAvailableDepth(table, depthForTableSelection);
     if (depth) {
       selectedTable = table;
       selectedDepth = depth;
 
-      if (depth > profile.plannedDepth) {
-        warnings.push(
-          `Requested depth ${profile.plannedDepth}m not available in ${table}. Using ${depth}m instead.`,
-        );
+      if (depth > depthForTableSelection) {
+        if (eadDepth) {
+          warnings.push(
+            `EAD ${depthForTableSelection}m not available in ${table}. Using ${depth}m instead.`,
+          );
+        } else {
+          warnings.push(
+            `Requested depth ${depthForTableSelection}m not available in ${table}. Using ${depth}m instead.`,
+          );
+        }
       }
       break;
     }
@@ -179,6 +203,9 @@ export function getTableRecommendation(
     tableTitle: tableDescriptions[selectedTable] || selectedTable,
     recommendedDepth: selectedDepth,
     description: tableDescriptions[selectedTable] || selectedTable,
+    actualDiveDepth: profile.plannedDepth,
+    eadDepth: eadDepth,
+    o2Percentage: o2Percentage,
     warnings: warnings.length > 0 ? warnings : undefined,
   };
 }

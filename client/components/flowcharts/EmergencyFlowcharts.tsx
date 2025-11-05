@@ -425,16 +425,16 @@ export function EmergencyProcedure2NitroxTables() {
       <text x="300" y="215" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">available?</text>
 
       {/* NO arrow left to Treatment table 3 */}
-      <line x1="180" y1="200" x2="100" y2="200" stroke="#0284c7" strokeWidth="2"/>
-      <text x="130" y="190" fill="#0284c7" fontSize="12" fontWeight="bold">NO</text>
-      <rect x="20" y="170" width="160" height="60" rx="5" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
-      <text x="100" y="205" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">Treatment table 3</text>
+      <line x1="180" y1="200" x2="110" y2="200" stroke="#0284c7" strokeWidth="2"/>
+      <text x="135" y="190" fill="#0284c7" fontSize="12" fontWeight="bold">NO</text>
+      <rect x="10" y="170" width="200" height="60" rx="5" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
+      <text x="110" y="205" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Treatment table 3</text>
 
       {/* YES arrow down to Treatment table 5 */}
       <line x1="300" y1="260" x2="300" y2="310" stroke="#0284c7" strokeWidth="2"/>
       <text x="320" y="290" fill="#0284c7" fontSize="12" fontWeight="bold">YES</text>
       <rect x="160" y="310" width="280" height="70" rx="5" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
-      <text x="300" y="350" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">Treatment table 5</text>
+      <text x="300" y="348" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Treatment table 5</text>
 
       {/* Arrow down */}
       <line x1="300" y1="380" x2="300" y2="420" stroke="#0284c7" strokeWidth="2"/>
@@ -482,8 +482,8 @@ export function EmergencyProcedure2NitroxTables() {
       <line x1="300" y1="680" x2="150" y2="720" stroke="#0284c7" strokeWidth="2"/>
 
       {/* Line from NO decision path to 2hrs box on right */}
-      <line x1="100" y1="230" x2="100" y2="740" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="100" y1="740" x2="150" y2="740" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="110" y1="230" x2="110" y2="740" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="110" y1="740" x2="150" y2="740" stroke="#0284c7" strokeWidth="2"/>
       <line x1="500" y1="740" x2="450" y2="740" stroke="#0284c7" strokeWidth="2"/>
     </svg>
   );

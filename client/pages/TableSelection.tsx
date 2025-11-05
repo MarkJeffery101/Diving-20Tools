@@ -334,20 +334,6 @@ export default function TableSelection() {
             <span className="text-muted-foreground">Max Depth:</span>
             <span className="font-semibold">{profile.plannedDepth}m</span>
           </div>
-          {recommendation.eadDepth !== undefined && (
-            <>
-              <div className="border-t border-blue-200 pt-2 mt-2">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">O₂ Percentage:</span>
-                  <span className="font-semibold">{recommendation.o2Percentage}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Equivalent Air Depth:</span>
-                  <span className="font-semibold text-blue-700">{recommendation.eadDepth}m</span>
-                </div>
-              </div>
-            </>
-          )}
           <div className="flex justify-between">
             <span className="text-muted-foreground">Bottom Time:</span>
             <span className="font-semibold">{profile.bottomTime} min</span>

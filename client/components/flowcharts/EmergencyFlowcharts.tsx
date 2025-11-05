@@ -65,29 +65,30 @@ export function EmergencyProcedureAirTable() {
       {/* Bottom boxes - 2hrs and 4hrs */}
       <g>
         {/* 2hrs box */}
-        <rect x="50" y="700" width="220" height="100" rx="8" fill="url(#grad-teal)" stroke="#0369a1" strokeWidth="2"/>
-        <text x="160" y="735" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">2 hrs near</text>
-        <text x="160" y="752" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="160" y="769" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="160" y="790" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
+        <rect x="30" y="700" width="240" height="120" rx="8" fill="url(#grad-teal)" stroke="#0369a1" strokeWidth="2"/>
+        <text x="150" y="740" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">2 hrs near</text>
+        <text x="150" y="760" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="150" y="780" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="150" y="803" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       {/* NO arrow to 4hrs */}
       <line x1="180" y1="480" x2="80" y2="480" stroke="#0369a1" strokeWidth="2"/>
-      <line x1="80" y1="480" x2="80" y2="750" stroke="#0369a1" strokeWidth="2"/>
+      <line x1="80" y1="480" x2="80" y2="710" stroke="#0369a1" strokeWidth="2"/>
+      <line x1="80" y1="710" x2="150" y2="710" stroke="#0369a1" strokeWidth="2"/>
       <text x="45" y="475" fill="#0369a1" fontSize="12" fontWeight="bold">NO</text>
 
       <g>
         {/* 4hrs box */}
-        <rect x="330" y="700" width="220" height="100" rx="8" fill="url(#grad-teal)" stroke="#0369a1" strokeWidth="2"/>
-        <text x="440" y="735" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">4 hrs near</text>
-        <text x="440" y="752" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="440" y="769" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="440" y="790" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
+        <rect x="330" y="700" width="240" height="120" rx="8" fill="url(#grad-teal)" stroke="#0369a1" strokeWidth="2"/>
+        <text x="450" y="740" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">4 hrs near</text>
+        <text x="450" y="760" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="450" y="780" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="450" y="803" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       {/* Arrow from main path to 4hrs */}
-      <line x1="300" y1="700" x2="440" y2="700" stroke="#0369a1" strokeWidth="2"/>
+      <line x1="300" y1="700" x2="450" y2="700" stroke="#0369a1" strokeWidth="2"/>
 
       {/* Arrow marker definition */}
       <defs>
@@ -161,28 +162,28 @@ export function EmergencyProcedure1SOX15() {
       {/* Bottom outcome boxes */}
       <g>
         {/* 4hrs box */}
-        <rect x="50" y="700" width="200" height="110" rx="8" fill="url(#grad-red)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="150" y="735" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">4 hrs near</text>
-        <text x="150" y="755" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="150" y="775" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="150" y="795" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="30" y="700" width="230" height="130" rx="8" fill="url(#grad-red)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="145" y="745" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">4 hrs near</text>
+        <text x="145" y="765" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="145" y="785" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="145" y="808" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       <g>
         {/* 2hrs box */}
-        <rect x="350" y="700" width="200" height="110" rx="8" fill="url(#grad-red)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="450" y="735" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">2 hrs near</text>
-        <text x="450" y="755" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="450" y="775" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="450" y="795" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="340" y="700" width="230" height="130" rx="8" fill="url(#grad-red)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="455" y="745" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">2 hrs near</text>
+        <text x="455" y="765" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="455" y="785" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="455" y="808" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       {/* Lines to bottom boxes */}
-      <line x1="300" y1="700" x2="150" y2="700" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="300" y1="700" x2="450" y2="700" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="500" y1="750" x2="450" y2="750" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="95" y1="230" x2="95" y2="750" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="95" y1="750" x2="150" y2="750" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="300" y1="700" x2="145" y2="700" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="300" y1="700" x2="455" y2="700" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="500" y1="750" x2="455" y2="750" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="95" y1="230" x2="95" y2="710" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="95" y1="710" x2="145" y2="710" stroke="#0284c7" strokeWidth="2"/>
     </svg>
   );
 }
@@ -266,20 +267,20 @@ export function EmergencyProcedure2SOX15() {
       {/* Bottom outcome boxes */}
       <g>
         {/* 2hrs box */}
-        <rect x="50" y="850" width="200" height="110" rx="8" fill="url(#grad-orange)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="150" y="885" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">2 hrs near</text>
-        <text x="150" y="905" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="150" y="925" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="150" y="945" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="30" y="850" width="240" height="130" rx="8" fill="url(#grad-orange)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="150" y="895" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">2 hrs near</text>
+        <text x="150" y="915" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="150" y="935" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="150" y="958" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       <g>
         {/* 4hrs box */}
-        <rect x="350" y="850" width="200" height="110" rx="8" fill="url(#grad-orange)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="450" y="885" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">4 hrs near</text>
-        <text x="450" y="905" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="450" y="925" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="450" y="945" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="330" y="850" width="240" height="130" rx="8" fill="url(#grad-orange)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="450" y="895" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">4 hrs near</text>
+        <text x="450" y="915" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="450" y="935" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="450" y="958" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       {/* Lines to bottom */}
@@ -314,13 +315,14 @@ export function EmergencyProcedure1NitroxTables() {
       <text x="300" y="215" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">&gt; 4 hrs?</text>
 
       {/* YES arrow right */}
-      <line x1="420" y1="200" x2="500" y2="200" stroke="#0284c7" strokeWidth="2"/>
-      <text x="460" y="190" fill="#0284c7" fontSize="12" fontWeight="bold">YES</text>
-      <rect x="500" y="155" width="85" height="90" rx="5" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
-      <text x="542" y="190" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Air or surface</text>
-      <text x="542" y="208" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">ox table</text>
-      <text x="542" y="225" textAnchor="middle" fill="white" fontSize="10">Table depth &gt;</text>
-      <text x="542" y="240" textAnchor="middle" fill="white" fontSize="10">equivalent air</text>
+      <line x1="420" y1="200" x2="490" y2="200" stroke="#0284c7" strokeWidth="2"/>
+      <text x="450" y="190" fill="#0284c7" fontSize="12" fontWeight="bold">YES</text>
+      <rect x="490" y="135" width="95" height="130" rx="5" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
+      <text x="537" y="170" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Air or surface</text>
+      <text x="537" y="190" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">ox table</text>
+      <text x="537" y="210" textAnchor="middle" fill="white" fontSize="11">Table depth &gt;</text>
+      <text x="537" y="228" textAnchor="middle" fill="white" fontSize="11">equivalent air</text>
+      <text x="537" y="246" textAnchor="middle" fill="white" fontSize="11">depth</text>
 
       {/* NO arrow down */}
       <line x1="300" y1="260" x2="300" y2="300" stroke="#0284c7" strokeWidth="2"/>
@@ -375,25 +377,26 @@ export function EmergencyProcedure1NitroxTables() {
       {/* Bottom boxes */}
       <g>
         {/* 2hrs */}
-        <rect x="50" y="860" width="200" height="110" rx="8" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="150" y="895" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">2 hrs near</text>
-        <text x="150" y="915" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="150" y="935" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="150" y="955" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="30" y="860" width="240" height="130" rx="8" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="150" y="905" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">2 hrs near</text>
+        <text x="150" y="925" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="150" y="945" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="150" y="968" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       <g>
         {/* 4hrs */}
-        <rect x="350" y="860" width="200" height="110" rx="8" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="450" y="895" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">4 hrs near</text>
-        <text x="450" y="915" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="450" y="935" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="450" y="955" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="330" y="860" width="240" height="130" rx="8" fill="url(#grad-green)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="450" y="905" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">4 hrs near</text>
+        <text x="450" y="925" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="450" y="945" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="450" y="968" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       <line x1="300" y1="860" x2="150" y2="860" stroke="#0284c7" strokeWidth="2"/>
       <line x1="300" y1="860" x2="450" y2="860" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="500" y1="850" x2="450" y2="850" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="537" y1="265" x2="537" y2="900" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="537" y1="900" x2="450" y2="900" stroke="#0284c7" strokeWidth="2"/>
     </svg>
   );
 }
@@ -459,29 +462,29 @@ export function EmergencyProcedure2NitroxTables() {
       {/* Bottom boxes */}
       <g>
         {/* 4hrs */}
-        <rect x="50" y="720" width="210" height="110" rx="8" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="155" y="755" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">4 hrs near</text>
-        <text x="155" y="775" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="155" y="795" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="155" y="815" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="30" y="720" width="240" height="130" rx="8" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="150" y="765" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">4 hrs near</text>
+        <text x="150" y="785" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="150" y="805" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="150" y="828" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       <g>
         {/* 2hrs */}
-        <rect x="340" y="720" width="210" height="110" rx="8" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
-        <text x="445" y="755" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">2 hrs near</text>
-        <text x="445" y="775" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">decompression</text>
-        <text x="445" y="795" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">chamber</text>
-        <text x="445" y="815" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
+        <rect x="330" y="720" width="240" height="130" rx="8" fill="url(#grad-purple)" stroke="#0284c7" strokeWidth="2"/>
+        <text x="450" y="765" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">2 hrs near</text>
+        <text x="450" y="785" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">decompression</text>
+        <text x="450" y="805" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">chamber</text>
+        <text x="450" y="828" textAnchor="middle" fill="white" fontSize="11">Repeat interval 12 hrs</text>
       </g>
 
       {/* Line from Treatment table down to 4hrs box */}
-      <line x1="300" y1="680" x2="155" y2="720" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="300" y1="680" x2="150" y2="720" stroke="#0284c7" strokeWidth="2"/>
 
       {/* Line from NO decision path to 2hrs box on right */}
-      <line x1="100" y1="230" x2="100" y2="750" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="100" y1="750" x2="155" y2="750" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="500" y1="750" x2="445" y2="750" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="100" y1="230" x2="100" y2="740" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="100" y1="740" x2="150" y2="740" stroke="#0284c7" strokeWidth="2"/>
+      <line x1="500" y1="740" x2="450" y2="740" stroke="#0284c7" strokeWidth="2"/>
     </svg>
   );
 }

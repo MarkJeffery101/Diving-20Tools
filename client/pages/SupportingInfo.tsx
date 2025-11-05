@@ -85,12 +85,13 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Nitrogen Narcosis",
+          subtitle: "Commercial Offshore Application",
           items: [
-            "0-9m: No narcosis",
-            "18-35m: Mild (caution)",
-            "55-75m: Severe",
-            "75m+: Extreme (not recommended)",
+            "NIA15 (40/60): Reduced nitrogen narcosis vs air",
+            "NIB15 (35/65): Further reduced narcosis risk",
+            "Table selection: Use EAD instead of actual depth",
+            "Example: Dive 30m on NIA15 (40%) = EAD ~21m for decompression",
+            "Allows safe diving at greater depths with reduced narcosis",
           ],
         },
         {

@@ -62,9 +62,10 @@ export default function SupportingInfo() {
         {
           subtitle: "Nitrox Dive Examples",
           items: [
-            "Air 21% @ 30m: 0.84 bar ���",
-            "Air 21% @ 60m: 1.68 bar ✗",
-            "Nitrox 32% @ 40m: 1.44 bar ✓",
+            "NIA15 (40/60) @ 30m: pO2 = 1.40 bar ✓",
+            "NIA15 (40/60) @ 35m: pO2 = 1.56 bar (approach max)",
+            "NIB15 (35/65) @ 40m: pO2 = 1.54 bar ✓",
+            "Air 21% @ 100m: pO2 = 2.1 bar ✗ (exceeds)",
           ],
         },
       ],

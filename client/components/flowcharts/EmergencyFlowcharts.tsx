@@ -7,10 +7,10 @@ export function EmergencyProcedureAirTable() {
       className="w-full rounded-lg"
       style={{
         backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F786bc075ca0445d4b902e3ac2eefb7dc?format=webp&width=1400")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundSize: 'contain',
+        backgroundPosition: '50% 30px',
         backgroundRepeat: 'no-repeat',
-        height: '500px',
+        height: '480px',
         overflow: 'hidden'
       }}
     />

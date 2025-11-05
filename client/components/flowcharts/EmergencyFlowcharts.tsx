@@ -3,12 +3,14 @@ import React from 'react';
 // 1. Emergency Procedure Air Table (SIL15)
 export function EmergencyProcedureAirTable() {
   return (
-    <div className="w-full p-6 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-50 rounded-lg overflow-x-auto">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F786bc075ca0445d4b902e3ac2eefb7dc?format=webp&width=800"
-        alt="Emergency Procedure Air Table (SIL15)"
-        className="w-full h-auto"
-      />
+    <div className="w-full p-6 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-50 rounded-lg overflow-hidden">
+      <div className="overflow-hidden" style={{ maxHeight: '600px', marginTop: '-60px' }}>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F786bc075ca0445d4b902e3ac2eefb7dc?format=webp&width=1200"
+          alt="Emergency Procedure Air Table (SIL15)"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
@@ -16,12 +18,14 @@ export function EmergencyProcedureAirTable() {
 // 2. Emergency Procedure 1 for Surface/Ox Table (SOX15) - Irregularity in Decompression
 export function EmergencyProcedure1SOX15() {
   return (
-    <div className="w-full p-6 bg-gradient-to-br from-red-50 via-slate-50 to-orange-50 rounded-lg overflow-x-auto">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F4218098246674be3b9464e90a4219161?format=webp&width=800"
-        alt="Emergency Procedure 1 for Surface/Ox Table (SOX15)"
-        className="w-full h-auto"
-      />
+    <div className="w-full p-6 bg-gradient-to-br from-red-50 via-slate-50 to-orange-50 rounded-lg overflow-hidden">
+      <div className="overflow-hidden" style={{ maxHeight: '600px', marginTop: '-60px' }}>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F4218098246674be3b9464e90a4219161?format=webp&width=1200"
+          alt="Emergency Procedure 1 for Surface/Ox Table (SOX15)"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
@@ -29,12 +33,14 @@ export function EmergencyProcedure1SOX15() {
 // 3. Emergency Procedure 2 for Surface/Ox Table (SOX15) - Oxygen Failure
 export function EmergencyProcedure2SOX15() {
   return (
-    <div className="w-full p-6 bg-gradient-to-br from-orange-50 via-slate-50 to-red-50 rounded-lg overflow-x-auto">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F8cfb14cf160640bd83fc4aaa8d04e8bb?format=webp&width=800"
-        alt="Emergency Procedure 2 for Surface/Ox Table (SOX15)"
-        className="w-full h-auto"
-      />
+    <div className="w-full p-6 bg-gradient-to-br from-orange-50 via-slate-50 to-red-50 rounded-lg overflow-hidden">
+      <div className="overflow-hidden" style={{ maxHeight: '650px', marginTop: '-60px' }}>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F8cfb14cf160640bd83fc4aaa8d04e8bb?format=webp&width=1200"
+          alt="Emergency Procedure 2 for Surface/Ox Table (SOX15)"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
@@ -42,12 +48,14 @@ export function EmergencyProcedure2SOX15() {
 // 4. Emergency Procedure 1 Nitrox Tables - Need for Surface Decompression
 export function EmergencyProcedure1NitroxTables() {
   return (
-    <div className="w-full p-6 bg-gradient-to-br from-emerald-50 via-slate-50 to-green-50 rounded-lg overflow-x-auto">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F086c02daa6644349a131ec40ad54849b?format=webp&width=800"
-        alt="Emergency Procedure 1 Nitrox Tables"
-        className="w-full h-auto"
-      />
+    <div className="w-full p-6 bg-gradient-to-br from-emerald-50 via-slate-50 to-green-50 rounded-lg overflow-hidden">
+      <div className="overflow-hidden" style={{ maxHeight: '650px', marginTop: '-60px' }}>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F086c02daa6644349a131ec40ad54849b?format=webp&width=1200"
+          alt="Emergency Procedure 1 Nitrox Tables"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
@@ -55,12 +63,14 @@ export function EmergencyProcedure1NitroxTables() {
 // 5. Emergency Procedure 2 Nitrox Tables - Irregularity in Decompression
 export function EmergencyProcedure2NitroxTables() {
   return (
-    <div className="w-full p-6 bg-gradient-to-br from-violet-50 via-slate-50 to-purple-50 rounded-lg overflow-x-auto">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fd767cdc30d3b4b9782372e85acb24477?format=webp&width=800"
-        alt="Emergency Procedure 2 Nitrox Tables"
-        className="w-full h-auto"
-      />
+    <div className="w-full p-6 bg-gradient-to-br from-violet-50 via-slate-50 to-purple-50 rounded-lg overflow-hidden">
+      <div className="overflow-hidden" style={{ maxHeight: '600px', marginTop: '-60px' }}>
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fd767cdc30d3b4b9782372e85acb24477?format=webp&width=1200"
+          alt="Emergency Procedure 2 Nitrox Tables"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }

@@ -475,8 +475,10 @@ export function EmergencyProcedure2NitroxTables() {
         <text x="445" y="815" textAnchor="middle" fill="white" fontSize="10">Repeat interval 12 hrs</text>
       </g>
 
-      <line x1="300" y1="720" x2="155" y2="720" stroke="#0284c7" strokeWidth="2"/>
-      <line x1="300" y1="720" x2="445" y2="720" stroke="#0284c7" strokeWidth="2"/>
+      {/* Line from Treatment table down to 4hrs box */}
+      <line x1="300" y1="680" x2="155" y2="720" stroke="#0284c7" strokeWidth="2"/>
+
+      {/* Line from NO decision path to 2hrs box on right */}
       <line x1="100" y1="230" x2="100" y2="750" stroke="#0284c7" strokeWidth="2"/>
       <line x1="100" y1="750" x2="155" y2="750" stroke="#0284c7" strokeWidth="2"/>
       <line x1="500" y1="750" x2="445" y2="750" stroke="#0284c7" strokeWidth="2"/>

@@ -39,7 +39,7 @@ export default function SupportingInfo() {
   const sections = [
     {
       id: "ppo2",
-      title: "Partial Pressure of Oxygen (PPO2)",
+      title: "Safe and Maximum Limits",
       icon: "⚗���",
       subsections: [
         {

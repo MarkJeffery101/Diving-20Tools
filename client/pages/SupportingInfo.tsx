@@ -51,12 +51,12 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Safe Limits",
+          subtitle: "Commercial Offshore Limits",
           items: [
-            "Recreational Max: 1.4 bar",
-            "Commercial Max: 1.6 bar",
-            "Min Functional: 0.16 bar",
-            "Warning: 1.5-1.6 bar",
+            "Maximum pO2: 1.6 bar (operational limit)",
+            "Recommended: ≤ 1.5 bar (safety margin)",
+            "Minimum Functional: 0.16 bar (hypoxia threshold)",
+            "IMCA guidance: Max 1.4 bar regardless of time",
           ],
         },
         {

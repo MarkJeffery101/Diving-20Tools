@@ -78,9 +78,10 @@ export default function SupportingInfo() {
         {
           subtitle: "What is EAD?",
           items: [
-            "Accounts for reduced nitrogen",
-            "Formula: (depth × N2%) / 0.79 - depth",
-            "Shows equivalent air decompression depth",
+            "Calculates equivalent depth for nitrogen narcosis on air",
+            "Formula: EAD = (Depth + 10) × ((1 - O2%) / 0.79) - 10",
+            "Used for decompression table selection with nitrox",
+            "Enables accurate depth-based table indexing for nitrox mixes",
           ],
         },
         {

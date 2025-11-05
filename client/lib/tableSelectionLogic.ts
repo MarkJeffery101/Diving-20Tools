@@ -65,6 +65,28 @@ const tableDescriptions: Record<string, string> = {
 };
 
 /**
+ * Calculate Equivalent Air Depth (EAD) for nitrox mixes
+ * Formula: EAD = (Depth + 10) × ((1 - O2%) / 0.79) - 10
+ */
+export function calculateEAD(depth: number, o2Percentage: number): number {
+  const fractionN2 = 1 - o2Percentage / 100;
+  const ead = Math.round((depth + 10) * (fractionN2 / 0.79) - 10);
+  return Math.max(0, ead); // EAD cannot be negative
+}
+
+/**
+ * Get O2 percentage for nitrox type
+ */
+function getO2PercentageForNitroxType(gasType: string): number {
+  if (gasType === "nitrox-nia") {
+    return 40; // NIA15 = 40/60
+  } else if (gasType === "nitrox-nib") {
+    return 35; // NIB15 = 35/65
+  }
+  return 21; // Air
+}
+
+/**
  * Find the next available depth in a table that is >= requested depth
  */
 function findNextAvailableDepth(

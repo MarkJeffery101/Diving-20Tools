@@ -120,11 +120,12 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Residual Nitrogen",
+          subtitle: "Table Selection with Residual Nitrogen",
           items: [
-            "Nitrogen remaining after dive",
-            "Conservative planning recommended",
-            "Stay within table limits",
+            "Actual maximum depth must be less than table depth (e.g., 30m ⇒ select 33m table)",
+            "Actual dive time must be less than table time (e.g., 35 min ⇒ choose 40 min in table)",
+            "Use appropriate repetitive interval table for residual nitrogen management",
+            "Do not exceed table maximum depth or time; exceeding requires O₂ Treatment Table 5",
           ],
         },
         {
@@ -756,7 +757,7 @@ export default function SupportingInfo() {
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="px-2 py-1 border-b border-border">pO��� (atm)</th>
+                              <th className="px-2 py-1 border-b border-border">pO₂ (atm)</th>
                               <th className="px-2 py-1 border-b border-border">Max Single Exposure (min)</th>
                               <th className="px-2 py-1 border-b border-border">Max per 24 h (min)</th>
                             </tr>

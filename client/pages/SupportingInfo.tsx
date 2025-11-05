@@ -111,11 +111,12 @@ export default function SupportingInfo() {
       icon: "⏱️",
       subsections: [
         {
-          subtitle: "Requirements",
+          subtitle: "Commercial Offshore Standards",
           items: [
-            "Minimum 1 hour between dives",
-            "2-6 hours preferred for deep dives",
-            "Allows nitrogen elimination",
+            "Repetitive diving not standard N-Sea practice; allowed only in emergencies",
+            "Actual repeat interval must be longer than table's interval (e.g., 5h since prior dive ⇒ use 4h table)",
+            "≤ 8 hours under pressure per 24-hour period (dive + decompression)",
+            "Longer intervals (≥12h) recommended between repetitive dives",
           ],
         },
         {
@@ -755,7 +756,7 @@ export default function SupportingInfo() {
                         <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="px-2 py-1 border-b border-border">pO₂ (atm)</th>
+                              <th className="px-2 py-1 border-b border-border">pO��� (atm)</th>
                               <th className="px-2 py-1 border-b border-border">Max Single Exposure (min)</th>
                               <th className="px-2 py-1 border-b border-border">Max per 24 h (min)</th>
                             </tr>

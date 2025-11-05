@@ -24,8 +24,8 @@ export function EmergencyProcedure1SOX15() {
       className="w-full rounded-lg"
       style={{
         backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F4218098246674be3b9464e90a4219161?format=webp&width=1400")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundSize: 'contain',
+        backgroundPosition: '50% 35px',
         backgroundRepeat: 'no-repeat',
         height: '520px',
         overflow: 'hidden'
@@ -41,10 +41,10 @@ export function EmergencyProcedure2SOX15() {
       className="w-full rounded-lg"
       style={{
         backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F8cfb14cf160640bd83fc4aaa8d04e8bb?format=webp&width=1400")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundSize: 'contain',
+        backgroundPosition: '50% 35px',
         backgroundRepeat: 'no-repeat',
-        height: '550px',
+        height: '570px',
         overflow: 'hidden'
       }}
     />
@@ -58,10 +58,10 @@ export function EmergencyProcedure1NitroxTables() {
       className="w-full rounded-lg"
       style={{
         backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2F086c02daa6644349a131ec40ad54849b?format=webp&width=1400")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundSize: 'contain',
+        backgroundPosition: '50% 35px',
         backgroundRepeat: 'no-repeat',
-        height: '550px',
+        height: '570px',
         overflow: 'hidden'
       }}
     />
@@ -75,10 +75,10 @@ export function EmergencyProcedure2NitroxTables() {
       className="w-full rounded-lg"
       style={{
         backgroundImage: 'url("https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fd767cdc30d3b4b9782372e85acb24477?format=webp&width=1400")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center top',
+        backgroundSize: 'contain',
+        backgroundPosition: '50% 35px',
         backgroundRepeat: 'no-repeat',
-        height: '500px',
+        height: '520px',
         overflow: 'hidden'
       }}
     />

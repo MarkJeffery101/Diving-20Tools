@@ -1220,12 +1220,9 @@ export default function SupportingInfo() {
                       <h3 className="text-sm font-bold text-foreground mb-2">
                         {sub.subtitle}
                       </h3>
-                      <ul className="space-y-2 text-xs text-muted-foreground">
+                      <ul className="space-y-2 text-xs text-muted-foreground list-disc ml-6">
                         {sub.items.map((item, itemIdx) => (
-                          <li key={itemIdx} className="flex gap-2">
-                            <span className="text-primary font-bold flex-shrink-0">▶</span>
-                            <span>{renderTextWithTableLinks(item)}</span>
-                          </li>
+                          <li key={itemIdx}>{renderTextWithTableLinks(item)}</li>
                         ))}
                       </ul>
                     </div>

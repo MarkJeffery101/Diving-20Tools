@@ -1,8 +1,17 @@
 import React, { useEffect } from 'react';
 import mermaid from 'mermaid';
 
-// Initialize mermaid
-mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+// Initialize mermaid with custom theme
+mermaid.initialize({ 
+  startOnLoad: true, 
+  theme: 'default', 
+  securityLevel: 'loose',
+  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+  flowchart: {
+    useMaxWidth: true,
+    padding: '40'
+  }
+});
 
 interface MermaidDiagramProps {
   definition: string;
@@ -15,23 +24,23 @@ function MermaidDiagram({ definition, id }: MermaidDiagramProps) {
   }, []);
 
   return (
-    <div className="w-full overflow-auto p-4">
+    <div className="w-full overflow-auto p-6">
       <div className="mermaid" id={id} dangerouslySetInnerHTML={{ __html: definition }} />
     </div>
   );
 }
 
-// Crash Dive Procedure
-export function CrashDiveProcedure() {
+// 1. Emergency Procedure Air Table (SIL15)
+export function EmergencyProcedureAirTable() {
   const definition = `graph TD
     A["🔴 Dive is interrupted"]
     B{"Repeat interval<br/>>&nbsp;4 hrs?"}
     C["Surface/ox-table"]
     D["Emergency decompression<br/>crash dive procedure"]
     E{"Oxygen<br/>available?"}
-    F["From 12m<br/>20min O₂ 5min air"]
-    G["4 hrs near<br/>decompression<br/>chamber"]
-    H["2 hrs near<br/>decompression<br/>chamber"]
+    F["From 12 metres<br/>20 min oxygen<br/>5 min air"]
+    G["4 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    H["2 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
     
     A --> B
     B -->|YES| C
@@ -40,76 +49,114 @@ export function CrashDiveProcedure() {
     E -->|YES| F
     E -->|NO| G
     F --> H
+    G --> G
+    H --> H
     
-    style A fill:#0ea5e9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style B fill:#06b6d4,stroke:#0369a1,stroke-width:2px,color:#fff
-    style C fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff
-    style D fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff
-    style E fill:#06b6d4,stroke:#0369a1,stroke-width:2px,color:#fff
-    style F fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff
-    style G fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff
-    style H fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff`;
+    style A fill:#1e40af,stroke:#1e3a8a,stroke-width:3px,color:#fff,font-size:14px,font-weight:bold
+    style B fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style C fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style D fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style E fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style F fill:#0284c7,stroke:#0369a1,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style G fill:#0891b2,stroke:#0369a1,stroke-width:2px,color:#fff,font-size:12px,font-weight:600
+    style H fill:#0891b2,stroke:#0369a1,stroke-width:2px,color:#fff,font-size:12px,font-weight:600`;
 
   return (
-    <div className="w-full p-4 bg-gradient-to-br from-blue-50 to-slate-50 rounded-lg overflow-x-auto">
-      <MermaidDiagram definition={definition} id="crash-dive-diagram" />
+    <div className="w-full p-6 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-50 rounded-lg overflow-x-auto border border-blue-200">
+      <MermaidDiagram definition={definition} id="sil15-emergency-diagram" />
     </div>
   );
 }
 
-// Oxygen Failure During Decompression
-export function OxygenFailureDuringDecompression() {
+// 2. Emergency Procedure 1 for Surface/Ox Table (SOX15) - Irregularity in Decompression
+export function EmergencyProcedure1SOX15() {
+  const definition = `graph TD
+    A["🔴 Irregularity in<br/>decompression"]
+    B{"Oxygen<br/>available?"}
+    C["Treatment table 3"]
+    D["Treatment table 5"]
+    E{"Symptoms of<br/>Decompression<br/>sickness?"}
+    F["Treatment table 6 or 4"]
+    G["2 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    H["4 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    
+    A --> B
+    B -->|NO| C
+    B -->|YES| D
+    D --> E
+    E -->|NO| G
+    E -->|YES| F
+    F --> H
+    C --> H
+    
+    style A fill:#dc2626,stroke:#991b1b,stroke-width:3px,color:#fff,font-size:14px,font-weight:bold
+    style B fill:#f87171,stroke:#dc2626,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style C fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style D fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style E fill:#f87171,stroke:#dc2626,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style F fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style G fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff,font-size:12px,font-weight:600
+    style H fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff,font-size:12px,font-weight:600`;
+
+  return (
+    <div className="w-full p-6 bg-gradient-to-br from-red-50 via-slate-50 to-orange-50 rounded-lg overflow-x-auto border border-red-200">
+      <MermaidDiagram definition={definition} id="sox15-emergency-1-diagram" />
+    </div>
+  );
+}
+
+// 3. Emergency Procedure 2 for Surface/Ox Table (SOX15) - Oxygen Failure
+export function EmergencyProcedure2SOX15() {
   const definition = `graph TD
     A["🔴 Oxygen failure"]
-    B["Surface air table SAB"]
+    B["Surface air table<br/>SAB"]
     C{"Oxygen<br/>restored?"}
-    D["From 12m<br/>20min O₂ 5min air"]
+    D["From 12 metres<br/>20 min oxygen<br/>5 min air"]
     E{"OTU<br/>>&nbsp;450?"}
-    F{"O₂ intake<br/>>&nbsp;1/3 deco?"}
-    G["4 hrs near<br/>decompression<br/>chamber"]
-    H["2 hrs near<br/>decompression<br/>chamber"]
+    F{"Oxygen intake<br/>>&nbsp;1/3 of deco<br/>time?"}
+    G["2 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    H["4 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
 
     A --> B
     B --> C
     C -->|NO| B
     C -->|YES| E
+    E -->|YES| H
     E -->|NO| D
-    E -->|YES| G
     D --> F
-    D --> E
-    F -->|NO| G
-    F -->|YES| H
-    B --> G
+    F -->|YES| G
+    F -->|NO| H
+    B --> H
     
-    style A fill:#f97316,stroke:#c2410c,stroke-width:2px,color:#fff
-    style B fill:#fdba74,stroke:#c2410c,stroke-width:2px,color:#fff
-    style C fill:#fb923c,stroke:#c2410c,stroke-width:2px,color:#fff
-    style D fill:#fdba74,stroke:#c2410c,stroke-width:2px,color:#fff
-    style E fill:#fb923c,stroke:#c2410c,stroke-width:2px,color:#fff
-    style F fill:#fb923c,stroke:#c2410c,stroke-width:2px,color:#fff
-    style G fill:#fdba74,stroke:#c2410c,stroke-width:2px,color:#fff
-    style H fill:#fdba74,stroke:#c2410c,stroke-width:2px,color:#fff`;
+    style A fill:#dc2626,stroke:#991b1b,stroke-width:3px,color:#fff,font-size:14px,font-weight:bold
+    style B fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style C fill:#f87171,stroke:#dc2626,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style D fill:#ea580c,stroke:#c2410c,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style E fill:#f87171,stroke:#dc2626,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style F fill:#f87171,stroke:#dc2626,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style G fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff,font-size:12px,font-weight:600
+    style H fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff,font-size:12px,font-weight:600`;
 
   return (
-    <div className="w-full p-4 bg-gradient-to-br from-orange-50 to-slate-50 rounded-lg overflow-x-auto">
-      <MermaidDiagram definition={definition} id="oxygen-failure-diagram" />
+    <div className="w-full p-6 bg-gradient-to-br from-orange-50 via-slate-50 to-red-50 rounded-lg overflow-x-auto border border-orange-200">
+      <MermaidDiagram definition={definition} id="sox15-emergency-2-diagram" />
     </div>
   );
 }
 
-// Surface Decompression Required
-export function SurfaceDecompressionRequired() {
+// 4. Emergency Procedure 1 Nitrox Tables - Need for Surface Decompression
+export function EmergencyProcedure1NitroxTables() {
   const definition = `graph TD
-    A["🔴 Need for surface decompression"]
+    A["🔴 Need for surface<br/>decompression"]
     B{"Repeat interval<br/>>&nbsp;4 hrs?"}
-    C["Air or surface<br/>ox table"]
+    C["Air or surface ox table<br/>Table depth ><br/>equivalent air depth"]
     D["Emergency decompression<br/>crash dive procedure"]
     E{"Oxygen<br/>available?"}
     F{"OTU<br/>>&nbsp;450?"}
     G["Air only"]
-    H["From 12m<br/>20min O₂ 5min air"]
-    I["2 hrs near<br/>decompression<br/>chamber"]
-    J["4 hrs near<br/>decompression<br/>chamber"]
+    H["From 12 metres<br/>20 min oxygen<br/>5 min air"]
+    I["2 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    J["4 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
     
     A --> B
     B -->|YES| C
@@ -122,35 +169,35 @@ export function SurfaceDecompressionRequired() {
     G --> J
     H --> I
     
-    style A fill:#06b6d4,stroke:#0369a1,stroke-width:2px,color:#fff
-    style B fill:#22d3ee,stroke:#0369a1,stroke-width:2px,color:#fff
-    style C fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style D fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style E fill:#22d3ee,stroke:#0369a1,stroke-width:2px,color:#fff
-    style F fill:#22d3ee,stroke:#0369a1,stroke-width:2px,color:#fff
-    style G fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style H fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style I fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff
-    style J fill:#67e8f9,stroke:#0369a1,stroke-width:2px,color:#fff`;
+    style A fill:#059669,stroke:#065f46,stroke-width:3px,color:#fff,font-size:14px,font-weight:bold
+    style B fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style C fill:#059669,stroke:#047857,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style D fill:#059669,stroke:#047857,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style E fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style F fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style G fill:#047857,stroke:#065f46,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style H fill:#059669,stroke:#047857,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style I fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,font-size:12px,font-weight:600
+    style J fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,font-size:12px,font-weight:600`;
 
   return (
-    <div className="w-full p-4 bg-gradient-to-br from-cyan-50 to-slate-50 rounded-lg overflow-x-auto">
-      <MermaidDiagram definition={definition} id="surface-decompression-diagram" />
+    <div className="w-full p-6 bg-gradient-to-br from-emerald-50 via-slate-50 to-green-50 rounded-lg overflow-x-auto border border-emerald-200">
+      <MermaidDiagram definition={definition} id="nitrox-emergency-1-diagram" />
     </div>
   );
 }
 
-// Irregularity During Decompression
-export function IrregularityDuringDecompression() {
+// 5. Emergency Procedure 2 Nitrox Tables - Irregularity in Decompression
+export function EmergencyProcedure2NitroxTables() {
   const definition = `graph TD
-    A["���� Irregularity in decompression"]
+    A["🔴 Irregularity in<br/>decompression"]
     B{"Oxygen<br/>available?"}
     C["Treatment table 3"]
     D["Treatment table 5"]
-    E{"DCS<br/>symptoms?"}
+    E{"Symptoms of<br/>Decompression<br/>sickness?"}
     F["Treatment table 6 or 4"]
-    G["2 hrs near<br/>decompression<br/>chamber"]
-    H["4 hrs near<br/>decompression<br/>chamber"]
+    G["2 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
+    H["4 hrs near<br/>decompression<br/>chamber<br/>Repeat interval 12 hrs"]
     
     A --> B
     B -->|NO| C
@@ -161,23 +208,24 @@ export function IrregularityDuringDecompression() {
     F --> H
     C --> H
     
-    style A fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
-    style B fill:#60a5fa,stroke:#1e40af,stroke-width:2px,color:#fff
-    style C fill:#93c5fd,stroke:#1e40af,stroke-width:2px,color:#fff
-    style D fill:#93c5fd,stroke:#1e40af,stroke-width:2px,color:#fff
-    style E fill:#60a5fa,stroke:#1e40af,stroke-width:2px,color:#fff
-    style F fill:#93c5fd,stroke:#1e40af,stroke-width:2px,color:#fff
-    style G fill:#93c5fd,stroke:#1e40af,stroke-width:2px,color:#fff
-    style H fill:#93c5fd,stroke:#1e40af,stroke-width:2px,color:#fff`;
+    style A fill:#7c3aed,stroke:#6d28d9,stroke-width:3px,color:#fff,font-size:14px,font-weight:bold
+    style B fill:#a78bfa,stroke:#7c3aed,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style C fill:#7c3aed,stroke:#6d28d9,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style D fill:#7c3aed,stroke:#6d28d9,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style E fill:#a78bfa,stroke:#7c3aed,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style F fill:#7c3aed,stroke:#6d28d9,stroke-width:2px,color:#fff,font-size:13px,font-weight:600
+    style G fill:#6d28d9,stroke:#5b21b6,stroke-width:2px,color:#fff,font-size:12px,font-weight:600
+    style H fill:#6d28d9,stroke:#5b21b6,stroke-width:2px,color:#fff,font-size:12px,font-weight:600`;
 
   return (
-    <div className="w-full p-4 bg-gradient-to-br from-blue-50 to-slate-50 rounded-lg overflow-x-auto">
-      <MermaidDiagram definition={definition} id="irregularity-decompression-diagram" />
+    <div className="w-full p-6 bg-gradient-to-br from-violet-50 via-slate-50 to-purple-50 rounded-lg overflow-x-auto border border-violet-200">
+      <MermaidDiagram definition={definition} id="nitrox-emergency-2-diagram" />
     </div>
   );
 }
 
 // Backward compatibility
-export const SIL15FlowchartEmergency = CrashDiveProcedure;
-export const SOX15FlowchartEmergency1 = OxygenFailureDuringDecompression;
-export const NitroxFlowchartEmergency1 = SurfaceDecompressionRequired;
+export const CrashDiveProcedure = EmergencyProcedureAirTable;
+export const OxygenFailureDuringDecompression = EmergencyProcedure2SOX15;
+export const SurfaceDecompressionRequired = EmergencyProcedure1NitroxTables;
+export const IrregularityDuringDecompression = EmergencyProcedure1SOX15;

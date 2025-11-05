@@ -60,7 +60,7 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Examples",
+          subtitle: "Nitrox Dive Examples",
           items: [
             "Air 21% @ 30m: 0.84 bar ���",
             "Air 21% @ 60m: 1.68 bar ✗",

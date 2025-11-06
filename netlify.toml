@@ -26,6 +26,12 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# Never cache manifest for app updates
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # API routes should not be cached
 [[headers]]
   for = "/api/*"

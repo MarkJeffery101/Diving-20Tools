@@ -166,7 +166,7 @@ export default function Index() {
       </section>
 
       {/* Key Benefits Section - Enhanced */}
-      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-gradient-to-r from-ocean-950 via-ocean-900 to-ocean-950 text-white relative overflow-hidden">
+      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-r from-ocean-950 via-ocean-900 to-ocean-950 text-white relative overflow-hidden">
         {/* Background accent */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 right-0 w-80 h-80 bg-ocean-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -175,44 +175,44 @@ export default function Index() {
 
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
               Why DivePlan
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <div className="group">
-                <div className="w-14 h-14 bg-gradient-to-br from-ocean-400 to-ocean-500 rounded-xl flex items-center justify-center font-bold text-xl mb-4 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-ocean-400 to-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
                   ✓
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3">
+                <h3 className="text-base sm:text-lg font-bold mb-2">
                   Complete Reference
                 </h3>
-                <p className="text-sm sm:text-base text-ocean-200 leading-relaxed">
-                  All decompression tables and limits in one integrated platform
+                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
+                  All decompression tables and limits in one platform
                 </p>
               </div>
 
               <div className="group">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center font-bold text-xl mb-4 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
                   ✓
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3">
+                <h3 className="text-base sm:text-lg font-bold mb-2">
                   Seamless Navigation
                 </h3>
-                <p className="text-sm sm:text-base text-ocean-200 leading-relaxed">
-                  Intelligent links between tables, procedures, and decision support tools
+                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
+                  Smart links between tables and procedures
                 </p>
               </div>
 
               <div className="group">
-                <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center font-bold text-xl mb-4 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
                   ✓
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-3">
-                  Expert Decision Support
+                <h3 className="text-base sm:text-lg font-bold mb-2">
+                  Decision Support
                 </h3>
-                <p className="text-sm sm:text-base text-ocean-200 leading-relaxed">
-                  Interactive tools for navigating complex dive planning scenarios
+                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
+                  Interactive tools for complex scenarios
                 </p>
               </div>
             </div>

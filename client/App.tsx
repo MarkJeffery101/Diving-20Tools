@@ -25,38 +25,54 @@ function UpdateChecker() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Listen for service worker update messages
-    if ("serviceWorker" in navigator) {
-      const handleServiceWorkerMessage = (event: any) => {
-        if (event.data && event.data.type === "UPDATE_AVAILABLE") {
-          console.log("[App] Update available, version:", event.data.version);
+    let currentVersion: string | null = null;
 
-          // Show notification and auto-reload after 5 seconds
+    // Load initial version from manifest
+    const loadInitialVersion = async () => {
+      try {
+        const response = await fetch("/manifest.json?v=" + Date.now());
+        const manifest = await response.json();
+        currentVersion = manifest.version;
+        console.log("[App] Initial version:", currentVersion);
+      } catch (error) {
+        console.error("[App] Failed to load manifest:", error);
+      }
+    };
+
+    // Check for updates periodically
+    const checkForUpdate = async () => {
+      try {
+        const response = await fetch("/manifest.json?v=" + Date.now());
+        const manifest = await response.json();
+        const newVersion = manifest.version;
+
+        if (currentVersion && currentVersion !== newVersion) {
+          console.log("[App] Update detected:", currentVersion, "->", newVersion);
+
           toast({
             title: "App Updated",
             description: "A new version is ready. Reloading in 5 seconds...",
             duration: 5000,
           });
 
-          // Auto-reload after 5 seconds
           setTimeout(() => {
             window.location.reload();
           }, 5000);
+        } else if (!currentVersion) {
+          currentVersion = newVersion;
         }
-      };
+      } catch (error) {
+        console.error("[App] Update check failed:", error);
+      }
+    };
 
-      navigator.serviceWorker.addEventListener(
-        "message",
-        handleServiceWorkerMessage,
-      );
+    // Initial load
+    loadInitialVersion();
 
-      return () => {
-        navigator.serviceWorker.removeEventListener(
-          "message",
-          handleServiceWorkerMessage,
-        );
-      };
-    }
+    // Check every 20 seconds
+    const interval = setInterval(checkForUpdate, 20000);
+
+    return () => clearInterval(interval);
   }, [toast]);
 
   return null;

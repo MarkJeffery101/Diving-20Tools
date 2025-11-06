@@ -124,7 +124,7 @@ export default function Index() {
       </div>
 
       {/* Bottom Benefits Bar */}
-      <div className="flex-shrink-0 bg-ocean-950 text-white px-3 sm:px-6 md:px-4 py-1 sm:py-6 md:py-1 lg:py-1 border-t border-ocean-800 lg:h-auto">
+      <div className="flex-shrink-0 bg-ocean-950 text-white px-3 sm:px-3 lg:px-6 py-1 sm:py-1 lg:py-1 border-t border-ocean-800 lg:h-auto">
         <div className="container mx-auto">
           <div className="grid grid-cols-3 gap-2 sm:gap-6">
             <div className="flex flex-col sm:flex-row sm:items-start items-center gap-0.5 sm:gap-2 md:gap-1 lg:gap-1">

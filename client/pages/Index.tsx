@@ -63,9 +63,9 @@ export default function Index() {
       <Navigation />
 
       {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-8 py-3 border-b border-ocean-700">
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-4 sm:px-8 py-2 sm:py-3 border-b border-ocean-700">
         <div className="container mx-auto">
-          <div className="flex items-center gap-8 h-36">
+          <div className="flex items-center gap-4 sm:gap-8 h-20 sm:h-36">
             {/* Logo */}
             <div className="flex-shrink-0 h-full flex items-center">
               <img
@@ -77,10 +77,10 @@ export default function Index() {
 
             {/* Text */}
             <div className="flex-grow">
-              <h1 className="text-5xl font-bold text-white leading-tight">
+              <h1 className="text-2xl sm:text-5xl font-bold text-white leading-tight">
                 DivePlan
               </h1>
-              <p className="text-xl text-ocean-200">
+              <p className="text-xs sm:text-xl text-ocean-200">
                 Professional Dive Planning Reference
               </p>
             </div>

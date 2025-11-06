@@ -36,6 +36,9 @@ interface TreatmentTableType {
     total: string;
     otuOrOther?: string;
   }>;
+  borderColor: string;
+  bgColor: string;
+  badgeBgColor: string;
   headerBgColor: string;
   scheduleColumns: string[];
 }

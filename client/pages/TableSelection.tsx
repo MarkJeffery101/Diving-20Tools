@@ -78,14 +78,14 @@ export default function TableSelection() {
     setStep(3);
   };
 
-  const handleDepthInput = (depth: number) => {
+  const handleDepthInput = (depth: number | undefined) => {
     setProfile((prev) => ({
       ...prev,
       plannedDepth: depth,
     }));
   };
 
-  const handleBottomTimeInput = (time: number) => {
+  const handleBottomTimeInput = (time: number | undefined) => {
     setProfile((prev) => ({
       ...prev,
       bottomTime: time,

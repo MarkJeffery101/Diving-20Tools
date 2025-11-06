@@ -669,6 +669,9 @@ export default function TableUse() {
         description:
           "Extended no-stop times with 12+ hour intervals and no repetitive dives",
         codes: ["LND15"],
+        borderColor: "border-purple-400",
+        bgColor: "bg-purple-50",
+        badgeBgColor: "bg-purple-600",
         procedures: {
           normal: {
             title: "Extended No-Stop Limits - Normal Use",

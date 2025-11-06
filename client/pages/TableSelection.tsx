@@ -543,8 +543,18 @@ export default function TableSelection() {
                         handleDepthInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed) && parsed >= 6) {
+                        if (!isNaN(parsed)) {
                           handleDepthInput(parsed);
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const value = parseInt(e.target.value);
+                      if (!isNaN(value)) {
+                        if (value < 6) {
+                          handleDepthInput(6);
+                        } else if (value > 100) {
+                          handleDepthInput(100);
                         }
                       }
                     }}

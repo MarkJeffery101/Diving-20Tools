@@ -485,7 +485,10 @@ export default function TableSelection() {
                 {/* Depth Input */}
                 <div>
                   <label className="block text-xs font-semibold text-foreground mb-2">
-                    Depth (m): {profile.plannedDepth ? `${profile.plannedDepth}m` : "Select"}
+                    Depth (m):{" "}
+                    {profile.plannedDepth
+                      ? `${profile.plannedDepth}m`
+                      : "Select"}
                   </label>
 
                   {/* Mobile: Slider */}
@@ -495,7 +498,9 @@ export default function TableSelection() {
                       min="6"
                       max="100"
                       value={profile.plannedDepth || 30}
-                      onChange={(e) => handleDepthInput(parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleDepthInput(parseInt(e.target.value))
+                      }
                       className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">
@@ -540,7 +545,8 @@ export default function TableSelection() {
                 {/* Bottom Time Input */}
                 <div>
                   <label className="block text-xs font-semibold text-foreground mb-2">
-                    Bottom Time (min): {profile.bottomTime ? `${profile.bottomTime}min` : "Select"}
+                    Bottom Time (min):{" "}
+                    {profile.bottomTime ? `${profile.bottomTime}min` : "Select"}
                   </label>
 
                   {/* Mobile: Slider */}
@@ -550,7 +556,9 @@ export default function TableSelection() {
                       min="5"
                       max="300"
                       value={profile.bottomTime || 30}
-                      onChange={(e) => handleBottomTimeInput(parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleBottomTimeInput(parseInt(e.target.value))
+                      }
                       className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer"
                     />
                     <div className="flex justify-between text-xs text-muted-foreground mt-1">

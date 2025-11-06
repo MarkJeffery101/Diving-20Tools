@@ -493,27 +493,17 @@ export default function TableUse() {
             warningText:
               "Emergency procedures - follow carefully and consult diving supervisor",
             content: [
-              {
-                type: "item",
-                text: "If in-water decompression needs to continue on surface:",
-              },
-              {
-                type: "item",
-                text: "If repetitive interval > 4 hours: use surface decompression tables with oxygen (SOX15 or HSOX15)",
-              },
-              {
-                type: "item",
-                text: "Select table with diving depth deeper than EAD of nitrox dive",
-              },
-              {
-                type: "item",
-                text: "Possible even when in-water stops don't comply with surface/ox table",
-              },
-              { type: "item", text: "Does not constitute emergency procedure" },
-              {
-                type: "item",
-                text: "If repetitive interval < 4 hours OR dive time longer than surface decompression tables: use crash dive procedure",
-              },
+              { type: "section", text: "Surface decompression required" },
+              { type: "item", text: "If ≥4 h interval → SOX15 or HSOX15 (depth ≥ EAD), even if in-water stops didn't match or weren't required. Not an emergency (normal SOX rules)." },
+              { type: "section", text: "Crash Dive (nitrox)" },
+              { type: "item", text: "Choose SIL depth ≥ EAD." },
+              { type: "item", text: "Ascend ≤10 m/min; ignore remaining stops." },
+              { type: "item", text: "Chamber ≤3 min; pressurize to first stop + 9 m." },
+              { type: "item", text: "Hold 5 min." },
+              { type: "item", text: "Decompress on SIL15 using actual time + 10 min." },
+              { type: "item", text: "If available, O₂ at 12 m in 20/5 cycles." },
+              { type: "item", text: "Track OTU; stop O₂ if limits near." },
+              { type: "item", text: "Post-Crash: ≥12 h before diving; standby ≥2 h (with O₂) or ≥4 h (without). DCS risk higher." },
             ],
           },
           crashDive: {

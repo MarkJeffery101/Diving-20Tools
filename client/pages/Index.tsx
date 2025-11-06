@@ -121,46 +121,46 @@ export default function Index() {
       </div>
 
       {/* Bottom Benefits Bar */}
-      <div className="flex-shrink-0 bg-ocean-950 text-white px-4 sm:px-6 py-4 border-t border-ocean-800">
+      <div className="flex-shrink-0 bg-ocean-950 text-white px-4 sm:px-6 py-8 border-t border-ocean-800">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-ocean-500 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-ocean-500 rounded-lg flex items-center justify-center flex-shrink-0 text-lg font-bold">
                 ✓
               </div>
               <div className="min-w-0">
-                <h3 className="text-xs sm:text-sm font-bold">
+                <h3 className="text-sm sm:text-base font-bold">
                   Complete Reference
                 </h3>
-                <p className="text-xs text-ocean-300 leading-tight">
+                <p className="text-sm text-ocean-300 leading-relaxed">
                   All tables and limits in one platform
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 text-lg font-bold">
                 ✓
               </div>
               <div className="min-w-0">
-                <h3 className="text-xs sm:text-sm font-bold">
+                <h3 className="text-sm sm:text-base font-bold">
                   Seamless Navigation
                 </h3>
-                <p className="text-xs text-ocean-300 leading-tight">
+                <p className="text-sm text-ocean-300 leading-relaxed">
                   Smart links between tools
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 text-sm font-bold">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 text-lg font-bold">
                 ✓
               </div>
               <div className="min-w-0">
-                <h3 className="text-xs sm:text-sm font-bold">
+                <h3 className="text-sm sm:text-base font-bold">
                   Decision Support
                 </h3>
-                <p className="text-xs text-ocean-300 leading-tight">
+                <p className="text-sm text-ocean-300 leading-relaxed">
                   Tools for complex scenarios
                 </p>
               </div>

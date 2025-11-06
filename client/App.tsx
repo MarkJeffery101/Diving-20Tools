@@ -122,119 +122,111 @@ function UpdateChecker() {
   return null;
 }
 
-function AppContent() {
-  return (
-    <>
-      <UpdateChecker />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/tables"
-            element={
-              <ProtectedRoute>
-                <Tables />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/tables/:id"
-            element={
-              <ProtectedRoute>
-                <TableDetail />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/table-selection"
-            element={
-              <ProtectedRoute>
-                <TableSelection />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/table-use"
-            element={
-              <ProtectedRoute>
-                <TableUse />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/tools"
-            element={
-              <ProtectedRoute>
-                <Tools />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/share"
-            element={
-              <ProtectedRoute>
-                <Share />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/supporting-info"
-            element={
-              <ProtectedRoute>
-                <SupportingInfo />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/treatment-protocols"
-            element={
-              <ProtectedRoute>
-                <TreatmentProtocols />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/emergency-procedures"
-            element={
-              <ProtectedRoute>
-                <EmergencyProcedures />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/help"
-            element={
-              <ProtectedRoute>
-                <Help />
-              </ProtectedRoute>
-            }
-          />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
-}
-
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AuthProvider>
-          <Toaster />
-          <Sonner />
-          <AppContent />
-        </AuthProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <AuthProvider>
+            <UpdateChecker />
+            <Toaster />
+            <Sonner />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Index />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tables"
+                element={
+                  <ProtectedRoute>
+                    <Tables />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tables/:id"
+                element={
+                  <ProtectedRoute>
+                    <TableDetail />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/table-selection"
+                element={
+                  <ProtectedRoute>
+                    <TableSelection />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/table-use"
+                element={
+                  <ProtectedRoute>
+                    <TableUse />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tools"
+                element={
+                  <ProtectedRoute>
+                    <Tools />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/share"
+                element={
+                  <ProtectedRoute>
+                    <Share />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/supporting-info"
+                element={
+                  <ProtectedRoute>
+                    <SupportingInfo />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/treatment-protocols"
+                element={
+                  <ProtectedRoute>
+                    <TreatmentProtocols />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/emergency-procedures"
+                element={
+                  <ProtectedRoute>
+                    <EmergencyProcedures />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/help"
+                element={
+                  <ProtectedRoute>
+                    <Help />
+                  </ProtectedRoute>
+                }
+              />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }

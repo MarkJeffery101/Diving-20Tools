@@ -274,7 +274,9 @@ export default function TableSelection() {
           </span>
         </div>
         <p className="text-xs text-muted-foreground mt-2">
-          {profile.plannedDepth ? `${profile.plannedDepth}m max depth` : "Enter a depth"}
+          {profile.plannedDepth
+            ? `${profile.plannedDepth}m max depth`
+            : "Enter a depth"}
         </p>
       </div>
 

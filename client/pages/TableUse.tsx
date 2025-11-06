@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import {
   Card,
@@ -1096,6 +1097,9 @@ export default function TableUse() {
         id: "cx30",
         code: "CX-30",
         name: "COMEX Table CX 30",
+        borderColor: "border-teal-400",
+        bgColor: "bg-teal-50",
+        badgeBgColor: "bg-teal-600",
         useFor:
           "Very serious decompression sickness and air embolism (only on prescription)",
         keyParameters: [
@@ -1359,6 +1363,9 @@ export default function TableUse() {
         id: "airt4",
         code: "AIR-4",
         name: "Air Treatment Table 4",
+        borderColor: "border-teal-400",
+        bgColor: "bg-teal-50",
+        badgeBgColor: "bg-teal-600",
         useFor:
           "Extremely serious symptoms (Type II) if oxygen unavailable with extended bottom time",
         keyParameters: [

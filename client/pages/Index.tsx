@@ -91,26 +91,26 @@ export default function Index() {
       </div>
 
       {/* Middle Content - Cards Grid */}
-      <div className="flex-grow overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="flex-grow overflow-y-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {features.map((feature) => (
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group relative overflow-hidden rounded-lg border-2 p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer ${feature.color}`}
+                className={`group relative overflow-hidden rounded-lg border-2 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${feature.color}`}
               >
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className={`mb-2 inline-flex p-2 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
-                    <SvgIcon id={feature.iconId} className="h-5 w-5" />
+                  <div className={`mb-4 inline-flex p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
+                    <SvgIcon id={feature.iconId} className="h-6 w-6" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-sm sm:text-base font-bold mb-1 group-hover:text-opacity-90 transition-opacity">
+                  <h3 className="text-base sm:text-lg font-bold mb-2 group-hover:text-opacity-90 transition-opacity">
                     {feature.title}
                   </h3>
-                  <p className="text-xs opacity-85 group-hover:opacity-100 leading-tight transition-opacity">
+                  <p className="text-sm opacity-85 group-hover:opacity-100 leading-relaxed transition-opacity">
                     {feature.description}
                   </p>
                 </div>

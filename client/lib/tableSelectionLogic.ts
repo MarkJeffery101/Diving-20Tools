@@ -13,6 +13,7 @@ export interface DiveProfile {
   gasType?: string; // "air" | "nitrox-nia" | "nitrox-nib" (optional for no-stop)
   plannedDepth: number;
   bottomTime: number;
+  surfaceInterval?: number; // hours since previous dive
   seaStateRisk?: boolean;
   bellAvailable?: boolean;
 }

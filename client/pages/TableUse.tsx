@@ -412,6 +412,9 @@ export default function TableUse() {
         description:
           "Enriched air tables for reduced decompression time (NIA15: 40/60, NIB15: 35/65)",
         codes: ["NIA15", "NIB15", "H2NIA15", "H4NIA15"],
+        borderColor: "border-green-400",
+        bgColor: "bg-green-50",
+        badgeBgColor: "bg-green-600",
         procedures: {
           normal: {
             title: "Nitrox Decompression Tables - Normal Use",
@@ -980,6 +983,9 @@ export default function TableUse() {
         id: "usnt6",
         code: "USN-6",
         name: "US Navy Oxygen Treatment Table 6",
+        borderColor: "border-red-400",
+        bgColor: "bg-red-50",
+        badgeBgColor: "bg-red-600",
         useFor:
           "Type I & II DCS if symptoms don't disappear within 10 min at 18 msw, and air embolism",
         keyParameters: [
@@ -1257,6 +1263,9 @@ export default function TableUse() {
         id: "airt1a",
         code: "AIR-1A",
         name: "Air Treatment Table 1A",
+        borderColor: "border-red-400",
+        bgColor: "bg-red-50",
+        badgeBgColor: "bg-red-600",
         useFor:
           "Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw",
         keyParameters: [
@@ -1283,6 +1292,9 @@ export default function TableUse() {
         id: "airt2a",
         code: "AIR-2A",
         name: "Air Treatment Table 2A",
+        borderColor: "border-red-400",
+        bgColor: "bg-red-50",
+        badgeBgColor: "bg-red-600",
         useFor:
           "Pain only DCS (Type I) if oxygen unavailable and pain disappears at depth >20 msw",
         keyParameters: [
@@ -1312,6 +1324,9 @@ export default function TableUse() {
         id: "airt3",
         code: "AIR-3",
         name: "Air Treatment Table 3",
+        borderColor: "border-red-400",
+        bgColor: "bg-red-50",
+        badgeBgColor: "bg-red-600",
         useFor:
           "Serious symptoms (Type II) if oxygen unavailable and symptoms disappear within 30 min at 50 msw",
         keyParameters: [

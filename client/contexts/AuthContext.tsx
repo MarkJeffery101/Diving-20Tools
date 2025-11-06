@@ -60,12 +60,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       setError(null);
       const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity) {
+      if (!netlifyIdentity || !netlifyIdentity.gotrue) {
         throw new Error("Authentication service not available");
       }
-      await netlifyIdentity.login(email, password);
-      const currentUser = netlifyIdentity.currentUser();
-      setUser(currentUser);
+      const user = await netlifyIdentity.gotrue.login(email, password, true);
+      setUser(user);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
       setError(message);
@@ -77,12 +76,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       setError(null);
       const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity) {
+      if (!netlifyIdentity || !netlifyIdentity.gotrue) {
         throw new Error("Authentication service not available");
       }
-      await netlifyIdentity.signup(email, password);
-      const currentUser = netlifyIdentity.currentUser();
-      setUser(currentUser);
+      const user = await netlifyIdentity.gotrue.signup(email, password, true);
+      setUser(user);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Signup failed";
       setError(message);

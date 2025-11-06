@@ -24,7 +24,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Check if netlifyIdentity is available
         if (typeof window !== "undefined" && (window as any).netlifyIdentity) {
           const netlifyIdentity = (window as any).netlifyIdentity;
-          
+
           // Get current user
           const currentUser = netlifyIdentity.currentUser();
           if (currentUser) {

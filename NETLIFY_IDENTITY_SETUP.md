@@ -38,6 +38,7 @@ We've added authentication to your app with the following components:
 ### Step 4: Deploy
 
 Push your changes to GitHub:
+
 ```bash
 # Changes are already committed, just push
 ```
@@ -106,6 +107,7 @@ If you exceed 5 users on the free tier, Netlify will prompt you to upgrade.
 ### Forgot password?
 
 Users can reset their password from the login page. If they don't see a reset option:
+
 1. Tell them to try logging in with the wrong password
 2. They should see a "Forgot your password?" link
 3. They can reset from there
@@ -126,6 +128,7 @@ You can customize the authentication behavior by editing `client/contexts/AuthCo
 ## Support
 
 For more info on Netlify Identity:
+
 - https://docs.netlify.com/identity/overview/
 - https://docs.netlify.com/identity/setup/
 

@@ -37,7 +37,9 @@ export default function Login() {
       }
       navigate("/");
     } catch (err) {
-      setLocalError(err instanceof Error ? err.message : "Authentication failed");
+      setLocalError(
+        err instanceof Error ? err.message : "Authentication failed",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -152,7 +154,8 @@ export default function Login() {
           {/* Info Box */}
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <p className="text-xs text-blue-700">
-              <strong>Demo:</strong> Use any email and password (min 6 characters) to create a test account.
+              <strong>Demo:</strong> Use any email and password (min 6
+              characters) to create a test account.
             </p>
           </div>
         </div>

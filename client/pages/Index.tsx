@@ -65,7 +65,7 @@ export default function Index() {
       <Navigation />
 
       {/* Premium Hero Section */}
-      <section className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 overflow-hidden">
+      <section className="relative py-8 sm:py-10 md:py-12 px-4 sm:px-6 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 right-0 w-96 h-96 bg-ocean-500 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-pulse"></div>

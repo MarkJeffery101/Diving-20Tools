@@ -119,6 +119,9 @@ export default function TableUse() {
         description:
           "Standard air decompression tables with 12-hour repetitive interval",
         codes: ["SIL15", "H2SIL15", "H4SIL15"],
+        borderColor: "border-blue-400",
+        bgColor: "bg-blue-50",
+        badgeBgColor: "bg-blue-600",
         procedures: {
           normal: {
             title: "Standard Air Tables - Normal Use",

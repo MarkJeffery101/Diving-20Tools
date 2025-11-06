@@ -254,10 +254,18 @@ export default function TableSelection() {
             inputMode="numeric"
             min="6"
             max="100"
-            value={profile.plannedDepth || 30}
-            onChange={(e) =>
-              handleDepthInput(Math.max(6, parseInt(e.target.value) || 30))
-            }
+            value={profile.plannedDepth || ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                handleDepthInput(undefined as any);
+              } else {
+                const parsed = parseInt(value);
+                if (!isNaN(parsed)) {
+                  handleDepthInput(Math.max(6, parsed));
+                }
+              }
+            }}
             className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
             placeholder="30"
           />
@@ -280,10 +288,18 @@ export default function TableSelection() {
             inputMode="numeric"
             min="5"
             max="300"
-            value={profile.bottomTime || 30}
-            onChange={(e) =>
-              handleBottomTimeInput(Math.max(5, parseInt(e.target.value) || 30))
-            }
+            value={profile.bottomTime || ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                handleBottomTimeInput(undefined as any);
+              } else {
+                const parsed = parseInt(value);
+                if (!isNaN(parsed)) {
+                  handleBottomTimeInput(Math.max(5, parsed));
+                }
+              }
+            }}
             className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
             placeholder="30"
           />

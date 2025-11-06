@@ -214,25 +214,91 @@ export default function TableSelection() {
       </div>
     ) : null;
 
-  // Question 3: Depth Range
+  // Question 3: Exact Depth & Bottom Time
   const question3 = (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <h2 className="text-2xl font-bold text-foreground mb-6">
-        3. What is your planned depth range?
+        3. Enter your dive parameters
       </h2>
-      <p className="text-sm text-muted-foreground mb-4">
-        Select a range, then specify your exact maximum depth on the next step.
-      </p>
-      <div className="grid grid-cols-1 gap-3">
-        {depthRanges.map((range) => (
-          <button
-            key={range.range}
-            onClick={() => handleDepthRangeSelect(range)}
-            className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-blue-50 transition-all text-left"
-          >
-            <p className="font-semibold text-foreground">{range.label}</p>
-          </button>
-        ))}
+
+      <div>
+        <label className="block text-sm font-semibold text-foreground mb-2">
+          Maximum Depth (meters)
+        </label>
+        <div className="flex gap-3 items-center w-full sm:max-w-xs">
+          <input
+            type="number"
+            inputMode="numeric"
+            min="6"
+            max="100"
+            value={profile.plannedDepth || ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                handleDepthInput(undefined as any);
+              } else {
+                const parsed = parseInt(value);
+                if (!isNaN(parsed)) {
+                  handleDepthInput(Math.max(6, parsed));
+                }
+              }
+            }}
+            className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
+            placeholder="30"
+          />
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            m
+          </span>
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          {profile.plannedDepth
+            ? `${profile.plannedDepth}m max depth`
+            : "Enter a depth"}
+        </p>
+      </div>
+
+      <div>
+        <label className="block text-sm font-semibold text-foreground mb-2">
+          Expected Bottom Time (minutes)
+        </label>
+        <div className="flex gap-3 items-center w-full sm:max-w-xs">
+          <input
+            type="number"
+            inputMode="numeric"
+            min="5"
+            max="300"
+            value={profile.bottomTime || ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                handleBottomTimeInput(undefined as any);
+              } else {
+                const parsed = parseInt(value);
+                if (!isNaN(parsed)) {
+                  handleBottomTimeInput(Math.max(5, parsed));
+                }
+              }
+            }}
+            className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
+            placeholder="30"
+          />
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            min
+          </span>
+        </div>
+      </div>
+
+      <div className="flex gap-3">
+        <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
+          ← Back
+        </Button>
+        <Button
+          onClick={handleGetRecommendation}
+          disabled={!profile.plannedDepth || !profile.bottomTime}
+          className="flex-1 bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Get Recommendation
+        </Button>
       </div>
     </div>
   );

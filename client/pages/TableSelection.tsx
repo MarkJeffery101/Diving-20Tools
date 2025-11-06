@@ -333,7 +333,10 @@ export default function TableSelection() {
 
       <div>
         <label className="block text-sm font-semibold text-foreground mb-2">
-          Surface Interval Since Previous Dive (hours) <span className="text-xs text-muted-foreground">Optional - for repetitive dives</span>
+          Surface Interval Since Previous Dive (hours){" "}
+          <span className="text-xs text-muted-foreground">
+            Optional - for repetitive dives
+          </span>
         </label>
         <div className="flex gap-3 items-center w-full sm:max-w-xs">
           <input

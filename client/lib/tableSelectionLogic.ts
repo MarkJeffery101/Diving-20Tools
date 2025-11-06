@@ -48,8 +48,10 @@ const tableDescriptions: Record<string, string> = {
   SIL15: "Standard Air, Repetitive Interval 12 Hours - In-water decompression",
   H2SIL15: "Standard Air, Repetitive Interval 2 Hours - In-water decompression",
   H4SIL15: "Standard Air, Repetitive Interval 4 Hours - In-water decompression",
-  SOX15: "Surface Decompression with Oxygen, 12-hour interval - Requires chamber",
-  HSOX15: "Surface Decompression with Oxygen, 4-hour interval - Requires chamber",
+  SOX15:
+    "Surface Decompression with Oxygen, 12-hour interval - Requires chamber",
+  HSOX15:
+    "Surface Decompression with Oxygen, 4-hour interval - Requires chamber",
   SAB15: "Backup Air Table, 12-hour interval - For oxygen system failure only",
   HSAB15: "Backup Air Table, 4-hour interval - For oxygen system failure only",
   BOX15: "Bell Air/Oxygen Table, 12-hour interval - Requires diving bell",
@@ -114,10 +116,10 @@ export function getTableRecommendation(
   const warnings: string[] = [];
 
   // Get candidate tables based on technique and gas type
-  const candidateTables =
-    techniqueToTables[profile.technique]?.[profile.gasType || "default"] ||
-    techniqueToTables[profile.technique]?.default ||
-    ["SIL15"];
+  const candidateTables = techniqueToTables[profile.technique]?.[
+    profile.gasType || "default"
+  ] ||
+    techniqueToTables[profile.technique]?.default || ["SIL15"];
 
   // Filter and score tables based on profile
   let selectedTable = candidateTables[0];
@@ -134,7 +136,10 @@ export function getTableRecommendation(
       );
     }
 
-    const depth = findNextAvailableDepth(selectedTableVariant, profile.plannedDepth);
+    const depth = findNextAvailableDepth(
+      selectedTableVariant,
+      profile.plannedDepth,
+    );
     if (depth) {
       selectedTable = selectedTableVariant;
       selectedDepth = depth;
@@ -174,10 +179,7 @@ export function getTableRecommendation(
   }
 
   // Special handling for nitrox depth limits
-  if (
-    selectedTable.includes("NIA") ||
-    selectedTable.includes("NIB")
-  ) {
+  if (selectedTable.includes("NIA") || selectedTable.includes("NIB")) {
     if (selectedDepth > 30) {
       warnings.push(
         "Nitrox depth exceeds recommended operational limit of 30m. Consider deeper air tables instead.",
@@ -230,7 +232,11 @@ export function validateDiveProfile(profile: DiveProfile): string[] {
     errors.push("Surface interval must be between 0 and 48 hours");
   }
 
-  if (!["no-stop", "in-water", "surface-oxygen", "nitrox"].includes(profile.technique)) {
+  if (
+    !["no-stop", "in-water", "surface-oxygen", "nitrox"].includes(
+      profile.technique,
+    )
+  ) {
     errors.push("Invalid dive technique");
   }
 

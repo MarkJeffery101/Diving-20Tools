@@ -806,6 +806,9 @@ export default function TableUse() {
         id: "cx12",
         code: "CX-12",
         name: "COMEX Table CX 12",
+        borderColor: "border-teal-400",
+        bgColor: "bg-teal-50",
+        badgeBgColor: "bg-teal-600",
         useFor:
           "Mild decompression sickness and air embolism (only on prescription)",
         keyParameters: [

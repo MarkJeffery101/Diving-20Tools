@@ -507,12 +507,6 @@ export default function TableSelection() {
                 description:
                   "Our decision tree matches your profile to the most suitable table code and depth.",
               },
-              {
-                number: "3",
-                title: "Review & Verify",
-                description:
-                  "Check warnings and considerations, then navigate to the full decompression table.",
-              },
             ].map((step) => (
               <Card key={step.number} className="text-center">
                 <CardHeader>
@@ -528,6 +522,77 @@ export default function TableSelection() {
                 </CardContent>
               </Card>
             ))}
+
+            {/* Card 3 - Depth & Time Inputs */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                  3
+                </div>
+                <CardTitle>Enter Dive Parameters</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="block text-xs font-semibold text-foreground mb-2">
+                    Depth (m)
+                  </label>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="6"
+                    max="100"
+                    value={profile.plannedDepth || ""}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === "") {
+                        handleDepthInput(undefined as any);
+                      } else {
+                        const parsed = parseInt(value);
+                        if (!isNaN(parsed)) {
+                          handleDepthInput(Math.max(6, parsed));
+                        }
+                      }
+                    }}
+                    className="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="30"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-foreground mb-2">
+                    Bottom Time (min)
+                  </label>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="5"
+                    max="300"
+                    value={profile.bottomTime || ""}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (value === "") {
+                        handleBottomTimeInput(undefined as any);
+                      } else {
+                        const parsed = parseInt(value);
+                        if (!isNaN(parsed)) {
+                          handleBottomTimeInput(Math.max(5, parsed));
+                        }
+                      }
+                    }}
+                    className="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="30"
+                  />
+                </div>
+
+                <Button
+                  onClick={handleGetRecommendation}
+                  disabled={!profile.plannedDepth || !profile.bottomTime}
+                  className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                >
+                  Get Recommendation
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

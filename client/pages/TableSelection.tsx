@@ -331,6 +331,53 @@ export default function TableSelection() {
         </div>
       </div>
 
+      <div>
+        <label className="block text-sm font-semibold text-foreground mb-2">
+          Surface Interval Since Previous Dive (hours) <span className="text-xs text-muted-foreground">Optional - for repetitive dives</span>
+        </label>
+        <div className="flex gap-3 items-center w-full sm:max-w-xs">
+          <input
+            type="number"
+            inputMode="numeric"
+            min="0"
+            max="48"
+            step="0.5"
+            value={profile.surfaceInterval || ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") {
+                handleSurfaceIntervalInput(undefined as any);
+              } else {
+                const parsed = parseFloat(value);
+                if (!isNaN(parsed)) {
+                  handleSurfaceIntervalInput(parsed);
+                }
+              }
+            }}
+            onBlur={(e) => {
+              const value = parseFloat(e.target.value);
+              if (!isNaN(value)) {
+                if (value < 0) {
+                  handleSurfaceIntervalInput(0);
+                } else if (value > 48) {
+                  handleSurfaceIntervalInput(48);
+                }
+              }
+            }}
+            className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
+            placeholder="0"
+          />
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            h
+          </span>
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          {profile.surfaceInterval !== undefined
+            ? `${profile.surfaceInterval}h since last dive`
+            : "Leave empty for first dive"}
+        </p>
+      </div>
+
       <div className="flex gap-3">
         <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
           ← Back

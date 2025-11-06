@@ -89,9 +89,9 @@ export default function Index() {
       </div>
 
       {/* Middle Content - Cards Grid */}
-      <div className="flex-grow overflow-y-auto px-2 sm:px-2 lg:px-8 py-1 sm:py-1 lg:py-16 lg:bg-gradient-to-b lg:from-ocean-50 lg:to-ocean-100">
+      <div className="flex-grow overflow-y-auto px-2 sm:px-2 lg:px-8 py-1 sm:py-1 lg:py-32 lg:bg-gradient-to-b lg:from-ocean-50 lg:to-ocean-100">
         <div className="w-full max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2 lg:gap-x-6 lg:gap-y-12 max-w-full mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2 lg:gap-x-6 lg:gap-y-24 max-w-full mx-auto">
             {features.map((feature) => (
               <Link
                 key={feature.href + feature.title}

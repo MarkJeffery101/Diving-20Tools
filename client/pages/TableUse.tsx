@@ -603,6 +603,9 @@ export default function TableUse() {
         name: "No-Stop Limits for Air Diving",
         description: "Standard no-decompression limits for air diving",
         codes: ["ND15"],
+        borderColor: "border-purple-400",
+        bgColor: "bg-purple-50",
+        badgeBgColor: "bg-purple-600",
         procedures: {
           normal: {
             title: "No-Stop Limits for Air Diving - Normal Use",

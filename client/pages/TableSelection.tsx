@@ -25,7 +25,8 @@ export default function TableSelection() {
   const [profile, setProfile] = useState<Partial<DiveProfile>>({
     bottomTime: 30,
   });
-  const [recommendation, setRecommendation] = useState<RecommendationResult | null>(null);
+  const [recommendation, setRecommendation] =
+    useState<RecommendationResult | null>(null);
 
   // Memoize available gas types based on current technique
   const availableGasTypes = useMemo(() => {
@@ -43,7 +44,7 @@ export default function TableSelection() {
       { range: "40-50m", label: "40-50m (very deep)", min: 40, max: 50 },
       { range: "50+m", label: "50m+ (extreme)", min: 50, max: 100 },
     ],
-    []
+    [],
   );
 
   const handleTechniqueSelect = (technique: string) => {
@@ -93,9 +94,7 @@ export default function TableSelection() {
 
   const handleGetRecommendation = () => {
     // Validate profile
-    const errors = validateDiveProfile(
-      profile as DiveProfile
-    );
+    const errors = validateDiveProfile(profile as DiveProfile);
     if (errors.length > 0) {
       alert("Profile validation errors:\n" + errors.join("\n"));
       return;
@@ -111,7 +110,7 @@ export default function TableSelection() {
     if (recommendation) {
       // Navigate to table with code and depth
       navigate(
-        `/tables/${recommendation.tableCode.toLowerCase()}-${recommendation.recommendedDepth}`
+        `/tables/${recommendation.tableCode.toLowerCase()}-${recommendation.recommendedDepth}`,
       );
     }
   };
@@ -160,7 +159,9 @@ export default function TableSelection() {
             className="p-4 rounded-lg border-2 border-border hover:border-primary hover:bg-blue-50 transition-all text-left"
           >
             <p className="font-semibold text-foreground">{option.title}</p>
-            <p className="text-sm text-muted-foreground">{option.description}</p>
+            <p className="text-sm text-muted-foreground">
+              {option.description}
+            </p>
           </button>
         ))}
       </div>
@@ -179,20 +180,21 @@ export default function TableSelection() {
         </p>
         <div className="grid grid-cols-1 gap-3">
           {availableGasTypes.map((gasType) => {
-            const gasOptions: Record<string, { title: string; desc: string }> = {
-              air: {
-                title: "Air",
-                desc: "Standard compressed air (21% O₂, 79% N₂)",
-              },
-              "nitrox-nia": {
-                title: "Nitrox NIA (40/60)",
-                desc: "40% O₂, 60% N₂ - Reduced nitrogen loading",
-              },
-              "nitrox-nib": {
-                title: "Nitrox NIB (35/65)",
-                desc: "35% O₂, 65% N₂ - Conservative mix",
-              },
-            };
+            const gasOptions: Record<string, { title: string; desc: string }> =
+              {
+                air: {
+                  title: "Air",
+                  desc: "Standard compressed air (21% O₂, 79% N₂)",
+                },
+                "nitrox-nia": {
+                  title: "Nitrox NIA (40/60)",
+                  desc: "40% O₂, 60% N₂ - Reduced nitrogen loading",
+                },
+                "nitrox-nib": {
+                  title: "Nitrox NIB (35/65)",
+                  desc: "35% O₂, 65% N₂ - Conservative mix",
+                },
+              };
             const option = gasOptions[gasType] || {
               title: gasType,
               desc: "Selected gas type",
@@ -253,11 +255,15 @@ export default function TableSelection() {
             min="6"
             max="100"
             value={profile.plannedDepth || 30}
-            onChange={(e) => handleDepthInput(Math.max(6, parseInt(e.target.value) || 30))}
+            onChange={(e) =>
+              handleDepthInput(Math.max(6, parseInt(e.target.value) || 30))
+            }
             className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
             placeholder="30"
           />
-          <span className="text-sm text-muted-foreground whitespace-nowrap">m</span>
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            m
+          </span>
         </div>
         <p className="text-xs text-muted-foreground mt-2">
           {profile.plannedDepth && profile.plannedDepth}m max depth
@@ -275,20 +281,20 @@ export default function TableSelection() {
             min="5"
             max="300"
             value={profile.bottomTime || 30}
-            onChange={(e) => handleBottomTimeInput(Math.max(5, parseInt(e.target.value) || 30))}
+            onChange={(e) =>
+              handleBottomTimeInput(Math.max(5, parseInt(e.target.value) || 30))
+            }
             className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
             placeholder="30"
           />
-          <span className="text-sm text-muted-foreground whitespace-nowrap">min</span>
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            min
+          </span>
         </div>
       </div>
 
       <div className="flex gap-3">
-        <Button
-          variant="outline"
-          onClick={() => setStep(2)}
-          className="flex-1"
-        >
+        <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
           ← Back
         </Button>
         <Button
@@ -388,11 +394,7 @@ export default function TableSelection() {
 
       {/* Action Buttons */}
       <div className="flex gap-3">
-        <Button
-          variant="outline"
-          onClick={handleReset}
-          className="flex-1"
-        >
+        <Button variant="outline" onClick={handleReset} className="flex-1">
           Start Over
         </Button>
         <Button

@@ -906,6 +906,9 @@ export default function TableUse() {
           "• Can extend initial depth time if needed",
           "• Total treatment up to 2+ hours at deepest depths",
         ],
+        borderColor: "border-red-400",
+        bgColor: "bg-red-50",
+        badgeBgColor: "bg-red-600",
         schedule: [
           {
             depth: "18",

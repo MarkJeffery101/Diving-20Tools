@@ -47,7 +47,12 @@ function UpdateChecker() {
         const newVersion = manifest.version;
 
         if (currentVersion && currentVersion !== newVersion) {
-          console.log("[App] Update detected:", currentVersion, "->", newVersion);
+          console.log(
+            "[App] Update detected:",
+            currentVersion,
+            "->",
+            newVersion,
+          );
 
           toast({
             title: "App Updated",

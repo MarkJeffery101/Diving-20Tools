@@ -482,52 +482,112 @@ export default function TableSelection() {
                 <CardTitle>Enter Dive Parameters</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
+                {/* Depth Input */}
                 <div>
                   <label className="block text-xs font-semibold text-foreground mb-2">
-                    Depth (m)
+                    Depth (m): {profile.plannedDepth ? `${profile.plannedDepth}m` : "Select"}
                   </label>
+
+                  {/* Mobile: Slider */}
+                  <div className="md:hidden">
+                    <input
+                      type="range"
+                      min="6"
+                      max="100"
+                      value={profile.plannedDepth || 30}
+                      onChange={(e) => handleDepthInput(parseInt(e.target.value))}
+                      className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                      <span>6m</span>
+                      <span>100m</span>
+                    </div>
+                  </div>
+
+                  {/* Desktop: Text Input */}
                   <input
                     type="number"
                     inputMode="numeric"
                     value={profile.plannedDepth || ""}
                     onChange={(e) => {
+                      // Don't validate during typing - just update as-is
                       const value = e.target.value;
                       if (value === "") {
                         handleDepthInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed) && parsed > 0) {
+                        if (!isNaN(parsed)) {
+                          handleDepthInput(parsed);
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      // Validate only when user finishes typing
+                      const value = e.target.value;
+                      if (value && value !== "") {
+                        const parsed = parseInt(value);
+                        if (!isNaN(parsed)) {
                           const validDepth = Math.max(6, Math.min(100, parsed));
                           handleDepthInput(validDepth);
                         }
                       }
                     }}
-                    className="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    className="hidden md:block w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="30"
                   />
                 </div>
 
+                {/* Bottom Time Input */}
                 <div>
                   <label className="block text-xs font-semibold text-foreground mb-2">
-                    Bottom Time (min)
+                    Bottom Time (min): {profile.bottomTime ? `${profile.bottomTime}min` : "Select"}
                   </label>
+
+                  {/* Mobile: Slider */}
+                  <div className="md:hidden">
+                    <input
+                      type="range"
+                      min="5"
+                      max="300"
+                      value={profile.bottomTime || 30}
+                      onChange={(e) => handleBottomTimeInput(parseInt(e.target.value))}
+                      className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                      <span>5min</span>
+                      <span>300min</span>
+                    </div>
+                  </div>
+
+                  {/* Desktop: Text Input */}
                   <input
                     type="number"
                     inputMode="numeric"
                     value={profile.bottomTime || ""}
                     onChange={(e) => {
+                      // Don't validate during typing - just update as-is
                       const value = e.target.value;
                       if (value === "") {
                         handleBottomTimeInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed) && parsed > 0) {
+                        if (!isNaN(parsed)) {
+                          handleBottomTimeInput(parsed);
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      // Validate only when user finishes typing
+                      const value = e.target.value;
+                      if (value && value !== "") {
+                        const parsed = parseInt(value);
+                        if (!isNaN(parsed)) {
                           const validTime = Math.max(5, Math.min(300, parsed));
                           handleBottomTimeInput(validTime);
                         }
                       }
                     }}
-                    className="w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    className="hidden md:block w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="30"
                   />
                 </div>

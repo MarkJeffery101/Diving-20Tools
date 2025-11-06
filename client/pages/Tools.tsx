@@ -214,7 +214,10 @@ export default function Tools() {
     const tNitrox = time - tAir;
     const actOxRaw = (tAir * 20.9 + tNitrox * o2) / time;
     const actOx = Math.ceil(actOxRaw * 10) / 10;
-    const ead = Math.floor((pAbs - 1) * 10 * 10) / 10;
+
+    const fractionN2 = (100 - actOxRaw) / 100;
+    const eadCalc = (depth + 10) * (fractionN2 / 0.79) - 10;
+    const ead = Math.ceil(eadCalc * 10) / 10;
 
     setBailoutResult({
       o2: actOx,

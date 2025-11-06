@@ -21,7 +21,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function TableSelection() {
   const navigate = useNavigate();
-  const [step, setStep] = useState<0 | 1 | 2 | 3 | 4>(0);
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [profile, setProfile] = useState<Partial<DiveProfile>>({
     bottomTime: 30,
   });

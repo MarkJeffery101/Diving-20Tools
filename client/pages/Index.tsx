@@ -91,20 +91,10 @@ export default function Index() {
       </section>
 
       {/* Features Grid Section - Main Navigation */}
-      <section className="relative py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
+      <section className="relative py-4 sm:py-5 px-4 sm:px-6 bg-white">
         <div className="container mx-auto">
-          {/* Section header */}
-          <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-              Dive Planning Tools
-            </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              Access decompression tables, emergency procedures, and decision support
-            </p>
-          </div>
-
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-6xl mx-auto">
             {features.map((feature) => (
               <Link
                 key={feature.href + feature.title}

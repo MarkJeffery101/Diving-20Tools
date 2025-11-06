@@ -212,7 +212,17 @@ export default function TableSelection() {
               } else {
                 const parsed = parseInt(value);
                 if (!isNaN(parsed)) {
-                  handleDepthInput(Math.max(6, parsed));
+                  handleDepthInput(parsed);
+                }
+              }
+            }}
+            onBlur={(e) => {
+              const value = parseInt(e.target.value);
+              if (!isNaN(value)) {
+                if (value < 6) {
+                  handleDepthInput(6);
+                } else if (value > 100) {
+                  handleDepthInput(100);
                 }
               }
             }}
@@ -248,7 +258,17 @@ export default function TableSelection() {
               } else {
                 const parsed = parseInt(value);
                 if (!isNaN(parsed)) {
-                  handleBottomTimeInput(Math.max(5, parsed));
+                  handleBottomTimeInput(parsed);
+                }
+              }
+            }}
+            onBlur={(e) => {
+              const value = parseInt(e.target.value);
+              if (!isNaN(value)) {
+                if (value < 5) {
+                  handleBottomTimeInput(5);
+                } else if (value > 300) {
+                  handleBottomTimeInput(300);
                 }
               }
             }}

@@ -198,7 +198,28 @@ export default function TableSelection() {
         <label className="block text-sm font-semibold text-foreground mb-2">
           Maximum Depth (meters)
         </label>
-        <div className="flex gap-3 items-center w-full sm:max-w-xs">
+
+        {/* Mobile: Slider */}
+        <div className="block lg:hidden space-y-2">
+          <input
+            type="range"
+            min="6"
+            max="100"
+            value={profile.plannedDepth || 30}
+            onChange={(e) => handleDepthInput(parseInt(e.target.value))}
+            className="w-full h-3 accent-blue-600 cursor-pointer"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>6m</span>
+            <span className="font-semibold text-primary">
+              {profile.plannedDepth || 30}m
+            </span>
+            <span>100m</span>
+          </div>
+        </div>
+
+        {/* Desktop: Text Input */}
+        <div className="hidden lg:flex gap-3 items-center w-full sm:max-w-xs">
           <input
             type="number"
             inputMode="numeric"
@@ -233,6 +254,7 @@ export default function TableSelection() {
             m
           </span>
         </div>
+
         <p className="text-xs text-muted-foreground mt-2">
           {profile.plannedDepth
             ? `${profile.plannedDepth}m max depth`

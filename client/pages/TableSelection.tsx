@@ -77,7 +77,7 @@ export default function TableSelection() {
     // Get recommendation
     const rec = getTableRecommendation(profile as DiveProfile);
     setRecommendation(rec);
-    setStep(4);
+    setStep(3);
   };
 
   const handleNavigateToTable = () => {

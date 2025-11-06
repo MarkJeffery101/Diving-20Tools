@@ -551,7 +551,7 @@ export default function TableSelection() {
                   </label>
 
                   {/* Mobile: Slider */}
-                  <div className="md:hidden">
+                  <div className="md:hidden space-y-2">
                     <input
                       type="range"
                       min="5"
@@ -560,10 +560,11 @@ export default function TableSelection() {
                       onChange={(e) =>
                         handleBottomTimeInput(parseInt(e.target.value))
                       }
-                      className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer"
+                      className="w-full h-3 accent-blue-600 cursor-pointer"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>5min</span>
+                      <span className="font-semibold text-primary">{profile.bottomTime || 30}min</span>
                       <span>300min</span>
                     </div>
                   </div>

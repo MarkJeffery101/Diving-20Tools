@@ -430,7 +430,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Standard DCD/NDC 2015 tables. TUP tables are in 2024 TUP Manual; general rules apply to both.
                     </p>
                   </div>
@@ -441,7 +441,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Core Rules
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>DCS can occur even within no-decompression limits; manage uncertainty conservatively.</li>
                         <li>Do not exceed table maximum depth or time; if exceeded, use O₂ Treatment Table 5.</li>
                         <li>For planning, use the second-to-last time entry as the maximum dive time.</li>
@@ -454,7 +454,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Repetitive & Combined Dives
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Use the correct repeat-interval table for repetitive dives.</li>
                         <li>If interval &lt; 2 h, a combined dive may be used (not permitted for SurD).</li>
                         <li>For combined dives: make the first dive deepest; add times and decompress using the deepest depth on 12-h interval tables.</li>
@@ -467,7 +467,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         After Dives & Intervals
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>After a normal dive: further dives ≤ 6 m permitted.</li>
                         <li>After an emergency procedure: no diving for 12 h.</li>
                         <li>After routine in-water decompression: ≤ 6 m dives allowed without a surface interval.</li>
@@ -480,7 +480,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Switching Table Systems & Stop Control
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>If previous diving used other table systems (Norwegian, DCIEM, US Navy), wait ≥ 16 h before using DCD tables.</li>
                         <li>Hold stop depth steady; typical tolerance ±0.5 m.</li>
                       </ul>
@@ -491,7 +491,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Oxygen Use During Decompression
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>O₂ during decompression is safer than air alone, especially when air-only decompression &gt; 30 min; consider when selecting a table.</li>
                       </ul>
                     </details>
@@ -503,7 +503,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Emergency evacuation procedures for divers under pressure. AED (accelerated decompression) at 1 msw/min is preferred over HRU. Perform risk assessment before diving.
                     </p>
                   </div>
@@ -514,7 +514,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Risk Assessment Criteria
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Compare risk of continuing (in-water or in-chamber) vs accelerated decompression.</li>
                         <li>Consider table used, planned depth, bottom time, and actual emergency context.</li>
                         <li>If AED is not feasible, do not dive or provide an alternative, risk-assessed and physician-approved evacuation plan.</li>
@@ -532,7 +532,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         When to Begin AED
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Begin only when chamber/occupant safety cannot be guaranteed, or when evacuation cannot be delayed and transport will be available immediately after AED.</li>
                         <li>Otherwise continue normal decompression until time constraints force acceleration.</li>
                       </ul>
@@ -543,7 +543,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         AED Profile & Rate
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Conduct AED linearly at <strong>1 msw per minute</strong>.</li>
                       </ul>
                     </details>
@@ -553,7 +553,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Helicopter Evacuation
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Target altitude ≤ 1000 ft where possible.</li>
                         <li>Document that oxygen use and delivery method are accepted by the emergency response organisation.</li>
                         <li>Post-dive flight restrictions in DCD tables do not apply in emergency evacuation.</li>
@@ -565,7 +565,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Oxygen Use
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>O₂ or high-pO₂ gas before and during AED is recommended but must not delay the start.</li>
                         <li>If a fire hazard exists near the chamber, proceed without O₂/high-pO₂ gas.</li>
                         <li>O₂ breathing during transfer to the next recompression facility is mandatory (via semi-closed O₂ rebreathers).</li>
@@ -577,7 +577,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Hydration
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Maintain hydration; aim ~1 L/hour oral intake during evacuation.</li>
                         <li>Keep water or oral rehydration solution available for the full expected endurance.</li>
                       </ul>
@@ -590,7 +590,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Select tables based on dive conditions, expected stop time, equipment, and available gases (SIL15, SOX15, BOX15, NIA15, NIB15, etc.).
                     </p>
                   </div>
@@ -601,7 +601,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         General Principles
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li><strong>SIL15</strong>: in-water decompression (wet bell or chamber) with flexible repetitive options (H*SIL15); suitable for multiple short dives.</li>
                         <li>If decompression &gt; <strong>30 min</strong>: prefer oxygen-supported staged tables — <strong>BOX15</strong> (bell O₂) or <strong>SOX15/H4SOX</strong> (surface O₂) — when bell/chamber available.</li>
                         <li><strong>BAB15 / SAB15 / H4SAB15</strong> are <em>backup only</em> if the oxygen system fails.</li>
@@ -613,7 +613,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Effects of Sea State
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Significant waves (≈ ±0.5 m; ~1 m crest-to-trough) destabilise shallow 3 m stops.</li>
                         <li>If in-water stops are unsafe, consider <strong>SOX15</strong>: diver in chamber under pressure within <strong>3 minutes</strong> of surfacing (delays markedly ↑ DCS risk).</li>
                         <li><strong>BOX15</strong> with a bell tolerates larger sea states due to final O₂ stop at 6 m; <em>do not use BOX15 without a bell</em>.</li>
@@ -625,7 +625,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Nitrox Use
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li><strong>NIA15 (40/60)</strong> and <strong>NIB15 (35/65)</strong> may be used subject to allowable pO₂.</li>
                         <li>Max pO₂ <strong>1.6 bar</strong>; recommended ≤ <strong>1.5 bar</strong>. Other mixes on request.</li>
                       </ul>
@@ -636,7 +636,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Repetitive Interval, Depth & Time
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Repetitive diving is not standard N-Sea practice; only allowed in emergencies.</li>
                         <li>Actual repeat interval must be <strong>longer</strong> than the table's interval (e.g., 5 h since prior dive ⇒ use 4-h table).</li>
                         <li>Actual max depth must be <strong>less</strong> than table depth (e.g., 30 m ⇒ select 33 m table).</li>
@@ -649,7 +649,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Ascent Speed
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Max ascent speed <strong>10 m/min</strong>; ascent time is not counted as stop time (if exceeded, add excess to stop time).</li>
                         <li>Ascent to first stop must be <strong>≥ 5 m/min</strong> (if slower, add excess to bottom time).</li>
                         <li>Between stops deeper than 6 m: transit ≤ 1 min. At ≤ 6 m: ascent speed is less critical.</li>
@@ -661,7 +661,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Diving Conditions & Choice of Tables
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>North Sea: limit in-water stop time to ~30 min (solid black line in SIL15).</li>
                         <li>Maintain shallow-stop pressure variation within <strong>±0.5 msw (~0.05 bar)</strong>.</li>
                         <li>Low temperature ⇒ hot-water suits; strong currents may restrict operations.</li>
@@ -675,7 +675,7 @@ export default function SupportingInfo() {
                         Sea-State Matrix
                       </summary>
                       <div className="mt-3">
-                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                        <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-blue-50">
                             <tr>
                               <th className="p-2 text-left border-b border-border">Wave Height (m)</th>
@@ -730,7 +730,7 @@ export default function SupportingInfo() {
                       </div>
                     </details>
 
-                    <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
+                    <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-xs text-foreground">
                       <strong>Reminder:</strong> SOX15 transfers must place the diver in the chamber under pressure within <strong>3 minutes</strong> of surfacing.
                     </div>
                   </div>
@@ -741,7 +741,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Acute CNS toxicity (convulsions) and long-term pulmonary toxicity managed via pO₂ limits, OTU, and ESOT exposure guidance.
                     </p>
                   </div>
@@ -752,11 +752,11 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Acute (CNS) Toxicity — Overview
                       </summary>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
                         Acute CNS toxicity causes convulsions and can be fatal underwater. Limit pO₂ to <strong>1.5 bar</strong> traditionally, but convulsions occur at this level. <strong>NOAA</strong> provides pO₂/time limits; <strong>IMCA</strong> advises maximum <strong>1.4 bar</strong> regardless of time (IMCA D048, 2012).
                       </p>
                       <div className="mt-3">
-                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                        <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
                               <th className="px-2 py-1 border-b border-border">pO₂ (atm)</th>
@@ -783,7 +783,7 @@ export default function SupportingInfo() {
                           </tbody>
                         </table>
                       </div>
-                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-2 text-[10px] text-foreground">
+                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-2 text-xs text-foreground">
                         CNS oxygen "hits" may resolve in dry settings but can be fatal underwater. Treat IMCA and NOAA limits as hard operational controls.
                       </div>
                     </details>
@@ -793,11 +793,11 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Long-Term Oxygen Toxicity — OTU (UPTD)
                       </summary>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
                         <strong>Oxygen Toxicity Units (OTU)</strong> predict long-term toxicity risk, accumulated during dive and decompression. <strong>1 OTU = 1 UPTD</strong> (Unit Pulmonary Toxic Dose). DCD tables incorporate OTU; a separate table covers <strong>100% O₂ up to 18 m</strong> for non-standard procedures. <em>Use OTU/ESOT calculator in Tools.</em>
                       </p>
                       <div className="mt-3">
-                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                        <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
                               <th className="px-2 py-1 border-b border-border">Depth (m)</th>
@@ -818,12 +818,12 @@ export default function SupportingInfo() {
                           </tbody>
                         </table>
                       </div>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>A precise registration of OTU is imperative to avoid exceeding limits; the preceding <strong>two weeks</strong> are most relevant. Prior "oxygen history" should be on record but is not directly relevant.</li>
                         <li>If an OTU limit is exceeded: observe an absolute <strong>no-diving period of ≥ 48 hours</strong>. After each 48-hour no-dive period the OTU count restarts at zero.</li>
                         <li>If chronic oxygen-toxicity symptoms are suspected: impose a diving ban and consult a qualified diving medical advisor.</li>
                       </ul>
-                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-3 text-[10px] text-foreground">
+                      <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-3 text-xs text-foreground">
                         <strong>Oxygen Limits �� OTU</strong><br />
                         • Daily dose should not exceed <strong>450 OTU</strong> (except emergencies).<br />
                         • For 7-day schedules: week 1 ≤ <strong>2500 OTU</strong>; weeks 2–3 ≤ <strong>2100 OTU</strong>; then 48 h no diving.<br />
@@ -837,11 +837,11 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         ESOT (DMAC 35) — Guidance & Limits
                       </summary>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
                         IMCA/DMAC recommend <strong>ESOT &lt; 660</strong> for single dives. Multi-day limits: <strong>660</strong> (2 days), <strong>500</strong> (5 days), <strong>420</strong> (10 days). Plan <strong>two days off</strong> after multi-day exposures. Air in-water decompression allowed during "off" days. Relax limits only with physician-reviewed risk assessment.
                       </p>
                       <div className="mt-3">
-                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                        <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
                               <th className="px-2 py-1 border-b border-border">Daily max ESOT</th>
@@ -864,10 +864,10 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         OTU and ESOT in DCD/NDC Tables
                       </summary>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
                         DCD/NDC tables (<Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">SOX15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">NIA15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">NIB15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">BOX15</Link>) include OTU values. DMAC 35 recommends ESOT as alternative. <strong>OTU and ESOT tables</strong> allow comparison. For 12-h surface intervals, OTU and ESOT shown per depth/time. ESOT decays; add recovery ESOT (recESOT) to next dive. OTU accumulates (no decay). Use Tools calculator for totals.
                       </p>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Reference: OTU-ESOT Calculator Tool — <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em></li>
                         <li>Reference: OTU-ESOT Engineering Instruction Video — <em>N-Sea N Drive Folder Training Videos</em></li>
                         <li>It remains to be seen which method is best; DMAC 35 is guidance, not law.</li>
@@ -882,7 +882,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       High inspired oxygen (↑pO₂) can cause CNS toxicity and lung injury. Two measures assess these risks: OTU (UPTD), which tracks total oxygen dose for systemic effects, and ESOT, which estimates exposure time at a reference pO₂ and accounts for recovery between exposures to better gauge lung injury. Using both OTU and ESOT together offers a more complete assessment of oxygen exposure than either alone.
                     </p>
                   </div>
@@ -894,17 +894,17 @@ export default function SupportingInfo() {
                   <h3 className="text-sm font-bold text-foreground mb-1">
                     UPTD / OTU
                   </h3>
-                  <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
+                  <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
                     Origin in pulmonary dose modelling; OTU broadened
                     interpretation to include potential <em>systemic</em>{" "}
                     manifestations.
                   </p>
 
                   <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                    <summary className="font-bold text-xs cursor-pointer text-foreground">
                       Strengths
                     </summary>
-                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
                       <li>Long operational history and proven field effectiveness</li>
                       <li>Quantifies cumulative oxygen exposure over multi-day operations</li>
                       <li>Conservative approach; maintains awareness of <strong>systemic effects</strong> beyond lungs (fatigue, headache, myalgia)</li>
@@ -914,10 +914,10 @@ export default function SupportingInfo() {
                   </details>
 
                   <details className="bg-red-50 border border-red-200 rounded-lg p-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                    <summary className="font-bold text-xs cursor-pointer text-foreground">
                       Weaknesses
                     </summary>
-                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
                       <li>No validated recovery/decay model; exposure only accumulates</li>
                       <li>Limited accuracy for short exposures</li>
                       <li>Poor correlation with segmented exposures</li>
@@ -931,17 +931,17 @@ export default function SupportingInfo() {
                   <h3 className="text-sm font-bold text-foreground mb-1">
                     ESOT
                   </h3>
-                  <p className="text-[10px] text-muted-foreground mb-2 leading-relaxed">
+                  <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
                     Represents exposure as "equivalent minutes of 100% O₂ at the
                     surface," enabling dose + recovery modelling for pulmonary
                     risk.
                   </p>
 
                   <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                    <summary className="font-bold text-xs cursor-pointer text-foreground">
                       Strengths
                     </summary>
-                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
                       <li>Best model of <strong>pulmonary</strong> dose + recovery</li>
                       <li>Improved prediction for pulmonary oxygen toxicity</li>
                       <li>Handles varying pO₂ segments and multi-segment dives</li>
@@ -952,10 +952,10 @@ export default function SupportingInfo() {
                   </details>
 
                   <details className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
-                    <summary className="font-bold text-[11px] cursor-pointer text-foreground">
+                    <summary className="font-bold text-xs cursor-pointer text-foreground">
                       Weaknesses
                     </summary>
-                    <ul className="text-muted-foreground text-[10px] mt-2 space-y-1 ml-4 list-disc">
+                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
                       <li>Focuses on pulmonary injury; <strong>systemic effects are not represented</strong></li>
                       <li>Does not capture fatigue, headache, or musculoskeletal discomfort</li>
                       <li>Requires calculation support for practical use</li>
@@ -970,7 +970,7 @@ export default function SupportingInfo() {
                   Comparison Table
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-[10px]">
+                  <table className="w-full text-xs">
                     <thead>
                       <tr className="bg-gray-50 border-b border-border">
                         <th className="p-2 text-left font-bold text-foreground">
@@ -1118,7 +1118,7 @@ export default function SupportingInfo() {
                     <h3 className="text-sm font-bold text-foreground mb-2">
                       Overview
                     </h3>
-                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
                     </p>
                   </div>
@@ -1129,7 +1129,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Standby Period
                       </summary>
-                      <ul className="text-muted-foreground text-[10px] mt-3 space-y-2 ml-6 list-disc">
+                      <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>After a routine dive with decompression: remain in the immediate vicinity of the chamber for <strong>1 hour</strong> after the last stop.</li>
                         <li>After a dive on standard air tables below the thick line ("backup"): remain for <strong>≥ 2 hours</strong>.</li>
                         <li>After a compromised dive (decompression errors) or emergency procedures: remain for <strong>≥ 4 hours</strong>, unless the diving medical officer decides otherwise.</li>
@@ -1142,7 +1142,7 @@ export default function SupportingInfo() {
                         <ChevronDown className="h-4 w-4" />
                         Flight Restrictions — General
                       </summary>
-                      <p className="text-[10px] text-muted-foreground leading-relaxed mt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-3">
                         Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. Shorter intervals only after consultation with a diving medical advisor. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
                       </p>
                     </details>
@@ -1153,7 +1153,7 @@ export default function SupportingInfo() {
                         Minimum Time Between Diving and Flying (Table)
                       </summary>
                       <div className="mt-3 overflow-x-auto">
-                        <table className="w-full text-[10px] border border-border rounded-lg overflow-hidden">
+                        <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-blue-50">
                             <tr>
                               <th className="p-2 text-left border-b border-border font-bold">Dive</th>
@@ -1210,8 +1210,8 @@ export default function SupportingInfo() {
                     </details>
 
                     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-3">
-                      <p className="text-[10px] font-semibold text-yellow-900 mb-1">⚠️ Important Reminder</p>
-                      <p className="text-[10px] text-yellow-900">
+                      <p className="text-xs font-semibold text-yellow-900 mb-1">⚠️ Important Reminder</p>
+                      <p className="text-xs text-yellow-900">
                         These intervals are minimum guidelines only. Longer delays are strongly recommended, especially for long or high-altitude flights. Always consult a diving medicine professional if you have any symptoms or concerns.
                       </p>
                     </div>
@@ -1250,7 +1250,7 @@ export default function SupportingInfo() {
               <h3 className="font-bold text-foreground text-sm mb-2">
                 Safe Checklist
               </h3>
-              <ul className="space-y-1 text-[10px]">
+              <ul className="space-y-1 text-xs">
                 <li>✓ Buddy assigned</li>
                 <li>✓ Equipment tested</li>
                 <li>✓ Plan reviewed</li>
@@ -1278,7 +1278,7 @@ export default function SupportingInfo() {
               <h3 className="font-bold text-green-900 text-sm mb-2">
                 DCS Help
               </h3>
-              <ul className="space-y-1 text-[10px] text-green-900">
+              <ul className="space-y-1 text-xs text-green-900">
                 <li>
                   <span className="font-bold">DAN:</span>
                   <br />
@@ -1294,7 +1294,7 @@ export default function SupportingInfo() {
 
             <div className="p-3 rounded-lg border border-border bg-orange-50">
               <h3 className="font-bold text-orange-900 text-sm mb-2">Avoid</h3>
-              <ul className="space-y-1 text-[10px] text-orange-900">
+              <ul className="space-y-1 text-xs text-orange-900">
                 <li>❌ Exceed depth/time</li>
                 <li>❌ Skip safety stops</li>
                 <li>❌ Ascend too fast</li>

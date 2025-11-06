@@ -65,6 +65,13 @@ export default function TableSelection() {
     }));
   };
 
+  const handleSurfaceIntervalInput = (interval: number | undefined) => {
+    setProfile((prev) => ({
+      ...prev,
+      surfaceInterval: interval,
+    }));
+  };
+
   const handleGetRecommendation = () => {
     // Validate profile
     const errors = validateDiveProfile(profile as DiveProfile);

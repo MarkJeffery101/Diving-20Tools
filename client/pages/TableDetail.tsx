@@ -16,10 +16,31 @@ export default function TableDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDepth, setSelectedDepth] = useState<number | null>(null);
 
-  // Extract table code from id (e.g., "sil15" -> code: "SIL15")
-  const code = id?.toUpperCase() || "";
+  // Extract table code and depth from id (e.g., "sil15-30" -> code: "SIL15", depth: 30)
+  let code = "";
+  let depthNum: number | null = null;
+
+  if (id) {
+    // Parse format: "code-depth" (e.g., "sil15-30" or "nia15-27")
+    const parts = id.split("-");
+
+    if (parts.length >= 2) {
+      // Format: "code-depth"
+      code = parts[0].toUpperCase();
+      depthNum = parseInt(parts[1]);
+    } else if (parts.length === 1) {
+      // Format: "code" only (e.g., "sil15")
+      code = parts[0].toUpperCase();
+      const queryDepth = searchParams.get("depth");
+      depthNum = queryDepth ? parseInt(queryDepth) : null;
+    }
+  }
+
+  // Fallback to query parameter if depth not in URL
   const queryDepth = searchParams.get("depth");
-  const depthNum = queryDepth ? parseInt(queryDepth) : null;
+  if (!depthNum && queryDepth) {
+    depthNum = parseInt(queryDepth);
+  }
   const headerConfig = getTableHeader(code);
   const availableDepths = getAvailableDepths(code);
 

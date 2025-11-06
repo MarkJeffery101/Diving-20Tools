@@ -26,25 +26,50 @@ function UpdateChecker() {
 
   useEffect(() => {
     let currentVersion: string | null = null;
+    let failureCount = 0;
+    const MAX_FAILURES = 3;
 
     // Load initial version from manifest
     const loadInitialVersion = async () => {
       try {
-        const response = await fetch("/manifest.json?v=" + Date.now());
+        const response = await fetch("/manifest.json", {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          console.error("[App] Manifest fetch status:", response.status);
+          return;
+        }
+
         const manifest = await response.json();
         currentVersion = manifest.version;
         console.log("[App] Initial version:", currentVersion);
+        failureCount = 0;
       } catch (error) {
-        console.error("[App] Failed to load manifest:", error);
+        console.error("[App] Failed to load manifest:", error instanceof Error ? error.message : String(error));
       }
     };
 
     // Check for updates periodically
     const checkForUpdate = async () => {
+      if (failureCount >= MAX_FAILURES) {
+        return;
+      }
+
       try {
-        const response = await fetch("/manifest.json?v=" + Date.now());
+        const response = await fetch("/manifest.json", {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          failureCount++;
+          console.warn("[App] Manifest fetch failed, status:", response.status);
+          return;
+        }
+
         const manifest = await response.json();
         const newVersion = manifest.version;
+        failureCount = 0;
 
         if (currentVersion && currentVersion !== newVersion) {
           console.log(
@@ -67,15 +92,18 @@ function UpdateChecker() {
           currentVersion = newVersion;
         }
       } catch (error) {
-        console.error("[App] Update check failed:", error);
+        failureCount++;
+        if (failureCount >= MAX_FAILURES) {
+          console.warn("[App] Stopping update checks after", failureCount, "failures");
+        }
       }
     };
 
     // Initial load
     loadInitialVersion();
 
-    // Check every 20 seconds
-    const interval = setInterval(checkForUpdate, 20000);
+    // Check every 30 seconds
+    const interval = setInterval(checkForUpdate, 30000);
 
     return () => clearInterval(interval);
   }, [toast]);

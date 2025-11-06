@@ -266,7 +266,28 @@ export default function TableSelection() {
         <label className="block text-sm font-semibold text-foreground mb-2">
           Expected Bottom Time (minutes)
         </label>
-        <div className="flex gap-3 items-center w-full sm:max-w-xs">
+
+        {/* Mobile: Slider */}
+        <div className="block lg:hidden space-y-2">
+          <input
+            type="range"
+            min="5"
+            max="300"
+            value={profile.bottomTime || 30}
+            onChange={(e) => handleBottomTimeInput(parseInt(e.target.value))}
+            className="w-full h-3 accent-blue-600 cursor-pointer"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>5min</span>
+            <span className="font-semibold text-primary">
+              {profile.bottomTime || 30}min
+            </span>
+            <span>300min</span>
+          </div>
+        </div>
+
+        {/* Desktop: Text Input */}
+        <div className="hidden lg:flex gap-3 items-center w-full sm:max-w-xs">
           <input
             type="number"
             inputMode="numeric"

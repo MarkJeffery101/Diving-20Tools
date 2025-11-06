@@ -268,6 +268,9 @@ export default function TableUse() {
         description:
           "Surface decompression tables with oxygen on and air-only SAB tables for backup",
         codes: ["SOX15", "HSOX15", "SAB15", "HSAB15"],
+        borderColor: "border-orange-400",
+        bgColor: "bg-orange-50",
+        badgeBgColor: "bg-orange-600",
         procedures: {
           normal: {
             title: "Surface/Oxygen Tables - Normal Use",

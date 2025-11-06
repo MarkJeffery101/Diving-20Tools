@@ -602,8 +602,18 @@ export default function TableSelection() {
                         handleBottomTimeInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed) && parsed >= 5) {
+                        if (!isNaN(parsed)) {
                           handleBottomTimeInput(parsed);
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const value = parseInt(e.target.value);
+                      if (!isNaN(value)) {
+                        if (value < 5) {
+                          handleBottomTimeInput(5);
+                        } else if (value > 300) {
+                          handleBottomTimeInput(300);
                         }
                       }
                     }}

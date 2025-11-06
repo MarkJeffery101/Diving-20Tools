@@ -65,7 +65,7 @@ export default function Index() {
       <Navigation />
 
       {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-4 border-b border-ocean-700">
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-8 border-b border-ocean-700">
         <div className="container mx-auto">
           <div className="flex items-center gap-6">
             {/* Logo */}
@@ -73,16 +73,16 @@ export default function Index() {
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"
-                className="h-12 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
 
             {/* Text */}
             <div className="flex-grow">
-              <h1 className="text-2xl font-bold text-white leading-tight">
+              <h1 className="text-4xl font-bold text-white leading-tight">
                 DivePlan
               </h1>
-              <p className="text-sm text-ocean-200">
+              <p className="text-lg text-ocean-200">
                 Professional Dive Planning Reference
               </p>
             </div>

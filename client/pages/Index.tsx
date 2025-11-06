@@ -103,7 +103,10 @@ export default function Index() {
                   <div
                     className={`mb-2 sm:mb-4 inline-flex p-2 sm:p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <SvgIcon id={feature.iconId} className="h-4 w-4 sm:h-6 sm:w-6" />
+                    <SvgIcon
+                      id={feature.iconId}
+                      className="h-4 w-4 sm:h-6 sm:w-6"
+                    />
                   </div>
 
                   {/* Content */}

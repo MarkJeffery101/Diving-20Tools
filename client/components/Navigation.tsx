@@ -19,6 +19,16 @@ import { useAuth } from "@/contexts/AuthContext";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   const links = [
     { label: "Home", href: "/", icon: Home },

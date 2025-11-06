@@ -77,10 +77,10 @@ export default function Index() {
 
             {/* Text */}
             <div className="flex-grow">
-              <h1 className="text-2xl sm:text-5xl font-bold text-white leading-tight">
+              <h1 className="text-2xl sm:text-5xl lg:text-3xl font-bold text-white leading-tight">
                 DivePlan
               </h1>
-              <p className="text-xs sm:text-xl text-ocean-200">
+              <p className="text-xs sm:text-xl lg:text-sm text-ocean-200">
                 Professional Dive Planning Reference
               </p>
             </div>

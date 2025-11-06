@@ -72,6 +72,15 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-red-600 transition-colors"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}

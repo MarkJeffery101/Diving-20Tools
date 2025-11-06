@@ -63,9 +63,9 @@ export default function Index() {
       <Navigation />
 
       {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-4 sm:px-8 md:px-6 py-1 sm:py-2 md:py-0.5 lg:py-0.5 border-b border-ocean-700">
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-4 sm:px-6 py-1 sm:py-1 lg:py-0.5 border-b border-ocean-700">
         <div className="container mx-auto">
-          <div className="flex items-center gap-3 sm:gap-6 md:gap-3 lg:gap-2 h-16 sm:h-32 md:h-16 lg:h-14">
+          <div className="flex items-center gap-3 sm:gap-2 lg:gap-2 h-16 sm:h-14 lg:h-14">
             {/* Logo */}
             <div className="flex-shrink-0 h-full flex items-center md:max-w-[45px] lg:max-w-[50px]">
               <img

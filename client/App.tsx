@@ -138,6 +138,7 @@ function AppContent() {
             path="/emergency-procedures"
             element={<EmergencyProcedures />}
           />
+          <Route path="/help" element={<Help />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

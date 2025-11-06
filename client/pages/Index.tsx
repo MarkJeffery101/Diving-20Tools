@@ -80,7 +80,7 @@ export default function Index() {
               <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
                 DivePlan
               </h1>
-              <p className="text-xs sm:text-xs lg:text-sm text-ocean-200">
+              <p className="text-xs sm:text-xs lg:text-sm text-ocean-200 leading-relaxed">
                 Professional Dive Planning Reference
               </p>
             </div>

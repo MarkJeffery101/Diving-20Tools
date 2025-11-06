@@ -96,9 +96,9 @@ export default function Index() {
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group relative overflow-hidden rounded-lg border-2 p-2 sm:p-2 lg:p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer h-auto max-h-40 lg:max-h-52 shadow-sm lg:shadow-md ${feature.color}`}
+                className={`group relative overflow-hidden rounded-lg border-2 p-2 sm:p-2 lg:p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer h-auto max-h-40 lg:max-h-52 shadow-sm lg:shadow-md flex flex-col justify-start items-start ${feature.color}`}
               >
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col justify-start items-start w-full">
                   {/* Icon */}
                   <div
                     className={`mb-1 sm:mb-1 lg:mb-2 inline-flex p-1.5 sm:p-2 lg:p-2 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}

@@ -434,7 +434,7 @@ export default function TableUse() {
               },
               {
                 type: "item",
-                text: "Oxygen content deviation: max ±1% by volume",
+                text: "Oxygen content deviation: max ��1% by volume",
               },
               {
                 type: "item",
@@ -1481,7 +1481,7 @@ export default function TableUse() {
                   {tables.map((table) => (
                     <div
                       key={table.id}
-                      className="border-b pb-4 last:border-b-0 last:pb-0"
+                      className={`border-l-4 border-b pb-4 px-3 py-2 rounded-r last:border-b-0 last:pb-4 ${table.borderColor} ${table.bgColor}`}
                     >
                       {/* Title and Badge codes on same row */}
                       <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -1491,8 +1491,7 @@ export default function TableUse() {
                         {table.codes.map((code) => (
                           <Badge
                             key={code}
-                            variant="outline"
-                            className="text-xs font-mono h-6"
+                            className={`text-xs font-mono h-6 text-white ${table.badgeBgColor}`}
                           >
                             {code}
                           </Badge>

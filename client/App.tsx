@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Tables from "./pages/Tables";
@@ -19,6 +21,7 @@ import Share from "./pages/Share";
 import TreatmentProtocols from "./pages/TreatmentProtocols";
 import EmergencyProcedures from "./pages/EmergencyProcedures";
 import Help from "./pages/Help";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 

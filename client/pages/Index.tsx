@@ -88,20 +88,20 @@ export default function Index() {
       {/* Features Grid Section - Main Navigation */}
       <section className="py-12 sm:py-16 md:py-20 px-2 sm:px-4 bg-white">
         <div className="container mx-auto px-2 sm:px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {features.map((feature) => (
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group p-4 sm:p-5 md:p-6 rounded-lg border transition-all hover:shadow-lg hover:-translate-y-1 ${feature.color}`}
+                className={`group p-6 sm:p-7 md:p-8 rounded-xl border-2 transition-all hover:shadow-xl hover:-translate-y-2 cursor-pointer ${feature.color}`}
               >
-                <div className="mb-2 sm:mb-3">
-                  <SvgIcon id={feature.iconId} className="h-6 sm:h-7 w-6 sm:w-7" />
+                <div className="mb-4 sm:mb-5">
+                  <SvgIcon id={feature.iconId} className="h-8 sm:h-9 md:h-10 w-8 sm:w-9 md:w-10" />
                 </div>
-                <h3 className="text-sm sm:text-base font-bold mb-1">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-xs sm:text-sm opacity-80 group-hover:opacity-100 leading-snug">
+                <p className="text-sm sm:text-base opacity-80 group-hover:opacity-100 leading-relaxed">
                   {feature.description}
                 </p>
               </Link>

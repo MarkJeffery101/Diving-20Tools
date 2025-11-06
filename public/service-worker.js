@@ -47,25 +47,35 @@ self.addEventListener("fetch", (event) => {
         .then((response) => {
           // Check version and notify clients if changed
           if (response.status === 200) {
-            response.clone().json().then((manifest) => {
-              const newVersion = manifest.version;
-              console.log("[Service Worker] Manifest version:", newVersion);
-              
-              if (lastKnownVersion && lastKnownVersion !== newVersion) {
-                console.log("[Service Worker] Version changed from", lastKnownVersion, "to", newVersion);
-                // Notify all clients about the update
-                self.clients.matchAll().then((clients) => {
-                  clients.forEach((client) => {
-                    console.log("[Service Worker] Posting UPDATE_AVAILABLE to client");
-                    client.postMessage({
-                      type: "UPDATE_AVAILABLE",
-                      version: newVersion,
+            response
+              .clone()
+              .json()
+              .then((manifest) => {
+                const newVersion = manifest.version;
+                console.log("[Service Worker] Manifest version:", newVersion);
+
+                if (lastKnownVersion && lastKnownVersion !== newVersion) {
+                  console.log(
+                    "[Service Worker] Version changed from",
+                    lastKnownVersion,
+                    "to",
+                    newVersion,
+                  );
+                  // Notify all clients about the update
+                  self.clients.matchAll().then((clients) => {
+                    clients.forEach((client) => {
+                      console.log(
+                        "[Service Worker] Posting UPDATE_AVAILABLE to client",
+                      );
+                      client.postMessage({
+                        type: "UPDATE_AVAILABLE",
+                        version: newVersion,
+                      });
                     });
                   });
-                });
-              }
-              lastKnownVersion = newVersion;
-            });
+                }
+                lastKnownVersion = newVersion;
+              });
           }
           return response;
         })
@@ -100,20 +110,28 @@ self.addEventListener("fetch", (event) => {
 // Message handler for manual update checks from clients
 self.addEventListener("message", (event) => {
   console.log("[Service Worker] Message received:", event.data);
-  
+
   if (event.data && event.data.type === "CHECK_UPDATE") {
     // Fetch manifest to check for updates
     fetch(MANIFEST_URL, { cache: "no-store" })
       .then((response) => response.json())
       .then((manifest) => {
         const newVersion = manifest.version;
-        console.log("[Service Worker] Checking for update. Current:", lastKnownVersion, "New:", newVersion);
-        
+        console.log(
+          "[Service Worker] Checking for update. Current:",
+          lastKnownVersion,
+          "New:",
+          newVersion,
+        );
+
         if (lastKnownVersion && lastKnownVersion !== newVersion) {
           console.log("[Service Worker] Update available!");
-          event.ports[0].postMessage({ updateAvailable: true, version: newVersion });
+          event.ports[0].postMessage({
+            updateAvailable: true,
+            version: newVersion,
+          });
           lastKnownVersion = newVersion;
-          
+
           // Notify all clients
           self.clients.matchAll().then((clients) => {
             clients.forEach((client) => {
@@ -130,10 +148,13 @@ self.addEventListener("message", (event) => {
       })
       .catch((err) => {
         console.error("[Service Worker] Update check error:", err);
-        event.ports[0].postMessage({ updateAvailable: false, error: err.message });
+        event.ports[0].postMessage({
+          updateAvailable: false,
+          error: err.message,
+        });
       });
   }
-  
+
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
@@ -145,16 +166,21 @@ setInterval(() => {
     .then((response) => response.json())
     .then((manifest) => {
       const newVersion = manifest.version;
-      
+
       if (lastKnownVersion === null) {
         // First check - just store the version
         lastKnownVersion = newVersion;
         console.log("[Service Worker] Initial version set to:", newVersion);
       } else if (lastKnownVersion !== newVersion) {
         // Version changed - notify all clients
-        console.log("[Service Worker] Version changed! From:", lastKnownVersion, "To:", newVersion);
+        console.log(
+          "[Service Worker] Version changed! From:",
+          lastKnownVersion,
+          "To:",
+          newVersion,
+        );
         lastKnownVersion = newVersion;
-        
+
         self.clients.matchAll().then((clients) => {
           clients.forEach((client) => {
             console.log("[Service Worker] Notifying client of update");

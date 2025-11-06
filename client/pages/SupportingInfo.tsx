@@ -6,7 +6,9 @@ import { useState, useEffect } from "react";
 export default function SupportingInfo() {
   const location = useLocation();
   const returnState = location.state as { modalId?: string } | null;
-  const [openModalId, setOpenModalId] = useState<string | null>(returnState?.modalId || null);
+  const [openModalId, setOpenModalId] = useState<string | null>(
+    returnState?.modalId || null,
+  );
 
   useEffect(() => {
     if (returnState?.modalId) {
@@ -15,7 +17,19 @@ export default function SupportingInfo() {
   }, [returnState?.modalId]);
 
   const renderTextWithTableLinks = (text: string) => {
-    const tableCodes = ["SOX15", "NIA15", "NIB15", "BOX15", "SIL15", "SAB15", "BAB15", "H4SOX", "H2NIA15", "H2NIB15", "BOX15"];
+    const tableCodes = [
+      "SOX15",
+      "NIA15",
+      "NIB15",
+      "BOX15",
+      "SIL15",
+      "SAB15",
+      "BAB15",
+      "H4SOX",
+      "H2NIA15",
+      "H2NIB15",
+      "BOX15",
+    ];
     const regex = new RegExp(`(${tableCodes.join("|")})`, "g");
     const parts = text.split(regex);
 
@@ -322,9 +336,7 @@ export default function SupportingInfo() {
       {/* Page Header */}
       <section className="py-4 px-4 bg-white border-b border-border">
         <div className="container mx-auto">
-          <h1 className="text-2xl font-bold text-foreground mb-1">
-            Guidance
-          </h1>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Guidance</h1>
           <p className="text-sm text-muted-foreground">
             Safety limits, regulations, and technical reference
           </p>
@@ -431,7 +443,8 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Standard DCD/NDC 2015 tables. TUP tables are in 2024 TUP Manual; general rules apply to both.
+                      Standard DCD/NDC 2015 tables. TUP tables are in 2024 TUP
+                      Manual; general rules apply to both.
                     </p>
                   </div>
 
@@ -442,10 +455,23 @@ export default function SupportingInfo() {
                         Core Rules
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>DCS can occur even within no-decompression limits; manage uncertainty conservatively.</li>
-                        <li>Do not exceed table maximum depth or time; if exceeded, use O₂ Treatment Table 5.</li>
-                        <li>For planning, use the second-to-last time entry as the maximum dive time.</li>
-                        <li>≤ 8 h in any 24 h under pressure (dive + decompression); exceptions need contractor + supervising MO approval.</li>
+                        <li>
+                          DCS can occur even within no-decompression limits;
+                          manage uncertainty conservatively.
+                        </li>
+                        <li>
+                          Do not exceed table maximum depth or time; if
+                          exceeded, use O₂ Treatment Table 5.
+                        </li>
+                        <li>
+                          For planning, use the second-to-last time entry as the
+                          maximum dive time.
+                        </li>
+                        <li>
+                          ≤ 8 h in any 24 h under pressure (dive +
+                          decompression); exceptions need contractor +
+                          supervising MO approval.
+                        </li>
                       </ul>
                     </details>
 
@@ -455,10 +481,24 @@ export default function SupportingInfo() {
                         Repetitive & Combined Dives
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Use the correct repeat-interval table for repetitive dives.</li>
-                        <li>If interval &lt; 2 h, a combined dive may be used (not permitted for SurD).</li>
-                        <li>For combined dives: make the first dive deepest; add times and decompress using the deepest depth on 12-h interval tables.</li>
-                        <li>No combined diving after any emergency procedure; if an emergency occurs on dive 2, apply the emergency rules using the deepest depth.</li>
+                        <li>
+                          Use the correct repeat-interval table for repetitive
+                          dives.
+                        </li>
+                        <li>
+                          If interval &lt; 2 h, a combined dive may be used (not
+                          permitted for SurD).
+                        </li>
+                        <li>
+                          For combined dives: make the first dive deepest; add
+                          times and decompress using the deepest depth on 12-h
+                          interval tables.
+                        </li>
+                        <li>
+                          No combined diving after any emergency procedure; if
+                          an emergency occurs on dive 2, apply the emergency
+                          rules using the deepest depth.
+                        </li>
                       </ul>
                     </details>
 
@@ -468,10 +508,20 @@ export default function SupportingInfo() {
                         After Dives & Intervals
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>After a normal dive: further dives ≤ 6 m permitted.</li>
-                        <li>After an emergency procedure: no diving for 12 h.</li>
-                        <li>After routine in-water decompression: ≤ 6 m dives allowed without a surface interval.</li>
-                        <li>Recommend 12-h repeat interval after repetitive dives; as good practice, limit to ≤ 2 repetitive dives.</li>
+                        <li>
+                          After a normal dive: further dives ≤ 6 m permitted.
+                        </li>
+                        <li>
+                          After an emergency procedure: no diving for 12 h.
+                        </li>
+                        <li>
+                          After routine in-water decompression: ≤ 6 m dives
+                          allowed without a surface interval.
+                        </li>
+                        <li>
+                          Recommend 12-h repeat interval after repetitive dives;
+                          as good practice, limit to ≤ 2 repetitive dives.
+                        </li>
                       </ul>
                     </details>
 
@@ -481,8 +531,14 @@ export default function SupportingInfo() {
                         Switching Table Systems & Stop Control
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>If previous diving used other table systems (Norwegian, DCIEM, US Navy), wait ≥ 16 h before using DCD tables.</li>
-                        <li>Hold stop depth steady; typical tolerance ±0.5 m.</li>
+                        <li>
+                          If previous diving used other table systems
+                          (Norwegian, DCIEM, US Navy), wait ≥ 16 h before using
+                          DCD tables.
+                        </li>
+                        <li>
+                          Hold stop depth steady; typical tolerance ±0.5 m.
+                        </li>
                       </ul>
                     </details>
 
@@ -492,7 +548,11 @@ export default function SupportingInfo() {
                         Oxygen Use During Decompression
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>O₂ during decompression is safer than air alone, especially when air-only decompression &gt; 30 min; consider when selecting a table.</li>
+                        <li>
+                          O₂ during decompression is safer than air alone,
+                          especially when air-only decompression &gt; 30 min;
+                          consider when selecting a table.
+                        </li>
                       </ul>
                     </details>
                   </div>
@@ -504,7 +564,9 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Emergency evacuation procedures for divers under pressure. AED (accelerated decompression) at 1 msw/min is preferred over HRU. Perform risk assessment before diving.
+                      Emergency evacuation procedures for divers under pressure.
+                      AED (accelerated decompression) at 1 msw/min is preferred
+                      over HRU. Perform risk assessment before diving.
                     </p>
                   </div>
 
@@ -515,13 +577,32 @@ export default function SupportingInfo() {
                         Risk Assessment Criteria
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Compare risk of continuing (in-water or in-chamber) vs accelerated decompression.</li>
-                        <li>Consider table used, planned depth, bottom time, and actual emergency context.</li>
-                        <li>If AED is not feasible, do not dive or provide an alternative, risk-assessed and physician-approved evacuation plan.</li>
-                        <li>For SIL15, SOX15, NIA15, NIB15, BOX15, AED may be safer than HRU when:
+                        <li>
+                          Compare risk of continuing (in-water or in-chamber) vs
+                          accelerated decompression.
+                        </li>
+                        <li>
+                          Consider table used, planned depth, bottom time, and
+                          actual emergency context.
+                        </li>
+                        <li>
+                          If AED is not feasible, do not dive or provide an
+                          alternative, risk-assessed and physician-approved
+                          evacuation plan.
+                        </li>
+                        <li>
+                          For SIL15, SOX15, NIA15, NIB15, BOX15, AED may be
+                          safer than HRU when:
                           <ul className="mt-2 ml-4 space-y-1">
-                            <li>Dive time within IMCA D014 (above bold line) and evac+recompression ≤ 3 h (preferably) and not more than 6 h from surfacing; or</li>
-                            <li>Dive time exceeds IMCA D014 (below bold line) and evac+recompression ≤ 3 h.</li>
+                            <li>
+                              Dive time within IMCA D014 (above bold line) and
+                              evac+recompression ≤ 3 h (preferably) and not more
+                              than 6 h from surfacing; or
+                            </li>
+                            <li>
+                              Dive time exceeds IMCA D014 (below bold line) and
+                              evac+recompression ≤ 3 h.
+                            </li>
                           </ul>
                         </li>
                       </ul>
@@ -533,8 +614,15 @@ export default function SupportingInfo() {
                         When to Begin AED
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Begin only when chamber/occupant safety cannot be guaranteed, or when evacuation cannot be delayed and transport will be available immediately after AED.</li>
-                        <li>Otherwise continue normal decompression until time constraints force acceleration.</li>
+                        <li>
+                          Begin only when chamber/occupant safety cannot be
+                          guaranteed, or when evacuation cannot be delayed and
+                          transport will be available immediately after AED.
+                        </li>
+                        <li>
+                          Otherwise continue normal decompression until time
+                          constraints force acceleration.
+                        </li>
                       </ul>
                     </details>
 
@@ -544,7 +632,10 @@ export default function SupportingInfo() {
                         AED Profile & Rate
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Conduct AED linearly at <strong>1 msw per minute</strong>.</li>
+                        <li>
+                          Conduct AED linearly at{" "}
+                          <strong>1 msw per minute</strong>.
+                        </li>
                       </ul>
                     </details>
 
@@ -555,8 +646,14 @@ export default function SupportingInfo() {
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
                         <li>Target altitude ≤ 1000 ft where possible.</li>
-                        <li>Document that oxygen use and delivery method are accepted by the emergency response organisation.</li>
-                        <li>Post-dive flight restrictions in DCD tables do not apply in emergency evacuation.</li>
+                        <li>
+                          Document that oxygen use and delivery method are
+                          accepted by the emergency response organisation.
+                        </li>
+                        <li>
+                          Post-dive flight restrictions in DCD tables do not
+                          apply in emergency evacuation.
+                        </li>
                       </ul>
                     </details>
 
@@ -566,9 +663,19 @@ export default function SupportingInfo() {
                         Oxygen Use
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>O₂ or high-pO₂ gas before and during AED is recommended but must not delay the start.</li>
-                        <li>If a fire hazard exists near the chamber, proceed without O₂/high-pO₂ gas.</li>
-                        <li>O₂ breathing during transfer to the next recompression facility is mandatory (via semi-closed O₂ rebreathers).</li>
+                        <li>
+                          O₂ or high-pO₂ gas before and during AED is
+                          recommended but must not delay the start.
+                        </li>
+                        <li>
+                          If a fire hazard exists near the chamber, proceed
+                          without O₂/high-pO₂ gas.
+                        </li>
+                        <li>
+                          O₂ breathing during transfer to the next recompression
+                          facility is mandatory (via semi-closed O₂
+                          rebreathers).
+                        </li>
                       </ul>
                     </details>
 
@@ -578,8 +685,14 @@ export default function SupportingInfo() {
                         Hydration
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Maintain hydration; aim ~1 L/hour oral intake during evacuation.</li>
-                        <li>Keep water or oral rehydration solution available for the full expected endurance.</li>
+                        <li>
+                          Maintain hydration; aim ~1 L/hour oral intake during
+                          evacuation.
+                        </li>
+                        <li>
+                          Keep water or oral rehydration solution available for
+                          the full expected endurance.
+                        </li>
                       </ul>
                     </details>
                   </div>
@@ -591,7 +704,9 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Select tables based on dive conditions, expected stop time, equipment, and available gases (SIL15, SOX15, BOX15, NIA15, NIB15, etc.).
+                      Select tables based on dive conditions, expected stop
+                      time, equipment, and available gases (SIL15, SOX15, BOX15,
+                      NIA15, NIB15, etc.).
                     </p>
                   </div>
 
@@ -602,9 +717,22 @@ export default function SupportingInfo() {
                         General Principles
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li><strong>SIL15</strong>: in-water decompression (wet bell or chamber) with flexible repetitive options (H*SIL15); suitable for multiple short dives.</li>
-                        <li>If decompression &gt; <strong>30 min</strong>: prefer oxygen-supported staged tables — <strong>BOX15</strong> (bell O₂) or <strong>SOX15/H4SOX</strong> (surface O₂) — when bell/chamber available.</li>
-                        <li><strong>BAB15 / SAB15 / H4SAB15</strong> are <em>backup only</em> if the oxygen system fails.</li>
+                        <li>
+                          <strong>SIL15</strong>: in-water decompression (wet
+                          bell or chamber) with flexible repetitive options
+                          (H*SIL15); suitable for multiple short dives.
+                        </li>
+                        <li>
+                          If decompression &gt; <strong>30 min</strong>: prefer
+                          oxygen-supported staged tables —{" "}
+                          <strong>BOX15</strong> (bell O₂) or{" "}
+                          <strong>SOX15/H4SOX</strong> (surface O₂) — when
+                          bell/chamber available.
+                        </li>
+                        <li>
+                          <strong>BAB15 / SAB15 / H4SAB15</strong> are{" "}
+                          <em>backup only</em> if the oxygen system fails.
+                        </li>
                       </ul>
                     </details>
 
@@ -614,9 +742,21 @@ export default function SupportingInfo() {
                         Effects of Sea State
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Significant waves (≈ ±0.5 m; ~1 m crest-to-trough) destabilise shallow 3 m stops.</li>
-                        <li>If in-water stops are unsafe, consider <strong>SOX15</strong>: diver in chamber under pressure within <strong>3 minutes</strong> of surfacing (delays markedly ↑ DCS risk).</li>
-                        <li><strong>BOX15</strong> with a bell tolerates larger sea states due to final O₂ stop at 6 m; <em>do not use BOX15 without a bell</em>.</li>
+                        <li>
+                          Significant waves (≈ ±0.5 m; ~1 m crest-to-trough)
+                          destabilise shallow 3 m stops.
+                        </li>
+                        <li>
+                          If in-water stops are unsafe, consider{" "}
+                          <strong>SOX15</strong>: diver in chamber under
+                          pressure within <strong>3 minutes</strong> of
+                          surfacing (delays markedly ↑ DCS risk).
+                        </li>
+                        <li>
+                          <strong>BOX15</strong> with a bell tolerates larger
+                          sea states due to final O₂ stop at 6 m;{" "}
+                          <em>do not use BOX15 without a bell</em>.
+                        </li>
                       </ul>
                     </details>
 
@@ -626,8 +766,15 @@ export default function SupportingInfo() {
                         Nitrox Use
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li><strong>NIA15 (40/60)</strong> and <strong>NIB15 (35/65)</strong> may be used subject to allowable pO₂.</li>
-                        <li>Max pO₂ <strong>1.6 bar</strong>; recommended ≤ <strong>1.5 bar</strong>. Other mixes on request.</li>
+                        <li>
+                          <strong>NIA15 (40/60)</strong> and{" "}
+                          <strong>NIB15 (35/65)</strong> may be used subject to
+                          allowable pO₂.
+                        </li>
+                        <li>
+                          Max pO₂ <strong>1.6 bar</strong>; recommended ≤{" "}
+                          <strong>1.5 bar</strong>. Other mixes on request.
+                        </li>
                       </ul>
                     </details>
 
@@ -637,10 +784,23 @@ export default function SupportingInfo() {
                         Repetitive Interval, Depth & Time
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Repetitive diving is not standard N-Sea practice; only allowed in emergencies.</li>
-                        <li>Actual repeat interval must be <strong>longer</strong> than the table's interval (e.g., 5 h since prior dive ⇒ use 4-h table).</li>
-                        <li>Actual max depth must be <strong>less</strong> than table depth (e.g., 30 m ⇒ select 33 m table).</li>
-                        <li>Actual dive time must be <strong>less</strong> than table time (e.g., 35 min ⇒ choose 40 min in table).</li>
+                        <li>
+                          Repetitive diving is not standard N-Sea practice; only
+                          allowed in emergencies.
+                        </li>
+                        <li>
+                          Actual repeat interval must be <strong>longer</strong>{" "}
+                          than the table's interval (e.g., 5 h since prior dive
+                          ⇒ use 4-h table).
+                        </li>
+                        <li>
+                          Actual max depth must be <strong>less</strong> than
+                          table depth (e.g., 30 m ⇒ select 33 m table).
+                        </li>
+                        <li>
+                          Actual dive time must be <strong>less</strong> than
+                          table time (e.g., 35 min ⇒ choose 40 min in table).
+                        </li>
                       </ul>
                     </details>
 
@@ -650,9 +810,20 @@ export default function SupportingInfo() {
                         Ascent Speed
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Max ascent speed <strong>10 m/min</strong>; ascent time is not counted as stop time (if exceeded, add excess to stop time).</li>
-                        <li>Ascent to first stop must be <strong>≥ 5 m/min</strong> (if slower, add excess to bottom time).</li>
-                        <li>Between stops deeper than 6 m: transit ≤ 1 min. At ≤ 6 m: ascent speed is less critical.</li>
+                        <li>
+                          Max ascent speed <strong>10 m/min</strong>; ascent
+                          time is not counted as stop time (if exceeded, add
+                          excess to stop time).
+                        </li>
+                        <li>
+                          Ascent to first stop must be{" "}
+                          <strong>≥ 5 m/min</strong> (if slower, add excess to
+                          bottom time).
+                        </li>
+                        <li>
+                          Between stops deeper than 6 m: transit ≤ 1 min. At ≤ 6
+                          m: ascent speed is less critical.
+                        </li>
                       </ul>
                     </details>
 
@@ -662,10 +833,22 @@ export default function SupportingInfo() {
                         Diving Conditions & Choice of Tables
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>North Sea: limit in-water stop time to ~30 min (solid black line in SIL15).</li>
-                        <li>Maintain shallow-stop pressure variation within <strong>±0.5 msw (~0.05 bar)</strong>.</li>
-                        <li>Low temperature ⇒ hot-water suits; strong currents may restrict operations.</li>
-                        <li>Supervisor decides suitability; perform LMRA per asset and conditions.</li>
+                        <li>
+                          North Sea: limit in-water stop time to ~30 min (solid
+                          black line in SIL15).
+                        </li>
+                        <li>
+                          Maintain shallow-stop pressure variation within{" "}
+                          <strong>±0.5 msw (~0.05 bar)</strong>.
+                        </li>
+                        <li>
+                          Low temperature ⇒ hot-water suits; strong currents may
+                          restrict operations.
+                        </li>
+                        <li>
+                          Supervisor decides suitability; perform LMRA per asset
+                          and conditions.
+                        </li>
                       </ul>
                     </details>
 
@@ -678,60 +861,169 @@ export default function SupportingInfo() {
                         <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-blue-50">
                             <tr>
-                              <th className="p-2 text-left border-b border-border">Wave Height (m)</th>
-                              <th className="p-2 border-b border-border">In-water 3m stop</th>
-                              <th className="p-2 border-b border-border">In-water 6m stop</th>
-                              <th className="p-2 border-b border-border">SurD (9m)</th>
-                              <th className="p-2 border-b border-border">In-water no-stop</th>
-                              <th className="p-2 border-b border-border">TUP</th>
+                              <th className="p-2 text-left border-b border-border">
+                                Wave Height (m)
+                              </th>
+                              <th className="p-2 border-b border-border">
+                                In-water 3m stop
+                              </th>
+                              <th className="p-2 border-b border-border">
+                                In-water 6m stop
+                              </th>
+                              <th className="p-2 border-b border-border">
+                                SurD (9m)
+                              </th>
+                              <th className="p-2 border-b border-border">
+                                In-water no-stop
+                              </th>
+                              <th className="p-2 border-b border-border">
+                                TUP
+                              </th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr className="border-b border-border">
-                              <td className="p-2 text-left font-semibold">1.0</td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2 text-left font-semibold">
+                                1.0
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
                             </tr>
                             <tr className="border-b border-border">
-                              <td className="p-2 text-left font-semibold">2.0</td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2 text-left font-semibold">
+                                2.0
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
                             </tr>
                             <tr className="border-b border-border">
-                              <td className="p-2 text-left font-semibold">2.5</td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2 text-left font-semibold">
+                                2.5
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
                             </tr>
                             <tr>
-                              <td className="p-2 text-left font-semibold">3.0</td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">Prohibited</span></td>
-                              <td className="p-2"><span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[9px] font-bold">Assess</span></td>
-                              <td className="p-2"><span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">Allowed</span></td>
+                              <td className="p-2 text-left font-semibold">
+                                3.0
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Prohibited
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Assess
+                                </span>
+                              </td>
+                              <td className="p-2">
+                                <span className="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-[9px] font-bold">
+                                  Allowed
+                                </span>
+                              </td>
                             </tr>
                           </tbody>
                         </table>
                         <p className="text-[9px] text-muted-foreground mt-2">
-                          • Assess swell/wave height where divers <em>enter/exit</em> the water and perform decompression.<br />
-                          • Consider vessel positioning to provide lee at the decompression/transfer point.<br />
-                          • The supervisor is the sole authority to start a dive.<br />
-                          • Asset-specific limits apply; perform risk assessment and LMRA for each dive and asset.
+                          • Assess swell/wave height where divers{" "}
+                          <em>enter/exit</em> the water and perform
+                          decompression.
+                          <br />
+                          • Consider vessel positioning to provide lee at the
+                          decompression/transfer point.
+                          <br />
+                          • The supervisor is the sole authority to start a
+                          dive.
+                          <br />• Asset-specific limits apply; perform risk
+                          assessment and LMRA for each dive and asset.
                         </p>
                       </div>
                     </details>
 
                     <div className="bg-blue-100 border border-blue-300 rounded-lg p-2 mt-3 text-xs text-foreground">
-                      <strong>Reminder:</strong> SOX15 transfers must place the diver in the chamber under pressure within <strong>3 minutes</strong> of surfacing.
+                      <strong>Reminder:</strong> SOX15 transfers must place the
+                      diver in the chamber under pressure within{" "}
+                      <strong>3 minutes</strong> of surfacing.
                     </div>
                   </div>
                 </>
@@ -742,7 +1034,9 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Acute CNS toxicity (convulsions) and long-term pulmonary toxicity managed via pO₂ limits, OTU, and ESOT exposure guidance.
+                      Acute CNS toxicity (convulsions) and long-term pulmonary
+                      toxicity managed via pO₂ limits, OTU, and ESOT exposure
+                      guidance.
                     </p>
                   </div>
 
@@ -753,38 +1047,112 @@ export default function SupportingInfo() {
                         Acute (CNS) Toxicity — Overview
                       </summary>
                       <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-                        Acute CNS toxicity causes convulsions and can be fatal underwater. Limit pO₂ to <strong>1.5 bar</strong> traditionally, but convulsions occur at this level. <strong>NOAA</strong> provides pO₂/time limits; <strong>IMCA</strong> advises maximum <strong>1.4 bar</strong> regardless of time (IMCA D048, 2012).
+                        Acute CNS toxicity causes convulsions and can be fatal
+                        underwater. Limit pO₂ to <strong>1.5 bar</strong>{" "}
+                        traditionally, but convulsions occur at this level.{" "}
+                        <strong>NOAA</strong> provides pO₂/time limits;{" "}
+                        <strong>IMCA</strong> advises maximum{" "}
+                        <strong>1.4 bar</strong> regardless of time (IMCA D048,
+                        2012).
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="px-2 py-1 border-b border-border">pO₂ (atm)</th>
-                              <th className="px-2 py-1 border-b border-border">Max Single Exposure (min)</th>
-                              <th className="px-2 py-1 border-b border-border">Max per 24 h (min)</th>
+                              <th className="px-2 py-1 border-b border-border">
+                                pO₂ (atm)
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Max Single Exposure (min)
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Max per 24 h (min)
+                              </th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.6</td><td className="px-2 py-1 text-center">45</td><td className="px-2 py-1 text-center">150</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.55</td><td className="px-2 py-1 text-center">83</td><td className="px-2 py-1 text-center">165</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.5</td><td className="px-2 py-1 text-center">120</td><td className="px-2 py-1 text-center">180</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.45</td><td className="px-2 py-1 text-center">135</td><td className="px-2 py-1 text-center">180</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.4</td><td className="px-2 py-1 text-center">150</td><td className="px-2 py-1 text-center">180</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.35</td><td className="px-2 py-1 text-center">165</td><td className="px-2 py-1 text-center">195</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.3</td><td className="px-2 py-1 text-center">180</td><td className="px-2 py-1 text-center">210</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.25</td><td className="px-2 py-1 text-center">195</td><td className="px-2 py-1 text-center">225</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.2</td><td className="px-2 py-1 text-center">210</td><td className="px-2 py-1 text-center">240</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">1.1</td><td className="px-2 py-1 text-center">240</td><td className="px-2 py-1 text-center">270</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">1.0</td><td className="px-2 py-1 text-center">300</td><td className="px-2 py-1 text-center">300</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">0.9</td><td className="px-2 py-1 text-center">360</td><td className="px-2 py-1 text-center">360</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">0.8</td><td className="px-2 py-1 text-center">450</td><td className="px-2 py-1 text-center">450</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">0.7</td><td className="px-2 py-1 text-center">570</td><td className="px-2 py-1 text-center">570</td></tr>
-                            <tr><td className="px-2 py-1">0.6</td><td className="px-2 py-1 text-center">720</td><td className="px-2 py-1 text-center">720</td></tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.6</td>
+                              <td className="px-2 py-1 text-center">45</td>
+                              <td className="px-2 py-1 text-center">150</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">1.55</td>
+                              <td className="px-2 py-1 text-center">83</td>
+                              <td className="px-2 py-1 text-center">165</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.5</td>
+                              <td className="px-2 py-1 text-center">120</td>
+                              <td className="px-2 py-1 text-center">180</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">1.45</td>
+                              <td className="px-2 py-1 text-center">135</td>
+                              <td className="px-2 py-1 text-center">180</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.4</td>
+                              <td className="px-2 py-1 text-center">150</td>
+                              <td className="px-2 py-1 text-center">180</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">1.35</td>
+                              <td className="px-2 py-1 text-center">165</td>
+                              <td className="px-2 py-1 text-center">195</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.3</td>
+                              <td className="px-2 py-1 text-center">180</td>
+                              <td className="px-2 py-1 text-center">210</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">1.25</td>
+                              <td className="px-2 py-1 text-center">195</td>
+                              <td className="px-2 py-1 text-center">225</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.2</td>
+                              <td className="px-2 py-1 text-center">210</td>
+                              <td className="px-2 py-1 text-center">240</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">1.1</td>
+                              <td className="px-2 py-1 text-center">240</td>
+                              <td className="px-2 py-1 text-center">270</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">1.0</td>
+                              <td className="px-2 py-1 text-center">300</td>
+                              <td className="px-2 py-1 text-center">300</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">0.9</td>
+                              <td className="px-2 py-1 text-center">360</td>
+                              <td className="px-2 py-1 text-center">360</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">0.8</td>
+                              <td className="px-2 py-1 text-center">450</td>
+                              <td className="px-2 py-1 text-center">450</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">0.7</td>
+                              <td className="px-2 py-1 text-center">570</td>
+                              <td className="px-2 py-1 text-center">570</td>
+                            </tr>
+                            <tr>
+                              <td className="px-2 py-1">0.6</td>
+                              <td className="px-2 py-1 text-center">720</td>
+                              <td className="px-2 py-1 text-center">720</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
                       <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-2 text-xs text-foreground">
-                        CNS oxygen "hits" may resolve in dry settings but can be fatal underwater. Treat IMCA and NOAA limits as hard operational controls.
+                        CNS oxygen "hits" may resolve in dry settings but can be
+                        fatal underwater. Treat IMCA and NOAA limits as hard
+                        operational controls.
                       </div>
                     </details>
 
@@ -794,41 +1162,109 @@ export default function SupportingInfo() {
                         Long-Term Oxygen Toxicity — OTU (UPTD)
                       </summary>
                       <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-                        <strong>Oxygen Toxicity Units (OTU)</strong> predict long-term toxicity risk, accumulated during dive and decompression. <strong>1 OTU = 1 UPTD</strong> (Unit Pulmonary Toxic Dose). DCD tables incorporate OTU; a separate table covers <strong>100% O₂ up to 18 m</strong> for non-standard procedures. <em>Use OTU/ESOT calculator in Tools.</em>
+                        <strong>Oxygen Toxicity Units (OTU)</strong> predict
+                        long-term toxicity risk, accumulated during dive and
+                        decompression. <strong>1 OTU = 1 UPTD</strong> (Unit
+                        Pulmonary Toxic Dose). DCD tables incorporate OTU; a
+                        separate table covers{" "}
+                        <strong>100% O₂ up to 18 m</strong> for non-standard
+                        procedures. <em>Use OTU/ESOT calculator in Tools.</em>
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="px-2 py-1 border-b border-border">Depth (m)</th>
-                              <th className="px-2 py-1 border-b border-border">OTU / 10 min</th>
-                              <th className="px-2 py-1 border-b border-border">OTU / 20 min</th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Depth (m)
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                OTU / 10 min
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                OTU / 20 min
+                              </th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="px-2 py-1">18</td><td className="px-2 py-1 text-center">35.7</td><td className="px-2 py-1 text-center">71.3</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">15</td><td className="px-2 py-1 text-center">31.7</td><td className="px-2 py-1 text-center">63.5</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">13.5</td><td className="px-2 py-1 text-center">29.8</td><td className="px-2 py-1 text-center">59.5</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">12</td><td className="px-2 py-1 text-center">27.7</td><td className="px-2 py-1 text-center">55.5</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">9</td><td className="px-2 py-1 text-center">23.6</td><td className="px-2 py-1 text-center">47.2</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">6</td><td className="px-2 py-1 text-center">19.3</td><td className="px-2 py-1 text-center">38.6</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">4.5</td><td className="px-2 py-1 text-center">17.1</td><td className="px-2 py-1 text-center">34.1</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">3</td><td className="px-2 py-1 text-center">14.8</td><td className="px-2 py-1 text-center">29.6</td></tr>
-                            <tr><td className="px-2 py-1">0</td><td className="px-2 py-1 text-center">10.0</td><td className="px-2 py-1 text-center">20.0</td></tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">18</td>
+                              <td className="px-2 py-1 text-center">35.7</td>
+                              <td className="px-2 py-1 text-center">71.3</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">15</td>
+                              <td className="px-2 py-1 text-center">31.7</td>
+                              <td className="px-2 py-1 text-center">63.5</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">13.5</td>
+                              <td className="px-2 py-1 text-center">29.8</td>
+                              <td className="px-2 py-1 text-center">59.5</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">12</td>
+                              <td className="px-2 py-1 text-center">27.7</td>
+                              <td className="px-2 py-1 text-center">55.5</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">9</td>
+                              <td className="px-2 py-1 text-center">23.6</td>
+                              <td className="px-2 py-1 text-center">47.2</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">6</td>
+                              <td className="px-2 py-1 text-center">19.3</td>
+                              <td className="px-2 py-1 text-center">38.6</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">4.5</td>
+                              <td className="px-2 py-1 text-center">17.1</td>
+                              <td className="px-2 py-1 text-center">34.1</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">3</td>
+                              <td className="px-2 py-1 text-center">14.8</td>
+                              <td className="px-2 py-1 text-center">29.6</td>
+                            </tr>
+                            <tr>
+                              <td className="px-2 py-1">0</td>
+                              <td className="px-2 py-1 text-center">10.0</td>
+                              <td className="px-2 py-1 text-center">20.0</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>A precise registration of OTU is imperative to avoid exceeding limits; the preceding <strong>two weeks</strong> are most relevant. Prior "oxygen history" should be on record but is not directly relevant.</li>
-                        <li>If an OTU limit is exceeded: observe an absolute <strong>no-diving period of ≥ 48 hours</strong>. After each 48-hour no-dive period the OTU count restarts at zero.</li>
-                        <li>If chronic oxygen-toxicity symptoms are suspected: impose a diving ban and consult a qualified diving medical advisor.</li>
+                        <li>
+                          A precise registration of OTU is imperative to avoid
+                          exceeding limits; the preceding{" "}
+                          <strong>two weeks</strong> are most relevant. Prior
+                          "oxygen history" should be on record but is not
+                          directly relevant.
+                        </li>
+                        <li>
+                          If an OTU limit is exceeded: observe an absolute{" "}
+                          <strong>no-diving period of ≥ 48 hours</strong>. After
+                          each 48-hour no-dive period the OTU count restarts at
+                          zero.
+                        </li>
+                        <li>
+                          If chronic oxygen-toxicity symptoms are suspected:
+                          impose a diving ban and consult a qualified diving
+                          medical advisor.
+                        </li>
                       </ul>
                       <div className="bg-purple-100 border border-purple-300 rounded-lg p-2 mt-3 text-xs text-foreground">
-                        <strong>Oxygen Limits �� OTU</strong><br />
-                        • Daily dose should not exceed <strong>450 OTU</strong> (except emergencies).<br />
-                        • For 7-day schedules: week 1 ≤ <strong>2500 OTU</strong>; weeks 2–3 ≤ <strong>2100 OTU</strong>; then 48 h no diving.<br />
-                        • For &gt;3 weeks continuous (7 d/wk): ≤ <strong>2100 OTU/week</strong>.<br />
-                        • If limits are exceeded, contact a diving doctor for advice on the required no-dive period.
+                        <strong>Oxygen Limits �� OTU</strong>
+                        <br />• Daily dose should not exceed{" "}
+                        <strong>450 OTU</strong> (except emergencies).
+                        <br />• For 7-day schedules: week 1 ≤{" "}
+                        <strong>2500 OTU</strong>; weeks 2–3 ≤{" "}
+                        <strong>2100 OTU</strong>; then 48 h no diving.
+                        <br />• For &gt;3 weeks continuous (7 d/wk): ≤{" "}
+                        <strong>2100 OTU/week</strong>.<br />• If limits are
+                        exceeded, contact a diving doctor for advice on the
+                        required no-dive period.
                       </div>
                     </details>
 
@@ -838,22 +1274,51 @@ export default function SupportingInfo() {
                         ESOT (DMAC 35) — Guidance & Limits
                       </summary>
                       <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-                        IMCA/DMAC recommend <strong>ESOT &lt; 660</strong> for single dives. Multi-day limits: <strong>660</strong> (2 days), <strong>500</strong> (5 days), <strong>420</strong> (10 days). Plan <strong>two days off</strong> after multi-day exposures. Air in-water decompression allowed during "off" days. Relax limits only with physician-reviewed risk assessment.
+                        IMCA/DMAC recommend <strong>ESOT &lt; 660</strong> for
+                        single dives. Multi-day limits: <strong>660</strong> (2
+                        days), <strong>500</strong> (5 days),{" "}
+                        <strong>420</strong> (10 days). Plan{" "}
+                        <strong>two days off</strong> after multi-day exposures.
+                        Air in-water decompression allowed during "off" days.
+                        Relax limits only with physician-reviewed risk
+                        assessment.
                       </p>
                       <div className="mt-3">
                         <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-purple-100">
                             <tr>
-                              <th className="px-2 py-1 border-b border-border">Daily max ESOT</th>
-                              <th className="px-2 py-1 border-b border-border">Max successive days</th>
-                              <th className="px-2 py-1 border-b border-border">Min surface interval (h)</th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Daily max ESOT
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Max successive days
+                              </th>
+                              <th className="px-2 py-1 border-b border-border">
+                                Min surface interval (h)
+                              </th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
-                            <tr className="border-b border-border"><td className="px-2 py-1">&gt; 660</td><td className="px-2 py-1 text-center">0</td><td className="px-2 py-1 text-center">24</td></tr>
-                            <tr className="border-b border-border bg-purple-50"><td className="px-2 py-1">501 – 660</td><td className="px-2 py-1 text-center">2</td><td className="px-2 py-1 text-center">12</td></tr>
-                            <tr className="border-b border-border"><td className="px-2 py-1">420 – 500</td><td className="px-2 py-1 text-center">5</td><td className="px-2 py-1 text-center">12</td></tr>
-                            <tr className="bg-purple-50"><td className="px-2 py-1">&lt; 420</td><td className="px-2 py-1 text-center">10</td><td className="px-2 py-1 text-center">12</td></tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">&gt; 660</td>
+                              <td className="px-2 py-1 text-center">0</td>
+                              <td className="px-2 py-1 text-center">24</td>
+                            </tr>
+                            <tr className="border-b border-border bg-purple-50">
+                              <td className="px-2 py-1">501 – 660</td>
+                              <td className="px-2 py-1 text-center">2</td>
+                              <td className="px-2 py-1 text-center">12</td>
+                            </tr>
+                            <tr className="border-b border-border">
+                              <td className="px-2 py-1">420 – 500</td>
+                              <td className="px-2 py-1 text-center">5</td>
+                              <td className="px-2 py-1 text-center">12</td>
+                            </tr>
+                            <tr className="bg-purple-50">
+                              <td className="px-2 py-1">&lt; 420</td>
+                              <td className="px-2 py-1 text-center">10</td>
+                              <td className="px-2 py-1 text-center">12</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -865,12 +1330,70 @@ export default function SupportingInfo() {
                         OTU and ESOT in DCD/NDC Tables
                       </summary>
                       <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-                        DCD/NDC tables (<Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">SOX15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">NIA15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">NIB15</Link>, <Link to="/tables" state={{ from: "supporting-info", modalId: openModalId }} className="text-blue-600 hover:text-blue-800 underline">BOX15</Link>) include OTU values. DMAC 35 recommends ESOT as alternative. <strong>OTU and ESOT tables</strong> allow comparison. For 12-h surface intervals, OTU and ESOT shown per depth/time. ESOT decays; add recovery ESOT (recESOT) to next dive. OTU accumulates (no decay). Use Tools calculator for totals.
+                        DCD/NDC tables (
+                        <Link
+                          to="/tables"
+                          state={{
+                            from: "supporting-info",
+                            modalId: openModalId,
+                          }}
+                          className="text-blue-600 hover:text-blue-800 underline"
+                        >
+                          SOX15
+                        </Link>
+                        ,{" "}
+                        <Link
+                          to="/tables"
+                          state={{
+                            from: "supporting-info",
+                            modalId: openModalId,
+                          }}
+                          className="text-blue-600 hover:text-blue-800 underline"
+                        >
+                          NIA15
+                        </Link>
+                        ,{" "}
+                        <Link
+                          to="/tables"
+                          state={{
+                            from: "supporting-info",
+                            modalId: openModalId,
+                          }}
+                          className="text-blue-600 hover:text-blue-800 underline"
+                        >
+                          NIB15
+                        </Link>
+                        ,{" "}
+                        <Link
+                          to="/tables"
+                          state={{
+                            from: "supporting-info",
+                            modalId: openModalId,
+                          }}
+                          className="text-blue-600 hover:text-blue-800 underline"
+                        >
+                          BOX15
+                        </Link>
+                        ) include OTU values. DMAC 35 recommends ESOT as
+                        alternative. <strong>OTU and ESOT tables</strong> allow
+                        comparison. For 12-h surface intervals, OTU and ESOT
+                        shown per depth/time. ESOT decays; add recovery ESOT
+                        (recESOT) to next dive. OTU accumulates (no decay). Use
+                        Tools calculator for totals.
                       </p>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>Reference: OTU-ESOT Calculator Tool — <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em></li>
-                        <li>Reference: OTU-ESOT Engineering Instruction Video — <em>N-Sea N Drive Folder Training Videos</em></li>
-                        <li>It remains to be seen which method is best; DMAC 35 is guidance, not law.</li>
+                        <li>
+                          Reference: OTU-ESOT Calculator Tool —{" "}
+                          <em>BMS-OP-0600-PR-000 OTU-ESOT Calculator Tool</em>
+                        </li>
+                        <li>
+                          Reference: OTU-ESOT Engineering Instruction Video —{" "}
+                          <em>N-Sea N Drive Folder Training Videos</em>
+                        </li>
+                        <li>
+                          It remains to be seen which method is best; DMAC 35 is
+                          guidance, not law.
+                        </li>
                       </ul>
                     </details>
                   </div>
@@ -883,234 +1406,284 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      High inspired oxygen (↑pO₂) can cause CNS toxicity and lung injury. Two measures assess these risks: OTU (UPTD), which tracks total oxygen dose for systemic effects, and ESOT, which estimates exposure time at a reference pO₂ and accounts for recovery between exposures to better gauge lung injury. Using both OTU and ESOT together offers a more complete assessment of oxygen exposure than either alone.
+                      High inspired oxygen (↑pO₂) can cause CNS toxicity and
+                      lung injury. Two measures assess these risks: OTU (UPTD),
+                      which tracks total oxygen dose for systemic effects, and
+                      ESOT, which estimates exposure time at a reference pO₂ and
+                      accounts for recovery between exposures to better gauge
+                      lung injury. Using both OTU and ESOT together offers a
+                      more complete assessment of oxygen exposure than either
+                      alone.
                     </p>
                   </div>
 
                   {/* Two Column Section */}
-              <div className="grid md:grid-cols-2 gap-4">
-                {/* OTU Card */}
-                <div className="bg-white border border-border rounded-lg p-3">
-                  <h3 className="text-sm font-bold text-foreground mb-1">
-                    UPTD / OTU
-                  </h3>
-                  <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
-                    Origin in pulmonary dose modelling; OTU broadened
-                    interpretation to include potential <em>systemic</em>{" "}
-                    manifestations.
-                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* OTU Card */}
+                    <div className="bg-white border border-border rounded-lg p-3">
+                      <h3 className="text-sm font-bold text-foreground mb-1">
+                        UPTD / OTU
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
+                        Origin in pulmonary dose modelling; OTU broadened
+                        interpretation to include potential <em>systemic</em>{" "}
+                        manifestations.
+                      </p>
 
-                  <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-xs cursor-pointer text-foreground">
-                      Strengths
-                    </summary>
-                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
-                      <li>Long operational history and proven field effectiveness</li>
-                      <li>Quantifies cumulative oxygen exposure over multi-day operations</li>
-                      <li>Conservative approach; maintains awareness of <strong>systemic effects</strong> beyond lungs (fatigue, headache, myalgia)</li>
-                      <li>Simple to apply and understand</li>
-                      <li>Best for tracking multi-week cumulative burden</li>
-                    </ul>
-                  </details>
-
-                  <details className="bg-red-50 border border-red-200 rounded-lg p-2">
-                    <summary className="font-bold text-xs cursor-pointer text-foreground">
-                      Weaknesses
-                    </summary>
-                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
-                      <li>No validated recovery/decay model; exposure only accumulates</li>
-                      <li>Limited accuracy for short exposures</li>
-                      <li>Poor correlation with segmented exposures</li>
-                      <li>Less precise pulmonary toxicity prediction than ESOT</li>
-                    </ul>
-                  </details>
-                </div>
-
-                {/* ESOT Card */}
-                <div className="bg-white border border-border rounded-lg p-3">
-                  <h3 className="text-sm font-bold text-foreground mb-1">
-                    ESOT
-                  </h3>
-                  <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
-                    Represents exposure as "equivalent minutes of 100% O₂ at the
-                    surface," enabling dose + recovery modelling for pulmonary
-                    risk.
-                  </p>
-
-                  <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
-                    <summary className="font-bold text-xs cursor-pointer text-foreground">
-                      Strengths
-                    </summary>
-                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
-                      <li>Best model of <strong>pulmonary</strong> dose + recovery</li>
-                      <li>Improved prediction for pulmonary oxygen toxicity</li>
-                      <li>Handles varying pO₂ segments and multi-segment dives</li>
-                      <li>Models recovery between exposures (decay function)</li>
-                      <li>Excellent for daily/short-term and repetitive dive planning</li>
-                      <li>Accounts for physiological recovery during surface intervals</li>
-                    </ul>
-                  </details>
-
-                  <details className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
-                    <summary className="font-bold text-xs cursor-pointer text-foreground">
-                      Weaknesses
-                    </summary>
-                    <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
-                      <li>Focuses on pulmonary injury; <strong>systemic effects are not represented</strong></li>
-                      <li>Does not capture fatigue, headache, or musculoskeletal discomfort</li>
-                      <li>Requires calculation support for practical use</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
-
-              {/* Comparison Table */}
-              <div className="bg-white border border-border rounded-lg overflow-hidden">
-                <h3 className="text-sm font-bold text-foreground p-3 border-b border-border bg-gray-50">
-                  Comparison Table
-                </h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="bg-gray-50 border-b border-border">
-                        <th className="p-2 text-left font-bold text-foreground">
-                          Category
-                        </th>
-                        <th className="p-2 text-left font-bold text-foreground">
-                          UPTD / OTU
-                        </th>
-                        <th className="p-2 text-left font-bold text-foreground">
-                          ESOT
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Origin
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Pulmonary VC-loss studies; expanded to systemic interpretation
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Derived from Arieli K; DMAC-35 recommended
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Physiological Target
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Pulmonary + <em>systemic</em> operational interpretation
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Pulmonary only
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Systemic Symptoms
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Recognized (fatigue, headache, myalgia/arthralgia)
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Not represented
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Calculation
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Dose from pO₂ + time
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px] font-mono">
-                          t × pO₂²��²⁸⁵
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Recovery Model
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          None
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Yes (exponential decay)
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Multi-Segment pO₂
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Limited handling
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Strong handling
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Time Horizon
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Multi-week cumulative
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Daily/short-term/repetitive
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Best Use
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Long-term systemic burden tracking
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Pulmonary dose & recovery planning
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
+                      <details className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-2">
+                        <summary className="font-bold text-xs cursor-pointer text-foreground">
                           Strengths
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Conservative; systemic awareness; simple
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          Accurate pulmonary dose; decay; segment-friendly
-                        </td>
-                      </tr>
-                      <tr className="border-b border-border hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Weaknesses
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          No decay; poor pulmonary correlation
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px]">
-                          No systemic dimension; requires tools
-                        </td>
-                      </tr>
-                      <tr className="hover:bg-gray-50">
-                        <td className="p-2 font-semibold text-foreground">
-                          Simplified View
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px] italic">
-                          "Whole-body stress thermometer"
-                        </td>
-                        <td className="p-2 text-muted-foreground text-[9px] italic">
-                          "Lung-stress calculator"
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                        </summary>
+                        <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
+                          <li>
+                            Long operational history and proven field
+                            effectiveness
+                          </li>
+                          <li>
+                            Quantifies cumulative oxygen exposure over multi-day
+                            operations
+                          </li>
+                          <li>
+                            Conservative approach; maintains awareness of{" "}
+                            <strong>systemic effects</strong> beyond lungs
+                            (fatigue, headache, myalgia)
+                          </li>
+                          <li>Simple to apply and understand</li>
+                          <li>
+                            Best for tracking multi-week cumulative burden
+                          </li>
+                        </ul>
+                      </details>
 
+                      <details className="bg-red-50 border border-red-200 rounded-lg p-2">
+                        <summary className="font-bold text-xs cursor-pointer text-foreground">
+                          Weaknesses
+                        </summary>
+                        <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
+                          <li>
+                            No validated recovery/decay model; exposure only
+                            accumulates
+                          </li>
+                          <li>Limited accuracy for short exposures</li>
+                          <li>Poor correlation with segmented exposures</li>
+                          <li>
+                            Less precise pulmonary toxicity prediction than ESOT
+                          </li>
+                        </ul>
+                      </details>
+                    </div>
+
+                    {/* ESOT Card */}
+                    <div className="bg-white border border-border rounded-lg p-3">
+                      <h3 className="text-sm font-bold text-foreground mb-1">
+                        ESOT
+                      </h3>
+                      <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
+                        Represents exposure as "equivalent minutes of 100% O₂ at
+                        the surface," enabling dose + recovery modelling for
+                        pulmonary risk.
+                      </p>
+
+                      <details className="bg-green-50 border border-green-200 rounded-lg p-2 mb-2">
+                        <summary className="font-bold text-xs cursor-pointer text-foreground">
+                          Strengths
+                        </summary>
+                        <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
+                          <li>
+                            Best model of <strong>pulmonary</strong> dose +
+                            recovery
+                          </li>
+                          <li>
+                            Improved prediction for pulmonary oxygen toxicity
+                          </li>
+                          <li>
+                            Handles varying pO₂ segments and multi-segment dives
+                          </li>
+                          <li>
+                            Models recovery between exposures (decay function)
+                          </li>
+                          <li>
+                            Excellent for daily/short-term and repetitive dive
+                            planning
+                          </li>
+                          <li>
+                            Accounts for physiological recovery during surface
+                            intervals
+                          </li>
+                        </ul>
+                      </details>
+
+                      <details className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
+                        <summary className="font-bold text-xs cursor-pointer text-foreground">
+                          Weaknesses
+                        </summary>
+                        <ul className="text-muted-foreground text-xs mt-2 space-y-1 ml-4 list-disc">
+                          <li>
+                            Focuses on pulmonary injury;{" "}
+                            <strong>
+                              systemic effects are not represented
+                            </strong>
+                          </li>
+                          <li>
+                            Does not capture fatigue, headache, or
+                            musculoskeletal discomfort
+                          </li>
+                          <li>
+                            Requires calculation support for practical use
+                          </li>
+                        </ul>
+                      </details>
+                    </div>
+                  </div>
+
+                  {/* Comparison Table */}
+                  <div className="bg-white border border-border rounded-lg overflow-hidden">
+                    <h3 className="text-sm font-bold text-foreground p-3 border-b border-border bg-gray-50">
+                      Comparison Table
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-xs">
+                        <thead>
+                          <tr className="bg-gray-50 border-b border-border">
+                            <th className="p-2 text-left font-bold text-foreground">
+                              Category
+                            </th>
+                            <th className="p-2 text-left font-bold text-foreground">
+                              UPTD / OTU
+                            </th>
+                            <th className="p-2 text-left font-bold text-foreground">
+                              ESOT
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Origin
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Pulmonary VC-loss studies; expanded to systemic
+                              interpretation
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Derived from Arieli K; DMAC-35 recommended
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Physiological Target
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Pulmonary + <em>systemic</em> operational
+                              interpretation
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Pulmonary only
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Systemic Symptoms
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Recognized (fatigue, headache, myalgia/arthralgia)
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Not represented
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Calculation
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Dose from pO₂ + time
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px] font-mono">
+                              t × pO₂²��²⁸⁵
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Recovery Model
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              None
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Yes (exponential decay)
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Multi-Segment pO₂
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Limited handling
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Strong handling
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Time Horizon
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Multi-week cumulative
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Daily/short-term/repetitive
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Best Use
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Long-term systemic burden tracking
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Pulmonary dose & recovery planning
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Strengths
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Conservative; systemic awareness; simple
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              Accurate pulmonary dose; decay; segment-friendly
+                            </td>
+                          </tr>
+                          <tr className="border-b border-border hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Weaknesses
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              No decay; poor pulmonary correlation
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px]">
+                              No systemic dimension; requires tools
+                            </td>
+                          </tr>
+                          <tr className="hover:bg-gray-50">
+                            <td className="p-2 font-semibold text-foreground">
+                              Simplified View
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px] italic">
+                              "Whole-body stress thermometer"
+                            </td>
+                            <td className="p-2 text-muted-foreground text-[9px] italic">
+                              "Lung-stress calculator"
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </>
               ) : openModalId === "flyingAfterDiving" ? (
                 <>
@@ -1119,7 +1692,12 @@ export default function SupportingInfo() {
                       Overview
                     </h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
+                      Flying increases DCS risk, especially if symptoms are
+                      present. The intervals below are <strong>minimums</strong>
+                      ; longer intervals are recommended, particularly for
+                      flights with stops/landings. If any DCS signs exist,
+                      flying greatly increases risk of serious neurological
+                      complications.
                     </p>
                   </div>
 
@@ -1130,10 +1708,27 @@ export default function SupportingInfo() {
                         Standby Period
                       </summary>
                       <ul className="text-muted-foreground text-xs mt-3 space-y-2 ml-6 list-disc">
-                        <li>After a routine dive with decompression: remain in the immediate vicinity of the chamber for <strong>1 hour</strong> after the last stop.</li>
-                        <li>After a dive on standard air tables below the thick line ("backup"): remain for <strong>≥ 2 hours</strong>.</li>
-                        <li>After a compromised dive (decompression errors) or emergency procedures: remain for <strong>≥ 4 hours</strong>, unless the diving medical officer decides otherwise.</li>
-                        <li>In all cases: remain within <strong>2 hours travel</strong> of a chamber for <strong>12 hours</strong> after a dive.</li>
+                        <li>
+                          After a routine dive with decompression: remain in the
+                          immediate vicinity of the chamber for{" "}
+                          <strong>1 hour</strong> after the last stop.
+                        </li>
+                        <li>
+                          After a dive on standard air tables below the thick
+                          line ("backup"): remain for <strong>≥ 2 hours</strong>
+                          .
+                        </li>
+                        <li>
+                          After a compromised dive (decompression errors) or
+                          emergency procedures: remain for{" "}
+                          <strong>≥ 4 hours</strong>, unless the diving medical
+                          officer decides otherwise.
+                        </li>
+                        <li>
+                          In all cases: remain within{" "}
+                          <strong>2 hours travel</strong> of a chamber for{" "}
+                          <strong>12 hours</strong> after a dive.
+                        </li>
                       </ul>
                     </details>
 
@@ -1143,7 +1738,14 @@ export default function SupportingInfo() {
                         Flight Restrictions — General
                       </summary>
                       <p className="text-xs text-muted-foreground leading-relaxed mt-3">
-                        Flying increases DCS risk, especially if symptoms are present. The intervals below are <strong>minimums</strong>; longer intervals are recommended, particularly for flights with stops/landings. Shorter intervals only after consultation with a diving medical advisor. If any DCS signs exist, flying greatly increases risk of serious neurological complications.
+                        Flying increases DCS risk, especially if symptoms are
+                        present. The intervals below are{" "}
+                        <strong>minimums</strong>; longer intervals are
+                        recommended, particularly for flights with
+                        stops/landings. Shorter intervals only after
+                        consultation with a diving medical advisor. If any DCS
+                        signs exist, flying greatly increases risk of serious
+                        neurological complications.
                       </p>
                     </details>
 
@@ -1156,81 +1758,129 @@ export default function SupportingInfo() {
                         <table className="w-full text-xs border border-border rounded-lg overflow-hidden">
                           <thead className="bg-blue-50">
                             <tr>
-                              <th className="p-2 text-left border-b border-border font-bold">Dive</th>
-                              <th className="p-2 border-b border-border font-bold">&lt; 600 m (2,000 ft)<br /><span className="font-normal text-[9px]">Controlled flight plan</span></th>
-                              <th className="p-2 border-b border-border font-bold">&lt; 2,600 m (8,000 ft)<br /><span className="font-normal text-[9px]">All other flights</span></th>
+                              <th className="p-2 text-left border-b border-border font-bold">
+                                Dive
+                              </th>
+                              <th className="p-2 border-b border-border font-bold">
+                                &lt; 600 m (2,000 ft)
+                                <br />
+                                <span className="font-normal text-[9px]">
+                                  Controlled flight plan
+                                </span>
+                              </th>
+                              <th className="p-2 border-b border-border font-bold">
+                                &lt; 2,600 m (8,000 ft)
+                                <br />
+                                <span className="font-normal text-[9px]">
+                                  All other flights
+                                </span>
+                              </th>
                             </tr>
                           </thead>
                           <tbody className="text-[9px]">
                             <tr className="border-b border-border">
                               <td className="p-2 text-left font-semibold">
-                                <strong>No-stop dives</strong><br />
-                                <span className="font-normal text-[8px] text-muted-foreground">Total time under pressure &lt; 60 min in last 12 h</span>
+                                <strong>No-stop dives</strong>
+                                <br />
+                                <span className="font-normal text-[8px] text-muted-foreground">
+                                  Total time under pressure &lt; 60 min in last
+                                  12 h
+                                </span>
                               </td>
                               <td className="p-2 text-center">2 h</td>
                               <td className="p-2 text-center">8 h* (24 h)</td>
                             </tr>
                             <tr className="border-b border-border bg-blue-50">
                               <td className="p-2 text-left font-semibold">
-                                <strong>Other dives</strong> on air, nitrox, heliox and mixed-gas bounce dives<br />
-                                <span className="font-normal text-[8px] text-muted-foreground">&lt; 4 h under pressure</span>
+                                <strong>Other dives</strong> on air, nitrox,
+                                heliox and mixed-gas bounce dives
+                                <br />
+                                <span className="font-normal text-[8px] text-muted-foreground">
+                                  &lt; 4 h under pressure
+                                </span>
                               </td>
                               <td className="p-2 text-center">12 h</td>
                               <td className="p-2 text-center">24 h</td>
                             </tr>
                             <tr className="border-b border-border">
                               <td className="p-2 text-left font-semibold">
-                                <strong>Saturation dives</strong> (heliox/air/nitrox/trimix)<br />
-                                <span className="font-normal text-[8px] text-muted-foreground">&gt; 4 h under pressure</span>
+                                <strong>Saturation dives</strong>{" "}
+                                (heliox/air/nitrox/trimix)
+                                <br />
+                                <span className="font-normal text-[8px] text-muted-foreground">
+                                  &gt; 4 h under pressure
+                                </span>
                               </td>
                               <td className="p-2 text-center">24 h</td>
                               <td className="p-2 text-center">48 h</td>
                             </tr>
                             <tr className="border-b border-border bg-blue-50">
                               <td className="p-2 text-left font-semibold">
-                                <strong>After decompression sickness</strong><br />
-                                <span className="font-normal text-[8px] text-muted-foreground">Immediate &amp; total disappearance after first recompression</span>
+                                <strong>After decompression sickness</strong>
+                                <br />
+                                <span className="font-normal text-[8px] text-muted-foreground">
+                                  Immediate &amp; total disappearance after
+                                  first recompression
+                                </span>
                               </td>
                               <td className="p-2 text-center">24 h</td>
                               <td className="p-2 text-center">48 h</td>
                             </tr>
                             <tr>
                               <td className="p-2 text-left font-semibold">
-                                <strong>After decompression sickness</strong><br />
-                                <span className="font-normal text-[8px] text-muted-foreground">Remaining symptoms / no immediate response</span>
+                                <strong>After decompression sickness</strong>
+                                <br />
+                                <span className="font-normal text-[8px] text-muted-foreground">
+                                  Remaining symptoms / no immediate response
+                                </span>
                               </td>
-                              <td colSpan={2} className="p-2">Fly only after consultation with a diving medical officer. General recommendation: delay flying as long as possible.</td>
+                              <td colSpan={2} className="p-2">
+                                Fly only after consultation with a diving
+                                medical officer. General recommendation: delay
+                                flying as long as possible.
+                              </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                       <p className="text-[9px] text-muted-foreground mt-2">
-                        * <strong>18 h</strong> applies to short flights only. For long flights (e.g., intercontinental), extend to <strong>24 h</strong>.
+                        * <strong>18 h</strong> applies to short flights only.
+                        For long flights (e.g., intercontinental), extend to{" "}
+                        <strong>24 h</strong>.
                       </p>
                     </details>
 
                     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-3">
-                      <p className="text-xs font-semibold text-yellow-900 mb-1">⚠️ Important Reminder</p>
+                      <p className="text-xs font-semibold text-yellow-900 mb-1">
+                        ⚠️ Important Reminder
+                      </p>
                       <p className="text-xs text-yellow-900">
-                        These intervals are minimum guidelines only. Longer delays are strongly recommended, especially for long or high-altitude flights. Always consult a diving medicine professional if you have any symptoms or concerns.
+                        These intervals are minimum guidelines only. Longer
+                        delays are strongly recommended, especially for long or
+                        high-altitude flights. Always consult a diving medicine
+                        professional if you have any symptoms or concerns.
                       </p>
                     </div>
                   </div>
                 </>
               ) : (
                 <>
-                  {sections.find((s) => s.id === openModalId)?.subsections.map((sub, idx) => (
-                    <div key={idx}>
-                      <h3 className="text-sm font-bold text-foreground mb-2">
-                        {sub.subtitle}
-                      </h3>
-                      <ul className="space-y-2 text-sm text-muted-foreground list-disc ml-6">
-                        {sub.items.map((item, itemIdx) => (
-                          <li key={itemIdx}>{renderTextWithTableLinks(item)}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  {sections
+                    .find((s) => s.id === openModalId)
+                    ?.subsections.map((sub, idx) => (
+                      <div key={idx}>
+                        <h3 className="text-sm font-bold text-foreground mb-2">
+                          {sub.subtitle}
+                        </h3>
+                        <ul className="space-y-2 text-sm text-muted-foreground list-disc ml-6">
+                          {sub.items.map((item, itemIdx) => (
+                            <li key={itemIdx}>
+                              {renderTextWithTableLinks(item)}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                 </>
               )}
             </div>

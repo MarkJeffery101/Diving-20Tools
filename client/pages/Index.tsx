@@ -3,7 +3,6 @@ import Navigation from "@/components/Navigation";
 import SvgIcon from "@/components/SvgIcon";
 
 export default function Index() {
-
   const features = [
     {
       title: "Dive Tables",
@@ -43,8 +42,7 @@ export default function Index() {
     },
     {
       title: "Emergency Procedures",
-      description:
-        "Flowcharts and decision trees for rapid emergency response",
+      description: "Flowcharts and decision trees for rapid emergency response",
       iconId: "icon-emergency",
       href: "/emergency-flowcharts",
       color: "bg-red-50 border-red-200 text-red-700",
@@ -52,8 +50,7 @@ export default function Index() {
     },
     {
       title: "Nitrox & Special Mixes",
-      description:
-        "SOX15, SAB15, and NIA/NIB nitrox tables with oxygen limits",
+      description: "SOX15, SAB15, and NIA/NIB nitrox tables with oxygen limits",
       iconId: "icon-nitrox",
       href: "/tables",
       color: "bg-amber-50 border-amber-200 text-amber-700",
@@ -103,7 +100,9 @@ export default function Index() {
               >
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className={`mb-4 inline-flex p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`mb-4 inline-flex p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <SvgIcon id={feature.iconId} className="h-6 w-6" />
                   </div>
 

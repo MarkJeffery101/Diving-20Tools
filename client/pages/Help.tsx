@@ -1,10 +1,18 @@
 import Navigation from "@/components/Navigation";
 import { Link } from "react-router-dom";
-import { ChevronDown, HelpCircle, BookOpen, AlertTriangle, Lightbulb } from "lucide-react";
+import {
+  ChevronDown,
+  HelpCircle,
+  BookOpen,
+  AlertTriangle,
+  Lightbulb,
+} from "lucide-react";
 import { useState } from "react";
 
 export default function Help() {
-  const [expandedSection, setExpandedSection] = useState<string | null>("getting-started");
+  const [expandedSection, setExpandedSection] = useState<string | null>(
+    "getting-started",
+  );
 
   const sections = [
     {
@@ -280,7 +288,8 @@ Use these tools during dive planning to verify your parameters are within safe l
             <h1 className="text-3xl font-bold text-gray-900">Help & Guide</h1>
           </div>
           <p className="text-lg text-gray-600">
-            Comprehensive guide to using DivePlan and understanding diving tables
+            Comprehensive guide to using DivePlan and understanding diving
+            tables
           </p>
         </div>
 
@@ -342,7 +351,8 @@ Use these tools during dive planning to verify your parameters are within safe l
             Ready to Plan Your Dive?
           </h3>
           <p className="text-blue-800 mb-4">
-            Use the Table Selection tool to find the perfect table for your dive profile, or browse all available tables.
+            Use the Table Selection tool to find the perfect table for your dive
+            profile, or browse all available tables.
           </p>
           <div className="flex gap-3 flex-wrap">
             <Link
@@ -375,7 +385,11 @@ Use these tools during dive planning to verify your parameters are within safe l
                 Safety Disclaimer
               </p>
               <p className="text-sm text-orange-800">
-                This guide is for informational purposes. Always follow your organization's diving protocols and procedures. Consult with qualified diving supervisors and medical professionals before conducting any dive operation. Ensure full compliance with IMCA guidelines and local regulations.
+                This guide is for informational purposes. Always follow your
+                organization's diving protocols and procedures. Consult with
+                qualified diving supervisors and medical professionals before
+                conducting any dive operation. Ensure full compliance with IMCA
+                guidelines and local regulations.
               </p>
             </div>
           </div>

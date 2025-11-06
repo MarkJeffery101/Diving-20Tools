@@ -1532,7 +1532,9 @@ export default function TableUse() {
                         {table.codes.map((code) => (
                           <button
                             key={code}
-                            onClick={() => navigate(`/tables/${code.toLowerCase()}`)}
+                            onClick={() =>
+                              navigate(`/tables/${code.toLowerCase()}`)
+                            }
                             className={`text-xs font-mono h-6 px-2 rounded text-white ${table.badgeBgColor} hover:opacity-80 transition-opacity cursor-pointer`}
                           >
                             {code}

@@ -136,13 +136,17 @@ export const TreatmentTableDialog = React.memo(
   ({ table }: { table: TreatmentTableType }) => (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={`p-3 rounded border-l-4 border-b pb-2 px-3 py-2 transition-colors text-left h-full rounded-r ${table.borderColor} ${table.bgColor} hover:opacity-80`}>
+        <button
+          className={`p-3 rounded border-l-4 border-b pb-2 px-3 py-2 transition-colors text-left h-full rounded-r ${table.borderColor} ${table.bgColor} hover:opacity-80`}
+        >
           <div className="space-y-2">
             <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className="font-semibold text-sm text-gray-900">
                 {table.name}
               </h4>
-              <Badge className={`text-xs font-mono h-6 flex-shrink-0 text-white ${table.badgeBgColor}`}>
+              <Badge
+                className={`text-xs font-mono h-6 flex-shrink-0 text-white ${table.badgeBgColor}`}
+              >
                 {table.code}
               </Badge>
             </div>
@@ -154,7 +158,11 @@ export const TreatmentTableDialog = React.memo(
         <DialogHeader>
           <div className="flex items-start justify-between gap-4">
             <DialogTitle className="text-xl">{table.name}</DialogTitle>
-            <Badge className={`text-xs font-mono h-6 text-white ${table.badgeBgColor}`}>{table.code}</Badge>
+            <Badge
+              className={`text-xs font-mono h-6 text-white ${table.badgeBgColor}`}
+            >
+              {table.code}
+            </Badge>
           </div>
         </DialogHeader>
 

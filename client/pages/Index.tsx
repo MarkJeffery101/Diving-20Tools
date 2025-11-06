@@ -63,11 +63,11 @@ export default function Index() {
       <Navigation />
 
       {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-0 mb-20 border-b border-ocean-700">
-        <div className="container mx-auto">
-          <div className="flex flex-col justify-start items-start gap-2 my-4 py-2">
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-0 mb-20 border-b border-ocean-700 h-32">
+        <div className="container mx-auto h-full">
+          <div className="flex flex-row justify-start items-stretch gap-6 h-full">
             {/* Logo */}
-            <div className="flex-shrink-0 h-full flex items-center lg:max-w-[50px]">
+            <div className="flex-shrink-0 h-full flex items-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"
@@ -76,11 +76,11 @@ export default function Index() {
             </div>
 
             {/* Text */}
-            <div className="flex-grow">
-              <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
+            <div className="flex flex-col justify-center">
+              <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-white leading-tight">
                 DivePlan
               </h1>
-              <p className="text-xs sm:text-xs lg:text-sm text-ocean-200 leading-relaxed">
+              <p className="text-lg sm:text-xl lg:text-xl text-ocean-200 leading-relaxed">
                 Professional Dive Planning Reference
               </p>
             </div>

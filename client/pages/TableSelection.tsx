@@ -538,7 +538,7 @@ export default function TableSelection() {
                   </label>
 
                   {/* Mobile: Slider */}
-                  <div className="md:hidden space-y-2">
+                  <div className="block lg:hidden space-y-2">
                     <input
                       type="range"
                       min="5"

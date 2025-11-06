@@ -80,7 +80,7 @@ export default function Index() {
         {/* Navigation Bar */}
         <div className="px-6 py-3 border-b border-ocean-700">
           <div className="container mx-auto">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-end gap-6">
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center gap-6">
                 {navLinks.map((link) => {

@@ -18,6 +18,7 @@ import Tools from "./pages/Tools";
 import Share from "./pages/Share";
 import TreatmentProtocols from "./pages/TreatmentProtocols";
 import EmergencyProcedures from "./pages/EmergencyProcedures";
+import Help from "./pages/Help";
 
 const queryClient = new QueryClient();
 

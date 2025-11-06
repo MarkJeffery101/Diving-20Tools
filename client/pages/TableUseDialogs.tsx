@@ -154,7 +154,7 @@ export const TreatmentTableDialog = React.memo(
         <DialogHeader>
           <div className="flex items-start justify-between gap-4">
             <DialogTitle className="text-xl">{table.name}</DialogTitle>
-            <Badge className="text-xs font-mono h-6">{table.code}</Badge>
+            <Badge className={`text-xs font-mono h-6 text-white ${table.badgeBgColor}`}>{table.code}</Badge>
           </div>
         </DialogHeader>
 

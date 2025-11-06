@@ -63,6 +63,32 @@ const tableDescriptions: Record<string, string> = {
 };
 
 /**
+ * Select the appropriate repetitive interval table variant based on surface interval
+ */
+function selectRepetitiveIntervalTable(
+  baseTable: string,
+  surfaceInterval?: number,
+): string {
+  if (!surfaceInterval) {
+    return baseTable; // No surface interval, use base (12-hour) table
+  }
+
+  // Select variant based on hours since previous dive
+  if (surfaceInterval < 2) {
+    // Less than 2 hours: use 2-hour interval table
+    const h2Table = `H2${baseTable}`;
+    return h2Table;
+  } else if (surfaceInterval < 4) {
+    // 2-4 hours: use 4-hour interval table
+    const h4Table = `H4${baseTable}`;
+    return h4Table;
+  } else {
+    // 4+ hours: use 12-hour interval table (default)
+    return baseTable;
+  }
+}
+
+/**
  * Find the next available depth in a table that is >= requested depth
  */
 function findNextAvailableDepth(

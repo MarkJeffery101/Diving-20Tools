@@ -127,43 +127,43 @@ export default function Index() {
       <div className="flex-shrink-0 bg-ocean-950 text-white px-3 sm:px-6 py-1 sm:py-6 lg:py-1 border-t border-ocean-800 lg:h-auto">
         <div className="container mx-auto">
           <div className="grid grid-cols-3 gap-2 sm:gap-6">
-            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-1 sm:gap-3 lg:gap-2">
-              <div className="w-6 h-6 sm:w-9 sm:h-9 lg:w-7 lg:h-7 bg-ocean-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-base lg:text-sm font-bold">
+            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-0.5 sm:gap-2 lg:gap-1">
+              <div className="w-5 h-5 sm:w-8 sm:h-8 lg:w-5 lg:h-5 bg-ocean-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-sm lg:text-xs font-bold">
                 ✓
               </div>
               <div className="min-w-0 text-center sm:text-left">
                 <h3 className="text-xs sm:text-sm lg:text-xs font-bold">
                   Complete Reference
                 </h3>
-                <p className="hidden sm:block text-xs lg:text-xs text-ocean-300 leading-tight">
+                <p className="hidden sm:block text-xs lg:hidden text-ocean-300 leading-tight">
                   All tables and limits in one platform
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-1 sm:gap-3 lg:gap-2">
-              <div className="w-6 h-6 sm:w-9 sm:h-9 lg:w-7 lg:h-7 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-base lg:text-sm font-bold">
+            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-0.5 sm:gap-2 lg:gap-1">
+              <div className="w-5 h-5 sm:w-8 sm:h-8 lg:w-5 lg:h-5 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-sm lg:text-xs font-bold">
                 ✓
               </div>
               <div className="min-w-0 text-center sm:text-left">
                 <h3 className="text-xs sm:text-sm lg:text-xs font-bold">
                   Seamless Navigation
                 </h3>
-                <p className="hidden sm:block text-xs lg:text-xs text-ocean-300 leading-tight">
+                <p className="hidden sm:block text-xs lg:hidden text-ocean-300 leading-tight">
                   Smart links between tools
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-1 sm:gap-3 lg:gap-2">
-              <div className="w-6 h-6 sm:w-9 sm:h-9 lg:w-7 lg:h-7 bg-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-base lg:text-sm font-bold">
+            <div className="flex flex-col sm:flex-row sm:items-start items-center gap-0.5 sm:gap-2 lg:gap-1">
+              <div className="w-5 h-5 sm:w-8 sm:h-8 lg:w-5 lg:h-5 bg-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 text-xs sm:text-sm lg:text-xs font-bold">
                 ✓
               </div>
               <div className="min-w-0 text-center sm:text-left">
                 <h3 className="text-xs sm:text-sm lg:text-xs font-bold">
                   Decision Support
                 </h3>
-                <p className="hidden sm:block text-xs lg:text-xs text-ocean-300 leading-tight">
+                <p className="hidden sm:block text-xs lg:hidden text-ocean-300 leading-tight">
                   Tools for complex scenarios
                 </p>
               </div>

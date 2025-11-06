@@ -125,14 +125,23 @@ export function getTableRecommendation(
 
   // Try to find a table with matching depth
   for (const table of candidateTables) {
-    const depth = findNextAvailableDepth(table, profile.plannedDepth);
+    // Apply repetitive interval selection if surface interval provided
+    let selectedTableVariant = table;
+    if (profile.surfaceInterval !== undefined) {
+      selectedTableVariant = selectRepetitiveIntervalTable(
+        table,
+        profile.surfaceInterval,
+      );
+    }
+
+    const depth = findNextAvailableDepth(selectedTableVariant, profile.plannedDepth);
     if (depth) {
-      selectedTable = table;
+      selectedTable = selectedTableVariant;
       selectedDepth = depth;
 
       if (depth > profile.plannedDepth) {
         warnings.push(
-          `Requested depth ${profile.plannedDepth}m not available in ${table}. Using ${depth}m instead.`,
+          `Requested depth ${profile.plannedDepth}m not available in ${selectedTableVariant}. Using ${depth}m instead.`,
         );
       }
       break;

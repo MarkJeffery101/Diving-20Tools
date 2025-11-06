@@ -67,7 +67,7 @@ export default function Index() {
         <div className="container mx-auto">
           <div className="flex items-center gap-3 sm:gap-6 lg:gap-2 h-16 sm:h-32 lg:h-14">
             {/* Logo */}
-            <div className="flex-shrink-0 h-full flex items-center">
+            <div className="flex-shrink-0 h-full flex items-center lg:max-w-[50px]">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"

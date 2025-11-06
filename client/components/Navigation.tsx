@@ -12,8 +12,10 @@ import {
   Calculator,
   Share2,
   BookOpen,
+  LogOut,
 } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);

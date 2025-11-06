@@ -515,29 +515,17 @@ export default function TableSelection() {
                     inputMode="numeric"
                     value={profile.plannedDepth || ""}
                     onChange={(e) => {
-                      // Don't validate during typing - just update as-is
                       const value = e.target.value;
                       if (value === "") {
                         handleDepthInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed)) {
+                        if (!isNaN(parsed) && parsed >= 6) {
                           handleDepthInput(parsed);
                         }
                       }
                     }}
-                    onBlur={(e) => {
-                      // Validate only when user finishes typing
-                      const value = e.target.value;
-                      if (value && value !== "") {
-                        const parsed = parseInt(value);
-                        if (!isNaN(parsed)) {
-                          const validDepth = Math.max(6, Math.min(100, parsed));
-                          handleDepthInput(validDepth);
-                        }
-                      }
-                    }}
-                    className="hidden md:block w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    className="hidden lg:block w-full px-3 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
                     placeholder="30"
                   />
                 </div>

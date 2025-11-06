@@ -134,15 +134,6 @@ export default function SupportingInfo() {
           ],
         },
         {
-          subtitle: "Table Selection with Residual Nitrogen",
-          items: [
-            "Actual maximum depth must be less than table depth (e.g., 30m ⇒ select 33m table)",
-            "Actual dive time must be less than table time (e.g., 35 min ⇒ choose 40 min in table)",
-            "Use appropriate repetitive interval table for residual nitrogen management",
-            "Do not exceed table maximum depth or time; exceeding requires O₂ Treatment Table 5",
-          ],
-        },
-        {
           subtitle: "Combined & Repetitive Dive Protocols",
           items: [
             "If surface interval < 2h: combined dive may be used (not permitted for SurD)",
@@ -377,7 +368,7 @@ export default function SupportingInfo() {
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-lg">⚡</span>
+                    <span className="text-lg">���</span>
                     <h2 className="text-sm font-bold text-foreground">
                       Oxygen Exposure Indices
                     </h2>

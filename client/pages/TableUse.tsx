@@ -1527,12 +1527,13 @@ export default function TableUse() {
                           {table.name}
                         </h3>
                         {table.codes.map((code) => (
-                          <Badge
+                          <button
                             key={code}
-                            className={`text-xs font-mono h-6 text-white ${table.badgeBgColor}`}
+                            onClick={() => navigate(`/tables/${code.toLowerCase()}`)}
+                            className={`text-xs font-mono h-6 px-2 rounded text-white ${table.badgeBgColor} hover:opacity-80 transition-opacity cursor-pointer`}
                           >
                             {code}
-                          </Badge>
+                          </button>
                         ))}
                       </div>
 

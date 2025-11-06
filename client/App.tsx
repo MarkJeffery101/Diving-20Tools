@@ -46,7 +46,10 @@ function UpdateChecker() {
         console.log("[App] Initial version:", currentVersion);
         failureCount = 0;
       } catch (error) {
-        console.error("[App] Failed to load manifest:", error instanceof Error ? error.message : String(error));
+        console.error(
+          "[App] Failed to load manifest:",
+          error instanceof Error ? error.message : String(error),
+        );
       }
     };
 
@@ -94,7 +97,11 @@ function UpdateChecker() {
       } catch (error) {
         failureCount++;
         if (failureCount >= MAX_FAILURES) {
-          console.warn("[App] Stopping update checks after", failureCount, "failures");
+          console.warn(
+            "[App] Stopping update checks after",
+            failureCount,
+            "failures",
+          );
         }
       }
     };

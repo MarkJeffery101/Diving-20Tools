@@ -65,15 +65,15 @@ export default function Index() {
       <Navigation />
 
       {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-8 border-b border-ocean-700">
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-6 py-2 border-b border-ocean-700">
         <div className="container mx-auto">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 h-28">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 h-full flex items-center">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"
-                className="h-20 w-auto object-contain"
+                className="h-full w-auto object-contain"
               />
             </div>
 

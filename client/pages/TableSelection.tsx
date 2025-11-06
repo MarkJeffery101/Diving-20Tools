@@ -485,10 +485,7 @@ export default function TableSelection() {
                 {/* Depth Input */}
                 <div>
                   <label className="block text-xs font-semibold text-foreground mb-2">
-                    Depth (m):{" "}
-                    {profile.plannedDepth
-                      ? `${profile.plannedDepth}m`
-                      : "Select"}
+                    Depth (m): {profile.plannedDepth ? `${profile.plannedDepth}m` : "Select"}
                   </label>
 
                   {/* Mobile: Slider */}

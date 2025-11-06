@@ -124,54 +124,44 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Key Benefits Section - Enhanced */}
-      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-r from-ocean-950 via-ocean-900 to-ocean-950 text-white relative overflow-hidden">
-        {/* Background accent */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 right-0 w-80 h-80 bg-ocean-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        </div>
-
+      {/* Key Benefits Section */}
+      <section className="py-3 sm:py-4 px-4 sm:px-6 bg-ocean-950 text-white relative overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
-              Why DivePlan
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="group">
-                <div className="w-12 h-12 bg-gradient-to-br from-ocean-400 to-ocean-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-10 h-10 bg-ocean-500 rounded-lg flex items-center justify-center font-bold text-base mb-2">
                   ✓
                 </div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">
+                <h3 className="text-xs sm:text-sm font-bold mb-1">
                   Complete Reference
                 </h3>
-                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
-                  All decompression tables and limits in one platform
+                <p className="text-xs text-ocean-300 leading-tight">
+                  All tables and limits in one platform
                 </p>
               </div>
 
               <div className="group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center font-bold text-base mb-2">
                   ✓
                 </div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">
+                <h3 className="text-xs sm:text-sm font-bold mb-1">
                   Seamless Navigation
                 </h3>
-                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
-                  Smart links between tables and procedures
+                <p className="text-xs text-ocean-300 leading-tight">
+                  Smart links between tools
                 </p>
               </div>
 
               <div className="group">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center font-bold text-lg mb-3 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                <div className="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center font-bold text-base mb-2">
                   ✓
                 </div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">
+                <h3 className="text-xs sm:text-sm font-bold mb-1">
                   Decision Support
                 </h3>
-                <p className="text-xs sm:text-sm text-ocean-200 leading-snug">
-                  Interactive tools for complex scenarios
+                <p className="text-xs text-ocean-300 leading-tight">
+                  Tools for complex scenarios
                 </p>
               </div>
             </div>

@@ -126,32 +126,32 @@ export default function Index() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto">
             {features.map((feature) => (
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group relative overflow-hidden rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer ${feature.color}`}
+                className={`group relative overflow-hidden rounded-lg border-2 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer ${feature.color}`}
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${feature.accentColor}`}></div>
 
                 <div className="relative z-10">
                   {/* Icon with enhanced styling */}
-                  <div className={`mb-6 inline-flex p-4 rounded-xl ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
-                    <SvgIcon id={feature.iconId} className="h-8 w-8" />
+                  <div className={`mb-3 inline-flex p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
+                    <SvgIcon id={feature.iconId} className="h-6 w-6" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-opacity-90 transition-opacity">
+                  <h3 className="text-base sm:text-lg font-bold mb-2 group-hover:text-opacity-90 transition-opacity">
                     {feature.title}
                   </h3>
-                  <p className="text-sm sm:text-base opacity-85 group-hover:opacity-100 leading-relaxed transition-opacity">
+                  <p className="text-xs sm:text-sm opacity-85 group-hover:opacity-100 leading-snug transition-opacity">
                     {feature.description}
                   </p>
 
                   {/* Arrow indicator */}
-                  <div className="mt-6 flex items-center gap-2 text-sm font-semibold opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300">
+                  <div className="mt-3 flex items-center gap-2 text-xs font-semibold opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300">
                     <span>Access</span>
                     <span>→</span>
                   </div>

@@ -31,6 +31,8 @@
   for = "/manifest.json"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
 
 # API routes should not be cached
 [[headers]]

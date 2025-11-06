@@ -1,5 +1,6 @@
 const CACHE_NAME = "diveplan-app-v1";
 const MANIFEST_URL = "/manifest.json";
+let lastKnownVersion = null;
 
 // Install event - cache essential assets
 self.addEventListener("install", (event) => {
@@ -44,6 +45,28 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(event.request, { cache: "no-store" })
         .then((response) => {
+          // Check version and notify clients if changed
+          if (response.status === 200) {
+            response.clone().json().then((manifest) => {
+              const newVersion = manifest.version;
+              console.log("[Service Worker] Manifest version:", newVersion);
+              
+              if (lastKnownVersion && lastKnownVersion !== newVersion) {
+                console.log("[Service Worker] Version changed from", lastKnownVersion, "to", newVersion);
+                // Notify all clients about the update
+                self.clients.matchAll().then((clients) => {
+                  clients.forEach((client) => {
+                    console.log("[Service Worker] Posting UPDATE_AVAILABLE to client");
+                    client.postMessage({
+                      type: "UPDATE_AVAILABLE",
+                      version: newVersion,
+                    });
+                  });
+                });
+              }
+              lastKnownVersion = newVersion;
+            });
+          }
           return response;
         })
         .catch(() => {
@@ -74,79 +97,76 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// Periodic background sync for update checking
-self.addEventListener("sync", (event) => {
-  if (event.tag === "check-update") {
-    event.waitUntil(checkForUpdate());
-  }
-});
-
-// Check for app updates by monitoring manifest version
-async function checkForUpdate() {
-  try {
-    const response = await fetch(MANIFEST_URL, {
-      cache: "no-store",
-      headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
-    });
-    const manifest = await response.json();
-    const currentVersion = manifest.version;
-
-    // Store version in indexed DB or local storage
-    const db = await openDB();
-    const storedVersion = await getStoredVersion(db);
-
-    if (storedVersion && storedVersion !== currentVersion) {
-      console.log("[Service Worker] New version detected:", currentVersion);
-      // Notify all clients about the update
-      const clients = await self.clients.matchAll();
-      clients.forEach((client) => {
-        client.postMessage({
-          type: "UPDATE_AVAILABLE",
-          version: currentVersion,
-        });
-      });
-    } else if (!storedVersion) {
-      // First time - store the version
-      await storeVersion(db, currentVersion);
-    }
-  } catch (error) {
-    console.error("[Service Worker] Update check error:", error);
-  }
-}
-
-// Simple localStorage-based version tracking
-function getStoredVersion() {
-  try {
-    return Promise.resolve(localStorage.getItem("app-version"));
-  } catch {
-    return Promise.resolve(null);
-  }
-}
-
-function storeVersion(version) {
-  try {
-    localStorage.setItem("app-version", version);
-    return Promise.resolve();
-  } catch {
-    return Promise.resolve();
-  }
-}
-
-function openDB() {
-  return Promise.resolve(null);
-}
-
-// Periodically check for updates
-setInterval(() => {
-  checkForUpdate();
-}, 30000); // Check every 30 seconds
-
 // Message handler for manual update checks from clients
 self.addEventListener("message", (event) => {
+  console.log("[Service Worker] Message received:", event.data);
+  
   if (event.data && event.data.type === "CHECK_UPDATE") {
-    checkForUpdate();
+    // Fetch manifest to check for updates
+    fetch(MANIFEST_URL, { cache: "no-store" })
+      .then((response) => response.json())
+      .then((manifest) => {
+        const newVersion = manifest.version;
+        console.log("[Service Worker] Checking for update. Current:", lastKnownVersion, "New:", newVersion);
+        
+        if (lastKnownVersion && lastKnownVersion !== newVersion) {
+          console.log("[Service Worker] Update available!");
+          event.ports[0].postMessage({ updateAvailable: true, version: newVersion });
+          lastKnownVersion = newVersion;
+          
+          // Notify all clients
+          self.clients.matchAll().then((clients) => {
+            clients.forEach((client) => {
+              client.postMessage({
+                type: "UPDATE_AVAILABLE",
+                version: newVersion,
+              });
+            });
+          });
+        } else {
+          lastKnownVersion = newVersion;
+          event.ports[0].postMessage({ updateAvailable: false });
+        }
+      })
+      .catch((err) => {
+        console.error("[Service Worker] Update check error:", err);
+        event.ports[0].postMessage({ updateAvailable: false, error: err.message });
+      });
   }
+  
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
+
+// Periodically check manifest for version changes (every 30 seconds)
+setInterval(() => {
+  fetch(MANIFEST_URL, { cache: "no-store" })
+    .then((response) => response.json())
+    .then((manifest) => {
+      const newVersion = manifest.version;
+      
+      if (lastKnownVersion === null) {
+        // First check - just store the version
+        lastKnownVersion = newVersion;
+        console.log("[Service Worker] Initial version set to:", newVersion);
+      } else if (lastKnownVersion !== newVersion) {
+        // Version changed - notify all clients
+        console.log("[Service Worker] Version changed! From:", lastKnownVersion, "To:", newVersion);
+        lastKnownVersion = newVersion;
+        
+        self.clients.matchAll().then((clients) => {
+          clients.forEach((client) => {
+            console.log("[Service Worker] Notifying client of update");
+            client.postMessage({
+              type: "UPDATE_AVAILABLE",
+              version: newVersion,
+            });
+          });
+        });
+      }
+    })
+    .catch((err) => {
+      console.error("[Service Worker] Periodic check failed:", err);
+    });
+}, 30000);

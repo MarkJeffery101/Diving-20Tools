@@ -325,7 +325,7 @@ export default function SupportingInfo() {
           <h1 className="text-2xl font-bold text-foreground mb-1">
             Guidance
           </h1>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Safety limits, regulations, and technical reference
           </p>
         </div>
@@ -1247,7 +1247,7 @@ export default function SupportingInfo() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3 rounded-lg border border-border">
-              <h3 className="font-bold text-foreground text-xs mb-2">
+              <h3 className="font-bold text-foreground text-sm mb-2">
                 Safe Checklist
               </h3>
               <ul className="space-y-1 text-[10px]">
@@ -1260,7 +1260,7 @@ export default function SupportingInfo() {
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-blue-50">
-              <h3 className="font-bold text-blue-900 text-xs mb-2">Formulas</h3>
+              <h3 className="font-bold text-blue-900 text-sm mb-2">Formulas</h3>
               <div className="space-y-1 text-[9px] font-mono text-blue-900">
                 <div>
                   <span className="font-bold">Abs Pressure:</span> 1 + (d/10)
@@ -1275,7 +1275,7 @@ export default function SupportingInfo() {
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-green-50">
-              <h3 className="font-bold text-green-900 text-xs mb-2">
+              <h3 className="font-bold text-green-900 text-sm mb-2">
                 DCS Help
               </h3>
               <ul className="space-y-1 text-[10px] text-green-900">
@@ -1293,7 +1293,7 @@ export default function SupportingInfo() {
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-orange-50">
-              <h3 className="font-bold text-orange-900 text-xs mb-2">Avoid</h3>
+              <h3 className="font-bold text-orange-900 text-sm mb-2">Avoid</h3>
               <ul className="space-y-1 text-[10px] text-orange-900">
                 <li>❌ Exceed depth/time</li>
                 <li>❌ Skip safety stops</li>
@@ -1319,7 +1319,7 @@ export default function SupportingInfo() {
               <h3 className="font-bold text-foreground group-hover:text-primary text-sm mb-1">
                 Dive Tables
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 All decompression tables
               </p>
             </Link>
@@ -1330,7 +1330,7 @@ export default function SupportingInfo() {
               <h3 className="font-bold text-foreground group-hover:text-primary text-sm mb-1">
                 Table Selection
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 Find the right table
               </p>
             </Link>

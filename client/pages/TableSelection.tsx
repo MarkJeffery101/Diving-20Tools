@@ -422,20 +422,20 @@ export default function TableSelection() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-2xl">
           {/* Progress Bar */}
-          {step < 4 && (
+          {step < 3 && (
             <div className="mb-8 bg-white rounded-lg border border-border p-6">
               <div className="flex justify-between mb-4">
                 <span className="text-sm font-semibold text-muted-foreground">
-                  Step {step + 1} of 4
+                  Step {step + 1} of 3
                 </span>
                 <span className="text-sm font-semibold text-primary">
-                  {Math.round(((step + 1) / 4) * 100)}%
+                  {Math.round(((step + 1) / 3) * 100)}%
                 </span>
               </div>
               <div className="w-full bg-muted rounded-full h-2">
                 <div
                   className="bg-primary h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${((step + 1) / 4) * 100}%` }}
+                  style={{ width: `${((step + 1) / 3) * 100}%` }}
                 ></div>
               </div>
             </div>

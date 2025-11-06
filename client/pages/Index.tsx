@@ -5,54 +5,56 @@ import SvgIcon from "@/components/SvgIcon";
 export default function Index() {
   const features = [
     {
-      title: "Dive Tables",
+      title: "Tables",
       description:
-        "Commercial, air, and nitrox tables with depth, time, and decompression schedules",
+        "Browse all decompression tables: air, nitrox, treatment, and specialty tables with depth and time schedules",
       iconId: "icon-dive-tables",
       href: "/tables",
       color: "bg-ocean-50 border-ocean-200 text-ocean-700",
       accentColor: "bg-ocean-100",
     },
     {
-      title: "Table Selection Logic",
+      title: "Table Selection",
       description:
-        "Interactive decision tree to find the right table for your dive",
+        "Interactive decision tree to find the right table for your specific dive profile and parameters",
       iconId: "icon-selection-logic",
       href: "/table-selection",
       color: "bg-blue-50 border-blue-200 text-blue-700",
       accentColor: "bg-blue-100",
     },
     {
-      title: "Safety Limits & Guidance",
+      title: "Table Use",
       description:
-        "Oxygen toxicity, nitrogen narcosis, and critical planning considerations",
+        "Detailed procedures and guidance for using each table type safely and correctly",
       iconId: "icon-safety-limits",
-      href: "/supporting-info",
+      href: "/table-use",
       color: "bg-green-50 border-green-200 text-green-700",
       accentColor: "bg-green-100",
     },
     {
-      title: "Treatment Protocols",
+      title: "Tools",
       description:
-        "DCS & AGE treatment tables with step schedules and oxygen protocols",
+        "Calculators and planning tools for dive parameters, EAD, and operational decisions",
       iconId: "icon-treatment",
-      href: "/supporting-info",
+      href: "/tools",
       color: "bg-purple-50 border-purple-200 text-purple-700",
       accentColor: "bg-purple-100",
     },
     {
-      title: "Emergency Procedures",
-      description: "Flowcharts and decision trees for rapid emergency response",
+      title: "Supporting Info",
+      description:
+        "Critical reference information on safety limits, oxygen toxicity, nitrogen narcosis, and emergency procedures",
       iconId: "icon-emergency",
-      href: "/emergency-flowcharts",
+      href: "/supporting-info",
       color: "bg-red-50 border-red-200 text-red-700",
       accentColor: "bg-red-100",
     },
     {
-      title: "Nitrox & Special Mixes",
-      description: "SOX15, SAB15, and NIA/NIB nitrox tables with oxygen limits",
+      title: "Help",
+      description:
+        "Guided tours, FAQs, and support resources to help you use DivePlan effectively",
       iconId: "icon-nitrox",
-      href: "/tables",
+      href: "/help",
       color: "bg-amber-50 border-amber-200 text-amber-700",
       accentColor: "bg-amber-100",
     },

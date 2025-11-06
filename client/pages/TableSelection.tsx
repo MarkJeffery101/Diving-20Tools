@@ -432,6 +432,12 @@ export default function TableSelection() {
             <span className="text-muted-foreground">Bottom Time:</span>
             <span className="font-semibold">{profile.bottomTime} min</span>
           </div>
+          {profile.surfaceInterval !== undefined && (
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Surface Interval:</span>
+              <span className="font-semibold">{profile.surfaceInterval}h</span>
+            </div>
+          )}
         </CardContent>
       </Card>
 

@@ -246,17 +246,18 @@ export default function TableSelection() {
         <label className="block text-sm font-semibold text-foreground mb-2">
           Maximum Depth (meters)
         </label>
-        <div className="flex gap-3 items-end">
+        <div className="flex gap-3 items-center">
           <input
             type="number"
+            inputMode="numeric"
             min="6"
             max="100"
             value={profile.plannedDepth || 30}
             onChange={(e) => handleDepthInput(Math.max(6, parseInt(e.target.value) || 30))}
-            className="flex-1 px-4 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+            className="flex-1 px-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-base"
             placeholder="30"
           />
-          <span className="text-sm text-muted-foreground">m</span>
+          <span className="text-sm text-muted-foreground whitespace-nowrap">m</span>
         </div>
         <p className="text-xs text-muted-foreground mt-2">
           {profile.plannedDepth && profile.plannedDepth}m max depth

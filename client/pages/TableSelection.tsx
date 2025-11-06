@@ -446,8 +446,7 @@ export default function TableSelection() {
             {step === 0 && question1}
             {step === 1 && question2}
             {step === 2 && question3}
-            {step === 3 && question4}
-            {step === 4 && recommendationView}
+            {step === 3 && recommendationView}
 
             {/* Navigation Buttons */}
             {step > 0 && step < 3 && (

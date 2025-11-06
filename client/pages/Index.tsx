@@ -64,50 +64,28 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-b from-ocean-950 via-ocean-900 to-white">
       <Navigation />
 
-      {/* Premium Hero Section */}
-      <section className="relative py-8 sm:py-10 md:py-12 px-4 sm:px-6 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 right-0 w-96 h-96 bg-ocean-500 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "1s" }}></div>
-        </div>
-
+      {/* Compact Hero Section */}
+      <section className="relative py-3 sm:py-4 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-ocean-900 to-ocean-800">
         <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            {/* Logo with enhanced styling */}
-            <div className="flex justify-center mb-3 sm:mb-4">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-ocean-400 to-blue-400 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-300"></div>
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
-                  alt="DFS Logo"
-                  className="relative h-14 sm:h-16 md:h-20 w-auto object-contain drop-shadow-lg"
-                />
-              </div>
+            {/* Logo */}
+            <div className="flex justify-center mb-1.5">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
+                alt="DFS Logo"
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
             </div>
 
-            {/* Main headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-tight tracking-tight">
+            {/* Headline */}
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1 leading-tight">
               DivePlan
             </h1>
 
             {/* Tagline */}
-            <p className="text-base sm:text-lg text-ocean-100 font-semibold mb-3">
+            <p className="text-xs sm:text-sm text-ocean-200">
               Professional Dive Planning Reference
             </p>
-
-            {/* Description */}
-            <p className="text-xs sm:text-sm text-ocean-200 leading-relaxed mb-4 max-w-xl mx-auto">
-              Complete dive planning system for commercial, air, and nitrox diving. Access decompression tables, emergency procedures, treatment protocols, and decision logic in one platform.
-            </p>
-
-            {/* CTA indicator */}
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-ocean-100 px-3 py-1.5 rounded-full text-xs border border-ocean-300/30">
-                <span>↓</span>
-                <span>Tools Below</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>

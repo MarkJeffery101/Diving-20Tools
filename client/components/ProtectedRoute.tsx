@@ -5,11 +5,15 @@ import { Loader2 } from "lucide-react";
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
 
-  // Skip authentication on localhost (development only)
-  const isLocalhost = typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  // Skip authentication on development environments
+  const isDevelopment = typeof window !== 'undefined' && (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname.includes('fly.dev') ||
+    window.location.hostname.includes('localhost')
+  );
 
-  if (!isLocalhost && isLoading) {
+  if (!isDevelopment && isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
@@ -20,7 +24,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!isLocalhost && !isAuthenticated) {
+  if (!isDevelopment && !isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 

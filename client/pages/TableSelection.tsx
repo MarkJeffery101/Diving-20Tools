@@ -505,7 +505,9 @@ export default function TableSelection() {
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>6m</span>
-                      <span className="font-semibold text-primary">{profile.plannedDepth || 30}m</span>
+                      <span className="font-semibold text-primary">
+                        {profile.plannedDepth || 30}m
+                      </span>
                       <span>100m</span>
                     </div>
                   </div>
@@ -564,7 +566,9 @@ export default function TableSelection() {
                     />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>5min</span>
-                      <span className="font-semibold text-primary">{profile.bottomTime || 30}min</span>
+                      <span className="font-semibold text-primary">
+                        {profile.bottomTime || 30}min
+                      </span>
                       <span>300min</span>
                     </div>
                   </div>

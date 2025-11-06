@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
 import SvgIcon from "@/components/SvgIcon";
+import { Menu, X, Home, Grid3x3, Layers, BookOpen, Calculator, HelpCircle, Share2 } from "lucide-react";
+import { useState } from "react";
 
 export default function Index() {
   const features = [

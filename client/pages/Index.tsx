@@ -58,42 +58,35 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-ocean-50 via-white to-ocean-50">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative py-8 sm:py-12 md:py-16 px-2 sm:px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+      {/* Compact Header Section */}
+      <section className="relative py-3 sm:py-4 md:py-5 px-2 sm:px-4 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 right-10 w-72 h-72 bg-ocean-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
           <div className="absolute -bottom-8 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
         </div>
 
         <div className="container mx-auto relative z-10 px-2 sm:px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex justify-center mb-4 sm:mb-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-2">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
                 alt="DFS Logo"
-                className="h-20 sm:h-32 md:h-40 w-auto object-contain"
+                className="h-12 sm:h-16 md:h-20 w-auto object-contain"
               />
             </div>
 
-            <div className="text-center">
-              <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground mb-2 sm:mb-3 leading-tight">
-                DivePlan
-              </h1>
-              <p className="text-sm sm:text-lg md:text-xl text-ocean-700 font-semibold mb-3 sm:mb-4">
-                Professional Dive Planning Reference
-              </p>
-
-              <p className="text-xs sm:text-base md:text-lg text-muted-foreground mb-4 sm:mb-6 leading-tight max-w-2xl mx-auto">
-                Complete dive planning system for commercial, air, and nitrox diving. Access decompression tables, emergency procedures, treatment protocols, and decision logic in one integrated platform.
-              </p>
-
-            </div>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-1 leading-tight">
+              DivePlan
+            </h1>
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-tight">
+              Professional Dive Planning Reference
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Features Grid Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-2 sm:px-4 bg-white">
+      {/* Features Grid Section - Main Navigation */}
+      <section className="py-12 sm:py-16 md:py-20 px-2 sm:px-4 bg-white">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {features.map((feature) => (

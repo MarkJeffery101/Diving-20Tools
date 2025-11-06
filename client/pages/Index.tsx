@@ -4,6 +4,18 @@ import { Menu, X, Home, Grid3x3, Layers, BookOpen, Calculator, HelpCircle, Share
 import { useState } from "react";
 
 export default function Index() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "Tables", href: "/tables", icon: Grid3x3 },
+    { label: "Table Selection", href: "/table-selection", icon: Layers },
+    { label: "Table Use", href: "/table-use", icon: BookOpen },
+    { label: "Tools", href: "/tools", icon: Calculator },
+    { label: "Supporting Info", href: "/supporting-info", icon: HelpCircle },
+    { label: "Share", href: "/share", icon: Share2 },
+  ];
+
   const features = [
     {
       title: "Dive Tables",
@@ -63,29 +75,89 @@ export default function Index() {
 
   return (
     <div className="flex flex-col h-screen bg-white overflow-hidden">
-      <Navigation />
+      {/* Top Header Band - Extended to top with Navigation integrated */}
+      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white border-b border-ocean-700">
+        {/* Navigation Bar */}
+        <div className="px-6 py-3 border-b border-ocean-700">
+          <div className="container mx-auto">
+            <div className="flex items-center justify-between">
+              <Link
+                to="/"
+                className="flex items-center gap-2 font-bold text-base sm:text-lg"
+              >
+                <span>DivePlan</span>
+              </Link>
 
-      {/* Top Header Band */}
-      <div className="flex-shrink-0 bg-gradient-to-r from-ocean-900 to-ocean-800 text-white px-8 py-3 border-b border-ocean-700">
-        <div className="container mx-auto">
-          <div className="flex items-center gap-8 h-36">
-            {/* Logo */}
-            <div className="flex-shrink-0 h-full flex items-center">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
-                alt="DFS Logo"
-                className="h-full w-auto object-contain"
-              />
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-6">
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="flex items-center gap-2 text-sm font-medium text-ocean-100 hover:text-white transition-colors"
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="hidden lg:inline">{link.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden p-2 hover:bg-ocean-700 rounded-lg transition-colors"
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
             </div>
 
-            {/* Text */}
-            <div className="flex-grow">
-              <h1 className="text-5xl font-bold text-white leading-tight">
-                DivePlan
-              </h1>
-              <p className="text-xl text-ocean-200">
-                Professional Dive Planning Reference
-              </p>
+            {/* Mobile Navigation */}
+            {isOpen && (
+              <div className="md:hidden mt-4 space-y-2 border-t border-ocean-700 pt-4">
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-ocean-100 hover:bg-ocean-700 rounded-lg transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Icon className="h-4 w-4" />
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="px-8 py-3">
+          <div className="container mx-auto">
+            <div className="flex items-center gap-8 h-36">
+              {/* Logo */}
+              <div className="flex-shrink-0 h-full flex items-center">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fab9db6a681044b748ef518df8cd48de8%2Fda50c80fe0dc4a209294b70ea30291e0?format=webp&width=300"
+                  alt="DFS Logo"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="flex-grow">
+                <h1 className="text-5xl font-bold text-white leading-tight">
+                  DivePlan
+                </h1>
+                <p className="text-xl text-ocean-200">
+                  Professional Dive Planning Reference
+                </p>
+              </div>
             </div>
           </div>
         </div>

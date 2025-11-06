@@ -101,19 +101,19 @@ export default function Index() {
                 <div className="relative z-10">
                   {/* Icon */}
                   <div
-                    className={`mb-2 sm:mb-4 inline-flex p-2 sm:p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}
+                    className={`mb-1 sm:mb-3 lg:mb-2 inline-flex p-1.5 sm:p-2 lg:p-2 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}
                   >
                     <SvgIcon
                       id={feature.iconId}
-                      className="h-4 w-4 sm:h-6 sm:w-6"
+                      className="h-3 w-3 sm:h-5 sm:w-5 lg:h-4 lg:w-4"
                     />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xs sm:text-lg font-bold mb-1 sm:mb-2 group-hover:text-opacity-90 transition-opacity">
+                  <h3 className="text-xs sm:text-base lg:text-sm font-bold mb-1 group-hover:text-opacity-90 transition-opacity">
                     {feature.title}
                   </h3>
-                  <p className="text-xs sm:text-sm opacity-85 group-hover:opacity-100 leading-relaxed transition-opacity">
+                  <p className="text-xs sm:text-xs lg:text-xs opacity-85 group-hover:opacity-100 leading-tight transition-opacity">
                     {feature.description}
                   </p>
                 </div>

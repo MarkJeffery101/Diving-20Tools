@@ -34,19 +34,6 @@ export default function TableSelection() {
     return getGasTypesForTechnique(profile.technique);
   }, [profile.technique]);
 
-  // Memoize depth range options based on selected depth
-  const depthRanges = useMemo(
-    () => [
-      { range: "6-12m", label: "6-12m (shallow)", min: 6, max: 12 },
-      { range: "12-18m", label: "12-18m (light diving)", min: 12, max: 18 },
-      { range: "18-30m", label: "18-30m (moderate)", min: 18, max: 30 },
-      { range: "30-40m", label: "30-40m (deep)", min: 30, max: 40 },
-      { range: "40-50m", label: "40-50m (very deep)", min: 40, max: 50 },
-      { range: "50+m", label: "50m+ (extreme)", min: 50, max: 100 },
-    ],
-    [],
-  );
-
   const handleTechniqueSelect = (technique: string) => {
     setProfile((prev) => ({
       ...prev,

@@ -223,6 +223,13 @@ export function validateDiveProfile(profile: DiveProfile): string[] {
     errors.push("Bottom time must be between 0 and 600 minutes");
   }
 
+  if (
+    profile.surfaceInterval !== undefined &&
+    (profile.surfaceInterval < 0 || profile.surfaceInterval > 48)
+  ) {
+    errors.push("Surface interval must be between 0 and 48 hours");
+  }
+
   if (!["no-stop", "in-water", "surface-oxygen", "nitrox"].includes(profile.technique)) {
     errors.push("Invalid dive technique");
   }

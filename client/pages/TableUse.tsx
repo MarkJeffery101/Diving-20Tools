@@ -44,6 +44,9 @@ interface TableType {
   name: string;
   description: string;
   codes: string[];
+  borderColor: string;
+  bgColor: string;
+  badgeBgColor: string;
   procedures: {
     normal?: ProcedureData;
     emergency?: ProcedureData;

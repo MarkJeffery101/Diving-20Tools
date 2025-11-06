@@ -87,20 +87,6 @@ export default function Index() {
                 Complete dive planning system for commercial, air, and nitrox diving. Access decompression tables, emergency procedures, treatment protocols, and decision logic in one integrated platform.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
-                <Link
-                  to="/tables"
-                  className="px-6 sm:px-8 py-2 sm:py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
-                >
-                  Explore Tables
-                </Link>
-                <Link
-                  to="/table-selection"
-                  className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-primary border-2 border-primary font-semibold rounded-lg hover:bg-ocean-50 transition-colors text-sm sm:text-base"
-                >
-                  Find Your Table
-                </Link>
-              </div>
             </div>
           </div>
         </div>

@@ -489,8 +489,6 @@ export default function TableSelection() {
                   <input
                     type="number"
                     inputMode="numeric"
-                    min="6"
-                    max="100"
                     value={profile.plannedDepth || ""}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -498,8 +496,9 @@ export default function TableSelection() {
                         handleDepthInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed)) {
-                          handleDepthInput(Math.max(6, parsed));
+                        if (!isNaN(parsed) && parsed > 0) {
+                          const validDepth = Math.max(6, Math.min(100, parsed));
+                          handleDepthInput(validDepth);
                         }
                       }
                     }}
@@ -515,8 +514,6 @@ export default function TableSelection() {
                   <input
                     type="number"
                     inputMode="numeric"
-                    min="5"
-                    max="300"
                     value={profile.bottomTime || ""}
                     onChange={(e) => {
                       const value = e.target.value;
@@ -524,8 +521,9 @@ export default function TableSelection() {
                         handleBottomTimeInput(undefined as any);
                       } else {
                         const parsed = parseInt(value);
-                        if (!isNaN(parsed)) {
-                          handleBottomTimeInput(Math.max(5, parsed));
+                        if (!isNaN(parsed) && parsed > 0) {
+                          const validTime = Math.max(5, Math.min(300, parsed));
+                          handleBottomTimeInput(validTime);
                         }
                       }
                     }}

@@ -51,7 +51,6 @@ export default function TableSelection() {
     setStep(2);
   };
 
-
   const handleDepthInput = (depth: number | undefined) => {
     setProfile((prev) => ({
       ...prev,

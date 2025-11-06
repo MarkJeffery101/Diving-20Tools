@@ -76,6 +76,7 @@ interface TreatmentTableType {
 }
 
 export default function TableUse() {
+  const navigate = useNavigate();
   const infoCards = useMemo(
     () => [
       {
@@ -1278,7 +1279,7 @@ export default function TableUse() {
         keyParameters: [
           "• Descent rate: 7.5 msw/min",
           "• Ascent rate: 1 minute between stops",
-          "• Moderate total decompression (6:20 hours)",
+          "��� Moderate total decompression (6:20 hours)",
           "• Only when oxygen unavailable",
         ],
         schedule: [

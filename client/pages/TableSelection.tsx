@@ -64,19 +64,6 @@ export default function TableSelection() {
     setStep(2);
   };
 
-  const handleDepthRangeSelect = (range: {
-    range: string;
-    label: string;
-    min: number;
-    max: number;
-  }) => {
-    // Use middle of range as default, but allow user to be specific
-    setProfile((prev) => ({
-      ...prev,
-      plannedDepth: Math.floor((range.min + range.max) / 2),
-    }));
-    setStep(3);
-  };
 
   const handleDepthInput = (depth: number | undefined) => {
     setProfile((prev) => ({

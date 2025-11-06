@@ -96,7 +96,7 @@ export default function Index() {
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group relative overflow-hidden rounded-lg border-2 p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${feature.color}`}
+                className={`group relative overflow-hidden rounded-lg border-2 p-3 sm:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${feature.color}`}
               >
                 <div className="relative z-10">
                   {/* Icon */}

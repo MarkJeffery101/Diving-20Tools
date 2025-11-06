@@ -99,30 +99,21 @@ export default function Index() {
               <Link
                 key={feature.href + feature.title}
                 to={feature.href}
-                className={`group relative overflow-hidden rounded-lg border-2 p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer ${feature.color}`}
+                className={`group relative overflow-hidden rounded-lg border-2 p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer ${feature.color}`}
               >
-                {/* Gradient background on hover */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${feature.accentColor}`}></div>
-
                 <div className="relative z-10">
-                  {/* Icon with enhanced styling */}
-                  <div className={`mb-3 inline-flex p-3 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
-                    <SvgIcon id={feature.iconId} className="h-6 w-6" />
+                  {/* Icon */}
+                  <div className={`mb-2 inline-flex p-2 rounded-lg ${feature.accentColor} group-hover:scale-110 transition-transform duration-300`}>
+                    <SvgIcon id={feature.iconId} className="h-5 w-5" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-base sm:text-lg font-bold mb-2 group-hover:text-opacity-90 transition-opacity">
+                  <h3 className="text-sm sm:text-base font-bold mb-1 group-hover:text-opacity-90 transition-opacity">
                     {feature.title}
                   </h3>
-                  <p className="text-xs sm:text-sm opacity-85 group-hover:opacity-100 leading-snug transition-opacity">
+                  <p className="text-xs opacity-85 group-hover:opacity-100 leading-tight transition-opacity">
                     {feature.description}
                   </p>
-
-                  {/* Arrow indicator */}
-                  <div className="mt-3 flex items-center gap-2 text-xs font-semibold opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300">
-                    <span>Access</span>
-                    <span>→</span>
-                  </div>
                 </div>
 
                 {/* Border accent on hover */}

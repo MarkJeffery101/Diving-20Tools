@@ -113,15 +113,15 @@ export default function Index() {
       </section>
 
       {/* Features Grid Section - Main Navigation */}
-      <section className="relative py-20 sm:py-24 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
+      <section className="relative py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto">
           {/* Section header */}
-          <div className="max-w-2xl mx-auto text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="max-w-2xl mx-auto text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Dive Planning Tools
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground">
-              Access all the resources you need for safe and efficient diving operations
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Access decompression tables, emergency procedures, and decision support
             </p>
           </div>
 

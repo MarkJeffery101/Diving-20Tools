@@ -22,6 +22,7 @@ import TreatmentProtocols from "./pages/TreatmentProtocols";
 import EmergencyProcedures from "./pages/EmergencyProcedures";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
+import InviteAccept from "./pages/InviteAccept";
 
 const queryClient = new QueryClient();
 

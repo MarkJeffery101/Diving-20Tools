@@ -24,6 +24,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Initialize Supabase auth session
     const initSupabaseAuth = async () => {
       try {
+        // Check if there's an invite/signup token in the URL
+        // If so, DON'T create a session yet - let the /invite page handle it
+        const hash = window.location.hash;
+        const search = window.location.search;
+        const hasInviteToken =
+          hash.includes("access_token") ||
+          search.includes("access_token");
+
+        if (hasInviteToken) {
+          // Don't create a session - let the invite page handle it
+          setIsLoading(false);
+          return;
+        }
+
+        // No invite token, get existing session
         const {
           data: { session },
         } = await supabase.auth.getSession();

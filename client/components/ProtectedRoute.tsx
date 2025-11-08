@@ -14,13 +14,13 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
       window.location.hostname.includes("localhost"));
 
   // Check if user has a Supabase invite/signup token in the URL
-  // Supabase sends tokens in the hash with type=signup
-  const hasSupabaseToken =
+  // Supabase sends tokens in the hash with access_token
+  const hasInviteToken =
     typeof window !== "undefined" &&
     (window.location.hash.includes("access_token") ||
       window.location.search.includes("access_token"));
 
-  if (hasSupabaseToken) {
+  if (hasInviteToken) {
     return <Navigate to="/invite" replace />;
   }
 

@@ -1,35 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function InviteAccept() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Completely hide everything related to Netlify Identity
-    const style = document.createElement("style");
-    style.innerHTML = `
-      #netlify-identity-widget {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        width: 0 !important;
-        position: absolute !important;
-        left: -9999px !important;
-      }
-      iframe[src*="identity.netlify"] {
-        display: none !important;
-        visibility: hidden !important;
-      }
-    `;
-    document.head.appendChild(style);
-
     // Check if we have an invite token
     const hash = window.location.hash;
     const search = window.location.search;
@@ -38,19 +22,17 @@ export default function InviteAccept() {
 
     if (!hasToken) {
       navigate("/login", { replace: true });
+    } else {
+      setIsLoading(false);
     }
-
-    return () => {
-      document.head.removeChild(style);
-    };
   }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    if (!password || !confirmPassword) {
-      setError("Please enter both password fields");
+    if (!email || !password || !confirmPassword) {
+      setError("Please fill in all fields");
       return;
     }
 
@@ -84,24 +66,37 @@ export default function InviteAccept() {
         throw new Error("No invite token found");
       }
 
-      const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity || !netlifyIdentity.gotrue) {
-        throw new Error("Authentication service not available");
+      // Sign up with email and password using the invite token
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            invite_token: token,
+          },
+        },
+      });
+
+      if (signUpError) {
+        throw signUpError;
       }
 
-      // Accept the invite
-      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      if (data.user) {
+        // Set a flag to tell the auth context we're coming from an invite
+        localStorage.setItem("inviteProcessing", "true");
 
-      // Set a flag to tell the auth context we're coming from an invite
-      localStorage.setItem("inviteProcessing", "true");
+        // Clear the hash to remove the invite token
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
 
-      // Clear the hash to remove the invite token
-      window.history.replaceState({}, document.title, window.location.pathname);
-
-      // Redirect to login page - full reload
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 100);
+        // Redirect to login page
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 100);
+      }
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";
@@ -110,6 +105,17 @@ export default function InviteAccept() {
       setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-ocean-900 to-ocean-800 flex items-center justify-center p-4">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin text-white mx-auto mb-4" />
+          <p className="text-white">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-900 to-ocean-800 flex items-center justify-center p-4">
@@ -128,10 +134,10 @@ export default function InviteAccept() {
         {/* Setup Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Your Access is Being Set Up
+            Accept Your Invite
           </h2>
           <p className="text-sm text-gray-600 mb-6">
-            Create a password to activate your DivePlan account
+            Create your account to access DivePlan
           </p>
 
           {/* Error Message */}
@@ -144,6 +150,20 @@ export default function InviteAccept() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                disabled={isLoading}
+                className="w-full"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -184,7 +204,7 @@ export default function InviteAccept() {
                   Setting up...
                 </>
               ) : (
-                "Create Password"
+                "Create Account"
               )}
             </Button>
           </form>

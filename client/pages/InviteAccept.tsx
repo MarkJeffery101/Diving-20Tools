@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2, CheckCircle } from "lucide-react";
 
 export default function InviteAccept() {
   const navigate = useNavigate();
@@ -10,6 +10,7 @@ export default function InviteAccept() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     // Hide the Netlify Identity widget during invite flow

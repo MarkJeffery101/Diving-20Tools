@@ -7,22 +7,29 @@ import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function InviteAccept() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [tokenReady, setTokenReady] = useState(false);
 
   useEffect(() => {
-    // Check if we have an invite token
+    // Check if we have an invite/signup token from Supabase
     const hash = window.location.hash;
     const search = window.location.search;
-    const hasToken =
-      hash.includes("invite_token") || search.includes("invite_token");
 
-    if (!hasToken) {
+    // Supabase sends tokens in the hash with type=signup
+    const hasSignupToken =
+      hash.includes("access_token") ||
+      search.includes("access_token") ||
+      hash.includes("type=signup") ||
+      search.includes("type=signup");
+
+    if (!hasSignupToken) {
+      // No token, redirect to login
       navigate("/login", { replace: true });
     } else {
+      setTokenReady(true);
       setIsLoading(false);
     }
   }, [navigate]);
@@ -31,8 +38,8 @@ export default function InviteAccept() {
     e.preventDefault();
     setError(null);
 
-    if (!email || !password || !confirmPassword) {
-      setError("Please fill in all fields");
+    if (!password || !confirmPassword) {
+      setError("Please fill in both password fields");
       return;
     }
 
@@ -49,58 +56,49 @@ export default function InviteAccept() {
     try {
       setIsLoading(true);
 
-      // Get the invite token
-      let token = null;
-      const hash = window.location.hash;
-      if (hash) {
-        const hashParams = new URLSearchParams(hash.substring(1));
-        token = hashParams.get("invite_token");
-      }
-      if (!token) {
-        const search = window.location.search;
-        const queryParams = new URLSearchParams(search);
-        token = queryParams.get("invite_token");
-      }
-
-      if (!token) {
-        throw new Error("No invite token found");
-      }
-
-      // Sign up with email and password using the invite token
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            invite_token: token,
-          },
-        },
+      // Supabase will automatically capture the token from the URL hash
+      // We just need to call updateUser to set the password
+      const { data, error: updateError } = await supabase.auth.updateUser({
+        password: password,
       });
 
-      if (signUpError) {
-        throw signUpError;
+      if (updateError) {
+        // If update fails, it might be a new user signup flow
+        // Try to get the session which may be created from the token
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (session) {
+          // User is already logged in via the token
+          // Just need to set password
+          setError(
+            "Session established. You can now log in with your password."
+          );
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1500);
+          return;
+        }
+
+        throw updateError;
       }
 
-      if (data.user) {
-        // Set a flag to tell the auth context we're coming from an invite
-        localStorage.setItem("inviteProcessing", "true");
+      // Clear the hash to remove the token
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
 
-        // Clear the hash to remove the invite token
-        window.history.replaceState(
-          {},
-          document.title,
-          window.location.pathname
-        );
-
-        // Redirect to login page
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 100);
-      }
+      // Redirect to home - user should be logged in
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Failed to set up account";
+      const message = err instanceof Error ? err.message : "Failed to set password";
       setError(message);
+      console.error("Password update error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -115,6 +113,10 @@ export default function InviteAccept() {
         </div>
       </div>
     );
+  }
+
+  if (!tokenReady) {
+    return null; // Will redirect
   }
 
   return (
@@ -134,10 +136,10 @@ export default function InviteAccept() {
         {/* Setup Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Accept Your Invite
+            Create Your Password
           </h2>
           <p className="text-sm text-gray-600 mb-6">
-            Create your account to access DivePlan
+            Set a password to complete your DivePlan account setup
           </p>
 
           {/* Error Message */}
@@ -150,20 +152,6 @@ export default function InviteAccept() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email
-              </label>
-              <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                disabled={isLoading}
-                className="w-full"
-              />
-            </div>
-
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -204,7 +192,7 @@ export default function InviteAccept() {
                   Setting up...
                 </>
               ) : (
-                "Create Account"
+                "Create Password"
               )}
             </Button>
           </form>

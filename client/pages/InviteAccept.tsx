@@ -21,7 +21,8 @@ export default function InviteAccept() {
     // Check if we have an invite token in the URL (hash or query)
     const hash = window.location.hash;
     const search = window.location.search;
-    const hasToken = hash.includes("invite_token") || search.includes("invite_token");
+    const hasToken =
+      hash.includes("invite_token") || search.includes("invite_token");
 
     if (!hasToken) {
       // No invite token, redirect to login
@@ -86,8 +87,15 @@ export default function InviteAccept() {
       }
 
       // Accept the invite and set the password
-      console.log("Accepting invite with token:", token.substring(0, 10) + "...");
-      const user = await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      console.log(
+        "Accepting invite with token:",
+        token.substring(0, 10) + "...",
+      );
+      const user = await netlifyIdentity.gotrue.acceptInvite(
+        token,
+        password,
+        true,
+      );
       console.log("Invite accepted, user:", user?.email);
 
       // Clear the URL

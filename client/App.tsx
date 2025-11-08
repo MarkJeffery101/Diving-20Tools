@@ -136,7 +136,8 @@ function InviteHandler() {
 
   const hash = window.location.hash;
   const search = window.location.search;
-  const hasInviteToken = hash.includes("invite_token") || search.includes("invite_token");
+  const hasInviteToken =
+    hash.includes("invite_token") || search.includes("invite_token");
 
   if (hasInviteToken) {
     return <InviteAccept />;

@@ -61,7 +61,7 @@ export default function InviteAccept() {
       const response = await netlifyIdentity.gotrue.acceptInvite(
         token,
         password,
-        true
+        true,
       );
 
       if (response) {
@@ -71,7 +71,8 @@ export default function InviteAccept() {
         }, 2000);
       }
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Failed to accept invite";
+      const message =
+        err instanceof Error ? err.message : "Failed to accept invite";
       setError(message);
       console.error("Invite acceptance error:", err);
     } finally {
@@ -104,7 +105,8 @@ export default function InviteAccept() {
                 Account Created!
               </h2>
               <p className="text-gray-600">
-                Your account has been set up successfully. Redirecting to DivePlan...
+                Your account has been set up successfully. Redirecting to
+                DivePlan...
               </p>
             </div>
           ) : (
@@ -176,9 +178,9 @@ export default function InviteAccept() {
               {/* Info Box */}
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-xs text-blue-700">
-                  <strong>Note:</strong> You're seeing this page because you clicked
-                  an invite link from Netlify. This is where you set up your
-                  DivePlan account password.
+                  <strong>Note:</strong> You're seeing this page because you
+                  clicked an invite link from Netlify. This is where you set up
+                  your DivePlan account password.
                 </p>
               </div>
             </>

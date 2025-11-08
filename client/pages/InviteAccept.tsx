@@ -17,7 +17,7 @@ export default function InviteAccept() {
     const hash = window.location.hash;
     if (!hash.includes("invite_token")) {
       // No invite token, redirect to login
-      navigate("/login");
+      navigate("/login", { replace: true });
     }
   }, [navigate]);
 

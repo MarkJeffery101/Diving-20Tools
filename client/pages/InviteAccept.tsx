@@ -72,16 +72,14 @@ export default function InviteAccept() {
       // Accept the invite and set the password
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Immediately log out so user lands on login page
-      try {
-        await netlifyIdentity.gotrue.logout();
-      } catch (e) {
-        // Logout might fail, but that's okay
-        console.log("Logout note:", e);
-      }
+      // Clear the hash to remove the invite token
+      window.location.hash = "";
 
-      // Redirect to login page immediately (no success screen)
-      navigate("/login", { replace: true });
+      // Immediately redirect to login page
+      // Use window.location instead of navigate to force a clean page reload
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 100);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";
@@ -133,7 +131,7 @@ export default function InviteAccept() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••���•••••"
+                placeholder="••••••••"
                 disabled={isLoading}
                 className="w-full"
               />

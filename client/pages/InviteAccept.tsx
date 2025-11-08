@@ -92,8 +92,19 @@ export default function InviteAccept() {
       // Accept the invite
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Redirect immediately to login page with full reload
-      // Don't use navigate - use full page reload to ensure clean state
+      // Clear the session by logging out at the gotrue level
+      // This prevents the widget from showing
+      try {
+        await netlifyIdentity.gotrue.logout();
+      } catch (e) {
+        // Logout might error, but we still want to redirect
+        console.log("Logout attempt:", e);
+      }
+
+      // Clear the hash to remove the invite token
+      window.history.replaceState({}, document.title, window.location.pathname);
+
+      // Redirect to login page with full reload
       window.location.href = "/login";
     } catch (err) {
       const message =

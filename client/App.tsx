@@ -124,9 +124,19 @@ function UpdateChecker() {
 }
 
 function InviteHandler() {
-  // Check for invite token synchronously
-  const hash = typeof window !== "undefined" ? window.location.hash : "";
-  const hasInviteToken = hash.includes("invite_token");
+  // Check for invite token in both hash and query string
+  if (typeof window === "undefined") {
+    return (
+      <Routes>
+        <Route path="/invite" element={<InviteAccept />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    );
+  }
+
+  const hash = window.location.hash;
+  const search = window.location.search;
+  const hasInviteToken = hash.includes("invite_token") || search.includes("invite_token");
 
   if (hasInviteToken) {
     return <InviteAccept />;

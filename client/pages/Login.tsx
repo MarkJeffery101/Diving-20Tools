@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -7,11 +7,20 @@ import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, error } = useAuth();
+  const { login, error, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
+
+  // If we're coming from an invite, log out the auto-login and show the login form
+  useEffect(() => {
+    const isInviteProcessing = localStorage.getItem("inviteProcessing");
+    if (isInviteProcessing) {
+      localStorage.removeItem("inviteProcessing");
+      logout();
+    }
+  }, [logout]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

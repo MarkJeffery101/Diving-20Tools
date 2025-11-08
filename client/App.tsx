@@ -124,13 +124,9 @@ function UpdateChecker() {
 }
 
 function InviteHandler() {
-  const [hasInviteToken, setHasInviteToken] = useState(false);
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    const hasToken = hash.includes("invite_token");
-    setHasInviteToken(hasToken);
-  }, []);
+  // Check for invite token synchronously
+  const hash = typeof window !== "undefined" ? window.location.hash : "";
+  const hasInviteToken = hash.includes("invite_token");
 
   if (hasInviteToken) {
     return <InviteAccept />;

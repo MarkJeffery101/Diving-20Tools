@@ -16,20 +16,39 @@ export default function InviteAccept() {
     const widget = document.getElementById("netlify-identity-widget");
     if (widget) {
       (widget as HTMLElement).style.display = "none";
+      (widget as HTMLElement).style.visibility = "hidden";
+      (widget as HTMLElement).style.pointerEvents = "none";
     }
+
+    // Also hide any Netlify modals that might appear
+    const observer = new MutationObserver(() => {
+      const allFrames = document.querySelectorAll("iframe");
+      allFrames.forEach((frame) => {
+        if (frame.id === "netlify-identity-widget" || frame.src?.includes("identity")) {
+          frame.style.display = "none";
+          frame.style.visibility = "hidden";
+          frame.style.pointerEvents = "none";
+        }
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
 
     // Check if we have an invite token
     const hash = window.location.hash;
     const search = window.location.search;
     const hasToken = hash.includes("invite_token") || search.includes("invite_token");
-    
+
     if (!hasToken) {
       navigate("/login", { replace: true });
     }
 
     return () => {
+      observer.disconnect();
       if (widget) {
         (widget as HTMLElement).style.display = "";
+        (widget as HTMLElement).style.visibility = "";
+        (widget as HTMLElement).style.pointerEvents = "";
       }
     };
   }, [navigate]);

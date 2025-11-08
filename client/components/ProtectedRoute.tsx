@@ -13,6 +13,17 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     window.location.hostname.includes('localhost')
   );
 
+  // Check if user has an invite token in the URL
+  // If they do, force them to complete the invite setup first
+  const hasInviteToken = typeof window !== 'undefined' && (
+    window.location.hash.includes('invite_token') ||
+    window.location.search.includes('invite_token')
+  );
+
+  if (hasInviteToken) {
+    return <Navigate to="/invite" replace />;
+  }
+
   if (!isDevelopment && isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">

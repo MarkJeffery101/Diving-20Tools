@@ -9,38 +9,8 @@ export default function InviteAccept() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Extract the access token from the URL
-    const hash = window.location.hash;
-    const search = window.location.search;
-
-    let token: string | null = null;
-
-    // Check hash (format: #access_token=xxx&type=signup&...)
-    if (hash) {
-      const params = new URLSearchParams(hash.substring(1));
-      token = params.get("access_token");
-    }
-
-    // Fallback to query string
-    if (!token && search) {
-      const params = new URLSearchParams(search);
-      token = params.get("access_token");
-    }
-
-    if (!token) {
-      // No token, redirect to login
-      navigate("/login", { replace: true });
-      return;
-    }
-
-    setAccessToken(token);
-    setIsLoading(false);
-  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,37 +31,10 @@ export default function InviteAccept() {
       return;
     }
 
-    if (!accessToken) {
-      setError("Invalid invitation link");
-      return;
-    }
-
     try {
       setIsLoading(true);
 
-      // First, create a session using the access token from the invite
-      const { data: sessionData, error: sessionError } =
-        await supabase.auth.getSession();
-
-      // If no session yet, try to exchange the token for a session
-      if (!sessionData.session) {
-        // Supabase will handle the token from the URL automatically
-        // But since we blocked it in AuthContext, we need to manually call getSession
-        // after the token is in the URL. Let's reload to let Supabase process it.
-        const { data, error: setSessionError } = await supabase.auth.setSession(
-          {
-            access_token: accessToken,
-            refresh_token: "", // We may not have this for invite flow
-          },
-        );
-
-        if (setSessionError) {
-          // Session error - might be expected if we don't have refresh token
-          console.log("Session setup (may be expected):", setSessionError);
-        }
-      }
-
-      // Now update the password
+      // Update the user's password using Supabase
       const { error: updateError } = await supabase.auth.updateUser({
         password: password,
       });
@@ -101,32 +44,24 @@ export default function InviteAccept() {
       }
 
       // Clear the hash to remove the token
-      window.history.replaceState({}, document.title, window.location.pathname);
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
 
-      // Redirect to home - user should be logged in
+      // Redirect to home
       setTimeout(() => {
-        window.location.href = "/";
+        navigate("/", { replace: true });
       }, 500);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Failed to set password";
+      const message = err instanceof Error ? err.message : "Failed to set password";
       setError(message);
       console.error("Password update error:", err);
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-ocean-900 to-ocean-800 flex items-center justify-center p-4">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-white mx-auto mb-4" />
-          <p className="text-white">Loading...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-900 to-ocean-800 flex items-center justify-center p-4">

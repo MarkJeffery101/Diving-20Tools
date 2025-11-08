@@ -11,27 +11,35 @@ export default function InviteAccept() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [tokenReady, setTokenReady] = useState(false);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if we have an invite/signup token from Supabase
+    // Extract the access token from the URL
     const hash = window.location.hash;
     const search = window.location.search;
 
-    // Supabase sends tokens in the hash with type=signup
-    const hasSignupToken =
-      hash.includes("access_token") ||
-      search.includes("access_token") ||
-      hash.includes("type=signup") ||
-      search.includes("type=signup");
+    let token: string | null = null;
 
-    if (!hasSignupToken) {
+    // Check hash (format: #access_token=xxx&type=signup&...)
+    if (hash) {
+      const params = new URLSearchParams(hash.substring(1));
+      token = params.get("access_token");
+    }
+
+    // Fallback to query string
+    if (!token && search) {
+      const params = new URLSearchParams(search);
+      token = params.get("access_token");
+    }
+
+    if (!token) {
       // No token, redirect to login
       navigate("/login", { replace: true });
-    } else {
-      setTokenReady(true);
-      setIsLoading(false);
+      return;
     }
+
+    setAccessToken(token);
+    setIsLoading(false);
   }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,34 +61,41 @@ export default function InviteAccept() {
       return;
     }
 
+    if (!accessToken) {
+      setError("Invalid invitation link");
+      return;
+    }
+
     try {
       setIsLoading(true);
 
-      // Supabase will automatically capture the token from the URL hash
-      // We just need to call updateUser to set the password
-      const { data, error: updateError } = await supabase.auth.updateUser({
+      // First, create a session using the access token from the invite
+      const { data: sessionData, error: sessionError } =
+        await supabase.auth.getSession();
+
+      // If no session yet, try to exchange the token for a session
+      if (!sessionData.session) {
+        // Supabase will handle the token from the URL automatically
+        // But since we blocked it in AuthContext, we need to manually call getSession
+        // after the token is in the URL. Let's reload to let Supabase process it.
+        const { data, error: setSessionError } =
+          await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: "", // We may not have this for invite flow
+          });
+
+        if (setSessionError) {
+          // Session error - might be expected if we don't have refresh token
+          console.log("Session setup (may be expected):", setSessionError);
+        }
+      }
+
+      // Now update the password
+      const { error: updateError } = await supabase.auth.updateUser({
         password: password,
       });
 
       if (updateError) {
-        // If update fails, it might be a new user signup flow
-        // Try to get the session which may be created from the token
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-
-        if (session) {
-          // User is already logged in via the token
-          // Just need to set password
-          setError(
-            "Session established. You can now log in with your password."
-          );
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 1500);
-          return;
-        }
-
         throw updateError;
       }
 
@@ -115,10 +130,6 @@ export default function InviteAccept() {
     );
   }
 
-  if (!tokenReady) {
-    return null; // Will redirect
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-ocean-900 to-ocean-800 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -139,7 +150,7 @@ export default function InviteAccept() {
             Create Your Password
           </h2>
           <p className="text-sm text-gray-600 mb-6">
-            Set a password to complete your DivePlan account setup
+            Set a password to activate your DivePlan account
           </p>
 
           {/* Error Message */}

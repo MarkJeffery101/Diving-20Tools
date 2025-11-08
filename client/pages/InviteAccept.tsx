@@ -18,10 +18,14 @@ export default function InviteAccept() {
       (widget as HTMLElement).style.display = "none";
     }
 
-    // Check if we have an invite token in the URL
+    // Check if we have an invite token in the URL (hash or query)
     const hash = window.location.hash;
-    if (!hash.includes("invite_token")) {
+    const search = window.location.search;
+    const hasToken = hash.includes("invite_token") || search.includes("invite_token");
+
+    if (!hasToken) {
       // No invite token, redirect to login
+      console.log("No invite token found, redirecting to login");
       navigate("/login", { replace: true });
     }
 

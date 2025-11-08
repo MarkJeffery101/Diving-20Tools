@@ -12,26 +12,22 @@ export default function InviteAccept() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Hide the Netlify Identity widget during invite flow
+    // Hide the Netlify Identity widget completely
     const widget = document.getElementById("netlify-identity-widget");
     if (widget) {
       (widget as HTMLElement).style.display = "none";
     }
 
-    // Check if we have an invite token in the URL (hash or query)
+    // Check if we have an invite token
     const hash = window.location.hash;
     const search = window.location.search;
-    const hasToken =
-      hash.includes("invite_token") || search.includes("invite_token");
-
+    const hasToken = hash.includes("invite_token") || search.includes("invite_token");
+    
     if (!hasToken) {
-      // No invite token, redirect to login
-      console.log("No invite token found, redirecting to login");
       navigate("/login", { replace: true });
     }
 
     return () => {
-      // Show widget again when leaving this page
       if (widget) {
         (widget as HTMLElement).style.display = "";
       }
@@ -60,17 +56,13 @@ export default function InviteAccept() {
     try {
       setIsLoading(true);
 
-      // Get the invite token from URL (check both hash and query string)
+      // Get the invite token
       let token = null;
-
-      // Check hash first
       const hash = window.location.hash;
       if (hash) {
         const hashParams = new URLSearchParams(hash.substring(1));
         token = hashParams.get("invite_token");
       }
-
-      // Check query string if not found in hash
       if (!token) {
         const search = window.location.search;
         const queryParams = new URLSearchParams(search);
@@ -78,7 +70,7 @@ export default function InviteAccept() {
       }
 
       if (!token) {
-        throw new Error("No invite token found in URL");
+        throw new Error("No invite token found");
       }
 
       const netlifyIdentity = (window as any).netlifyIdentity;
@@ -86,30 +78,16 @@ export default function InviteAccept() {
         throw new Error("Authentication service not available");
       }
 
-      // Accept the invite and set the password
-      console.log(
-        "Accepting invite with token:",
-        token.substring(0, 10) + "...",
-      );
-      const user = await netlifyIdentity.gotrue.acceptInvite(
-        token,
-        password,
-        true,
-      );
-      console.log("Invite accepted, user:", user?.email);
+      // Accept the invite - this will log them in
+      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Clear the URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-
-      // Immediately redirect to login page
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 500);
+      // Immediately navigate to login (don't logout, just navigate)
+      navigate("/login", { replace: true });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";
       setError(message);
-      console.error("Invite acceptance error:", err);
+      console.error("Invite error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -171,7 +149,7 @@ export default function InviteAccept() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="••••••��•"
                 disabled={isLoading}
                 className="w-full"
               />

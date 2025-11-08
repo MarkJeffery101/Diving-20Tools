@@ -1,7 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
+import type { User } from "@supabase/supabase-js";
 
 interface AuthContextType {
-  user: any;
+  user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
@@ -14,58 +16,66 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Initialize Netlify Identity
-    const initNetlifyIdentity = async () => {
+    // Initialize Supabase auth session
+    const initSupabaseAuth = async () => {
       try {
-        // Check if netlifyIdentity is available
-        if (typeof window !== "undefined" && (window as any).netlifyIdentity) {
-          const netlifyIdentity = (window as any).netlifyIdentity;
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-          // Get current user
-          const currentUser = netlifyIdentity.currentUser();
-          if (currentUser) {
-            setUser(currentUser);
-          }
-
-          // Listen for authentication changes
-          netlifyIdentity.on("login", (user: any) => {
-            setUser(user);
-            setError(null);
-          });
-
-          netlifyIdentity.on("logout", () => {
-            setUser(null);
-          });
-
-          netlifyIdentity.on("error", (err: any) => {
-            setError(err.message || "Authentication error");
-          });
+        if (session?.user) {
+          setUser(session.user);
         }
+
+        // Listen for auth state changes
+        const {
+          data: { subscription },
+        } = supabase.auth.onAuthStateChange(
+          (_event, session) => {
+            if (session?.user) {
+              setUser(session.user);
+              setError(null);
+            } else {
+              setUser(null);
+            }
+          }
+        );
+
+        return () => {
+          subscription?.unsubscribe();
+        };
       } catch (err) {
-        console.error("Failed to initialize Netlify Identity:", err);
+        console.error("Failed to initialize Supabase Auth:", err);
         setError("Failed to initialize authentication");
       } finally {
         setIsLoading(false);
       }
     };
 
-    initNetlifyIdentity();
+    initSupabaseAuth();
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
       setError(null);
-      const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity || !netlifyIdentity.gotrue) {
-        throw new Error("Authentication service not available");
+      const { data, error: signInError } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      if (signInError) {
+        throw signInError;
       }
-      const user = await netlifyIdentity.gotrue.login(email, password, true);
-      setUser(user);
+
+      if (data.user) {
+        setUser(data.user);
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
       setError(message);
@@ -76,12 +86,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signup = async (email: string, password: string) => {
     try {
       setError(null);
-      const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity || !netlifyIdentity.gotrue) {
-        throw new Error("Authentication service not available");
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (signUpError) {
+        throw signUpError;
       }
-      const user = await netlifyIdentity.gotrue.signup(email, password, true);
-      setUser(user);
+
+      if (data.user) {
+        setUser(data.user);
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Signup failed";
       setError(message);
@@ -92,11 +108,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     try {
       setError(null);
-      const netlifyIdentity = (window as any).netlifyIdentity;
-      if (!netlifyIdentity) {
-        throw new Error("Authentication service not available");
+      const { error: signOutError } = await supabase.auth.signOut();
+
+      if (signOutError) {
+        throw signOutError;
       }
-      await netlifyIdentity.logout();
+
       setUser(null);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Logout failed";

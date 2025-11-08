@@ -132,9 +132,7 @@ export default function InviteAccept() {
                 disabled={isLoading}
                 className="w-full"
               />
-              <p className="text-xs text-gray-500 mt-1">
-                Minimum 6 characters
-              </p>
+              <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
             </div>
 
             <div>

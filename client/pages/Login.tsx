@@ -64,12 +64,10 @@ export default function Login() {
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            {isSignup ? "Create Account" : "Sign In"}
+            Sign In
           </h2>
           <p className="text-sm text-gray-600 mb-6">
-            {isSignup
-              ? "Create a new account to get started"
-              : "Sign in to access DivePlan"}
+            Sign in with your email and password
           </p>
 
           {/* Error Message */}

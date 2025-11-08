@@ -10,7 +10,7 @@ export default function InviteAccept() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+  const [step, setStep] = useState<"setup" | "success">("setup");
 
   useEffect(() => {
     // Check if we have an invite token in the URL
@@ -58,21 +58,17 @@ export default function InviteAccept() {
       }
 
       // Accept the invite and set the password
-      const response = await netlifyIdentity.gotrue.acceptInvite(
-        token,
-        password,
-        true,
-      );
+      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      if (response) {
-        setSuccess(true);
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      }
+      // Show success message
+      setStep("success");
+
+      // Redirect to login after 3 seconds
+      setTimeout(() => {
+        navigate("/login", { replace: true });
+      }, 3000);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Failed to accept invite";
+      const message = err instanceof Error ? err.message : "Failed to set up account";
       setError(message);
       console.error("Invite acceptance error:", err);
     } finally {
@@ -96,7 +92,7 @@ export default function InviteAccept() {
 
         {/* Setup Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
-          {success ? (
+          {step === "success" ? (
             <div className="text-center space-y-4">
               <div className="flex justify-center">
                 <Check className="h-12 w-12 text-green-600" />
@@ -104,18 +100,23 @@ export default function InviteAccept() {
               <h2 className="text-2xl font-bold text-gray-900">
                 Account Created!
               </h2>
-              <p className="text-gray-600">
-                Your account has been set up successfully. Redirecting to
-                DivePlan...
+              <p className="text-gray-600 mb-2">
+                Your access has been set up successfully.
               </p>
+              <p className="text-sm text-gray-500">
+                Redirecting to login in a few seconds...
+              </p>
+              <div className="flex justify-center pt-4">
+                <Loader2 className="h-5 w-5 animate-spin text-ocean-600" />
+              </div>
             </div>
           ) : (
             <>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Set Up Your Account
+                Your Access is Being Set Up
               </h2>
               <p className="text-sm text-gray-600 mb-6">
-                Create a password to complete your DivePlan account setup
+                Create a password to activate your DivePlan account
               </p>
 
               {/* Error Message */}
@@ -170,7 +171,7 @@ export default function InviteAccept() {
                       Setting up...
                     </>
                   ) : (
-                    "Create Account"
+                    "Create Password"
                   )}
                 </Button>
               </form>
@@ -178,9 +179,7 @@ export default function InviteAccept() {
               {/* Info Box */}
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-xs text-blue-700">
-                  <strong>Note:</strong> You're seeing this page because you
-                  clicked an invite link from Netlify. This is where you set up
-                  your DivePlan account password.
+                  <strong>What happens next:</strong> After you create your password, you'll be directed to the login page. Log in with your email and the password you just created to access DivePlan.
                 </p>
               </div>
             </>

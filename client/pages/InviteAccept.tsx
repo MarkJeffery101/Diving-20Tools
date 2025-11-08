@@ -88,18 +88,12 @@ export default function InviteAccept() {
         throw new Error("Authentication service not available");
       }
 
-      // Accept the invite (this logs them in on Netlify's side)
-      const user = await netlifyIdentity.gotrue.acceptInvite(token, password, true);
-      console.log("Invite accepted for:", user?.email);
+      // Accept the invite
+      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Clear user from netlifyIdentity to force logout without showing widget
-      netlifyIdentity.currentUser = () => null;
-
-      // Do a full page reload to /login to reset all auth state
-      // This ensures we don't see any logout screens or extra modals
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 500);
+      // Redirect immediately to login page with full reload
+      // Don't use navigate - use full page reload to ensure clean state
+      window.location.href = "/login";
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";

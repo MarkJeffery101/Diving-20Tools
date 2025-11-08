@@ -106,11 +106,6 @@ export default function Login() {
                 disabled={isLoading}
                 className="w-full"
               />
-              {isSignup && (
-                <p className="text-xs text-gray-500 mt-1">
-                  Minimum 6 characters
-                </p>
-              )}
             </div>
 
             <Button
@@ -121,31 +116,18 @@ export default function Login() {
               {isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  {isSignup ? "Creating..." : "Signing in..."}
+                  Signing in...
                 </>
-              ) : isSignup ? (
-                "Create Account"
               ) : (
                 "Sign In"
               )}
             </Button>
           </form>
 
-          {/* Toggle Sign Up / Login */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
-              {isSignup ? "Already have an account?" : "Need an account?"}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsSignup(!isSignup);
-                  setLocalError(null);
-                }}
-                className="ml-1 font-medium text-ocean-600 hover:text-ocean-700"
-                disabled={isLoading}
-              >
-                {isSignup ? "Sign in" : "Create one"}
-              </button>
+          {/* Info Box */}
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <p className="text-xs text-blue-700">
+              <strong>Don't have an account?</strong> You'll need an invitation email from DivePlan. Check your email inbox (and spam folder) for the invitation link to get started.
             </p>
           </div>
 

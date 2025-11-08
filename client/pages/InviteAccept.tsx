@@ -104,101 +104,78 @@ export default function InviteAccept() {
 
         {/* Setup Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
-          {step === "success" ? (
-            <div className="text-center space-y-4">
-              <div className="flex justify-center">
-                <Check className="h-12 w-12 text-green-600" />
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900">
-                Account Created!
-              </h2>
-              <p className="text-gray-600 mb-2">
-                Your access has been set up successfully.
-              </p>
-              <p className="text-sm text-gray-500">
-                Redirecting to login in a few seconds...
-              </p>
-              <div className="flex justify-center pt-4">
-                <Loader2 className="h-5 w-5 animate-spin text-ocean-600" />
-              </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Your Access is Being Set Up
+          </h2>
+          <p className="text-sm text-gray-600 mb-6">
+            Create a password to activate your DivePlan account
+          </p>
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3">
+              <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-red-700">{error}</p>
             </div>
-          ) : (
-            <>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Your Access is Being Set Up
-              </h2>
-              <p className="text-sm text-gray-600 mb-6">
-                Create a password to activate your DivePlan account
-              </p>
-
-              {/* Error Message */}
-              {error && (
-                <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3">
-                  <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-700">{error}</p>
-                </div>
-              )}
-
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Password
-                  </label>
-                  <Input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    disabled={isLoading}
-                    className="w-full"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Minimum 6 characters
-                  </p>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Confirm Password
-                  </label>
-                  <Input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="••••••••"
-                    disabled={isLoading}
-                    className="w-full"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-ocean-600 hover:bg-ocean-700 text-white font-semibold py-2 h-10"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Setting up...
-                    </>
-                  ) : (
-                    "Create Password"
-                  )}
-                </Button>
-              </form>
-
-              {/* Info Box */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-xs text-blue-700">
-                  <strong>What happens next:</strong> After you create your
-                  password, you'll be directed to the login page. Log in with
-                  your email and the password you just created to access
-                  DivePlan.
-                </p>
-              </div>
-            </>
           )}
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                disabled={isLoading}
+                className="w-full"
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Minimum 6 characters
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                disabled={isLoading}
+                className="w-full"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-ocean-600 hover:bg-ocean-700 text-white font-semibold py-2 h-10"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Setting up...
+                </>
+              ) : (
+                "Create Password"
+              )}
+            </Button>
+          </form>
+
+          {/* Info Box */}
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <p className="text-xs text-blue-700">
+              <strong>What happens next:</strong> After you create your
+              password, you'll be directed to the login page. Log in with your
+              email and the password you just created to access DivePlan.
+            </p>
+          </div>
         </div>
 
         {/* Footer */}

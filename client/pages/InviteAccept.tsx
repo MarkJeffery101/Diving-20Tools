@@ -13,12 +13,25 @@ export default function InviteAccept() {
   const [step, setStep] = useState<"setup" | "success">("setup");
 
   useEffect(() => {
+    // Hide the Netlify Identity widget during invite flow
+    const widget = document.getElementById("netlify-identity-widget");
+    if (widget) {
+      (widget as HTMLElement).style.display = "none";
+    }
+
     // Check if we have an invite token in the URL
     const hash = window.location.hash;
     if (!hash.includes("invite_token")) {
       // No invite token, redirect to login
       navigate("/login", { replace: true });
     }
+
+    return () => {
+      // Show widget again when leaving this page
+      if (widget) {
+        (widget as HTMLElement).style.display = "";
+      }
+    };
   }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {

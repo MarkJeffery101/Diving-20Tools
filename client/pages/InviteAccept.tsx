@@ -89,11 +89,17 @@ export default function InviteAccept() {
       }
 
       // Accept the invite (this logs them in on Netlify's side)
-      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      const user = await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      console.log("Invite accepted for:", user?.email);
+
+      // Clear user from netlifyIdentity to force logout without showing widget
+      netlifyIdentity.currentUser = () => null;
 
       // Do a full page reload to /login to reset all auth state
       // This ensures we don't see any logout screens or extra modals
-      window.location.href = "/login";
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";

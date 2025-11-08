@@ -78,10 +78,13 @@ export default function InviteAccept() {
         throw new Error("Authentication service not available");
       }
 
-      // Accept the invite - this will log them in
+      // Accept the invite
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Immediately navigate to login (don't logout, just navigate)
+      // Log them out programmatically (not using UI)
+      netlifyIdentity.logout();
+
+      // Navigate to login
       navigate("/login", { replace: true });
     } catch (err) {
       const message =
@@ -149,7 +152,7 @@ export default function InviteAccept() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••��•"
+                placeholder="••••••••"
                 disabled={isLoading}
                 className="w-full"
               />

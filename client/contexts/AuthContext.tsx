@@ -122,7 +122,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
+      if (!supabase) {
+        throw new Error("Authentication service not available");
+      }
+
       setError(null);
+
+      if (!navigator.onLine) {
+        throw new Error(
+          "Cannot log in while offline. Please check your internet connection."
+        );
+      }
+
       const { data, error: signInError } =
         await supabase.auth.signInWithPassword({
           email,
@@ -135,6 +146,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (data.user) {
         setUser(data.user);
+        console.log("[Auth] User logged in:", data.user.email);
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
@@ -146,10 +158,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     try {
       setError(null);
-      const { error: signOutError } = await supabase.auth.signOut();
 
-      if (signOutError) {
-        throw signOutError;
+      if (!supabase) {
+        throw new Error("Authentication service not available");
+      }
+
+      if (navigator.onLine) {
+        const { error: signOutError } = await supabase.auth.signOut();
+
+        if (signOutError) {
+          throw signOutError;
+        }
+        console.log("[Auth] User logged out from server");
+      } else {
+        console.log("[Auth] Offline logout - clearing local session");
       }
 
       setUser(null);
@@ -169,6 +191,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         logout,
         error,
+        isOffline,
       }}
     >
       {children}

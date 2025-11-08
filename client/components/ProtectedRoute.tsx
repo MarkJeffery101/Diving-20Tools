@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from "lucide-react";
+import InviteAccept from "@/pages/InviteAccept";
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -14,14 +15,19 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
       window.location.hostname.includes("localhost"));
 
   // Check if user has a Supabase invite/signup token in the URL
-  // Supabase sends tokens in the hash with access_token
-  const hasInviteToken =
-    typeof window !== "undefined" &&
-    (window.location.hash.includes("access_token") ||
-      window.location.search.includes("access_token"));
+  // Supabase sends tokens in the hash or query string with access_token
+  const hash = typeof window !== "undefined" ? window.location.hash : "";
+  const search = typeof window !== "undefined" ? window.location.search : "";
 
+  const hasInviteToken =
+    hash.includes("access_token") ||
+    search.includes("access_token") ||
+    hash.includes("type=signup") ||
+    search.includes("type=signup");
+
+  // If there's an invite token, show the invite setup page
   if (hasInviteToken) {
-    return <Navigate to="/invite" replace />;
+    return <InviteAccept />;
   }
 
   if (!isDevelopment && isLoading) {

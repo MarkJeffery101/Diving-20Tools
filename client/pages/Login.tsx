@@ -151,13 +151,6 @@ export default function Login() {
             </p>
           </div>
 
-          {/* Info Box */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-xs text-blue-700">
-              <strong>Demo:</strong> Use any email and password (min 6
-              characters) to create a test account.
-            </p>
-          </div>
         </div>
 
         {/* Footer */}

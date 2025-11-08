@@ -13,14 +13,14 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
       window.location.hostname.includes("fly.dev") ||
       window.location.hostname.includes("localhost"));
 
-  // Check if user has an invite token in the URL
-  // If they do, force them to complete the invite setup first
-  const hasInviteToken =
+  // Check if user has a Supabase invite/signup token in the URL
+  // Supabase sends tokens in the hash with type=signup
+  const hasSupabaseToken =
     typeof window !== "undefined" &&
-    (window.location.hash.includes("invite_token") ||
-      window.location.search.includes("invite_token"));
+    (window.location.hash.includes("access_token") ||
+      window.location.search.includes("access_token"));
 
-  if (hasInviteToken) {
+  if (hasSupabaseToken) {
     return <Navigate to="/invite" replace />;
   }
 

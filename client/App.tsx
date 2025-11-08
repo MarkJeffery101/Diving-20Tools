@@ -123,6 +123,116 @@ function UpdateChecker() {
   return null;
 }
 
+function InviteHandler() {
+  const [hasInviteToken, setHasInviteToken] = useState(false);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    const hasToken = hash.includes("invite_token");
+    setHasInviteToken(hasToken);
+  }, []);
+
+  if (hasInviteToken) {
+    return <InviteAccept />;
+  }
+
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Index />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tables"
+        element={
+          <ProtectedRoute>
+            <Tables />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tables/:id"
+        element={
+          <ProtectedRoute>
+            <TableDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/table-selection"
+        element={
+          <ProtectedRoute>
+            <TableSelection />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/table-use"
+        element={
+          <ProtectedRoute>
+            <TableUse />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tools"
+        element={
+          <ProtectedRoute>
+            <Tools />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/share"
+        element={
+          <ProtectedRoute>
+            <Share />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/supporting-info"
+        element={
+          <ProtectedRoute>
+            <SupportingInfo />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/treatment-protocols"
+        element={
+          <ProtectedRoute>
+            <TreatmentProtocols />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/emergency-procedures"
+        element={
+          <ProtectedRoute>
+            <EmergencyProcedures />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/help"
+        element={
+          <ProtectedRoute>
+            <Help />
+          </ProtectedRoute>
+        }
+      />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -132,99 +242,7 @@ export default function App() {
             <UpdateChecker />
             <Toaster />
             <Sonner />
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <Index />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/tables"
-                element={
-                  <ProtectedRoute>
-                    <Tables />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/tables/:id"
-                element={
-                  <ProtectedRoute>
-                    <TableDetail />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/table-selection"
-                element={
-                  <ProtectedRoute>
-                    <TableSelection />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/table-use"
-                element={
-                  <ProtectedRoute>
-                    <TableUse />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/tools"
-                element={
-                  <ProtectedRoute>
-                    <Tools />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/share"
-                element={
-                  <ProtectedRoute>
-                    <Share />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/supporting-info"
-                element={
-                  <ProtectedRoute>
-                    <SupportingInfo />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/treatment-protocols"
-                element={
-                  <ProtectedRoute>
-                    <TreatmentProtocols />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/emergency-procedures"
-                element={
-                  <ProtectedRoute>
-                    <EmergencyProcedures />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/help"
-                element={
-                  <ProtectedRoute>
-                    <Help />
-                  </ProtectedRoute>
-                }
-              />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <InviteHandler />
           </AuthProvider>
         </TooltipProvider>
       </QueryClientProvider>

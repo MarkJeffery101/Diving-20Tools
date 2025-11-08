@@ -9,6 +9,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   error: string | null;
+  isOffline: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,11 +18,62 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isOffline, setIsOffline] = useState(
+    typeof navigator !== "undefined" && !navigator.onLine
+  );
+
+  useEffect(() => {
+    // Listen for online/offline changes
+    const handleOnline = () => {
+      console.log("[Auth] App is online");
+      setIsOffline(false);
+    };
+
+    const handleOffline = () => {
+      console.log("[Auth] App is offline");
+      setIsOffline(true);
+    };
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   useEffect(() => {
     // Initialize Supabase auth
     const initSupabaseAuth = async () => {
       try {
+        if (!supabase) {
+          console.warn("[Auth] Supabase client not initialized");
+          setIsLoading(false);
+          return;
+        }
+
+        // If offline, try to restore from localStorage
+        if (!navigator.onLine) {
+          console.log("[Auth] Offline mode - restoring session from cache");
+          try {
+            const cachedSession = localStorage.getItem(
+              "supabase.auth.token"
+            );
+            if (cachedSession) {
+              const { session } = JSON.parse(cachedSession);
+              if (session?.user) {
+                setUser(session.user);
+                console.log("[Auth] Restored cached session for:", session.user.email);
+              }
+            }
+          } catch (err) {
+            console.warn("[Auth] Failed to restore cached session:", err);
+          }
+          setIsLoading(false);
+          return;
+        }
+
         // Get existing session
         const {
           data: { session },
@@ -29,6 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (session?.user) {
           setUser(session.user);
+          console.log("[Auth] Session retrieved from Supabase");
         }
 
         // Listen for auth state changes
@@ -39,8 +92,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (session?.user) {
               setUser(session.user);
               setError(null);
+              console.log("[Auth] Auth state changed - user authenticated");
             } else {
               setUser(null);
+              console.log("[Auth] Auth state changed - user logged out");
             }
           }
         );
@@ -50,7 +105,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         };
       } catch (err) {
         console.error("Failed to initialize Supabase Auth:", err);
-        setError("Failed to initialize authentication");
+
+        // If offline, don't set error - allow offline mode
+        if (!navigator.onLine) {
+          console.log("[Auth] Network error in offline mode - continuing in offline mode");
+        } else {
+          setError("Failed to initialize authentication");
+        }
       } finally {
         setIsLoading(false);
       }

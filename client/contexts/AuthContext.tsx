@@ -7,9 +7,7 @@ interface AuthContextType {
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  clearUser: () => void;
   error: string | null;
 }
 
@@ -21,23 +19,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Initialize Supabase auth session
+    // Initialize Supabase auth
     const initSupabaseAuth = async () => {
       try {
-        // Check if there's an invite/signup token in the URL
-        // If so, DON'T create a session yet - let the /invite page handle it
-        const hash = window.location.hash;
-        const search = window.location.search;
-        const hasInviteToken =
-          hash.includes("access_token") || search.includes("access_token");
-
-        if (hasInviteToken) {
-          // Don't create a session - let the invite page handle it
-          setIsLoading(false);
-          return;
-        }
-
-        // No invite token, get existing session
+        // Get existing session
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -49,14 +34,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Listen for auth state changes
         const {
           data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
-          if (session?.user) {
-            setUser(session.user);
-            setError(null);
-          } else {
-            setUser(null);
+        } = supabase.auth.onAuthStateChange(
+          (_event, session) => {
+            if (session?.user) {
+              setUser(session.user);
+              setError(null);
+            } else {
+              setUser(null);
+            }
           }
-        });
+        );
 
         return () => {
           subscription?.unsubscribe();
@@ -95,28 +82,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const signup = async (email: string, password: string) => {
-    try {
-      setError(null);
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      if (signUpError) {
-        throw signUpError;
-      }
-
-      if (data.user) {
-        setUser(data.user);
-      }
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Signup failed";
-      setError(message);
-      throw err;
-    }
-  };
-
   const logout = async () => {
     try {
       setError(null);
@@ -134,11 +99,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const clearUser = () => {
-    setUser(null);
-    setError(null);
-  };
-
   return (
     <AuthContext.Provider
       value={{
@@ -146,9 +106,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         isAuthenticated: !!user,
         login,
-        signup,
         logout,
-        clearUser,
         error,
       }}
     >

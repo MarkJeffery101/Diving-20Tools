@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Loader2 } from "lucide-react";
+import { Loader2, Wifi } from "lucide-react";
 import InviteAccept from "@/pages/InviteAccept";
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, isOffline } = useAuth();
 
   // Skip authentication on development environments
   const isDevelopment =
@@ -37,6 +37,23 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
           <Loader2 className="h-12 w-12 animate-spin text-ocean-600 mx-auto mb-4" />
           <p className="text-gray-600">Loading...</p>
         </div>
+      </div>
+    );
+  }
+
+  // Show offline mode message if offline and authenticated
+  if (isOffline && isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="sticky top-0 z-50 bg-yellow-50 border-b border-yellow-200 px-4 py-3">
+          <div className="flex items-center gap-2 max-w-7xl mx-auto">
+            <Wifi className="h-5 w-5 text-yellow-600" />
+            <p className="text-sm text-yellow-800">
+              <strong>You're offline.</strong> Viewing cached content. Some features may be limited.
+            </p>
+          </div>
+        </div>
+        <div className="pt-4">{children}</div>
       </div>
     );
   }

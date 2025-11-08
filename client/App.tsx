@@ -134,6 +134,7 @@ function InviteHandler() {
 
   return (
     <Routes>
+      <Route path="/invite" element={<InviteAccept />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/"

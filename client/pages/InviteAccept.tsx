@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { AlertCircle, Loader2, CheckCircle } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function InviteAccept() {
   const navigate = useNavigate();
@@ -10,7 +10,6 @@ export default function InviteAccept() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     // Hide the Netlify Identity widget during invite flow
@@ -73,9 +72,6 @@ export default function InviteAccept() {
       // Accept the invite and set the password
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Mark as success and redirect immediately
-      setIsSuccess(true);
-
       // Immediately log out so user lands on login page
       try {
         await netlifyIdentity.gotrue.logout();
@@ -84,7 +80,7 @@ export default function InviteAccept() {
         console.log("Logout note:", e);
       }
 
-      // Redirect to login page immediately
+      // Redirect to login page immediately (no success screen)
       navigate("/login", { replace: true });
     } catch (err) {
       const message =
@@ -137,7 +133,7 @@ export default function InviteAccept() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="••���•••••"
                 disabled={isLoading}
                 className="w-full"
               />
@@ -152,7 +148,7 @@ export default function InviteAccept() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••���•••"
+                placeholder="••••••••"
                 disabled={isLoading}
                 className="w-full"
               />
@@ -173,15 +169,6 @@ export default function InviteAccept() {
               )}
             </Button>
           </form>
-
-          {/* Info Box */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-xs text-blue-700">
-              <strong>What happens next:</strong> After you create your
-              password, you'll be directed to the login page. Log in with your
-              email and the password you just created to access DivePlan.
-            </p>
-          </div>
         </div>
 
         {/* Footer */}

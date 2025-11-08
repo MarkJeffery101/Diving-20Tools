@@ -73,13 +73,11 @@ export default function InviteAccept() {
       // Accept the invite and set the password
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Show success message
-      setStep("success");
+      // Immediately log out so user lands on login page
+      await netlifyIdentity.gotrue.logout();
 
-      // Redirect to login after 3 seconds
-      setTimeout(() => {
-        navigate("/login", { replace: true });
-      }, 3000);
+      // Redirect to login immediately
+      navigate("/login", { replace: true });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";

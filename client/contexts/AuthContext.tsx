@@ -105,6 +105,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const clearUser = () => {
+    setUser(null);
+    setError(null);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -114,6 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         signup,
         logout,
+        clearUser,
         error,
       }}
     >

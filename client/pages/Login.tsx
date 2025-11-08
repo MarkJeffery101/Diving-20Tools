@@ -33,11 +33,18 @@ export default function Login() {
     } catch (err) {
       // Check if this is a user who just accepted an invite
       // They need to log in to verify their password
-      const message = err instanceof Error ? err.message : "Authentication failed";
+      const message =
+        err instanceof Error ? err.message : "Authentication failed";
 
       // Check if it's a password mismatch or similar
-      if (message.includes("401") || message.includes("password") || message.includes("credentials")) {
-        setLocalError("Invalid email or password. Please check your credentials and try again.");
+      if (
+        message.includes("401") ||
+        message.includes("password") ||
+        message.includes("credentials")
+      ) {
+        setLocalError(
+          "Invalid email or password. Please check your credentials and try again.",
+        );
       } else {
         setLocalError(message);
       }

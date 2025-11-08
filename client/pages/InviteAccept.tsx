@@ -33,8 +33,9 @@ export default function InviteAccept() {
     // Check if we have an invite token
     const hash = window.location.hash;
     const search = window.location.search;
-    const hasToken = hash.includes("invite_token") || search.includes("invite_token");
-    
+    const hasToken =
+      hash.includes("invite_token") || search.includes("invite_token");
+
     if (!hasToken) {
       navigate("/login", { replace: true });
     }

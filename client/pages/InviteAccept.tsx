@@ -73,10 +73,18 @@ export default function InviteAccept() {
       // Accept the invite and set the password
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Immediately log out so user lands on login page
-      await netlifyIdentity.gotrue.logout();
+      // Mark as success and redirect immediately
+      setIsSuccess(true);
 
-      // Redirect to login immediately
+      // Immediately log out so user lands on login page
+      try {
+        await netlifyIdentity.gotrue.logout();
+      } catch (e) {
+        // Logout might fail, but that's okay
+        console.log("Logout note:", e);
+      }
+
+      // Redirect to login page immediately
       navigate("/login", { replace: true });
     } catch (err) {
       const message =

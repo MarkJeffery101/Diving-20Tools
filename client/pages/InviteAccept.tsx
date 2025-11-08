@@ -55,13 +55,25 @@ export default function InviteAccept() {
     try {
       setIsLoading(true);
 
-      // Get the invite token from the URL hash
+      // Get the invite token from URL (check both hash and query string)
+      let token = null;
+
+      // Check hash first
       const hash = window.location.hash;
-      const params = new URLSearchParams(hash.substring(1));
-      const token = params.get("invite_token");
+      if (hash) {
+        const hashParams = new URLSearchParams(hash.substring(1));
+        token = hashParams.get("invite_token");
+      }
+
+      // Check query string if not found in hash
+      if (!token) {
+        const search = window.location.search;
+        const queryParams = new URLSearchParams(search);
+        token = queryParams.get("invite_token");
+      }
 
       if (!token) {
-        throw new Error("No invite token found");
+        throw new Error("No invite token found in URL");
       }
 
       const netlifyIdentity = (window as any).netlifyIdentity;
@@ -70,16 +82,17 @@ export default function InviteAccept() {
       }
 
       // Accept the invite and set the password
-      await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      console.log("Accepting invite with token:", token.substring(0, 10) + "...");
+      const user = await netlifyIdentity.gotrue.acceptInvite(token, password, true);
+      console.log("Invite accepted, user:", user?.email);
 
-      // Clear the hash to remove the invite token
-      window.location.hash = "";
+      // Clear the URL
+      window.history.replaceState({}, document.title, window.location.pathname);
 
       // Immediately redirect to login page
-      // Use window.location instead of navigate to force a clean page reload
       setTimeout(() => {
         window.location.href = "/login";
-      }, 100);
+      }, 500);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";

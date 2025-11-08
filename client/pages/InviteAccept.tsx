@@ -68,7 +68,8 @@ export default function InviteAccept() {
         navigate("/login", { replace: true });
       }, 3000);
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Failed to set up account";
+      const message =
+        err instanceof Error ? err.message : "Failed to set up account";
       setError(message);
       console.error("Invite acceptance error:", err);
     } finally {
@@ -179,7 +180,10 @@ export default function InviteAccept() {
               {/* Info Box */}
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-xs text-blue-700">
-                  <strong>What happens next:</strong> After you create your password, you'll be directed to the login page. Log in with your email and the password you just created to access DivePlan.
+                  <strong>What happens next:</strong> After you create your
+                  password, you'll be directed to the login page. Log in with
+                  your email and the password you just created to access
+                  DivePlan.
                 </p>
               </div>
             </>

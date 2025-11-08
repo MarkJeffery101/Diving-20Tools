@@ -53,9 +53,7 @@ export default function Login() {
 
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-xl p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Sign In
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign In</h2>
           <p className="text-sm text-gray-600 mb-6">
             Sign in with your email and password
           </p>
@@ -117,10 +115,11 @@ export default function Login() {
           {/* Info Box */}
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
             <p className="text-xs text-blue-700">
-              <strong>Don't have an account?</strong> You'll need an invitation email from DivePlan. Check your email inbox (and spam folder) for the invitation link to get started.
+              <strong>Don't have an account?</strong> You'll need an invitation
+              email from DivePlan. Check your email inbox (and spam folder) for
+              the invitation link to get started.
             </p>
           </div>
-
         </div>
 
         {/* Footer */}

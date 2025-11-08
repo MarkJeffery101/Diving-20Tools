@@ -12,44 +12,35 @@ export default function InviteAccept() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Hide the Netlify Identity widget completely
-    const widget = document.getElementById("netlify-identity-widget");
-    if (widget) {
-      (widget as HTMLElement).style.display = "none";
-      (widget as HTMLElement).style.visibility = "hidden";
-      (widget as HTMLElement).style.pointerEvents = "none";
-    }
-
-    // Also hide any Netlify modals that might appear
-    const observer = new MutationObserver(() => {
-      const allFrames = document.querySelectorAll("iframe");
-      allFrames.forEach((frame) => {
-        if (frame.id === "netlify-identity-widget" || frame.src?.includes("identity")) {
-          frame.style.display = "none";
-          frame.style.visibility = "hidden";
-          frame.style.pointerEvents = "none";
-        }
-      });
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Completely hide everything related to Netlify Identity
+    const style = document.createElement("style");
+    style.innerHTML = `
+      #netlify-identity-widget {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+      }
+      iframe[src*="identity.netlify"] {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
 
     // Check if we have an invite token
     const hash = window.location.hash;
     const search = window.location.search;
     const hasToken = hash.includes("invite_token") || search.includes("invite_token");
-
+    
     if (!hasToken) {
       navigate("/login", { replace: true });
     }
 
     return () => {
-      observer.disconnect();
-      if (widget) {
-        (widget as HTMLElement).style.display = "";
-        (widget as HTMLElement).style.visibility = "";
-        (widget as HTMLElement).style.pointerEvents = "";
-      }
+      document.head.removeChild(style);
     };
   }, [navigate]);
 
@@ -97,19 +88,15 @@ export default function InviteAccept() {
         throw new Error("Authentication service not available");
       }
 
-      // Accept the invite
+      // Accept the invite (this logs them in on Netlify's side)
       await netlifyIdentity.gotrue.acceptInvite(token, password, true);
 
-      // Log them out programmatically (not using UI)
-      netlifyIdentity.logout();
-
-      // Navigate to login
+      // Navigate to login - user will see login page and can log in with their email/password
       navigate("/login", { replace: true });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Failed to set up account";
       setError(message);
-      console.error("Invite error:", err);
     } finally {
       setIsLoading(false);
     }

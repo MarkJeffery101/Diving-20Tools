@@ -7,9 +7,8 @@ import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, signup, error } = useAuth();
+  const { login, error } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
@@ -23,18 +22,9 @@ export default function Login() {
       return;
     }
 
-    if (password.length < 6) {
-      setLocalError("Password must be at least 6 characters");
-      return;
-    }
-
     try {
       setIsLoading(true);
-      if (isSignup) {
-        await signup(email, password);
-      } else {
-        await login(email, password);
-      }
+      await login(email, password);
       navigate("/");
     } catch (err) {
       setLocalError(

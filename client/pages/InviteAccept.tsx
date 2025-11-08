@@ -10,7 +10,6 @@ export default function InviteAccept() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [step, setStep] = useState<"setup" | "success">("setup");
 
   useEffect(() => {
     // Hide the Netlify Identity widget during invite flow
@@ -146,7 +145,7 @@ export default function InviteAccept() {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="••••���•••"
                 disabled={isLoading}
                 className="w-full"
               />

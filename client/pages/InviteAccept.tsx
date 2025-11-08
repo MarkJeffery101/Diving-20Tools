@@ -78,11 +78,12 @@ export default function InviteAccept() {
         // Supabase will handle the token from the URL automatically
         // But since we blocked it in AuthContext, we need to manually call getSession
         // after the token is in the URL. Let's reload to let Supabase process it.
-        const { data, error: setSessionError } =
-          await supabase.auth.setSession({
+        const { data, error: setSessionError } = await supabase.auth.setSession(
+          {
             access_token: accessToken,
             refresh_token: "", // We may not have this for invite flow
-          });
+          },
+        );
 
         if (setSessionError) {
           // Session error - might be expected if we don't have refresh token
@@ -100,18 +101,15 @@ export default function InviteAccept() {
       }
 
       // Clear the hash to remove the token
-      window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-      );
+      window.history.replaceState({}, document.title, window.location.pathname);
 
       // Redirect to home - user should be logged in
       setTimeout(() => {
         window.location.href = "/";
       }, 500);
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Failed to set password";
+      const message =
+        err instanceof Error ? err.message : "Failed to set password";
       setError(message);
       console.error("Password update error:", err);
     } finally {

@@ -29,8 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const hash = window.location.hash;
         const search = window.location.search;
         const hasInviteToken =
-          hash.includes("access_token") ||
-          search.includes("access_token");
+          hash.includes("access_token") || search.includes("access_token");
 
         if (hasInviteToken) {
           // Don't create a session - let the invite page handle it
@@ -50,16 +49,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Listen for auth state changes
         const {
           data: { subscription },
-        } = supabase.auth.onAuthStateChange(
-          (_event, session) => {
-            if (session?.user) {
-              setUser(session.user);
-              setError(null);
-            } else {
-              setUser(null);
-            }
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+          if (session?.user) {
+            setUser(session.user);
+            setError(null);
+          } else {
+            setUser(null);
           }
-        );
+        });
 
         return () => {
           subscription?.unsubscribe();

@@ -6,19 +6,19 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
 
   // Skip authentication on development environments
-  const isDevelopment = typeof window !== 'undefined' && (
-    window.location.hostname === 'localhost' ||
-    window.location.hostname === '127.0.0.1' ||
-    window.location.hostname.includes('fly.dev') ||
-    window.location.hostname.includes('localhost')
-  );
+  const isDevelopment =
+    typeof window !== "undefined" &&
+    (window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname.includes("fly.dev") ||
+      window.location.hostname.includes("localhost"));
 
   // Check if user has an invite token in the URL
   // If they do, force them to complete the invite setup first
-  const hasInviteToken = typeof window !== 'undefined' && (
-    window.location.hash.includes('invite_token') ||
-    window.location.search.includes('invite_token')
-  );
+  const hasInviteToken =
+    typeof window !== "undefined" &&
+    (window.location.hash.includes("invite_token") ||
+      window.location.search.includes("invite_token"));
 
   if (hasInviteToken) {
     return <Navigate to="/invite" replace />;

@@ -26,26 +26,20 @@ export default function TUP() {
     field: "maxDepth" | "o2" | "diveTime",
     value: string,
   ) => {
-    if (field === "o2") {
-      if (value === "") {
-        setInputs((prev) => ({ ...prev, [field]: value }));
-        setO2InputMessage("");
-        return;
-      }
+    setInputs((prev) => ({ ...prev, [field]: value }));
+  };
 
-      const num = parseInt(value);
-      if (!isNaN(num)) {
-        if (validO2Values.includes(num)) {
-          setInputs((prev) => ({ ...prev, [field]: value }));
-          setO2InputMessage("");
-        } else {
-          setO2InputMessage("ONLT 21 AND 30 - 40 MAY BE USED");
-        }
-      } else {
-        setO2InputMessage("ONLT 21 AND 30 - 40 MAY BE USED");
-      }
+  const handleO2Blur = () => {
+    if (inputs.o2 === "") {
+      setO2InputMessage("");
+      return;
+    }
+
+    const num = parseInt(inputs.o2);
+    if (isNaN(num) || !validO2Values.includes(num)) {
+      setO2InputMessage("ONLT 21 AND 30 - 40 MAY BE USED");
     } else {
-      setInputs((prev) => ({ ...prev, [field]: value }));
+      setO2InputMessage("");
     }
   };
 

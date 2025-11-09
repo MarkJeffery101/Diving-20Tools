@@ -13,6 +13,8 @@ export default function TUP() {
     selfTestResult,
     selectedRowIndex,
     setSelectedRowIndex,
+    matchingMessage,
+    setMatchingMessage,
   } = useTupCalculator();
 
   const handleInputChange = (

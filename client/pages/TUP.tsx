@@ -3,6 +3,7 @@ import { DECOMPRESSION_STOPS } from "@/lib/tupCalculator";
 import Navigation from "@/components/Navigation";
 import { Info } from "lucide-react";
 import { useState } from "react";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 export default function TUP() {
   const {
@@ -310,7 +311,7 @@ export default function TUP() {
                     <div className="flex gap-2">
                       <span className="text-text-muted text-xs">ESOT</span>
                       <span className="font-bold text-sm">
-                        {outputs.diversEsot || "��"}
+                        {outputs.diversEsot || "—"}
                       </span>
                     </div>
                     <div className="flex gap-2">

@@ -236,12 +236,14 @@ export default function TUP() {
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     EAD Calculated, Safety Margin Added, Closest Table Bellow
                     (m/sw)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Equivalent Air Depth"
-                    >
-                      <Info className="w-3 h-3" />
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="ml-2 inline-block w-3 h-3 flex-shrink-0">
+                          <Info className="w-3 h-3" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Equivalent Air Depth</TooltipContent>
+                    </Tooltip>
                   </label>
                   <div className="text-base md:text-lg font-bold text-text-dark text-right flex-shrink-0">
                     {outputs.bellDepth || "—"}

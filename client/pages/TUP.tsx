@@ -42,9 +42,7 @@ export default function TUP() {
               >
                 Pressure in msw
               </p>
-              <p className="text-xs">
-                Stop time starts after arrival at the stop
-              </p>
+              <p className="text-xs">Stop time starts after arrival at the stop</p>
             </div>
             <div
               style={{
@@ -73,17 +71,12 @@ export default function TUP() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
             {/* Inputs */}
             <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
-                Inputs
-              </h2>
+              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">Inputs</h2>
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Maximum Diving Depth (m/sw)
-                    <button
-                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
-                      title="Actual depth in meters"
-                    >
+                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Actual depth in meters">
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -91,9 +84,7 @@ export default function TUP() {
                     type="number"
                     placeholder="20"
                     value={inputs.maxDepth}
-                    onChange={(e) =>
-                      handleInputChange("maxDepth", e.target.value)
-                    }
+                    onChange={(e) => handleInputChange("maxDepth", e.target.value)}
                     className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
                   />
                 </div>
@@ -101,10 +92,7 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Nitrox O2 (%)
-                    <button
-                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
-                      title="Oxygen percentage in mix"
-                    >
+                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Oxygen percentage in mix">
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -120,10 +108,7 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Dive Time (min)
-                    <button
-                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
-                      title="Planned dive time in minutes"
-                    >
+                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Planned dive time in minutes">
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -131,9 +116,7 @@ export default function TUP() {
                     type="number"
                     placeholder="25"
                     value={inputs.diveTime}
-                    onChange={(e) =>
-                      handleInputChange("diveTime", e.target.value)
-                    }
+                    onChange={(e) => handleInputChange("diveTime", e.target.value)}
                     className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
                   />
                 </div>
@@ -142,18 +125,12 @@ export default function TUP() {
 
             {/* Outputs */}
             <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
-                Outputs
-              </h2>
+              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">Outputs</h2>
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
-                    EAD Calculated, Safety Margin Added, Closest Table Bellow
-                    (m/sw)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Equivalent Air Depth"
-                    >
+                    EAD Calculated, Safety Margin Added, Closest Table Bellow (m/sw)
+                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Equivalent Air Depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
@@ -165,16 +142,11 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     PO2 at Diving Depth (bar/abs)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Partial pressure of oxygen at depth"
-                    >
+                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Partial pressure of oxygen at depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div
-                    className={`text-base md:text-lg font-bold px-2 py-1 rounded text-right flex-shrink-0 ${outputs.po2BgClass}`}
-                  >
+                  <div className={`text-base md:text-lg font-bold px-2 py-1 rounded text-right flex-shrink-0 ${outputs.po2BgClass}`}>
                     {outputs.po2 || "—"}
                   </div>
                 </div>
@@ -182,10 +154,7 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     IMCA TUP Max Bottom Time (min)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Maximum safe bottom time"
-                    >
+                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Maximum safe bottom time">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
@@ -260,17 +229,17 @@ export default function TUP() {
           {filteredRecords.length > 0 && (
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden -mx-4 md:mx-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-xs md:text-sm">
+                <table className="w-full">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
-                      <th className="px-2 md:px-3 py-2 text-left font-semibold text-xs">
-                        Depth msw
+                      <th className="px-1 md:px-3 py-1 md:py-2 text-left font-semibold text-[9px] md:text-xs">
+                        Depth
                       </th>
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
-                        Bottom Time Min
+                      <th className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs">
+                        Bottom
                       </th>
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs hidden md:table-cell">
-                        Time till 1st Stop Min
+                      <th className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs">
+                        1st Stop
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
                         const isOxygen = stop.column.includes("Oxygen");
@@ -278,23 +247,23 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-1 md:px-2 py-2 text-center font-semibold text-[10px] md:text-[11px] whitespace-nowrap hidden md:table-cell ${headerClass}`}
+                            className={`px-0.5 md:px-2 py-1 md:py-2 text-center font-semibold text-[7px] md:text-[11px] whitespace-nowrap ${headerClass}`}
                           >
                             {stop.column === "15 Air TUP"
-                              ? "15 Air"
-                              : stop.column}
+                              ? "15A"
+                              : stop.column.replace(/\s+/g, "").substring(0, 4)}
                           </th>
                         );
                       })}
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
-                        <span className="md:hidden">Deco Min</span>
-                        <span className="hidden md:inline">Total Deco Time Min</span>
+                      <th className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs">
+                        <span className="md:hidden">Deco</span>
+                        <span className="hidden md:inline">Total Deco</span>
                       </th>
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold hidden">
-                        Total OTU
+                      <th className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs hidden">
+                        OTU
                       </th>
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold hidden">
-                        Total ESOT
+                      <th className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs hidden">
+                        ESOT
                       </th>
                     </tr>
                   </thead>
@@ -319,32 +288,32 @@ export default function TUP() {
                           onClick={() => setSelectedRowIndex(idx)}
                           className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
-                          <td className="px-2 md:px-3 py-2 font-semibold text-xs">
+                          <td className="px-1 md:px-3 py-1 md:py-2 font-semibold text-[8px] md:text-xs">
                             {record["Depth(m/sw)"]}
                           </td>
-                          <td className="px-2 md:px-3 py-2 text-center text-xs">
+                          <td className="px-1 md:px-3 py-1 md:py-2 text-center text-[8px] md:text-xs">
                             {record["BottomTime Min"]}
                           </td>
-                          <td className="px-2 md:px-3 py-2 text-center text-xs hidden md:table-cell">
+                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center text-[7px] md:text-xs">
                             {record["Time till(1st stop Min)"]}
                           </td>
                           {DECOMPRESSION_STOPS.map((stop) => (
                             <td
                               key={stop.column}
-                              className="px-1 md:px-2 py-2 text-center text-xs hidden md:table-cell"
+                              className="px-0.5 md:px-2 py-1 md:py-2 text-center text-[7px] md:text-xs"
                             >
                               {record[stop.column]
                                 ? String(record[stop.column])
                                 : ""}
                             </td>
                           ))}
-                          <td className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
+                          <td className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs">
                             {record["Total DecoTime Min"]}
                           </td>
-                          <td className="px-2 md:px-3 py-2 text-center font-semibold hidden">
+                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalOTU"]}
                           </td>
-                          <td className="px-2 md:px-3 py-2 text-center font-semibold hidden">
+                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalESOT"]}
                           </td>
                         </tr>
@@ -353,14 +322,16 @@ export default function TUP() {
                   </tbody>
                 </table>
               </div>
-              <div className="px-3 md:px-4 py-2 md:py-3 bg-gray-800 border-t border-border text-xs text-text-muted">
-                <p className="text-xs md:text-sm">
-                  <span className="inline-block w-4 h-4 bg-flag-green mr-2 rounded"></span>
-                  Green (pO2 ≤ 1.39) |
-                  <span className="inline-block w-4 h-4 bg-flag-pink mr-2 ml-2 rounded"></span>
-                  Amber (1.40-1.49) |
-                  <span className="inline-block w-4 h-4 bg-flag-red mr-2 ml-2 rounded"></span>
-                  Red (pO2 ≥ 1.50)
+              <div className="px-2 md:px-4 py-1 md:py-3 bg-gray-800 border-t border-border text-[10px] md:text-xs text-text-muted">
+                <p>
+                  <span className="inline-block w-3 h-3 md:w-4 md:h-4 bg-flag-green mr-1 md:mr-2 rounded"></span>
+                  <span className="text-[8px] md:text-xs">Green (pO2 ≤ 1.39)</span>
+                  <span className="mx-1">|</span>
+                  <span className="inline-block w-3 h-3 md:w-4 md:h-4 bg-flag-pink mr-1 md:mr-2 rounded"></span>
+                  <span className="text-[8px] md:text-xs">Amber (1.40-1.49)</span>
+                  <span className="mx-1">|</span>
+                  <span className="inline-block w-3 h-3 md:w-4 md:h-4 bg-flag-red mr-1 md:mr-2 rounded"></span>
+                  <span className="text-[8px] md:text-xs">Red (pO2 ≥ 1.50)</span>
                 </p>
               </div>
             </div>

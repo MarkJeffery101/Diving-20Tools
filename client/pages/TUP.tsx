@@ -164,7 +164,6 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
-                    placeholder="25"
                     value={inputs.diveTime}
                     onChange={(e) =>
                       handleInputChange("diveTime", e.target.value)

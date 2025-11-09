@@ -344,5 +344,7 @@ export const useTupCalculator = () => {
     selfTestResult,
     selectedRowIndex,
     setSelectedRowIndex,
+    matchingMessage,
+    setMatchingMessage,
   };
 };

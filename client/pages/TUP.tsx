@@ -374,14 +374,14 @@ export default function TUP() {
                           </th>
                         );
                       })}
-                      <th className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs">
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[9px] md:text-xs">
                         <span className="md:hidden">Deco</span>
                         <span className="hidden md:inline">Total Deco</span>
                       </th>
-                      <th className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs hidden">
+                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[9px] md:text-xs hidden">
                         OTU
                       </th>
-                      <th className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs hidden">
+                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[9px] md:text-xs hidden">
                         ESOT
                       </th>
                     </tr>

@@ -20,6 +20,8 @@ export default function TUP() {
 
   const [o2InputMessage, setO2InputMessage] = useState<string>("");
 
+  const validO2Values = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+
   const handleInputChange = (
     field: "maxDepth" | "o2" | "diveTime",
     value: string,
@@ -33,8 +35,7 @@ export default function TUP() {
 
       const num = parseInt(value);
       if (!isNaN(num)) {
-        const validValues = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
-        if (validValues.includes(num)) {
+        if (validO2Values.includes(num)) {
           setInputs((prev) => ({ ...prev, [field]: value }));
           setO2InputMessage("");
         } else {
@@ -45,6 +46,41 @@ export default function TUP() {
       }
     } else {
       setInputs((prev) => ({ ...prev, [field]: value }));
+    }
+  };
+
+  const handleO2ArrowKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+    e.preventDefault();
+
+    const currentVal = inputs.o2 ? parseInt(inputs.o2) : null;
+    let newValue: number | null = null;
+
+    if (e.key === "ArrowUp") {
+      if (currentVal === null || currentVal < 21) {
+        newValue = 21;
+      } else if (currentVal === 21) {
+        newValue = 30;
+      } else if (currentVal < 40) {
+        newValue = currentVal + 1;
+      } else {
+        newValue = 40;
+      }
+    } else if (e.key === "ArrowDown") {
+      if (currentVal === null || currentVal > 40) {
+        newValue = 40;
+      } else if (currentVal === 30) {
+        newValue = 21;
+      } else if (currentVal > 21 && currentVal <= 40) {
+        newValue = currentVal - 1;
+      } else {
+        newValue = 21;
+      }
+    }
+
+    if (newValue !== null && validO2Values.includes(newValue)) {
+      setInputs((prev) => ({ ...prev, o2: newValue!.toString() }));
+      setO2InputMessage("");
     }
   };
 

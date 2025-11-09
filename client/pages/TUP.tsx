@@ -10,16 +10,11 @@ export default function TUP() {
     filteredRecords,
     statusMessage,
     selfTestResult,
-    selectedRowIndex, setSelectedRowIndex,
-    compute
+    selectedRowIndex, setSelectedRowIndex
   } = useTupCalculator();
 
   const handleInputChange = (field: 'maxDepth' | 'o2' | 'diveTime', value: string) => {
     setInputs(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleCompute = () => {
-    compute();
   };
 
   return (
@@ -101,13 +96,6 @@ export default function TUP() {
                   />
                 </div>
               </div>
-
-              <button
-                onClick={handleCompute}
-                className="w-full mt-6 px-4 py-2 bg-accent text-white rounded font-semibold hover:opacity-90 transition-opacity"
-              >
-                Calculate
-              </button>
             </div>
 
             {/* Outputs */}

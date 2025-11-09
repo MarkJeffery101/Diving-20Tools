@@ -272,12 +272,14 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     IMCA TUP Max Bottom Time (min)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Maximum safe bottom time"
-                    >
-                      <Info className="w-3 h-3" />
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="ml-2 inline-block w-3 h-3 flex-shrink-0">
+                          <Info className="w-3 h-3" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Maximum safe bottom time</TooltipContent>
+                    </Tooltip>
                   </label>
                   <div className="text-sm font-bold text-text-dark text-right whitespace-nowrap flex-shrink-0">
                     {outputs.dmac || "—"}

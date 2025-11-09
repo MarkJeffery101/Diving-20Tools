@@ -203,13 +203,14 @@ export default function TUP() {
                   </thead>
                   <tbody>
                     {filteredRecords.map((record, idx) => {
-                      const flagColor = record._flag === 1 ? 'bg-flag-green' : record._flag === 2 ? 'bg-flag-pink' : record._flag === 3 ? 'bg-flag-red' : '';
+                      const flagColor = record._flag === 1 ? 'bg-green-100' : record._flag === 2 ? 'bg-pink-100' : record._flag === 3 ? 'bg-red-100' : '';
+                      const boldBorder = record._flag === 2 ? 'border-b-4 border-red-600' : 'border-b border-border';
                       const isSelected = idx === selectedRowIndex;
                       return (
                         <tr
                           key={idx}
                           onClick={() => setSelectedRowIndex(idx)}
-                          className={`border-b border-border cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? 'ring-2 ring-accent' : ''}`}
+                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? 'ring-2 ring-accent' : ''}`}
                         >
                           <td className="px-3 py-2 font-semibold">{record['Depth(m/sw)']}</td>
                           <td className="px-3 py-2 text-center">{record['BottomTime Min']}</td>

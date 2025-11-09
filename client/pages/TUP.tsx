@@ -410,13 +410,13 @@ export default function TUP() {
                           onClick={() => handleRowClick(idx)}
                           className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isMatchingRow ? "bg-yellow-100" : ""} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
-                          <td className="px-1 md:px-3 py-1 md:py-2 font-semibold text-[8px] md:text-xs">
+                          <td className="px-1 md:px-2 py-0.5 md:py-1 font-semibold text-[8px] md:text-xs">
                             {record["Depth(m/sw)"]}
                           </td>
-                          <td className="px-1 md:px-3 py-1 md:py-2 text-center text-[8px] md:text-xs">
+                          <td className="px-1 md:px-2 py-0.5 md:py-1 text-center text-[8px] md:text-xs">
                             {record["BottomTime Min"]}
                           </td>
-                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center text-[7px] md:text-xs">
+                          <td className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center text-[7px] md:text-xs">
                             {record["Time till(1st stop Min)"]}
                           </td>
                           {DECOMPRESSION_STOPS.map((stop) => (

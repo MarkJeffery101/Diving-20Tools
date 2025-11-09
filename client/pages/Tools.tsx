@@ -23,45 +23,316 @@ interface CalculatorRow {
 }
 
 export default function Tools() {
-  const [otuRows, setOtuRows] = useState<CalculatorRow[]>([
-    { id: "1", depth_m: "", o2_percent: "", time_min: "" },
-  ]);
+  const [otuRows, setOtuRows] = useState<CalculatorRow[]>(() => {
+    if (typeof window === "undefined") return [{ id: "1", depth_m: "", o2_percent: "", time_min: "" }];
+    try {
+      const saved = localStorage.getItem("toolsOtuRows");
+      return saved ? JSON.parse(saved) : [{ id: "1", depth_m: "", o2_percent: "", time_min: "" }];
+    } catch (e) {
+      return [{ id: "1", depth_m: "", o2_percent: "", time_min: "" }];
+    }
+  });
 
-  const [eadDepth, setEadDepth] = useState<string>("");
-  const [eadO2, setEadO2] = useState<string>("");
+  const [eadDepth, setEadDepth] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsEadDepth") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [eadO2, setEadO2] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsEadO2") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
   const [eadResult, setEadResult] = useState<EADRow | null>(null);
 
   // Nitrox Failure Calculator
-  const [nitroxDepth, setNitroxDepth] = useState<string>("");
-  const [nitroxTime, setNitroxTime] = useState<string>("");
-  const [nitroxO2, setNitroxO2] = useState<string>("");
-  const [airTime, setAirTime] = useState<string>("");
+  const [nitroxDepth, setNitroxDepth] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsNitroxDepth") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [nitroxTime, setNitroxTime] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsNitroxTime") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [nitroxO2, setNitroxO2] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsNitroxO2") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [airTime, setAirTime] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsAirTime") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
   const [nitroxResult, setNitroxResult] = useState<{
     o2: number;
     ead: number;
   } | null>(null);
 
   // Bail Out Calculator
-  const [bailoutDepth, setBailoutDepth] = useState<string>("");
-  const [bailoutTime, setBailoutTime] = useState<string>("");
-  const [bailoutO2, setBailoutO2] = useState<string>("");
-  const [bailoutStartBar, setBailoutStartBar] = useState<string>("");
-  const [bailoutEndBar, setBailoutEndBar] = useState<string>("");
-  const [bailoutVolume, setBailoutVolume] = useState<string>("");
+  const [bailoutDepth, setBailoutDepth] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutDepth") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [bailoutTime, setBailoutTime] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutTime") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [bailoutO2, setBailoutO2] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutO2") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [bailoutStartBar, setBailoutStartBar] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutStartBar") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [bailoutEndBar, setBailoutEndBar] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutEndBar") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
+  const [bailoutVolume, setBailoutVolume] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    try {
+      return localStorage.getItem("toolsBailoutVolume") || "";
+    } catch (e) {
+      return "";
+    }
+  });
+
   const [bailoutResult, setBailoutResult] = useState<{
     o2: number;
     ead: number;
   } | null>(null);
 
   // Residual ESOT Calculator
-  const [residualEsotPrev, setResidualEsotPrev] = useState<string>("200");
-  const [residualPo2Prev, setResidualPo2Prev] = useState<string>("1.4");
-  const [residualSiHours, setResidualSiHours] = useState<string>("10");
+  const [residualEsotPrev, setResidualEsotPrev] = useState<string>(() => {
+    if (typeof window === "undefined") return "200";
+    try {
+      return localStorage.getItem("toolsResidualEsotPrev") || "200";
+    } catch (e) {
+      return "200";
+    }
+  });
+
+  const [residualPo2Prev, setResidualPo2Prev] = useState<string>(() => {
+    if (typeof window === "undefined") return "1.4";
+    try {
+      return localStorage.getItem("toolsResidualPo2Prev") || "1.4";
+    } catch (e) {
+      return "1.4";
+    }
+  });
+
+  const [residualSiHours, setResidualSiHours] = useState<string>(() => {
+    if (typeof window === "undefined") return "10";
+    try {
+      return localStorage.getItem("toolsResidualSiHours") || "10";
+    } catch (e) {
+      return "10";
+    }
+  });
+
   const [residualResult, setResidualResult] = useState<{
     residualEsot: number;
     percentPrev: number;
     decayFactor: number;
   } | null>(null);
+
+  // Save all calculator values to localStorage
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsOtuRows", JSON.stringify(otuRows));
+    } catch (e) {
+      console.error("Failed to save OTU rows to localStorage", e);
+    }
+  }, [otuRows]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsEadDepth", eadDepth);
+    } catch (e) {
+      console.error("Failed to save EAD depth to localStorage", e);
+    }
+  }, [eadDepth]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsEadO2", eadO2);
+    } catch (e) {
+      console.error("Failed to save EAD O2 to localStorage", e);
+    }
+  }, [eadO2]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsNitroxDepth", nitroxDepth);
+    } catch (e) {
+      console.error("Failed to save Nitrox depth to localStorage", e);
+    }
+  }, [nitroxDepth]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsNitroxTime", nitroxTime);
+    } catch (e) {
+      console.error("Failed to save Nitrox time to localStorage", e);
+    }
+  }, [nitroxTime]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsNitroxO2", nitroxO2);
+    } catch (e) {
+      console.error("Failed to save Nitrox O2 to localStorage", e);
+    }
+  }, [nitroxO2]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsAirTime", airTime);
+    } catch (e) {
+      console.error("Failed to save Air time to localStorage", e);
+    }
+  }, [airTime]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutDepth", bailoutDepth);
+    } catch (e) {
+      console.error("Failed to save Bailout depth to localStorage", e);
+    }
+  }, [bailoutDepth]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutTime", bailoutTime);
+    } catch (e) {
+      console.error("Failed to save Bailout time to localStorage", e);
+    }
+  }, [bailoutTime]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutO2", bailoutO2);
+    } catch (e) {
+      console.error("Failed to save Bailout O2 to localStorage", e);
+    }
+  }, [bailoutO2]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutStartBar", bailoutStartBar);
+    } catch (e) {
+      console.error("Failed to save Bailout start bar to localStorage", e);
+    }
+  }, [bailoutStartBar]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutEndBar", bailoutEndBar);
+    } catch (e) {
+      console.error("Failed to save Bailout end bar to localStorage", e);
+    }
+  }, [bailoutEndBar]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsBailoutVolume", bailoutVolume);
+    } catch (e) {
+      console.error("Failed to save Bailout volume to localStorage", e);
+    }
+  }, [bailoutVolume]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsResidualEsotPrev", residualEsotPrev);
+    } catch (e) {
+      console.error("Failed to save Residual ESOT prev to localStorage", e);
+    }
+  }, [residualEsotPrev]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsResidualPo2Prev", residualPo2Prev);
+    } catch (e) {
+      console.error("Failed to save Residual PO2 prev to localStorage", e);
+    }
+  }, [residualPo2Prev]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("toolsResidualSiHours", residualSiHours);
+    } catch (e) {
+      console.error("Failed to save Residual SI hours to localStorage", e);
+    }
+  }, [residualSiHours]);
 
   const calculateOtuRow = (row: CalculatorRow): CalculatorRow => {
     const depth = parseFloat(row.depth_m);
@@ -982,7 +1253,7 @@ export default function Tools() {
               <ul className="space-y-1 text-[11px]">
                 <li>• Enter planned dive depth (10-50m)</li>
                 <li>• Enter nitrox O₂ percentage (30-40%)</li>
-                <li>• Click Lookup to see EAD values</li>
+                <li>��� Click Lookup to see EAD values</li>
                 <li>• EAD helps determine decompression schedule</li>
                 <li>• pO₂ shows oxygen toxicity risk</li>
                 <li>• Table shows which air table to use</li>

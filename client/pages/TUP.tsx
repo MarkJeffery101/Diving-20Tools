@@ -365,7 +365,26 @@ export default function TUP() {
                         const headerClass = isOxygen ? "bg-blue-300" : "";
 
                         // Parse header text into multiple lines
-                        const parts = stop.column.split(/\s+/);
+                        let parts: string[] = [];
+                        if (stop.column === "15 Air TUP") {
+                          parts = ["15 Air", "TUP"];
+                        } else if (isOxygen) {
+                          // Extract number and "Oxygen" - e.g., "15Oxygen" -> ["15", "Oxygen"]
+                          const match = stop.column.match(/^(\d+)(Oxygen)$/);
+                          if (match) {
+                            parts = [match[1], match[2]];
+                          } else {
+                            parts = [stop.column];
+                          }
+                        } else {
+                          // Air columns - e.g., "24 Air" -> ["24", "Air"]
+                          const match = stop.column.match(/^(\d+)\s+(.+)$/);
+                          if (match) {
+                            parts = [match[1], match[2]];
+                          } else {
+                            parts = [stop.column];
+                          }
+                        }
 
                         return (
                           <th

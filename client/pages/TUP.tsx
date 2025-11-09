@@ -141,29 +141,33 @@ export default function TUP() {
           {selectedRowIndex !== null && (
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="bg-card-bg border border-border rounded-lg p-4">
-                <h3 className="font-bold text-text-dark mb-2">Bellman's Exposure</h3>
-                <div className="flex gap-4">
-                  <div className="flex gap-2">
-                    <span className="text-text-muted">ESOT</span>
-                    <span className="font-bold">{outputs.bellmanEsot || '—'}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-text-muted">OTU</span>
-                    <span className="font-bold">{outputs.bellmanOtu || '—'}</span>
+                <div className="flex items-center gap-6">
+                  <h3 className="font-bold text-text-dark">Bellman's Exposure</h3>
+                  <div className="flex gap-4">
+                    <div className="flex gap-2">
+                      <span className="text-text-muted">ESOT</span>
+                      <span className="font-bold">{outputs.bellmanEsot || '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-text-muted">OTU</span>
+                      <span className="font-bold">{outputs.bellmanOtu || '—'}</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-card-bg border border-border rounded-lg p-4">
-                <h3 className="font-bold text-text-dark mb-2">Diver's Exposure</h3>
-                <div className="flex gap-4">
-                  <div className="flex gap-2">
-                    <span className="text-text-muted">ESOT</span>
-                    <span className="font-bold">{outputs.diversEsot || '—'}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-text-muted">OTU</span>
-                    <span className="font-bold">{outputs.diversOtu || '—'}</span>
+                <div className="flex items-center gap-6">
+                  <h3 className="font-bold text-text-dark">Diver's Exposure</h3>
+                  <div className="flex gap-4">
+                    <div className="flex gap-2">
+                      <span className="text-text-muted">ESOT</span>
+                      <span className="font-bold">{outputs.diversEsot || '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-text-muted">OTU</span>
+                      <span className="font-bold">{outputs.diversOtu || '—'}</span>
+                    </div>
                   </div>
                 </div>
               </div>

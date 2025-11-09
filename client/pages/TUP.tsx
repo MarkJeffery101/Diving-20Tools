@@ -141,7 +141,7 @@ export default function TUP() {
           {selectedRowIndex !== null && (
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="bg-card-bg border border-border rounded-lg p-4">
-                <div className="flex items-center gap-6">
+                <div className="flex items-center justify-between">
                   <h3 className="font-bold text-text-dark">Bellman's Exposure</h3>
                   <div className="flex gap-4">
                     <div className="flex gap-2">
@@ -157,7 +157,7 @@ export default function TUP() {
               </div>
 
               <div className="bg-card-bg border border-border rounded-lg p-4">
-                <div className="flex items-center gap-6">
+                <div className="flex items-center justify-between">
                   <h3 className="font-bold text-text-dark">Diver's Exposure</h3>
                   <div className="flex gap-4">
                     <div className="flex gap-2">

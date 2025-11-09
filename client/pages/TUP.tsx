@@ -93,15 +93,15 @@ export default function TUP() {
     <div className="min-h-screen bg-page-bg text-text-dark">
       <Navigation />
 
-      <section className="py-4 md:py-6 px-4 bg-card-bg border-b border-border">
+      <section className="py-2 md:py-3 px-4 bg-card-bg border-b border-border">
         <div className="container mx-auto max-w-7xl">
-          <h1 className="text-2xl md:text-3xl font-bold mb-1">
+          <h1 className="text-2xl md:text-3xl font-bold mb-0.5">
             Air - Oxygen decompression tables for TUP diving on Air
           </h1>
-          <p className="text-xs md:text-sm text-text-muted mb-3">
+          <p className="text-xs md:text-sm text-text-muted mb-2">
             Repetitive interval is 16 Hours
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-xs text-text-muted mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 text-xs text-text-muted mb-2">
             <div>
               <p className="font-semibold">
                 Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in minutes

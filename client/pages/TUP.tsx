@@ -93,10 +93,10 @@ export default function TUP() {
     <div className="min-h-screen bg-page-bg text-text-dark">
       <Navigation />
 
-      <section className="py-2 md:py-3 px-4 bg-card-bg border-b border-border">
+      <section className="py-3 px-4 pr-12 bg-card-bg border-b border-border">
         <div className="container mx-auto max-w-7xl">
           <h1 className="text-2xl md:text-3xl font-bold mb-0.5">
-            Air - Oxygen decompression tables for TUP diving on Air
+            <span style={{ color: "rgb(6, 93, 135)" }}>AoxTUP2C</span> - Air / Oxygen TUP diving
           </h1>
           <p className="text-xs md:text-sm text-text-muted mb-2">
             Repetitive interval is 16 Hours
@@ -104,12 +104,7 @@ export default function TUP() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 text-xs text-text-muted mb-2">
             <div>
               <p className="font-semibold">
-                Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in minutes
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold">
-                Ascent speed is 10 msw/min&nbsp; &nbsp; &nbsp; &nbsp; Stop time starts at arrival at the stop
+                Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in minutes&nbsp; &nbsp; &nbsp; Ascent Speed 10m/sw (min)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Stop Time starts at arrival at stop
               </p>
             </div>
           </div>
@@ -349,7 +344,7 @@ export default function TUP() {
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-max">
-                  <thead className="bg-slate-900 border-b-4 border-slate-900 sticky top-0">
+                  <thead className="sticky top-0" style={{ backgroundColor: "rgb(6, 93, 135)", borderBottom: "4px solid rgb(6, 93, 135)" }}>
                     <tr>
                       <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-left font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Depth<br />(m/sw)
@@ -467,7 +462,7 @@ export default function TUP() {
                   </tbody>
                 </table>
               </div>
-              <div className="px-2 md:px-3 py-1 md:py-2 bg-gray-800 border-t-4 border-slate-900 text-[10px] md:text-xs text-text-muted">
+              <div className="px-2 md:px-3 py-1 md:py-2 bg-gray-800 text-[10px] md:text-xs text-text-muted" style={{ borderTop: "4px solid rgb(6, 93, 135)" }}>
                 <p>
                   <span className="inline-block w-3 h-3 md:w-4 md:h-4 bg-flag-green mr-1 md:mr-2 rounded"></span>
                   <span className="text-[8px] md:text-xs">

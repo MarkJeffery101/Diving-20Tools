@@ -346,7 +346,7 @@ export default function TUP() {
 
           {/* Decompression Table */}
           {filteredRecords.length > 0 && (
-            <div className="bg-card-bg border border-border rounded-lg overflow-hidden -mx-4 md:mx-0">
+            <div className="bg-card-bg border border-border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-max">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">

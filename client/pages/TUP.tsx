@@ -5,16 +5,21 @@ import { Info } from "lucide-react";
 
 export default function TUP() {
   const {
-    inputs, setInputs,
+    inputs,
+    setInputs,
     outputs,
     filteredRecords,
     statusMessage,
     selfTestResult,
-    selectedRowIndex, setSelectedRowIndex
+    selectedRowIndex,
+    setSelectedRowIndex,
   } = useTupCalculator();
 
-  const handleInputChange = (field: 'maxDepth' | 'o2' | 'diveTime', value: string) => {
-    setInputs(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (
+    field: "maxDepth" | "o2" | "diveTime",
+    value: string,
+  ) => {
+    setInputs((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -31,11 +36,28 @@ export default function TUP() {
           </p>
           <div className="grid grid-cols-3 gap-4 text-xs text-text-muted mb-4">
             <div>
-              <p className="font-semibold" style={{ width: 'auto', alignSelf: 'center' }}>Pressure in msw</p>
+              <p
+                className="font-semibold"
+                style={{ width: "auto", alignSelf: "center" }}
+              >
+                Pressure in msw
+              </p>
               <p>Stop time starts after arrival at the stop</p>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-              <p className="font-semibold" style={{ width: 'auto', alignSelf: 'center' }}>Time in minutes and tenths of minutes</p>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+              }}
+            >
+              <p
+                className="font-semibold"
+                style={{ width: "auto", alignSelf: "center" }}
+              >
+                Time in minutes and tenths of minutes
+              </p>
             </div>
             <div>
               <p className="font-semibold">Ascent speed is 10 msw/min</p>
@@ -54,7 +76,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
                     Maximum Diving Depth (m/sw)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Actual depth in meters">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted"
+                      title="Actual depth in meters"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -62,7 +87,9 @@ export default function TUP() {
                     type="number"
                     placeholder="20"
                     value={inputs.maxDepth}
-                    onChange={(e) => handleInputChange('maxDepth', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("maxDepth", e.target.value)
+                    }
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
@@ -70,7 +97,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
                     Nitrox O2 (%)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Oxygen percentage in mix">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted"
+                      title="Oxygen percentage in mix"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -78,7 +108,7 @@ export default function TUP() {
                     type="number"
                     placeholder="30"
                     value={inputs.o2}
-                    onChange={(e) => handleInputChange('o2', e.target.value)}
+                    onChange={(e) => handleInputChange("o2", e.target.value)}
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
@@ -86,7 +116,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
                     Dive Time (min)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Planned dive time in minutes">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted"
+                      title="Planned dive time in minutes"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -94,7 +127,9 @@ export default function TUP() {
                     type="number"
                     placeholder="25"
                     value={inputs.diveTime}
-                    onChange={(e) => handleInputChange('diveTime', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("diveTime", e.target.value)
+                    }
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
@@ -107,34 +142,50 @@ export default function TUP() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
-                    EAD Calculated, Safety Margin Added, Closest Table Bellow (m/sw)
-                    <button className="ml-2 inline-block w-3 h-3" title="Equivalent Air Depth">
+                    EAD Calculated, Safety Margin Added, Closest Table Bellow
+                    (m/sw)
+                    <button
+                      className="ml-2 inline-block w-3 h-3"
+                      title="Equivalent Air Depth"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="w-24 text-lg font-bold text-text-dark text-right">{outputs.bellDepth || '—'}</div>
+                  <div className="w-24 text-lg font-bold text-text-dark text-right">
+                    {outputs.bellDepth || "—"}
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
                     PO2 at Diving Depth (bar/abs)
-                    <button className="ml-2 inline-block w-3 h-3" title="Partial pressure of oxygen at depth">
+                    <button
+                      className="ml-2 inline-block w-3 h-3"
+                      title="Partial pressure of oxygen at depth"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className={`w-24 text-lg font-bold px-2 py-1 rounded text-right ${outputs.po2BgClass}`}>
-                    {outputs.po2 || '—'}
+                  <div
+                    className={`w-24 text-lg font-bold px-2 py-1 rounded text-right ${outputs.po2BgClass}`}
+                  >
+                    {outputs.po2 || "—"}
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
                     IMCA TUP Max Bottom Time (min)
-                    <button className="ml-2 inline-block w-3 h-3" title="Maximum safe bottom time">
+                    <button
+                      className="ml-2 inline-block w-3 h-3"
+                      title="Maximum safe bottom time"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-sm font-bold text-text-dark text-right whitespace-nowrap">{outputs.dmac || '—'}</div>
+                  <div className="text-sm font-bold text-text-dark text-right whitespace-nowrap">
+                    {outputs.dmac || "—"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -145,15 +196,21 @@ export default function TUP() {
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="bg-card-bg border border-border rounded-lg p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-text-dark">Bellman's Exposure</h3>
+                  <h3 className="font-bold text-text-dark">
+                    Bellman's Exposure
+                  </h3>
                   <div className="flex gap-4">
                     <div className="flex gap-2">
                       <span className="text-text-muted">ESOT</span>
-                      <span className="font-bold">{outputs.bellmanEsot || '—'}</span>
+                      <span className="font-bold">
+                        {outputs.bellmanEsot || "—"}
+                      </span>
                     </div>
                     <div className="flex gap-2">
                       <span className="text-text-muted">OTU</span>
-                      <span className="font-bold">{outputs.bellmanOtu || '—'}</span>
+                      <span className="font-bold">
+                        {outputs.bellmanOtu || "—"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -165,11 +222,15 @@ export default function TUP() {
                   <div className="flex gap-4">
                     <div className="flex gap-2">
                       <span className="text-text-muted">ESOT</span>
-                      <span className="font-bold">{outputs.diversEsot || '—'}</span>
+                      <span className="font-bold">
+                        {outputs.diversEsot || "—"}
+                      </span>
                     </div>
                     <div className="flex gap-2">
                       <span className="text-text-muted">OTU</span>
-                      <span className="font-bold">{outputs.diversOtu || '—'}</span>
+                      <span className="font-bold">
+                        {outputs.diversOtu || "—"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -180,12 +241,15 @@ export default function TUP() {
           {/* Table Info */}
           <div className="mb-6 p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
             <p className="mb-2">
-              <strong>How to use:</strong> Enter your maximum dive depth and nitrox O₂% to filter the decompression table. 
-              Add a dive time to find the corresponding decompression schedule and calculate exposures for the bellman and diver.
+              <strong>How to use:</strong> Enter your maximum dive depth and
+              nitrox O₂% to filter the decompression table. Add a dive time to
+              find the corresponding decompression schedule and calculate
+              exposures for the bellman and diver.
             </p>
             <p>
-              <strong>Table shows:</strong> {filteredRecords.length} rows available | 
-              Click any row to select it and view calculated exposures
+              <strong>Table shows:</strong> {filteredRecords.length} rows
+              available | Click any row to select it and view calculated
+              exposures
             </p>
           </div>
 
@@ -196,45 +260,89 @@ export default function TUP() {
                 <table className="w-full text-xs">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
-                      <th className="px-3 py-2 text-left font-semibold">Depth msw</th>
-                      <th className="px-3 py-2 text-center font-semibold">Bottom Time Min</th>
-                      <th className="px-3 py-2 text-center font-semibold">Time till 1st Stop Min</th>
-                      {DECOMPRESSION_STOPS.map(stop => {
-                        const isOxygen = stop.column.includes('Oxygen');
-                        const headerClass = isOxygen ? 'bg-blue-300' : '';
+                      <th className="px-3 py-2 text-left font-semibold">
+                        Depth msw
+                      </th>
+                      <th className="px-3 py-2 text-center font-semibold">
+                        Bottom Time Min
+                      </th>
+                      <th className="px-3 py-2 text-center font-semibold">
+                        Time till 1st Stop Min
+                      </th>
+                      {DECOMPRESSION_STOPS.map((stop) => {
+                        const isOxygen = stop.column.includes("Oxygen");
+                        const headerClass = isOxygen ? "bg-blue-300" : "";
                         return (
-                          <th key={stop.column} className={`px-2 py-2 text-center font-semibold text-[11px] whitespace-nowrap ${headerClass}`}>
-                            {stop.column === '15 Air TUP' ? '15 Air' : stop.column}
+                          <th
+                            key={stop.column}
+                            className={`px-2 py-2 text-center font-semibold text-[11px] whitespace-nowrap ${headerClass}`}
+                          >
+                            {stop.column === "15 Air TUP"
+                              ? "15 Air"
+                              : stop.column}
                           </th>
                         );
                       })}
-                      <th className="px-3 py-2 text-center font-semibold">Total Deco Time Min</th>
-                      <th className="px-3 py-2 text-center font-semibold hidden">Total OTU</th>
-                      <th className="px-3 py-2 text-center font-semibold hidden">Total ESOT</th>
+                      <th className="px-3 py-2 text-center font-semibold">
+                        Total Deco Time Min
+                      </th>
+                      <th className="px-3 py-2 text-center font-semibold hidden">
+                        Total OTU
+                      </th>
+                      <th className="px-3 py-2 text-center font-semibold hidden">
+                        Total ESOT
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredRecords.map((record, idx) => {
-                      const flagColor = record._flag === 1 ? 'bg-green-100' : record._flag === 2 ? 'bg-pink-100' : record._flag === 3 ? 'bg-red-100' : '';
-                      const boldBorder = record._flag === 2 ? 'border-b-4 border-red-600' : 'border-b border-border';
+                      const flagColor =
+                        record._flag === 1
+                          ? "bg-green-100"
+                          : record._flag === 2
+                            ? "bg-pink-100"
+                            : record._flag === 3
+                              ? "bg-red-100"
+                              : "";
+                      const boldBorder =
+                        record._flag === 2
+                          ? "border-b-4 border-red-600"
+                          : "border-b border-border";
                       const isSelected = idx === selectedRowIndex;
                       return (
                         <tr
                           key={idx}
                           onClick={() => setSelectedRowIndex(idx)}
-                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? 'ring-2 ring-accent' : ''}`}
+                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
-                          <td className="px-3 py-2 font-semibold">{record['Depth(m/sw)']}</td>
-                          <td className="px-3 py-2 text-center">{record['BottomTime Min']}</td>
-                          <td className="px-3 py-2 text-center">{record['Time till(1st stop Min)']}</td>
-                          {DECOMPRESSION_STOPS.map(stop => (
-                            <td key={stop.column} className="px-2 py-2 text-center">
-                              {record[stop.column] ? String(record[stop.column]) : ''}
+                          <td className="px-3 py-2 font-semibold">
+                            {record["Depth(m/sw)"]}
+                          </td>
+                          <td className="px-3 py-2 text-center">
+                            {record["BottomTime Min"]}
+                          </td>
+                          <td className="px-3 py-2 text-center">
+                            {record["Time till(1st stop Min)"]}
+                          </td>
+                          {DECOMPRESSION_STOPS.map((stop) => (
+                            <td
+                              key={stop.column}
+                              className="px-2 py-2 text-center"
+                            >
+                              {record[stop.column]
+                                ? String(record[stop.column])
+                                : ""}
                             </td>
                           ))}
-                          <td className="px-3 py-2 text-center font-semibold">{record['Total DecoTime Min']}</td>
-                          <td className="px-3 py-2 text-center font-semibold hidden">{record['TotalOTU']}</td>
-                          <td className="px-3 py-2 text-center font-semibold hidden">{record['TotalESOT']}</td>
+                          <td className="px-3 py-2 text-center font-semibold">
+                            {record["Total DecoTime Min"]}
+                          </td>
+                          <td className="px-3 py-2 text-center font-semibold hidden">
+                            {record["TotalOTU"]}
+                          </td>
+                          <td className="px-3 py-2 text-center font-semibold hidden">
+                            {record["TotalESOT"]}
+                          </td>
                         </tr>
                       );
                     })}
@@ -243,9 +351,12 @@ export default function TUP() {
               </div>
               <div className="px-4 py-3 bg-gray-800 border-t border-border text-xs text-text-muted">
                 <p>
-                  <span className="inline-block w-4 h-4 bg-flag-green mr-2 rounded"></span>Green (pO2 ≤ 1.39) |
-                  <span className="inline-block w-4 h-4 bg-flag-pink mr-2 ml-2 rounded"></span>Amber (1.40-1.49) |
-                  <span className="inline-block w-4 h-4 bg-flag-red mr-2 ml-2 rounded"></span>Red (pO2 ≥ 1.50)
+                  <span className="inline-block w-4 h-4 bg-flag-green mr-2 rounded"></span>
+                  Green (pO2 ≤ 1.39) |
+                  <span className="inline-block w-4 h-4 bg-flag-pink mr-2 ml-2 rounded"></span>
+                  Amber (1.40-1.49) |
+                  <span className="inline-block w-4 h-4 bg-flag-red mr-2 ml-2 rounded"></span>
+                  Red (pO2 ≥ 1.50)
                 </p>
               </div>
             </div>

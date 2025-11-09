@@ -205,12 +205,14 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Dive Time (min)
-                    <button
-                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
-                      title="Planned dive time in minutes"
-                    >
-                      <Info className="w-4 h-4" />
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0">
+                          <Info className="w-4 h-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Planned dive time in minutes</TooltipContent>
+                    </Tooltip>
                   </label>
                   <input
                     type="number"

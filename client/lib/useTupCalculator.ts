@@ -20,6 +20,7 @@ import {
 } from "./tupCalculator";
 
 export const useTupCalculator = () => {
+  // All state hooks must be at the top, in the same order every render
   const [inputs, setInputs] = useState<DiveInputs>({
     maxDepth: "",
     o2: "",
@@ -35,9 +36,7 @@ export const useTupCalculator = () => {
     bellmanOtu: "",
     diversOtu: "",
   });
-  const [filteredRecords, setFilteredRecords] = useState<DecompressionRecord[]>(
-    [],
-  );
+  const [filteredRecords, setFilteredRecords] = useState<DecompressionRecord[]>([]);
   const [statusMessage, setStatusMessage] = useState("Dataset embedded");
   const [selfTestResult, setSelfTestResult] = useState<SelfTestResult>({
     passed: false,

@@ -201,11 +201,11 @@ export default function TUP() {
             </div>
 
             {/* Outputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
+            <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3">
+              <h2 className="text-base md:text-lg font-bold mb-1.5 text-text-dark">
                 Outputs
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     EAD Calculated, Safety Margin Added (m/sw)

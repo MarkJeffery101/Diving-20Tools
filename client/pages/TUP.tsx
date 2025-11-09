@@ -351,13 +351,13 @@ export default function TUP() {
                 <table className="w-full min-w-max">
                   <thead className="bg-slate-900 border-b-4 border-slate-900 sticky top-0">
                     <tr>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[7px] md:text-xs text-white border-r border-white">
+                      <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-left font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Depth<br />(m/sw)
                       </th>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
+                      <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Bottom Time<br />(min)
                       </th>
-                      <th className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
+                      <th className="px-0.5 md:px-0.75 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Time To<br />1st Stop<br />(min)
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
@@ -389,7 +389,7 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[10px] text-white border-r border-white ${headerClass}`}
+                            className={`px-0.5 md:px-0.75 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-[10px] text-white border-r border-white ${headerClass}`}
                           >
                             {parts.map((part, idx) => (
                               <div key={idx}>{part}</div>
@@ -397,14 +397,14 @@ export default function TUP() {
                           </th>
                         );
                       })}
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white">
+                      <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white">
                         <span className="md:hidden">Deco<br />Min</span>
                         <span className="hidden md:inline">Total Deco<br />Time (min)</span>
                       </th>
-                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden text-white">
+                      <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs hidden text-white">
                         TotalOTU
                       </th>
-                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden text-white">
+                      <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs hidden text-white">
                         TotalESOT
                       </th>
                     </tr>
@@ -433,32 +433,32 @@ export default function TUP() {
                           onClick={() => handleRowClick(idx)}
                           className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isMatchingRow ? "bg-yellow-100" : ""} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
-                          <td className="px-1 md:px-2 py-0.5 md:py-1 font-semibold text-[8px] md:text-xs">
+                          <td className="px-0.5 md:px-1 py-0.25 md:py-0.5 font-semibold text-[8px] md:text-xs">
                             {record["Depth(m/sw)"]}
                           </td>
-                          <td className="px-1 md:px-2 py-0.5 md:py-1 text-center text-[8px] md:text-xs">
+                          <td className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center text-[8px] md:text-xs">
                             {record["BottomTime Min"]}
                           </td>
-                          <td className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center text-[7px] md:text-xs">
+                          <td className="px-0.5 md:px-0.75 py-0.25 md:py-0.5 text-center text-[7px] md:text-xs">
                             {record["Time till(1st stop Min)"]}
                           </td>
                           {DECOMPRESSION_STOPS.map((stop) => (
                             <td
                               key={stop.column}
-                              className="px-0.5 md:px-1 py-0.5 md:py-1 text-center text-[7px] md:text-xs"
+                              className="px-0.5 md:px-0.75 py-0.25 md:py-0.5 text-center text-[7px] md:text-xs"
                             >
                               {record[stop.column]
                                 ? String(record[stop.column])
                                 : ""}
                             </td>
                           ))}
-                          <td className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs">
+                          <td className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[8px] md:text-xs">
                             {record["Total DecoTime Min"]}
                           </td>
-                          <td className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs hidden">
+                          <td className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalOTU"]}
                           </td>
-                          <td className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs hidden">
+                          <td className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalESOT"]}
                           </td>
                         </tr>

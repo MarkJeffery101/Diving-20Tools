@@ -35,6 +35,7 @@ export const useTupCalculator = () => {
     diversEsot: "",
     bellmanOtu: "",
     diversOtu: "",
+    tableDepth: "",
   });
   const [filteredRecords, setFilteredRecords] = useState<DecompressionRecord[]>([]);
   const [statusMessage, setStatusMessage] = useState("Dataset embedded");

@@ -351,7 +351,7 @@ export default function TUP() {
                 <table className="w-full min-w-max">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
-                      <th className="px-1 md:px-3 py-1 md:py-2 text-left font-semibold text-[9px] md:text-xs">
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[9px] md:text-xs">
                         Depth
                       </th>
                       <th className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[9px] md:text-xs">

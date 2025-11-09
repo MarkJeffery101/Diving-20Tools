@@ -109,7 +109,7 @@ export default function TUP() {
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-lg font-bold text-text-dark text-right min-w-max">{outputs.bellDepth || '—'}</div>
+                  <div className="w-24 text-lg font-bold text-text-dark text-right">{outputs.bellDepth || '—'}</div>
                 </div>
 
                 <div className="flex items-center justify-between gap-2">
@@ -119,7 +119,7 @@ export default function TUP() {
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className={`text-lg font-bold px-2 py-1 rounded text-right min-w-max ${outputs.po2BgClass}`}>
+                  <div className={`w-24 text-lg font-bold px-2 py-1 rounded text-right ${outputs.po2BgClass}`}>
                     {outputs.po2 || '—'}
                   </div>
                 </div>
@@ -131,7 +131,7 @@ export default function TUP() {
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-sm font-bold text-text-dark text-right min-w-max">{outputs.dmac || '—'}</div>
+                  <div className="w-24 text-sm font-bold text-text-dark text-right">{outputs.dmac || '—'}</div>
                 </div>
               </div>
             </div>

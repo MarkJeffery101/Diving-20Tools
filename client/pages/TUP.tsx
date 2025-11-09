@@ -2,6 +2,7 @@ import { useTupCalculator } from "@/lib/useTupCalculator";
 import { DECOMPRESSION_STOPS } from "@/lib/tupCalculator";
 import Navigation from "@/components/Navigation";
 import { Info } from "lucide-react";
+import { useState } from "react";
 
 export default function TUP() {
   const {
@@ -17,11 +18,34 @@ export default function TUP() {
     setMatchingMessage,
   } = useTupCalculator();
 
+  const [o2InputMessage, setO2InputMessage] = useState<string>("");
+
   const handleInputChange = (
     field: "maxDepth" | "o2" | "diveTime",
     value: string,
   ) => {
-    setInputs((prev) => ({ ...prev, [field]: value }));
+    if (field === "o2") {
+      if (value === "") {
+        setInputs((prev) => ({ ...prev, [field]: value }));
+        setO2InputMessage("");
+        return;
+      }
+
+      const num = parseInt(value);
+      if (!isNaN(num)) {
+        const validValues = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+        if (validValues.includes(num)) {
+          setInputs((prev) => ({ ...prev, [field]: value }));
+          setO2InputMessage("");
+        } else {
+          setO2InputMessage("ONLT 21 AND 30 - 40 MAY BE USED");
+        }
+      } else {
+        setO2InputMessage("ONLT 21 AND 30 - 40 MAY BE USED");
+      }
+    } else {
+      setInputs((prev) => ({ ...prev, [field]: value }));
+    }
   };
 
   const handleRowClick = (idx: number) => {

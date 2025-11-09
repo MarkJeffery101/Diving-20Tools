@@ -48,9 +48,9 @@ export default function TUP() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-6 mb-8">
             {/* Inputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-6">
-              <h2 className="text-lg font-bold mb-4 text-text-dark">Inputs</h2>
-              <div className="space-y-3">
+            <div className="bg-card-bg border border-border rounded-lg p-4">
+              <h2 className="text-lg font-bold mb-2 text-text-dark">Inputs</h2>
+              <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
                     Maximum Dive Depth
@@ -99,9 +99,9 @@ export default function TUP() {
             </div>
 
             {/* Outputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-6">
-              <h2 className="text-lg font-bold mb-4 text-text-dark">Outputs</h2>
-              <div className="space-y-3">
+            <div className="bg-card-bg border border-border rounded-lg p-4">
+              <h2 className="text-lg font-bold mb-2 text-text-dark">Outputs</h2>
+              <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
                     EAD Calculated, safety margin added, closest table below
@@ -140,9 +140,9 @@ export default function TUP() {
           {/* Exposure Sections */}
           {selectedRowIndex !== null && (
             <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="bg-card-bg border border-border rounded-lg p-6">
-                <h3 className="font-bold text-text-dark mb-3">Bellman's Exposure</h3>
-                <div className="flex gap-6">
+              <div className="bg-card-bg border border-border rounded-lg p-4">
+                <h3 className="font-bold text-text-dark mb-2">Bellman's Exposure</h3>
+                <div className="flex gap-4">
                   <div className="flex gap-2">
                     <span className="text-text-muted">ESOT</span>
                     <span className="font-bold">{outputs.bellmanEsot || '—'}</span>
@@ -154,9 +154,9 @@ export default function TUP() {
                 </div>
               </div>
 
-              <div className="bg-card-bg border border-border rounded-lg p-6">
-                <h3 className="font-bold text-text-dark mb-3">Diver's Exposure</h3>
-                <div className="flex gap-6">
+              <div className="bg-card-bg border border-border rounded-lg p-4">
+                <h3 className="font-bold text-text-dark mb-2">Diver's Exposure</h3>
+                <div className="flex gap-4">
                   <div className="flex gap-2">
                     <span className="text-text-muted">ESOT</span>
                     <span className="font-bold">{outputs.diversEsot || '—'}</span>

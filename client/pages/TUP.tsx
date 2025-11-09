@@ -126,7 +126,6 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
-                    placeholder="20"
                     value={inputs.maxDepth}
                     onChange={(e) =>
                       handleInputChange("maxDepth", e.target.value)

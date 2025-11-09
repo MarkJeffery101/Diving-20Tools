@@ -134,7 +134,7 @@ export const useTupCalculator = () => {
     }
 
     const FO2 = o2Pct / 100;
-    const safetyEad = ((1 - FO2) / 0.775) * (depth + 10) - 10;
+    const safetyEad = o2Pct === 21 ? depth : ((1 - FO2) / 0.775) * (depth + 10) - 10;
     const po2AtDepth = FO2 * (depth / 10 + 1);
     const bellDepth = round(safetyEad, 1);
 
@@ -248,7 +248,7 @@ export const useTupCalculator = () => {
     }
 
     const FO2 = o2Pct / 100;
-    const safetyEad = ((1 - FO2) / 0.775) * (depth + 10) - 10;
+    const safetyEad = o2Pct === 21 ? depth : ((1 - FO2) / 0.775) * (depth + 10) - 10;
     const po2AtDepth = FO2 * (depth / 10 + 1);
     const bellDepth = round(safetyEad, 1);
 

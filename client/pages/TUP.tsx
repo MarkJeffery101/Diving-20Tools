@@ -51,8 +51,8 @@ export default function TUP() {
             <div className="bg-card-bg border border-border rounded-lg p-6">
               <h2 className="text-lg font-bold mb-4 text-text-dark">Inputs</h2>
               <div className="space-y-3">
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-semibold text-text-dark flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-sm font-semibold text-text-dark flex items-center">
                     Maximum Dive Depth
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Actual depth in meters">
                       <Info className="w-4 h-4" />
@@ -62,12 +62,12 @@ export default function TUP() {
                     type="number"
                     value={inputs.maxDepth}
                     onChange={(e) => handleInputChange('maxDepth', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-page-bg border border-border rounded text-text-dark text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-semibold text-text-dark flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-sm font-semibold text-text-dark flex items-center">
                     Nitrox O2%
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Oxygen percentage in mix">
                       <Info className="w-4 h-4" />
@@ -77,12 +77,12 @@ export default function TUP() {
                     type="number"
                     value={inputs.o2}
                     onChange={(e) => handleInputChange('o2', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-page-bg border border-border rounded text-text-dark text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-sm font-semibold text-text-dark flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-sm font-semibold text-text-dark flex items-center">
                     Dive Time
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Planned dive time in minutes">
                       <Info className="w-4 h-4" />
@@ -92,7 +92,7 @@ export default function TUP() {
                     type="number"
                     value={inputs.diveTime}
                     onChange={(e) => handleInputChange('diveTime', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-page-bg border border-border rounded text-text-dark text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                    className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
               </div>

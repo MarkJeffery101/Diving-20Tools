@@ -284,46 +284,67 @@ export default function TUP() {
 
           {/* Exposure Sections */}
           {selectedRowIndex !== null && (
-            <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4 mb-8 space-y-4">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-2">
-                <h3 className="font-bold text-text-dark mb-2 md:mb-0">
-                  Bellman's Exposure
-                </h3>
-                <div className="flex gap-4 md:gap-6">
-                  <div className="flex gap-2">
-                    <span className="text-text-muted text-xs">ESOT</span>
-                    <span className="font-bold text-sm">
-                      {outputs.bellmanEsot || "—"}
-                    </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+              <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4 space-y-4">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-2">
+                  <h3 className="font-bold text-text-dark mb-2 md:mb-0">
+                    Bellman's Exposure
+                  </h3>
+                  <div className="flex gap-4 md:gap-6">
+                    <div className="flex gap-2">
+                      <span className="text-text-muted text-xs">ESOT</span>
+                      <span className="font-bold text-sm">
+                        {outputs.bellmanEsot || "—"}
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-text-muted text-xs">OTU</span>
+                      <span className="font-bold text-sm">
+                        {outputs.bellmanOtu || "—"}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <span className="text-text-muted text-xs">OTU</span>
-                    <span className="font-bold text-sm">
-                      {outputs.bellmanOtu || "—"}
-                    </span>
+                </div>
+
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-2">
+                  <h3 className="font-bold text-text-dark mb-2 md:mb-0">
+                    Diver's Exposure
+                  </h3>
+                  <div className="flex gap-4 md:gap-6">
+                    <div className="flex gap-2">
+                      <span className="text-text-muted text-xs">ESOT</span>
+                      <span className="font-bold text-sm">
+                        {outputs.diversEsot || "—"}
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-text-muted text-xs">OTU</span>
+                      <span className="font-bold text-sm">
+                        {outputs.diversOtu || "—"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-2">
-                <h3 className="font-bold text-text-dark mb-2 md:mb-0">
-                  Diver's Exposure
-                </h3>
-                <div className="flex gap-4 md:gap-6">
-                  <div className="flex gap-2">
-                    <span className="text-text-muted text-xs">ESOT</span>
-                    <span className="font-bold text-sm">
-                      {outputs.diversEsot || "—"}
-                    </span>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4 cursor-help">
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <h3 className="font-bold text-text-dark">Table to Use</h3>
+                      <div className="text-xl md:text-2xl font-bold text-text-dark">
+                        {outputs.bellDepth || "—"} msw
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-2">
-                    <span className="text-text-muted text-xs">OTU</span>
-                    <span className="font-bold text-sm">
-                      {outputs.diversOtu || "—"}
-                    </span>
+                </TooltipTrigger>
+                <TooltipContent side="left" className="max-w-xs">
+                  <div className="space-y-2 text-xs">
+                    <p><strong>Table Selection:</strong> The decompression table depth is determined by the safety EAD. If EAD falls between table depths, the next deeper table is selected.</p>
+                    <p><strong>Time Selection:</strong> If dive time falls between table times, the yellow highlighted row shows the next longer time increment available in the table.</p>
                   </div>
-                </div>
-              </div>
+                </TooltipContent>
+              </Tooltip>
             </div>
           )}
 

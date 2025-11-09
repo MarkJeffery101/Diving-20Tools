@@ -53,7 +53,7 @@ export default function TUP() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
-                    Maximum Dive Depth
+                    Maximum Diving Depth (m/sw)
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Actual depth in meters">
                       <Info className="w-4 h-4" />
                     </button>
@@ -69,7 +69,7 @@ export default function TUP() {
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
-                    Nitrox O2%
+                    Nitrox O2 (%)
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Oxygen percentage in mix">
                       <Info className="w-4 h-4" />
                     </button>
@@ -85,7 +85,7 @@ export default function TUP() {
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-sm font-semibold text-text-dark flex items-center">
-                    Dive Time
+                    Dive Time (min)
                     <button className="ml-2 inline-block w-4 h-4 text-text-muted" title="Planned dive time in minutes">
                       <Info className="w-4 h-4" />
                     </button>
@@ -107,7 +107,7 @@ export default function TUP() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
-                    EAD Calculated, safety margin added, closest table below
+                    EAD Calculated, Safety Margin Added, Closest Table Bellow (m/sw)
                     <button className="ml-2 inline-block w-3 h-3" title="Equivalent Air Depth">
                       <Info className="w-3 h-3" />
                     </button>
@@ -117,7 +117,7 @@ export default function TUP() {
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
-                    PO2 at Diving Depth
+                    PO2 at Diving Depth (bar/abs)
                     <button className="ml-2 inline-block w-3 h-3" title="Partial pressure of oxygen at depth">
                       <Info className="w-3 h-3" />
                     </button>
@@ -129,12 +129,12 @@ export default function TUP() {
 
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center">
-                    IMCA TUP Max Bottom Time
+                    IMCA TUP Max Bottom Time (min)
                     <button className="ml-2 inline-block w-3 h-3" title="Maximum safe bottom time">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="w-24 text-sm font-bold text-text-dark text-right">{outputs.dmac || '—'}</div>
+                  <div className="text-sm font-bold text-text-dark text-right whitespace-nowrap">{outputs.dmac || '—'}</div>
                 </div>
               </div>
             </div>

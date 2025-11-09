@@ -269,7 +269,7 @@ export default function TUP() {
                       <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
                         Bottom Time Min
                       </th>
-                      <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
+                      <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs hidden md:table-cell">
                         Time till 1st Stop Min
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
@@ -278,7 +278,7 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-1 md:px-2 py-2 text-center font-semibold text-[10px] md:text-[11px] whitespace-nowrap ${headerClass}`}
+                            className={`px-1 md:px-2 py-2 text-center font-semibold text-[10px] md:text-[11px] whitespace-nowrap hidden md:table-cell ${headerClass}`}
                           >
                             {stop.column === "15 Air TUP"
                               ? "15 Air"
@@ -287,7 +287,8 @@ export default function TUP() {
                         );
                       })}
                       <th className="px-2 md:px-3 py-2 text-center font-semibold text-xs">
-                        Total Deco Time Min
+                        <span className="md:hidden">Deco Min</span>
+                        <span className="hidden md:inline">Total Deco Time Min</span>
                       </th>
                       <th className="px-2 md:px-3 py-2 text-center font-semibold hidden">
                         Total OTU
@@ -324,13 +325,13 @@ export default function TUP() {
                           <td className="px-2 md:px-3 py-2 text-center text-xs">
                             {record["BottomTime Min"]}
                           </td>
-                          <td className="px-2 md:px-3 py-2 text-center text-xs">
+                          <td className="px-2 md:px-3 py-2 text-center text-xs hidden md:table-cell">
                             {record["Time till(1st stop Min)"]}
                           </td>
                           {DECOMPRESSION_STOPS.map((stop) => (
                             <td
                               key={stop.column}
-                              className="px-1 md:px-2 py-2 text-center text-xs"
+                              className="px-1 md:px-2 py-2 text-center text-xs hidden md:table-cell"
                             >
                               {record[stop.column]
                                 ? String(record[stop.column])

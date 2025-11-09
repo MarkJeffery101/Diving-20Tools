@@ -101,31 +101,31 @@ export default function TUP() {
             {/* Outputs */}
             <div className="bg-card-bg border border-border rounded-lg p-6">
               <h2 className="text-lg font-bold mb-4 text-text-dark">Outputs</h2>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-xs text-text-muted font-semibold mb-1">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-4">
+                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
                     EAD Calculated, safety margin added, closest table below
                     <button className="ml-2 inline-block w-3 h-3" title="Equivalent Air Depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-2xl font-bold text-text-dark">{outputs.bellDepth || '—'}</div>
+                  <div className="text-lg font-bold text-text-dark">{outputs.bellDepth || '—'}</div>
                 </div>
 
-                <div>
-                  <label className="block text-xs text-text-muted font-semibold mb-1">
+                <div className="flex items-center justify-between gap-4">
+                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
                     PO2 at Diving Depth
                     <button className="ml-2 inline-block w-3 h-3" title="Partial pressure of oxygen at depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className={`text-2xl font-bold px-3 py-1 rounded ${outputs.po2BgClass}`}>
+                  <div className={`text-lg font-bold px-3 py-1 rounded ${outputs.po2BgClass}`}>
                     {outputs.po2 || '—'}
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs text-text-muted font-semibold mb-1">
+                <div className="flex items-center justify-between gap-4">
+                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
                     IMCA TUP Max Bottom Time
                     <button className="ml-2 inline-block w-3 h-3" title="Maximum safe bottom time">
                       <Info className="w-3 h-3" />
@@ -173,7 +173,7 @@ export default function TUP() {
           {/* Status Bar */}
           <div className="mb-6 p-3 bg-card-bg border border-border rounded text-xs text-text-muted">
             {statusMessage}
-            {selfTestResult.passed && <span className="ml-2 text-ok-bg">✓ {selfTestResult.message}</span>}
+            {selfTestResult.passed && <span className="ml-2 text-ok-bg">��� {selfTestResult.message}</span>}
             {!selfTestResult.passed && <span className="ml-2 text-bad-bg">✗ {selfTestResult.message}</span>}
           </div>
 

@@ -127,6 +127,7 @@ export const useTupCalculator = () => {
         diversEsot: "",
         bellmanOtu: "",
         diversOtu: "",
+        tableDepth: "",
       });
       setFilteredRecords(allRecords);
       setStatusMessage(`Showing all ${allRecords.length} rows`);
@@ -214,6 +215,7 @@ export const useTupCalculator = () => {
       diversEsot: diversEsot,
       bellmanOtu: bellmanOtu,
       diversOtu: diversOtu,
+      tableDepth: usedDepth,
     });
 
     setStatusMessage(
@@ -243,6 +245,7 @@ export const useTupCalculator = () => {
         diversEsot: "",
         bellmanOtu: "",
         diversOtu: "",
+        tableDepth: "",
       });
       setFilteredRecords(allRecords);
       setStatusMessage(`Showing all ${allRecords.length} rows`);
@@ -330,6 +333,7 @@ export const useTupCalculator = () => {
       diversEsot: diversEsot,
       bellmanOtu: bellmanOtu,
       diversOtu: diversOtu,
+      tableDepth: usedDepth,
     });
 
     setStatusMessage(

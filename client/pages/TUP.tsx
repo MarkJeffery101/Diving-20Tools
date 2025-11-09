@@ -146,7 +146,6 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
-                    placeholder="30"
                     value={inputs.o2}
                     onChange={(e) => handleInputChange("o2", e.target.value)}
                     className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"

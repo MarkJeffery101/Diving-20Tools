@@ -44,6 +44,7 @@ export const useTupCalculator = () => {
     message: "Running self-tests…",
   });
   const [selectedRowIndex, setSelectedRowIndex] = useState<number | null>(null);
+  const [matchingMessage, setMatchingMessage] = useState<string>("");
 
   const { allRecords, dataDepths } = useMemo(() => {
     const rows = parseCSV(tupCsvData.trim());

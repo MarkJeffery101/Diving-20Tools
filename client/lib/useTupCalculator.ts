@@ -21,10 +21,20 @@ import {
 
 export const useTupCalculator = () => {
   // All state hooks must be at the top, in the same order every render
-  const [inputs, setInputs] = useState<DiveInputs>({
-    maxDepth: "",
-    o2: "",
-    diveTime: "",
+  const [inputs, setInputs] = useState<DiveInputs>(() => {
+    // Load from localStorage on initial mount
+    if (typeof window === "undefined") {
+      return { maxDepth: "", o2: "", diveTime: "" };
+    }
+    try {
+      const saved = localStorage.getItem("tupInputs");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error("Failed to load TUP inputs from localStorage", e);
+    }
+    return { maxDepth: "", o2: "", diveTime: "" };
   });
   const [outputs, setOutputs] = useState<DiveOutputs>({
     bellDepth: "",

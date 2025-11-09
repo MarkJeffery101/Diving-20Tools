@@ -120,7 +120,7 @@ export default function TUP() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4">
             {/* Inputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3">
+            <div className="bg-green-100 border border-border rounded-lg p-2 md:p-3">
               <h2 className="text-base md:text-lg font-bold mb-1.5 text-text-dark">
                 Inputs
               </h2>
@@ -201,7 +201,7 @@ export default function TUP() {
             </div>
 
             {/* Outputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3">
+            <div className="bg-purple-100 border border-border rounded-lg p-2 md:p-3">
               <h2 className="text-base md:text-lg font-bold mb-1.5 text-text-dark">
                 Outputs
               </h2>
@@ -265,7 +265,7 @@ export default function TUP() {
           {/* Exposure Sections */}
           {selectedRowIndex !== null && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4">
-              <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3 space-y-2">
+              <div className="bg-blue-100 border border-border rounded-lg p-2 md:p-3 space-y-2">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-2">
                   <h3 className="font-bold text-text-dark mb-2 md:mb-0">
                     Bellman's Exposure
@@ -309,7 +309,7 @@ export default function TUP() {
 
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3 cursor-help">
+                  <div className="bg-cyan-100 border border-border rounded-lg p-2 md:p-3 cursor-help">
                     <div className="flex flex-col items-center justify-center gap-1.5">
                       <h3 className="font-bold text-text-dark">Table to Use</h3>
                       <div className="text-xl md:text-2xl font-bold text-text-dark">
@@ -349,15 +349,15 @@ export default function TUP() {
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-max">
-                  <thead className="bg-gray-400 border-b border-border sticky top-0">
+                  <thead className="bg-slate-900 border-b-4 border-slate-900 sticky top-0">
                     <tr>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[7px] md:text-xs">
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Depth<br />(m/sw)
                       </th>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs">
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Bottom Time<br />(min)
                       </th>
-                      <th className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs">
+                      <th className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
                         Time To<br />1st Stop<br />(min)
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
@@ -389,7 +389,7 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[10px] ${headerClass}`}
+                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[10px] text-white border-r border-white ${headerClass}`}
                           >
                             {parts.map((part, idx) => (
                               <div key={idx}>{part}</div>
@@ -397,14 +397,14 @@ export default function TUP() {
                           </th>
                         );
                       })}
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs">
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs text-white">
                         <span className="md:hidden">Deco<br />Min</span>
                         <span className="hidden md:inline">Total Deco<br />Time (min)</span>
                       </th>
-                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden">
+                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden text-white">
                         TotalOTU
                       </th>
-                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden">
+                      <th className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs hidden text-white">
                         TotalESOT
                       </th>
                     </tr>
@@ -467,7 +467,7 @@ export default function TUP() {
                   </tbody>
                 </table>
               </div>
-              <div className="px-2 md:px-3 py-1 md:py-2 bg-gray-800 border-t border-border text-[10px] md:text-xs text-text-muted">
+              <div className="px-2 md:px-3 py-1 md:py-2 bg-gray-800 border-t-4 border-slate-900 text-[10px] md:text-xs text-text-muted">
                 <p>
                   <span className="inline-block w-3 h-3 md:w-4 md:h-4 bg-flag-green mr-1 md:mr-2 rounded"></span>
                   <span className="text-[8px] md:text-xs">

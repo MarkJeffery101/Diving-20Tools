@@ -221,6 +221,8 @@ export const useTupCalculator = () => {
   }, [inputs, allRecords, dataDepths]);
 
   useEffect(() => {
+    setMatchingMessage("");
+
     const depth = Number(inputs.maxDepth);
     const o2Pct = Number(inputs.o2);
 

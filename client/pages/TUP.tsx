@@ -21,25 +21,7 @@ export default function TUP() {
     field: "maxDepth" | "o2" | "diveTime",
     value: string,
   ) => {
-    if (field === "o2") {
-      if (value === "") {
-        setInputs((prev) => ({ ...prev, [field]: value }));
-        return;
-      }
-
-      const num = parseInt(value);
-      if (!isNaN(num)) {
-        const validValues = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
-        const isValid = validValues.includes(num);
-        const couldBeValid = validValues.some(v => v.toString().startsWith(value));
-
-        if (isValid || couldBeValid) {
-          setInputs((prev) => ({ ...prev, [field]: value }));
-        }
-      }
-    } else {
-      setInputs((prev) => ({ ...prev, [field]: value }));
-    }
+    setInputs((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleRowClick = (idx: number) => {

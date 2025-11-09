@@ -178,6 +178,14 @@ function InviteHandler() {
         }
       />
       <Route
+        path="/tup"
+        element={
+          <ProtectedRoute>
+            <TUP />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/share"
         element={
           <ProtectedRoute>

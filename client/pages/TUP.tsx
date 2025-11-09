@@ -242,7 +242,7 @@ export default function TUP() {
                           <Info className="w-3 h-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent>Equivalent Air Depth</TooltipContent>
+                      <TooltipContent>EAD + safety Factor</TooltipContent>
                     </Tooltip>
                   </label>
                   <div className="text-base md:text-lg font-bold text-text-dark text-right flex-shrink-0">

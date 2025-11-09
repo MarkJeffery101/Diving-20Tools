@@ -273,15 +273,21 @@ export default function TUP() {
             </div>
           )}
 
-          {/* Table Info */}
-          <div className="mb-6 p-3 md:p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
-            <p className="mb-2">
-              <strong>How to use:</strong> Enter your maximum dive depth and
-              nitrox O₂% to filter the decompression table. Add a dive time to
-              find the corresponding decompression schedule and calculate
-              exposures for the bellman and diver.
-            </p>
-          </div>
+          {/* Table Info / Matching Messages */}
+          {matchingMessage ? (
+            <div className="mb-6 p-3 md:p-4 bg-blue-50 border border-blue-300 rounded text-sm text-blue-900">
+              <p><strong>Table Match:</strong> {matchingMessage}</p>
+            </div>
+          ) : (
+            <div className="mb-6 p-3 md:p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
+              <p className="mb-2">
+                <strong>How to use:</strong> Enter your maximum dive depth and
+                nitrox O₂% to filter the decompression table. Add a dive time to
+                find the corresponding decompression schedule and calculate
+                exposures for the bellman and diver.
+              </p>
+            </div>
+          )}
 
           {/* Decompression Table */}
           {filteredRecords.length > 0 && (

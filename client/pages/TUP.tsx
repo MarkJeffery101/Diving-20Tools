@@ -208,8 +208,7 @@ export default function TUP() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
-                    EAD Calculated, Safety Margin Added, Closest Table Bellow
-                    (m/sw)
+                    EAD Calculated, Safety Margin Added (m/sw)
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button className="ml-2 inline-block w-3 h-3 flex-shrink-0">
@@ -275,7 +274,7 @@ export default function TUP() {
                     <div className="flex gap-2">
                       <span className="text-text-muted text-xs">ESOT</span>
                       <span className="font-bold text-sm">
-                        {outputs.bellmanEsot || "���"}
+                        {outputs.bellmanEsot || "—"}
                       </span>
                     </div>
                     <div className="flex gap-2">

@@ -5,6 +5,15 @@ import SvgIcon from "@/components/SvgIcon";
 export default function Index() {
   const features = [
     {
+      title: "TUP",
+      description:
+        "Transfer Under Pressure calculator for autonomous bell diving operations with decompression profiles",
+      iconId: "icon-treatment",
+      href: "/tup",
+      color: "bg-purple-50 border-purple-200 text-purple-700",
+      accentColor: "bg-purple-100",
+    },
+    {
       title: "Tables",
       description:
         "Browse all decompression tables: air, nitrox, treatment, and specialty tables with depth and time schedules",

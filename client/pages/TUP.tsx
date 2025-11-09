@@ -344,13 +344,17 @@ export default function TUP() {
               <p><strong>Table Match:</strong> {matchingMessage}</p>
             </div>
           ) : (
-            <div className="mb-6 p-3 md:p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
-              <p className="mb-2">
-                <strong>How to use:</strong> Enter your maximum dive depth and
-                nitrox O₂% to filter the decompression table. Add a dive time to
-                find the corresponding decompression schedule and calculate
-                exposures for the bellman and diver.
-              </p>
+            <div className="mb-6 space-y-3">
+              <div className="p-3 md:p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
+                <p>
+                  <strong>Table Selection:</strong> The decompression table depth is determined by the safety EAD. If EAD falls between table depths, the next deeper table is selected.
+                </p>
+              </div>
+              <div className="p-3 md:p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
+                <p>
+                  <strong>Time Selection:</strong> If dive time falls between table times, the yellow highlighted row shows the next longer time increment available in the table.
+                </p>
+              </div>
             </div>
           )}
 

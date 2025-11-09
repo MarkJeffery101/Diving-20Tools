@@ -243,9 +243,6 @@ export const useTupCalculator = () => {
     filteredRecords,
     statusMessage,
     selfTestResult,
-    selectedRowIndex, setSelectedRowIndex,
-    compute,
-    allRecords,
-    dataDepths
+    selectedRowIndex, setSelectedRowIndex
   };
 };

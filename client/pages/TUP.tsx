@@ -349,8 +349,8 @@ export default function TUP() {
                       return (
                         <tr
                           key={idx}
-                          onClick={() => setSelectedRowIndex(idx)}
-                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isSelected ? "ring-2 ring-accent" : ""}`}
+                          onClick={() => handleRowClick(idx)}
+                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${diveTime > 0 && recordTime >= diveTime && (idx === 0 || Number(filteredRecords[idx - 1]["BottomTime Min"]) < diveTime) ? "bg-yellow-100" : ""} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
                           <td className="px-1 md:px-3 py-1 md:py-2 font-semibold text-[8px] md:text-xs">
                             {record["Depth(m/sw)"]}

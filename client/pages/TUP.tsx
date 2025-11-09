@@ -325,7 +325,7 @@ export default function TUP() {
 
           {/* Decompression Table */}
           {filteredRecords.length > 0 && (
-            <div className="bg-card-bg border border-border rounded-lg overflow-hidden">
+            <div className="bg-card-bg rounded-lg overflow-hidden" style={{ border: "4px solid rgb(6, 93, 135)" }}>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-max">
                   <thead className="sticky top-0" style={{ backgroundColor: "rgb(6, 93, 135)", borderBottom: "4px solid rgb(6, 93, 135)" }}>

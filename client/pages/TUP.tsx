@@ -101,35 +101,16 @@ export default function TUP() {
           <p className="text-xs md:text-sm text-text-muted mb-3">
             Repetitive interval is 16 Hours
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-xs text-text-muted mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-xs text-text-muted mb-4">
             <div>
-              <p
-                className="font-semibold"
-                style={{ width: "auto", alignSelf: "center" }}
-              >
-                Pressure in msw
-              </p>
-              <p className="text-xs">
-                Stop time starts after arrival at the stop
-              </p>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "flex-start",
-              }}
-            >
-              <p
-                className="font-semibold"
-                style={{ width: "auto", alignSelf: "center" }}
-              >
-                Time in minutes and tenths of minutes
+              <p className="font-semibold">
+                Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in minutes
               </p>
             </div>
             <div>
-              <p className="font-semibold">Ascent speed is 10 msw/min</p>
+              <p className="font-semibold">
+                Ascent speed is 10 msw/min&nbsp; &nbsp; &nbsp; &nbsp; Stop time starts at arrival at the stop
+              </p>
             </div>
           </div>
         </div>
@@ -294,7 +275,7 @@ export default function TUP() {
                     <div className="flex gap-2">
                       <span className="text-text-muted text-xs">ESOT</span>
                       <span className="font-bold text-sm">
-                        {outputs.bellmanEsot || "—"}
+                        {outputs.bellmanEsot || "���"}
                       </span>
                     </div>
                     <div className="flex gap-2">

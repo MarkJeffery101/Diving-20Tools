@@ -140,22 +140,29 @@ export default function TUP() {
                   />
                 </div>
 
-                <div className="flex items-center justify-between gap-2">
-                  <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
-                    Nitrox O2 (%)
-                    <button
-                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
-                      title="Oxygen percentage in mix"
-                    >
-                      <Info className="w-4 h-4" />
-                    </button>
-                  </label>
-                  <input
-                    type="number"
-                    value={inputs.o2}
-                    onChange={(e) => handleInputChange("o2", e.target.value)}
-                    className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
-                  />
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
+                      Nitrox O2 (%)
+                      <button
+                        className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
+                        title="Oxygen percentage in mix"
+                      >
+                        <Info className="w-4 h-4" />
+                      </button>
+                    </label>
+                    <input
+                      type="number"
+                      value={inputs.o2}
+                      onChange={(e) => handleInputChange("o2", e.target.value)}
+                      className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
+                    />
+                  </div>
+                  {o2InputMessage && (
+                    <div className="mt-1 text-xs text-red-600 text-right">
+                      {o2InputMessage}
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-between gap-2">

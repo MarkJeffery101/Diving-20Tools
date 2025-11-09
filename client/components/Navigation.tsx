@@ -32,6 +32,7 @@ export default function Navigation() {
 
   const links = [
     { label: "Home", href: "/", icon: Home },
+    { label: "TUP", href: "/tup", icon: Calculator },
     { label: "Tables", href: "/tables", icon: Grid3x3 },
     { label: "Table Selection", href: "/table-selection", icon: Layers },
     { label: "Table Use", href: "/table-use", icon: BookOpen },

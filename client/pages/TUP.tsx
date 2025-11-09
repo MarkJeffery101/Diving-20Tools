@@ -174,11 +174,16 @@ export default function TUP() {
             </div>
           )}
 
-          {/* Status Bar */}
-          <div className="mb-6 p-3 bg-card-bg border border-border rounded text-xs text-text-muted">
-            {statusMessage}
-            {selfTestResult.passed && <span className="ml-2 text-ok-bg">��� {selfTestResult.message}</span>}
-            {!selfTestResult.passed && <span className="ml-2 text-bad-bg">✗ {selfTestResult.message}</span>}
+          {/* Table Info */}
+          <div className="mb-6 p-4 bg-card-bg border border-border rounded text-xs text-text-muted">
+            <p className="mb-2">
+              <strong>How to use:</strong> Enter your maximum dive depth and nitrox O₂% to filter the decompression table. 
+              Add a dive time to find the corresponding decompression schedule and calculate exposures for the bellman and diver.
+            </p>
+            <p>
+              <strong>Table shows:</strong> {filteredRecords.length} rows available | 
+              Click any row to select it and view calculated exposures
+            </p>
           </div>
 
           {/* Decompression Table */}

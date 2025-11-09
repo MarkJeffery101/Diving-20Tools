@@ -355,6 +355,16 @@ export const useTupCalculator = () => {
     );
   }, [inputs, allRecords, dataDepths]);
 
+  // Save inputs to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.setItem("tupInputs", JSON.stringify(inputs));
+    } catch (e) {
+      console.error("Failed to save TUP inputs to localStorage", e);
+    }
+  }, [inputs]);
+
   return {
     inputs,
     setInputs,

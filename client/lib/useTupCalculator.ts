@@ -225,13 +225,13 @@ export const useTupCalculator = () => {
 
     const depth = Number(inputs.maxDepth);
     const o2Pct = Number(inputs.o2);
+    const validO2Values = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
 
     if (
       !Number.isFinite(depth) ||
       depth <= 0 ||
       !Number.isFinite(o2Pct) ||
-      o2Pct <= 0 ||
-      o2Pct >= 100
+      !validO2Values.includes(o2Pct)
     ) {
       setOutputs({
         bellDepth: "",

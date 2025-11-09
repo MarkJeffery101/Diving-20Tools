@@ -182,16 +182,20 @@ export default function TUP() {
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
-                  <thead className="bg-gray-800 border-b border-border sticky top-0">
+                  <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
                       <th className="px-3 py-2 text-left font-semibold">Depth msw</th>
                       <th className="px-3 py-2 text-center font-semibold">Bottom Time Min</th>
                       <th className="px-3 py-2 text-center font-semibold">Time till 1st Stop Min</th>
-                      {DECOMPRESSION_STOPS.map(stop => (
-                        <th key={stop.column} className="px-2 py-2 text-center font-semibold text-[11px] whitespace-nowrap">
-                          {stop.column === '15 Air TUP' ? '15 Air' : stop.column}
-                        </th>
-                      ))}
+                      {DECOMPRESSION_STOPS.map(stop => {
+                        const isOxygen = stop.column.includes('Oxygen');
+                        const headerClass = isOxygen ? 'bg-blue-300' : '';
+                        return (
+                          <th key={stop.column} className={`px-2 py-2 text-center font-semibold text-[11px] whitespace-nowrap ${headerClass}`}>
+                            {stop.column === '15 Air TUP' ? '15 Air' : stop.column}
+                          </th>
+                        );
+                      })}
                       <th className="px-3 py-2 text-center font-semibold">Total Deco Time Min</th>
                       <th className="px-3 py-2 text-center font-semibold">Total OTU</th>
                       <th className="px-3 py-2 text-center font-semibold">Total ESOT</th>

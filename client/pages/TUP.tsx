@@ -229,7 +229,7 @@ export default function TUP() {
           {filteredRecords.length > 0 && (
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden -mx-4 md:mx-0">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-max">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
                       <th className="px-1 md:px-3 py-1 md:py-2 text-left font-semibold text-[9px] md:text-xs">

@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { EAD_DATA, type EADRow } from "../lib/eadData";
 import Navigation from "@/components/Navigation";
+import { useEffect } from "react";
 
 interface CalculatorRow {
   id: string;

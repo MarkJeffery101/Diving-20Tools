@@ -323,22 +323,6 @@ export default function TUP() {
             </div>
           )}
 
-          {/* Table Info / Matching Messages */}
-          {matchingMessage ? (
-            <div className="mb-3 p-2 md:p-3 bg-blue-50 border border-blue-300 rounded text-sm text-blue-900">
-              <p><strong>Table Match:</strong> {matchingMessage}</p>
-            </div>
-          ) : (
-            <div className="mb-3 p-2 md:p-3 bg-card-bg border border-border rounded text-xs text-text-muted space-y-1.5">
-              <p>
-                <strong>Table Selection:</strong> The decompression table depth is determined by the safety EAD. If EAD falls between table depths, the next deeper table is selected.
-              </p>
-              <p>
-                <strong>Time Selection:</strong> If dive time falls between table times, the yellow highlighted row shows the next longer time increment available in the table.
-              </p>
-            </div>
-          )}
-
           {/* Decompression Table */}
           {filteredRecords.length > 0 && (
             <div className="bg-card-bg border border-border rounded-lg overflow-hidden">

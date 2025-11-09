@@ -31,11 +31,11 @@ export default function TUP() {
           </p>
           <div className="grid grid-cols-3 gap-4 text-xs text-text-muted mb-4">
             <div>
-              <p className="font-semibold">Pressure in msw</p>
+              <p className="font-semibold" style={{ width: 'auto', alignSelf: 'center' }}>Pressure in msw</p>
               <p>Stop time starts after arrival at the stop</p>
             </div>
-            <div>
-              <p className="font-semibold">Time in minutes and tenths of minutes</p>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+              <p className="font-semibold" style={{ width: 'auto', alignSelf: 'center' }}>Time in minutes and tenths of minutes</p>
             </div>
             <div>
               <p className="font-semibold">Ascent speed is 10 msw/min</p>
@@ -60,6 +60,7 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
+                    placeholder="20"
                     value={inputs.maxDepth}
                     onChange={(e) => handleInputChange('maxDepth', e.target.value)}
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
@@ -75,6 +76,7 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
+                    placeholder="30"
                     value={inputs.o2}
                     onChange={(e) => handleInputChange('o2', e.target.value)}
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"
@@ -90,6 +92,7 @@ export default function TUP() {
                   </label>
                   <input
                     type="number"
+                    placeholder="25"
                     value={inputs.diveTime}
                     onChange={(e) => handleInputChange('diveTime', e.target.value)}
                     className="w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent"

@@ -186,6 +186,7 @@ export default function TUP() {
                       value={inputs.o2}
                       onChange={(e) => handleInputChange("o2", e.target.value)}
                       onKeyDown={handleO2ArrowKey}
+                      onBlur={handleO2Blur}
                       className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
                     />
                   </div>
@@ -309,7 +310,7 @@ export default function TUP() {
                     <div className="flex gap-2">
                       <span className="text-text-muted text-xs">ESOT</span>
                       <span className="font-bold text-sm">
-                        {outputs.diversEsot || "—"}
+                        {outputs.diversEsot || "��"}
                       </span>
                     </div>
                     <div className="flex gap-2">

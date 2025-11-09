@@ -366,11 +366,9 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[11px] whitespace-nowrap ${headerClass}`}
+                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[10px] ${headerClass}`}
                           >
-                            {stop.column === "15 Air TUP"
-                              ? "15A"
-                              : stop.column.replace(/\s+/g, "").substring(0, 4)}
+                            {stop.column}
                           </th>
                         );
                       })}

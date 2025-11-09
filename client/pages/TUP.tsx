@@ -22,10 +22,14 @@ export default function TUP() {
     value: string,
   ) => {
     if (field === "o2") {
-      const o2Val = parseInt(value);
-      const validValues = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
-      if (value === "" || validValues.includes(o2Val)) {
+      if (value === "") {
         setInputs((prev) => ({ ...prev, [field]: value }));
+      } else {
+        const o2Val = parseInt(value);
+        const validValues = [21, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+        if (!isNaN(o2Val) && validValues.includes(o2Val)) {
+          setInputs((prev) => ({ ...prev, [field]: value }));
+        }
       }
     } else {
       setInputs((prev) => ({ ...prev, [field]: value }));

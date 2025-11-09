@@ -42,7 +42,9 @@ export default function TUP() {
               >
                 Pressure in msw
               </p>
-              <p className="text-xs">Stop time starts after arrival at the stop</p>
+              <p className="text-xs">
+                Stop time starts after arrival at the stop
+              </p>
             </div>
             <div
               style={{
@@ -71,12 +73,17 @@ export default function TUP() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
             {/* Inputs */}
             <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">Inputs</h2>
+              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
+                Inputs
+              </h2>
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Maximum Diving Depth (m/sw)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Actual depth in meters">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
+                      title="Actual depth in meters"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -84,7 +91,9 @@ export default function TUP() {
                     type="number"
                     placeholder="20"
                     value={inputs.maxDepth}
-                    onChange={(e) => handleInputChange("maxDepth", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("maxDepth", e.target.value)
+                    }
                     className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
                   />
                 </div>
@@ -92,7 +101,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Nitrox O2 (%)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Oxygen percentage in mix">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
+                      title="Oxygen percentage in mix"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -108,7 +120,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Dive Time (min)
-                    <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0" title="Planned dive time in minutes">
+                    <button
+                      className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0"
+                      title="Planned dive time in minutes"
+                    >
                       <Info className="w-4 h-4" />
                     </button>
                   </label>
@@ -116,7 +131,9 @@ export default function TUP() {
                     type="number"
                     placeholder="25"
                     value={inputs.diveTime}
-                    onChange={(e) => handleInputChange("diveTime", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("diveTime", e.target.value)
+                    }
                     className="w-20 md:w-24 px-2 py-1 bg-page-bg border border-border rounded text-text-dark text-sm text-right focus:outline-none focus:ring-2 focus:ring-accent flex-shrink-0"
                   />
                 </div>
@@ -125,12 +142,18 @@ export default function TUP() {
 
             {/* Outputs */}
             <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">Outputs</h2>
+              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
+                Outputs
+              </h2>
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
-                    EAD Calculated, Safety Margin Added, Closest Table Bellow (m/sw)
-                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Equivalent Air Depth">
+                    EAD Calculated, Safety Margin Added, Closest Table Bellow
+                    (m/sw)
+                    <button
+                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
+                      title="Equivalent Air Depth"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
@@ -142,11 +165,16 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     PO2 at Diving Depth (bar/abs)
-                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Partial pressure of oxygen at depth">
+                    <button
+                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
+                      title="Partial pressure of oxygen at depth"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className={`text-base md:text-lg font-bold px-2 py-1 rounded text-right flex-shrink-0 ${outputs.po2BgClass}`}>
+                  <div
+                    className={`text-base md:text-lg font-bold px-2 py-1 rounded text-right flex-shrink-0 ${outputs.po2BgClass}`}
+                  >
                     {outputs.po2 || "—"}
                   </div>
                 </div>
@@ -154,7 +182,10 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     IMCA TUP Max Bottom Time (min)
-                    <button className="ml-2 inline-block w-3 h-3 flex-shrink-0" title="Maximum safe bottom time">
+                    <button
+                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
+                      title="Maximum safe bottom time"
+                    >
                       <Info className="w-3 h-3" />
                     </button>
                   </label>

@@ -201,8 +201,8 @@ export default function TUP() {
                         );
                       })}
                       <th className="px-3 py-2 text-center font-semibold">Total Deco Time Min</th>
-                      <th className="px-3 py-2 text-center font-semibold">Total OTU</th>
-                      <th className="px-3 py-2 text-center font-semibold">Total ESOT</th>
+                      <th className="px-3 py-2 text-center font-semibold hidden">Total OTU</th>
+                      <th className="px-3 py-2 text-center font-semibold hidden">Total ESOT</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -225,8 +225,8 @@ export default function TUP() {
                             </td>
                           ))}
                           <td className="px-3 py-2 text-center font-semibold">{record['Total DecoTime Min']}</td>
-                          <td className="px-3 py-2 text-center font-semibold">{record['TotalOTU']}</td>
-                          <td className="px-3 py-2 text-center font-semibold">{record['TotalESOT']}</td>
+                          <td className="px-3 py-2 text-center font-semibold hidden">{record['TotalOTU']}</td>
+                          <td className="px-3 py-2 text-center font-semibold hidden">{record['TotalESOT']}</td>
                         </tr>
                       );
                     })}

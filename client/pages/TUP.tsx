@@ -116,15 +116,15 @@ export default function TUP() {
         </div>
       </section>
 
-      <section className="py-6 md:py-8 px-4 bg-page-bg">
+      <section className="py-3 md:py-4 px-4 bg-page-bg">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4">
             {/* Inputs */}
-            <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-bold mb-2 text-text-dark">
+            <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3">
+              <h2 className="text-base md:text-lg font-bold mb-1.5 text-text-dark">
                 Inputs
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
                     Maximum Diving Depth (m/sw)

@@ -309,8 +309,8 @@ export default function TUP() {
 
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="bg-card-bg border border-border rounded-lg p-3 md:p-4 cursor-help">
-                    <div className="flex flex-col items-center justify-center gap-2">
+                  <div className="bg-card-bg border border-border rounded-lg p-2 md:p-3 cursor-help">
+                    <div className="flex flex-col items-center justify-center gap-1.5">
                       <h3 className="font-bold text-text-dark">Table to Use</h3>
                       <div className="text-xl md:text-2xl font-bold text-text-dark">
                         {outputs.tableDepth || "—"} msw

@@ -346,6 +346,8 @@ export default function TUP() {
                           ? "border-b-4 border-red-600"
                           : "border-b border-border";
                       const isSelected = idx === selectedRowIndex;
+                      const diveTime = Number(inputs.diveTime);
+                      const recordTime = Number(record["BottomTime Min"]);
                       return (
                         <tr
                           key={idx}

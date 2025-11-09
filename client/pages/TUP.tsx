@@ -3,7 +3,11 @@ import { DECOMPRESSION_STOPS } from "@/lib/tupCalculator";
 import Navigation from "@/components/Navigation";
 import { Info } from "lucide-react";
 import { useState } from "react";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 export default function TUP() {
   const {
@@ -96,7 +100,8 @@ export default function TUP() {
       <section className="py-3 px-4 pr-12 bg-card-bg border-b border-border">
         <div className="container mx-auto max-w-7xl">
           <h1 className="text-2xl md:text-3xl font-bold mb-0.5">
-            <span style={{ color: "rgb(6, 93, 135)" }}>AoxTUP2C</span> - Air / Oxygen TUP diving
+            <span style={{ color: "rgb(6, 93, 135)" }}>AoxTUP2C</span> - Air /
+            Oxygen TUP diving
           </h1>
           <p className="text-xs md:text-sm text-text-muted mb-2">
             Repetitive interval is 16 Hours
@@ -104,7 +109,9 @@ export default function TUP() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 text-xs text-text-muted mb-2">
             <div>
               <p className="font-semibold">
-                Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in minutes&nbsp; &nbsp; &nbsp; Ascent Speed 10m/sw (min)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Stop Time starts at arrival at stop
+                Pressure in msw&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Time in
+                minutes&nbsp; &nbsp; &nbsp; Ascent Speed 10m/sw (min)&nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp;Stop Time starts at arrival at stop
               </p>
             </div>
           </div>
@@ -145,16 +152,18 @@ export default function TUP() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <label className="text-xs md:text-sm font-semibold text-text-dark flex items-center min-w-0">
-                    Nitrox O2 (%)
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0">
-                          <Info className="w-4 h-4" />
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent>Oxygen percentage in mix</TooltipContent>
-                    </Tooltip>
-                  </label>
+                      Nitrox O2 (%)
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button className="ml-2 inline-block w-4 h-4 text-text-muted flex-shrink-0">
+                            <Info className="w-4 h-4" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          Oxygen percentage in mix
+                        </TooltipContent>
+                      </Tooltip>
+                    </label>
                     <input
                       type="number"
                       value={inputs.o2}
@@ -180,7 +189,9 @@ export default function TUP() {
                           <Info className="w-4 h-4" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent>Planned dive time in minutes</TooltipContent>
+                      <TooltipContent>
+                        Planned dive time in minutes
+                      </TooltipContent>
                     </Tooltip>
                   </label>
                   <input
@@ -227,7 +238,9 @@ export default function TUP() {
                           <Info className="w-3 h-3" />
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent>Partial pressure of oxygen at depth</TooltipContent>
+                      <TooltipContent>
+                        Partial pressure of oxygen at depth
+                      </TooltipContent>
                     </Tooltip>
                   </label>
                   <div
@@ -315,8 +328,16 @@ export default function TUP() {
                 </TooltipTrigger>
                 <TooltipContent side="left" className="max-w-xs">
                   <div className="space-y-2 text-xs">
-                    <p><strong>Table Selection:</strong> The decompression table depth is determined by the safety EAD. If EAD falls between table depths, the next deeper table is selected.</p>
-                    <p><strong>Time Selection:</strong> If dive time falls between table times, the yellow highlighted row shows the next longer time increment available in the table.</p>
+                    <p>
+                      <strong>Table Selection:</strong> The decompression table
+                      depth is determined by the safety EAD. If EAD falls
+                      between table depths, the next deeper table is selected.
+                    </p>
+                    <p>
+                      <strong>Time Selection:</strong> If dive time falls
+                      between table times, the yellow highlighted row shows the
+                      next longer time increment available in the table.
+                    </p>
                   </div>
                 </TooltipContent>
               </Tooltip>
@@ -325,19 +346,36 @@ export default function TUP() {
 
           {/* Decompression Table */}
           {filteredRecords.length > 0 && (
-            <div className="bg-card-bg rounded-lg overflow-hidden" style={{ border: "4px solid rgb(6, 93, 135)" }}>
+            <div
+              className="bg-card-bg rounded-lg overflow-hidden"
+              style={{ border: "4px solid rgb(6, 93, 135)" }}
+            >
               <div className="overflow-x-auto">
                 <table className="w-full min-w-max">
-                  <thead className="sticky top-0" style={{ backgroundColor: "rgb(6, 93, 135)", borderBottom: "4px solid rgb(6, 93, 135)" }}>
+                  <thead
+                    className="sticky top-0"
+                    style={{
+                      backgroundColor: "rgb(6, 93, 135)",
+                      borderBottom: "4px solid rgb(6, 93, 135)",
+                    }}
+                  >
                     <tr>
                       <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-left font-semibold text-[7px] md:text-xs text-white border-r border-white">
-                        Depth<br />(m/sw)
+                        Depth
+                        <br />
+                        (m/sw)
                       </th>
                       <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
-                        Bottom Time<br />(min)
+                        Bottom Time
+                        <br />
+                        (min)
                       </th>
                       <th className="px-0.5 md:px-0.75 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white border-r border-white">
-                        Time To<br />1st Stop<br />(min)
+                        Time To
+                        <br />
+                        1st Stop
+                        <br />
+                        (min)
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
                         const isOxygen = stop.column.includes("Oxygen");
@@ -377,8 +415,16 @@ export default function TUP() {
                         );
                       })}
                       <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs text-white">
-                        <span className="md:hidden">Deco<br />Min</span>
-                        <span className="hidden md:inline">Total Deco<br />Time (min)</span>
+                        <span className="md:hidden">
+                          Deco
+                          <br />
+                          Min
+                        </span>
+                        <span className="hidden md:inline">
+                          Total Deco
+                          <br />
+                          Time (min)
+                        </span>
                       </th>
                       <th className="px-0.5 md:px-1 py-0.25 md:py-0.5 text-center font-semibold text-[7px] md:text-xs hidden text-white">
                         TotalOTU
@@ -405,7 +451,12 @@ export default function TUP() {
                           ? "border-b-4 border-red-600"
                           : "border-b border-border";
                       const isSelected = idx === selectedRowIndex;
-                      const isMatchingRow = diveTime > 0 && recordTime >= diveTime && (idx === 0 || Number(filteredRecords[idx - 1]["BottomTime Min"]) < diveTime);
+                      const isMatchingRow =
+                        diveTime > 0 &&
+                        recordTime >= diveTime &&
+                        (idx === 0 ||
+                          Number(filteredRecords[idx - 1]["BottomTime Min"]) <
+                            diveTime);
                       return (
                         <tr
                           key={idx}

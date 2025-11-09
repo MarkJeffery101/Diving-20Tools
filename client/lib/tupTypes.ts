@@ -13,6 +13,7 @@ export interface DiveOutputs {
   diversEsot: string | number;
   bellmanOtu: string | number;
   diversOtu: string | number;
+  tableDepth: string | number;
 }
 
 export interface DecompressionRecord {

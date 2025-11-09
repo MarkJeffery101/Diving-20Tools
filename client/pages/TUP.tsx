@@ -253,12 +253,14 @@ export default function TUP() {
                 <div className="flex items-center justify-between gap-2">
                   <label className="text-xs text-text-muted font-semibold flex items-center min-w-0">
                     PO2 at Diving Depth (bar/abs)
-                    <button
-                      className="ml-2 inline-block w-3 h-3 flex-shrink-0"
-                      title="Partial pressure of oxygen at depth"
-                    >
-                      <Info className="w-3 h-3" />
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button className="ml-2 inline-block w-3 h-3 flex-shrink-0">
+                          <Info className="w-3 h-3" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Partial pressure of oxygen at depth</TooltipContent>
+                    </Tooltip>
                   </label>
                   <div
                     className={`text-base md:text-lg font-bold px-2 py-1 rounded text-right flex-shrink-0 ${outputs.po2BgClass}`}

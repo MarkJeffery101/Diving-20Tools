@@ -147,6 +147,10 @@ export const useTupCalculator = () => {
     setStatusMessage(`Depth ${bellDepth} msw (snapped: ${snapped ? 'yes' : 'no'}), showing ${rows.length} rows`);
   }, [inputs, allRecords, dataDepths]);
 
+  useEffect(() => {
+    compute();
+  }, [compute, inputs]);
+
   return {
     inputs, setInputs,
     outputs,

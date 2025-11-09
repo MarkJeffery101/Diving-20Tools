@@ -366,7 +366,7 @@ export default function TUP() {
                         return (
                           <th
                             key={stop.column}
-                            className={`px-0.5 md:px-2 py-1 md:py-2 text-center font-semibold text-[7px] md:text-[11px] whitespace-nowrap ${headerClass}`}
+                            className={`px-0.5 md:px-1 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-[11px] whitespace-nowrap ${headerClass}`}
                           >
                             {stop.column === "15 Air TUP"
                               ? "15A"

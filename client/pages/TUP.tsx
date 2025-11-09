@@ -422,20 +422,20 @@ export default function TUP() {
                           {DECOMPRESSION_STOPS.map((stop) => (
                             <td
                               key={stop.column}
-                              className="px-0.5 md:px-2 py-1 md:py-2 text-center text-[7px] md:text-xs"
+                              className="px-0.5 md:px-1 py-0.5 md:py-1 text-center text-[7px] md:text-xs"
                             >
                               {record[stop.column]
                                 ? String(record[stop.column])
                                 : ""}
                             </td>
                           ))}
-                          <td className="px-1 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs">
+                          <td className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs">
                             {record["Total DecoTime Min"]}
                           </td>
-                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs hidden">
+                          <td className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalOTU"]}
                           </td>
-                          <td className="px-0.5 md:px-3 py-1 md:py-2 text-center font-semibold text-[8px] md:text-xs hidden">
+                          <td className="px-0.5 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs hidden">
                             {record["TotalESOT"]}
                           </td>
                         </tr>

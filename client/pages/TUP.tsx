@@ -1,6 +1,5 @@
 import { useTupCalculator } from "@/lib/useTupCalculator";
 import { DECOMPRESSION_STOPS } from "@/lib/tupCalculator";
-import { useTupCalculator } from "@/lib/useTupCalculator";
 import Navigation from "@/components/Navigation";
 import { Info } from "lucide-react";
 import { useState } from "react";

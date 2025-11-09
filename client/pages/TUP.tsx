@@ -225,7 +225,7 @@ export default function TUP() {
                     </Tooltip>
                   </label>
                   <div className="text-base md:text-lg font-bold text-text-dark text-right flex-shrink-0">
-                    {outputs.bellDepth || "—"}
+                    {typeof outputs.bellDepth === 'number' ? outputs.bellDepth.toFixed(1) : "—"}
                   </div>
                 </div>
 

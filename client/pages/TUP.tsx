@@ -333,6 +333,8 @@ export default function TUP() {
                   </thead>
                   <tbody>
                     {filteredRecords.map((record, idx) => {
+                      const diveTime = Number(inputs.diveTime);
+                      const recordTime = Number(record["BottomTime Min"]);
                       const flagColor =
                         record._flag === 1
                           ? "bg-green-100"
@@ -346,13 +348,12 @@ export default function TUP() {
                           ? "border-b-4 border-red-600"
                           : "border-b border-border";
                       const isSelected = idx === selectedRowIndex;
-                      const diveTime = Number(inputs.diveTime);
-                      const recordTime = Number(record["BottomTime Min"]);
+                      const isMatchingRow = diveTime > 0 && recordTime >= diveTime && (idx === 0 || Number(filteredRecords[idx - 1]["BottomTime Min"]) < diveTime);
                       return (
                         <tr
                           key={idx}
                           onClick={() => handleRowClick(idx)}
-                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${diveTime > 0 && recordTime >= diveTime && (idx === 0 || Number(filteredRecords[idx - 1]["BottomTime Min"]) < diveTime) ? "bg-yellow-100" : ""} ${isSelected ? "ring-2 ring-accent" : ""}`}
+                          className={`${boldBorder} cursor-pointer hover:bg-gray-800 transition-colors ${flagColor} ${isMatchingRow ? "bg-yellow-100" : ""} ${isSelected ? "ring-2 ring-accent" : ""}`}
                         >
                           <td className="px-1 md:px-3 py-1 md:py-2 font-semibold text-[8px] md:text-xs">
                             {record["Depth(m/sw)"]}

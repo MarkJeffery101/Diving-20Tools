@@ -119,16 +119,6 @@ export const useTupCalculator = () => {
     setStatusMessage(`Showing all ${allRecords.length} rows`);
   }, [allRecords, runSelfTests]);
 
-  // Save inputs to localStorage whenever they change
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      localStorage.setItem("tupInputs", JSON.stringify(inputs));
-    } catch (e) {
-      console.error("Failed to save TUP inputs to localStorage", e);
-    }
-  }, [inputs]);
-
   const compute = useCallback(() => {
     const depth = Number(inputs.maxDepth);
     const o2Pct = Number(inputs.o2);

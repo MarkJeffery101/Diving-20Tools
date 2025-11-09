@@ -351,14 +351,14 @@ export default function TUP() {
                 <table className="w-full min-w-max">
                   <thead className="bg-gray-400 border-b border-border sticky top-0">
                     <tr>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[9px] md:text-xs">
-                        Depth
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-left font-semibold text-[7px] md:text-xs">
+                        Depth(m/sw)
                       </th>
-                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[9px] md:text-xs">
-                        Bottom
+                      <th className="px-1 md:px-2 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs">
+                        BottomTime Min
                       </th>
-                      <th className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center font-semibold text-[8px] md:text-xs">
-                        1st Stop
+                      <th className="px-0.5 md:px-1.5 py-0.5 md:py-1 text-center font-semibold text-[7px] md:text-xs">
+                        Time till(1st stop Min)
                       </th>
                       {DECOMPRESSION_STOPS.map((stop) => {
                         const isOxygen = stop.column.includes("Oxygen");

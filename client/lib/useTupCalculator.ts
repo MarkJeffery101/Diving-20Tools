@@ -106,10 +106,6 @@ export const useTupCalculator = () => {
     setStatusMessage(`Showing all ${allRecords.length} rows`);
   }, [allRecords, runSelfTests]);
 
-  useEffect(() => {
-    setMatchingMessage("");
-  }, [inputs]);
-
   const compute = useCallback(() => {
     const depth = Number(inputs.maxDepth);
     const o2Pct = Number(inputs.o2);

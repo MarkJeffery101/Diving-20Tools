@@ -102,36 +102,36 @@ export default function TUP() {
             <div className="bg-card-bg border border-border rounded-lg p-6">
               <h2 className="text-lg font-bold mb-4 text-text-dark">Outputs</h2>
               <div className="space-y-3">
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-xs text-text-muted font-semibold flex items-center">
                     EAD Calculated, safety margin added, closest table below
                     <button className="ml-2 inline-block w-3 h-3" title="Equivalent Air Depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-lg font-bold text-text-dark">{outputs.bellDepth || '—'}</div>
+                  <div className="text-lg font-bold text-text-dark text-right min-w-max">{outputs.bellDepth || '—'}</div>
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-xs text-text-muted font-semibold flex items-center">
                     PO2 at Diving Depth
                     <button className="ml-2 inline-block w-3 h-3" title="Partial pressure of oxygen at depth">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className={`text-lg font-bold px-3 py-1 rounded ${outputs.po2BgClass}`}>
+                  <div className={`text-lg font-bold px-2 py-1 rounded text-right min-w-max ${outputs.po2BgClass}`}>
                     {outputs.po2 || '—'}
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between gap-4">
-                  <label className="text-xs text-text-muted font-semibold flex items-center min-w-fit">
+                <div className="flex items-center justify-between gap-2">
+                  <label className="text-xs text-text-muted font-semibold flex items-center">
                     IMCA TUP Max Bottom Time
                     <button className="ml-2 inline-block w-3 h-3" title="Maximum safe bottom time">
                       <Info className="w-3 h-3" />
                     </button>
                   </label>
-                  <div className="text-sm font-bold text-text-dark">{outputs.dmac || '—'}</div>
+                  <div className="text-sm font-bold text-text-dark text-right min-w-max">{outputs.dmac || '—'}</div>
                 </div>
               </div>
             </div>

@@ -84,16 +84,9 @@ export default function TUP() {
     const record = filteredRecords[idx];
     if (!record) return;
 
-    const diveTime = Number(inputs.diveTime);
     const recordTime = Number(record["BottomTime Min"]);
-
-    if (diveTime > 0 && diveTime !== recordTime) {
-      setMatchingMessage(
-        `Entered dive time ${diveTime} min matches table row with ${recordTime} min (next available in table)`
-      );
-    } else if (diveTime > 0) {
-      setMatchingMessage(`Selected table row: ${recordTime} min bottom time`);
-    }
+    setInputs((prev) => ({ ...prev, diveTime: recordTime.toString() }));
+    setMatchingMessage(`Selected table row: ${recordTime} min bottom time`);
   };
 
   return (

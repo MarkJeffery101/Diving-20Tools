@@ -333,7 +333,7 @@ export default function TUP() {
                     <div className="flex flex-col items-center justify-center gap-2">
                       <h3 className="font-bold text-text-dark">Table to Use</h3>
                       <div className="text-xl md:text-2xl font-bold text-text-dark">
-                        {outputs.bellDepth || "—"} msw
+                        {outputs.tableDepth || "—"} msw
                       </div>
                     </div>
                   </div>

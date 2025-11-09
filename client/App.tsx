@@ -17,6 +17,7 @@ import TableSelection from "./pages/TableSelection";
 import TableUse from "./pages/TableUse";
 import SupportingInfo from "./pages/SupportingInfo";
 import Tools from "./pages/Tools";
+import TUP from "./pages/TUP";
 import Share from "./pages/Share";
 import TreatmentProtocols from "./pages/TreatmentProtocols";
 import EmergencyProcedures from "./pages/EmergencyProcedures";

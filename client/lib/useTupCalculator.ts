@@ -8,7 +8,7 @@ import {
 } from './tupCalculator';
 
 export const useTupCalculator = () => {
-  const [inputs, setInputs] = useState<DiveInputs>({ maxDepth: '20', o2: '30', diveTime: '25' });
+  const [inputs, setInputs] = useState<DiveInputs>({ maxDepth: '', o2: '', diveTime: '' });
   const [outputs, setOutputs] = useState<DiveOutputs>({
     bellDepth: '', po2: '', dmac: '', po2BgClass: '',
     bellmanEsot: '', diversEsot: '', bellmanOtu: '', diversOtu: ''

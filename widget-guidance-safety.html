@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Safety Guidance - DivePlan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        header { background: linear-gradient(135deg, #0d4a66 0%, #0f766e 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 32px; margin-bottom: 5px; }
+        header p { font-size: 14px; opacity: 0.95; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #ddd; overflow-x: auto; flex-wrap: wrap; }
+        .tab-btn { padding: 12px 20px; border: none; background: none; cursor: pointer; font-weight: 600; color: #666; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; white-space: nowrap; }
+        .tab-btn.active { color: #0d4a66; border-bottom-color: #0d4a66; }
+        .tab-btn:hover { color: #0d4a66; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .card.info { border-color: #0284c7; background: #f0f9ff; }
+        .card.warning { border-color: #f59e0b; background: #fffbeb; }
+        .card.success { border-color: #10b981; background: #f0fdf4; }
+        .card.critical { border-color: #dc2626; background: #fef2f2; }
+        
+        .card h2 { color: #0d4a66; margin-bottom: 15px; font-size: 20px; }
+        .card.warning h2 { color: #d97706; }
+        .card.critical h2 { color: #991b1b; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 15px 0; }
+        
+        .stat-box { background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px; text-align: center; }
+        .stat-box .number { font-size: 28px; font-weight: 700; color: #0d4a66; }
+        .stat-box .label { font-size: 12px; color: #6b7280; margin-top: 5px; }
+        
+        h3 { color: #1f2937; margin: 20px 0 10px 0; font-size: 16px; }
+        
+        ul, ol { margin-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 8px; color: #4b5563; font-size: 14px; }
+        
+        .section-title { font-size: 18px; font-weight: 700; color: #0d4a66; border-bottom: 3px solid #0d4a66; padding-bottom: 8px; margin: 25px 0 15px 0; }
+        
+        .checklist { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 15px; margin: 15px 0; }
+        .checklist-item { padding: 10px 0; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; }
+        .checklist-item label { cursor: pointer; flex: 1; font-size: 14px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background: #0d4a66; color: white; padding: 12px; text-align: left; font-weight: 600; }
+        td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+        tr:nth-child(even) { background: #f9fafb; }
+        
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comparison-item { border: 2px solid #ddd; border-radius: 6px; padding: 15px; }
+        .comparison-item.good { border-color: #10b981; background: #f0fdf4; }
+        .comparison-item.bad { border-color: #dc2626; background: #fef2f2; }
+        .comparison-item strong { display: block; margin-bottom: 8px; }
+        .comparison-item.good strong { color: #047857; }
+        .comparison-item.bad strong { color: #991b1b; }
+        
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+        .info-item { background: white; border: 1px solid #e5e7eb; border-radius: 6px; padding: 15px; }
+        .info-item-title { font-weight: 600; color: #0d4a66; margin-bottom: 8px; font-size: 14px; }
+        .info-item-content { font-size: 13px; color: #4b5563; }
+        
+        footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 12px; margin-top: 30px; border-top: 1px solid #ddd; }
+        
+        @media (max-width: 768px) {
+            .grid-2, .comparison { grid-template-columns: 1fr; }
+            .tabs { flex-direction: column; }
+            .tab-btn { width: 100%; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Diving Safety Guidance</h1>
+            <p>Comprehensive safety knowledge and operational best practices for commercial diving</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('safety-limits')">Safety Limits</button>
+            <button class="tab-btn" onclick="switchTab('table-selection')">Table Selection</button>
+            <button class="tab-btn" onclick="switchTab('operational')">Operational</button>
+            <button class="tab-btn" onclick="switchTab('health-medical')">Health & Medical</button>
+            <button class="tab-btn" onclick="switchTab('dive-planning')">Dive Planning</button>
+            <button class="tab-btn" onclick="switchTab('best-practices')">Best Practices</button>
+        </div>
+
+        <!-- SAFETY LIMITS TAB -->
+        <div id="safety-limits" class="tab-content active">
+            <div class="card info">
+                <h2>🎯 Critical Operational Limits</h2>
+                <p>These limits are based on IMCA (International Association of Diving Contractors) and USN (United States Navy) standards for commercial diving safety.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="stat-box">
+                    <div class="number">1.6</div>
+                    <div class="label">Maximum PO₂ (bar)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">1.4</div>
+                    <div class="label">IMCA Recommended PO₂</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">450</div>
+                    <div class="label">Daily OTU Limit</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">2000</div>
+                    <div class="label">Weekly OTU Limit</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">5-10 m/min</div>
+                    <div class="label">Ascent Speed Range</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">3 min</div>
+                    <div class="label">Surface-to-Chamber Time</div>
+                </div>
+            </div>
+
+            <div class="section-title">Oxygen Exposure Indices</div>
+            <div class="card">
+                <h3>Understanding OTU (Oxygen Toxicity Units)</h3>
+                <p style="margin-bottom: 10px;">OTU measures cumulative oxygen exposure over time. Each dive profile contributes OTU based on depth, duration, and oxygen percentage.</p>
+                <table>
+                    <tr>
+                        <th>PO₂ (bar)</th>
+                        <th>Time for 1 OTU</th>
+                        <th>Daily Limit Reached At</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>0.5</td>
+                        <td>2000 min (33 hr)</td>
+                        <td>Minimal concern</td>
+                        <td style="color: #047857; font-weight: 600;">Safe</td>
+                    </tr>
+                    <tr>
+                        <td>0.6</td>
+                        <td>1000 min (17 hr)</td>
+                        <td>7-8 hr bottom time</td>
+                        <td style="color: #0284c7; font-weight: 600;">Monitor</td>
+                    </tr>
+                    <tr>
+                        <td>0.8</td>
+                        <td>400 min (6.7 hr)</td>
+                        <td>2-3 hr bottom time</td>
+                        <td style="color: #f59e0b; font-weight: 600;">Caution</td>
+                    </tr>
+                    <tr>
+                        <td>1.0</td>
+                        <td>200 min (3.3 hr)</td>
+                        <td>1 hr bottom time</td>
+                        <td style="color: #f59e0b; font-weight: 600;">Caution</td>
+                    </tr>
+                    <tr>
+                        <td>1.2</td>
+                        <td>100 min (1.7 hr)</td>
+                        <td>30 min bottom time</td>
+                        <td style="color: #dc2626; font-weight: 600;">Limit</td>
+                    </tr>
+                    <tr>
+                        <td>1.4</td>
+                        <td>60 min (1 hr)</td>
+                        <td>20 min bottom time</td>
+                        <td style="color: #dc2626; font-weight: 600;">Limit</td>
+                    </tr>
+                    <tr>
+                        <td>1.6</td>
+                        <td>45 min</td>
+                        <td>15 min bottom time</td>
+                        <td style="color: #991b1b; font-weight: 600;">Maximum</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px; color: #6b7280; font-size: 13px;"><em>Note: Actual OTU calculations depend on exact dive profile. These are approximations for reference only.</em></p>
+            </div>
+
+            <div class="section-title">Nitrogen Narcosis Management</div>
+            <div class="card warning">
+                <h3>Nitrogen Narcosis Effects by Depth</h3>
+                <ul>
+                    <li><strong>0-30m:</strong> No significant effects; slight euphoria possible</li>
+                    <li><strong>30-40m:</strong> Mild narcosis; slight coordination loss, delayed reaction times</li>
+                    <li><strong>40-60m:</strong> Moderate narcosis; impaired judgment, poor fine motor control</li>
+                    <li><strong>60-80m:</strong> Severe narcosis; disorientation, inability to perform complex tasks</li>
+                    <li><strong>>80m:</strong> Critical narcosis; extreme disorientation, unconsciousness risk</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Management:</strong> Commercial diving typically limited to 60m air maximum. Nitrox reduces narcosis. Proper training and experience essential.</p>
+            </div>
+        </div>
+
+        <!-- TABLE SELECTION TAB -->
+        <div id="table-selection" class="tab-content">
+            <div class="card info">
+                <h2>📋 Table Selection Considerations</h2>
+                <p>Proper table selection is critical for diver safety. The following factors determine which decompression table to use.</p>
+            </div>
+
+            <div class="section-title">Dive Technique Decision Tree</div>
+            <div class="card">
+                <h3>1. Can diver ascend directly to surface without stops?</h3>
+                <div class="comparison">
+                    <div class="comparison-item good">
+                        <strong>✓ Yes - Use ND15 Table</strong>
+                        <p>No-stop air dives where bottom time stays within table limits. Direct ascent permitted.</p>
+                    </div>
+                    <div class="comparison-item bad">
+                        <strong>✗ No - Continue below</strong>
+                        <p>Decompression stops required - choose between in-water, surface, or bell decompression.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px;">2. Will decompression occur in-water only?</h3>
+                <div class="comparison">
+                    <div class="comparison-item good">
+                        <strong>✓ Yes - Use SIL15 Table</strong>
+                        <p>Standard air decompression with all stops in-water. No bell or chamber required. Most economical.</p>
+                    </div>
+                    <div class="comparison-item bad">
+                        <strong>✗ No - Surface/Bell decompression</strong>
+                        <p>Diver will surface or use bell for decompression. Requires oxygen capability and surface support.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px;">3. Will oxygen be used during decompression?</h3>
+                <div class="comparison">
+                    <div class="comparison-item good">
+                        <strong>✓ Yes - Use SOX15 or BOX15</strong>
+                        <p>SOX15: Surface decompression with oxygen (shallow stops on air, surface stops on oxygen)<br>BOX15: Bell-based oxygen decompression with extended capability.</p>
+                    </div>
+                    <div class="comparison-item bad">
+                        <strong>✗ No - Use SAB15 (backup)</strong>
+                        <p>Air-only surface decompression table. Use only if oxygen system fails. Not for primary planning.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px;">4. Is nitrox gas being used?</h3>
+                <div class="comparison">
+                    <div class="comparison-item good">
+                        <strong>✓ Yes - Use NIA15 or NIB15</strong>
+                        <p>NIA: 40% nitrox (18-27m max depth, reduced nitrogen narcosis, faster decompression)<br>NIB: 35% nitrox (18-33m, deeper capability)</p>
+                    </div>
+                    <div class="comparison-item bad">
+                        <strong>✗ No - Use standard air table</strong>
+                        <p>Continue with SIL15, SOX15, or other air-based tables based on dive profile.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">Equivalent Air Depth (EAD) for Nitrox</div>
+            <div class="card success">
+                <h3>What is EAD?</h3>
+                <p>EAD is the depth at which air would have the same nitrogen percentage as your nitrox mix at actual depth. Use EAD to select the correct decompression table depth.</p>
+                <p style="margin-top: 10px; font-family: monospace; background: #f0fdf4; padding: 10px; border-radius: 4px;">
+                    EAD = (Depth + 10) × ((100 - O₂%) ÷ 79) - 10
+                </p>
+                <p style="margin-top: 10px;"><strong>Example:</strong> Diving 30m with 40% nitrox<br>EAD = (30 + 10) × ((100 - 40) ÷ 79) - 10 = 21.6m<br>Use NIA15 table for 21m depth</p>
+            </div>
+
+            <div class="section-title">Repetitive Dive Intervals</div>
+            <div class="card">
+                <p style="margin-bottom: 10px;">Different table variants accommodate different surface intervals:</p>
+                <table>
+                    <tr>
+                        <th>Table Variant</th>
+                        <th>Surface Interval</th>
+                        <th>Use Case</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Base (SIL15, SOX15, etc)</strong></td>
+                        <td>12+ hours</td>
+                        <td>First dive of the day or long surface intervals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H4</strong></td>
+                        <td>4-12 hours</td>
+                        <td>Same-day second or third dive with shorter interval</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H2</strong></td>
+                        <td>2-4 hours</td>
+                        <td>Multiple dives in short sequence (not routine)</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px; color: #6b7280; font-size: 13px;"><strong>Note:</strong> After using surface oxygen decompression (SOX/H4SOX), next dive possible after 4+ hours. After extended decompression, 12-hour interval recommended.</p>
+            </div>
+        </div>
+
+        <!-- OPERATIONAL TAB -->
+        <div id="operational" class="tab-content">
+            <div class="card warning">
+                <h2>⚙️ Operational Best Practices</h2>
+                <p>Safe diving operations require proper planning, communication, and adherence to procedures.</p>
+            </div>
+
+            <div class="section-title">Pre-Dive Planning Checklist</div>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="p1">
+                    <label for="p1"><strong>Establish dive objectives:</strong> Know why dive is needed, depth, duration, and location</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p2">
+                    <label for="p2"><strong>Weather and water conditions:</strong> Check currents, visibility, temperature, surge</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p3">
+                    <label for="p3"><strong>Select decompression table:</strong> Use Table Selection Tool, verify depth availability</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p4">
+                    <label for="p4"><strong>Calculate bottom time and decompression:</strong> Build in safety margins (5-10 min under limit)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p5">
+                    <label for="p5"><strong>Gas mixing and labeling:</strong> Verify mix percentages, label bottles, calculate PO₂ at depth</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p6">
+                    <label for="p6"><strong>Equipment inspection:</strong> Check regulators, BC, computers, compasses, lights</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p7">
+                    <label for="p7"><strong>Verify oxygen system:</strong> If using SOX/BOX tables, confirm oxygen supply and backup</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p8">
+                    <label for="p8"><strong>Medical screening:</strong> Diver fitness confirmed, no recent illness/medications</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p9">
+                    <label for="p9"><strong>Briefing all team members:</strong> Objectives, signals, emergency procedures, contingencies</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p10">
+                    <label for="p10"><strong>Emergency procedures confirmed:</strong> DCS response, chamber location, hyperbaric facility contact</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p11">
+                    <label for="p11"><strong>Documentation ready:</strong> Dive log, incident reports, weather logs prepared</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="p12">
+                    <label for="p12"><strong>Diving Supervisor approval:</strong> Plan reviewed and approved before execution</label>
+                </div>
+            </div>
+
+            <div class="section-title">Dive Team Communication</div>
+            <div class="card">
+                <h3>Essential Hand Signals</h3>
+                <div class="grid-2">
+                    <div class="info-item">
+                        <div class="info-item-title">✓ OK / Are you OK?</div>
+                        <div class="info-item-content">Thumb and index finger forming circle</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-title">✗ Problem / Not OK</div>
+                        <div class="info-item-content">Flat hand to throat</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-title">⬆ Ascend / Go up</div>
+                        <div class="info-item-content">Thumb pointing up</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-title">⬇ Descend / Go down</div>
+                        <div class="info-item-content">Thumb pointing down</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-title">⚠ Attention / Look</div>
+                        <div class="info-item-content">Wave hand in front of face</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-title">Out of Air</div>
+                        <div class="info-item-content">Hand to throat and slash across neck</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 20px;">Pre-Dive Briefing Topics</h3>
+                <ul>
+                    <li><strong>Dive objectives and time limits:</strong> Why, where, when, how long</li>
+                    <li><strong>Depth and decompression:</strong> Exact depths, bottom time, stop requirements</li>
+                    <li><strong>Gas usage and contingencies:</strong> Primary and backup breathing gases, switch criteria</li>
+                    <li><strong>Navigation and signals:</strong> Entry/exit location, navigation plan, communication signals</li>
+                    <li><strong>Buddy procedures:</strong> Stick together, check on each other, assist procedures</li>
+                    <li><strong>Emergency procedures:</strong> Abort criteria, ascent procedure, emergency signal, rescue</li>
+                </ul>
+            </div>
+
+            <div class="section-title">During-Dive Safety</div>
+            <div class="card info">
+                <h3>Key Points to Remember</h3>
+                <ul>
+                    <li>Monitor time and depth continuously - use computer or watch + depth gauge</li>
+                    <li>Check buddy regularly - at intervals determined by plan</li>
+                    <li>Ascend slowly - maintain 5-10 m/min ascent rate throughout dive</li>
+                    <li>Follow decompression stops exactly - do not skip or shorten stops</li>
+                    <li>Watch for signs of problems - pain, disorientation, shortness of breath, unusual sensations</li>
+                    <li>Stop dive and ascend if objectives met or safety concerns arise</li>
+                    <li>Breathe normally - do not hold breath during ascent</li>
+                    <li>Conserve air - monitor pressure gauge, manage consumption rate</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HEALTH & MEDICAL TAB -->
+        <div id="health-medical" class="tab-content">
+            <div class="card">
+                <h2>🏥 Medical Fitness for Diving</h2>
+                <p>Certain medical conditions make diving unsafe. Divers must be in good health to safely handle the physical and physiological demands of commercial diving.</p>
+            </div>
+
+            <div class="section-title">Medical Screening - Conditions That Prevent Diving</div>
+            <div class="card critical">
+                <h3>Absolute Contraindications</h3>
+                <p style="margin-bottom: 15px;">The following conditions make diving unsafe:</p>
+                <ul>
+                    <li><strong>Heart conditions:</strong> History of heart attack, angina, cardiac surgery, arrhythmias</li>
+                    <li><strong>Lung disease:</strong> Asthma, emphysema, history of collapsed lung, cystic fibrosis</li>
+                    <li><strong>Neurological:</strong> Seizure disorders, cerebral palsy, multiple sclerosis</li>
+                    <li><strong>Ear/Sinus:</strong> Perforated eardrum, chronic otitis, severe sinus disease</li>
+                    <li><strong>Diabetes:</strong> Insulin-dependent diabetes (some programs allow non-insulin)</li>
+                    <li><strong>Pregnancy:</strong> Diving prohibited during pregnancy</li>
+                    <li><strong>Alcohol/Drug dependency:</strong> Active substance abuse disqualifies from diving</li>
+                    <li><strong>Recent surgery/injury:</strong> Generally must wait 6+ weeks before resuming diving</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Pre-Dive Health Assessment</div>
+            <div class="card warning">
+                <h3>Before Every Dive - Self Assessment</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h1">
+                        <label for="h1">I am well rested and not fatigued</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h2">
+                        <label for="h2">I am not under the influence of alcohol or drugs</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h3">
+                        <label for="h3">I have not been ill in the past 48 hours</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h4">
+                        <label for="h4">I have not taken decongestants that may mask ear symptoms</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h5">
+                        <label for="h5">My ears and sinuses are clear</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h6">
+                        <label for="h6">I have not had any recent injuries or surgery</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h7">
+                        <label for="h7">I am comfortable and confident in today's dive plan</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="h8">
+                        <label for="h8">I will report any concerns to the dive supervisor immediately</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">Recovery After Diving</div>
+            <div class="card success">
+                <h3>Post-Dive Care Recommendations</h3>
+                <ul>
+                    <li><strong>Rest:</strong> Allow 24 hours minimum between last dive and flying/high altitude travel</li>
+                    <li><strong>Hydration:</strong> Drink plenty of water to help nitrogen elimination</li>
+                    <li><strong>Avoid alcohol:</strong> Do not consume alcohol for 24 hours after diving</li>
+                    <li><strong>Monitor symptoms:</strong> Watch for any DCS signs in first 24 hours post-dive</li>
+                    <li><strong>Light activity:</strong> Gentle activity OK, but avoid strenuous exercise</li>
+                    <li><strong>Ear care:</strong> Keep ears dry, avoid water until dry</li>
+                    <li><strong>Log dive details:</strong> Record depth, time, decompression, any incidents</li>
+                    <li><strong>Rest before next dive:</strong> Allow minimum surface interval per plan</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DIVE PLANNING TAB -->
+        <div id="dive-planning" class="tab-content">
+            <div class="card info">
+                <h2>📝 Structured Dive Planning</h2>
+                <p>Every dive must be planned in advance with clear objectives, procedures, and contingencies.</p>
+            </div>
+
+            <div class="section-title">Dive Plan Template</div>
+            <div class="card">
+                <h3>Essential Information to Document</h3>
+                <table>
+                    <tr>
+                        <th colspan="2" style="background: #0d4a66;">Dive Plan Components</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; width: 30%;">Dive Date/Time</td>
+                        <td>Scheduled dive date, start time, expected duration</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Location</td>
+                        <td>Site name, coordinates, depth, water conditions</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Objective</td>
+                        <td>Task to be performed, equipment to be used/recovered</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Dive Profile</td>
+                        <td>Max depth, planned bottom time, surface interval, repetitive dives</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Decompression Table</td>
+                        <td>Table code (SIL15, SOX15, etc), exact depth, stop schedule</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Breathing Gas</td>
+                        <td>Primary and backup gas mixes, pressures, PO₂ calculations</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Equipment</td>
+                        <td>Regulators, BC, lights, computers, decompression aids</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Team Members</td>
+                        <td>Diver(s), buddy, safety officer, dive supervisor names</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Contingencies</td>
+                        <td>Abort criteria, emergency procedures, communication plan</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Weather/Conditions</td>
+                        <td>Wind, current, visibility, water temp, surge forecast</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Approvals</td>
+                        <td>Supervisor signature, medical clearance if needed</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section-title">Dive Limits & Safety Margins</div>
+            <div class="card warning">
+                <h3>Conservative Planning Practice</h3>
+                <p style="margin-bottom: 15px;">Always build in safety margins and plan conservatively:</p>
+                <ul>
+                    <li><strong>Bottom time:</strong> Plan 5-10 minutes less than table allowance</li>
+                    <li><strong>Depth:</strong> Plan for slightly shallower than maximum intended depth</li>
+                    <li><strong>Ascent rate:</strong> Plan for slowest acceptable rate (5-7 m/min ideal)</li>
+                    <li><strong>Oxygen exposure:</strong> Stay 10% below OTU daily limit</li>
+                    <li><strong>Contingency gas:</strong> Always carry reserve air - never dive on exact calculations</li>
+                    <li><strong>Repetitive dives:</strong> Use maximum interval between dives when possible</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BEST PRACTICES TAB -->
+        <div id="best-practices" class="tab-content">
+            <div class="card success">
+                <h2>⭐ Excellence in Commercial Diving</h2>
+                <p>These practices represent the highest standards of professional diving safety and competence.</p>
+            </div>
+
+            <div class="section-title">Culture of Safety</div>
+            <div class="card">
+                <h3>Principles for Safe Operations</h3>
+                <ul>
+                    <li><strong>Speak up:</strong> Report concerns, near-misses, and unsafe conditions immediately</li>
+                    <li><strong>Stop unsafe dives:</strong> Never proceed if conditions aren't right - safety over schedule</li>
+                    <li><strong>Ask questions:</strong> If you don't understand something, ask before diving</li>
+                    <li><strong>Share knowledge:</strong> Help others learn from your experience</li>
+                    <li><strong>Continuous improvement:</strong> Always look for ways to make operations safer</li>
+                    <li><strong>Respect experience:</strong> Learn from veteran divers and supervisors</li>
+                    <li><strong>Take responsibility:</strong> Own your decisions and their consequences</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Physical Fitness & Health</div>
+            <div class="card">
+                <h3>Maintain Diving Fitness</h3>
+                <ul>
+                    <li><strong>Cardiovascular fitness:</strong> Regular aerobic exercise improves oxygen efficiency</li>
+                    <li><strong>Strength training:</strong> Core and leg strength helps with equipment management</li>
+                    <li><strong>Flexibility:</strong> Stretching reduces injury risk and improves comfort</li>
+                    <li><strong>Mental health:</strong> Address stress, anxiety, depression - talk to professionals</li>
+                    <li><strong>Sleep quality:</strong> 7-9 hours nightly is crucial for decision-making and safety</li>
+                    <li><strong>Nutrition:</strong> Balanced diet supports body's decompression processes</li>
+                    <li><strong>Avoid smoking:</strong> Reduces lung capacity and increases DCS risk</li>
+                    <li><strong>Annual checkups:</strong> Regular medical evaluations confirm continued fitness</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Continuous Learning</div>
+            <div class="card">
+                <h3>Professional Development</h3>
+                <ul>
+                    <li><strong>Advanced certifications:</strong> Pursue technical diving credentials and specializations</li>
+                    <li><strong>Table mastery:</strong> Become expert in decompression and dive planning</li>
+                    <li><strong>Emergency medicine:</strong> Take first aid and CPR courses regularly</li>
+                    <li><strong>Equipment knowledge:</strong> Thoroughly understand all gear used in your operations</li>
+                    <li><strong>Incident analysis:</strong> Study near-misses and accidents to learn and improve</li>
+                    <li><strong>Stay current:</strong> Keep up with latest safety research and industry standards</li>
+                    <li><strong>Mentoring:</strong> Teach newer divers - reinforces your own knowledge</li>
+                </ul>
+            </div>
+
+            <div class="section-title">Decision-Making Framework</div>
+            <div class="card warning">
+                <h3>Before Every Dive - STOP & THINK</h3>
+                <p style="margin-bottom: 15px;">Use this framework to make safe decisions:</p>
+                <ul>
+                    <li><strong>S - Stop:</strong> Pause before proceeding. Take time to evaluate.</li>
+                    <li><strong>T - Think:</strong> Consider all aspects - conditions, plan, team, contingencies.</li>
+                    <li><strong>O - Optimize:</strong> Can we make this safer? Better conditions? Different approach?</li>
+                    <li><strong>P - Proceed or Postpone:</strong> Either proceed with confidence or postpone safely.</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic;">"When in doubt, don't go. No task is worth a diver's life."</p>
+            </div>
+        </div>
+
+        <footer>
+            DivePlan Diving Safety Guidance Widget | Comprehensive safety reference for commercial diving operations<br>
+            Always follow your organization's safety protocols and consult with qualified diving supervisors for all operations
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to button
+            event.target.classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

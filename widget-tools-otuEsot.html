@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTU/ESOT Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #062737 0%, #0d4a66 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 28px; margin-bottom: 5px; }
+        header p { opacity: 0.9; }
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h2 { color: #0d4a66; margin-bottom: 20px; font-size: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; }
+        input, select { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus, select:focus { outline: none; border-color: #0d4a66; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .buttons { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .btn-primary { background: #0d4a66; color: white; }
+        .btn-primary:hover { background: #062737; }
+        .btn-secondary { background: #ddd; color: #333; }
+        .btn-secondary:hover { background: #ccc; }
+        .results { background: #e8f4f8; border: 2px solid #0d4a66; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .results h3 { color: #0d4a66; margin-bottom: 15px; }
+        .result-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #bbb; }
+        .result-item:last-child { border-bottom: none; }
+        .result-item span { font-weight: bold; color: #062737; }
+        .rows-container { max-height: 500px; overflow-y: auto; border: 2px solid #ddd; border-radius: 4px; padding: 15px; background: #f9f9f9; }
+        .row-item { background: white; padding: 15px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .row-item input { margin-bottom: 10px; }
+        .remove-btn { background: #cc3333; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; }
+        .remove-btn:hover { background: #aa2222; }
+        .add-btn { background: #0d4a66; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 15px; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+        .info { background: #fffbea; border-left: 4px solid #ff9800; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .info p { font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 OTU & ESOT Calculator</h1>
+            <p>Oxygen Toxicity Units & Exposure Surface Oxygen Time</p>
+        </header>
+        
+        <div class="info">
+            <p><strong>OTU (Oxygen Toxicity Units):</strong> Cumulative measure of oxygen toxicity based on depth and time. IMCA limit is 1500 OTU per 24hrs.</p>
+            <p><strong>ESOT (Exposure Surface Oxygen Time):</strong> Equivalent surface oxygen exposure time.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Add Dive Segments</h2>
+            <button class="add-btn" onclick="calculator.addRow()">+ Add Segment</button>
+            <div class="rows-container" id="rowsContainer"></div>
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculator.calculate()">Calculate OTU & ESOT</button>
+                <button class="btn-secondary" onclick="calculator.reset()">Reset</button>
+            </div>
+        </div>
+        
+        <div id="resultsDiv" style="display:none;">
+            <div class="card results">
+                <h3>Results</h3>
+                <div class="result-item">
+                    <span>Total OTU:</span>
+                    <span id="totalOtu">0</span>
+                </div>
+                <div class="result-item">
+                    <span>Total ESOT:</span>
+                    <span id="totalEsot">0</span>
+                </div>
+                <div class="result-item">
+                    <span>OTU Status:</span>
+                    <span id="otuStatus">Safe</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>OTU/ESOT Calculator Widget v1.0 | Fully functional offline</footer>
+    </div>
+
+    <script>
+        const calculator = {
+            rows: [],
+            
+            init() {
+                this.addRow();
+            },
+            
+            addRow() {
+                const id = Date.now();
+                this.rows.push({ id, depth: '', o2: 21, time: '' });
+                this.renderRows();
+            },
+            
+            removeRow(id) {
+                this.rows = this.rows.filter(r => r.id !== id);
+                this.renderRows();
+            },
+            
+            renderRows() {
+                const container = document.getElementById('rowsContainer');
+                container.innerHTML = '';
+                
+                this.rows.forEach((row, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'row-item';
+                    div.innerHTML = `
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end;">
+                            <div>
+                                <label>Depth (m/sw)</label>
+                                <input type="number" value="${row.depth}" onchange="calculator.updateRow(${row.id}, 'depth', this.value)" placeholder="30">
+                            </div>
+                            <div>
+                                <label>O₂ (%)</label>
+                                <input type="number" value="${row.o2}" onchange="calculator.updateRow(${row.id}, 'o2', this.value)" placeholder="21">
+                            </div>
+                            <div>
+                                <label>Time (min)</label>
+                                <input type="number" value="${row.time}" onchange="calculator.updateRow(${row.id}, 'time', this.value)" placeholder="45">
+                            </div>
+                            <button class="remove-btn" onclick="calculator.removeRow(${row.id})">Remove</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            },
+            
+            updateRow(id, field, value) {
+                const row = this.rows.find(r => r.id === id);
+                if (row) {
+                    row[field] = field === 'depth' || field === 'time' ? parseFloat(value) || 0 : parseFloat(value) || 21;
+                }
+            },
+            
+            calculate() {
+                let totalOtu = 0;
+                let totalEsot = 0;
+                
+                this.rows.forEach(row => {
+                    if (!row.depth || !row.time) return;
+                    
+                    const depth = parseFloat(row.depth);
+                    const o2 = parseFloat(row.o2) / 100;
+                    const time = parseFloat(row.time);
+                    
+                    // pO2 = O2% * (Depth/10 + 1)
+                    const pO2 = o2 * (depth / 10 + 1);
+                    
+                    // OTU = time * ((pO2 - 0.5) / 0.5)^0.833 (if pO2 > 0.5)
+                    const otuFactor = pO2 > 0.5 ? Math.pow((pO2 - 0.5) / 0.5, 0.833) : 0;
+                    const otu = time * otuFactor;
+                    
+                    // ESOT = time * pO2^2.285
+                    const esot = time * Math.pow(pO2, 2.285);
+                    
+                    totalOtu += otu;
+                    totalEsot += esot;
+                });
+                
+                document.getElementById('totalOtu').textContent = Math.round(totalOtu);
+                document.getElementById('totalEsot').textContent = Math.round(totalEsot);
+                
+                const status = totalOtu > 1500 ? 'DANGER - Exceeds limit' : totalOtu > 1200 ? 'CAUTION' : 'Safe';
+                document.getElementById('otuStatus').textContent = status;
+                
+                document.getElementById('resultsDiv').style.display = 'block';
+            },
+            
+            reset() {
+                this.rows = [];
+                this.addRow();
+                document.getElementById('resultsDiv').style.display = 'none';
+            }
+        };
+        
+        window.addEventListener('load', () => calculator.init());
+    </script>
+</body>
+</html>

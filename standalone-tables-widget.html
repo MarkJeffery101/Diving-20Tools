@@ -1,409 +1,635 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DivePlan - Decompression Tables Widget</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-        
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        
-        header {
-            background: #062737;
-            color: white;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-        
-        header h1 { font-size: 24px; margin-bottom: 5px; }
-        header p { font-size: 13px; opacity: 0.9; }
-        
-        .controls {
-            background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .search-box { margin-bottom: 15px; }
-        .search-box input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .search-box input:focus {
-            outline: none;
-            border-color: #0d4a66;
-        }
-        
-        .filters { display: flex; gap: 10px; flex-wrap: wrap; }
-        
-        .filter-btn {
-            padding: 8px 14px;
-            border: 2px solid #ddd;
-            background: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .filter-btn:hover { border-color: #0d4a66; color: #0d4a66; }
-        .filter-btn.active { background: #0d4a66; color: white; border-color: #0d4a66; }
-        
-        .view { display: none; }
-        .view.active { display: block; }
-        
-        .back-btn {
-            background: #0d4a66;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        
-        .back-btn:hover { background: #053751; }
-        
-        .tables-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .table-card {
-            background: white;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            padding: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .table-card:hover {
-            border-color: #0d4a66;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .table-card h3 { color: #062737; font-size: 14px; margin-bottom: 6px; font-weight: 600; }
-        .table-card .code { display: inline-block; background: #e8f4f8; color: #0d4a66; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-bottom: 8px; }
-        .table-card p { font-size: 12px; color: #666; }
-        
-        .depths-section {
-            background: white;
-            padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .depths-section h2 { color: #062737; font-size: 18px; margin-bottom: 4px; }
-        .depths-section p { color: #666; font-size: 13px; margin-bottom: 15px; }
-        
-        .depths-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 8px;
-        }
-        
-        .depth-btn {
-            padding: 12px;
-            border: 2px solid #0d4a66;
-            background: white;
-            color: #0d4a66;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-        
-        .depth-btn:hover { background: #0d4a66; color: white; }
-        .depth-btn.active { background: #0d4a66; color: white; }
-        
-        .table-header {
-            background: #1565c0;
-            color: white;
-            padding: 16px;
-            margin-bottom: 0;
-        }
-        
-        .table-header h2 {
-            font-size: 18px;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-        
-        .table-header p {
-            font-size: 12px;
-            opacity: 0.95;
-        }
-        
-        .table-wrapper {
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .table-scroll { overflow-x: auto; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-        
-        thead {
-            background: #1565c0;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        th {
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid #0d4a66;
-            font-weight: 600;
-            font-size: 11px;
-            line-height: 1.2;
-            background: #1565c0;
-            color: white;
-        }
-        
-        td {
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid #e0e0e0;
-            font-size: 12px;
-        }
-        
-        tbody tr:nth-child(even) {
-            background: #f0f4f8;
-        }
-        
-        tbody tr:nth-child(odd) {
-            background: #fafbfc;
-        }
-        
-        tbody tr:hover {
-            background: #e3f2fd;
-        }
-        
-        .oxy-cell {
-            background: #c8e6f5 !important;
-            font-weight: 500;
-        }
-        
-        tbody tr:hover .oxy-cell {
-            background: #a8d6f5 !important;
-        }
-        
-        .flag-1 { background: #90EE90; }
-        .flag-2 { background: #FFD700; }
-        .flag-3 { background: #FF6B6B; color: white; }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 4px;
-            color: #999;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #999;
-            font-size: 11px;
-            border-top: 1px solid #ddd;
-            margin-top: 40px;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background: #062737;
+        color: white;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 4px;
+      }
+
+      header h1 {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+      header p {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      .controls {
+        background: white;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .search-box {
+        margin-bottom: 15px;
+      }
+      .search-box input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .search-box input:focus {
+        outline: none;
+        border-color: #0d4a66;
+      }
+
+      .filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 8px 14px;
+        border: 2px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .filter-btn:hover {
+        border-color: #0d4a66;
+        color: #0d4a66;
+      }
+      .filter-btn.active {
+        background: #0d4a66;
+        color: white;
+        border-color: #0d4a66;
+      }
+
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+      }
+
+      .back-btn {
+        background: #0d4a66;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .back-btn:hover {
+        background: #053751;
+      }
+
+      .tables-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+      }
+
+      .table-card {
+        background: white;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .table-card:hover {
+        border-color: #0d4a66;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .table-card h3 {
+        color: #062737;
+        font-size: 14px;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .table-card .code {
+        display: inline-block;
+        background: #e8f4f8;
+        color: #0d4a66;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 11px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .table-card p {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .depths-section {
+        background: white;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .depths-section h2 {
+        color: #062737;
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      .depths-section p {
+        color: #666;
+        font-size: 13px;
+        margin-bottom: 15px;
+      }
+
+      .depths-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 8px;
+      }
+
+      .depth-btn {
+        padding: 12px;
+        border: 2px solid #0d4a66;
+        background: white;
+        color: #0d4a66;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .depth-btn:hover {
+        background: #0d4a66;
+        color: white;
+      }
+      .depth-btn.active {
+        background: #0d4a66;
+        color: white;
+      }
+
+      .table-header {
+        background: #1565c0;
+        color: white;
+        padding: 16px;
+        margin-bottom: 0;
+      }
+
+      .table-header h2 {
+        font-size: 18px;
+        margin-bottom: 4px;
+        font-weight: 600;
+      }
+
+      .table-header p {
+        font-size: 12px;
+        opacity: 0.95;
+      }
+
+      .table-wrapper {
+        background: white;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      thead {
+        background: #1565c0;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      th {
+        padding: 10px 6px;
+        text-align: center;
+        border: 1px solid #0d4a66;
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 1.2;
+        background: #1565c0;
+        color: white;
+      }
+
+      td {
+        padding: 10px 6px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        font-size: 12px;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #f0f4f8;
+      }
+
+      tbody tr:nth-child(odd) {
+        background: #fafbfc;
+      }
+
+      tbody tr:hover {
+        background: #e3f2fd;
+      }
+
+      .oxy-cell {
+        background: #c8e6f5 !important;
+        font-weight: 500;
+      }
+
+      tbody tr:hover .oxy-cell {
+        background: #a8d6f5 !important;
+      }
+
+      .flag-1 {
+        background: #90ee90;
+      }
+      .flag-2 {
+        background: #ffd700;
+      }
+      .flag-3 {
+        background: #ff6b6b;
+        color: white;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 40px;
+        background: white;
+        border-radius: 4px;
+        color: #999;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #999;
+        font-size: 11px;
+        border-top: 1px solid #ddd;
+        margin-top: 40px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>🏊 DivePlan Decompression Tables</h1>
-            <p>Standalone Widget - Commercial Diving Decompression Tables Offline</p>
-        </header>
-        
-        <!-- Table Selection View -->
-        <div id="searchView" class="view active">
-            <div class="controls">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search tables by name or code...">
-                </div>
-                <div class="filters">
-                    <button class="filter-btn active" onclick="app.filterTables('all')">All Tables</button>
-                    <button class="filter-btn" onclick="app.filterTables('air')">Standard Air</button>
-                    <button class="filter-btn" onclick="app.filterTables('oxygen')">Surface O2</button>
-                    <button class="filter-btn" onclick="app.filterTables('nitrox')">Nitrox</button>
-                </div>
-            </div>
-            <div id="tablesGrid" class="tables-grid"></div>
+      <header>
+        <h1>🏊 DivePlan Decompression Tables</h1>
+        <p>
+          Standalone Widget - Commercial Diving Decompression Tables Offline
+        </p>
+      </header>
+
+      <!-- Table Selection View -->
+      <div id="searchView" class="view active">
+        <div class="controls">
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search tables by name or code..."
+            />
+          </div>
+          <div class="filters">
+            <button class="filter-btn active" onclick="app.filterTables('all')">
+              All Tables
+            </button>
+            <button class="filter-btn" onclick="app.filterTables('air')">
+              Standard Air
+            </button>
+            <button class="filter-btn" onclick="app.filterTables('oxygen')">
+              Surface O2
+            </button>
+            <button class="filter-btn" onclick="app.filterTables('nitrox')">
+              Nitrox
+            </button>
+          </div>
         </div>
-        
-        <!-- Depth Selection View -->
-        <div id="depthsView" class="view">
-            <button class="back-btn" onclick="app.showSearch()">← Back</button>
-            <div id="depthsContainer"></div>
-        </div>
-        
-        <!-- Table Display View -->
-        <div id="tableView" class="view">
-            <button class="back-btn" onclick="app.showDepths()">← Back</button>
-            <div id="tableContainer"></div>
-        </div>
-        
-        <footer>DivePlan Tables Standalone Widget | All data embedded | Offline ready | v1.0</footer>
+        <div id="tablesGrid" class="tables-grid"></div>
+      </div>
+
+      <!-- Depth Selection View -->
+      <div id="depthsView" class="view">
+        <button class="back-btn" onclick="app.showSearch()">← Back</button>
+        <div id="depthsContainer"></div>
+      </div>
+
+      <!-- Table Display View -->
+      <div id="tableView" class="view">
+        <button class="back-btn" onclick="app.showDepths()">← Back</button>
+        <div id="tableContainer"></div>
+      </div>
+
+      <footer>
+        DivePlan Tables Standalone Widget | All data embedded | Offline ready |
+        v1.0
+      </footer>
     </div>
 
     <script>
-        const app = {
-            currentTable: null,
-            currentDepth: null,
-            currentFilter: 'all',
-            searchTerm: '',
-            
-            tables: [
-                { name: 'Standard Air - 12h SI', code: 'SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Standard Air - 2h SI', code: 'H2SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Standard Air - 4h SI', code: 'H4SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Surface O2 - 12h SI', code: 'SOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Surface O2 - 4h SI', code: 'HSOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Nitrox 40% - 12h SI', code: 'NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 40% - 2h SI', code: 'H2NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 40% - 4h SI', code: 'H4NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 35% - 12h SI', code: 'NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
-                { name: 'Nitrox 35% - 2h SI', code: 'H2NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
-                { name: 'Nitrox 35% - 4h SI', code: 'H4NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
-            ],
-            
-            init() {
-                this.renderTables();
-                document.getElementById('searchInput').addEventListener('input', (e) => {
-                    this.searchTerm = e.target.value.toLowerCase();
-                    this.renderTables();
-                });
-            },
-            
-            filterTables(type) {
-                this.currentFilter = type;
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                event.target.classList.add('active');
-                this.renderTables();
-            },
-            
-            renderTables() {
-                const grid = document.getElementById('tablesGrid');
-                grid.innerHTML = '';
-                
-                const filtered = this.tables.filter(t => {
-                    const typeMatch = this.currentFilter === 'all' || t.type === this.currentFilter;
-                    const search = !this.searchTerm || t.name.toLowerCase().includes(this.searchTerm) || t.code.toLowerCase().includes(this.searchTerm);
-                    return typeMatch && search;
-                });
-                
-                if (filtered.length === 0) {
-                    grid.innerHTML = '<div class="no-results">No tables found</div>';
-                    return;
-                }
-                
-                filtered.forEach(t => {
-                    const div = document.createElement('div');
-                    div.className = 'table-card';
-                    div.innerHTML = `<h3>${t.name}</h3><div class="code">${t.code}</div><p>${t.depths.length} depths | ${Math.min(...t.depths)}-${Math.max(...t.depths)}m</p>`;
-                    div.onclick = () => this.selectTable(t);
-                    grid.appendChild(div);
-                });
-            },
-            
-            selectTable(table) {
-                this.currentTable = table;
-                this.showDepths();
-            },
-            
-            showSearch() {
-                document.getElementById('searchView').classList.add('active');
-                document.getElementById('depthsView').classList.remove('active');
-                document.getElementById('tableView').classList.remove('active');
-            },
-            
-            showDepths() {
-                document.getElementById('searchView').classList.remove('active');
-                document.getElementById('depthsView').classList.add('active');
-                document.getElementById('tableView').classList.remove('active');
-                this.renderDepths();
-            },
-            
-            renderDepths() {
-                const { code, name, depths } = this.currentTable;
-                const container = document.getElementById('depthsContainer');
-                
-                let html = `<div class="depths-section">
+      const app = {
+        currentTable: null,
+        currentDepth: null,
+        currentFilter: "all",
+        searchTerm: "",
+
+        tables: [
+          {
+            name: "Standard Air - 12h SI",
+            code: "SIL15",
+            type: "air",
+            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+          },
+          {
+            name: "Standard Air - 2h SI",
+            code: "H2SIL15",
+            type: "air",
+            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+          },
+          {
+            name: "Standard Air - 4h SI",
+            code: "H4SIL15",
+            type: "air",
+            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+          },
+          {
+            name: "Surface O2 - 12h SI",
+            code: "SOX15",
+            type: "oxygen",
+            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+          },
+          {
+            name: "Surface O2 - 4h SI",
+            code: "HSOX15",
+            type: "oxygen",
+            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+          },
+          {
+            name: "Nitrox 40% - 12h SI",
+            code: "NIA15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27],
+          },
+          {
+            name: "Nitrox 40% - 2h SI",
+            code: "H2NIA15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27],
+          },
+          {
+            name: "Nitrox 40% - 4h SI",
+            code: "H4NIA15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27],
+          },
+          {
+            name: "Nitrox 35% - 12h SI",
+            code: "NIB15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27, 30, 33],
+          },
+          {
+            name: "Nitrox 35% - 2h SI",
+            code: "H2NIB15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27, 30, 33],
+          },
+          {
+            name: "Nitrox 35% - 4h SI",
+            code: "H4NIB15",
+            type: "nitrox",
+            depths: [18, 21, 24, 27, 30, 33],
+          },
+        ],
+
+        init() {
+          this.renderTables();
+          document
+            .getElementById("searchInput")
+            .addEventListener("input", (e) => {
+              this.searchTerm = e.target.value.toLowerCase();
+              this.renderTables();
+            });
+        },
+
+        filterTables(type) {
+          this.currentFilter = type;
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          event.target.classList.add("active");
+          this.renderTables();
+        },
+
+        renderTables() {
+          const grid = document.getElementById("tablesGrid");
+          grid.innerHTML = "";
+
+          const filtered = this.tables.filter((t) => {
+            const typeMatch =
+              this.currentFilter === "all" || t.type === this.currentFilter;
+            const search =
+              !this.searchTerm ||
+              t.name.toLowerCase().includes(this.searchTerm) ||
+              t.code.toLowerCase().includes(this.searchTerm);
+            return typeMatch && search;
+          });
+
+          if (filtered.length === 0) {
+            grid.innerHTML = '<div class="no-results">No tables found</div>';
+            return;
+          }
+
+          filtered.forEach((t) => {
+            const div = document.createElement("div");
+            div.className = "table-card";
+            div.innerHTML = `<h3>${t.name}</h3><div class="code">${t.code}</div><p>${t.depths.length} depths | ${Math.min(...t.depths)}-${Math.max(...t.depths)}m</p>`;
+            div.onclick = () => this.selectTable(t);
+            grid.appendChild(div);
+          });
+        },
+
+        selectTable(table) {
+          this.currentTable = table;
+          this.showDepths();
+        },
+
+        showSearch() {
+          document.getElementById("searchView").classList.add("active");
+          document.getElementById("depthsView").classList.remove("active");
+          document.getElementById("tableView").classList.remove("active");
+        },
+
+        showDepths() {
+          document.getElementById("searchView").classList.remove("active");
+          document.getElementById("depthsView").classList.add("active");
+          document.getElementById("tableView").classList.remove("active");
+          this.renderDepths();
+        },
+
+        renderDepths() {
+          const { code, name, depths } = this.currentTable;
+          const container = document.getElementById("depthsContainer");
+
+          let html = `<div class="depths-section">
                     <h2>${name}</h2>
                     <p>Table Code: <strong>${code}</strong> | Select a depth:</p>
                     <div class="depths-grid">`;
-                
-                depths.forEach(d => {
-                    html += `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`;
-                });
-                
-                html += '</div></div>';
-                container.innerHTML = html;
+
+          depths.forEach((d) => {
+            html += `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`;
+          });
+
+          html += "</div></div>";
+          container.innerHTML = html;
+        },
+
+        selectDepth(depth) {
+          this.currentDepth = depth;
+          this.showTable();
+        },
+
+        showTable() {
+          document.getElementById("searchView").classList.remove("active");
+          document.getElementById("depthsView").classList.remove("active");
+          document.getElementById("tableView").classList.add("active");
+          this.renderTable();
+        },
+
+        renderTable() {
+          const { code, name } = this.currentTable;
+          const depth = this.currentDepth;
+          const container = document.getElementById("tableContainer");
+
+          // Sample data for demonstration
+          const sampleData = [
+            {
+              time: 10,
+              till1st: 0.5,
+              d24: "—",
+              d21: "—",
+              d18: "—",
+              d15: "1",
+              d12: "—",
+              d9: "—",
+              d6: "3",
+              d3: "5",
+              totalDeco: 8,
+              otu: "12",
+              esot: "20",
             },
-            
-            selectDepth(depth) {
-                this.currentDepth = depth;
-                this.showTable();
+            {
+              time: 20,
+              till1st: 0.8,
+              d24: "—",
+              d21: "—",
+              d18: "—",
+              d15: "3",
+              d12: "—",
+              d9: "2",
+              d6: "8",
+              d3: "12",
+              totalDeco: 25,
+              otu: "32",
+              esot: "55",
             },
-            
-            showTable() {
-                document.getElementById('searchView').classList.remove('active');
-                document.getElementById('depthsView').classList.remove('active');
-                document.getElementById('tableView').classList.add('active');
-                this.renderTable();
+            {
+              time: 30,
+              till1st: 1.0,
+              d24: "—",
+              d21: "—",
+              d18: "2",
+              d15: "6",
+              d12: "3",
+              d9: "5",
+              d6: "15",
+              d3: "22",
+              totalDeco: 53,
+              otu: "68",
+              esot: "98",
             },
-            
-            renderTable() {
-                const { code, name } = this.currentTable;
-                const depth = this.currentDepth;
-                const container = document.getElementById('tableContainer');
-                
-                // Sample data for demonstration
-                const sampleData = [
-                    { time: 10, till1st: 0.5, d24: '—', d21: '—', d18: '—', d15: '1', d12: '—', d9: '—', d6: '3', d3: '5', totalDeco: 8, otu: '12', esot: '20' },
-                    { time: 20, till1st: 0.8, d24: '—', d21: '—', d18: '—', d15: '3', d12: '—', d9: '2', d6: '8', d3: '12', totalDeco: 25, otu: '32', esot: '55' },
-                    { time: 30, till1st: 1.0, d24: '—', d21: '—', d18: '2', d15: '6', d12: '3', d9: '5', d6: '15', d3: '22', totalDeco: 53, otu: '68', esot: '98' },
-                    { time: 40, till1st: 1.2, d24: '—', d21: '2', d18: '5', d15: '10', d12: '6', d9: '10', d6: '22', d3: '35', totalDeco: 90, otu: '112', esot: '165' },
-                    { time: 50, till1st: 1.5, d24: '1', d21: '4', d18: '9', d15: '16', d12: '12', d9: '18', d6: '31', d3: '48', totalDeco: 139, otu: '172', esot: '251' },
-                ];
-                
-                let tableHtml = '<thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Total<br>Deco<br>(min)</th><th>Total<br>OTU</th><th>Total<br>ESOT</th></tr>';
-                tableHtml += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th class="oxy-cell">6m</th><th class="oxy-cell">3m</th><th></th><th></th><th></th></tr></thead>';
-                
-                tableHtml += '<tbody>';
-                sampleData.forEach(row => {
-                    tableHtml += `<tr>
+            {
+              time: 40,
+              till1st: 1.2,
+              d24: "—",
+              d21: "2",
+              d18: "5",
+              d15: "10",
+              d12: "6",
+              d9: "10",
+              d6: "22",
+              d3: "35",
+              totalDeco: 90,
+              otu: "112",
+              esot: "165",
+            },
+            {
+              time: 50,
+              till1st: 1.5,
+              d24: "1",
+              d21: "4",
+              d18: "9",
+              d15: "16",
+              d12: "12",
+              d9: "18",
+              d6: "31",
+              d3: "48",
+              totalDeco: 139,
+              otu: "172",
+              esot: "251",
+            },
+          ];
+
+          let tableHtml =
+            '<thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Total<br>Deco<br>(min)</th><th>Total<br>OTU</th><th>Total<br>ESOT</th></tr>';
+          tableHtml +=
+            '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th class="oxy-cell">6m</th><th class="oxy-cell">3m</th><th></th><th></th><th></th></tr></thead>';
+
+          tableHtml += "<tbody>";
+          sampleData.forEach((row) => {
+            tableHtml += `<tr>
                         <td><strong>${row.time}</strong></td>
                         <td>${row.till1st}</td>
                         <td>${row.d24}</td>
@@ -418,10 +644,10 @@
                         <td>${row.otu}</td>
                         <td>${row.esot}</td>
                     </tr>`;
-                });
-                tableHtml += '</tbody>';
-                
-                const html = `<div class="table-wrapper">
+          });
+          tableHtml += "</tbody>";
+
+          const html = `<div class="table-wrapper">
                     <div class="table-header">
                         <h2>${name} - ${depth}m</h2>
                         <p>Decompression Schedule</p>
@@ -430,12 +656,12 @@
                         <table>${tableHtml}</table>
                     </div>
                 </div>`;
-                
-                container.innerHTML = html;
-            }
-        };
-        
-        window.addEventListener('load', () => app.init());
+
+          container.innerHTML = html;
+        },
+      };
+
+      window.addEventListener("load", () => app.init());
     </script>
-</body>
+  </body>
 </html>

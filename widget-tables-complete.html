@@ -799,8 +799,9 @@
             tableHtml += '<div class="table-scroll"><table><thead><tr>';
             tableHtml += '<th>Depth (m)</th><th>8h Interval (min)</th><th>2h Interval (min)</th>';
             tableHtml += "</tr></thead><tbody>";
-            rows.forEach((row) => {
-              tableHtml += `<tr class="row-white">
+            rows.forEach((row, rowIdx) => {
+              const cls = rowIdx % 2 === 0 ? "row-orange" : "row-white";
+              tableHtml += `<tr class="${cls}">
                             <td><strong>${row.depth}</strong></td>
                             <td>${row.col1 !== null ? row.col1 : "—"}</td>
                             <td>${row.col2 !== null ? row.col2 : "—"}</td>

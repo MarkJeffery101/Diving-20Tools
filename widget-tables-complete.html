@@ -240,6 +240,11 @@
           const lines = text.trim().split("\n");
           if (lines.length < 2) return [];
 
+          // Special handling for reference tables (ND15, LND15)
+          if (code === 'ND15' || code === 'LND15') {
+            return this.parseReferenceTable(text);
+          }
+
           const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
           const rows = [];
 
@@ -279,6 +284,35 @@
               otu: cols[otuIndex] || "",
               esot: cols[esotIndex] || "",
               marker: parseInt(cols[markerIndex]) || 0,
+            });
+          }
+
+          return rows;
+        },
+
+        parseReferenceTable(text) {
+          const lines = text.trim().split("\n");
+          const rows = [];
+
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const cols = line.split(",").map(v => v.trim());
+            const depth = parseInt(cols[0]);
+            if (isNaN(depth)) continue;
+
+            const val1 = cols[1] || "";
+            const val2 = cols[2] || "";
+
+            rows.push({
+              time: depth,
+              till1st: val1,
+              stops: [parseInt(val1) || null, parseInt(val2) || null, null, null, null, null, null, null],
+              deco: "",
+              otu: "",
+              esot: "",
+              marker: 0,
             });
           }
 

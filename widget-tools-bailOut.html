@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bail Out Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #0066cc 0%, #003366 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 28px; margin-bottom: 5px; }
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h2 { color: #0066cc; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus { outline: none; border-color: #0066cc; }
+        .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .buttons { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #0066cc; color: white; }
+        .btn-primary:hover { background: #003366; }
+        .btn-secondary { background: #ddd; color: #333; }
+        .results { background: #e8f0ff; border: 2px solid #0066cc; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .results h3 { color: #0066cc; margin-bottom: 15px; }
+        .result-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #bbb; }
+        .result-item span { font-weight: bold; color: #003366; }
+        .info { background: #e8f0ff; border-left: 4px solid #0066cc; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 13px; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🪣 Bail Out - Backup Gas Calculator</h1>
+            <p>Emergency Ascent Gas Consumption</p>
+        </header>
+        
+        <div class="info">
+            <p><strong>Bail Out Calculation:</strong> Determines backup gas requirements for emergency ascent. Calculates effective nitrogen percentage and gas consumption rates during emergency ascent scenario.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Dive Parameters</h2>
+            <div class="row-3">
+                <div class="input-group">
+                    <label>Depth (m)</label>
+                    <input type="number" id="depth" value="40" placeholder="40">
+                </div>
+                <div class="input-group">
+                    <label>Dive Time (min)</label>
+                    <input type="number" id="time" value="30" placeholder="30">
+                </div>
+                <div class="input-group">
+                    <label>Primary O₂ (%)</label>
+                    <input type="number" id="primaryO2" value="32" placeholder="32">
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 20px; margin-bottom: 15px; color: #0066cc;">Backup Gas Supply</h3>
+            <div class="row-3">
+                <div class="input-group">
+                    <label>Starting Pressure (bar)</label>
+                    <input type="number" id="startBar" value="230" placeholder="230">
+                </div>
+                <div class="input-group">
+                    <label>Ending Reserve (bar)</label>
+                    <input type="number" id="endBar" value="50" placeholder="50">
+                </div>
+                <div class="input-group">
+                    <label>Cylinder Volume (L)</label>
+                    <input type="number" id="volume" value="10" placeholder="10">
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculator.calculate()">Calculate Bail Out</button>
+                <button class="btn-secondary" onclick="calculator.reset()">Reset</button>
+            </div>
+        </div>
+        
+        <div id="resultsDiv" style="display:none;">
+            <div class="card results">
+                <h3>Bail Out Analysis</h3>
+                <div class="result-item">
+                    <span>Available Gas Volume:</span>
+                    <span id="gasVolume">0 L</span>
+                </div>
+                <div class="result-item">
+                    <span>Effective O₂:</span>
+                    <span id="effectiveO2">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>EAD (Backup Gas):</span>
+                    <span id="ead">0m</span>
+                </div>
+                <div class="result-item">
+                    <span>pO₂ at Depth:</span>
+                    <span id="po2">0 bar/abs</span>
+                </div>
+                <div class="result-item">
+                    <span>Status:</span>
+                    <span id="status">Safe</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>Bail Out Calculator Widget v1.0 | Emergency planning</footer>
+    </div>
+
+    <script>
+        const calculator = {
+            calculate() {
+                const depth = parseFloat(document.getElementById('depth').value) || 0;
+                const time = parseFloat(document.getElementById('time').value) || 0;
+                const primaryO2 = parseFloat(document.getElementById('primaryO2').value) || 32;
+                const startBar = parseFloat(document.getElementById('startBar').value) || 230;
+                const endBar = parseFloat(document.getElementById('endBar').value) || 50;
+                const volume = parseFloat(document.getElementById('volume').value) || 10;
+                
+                if (depth < 0 || volume < 0) {
+                    alert('Invalid input');
+                    return;
+                }
+                
+                // Available gas volume
+                const availableBar = startBar - endBar;
+                const gasVolume = availableBar * volume;
+                
+                // Effective O2 (backup gas is typically air = 21%)
+                const backupO2 = 21;
+                const effectiveO2 = (primaryO2 + backupO2) / 2;
+                
+                // EAD calculation for backup gas (air)
+                const fractionN2 = 0.79;
+                const ead = (depth + 10) * (fractionN2 / 0.79) - 10;
+                
+                // pO2 at depth with backup air
+                const po2 = 0.21 * (depth / 10 + 1);
+                
+                // Status
+                let status = 'Safe';
+                if (po2 > 1.4) status = 'CAUTION - Moderate pO2';
+                if (po2 > 1.6) status = 'DANGER - High pO2';
+                
+                document.getElementById('gasVolume').textContent = gasVolume.toFixed(0) + ' L';
+                document.getElementById('effectiveO2').textContent = effectiveO2.toFixed(1) + '%';
+                document.getElementById('ead').textContent = ead.toFixed(1) + 'm';
+                document.getElementById('po2').textContent = po2.toFixed(2) + ' bar/abs';
+                document.getElementById('status').textContent = status;
+                
+                document.getElementById('resultsDiv').style.display = 'block';
+            },
+            
+            reset() {
+                document.getElementById('depth').value = '40';
+                document.getElementById('time').value = '30';
+                document.getElementById('primaryO2').value = '32';
+                document.getElementById('startBar').value = '230';
+                document.getElementById('endBar').value = '50';
+                document.getElementById('volume').value = '10';
+                document.getElementById('resultsDiv').style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

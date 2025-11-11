@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residual ESOT Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #062737 0%, #0d4a66 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 28px; margin-bottom: 5px; }
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h2 { color: #0d4a66; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus { outline: none; border-color: #0d4a66; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .buttons { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #0d4a66; color: white; }
+        .btn-primary:hover { background: #062737; }
+        .btn-secondary { background: #ddd; color: #333; }
+        .results { background: #e8f4f8; border: 2px solid #0d4a66; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .results h3 { color: #0d4a66; margin-bottom: 15px; }
+        .result-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #bbb; font-weight: bold; }
+        .info { background: #fffbea; border-left: 4px solid #ff9800; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 13px; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⏱️ Residual ESOT Calculator</h1>
+            <p>Carry-over Oxygen Exposure Time for Repetitive Dives</p>
+        </header>
+        
+        <div class="info">
+            <p><strong>Residual ESOT:</strong> Oxygen exposure carryover from previous dive to next dive. Used to calculate decompression requirements for repetitive hyperoxic exposures.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Previous Dive Data</h2>
+            <div class="row">
+                <div class="input-group">
+                    <label>Previous ESOT</label>
+                    <input type="number" id="prevEsot" value="200" placeholder="200">
+                </div>
+                <div class="input-group">
+                    <label>Previous pO₂</label>
+                    <input type="number" id="prevPo2" value="1.4" step="0.01" placeholder="1.4">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Surface Interval (hours)</label>
+                <input type="number" id="siHours" value="10" placeholder="10">
+            </div>
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculator.calculate()">Calculate Residual</button>
+                <button class="btn-secondary" onclick="calculator.reset()">Reset</button>
+            </div>
+        </div>
+        
+        <div id="resultsDiv" style="display:none;">
+            <div class="card results">
+                <h3>Residual ESOT Results</h3>
+                <div class="result-item">
+                    <span>Residual ESOT:</span>
+                    <span id="residualEsot">0</span>
+                </div>
+                <div class="result-item">
+                    <span>% of Previous:</span>
+                    <span id="percentPrev">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>Decay Factor:</span>
+                    <span id="decayFactor">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>Residual ESOT Calculator Widget v1.0 | Complete implementation</footer>
+    </div>
+
+    <script>
+        const calculator = {
+            calculate() {
+                const prevEsot = parseFloat(document.getElementById('prevEsot').value) || 0;
+                const prevPo2 = parseFloat(document.getElementById('prevPo2').value) || 1.0;
+                const siHours = parseFloat(document.getElementById('siHours').value) || 0;
+                
+                // Exponential decay formula for ESOT
+                // Residual = Previous ESOT * e^(-decay_rate * SI_hours)
+                const decayRate = 0.15; // Typical oxygen decay rate
+                const decayFactor = Math.exp(-decayRate * siHours);
+                const residualEsot = prevEsot * decayFactor;
+                const percentPrev = (residualEsot / prevEsot * 100).toFixed(1);
+                
+                document.getElementById('residualEsot').textContent = residualEsot.toFixed(0);
+                document.getElementById('percentPrev').textContent = percentPrev + '%';
+                document.getElementById('decayFactor').textContent = decayFactor.toFixed(4);
+                
+                document.getElementById('resultsDiv').style.display = 'block';
+            },
+            
+            reset() {
+                document.getElementById('prevEsot').value = '200';
+                document.getElementById('prevPo2').value = '1.4';
+                document.getElementById('siHours').value = '10';
+                document.getElementById('resultsDiv').style.display = 'none';
+            }
+        };
+        
+        window.addEventListener('load', () => {});
+    </script>
+</body>
+</html>

@@ -170,7 +170,7 @@
       table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 12px;
+        font-size: 11px;
       }
       thead {
         background: linear-gradient(to bottom, #1d4ed8, #1e40af);
@@ -184,7 +184,7 @@
         border: 1px solid #0d47a1;
         font-weight: 600;
         font-size: 10px;
-        line-height: 1.3;
+        line-height: 1.2;
       }
       td {
         padding: 8px 4px;
@@ -209,17 +209,8 @@
       .row-red:hover {
         background: #fee2e2;
       }
-      .row-amber {
-        background: #fffbeb;
-      }
-      .row-amber:hover {
-        background: #fef3c7;
-      }
-      .marker-2 {
-        border-bottom: 3px solid #1f2937 !important;
-      }
-      .marker-3 {
-        background: #fef2f2 !important;
+      .col-blue {
+        background: #eff6ff;
       }
       .error {
         background: #fee2e2;
@@ -259,71 +250,33 @@
             name: "No-Stop Limits",
             tag: "tag-blue",
             tables: [
-              {
-                name: "Air",
-                code: "ND15",
-                depths: [],
-                isReference: true,
-              },
-              {
-                name: "Air Extended",
-                code: "LND15",
-                depths: [],
-                isReference: true,
-              },
+              { name: "Air", code: "ND15", depths: [], isReference: true },
+              { name: "Air Extended", code: "LND15", depths: [], isReference: true },
             ],
           },
           {
             name: "Standard Air",
             tag: "tag-cyan",
             tables: [
-              {
-                name: "12 Hour SI",
-                code: "SIL15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
-              {
-                name: "2 Hour SI",
-                code: "H2SIL15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
-              {
-                name: "4 Hour SI",
-                code: "H4SIL15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
+              { name: "12 Hour SI", code: "SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+              { name: "2 Hour SI", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+              { name: "4 Hour SI", code: "H4SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
             ],
           },
           {
             name: "Surface O2",
             tag: "tag-orange",
             tables: [
-              {
-                name: "12 Hour SI",
-                code: "SOX15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
-              {
-                name: "4 Hour SI",
-                code: "HSOX15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
+              { name: "12 Hour SI", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+              { name: "4 Hour SI", code: "HSOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
             ],
           },
           {
             name: "Backup Air",
             tag: "tag-yellow",
             tables: [
-              {
-                name: "12 Hour SI",
-                code: "SAB15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
-              {
-                name: "4 Hour SI",
-                code: "HSAB15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
+              { name: "12 Hour SI", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+              { name: "4 Hour SI", code: "HSAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
             ],
           },
           {
@@ -333,32 +286,16 @@
               { name: "NIA 40% 12h", code: "NIA15", depths: [18, 21, 24, 27] },
               { name: "NIA 40% 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
               { name: "NIA 40% 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
-              {
-                name: "NIB 35% 12h",
-                code: "NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
-              {
-                name: "NIB 35% 2h",
-                code: "H2NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
-              {
-                name: "NIB 35% 4h",
-                code: "H4NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
+              { name: "NIB 35% 12h", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
+              { name: "NIB 35% 2h", code: "H2NIB15", depths: [18, 21, 24, 27, 30, 33] },
+              { name: "NIB 35% 4h", code: "H4NIB15", depths: [18, 21, 24, 27, 30, 33] },
             ],
           },
           {
             name: "Box Air/O2",
             tag: "tag-indigo",
             tables: [
-              {
-                name: "Wet/Dry Bell",
-                code: "BOX15",
-                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-              },
+              { name: "Wet/Dry Bell", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
             ],
           },
         ],
@@ -367,7 +304,6 @@
 
         async loadCSV(code) {
           if (this.csvCache[code]) return this.csvCache[code];
-
           try {
             const response = await fetch(`/data/tables/${code}.csv`);
             if (!response.ok) return null;
@@ -383,110 +319,281 @@
         parseReferenceTableCSV(text) {
           const lines = text.trim().split("\n");
           if (lines.length < 2) return [];
-
           const rows = [];
           for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
-
             const values = line.split(",").map((v) => v.trim());
             if (values.length < 3) continue;
-
             const depth = parseInt(values[0]);
             if (isNaN(depth)) continue;
-
             const col1 = values[1] === "" ? null : parseInt(values[1]);
             const col2 = values[2] === "" ? null : parseInt(values[2]);
-
-            rows.push({
-              depth,
-              col1,
-              col2,
-            });
+            rows.push({ depth, col1, col2 });
           }
-
           return rows;
         },
 
-        parseStandardTableCSV(text, targetDepth) {
+        parseSIL15CSV(text, targetDepth) {
           const lines = text.trim().split("\n");
           if (lines.length < 2) return { rows: [], dvis5: null };
-
-          const headers = lines[0]
-            .split(",")
-            .map((h) => h.trim().toLowerCase());
-
-          const depthIndex = headers.findIndex(
-            (h) => h.includes("depth") && !h.includes("deco")
-          );
-          const timeIndex = headers.findIndex(
-            (h) => h.includes("dive") && h.includes("time")
-          );
-          const tillIndex = headers.findIndex(
-            (h) => h.includes("till") || h.includes("1st")
-          );
-          const decoIndex = headers.findIndex(
-            (h) => h.includes("deco") && h.includes("time")
-          );
-          const otuIndex = headers.findIndex((h) => h.includes("otu"));
-          const esotIndex = headers.findIndex((h) => h.includes("esot"));
-          const dvisIndex = headers.findIndex((h) => h.includes("dvis"));
-
-          const markerIndex = esotIndex >= 0 ? esotIndex + 1 : -1;
-          const stopStart = tillIndex + 1;
-          const stopEnd = decoIndex;
-
+          const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+          const depthIdx = 1;
+          const timeIdx = 2;
+          const tillIdx = 3;
+          const stopStart = 4;
+          const stopEnd = 12;
+          const decoIdx = 12;
+          const otuIdx = 13;
+          const esotIdx = 14;
+          const dvisIdx = 0;
           const rows = [];
           let dvis5 = null;
           let foundFirst = false;
-
           for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
-
             const cols = line.split(",").map((v) => v.trim());
-
-            const depth = parseInt(cols[depthIndex]);
+            const depth = parseInt(cols[depthIdx]);
             if (isNaN(depth) || depth !== targetDepth) continue;
-
-            if (!foundFirst && dvisIndex >= 0) {
-              const dvisVal = parseInt(cols[dvisIndex]);
+            if (!foundFirst) {
+              const dvisVal = parseInt(cols[dvisIdx]);
               if (!isNaN(dvisVal)) dvis5 = dvisVal;
               foundFirst = true;
             }
-
-            const time = parseInt(cols[timeIndex]);
+            const time = parseInt(cols[timeIdx]);
             if (isNaN(time)) continue;
-
             const stops = [];
             for (let j = stopStart; j < stopEnd && j < cols.length; j++) {
               const val = cols[j];
-              if (val === "") {
-                stops.push(null);
-              } else {
+              if (val === "") stops.push(null);
+              else {
                 const num = parseInt(val);
                 stops.push(isNaN(num) ? null : num);
               }
             }
-
             let marker = 0;
-            if (markerIndex >= 0 && markerIndex < cols.length) {
-              const markerVal = parseInt(cols[markerIndex]);
+            if (cols.length > 15) {
+              const markerVal = parseInt(cols[15]);
               if (markerVal === 2 || markerVal === 3) marker = markerVal;
             }
-
             rows.push({
               time,
-              till1st: cols[tillIndex] || "",
+              till1st: cols[tillIdx] || "",
               stops,
-              deco: cols[decoIndex] || "",
-              otu: cols[otuIndex] || "",
-              esot: cols[esotIndex] || "",
+              deco: cols[decoIdx] || "",
+              otu: cols[otuIdx] || "",
+              esot: cols[esotIdx] || "",
               marker,
             });
           }
-
           return { rows, dvis5 };
+        },
+
+        parseSOX15CSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
+          const rows = [];
+          let dvis5 = null;
+          let foundFirst = false;
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const cols = line.split(",").map((v) => v.trim());
+            if (cols.length < 24) continue;
+            const depth = parseInt(cols[5]);
+            if (isNaN(depth) || depth !== targetDepth) continue;
+            if (!foundFirst) {
+              const dvisVal = parseInt(cols[3]);
+              if (!isNaN(dvisVal)) dvis5 = dvisVal;
+              foundFirst = true;
+            }
+            const time = parseInt(cols[6]);
+            if (isNaN(time)) continue;
+            const till1st = cols[7] || "";
+            const stops = [];
+            for (let j = 0; j < 12; j++) {
+              const val = cols[8 + j];
+              if (val === "") stops.push(null);
+              else {
+                const num = parseInt(val);
+                stops.push(isNaN(num) ? null : num);
+              }
+            }
+            let marker = 0;
+            if (cols.length > 23) {
+              const markerVal = parseInt(cols[23]);
+              if (markerVal === 3) marker = 3;
+            }
+            rows.push({
+              time,
+              till1st,
+              stops,
+              deco: cols[20] || "",
+              otu: cols[21] || "",
+              esot: cols[22] || "",
+              marker,
+            });
+          }
+          return { rows, dvis5 };
+        },
+
+        parseSAB15CSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
+          const rows = [];
+          let dvis5 = null;
+          let foundFirst = false;
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const cols = line.split(",").map((v) => v.trim());
+            if (cols.length < 25) continue;
+            const depth = parseInt(cols[7]);
+            if (isNaN(depth) || depth !== targetDepth) continue;
+            if (!foundFirst) {
+              const dvisVal = parseInt(cols[3]);
+              if (!isNaN(dvisVal)) dvis5 = dvisVal;
+              foundFirst = true;
+            }
+            const time = parseInt(cols[8]);
+            if (isNaN(time)) continue;
+            const till1st = cols[9] || "";
+            const stops = [];
+            for (let j = 0; j < 11; j++) {
+              const val = cols[10 + j];
+              if (val === "") stops.push(null);
+              else {
+                const num = parseInt(val);
+                stops.push(isNaN(num) ? null : num);
+              }
+            }
+            let marker = 0;
+            if (cols.length > 24) {
+              const markerVal = parseInt(cols[24]);
+              if (markerVal === 3) marker = 3;
+            }
+            rows.push({
+              time,
+              till1st,
+              stops: stops.slice(0, 8),
+              deco: cols[21] || "",
+              otu: cols[22] || "",
+              esot: cols[23] || "",
+              marker,
+            });
+          }
+          return { rows, dvis5 };
+        },
+
+        parseNitroxCSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
+          const rows = [];
+          let dvis5 = null;
+          let foundFirst = false;
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const cols = line.split(",").map((v) => v.trim());
+            if (cols.length < 22) continue;
+            const depth = parseInt(cols[7]);
+            if (isNaN(depth) || depth !== targetDepth) continue;
+            if (!foundFirst) {
+              const dvisVal = parseInt(cols[3]);
+              if (!isNaN(dvisVal)) dvis5 = dvisVal;
+              foundFirst = true;
+            }
+            const time = parseInt(cols[8]);
+            if (isNaN(time)) continue;
+            const till1st = cols[9] || "";
+            const stops = [];
+            for (let j = 0; j < 8; j++) {
+              const val = cols[10 + j];
+              if (val === "") stops.push(null);
+              else {
+                const num = parseInt(val);
+                stops.push(isNaN(num) ? null : num);
+              }
+            }
+            let marker = 0;
+            if (cols.length > 21) {
+              const markerVal = parseInt(cols[21]);
+              if (markerVal === 3) marker = 3;
+            }
+            rows.push({
+              time,
+              till1st,
+              stops,
+              deco: cols[18] || "",
+              otu: cols[19] || "",
+              esot: cols[20] || "",
+              marker,
+            });
+          }
+          return { rows, dvis5 };
+        },
+
+        parseBOX15CSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
+          const rows = [];
+          let dvis5 = null;
+          let foundFirst = false;
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const cols = line.split(",").map((v) => v.trim());
+            if (cols.length < 23) continue;
+            const depth = parseInt(cols[5]);
+            if (isNaN(depth) || depth !== targetDepth) continue;
+            if (!foundFirst) {
+              const dvisVal = parseInt(cols[3]);
+              if (!isNaN(dvisVal)) dvis5 = dvisVal;
+              foundFirst = true;
+            }
+            const time = parseInt(cols[6]);
+            if (isNaN(time)) continue;
+            const till1st = cols[7] || "";
+            const stops = [];
+            for (let j = 0; j < 12; j++) {
+              const val = cols[8 + j];
+              if (val === "") stops.push(null);
+              else {
+                const num = parseInt(val);
+                stops.push(isNaN(num) ? null : num);
+              }
+            }
+            let marker = 0;
+            if (cols.length > 22) {
+              const markerVal = parseInt(cols[22]);
+              if (markerVal === 1 || markerVal === 3) marker = markerVal;
+            }
+            rows.push({
+              time,
+              till1st,
+              stops,
+              deco: cols[20] || "",
+              otu: cols[21] || "",
+              esot: cols[22] || "",
+              marker,
+            });
+          }
+          return { rows, dvis5 };
+        },
+
+        getParserForTable(code) {
+          if (code === "SIL15" || code === "H2SIL15" || code === "H4SIL15")
+            return this.parseSIL15CSV.bind(this);
+          if (code === "SOX15" || code === "HSOX15")
+            return this.parseSOX15CSV.bind(this);
+          if (code === "SAB15" || code === "HSAB15")
+            return this.parseSAB15CSV.bind(this);
+          if (code === "NIA15" || code === "H2NIA15" || code === "H4NIA15" || code === "NIB15" || code === "H2NIB15" || code === "H4NIB15")
+            return this.parseNitroxCSV.bind(this);
+          if (code === "BOX15")
+            return this.parseBOX15CSV.bind(this);
+          return this.parseSIL15CSV.bind(this);
         },
 
         renderLevel1() {
@@ -520,10 +627,8 @@
         renderLevel3(gIdx, tIdx) {
           const g = this.groups[gIdx];
           const t = g.tables[tIdx];
-
           let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
           html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
-
           if (t.isReference) {
             html += `<div class="depths-grid">
                       <button class="depth-btn" onclick="app.renderReferenceTable(${gIdx}, ${tIdx})">Show Table</button>
@@ -535,35 +640,25 @@
             });
             html += "</div>";
           }
-
           document.getElementById("content").innerHTML = html;
         },
 
         renderReferenceTable(gIdx, tIdx) {
           const g = this.groups[gIdx];
           const t = g.tables[tIdx];
-
           let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
-
-          document.getElementById("content").innerHTML =
-            html + '<div class="loading">Loading table...</div>';
-
+          document.getElementById("content").innerHTML = html + '<div class="loading">Loading table...</div>';
           this.loadCSV(t.code).then((csv) => {
             if (!csv) {
               html += '<div class="error">Unable to load table data</div>';
               document.getElementById("content").innerHTML = html;
               return;
             }
-
             const rows = this.parseReferenceTableCSV(csv);
-
             let tableHtml = `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2></div>`;
             tableHtml += '<div class="table-scroll"><table><thead><tr>';
-            tableHtml += '<th>Depth<br>(metres)</th>';
-            tableHtml += '<th>Repeat<br>Interval<br>8 Hours</th>';
-            tableHtml += '<th>Repeat<br>Interval<br>2 Hours</th>';
+            tableHtml += '<th>Depth (m)</th><th>8h Interval (min)</th><th>2h Interval (min)</th>';
             tableHtml += "</tr></thead><tbody>";
-
             rows.forEach((row) => {
               tableHtml += `<tr class="row-white">
                             <td><strong>${row.depth}</strong></td>
@@ -571,7 +666,6 @@
                             <td>${row.col2 !== null ? row.col2 : "—"}</td>
                         </tr>`;
             });
-
             tableHtml += "</tbody></table></div></div>";
             document.getElementById("content").innerHTML = html + tableHtml;
           });
@@ -580,40 +674,31 @@
         async renderTable(gIdx, tIdx, depth) {
           const g = this.groups[gIdx];
           const t = g.tables[tIdx];
-
           let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
-          document.getElementById("content").innerHTML =
-            html + '<div class="loading">Loading table...</div>';
-
+          document.getElementById("content").innerHTML = html + '<div class="loading">Loading table...</div>';
           const csv = await this.loadCSV(t.code);
           if (!csv) {
             html += '<div class="error">Unable to load table data</div>';
             document.getElementById("content").innerHTML = html;
             return;
           }
-
-          const { rows, dvis5 } = this.parseStandardTableCSV(csv, depth);
-
+          const parser = this.getParserForTable(t.code);
+          const { rows, dvis5 } = parser(csv, depth);
           if (rows.length === 0) {
             html += '<div class="error">No data found for this depth</div>';
             document.getElementById("content").innerHTML = html;
             return;
           }
-
           html += `<div class="table-wrapper"><div class="table-header">
                     <h2>${t.name} - ${depth}m</h2>
-                    ${dvis5 ? `<p>DVIS 5 Time Limit: ${dvis5} minutes</p>` : ""}
+                    ${dvis5 ? `<p>DVIS 5 Time Limit: ${dvis5} min</p>` : ""}
                   </div>`;
           html +=
-            '<div class="table-scroll"><table><thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop<br>(min)</th><th colspan="8">Stop Depth (metres)</th><th>Total<br>Deco<br>(min)</th><th>OTU</th><th>ESOT</th></tr>';
-          html +=
-            "<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr></thead><tbody>";
-
+            '<div class="table-scroll"><table><thead><tr><th>Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (m)</th><th>Deco<br>Time</th><th>OTU</th><th>ESOT</th></tr>';
+          html += "<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr></thead><tbody>";
           rows.forEach((row) => {
             let cls = "row-white";
-            if (row.marker === 2) cls += " marker-2";
-            if (row.marker === 3) cls += " marker-3";
-
+            if (row.marker === 3) cls = "row-red";
             html += `<tr class="${cls}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
             for (let j = 0; j < 8; j++) {
               const val = row.stops[j];
@@ -621,7 +706,6 @@
             }
             html += `<td>${row.deco}</td><td>${row.otu}</td><td>${row.esot}</td></tr>`;
           });
-
           html += "</tbody></table></div></div>";
           document.getElementById("content").innerHTML = html;
         },

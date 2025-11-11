@@ -260,13 +260,13 @@
               inQuotes = !inQuotes;
             }
           } else if (char === "," && !inQuotes) {
-            result.push(current.trim());
+            result.push(current.replace(/^"|"$/g, "").trim());
             current = "";
           } else {
             current += char;
           }
         }
-        result.push(current.trim());
+        result.push(current.replace(/^"|"$/g, "").trim());
         return result;
       };
 

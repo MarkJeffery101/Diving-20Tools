@@ -829,7 +829,11 @@
           const t = g.tables[tIdx];
           let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
           html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
-          if (t.isReference) {
+          if (t.isImageTable) {
+            html += `<div class="depths-grid">
+                      <button class="depth-btn" onclick="app.renderImageTable(${gIdx}, ${tIdx})">Show Table</button>
+                    </div>`;
+          } else if (t.isReference) {
             html += `<div class="depths-grid">
                       <button class="depth-btn" onclick="app.renderReferenceTable(${gIdx}, ${tIdx})">Show Table</button>
                     </div>`;
@@ -840,6 +844,15 @@
             });
             html += "</div>";
           }
+          document.getElementById("content").innerHTML = html;
+        },
+
+        renderImageTable(gIdx, tIdx) {
+          const g = this.groups[gIdx];
+          const t = g.tables[tIdx];
+          let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
+          html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - Treatment Table</h2></div>`;
+          html += `<div style="padding: 20px; text-align: center; color: #666;">This is a treatment table (image-based). Please refer to the official treatment table documentation.</div></div>`;
           document.getElementById("content").innerHTML = html;
         },
 

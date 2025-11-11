@@ -271,7 +271,10 @@
       };
 
       const parseCSV = (text, targetDepth) => {
-        const lines = text.trim().split("\n").filter((l) => l.trim());
+        const lines = text
+          .trim()
+          .split("\n")
+          .filter((l) => l.trim());
         if (lines.length < 2) return { headers: [], rows: [] };
 
         const headers = parseCSVLine(lines[0]);

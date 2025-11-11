@@ -608,27 +608,39 @@
         parseNitroxCSV(text, targetDepth) {
           const lines = text.trim().split("\n");
           if (lines.length < 2) return { rows: [], dvis5: null };
+          const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+
+          const depthIdx = headers.findIndex(h => h.includes("depth") && !h.includes("deco"));
+          const timeIdx = headers.findIndex(h => h.includes("dive") && h.includes("time"));
+          const tillIdx = headers.findIndex(h => h.includes("till") || h.includes("1st"));
+          const decoIdx = headers.findIndex(h => h.includes("deco") && h.includes("time"));
+          const otuIdx = headers.findIndex(h => h.includes("otu"));
+          const esotIdx = headers.findIndex(h => h.includes("esot"));
+          const dvisIdx = headers.findIndex(h => h.includes("dvis"));
+          const markerIdx = esotIdx + 1;
+
+          const stopStart = tillIdx + 1;
+          const stopEnd = decoIdx;
           const rows = [];
           let dvis5 = null;
           let foundFirst = false;
+
           for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
             const cols = line.split(",").map((v) => v.trim());
-            if (cols.length < 22) continue;
-            const depth = parseInt(cols[7]);
+            const depth = parseInt(cols[depthIdx]);
             if (isNaN(depth) || depth !== targetDepth) continue;
-            if (!foundFirst) {
-              const dvisVal = parseInt(cols[3]);
+            if (!foundFirst && dvisIdx >= 0) {
+              const dvisVal = parseInt(cols[dvisIdx]);
               if (!isNaN(dvisVal)) dvis5 = dvisVal;
               foundFirst = true;
             }
-            const time = parseInt(cols[8]);
+            const time = parseInt(cols[timeIdx]);
             if (isNaN(time)) continue;
-            const till1st = cols[9] || "";
             const stops = [];
-            for (let j = 0; j < 8; j++) {
-              const val = cols[10 + j];
+            for (let j = stopStart; j < stopEnd && j < cols.length; j++) {
+              const val = cols[j];
               if (val === "") stops.push(null);
               else {
                 const num = parseInt(val);
@@ -636,17 +648,17 @@
               }
             }
             let marker = 0;
-            if (cols.length > 21) {
-              const markerVal = parseInt(cols[21]);
+            if (markerIdx >= 0 && markerIdx < cols.length) {
+              const markerVal = parseInt(cols[markerIdx]);
               if (markerVal === 3) marker = 3;
             }
             rows.push({
               time,
-              till1st,
+              till1st: cols[tillIdx] || "",
               stops,
-              deco: cols[18] || "",
-              otu: cols[19] || "",
-              esot: cols[20] || "",
+              deco: cols[decoIdx] || "",
+              otu: cols[otuIdx] || "",
+              esot: cols[esotIdx] || "",
               marker,
             });
           }

@@ -341,7 +341,7 @@
 
         groups: [
           {
-            name: "No-Stop Limits",
+            name: "No Stops Air",
             tag: "tag-blue",
             tables: [
               { name: "Air", code: "ND15", depths: [], isReference: true },
@@ -358,7 +358,7 @@
             ],
           },
           {
-            name: "Surface O2",
+            name: "SurO2",
             tag: "tag-orange",
             tables: [
               { name: "12 Hour SI", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
@@ -374,6 +374,16 @@
             ],
           },
           {
+            name: "OTU/ESOT",
+            tag: "tag-purple",
+            tables: [
+              { name: "SOX15 OTU/ESOT", code: "SOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+              { name: "NIA15 OTU/ESOT", code: "NIA15_OTU", depths: [18, 21, 24, 27] },
+              { name: "NIB15 OTU/ESOT", code: "NIB15_OTU", depths: [18, 21, 24, 27, 30, 33] },
+              { name: "BOX15 OTU/ESOT", code: "BOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            ],
+          },
+          {
             name: "Nitrox",
             tag: "tag-green",
             tables: [
@@ -383,13 +393,29 @@
               { name: "NIB 35% 12h", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
               { name: "NIB 35% 2h", code: "H2NIB15", depths: [18, 21, 24, 27, 30, 33] },
               { name: "NIB 35% 4h", code: "H4NIB15", depths: [18, 21, 24, 27, 30, 33] },
+              { name: "NIA2_3", code: "NIA2_3", depths: [21, 23, 25, 27] },
+              { name: "NIA2_6", code: "NIA2_6", depths: [21, 23, 25, 27] },
             ],
           },
           {
-            name: "Box Air/O2",
+            name: "Wet/Dry Bell",
             tag: "tag-indigo",
             tables: [
               { name: "Wet/Dry Bell", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            ],
+          },
+          {
+            name: "Treatment",
+            tag: "tag-red",
+            tables: [
+              { name: "USN-5", code: "USN-5", depths: [], isImageTable: true },
+              { name: "USN-6", code: "USN-6", depths: [], isImageTable: true },
+              { name: "AIR-1A", code: "AIR-1A", depths: [], isImageTable: true },
+              { name: "AIR-2A", code: "AIR-2A", depths: [], isImageTable: true },
+              { name: "AIR-3", code: "AIR-3", depths: [], isImageTable: true },
+              { name: "CX12", code: "CX12", depths: [], isImageTable: true },
+              { name: "CX30", code: "CX30", depths: [], isImageTable: true },
+              { name: "Other Treatment", code: "TREATMENT", depths: [], isImageTable: true },
             ],
           },
         ],

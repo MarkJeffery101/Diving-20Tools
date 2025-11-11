@@ -780,18 +780,50 @@
             document.getElementById("content").innerHTML = html;
             return;
           }
+          const headerConfig = this.headers[t.code];
+          const title = headerConfig ? headerConfig.title : `${t.name} - ${depth}m`;
           html += `<div class="table-wrapper"><div class="table-header">
-                    <h2>${t.name} - ${depth}m</h2>
+                    <h2>${title}</h2>
                     ${dvis5 ? `<p>DVIS 5 Time Limit: ${dvis5} min</p>` : ""}
                   </div>`;
-          html +=
-            '<div class="table-scroll"><table><thead><tr><th>Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (m)</th><th>Deco<br>Time</th><th>OTU</th><th>ESOT</th></tr>';
-          html += "<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr></thead><tbody>";
+          html += '<div class="table-scroll"><table><thead>';
+          if (headerConfig && headerConfig.stopCols1 && headerConfig.stopCols2) {
+            html += '<tr>';
+            html += `<th rowspan="2">Dive Time<br>(min)</th>`;
+            html += `<th rowspan="2">Till 1st<br>Stop</th>`;
+            html += `<th colspan="${headerConfig.stopCols1.length}">In Water Stops</th>`;
+            html += `<th colspan="${headerConfig.stopCols2.length}">Stops in Deco</th>`;
+            html += `<th rowspan="2">Tot. Deco<br>(min)</th><th rowspan="2">OTU</th><th rowspan="2">ESOT</th>`;
+            html += '</tr><tr>';
+            headerConfig.stopCols1.forEach(col => {
+              html += `<th>${col}</th>`;
+            });
+            headerConfig.stopCols2.forEach(col => {
+              html += `<th>${col}</th>`;
+            });
+            html += '</tr>';
+          } else if (headerConfig && headerConfig.stopCols) {
+            html += '<tr>';
+            html += `<th>Dive Time<br>(min)</th>`;
+            html += `<th>Till 1st<br>Stop</th>`;
+            html += `<th colspan="${headerConfig.stopCols.length}">Stop Depth (metres)</th>`;
+            html += `<th>Tot. Deco<br>(min)</th><th>OTU</th><th>ESOT</th>`;
+            html += '</tr><tr><th></th><th></th>';
+            headerConfig.stopCols.forEach(col => {
+              html += `<th>${col}</th>`;
+            });
+            html += '<th></th><th></th><th></th></tr>';
+          } else {
+            html += '<tr><th>Time (min)</th><th>Till 1st Stop</th><th colspan="8">Stop Depth (m)</th><th>Deco Time</th><th>OTU</th><th>ESOT</th></tr>';
+            html += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr>';
+          }
+          html += '</thead><tbody>';
           rows.forEach((row) => {
             let cls = "row-white";
             if (row.marker === 3) cls = "row-red";
             html += `<tr class="${cls}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
-            for (let j = 0; j < 8; j++) {
+            const numStops = headerConfig ? headerConfig.numStops : 8;
+            for (let j = 0; j < numStops; j++) {
               const val = row.stops[j];
               html += `<td>${val !== null ? val : "—"}</td>`;
             }

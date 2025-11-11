@@ -401,19 +401,16 @@
 
         parseCSV(text, depth) {
           const lines = text.trim().split("\n");
-          if (lines.length < 2) return [];
-          const headers = lines[0]
-            .split(",")
-            .map((h) => h.trim().toLowerCase());
-          const depthIdx = headers.findIndex((h) => h.includes("depth"));
-          const timeIdx = headers.findIndex((h) => h.includes("dive time"));
+          if (lines.length < 2) return { headers: [], rows: [] };
+          const headers = lines[0].split(",").map((h) => h.trim());
+          const depthIdx = headers.findIndex((h) => h.toLowerCase().includes("depth"));
           const rows = [];
           for (let i = 1; i < lines.length; i++) {
-            const cols = lines[i].split(",");
-            if (parseInt(cols[depthIdx]) !== depth) continue;
+            const cols = lines[i].split(",").map((c) => c.trim());
+            if (depthIdx >= 0 && parseInt(cols[depthIdx]) !== depth) continue;
             rows.push(cols);
           }
-          return rows;
+          return { headers, rows };
         },
 
         renderLevel1() {

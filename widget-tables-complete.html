@@ -239,28 +239,28 @@
             if (!line) continue;
 
             const cols = line.split(",").map((v) => v.trim());
-            if (cols.length < 15) continue;
+            if (cols.length < 24) continue;
 
-            const depth = parseInt(cols[1]);
+            const depth = parseInt(cols[5]);
             if (isNaN(depth) || depth !== wantedDepth) continue;
 
-            const time = parseInt(cols[2]);
+            const time = parseInt(cols[6]);
             if (isNaN(time)) continue;
 
             const stops = [];
             for (let j = 0; j < 12; j++) {
-              const val = cols[4 + j];
+              const val = cols[8 + j];
               stops.push(val === "" ? null : parseInt(val) || null);
             }
 
             rows.push({
               time,
-              till1st: cols[3],
+              till1st: cols[7],
               stops,
-              deco: cols[16] || "",
-              otu: cols[17] || "",
-              esot: cols[18] || "",
-              marker: parseInt(cols[19]) || 0,
+              deco: cols[20] || "",
+              otu: cols[21] || "",
+              esot: cols[22] || "",
+              marker: parseInt(cols[23]) || 0,
             });
           }
 

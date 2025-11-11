@@ -3,230 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DivePlan Tables Widget</title>
+    <title>DivePlan - Decompression Tables</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f0f4f8;
-            color: #333;
-        }
-        
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        
-        header {
-            background: #062737;
-            color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        
-        header h1 { font-size: 24px; margin-bottom: 3px; }
-        header p { font-size: 13px; opacity: 0.9; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #f0f4f8 100%); color: #333; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 20px; }
+        header { margin-bottom: 30px; }
+        h1 { font-size: 32px; font-weight: 700; color: #1f2937; margin-bottom: 10px; }
+        .subtitle { color: #6b7280; font-size: 16px; }
         
         .view { display: none; }
         .view.active { display: block; }
         
-        .controls {
+        /* Level 1 - Category cards */
+        .level1-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .category-card {
             background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        
-        .search-box { margin-bottom: 12px; }
-        .search-box input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
+        .category-card:hover { border-color: #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .category-tag {
+            display: inline-block;
+            padding: 4px 12px;
             border-radius: 4px;
-            font-size: 14px;
-        }
-        .search-box input:focus { outline: none; border-color: #1565c0; }
-        
-        .filters { display: flex; gap: 10px; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 8px 14px;
-            border: 2px solid #ddd;
-            background: white;
-            border-radius: 4px;
-            cursor: pointer;
             font-size: 12px;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
-        .filter-btn:hover { border-color: #1565c0; color: #1565c0; }
-        .filter-btn.active { background: #1565c0; color: white; border-color: #1565c0; }
+        .category-card h3 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .category-card p { color: #6b7280; font-size: 14px; }
+        .chevron { float: right; color: #9ca3af; }
         
-        .back-btn {
-            background: #1565c0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-        .back-btn:hover { background: #1145a0; }
+        /* Level 2 & 3 - Back button & breadcrumbs */
+        .back-btn { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; margin-bottom: 20px; }
+        .back-btn:hover { background: #2563eb; }
         
-        .tables-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
+        /* Level 2 - Table cards */
+        .level2-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
         .table-card {
             background: white;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            padding: 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
             cursor: pointer;
             transition: all 0.2s;
         }
-        .table-card:hover { border-color: #1565c0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .table-card h3 { color: #062737; font-size: 14px; margin-bottom: 5px; font-weight: 600; }
-        .table-card .code { display: inline-block; background: #e8f4f8; color: #1565c0; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-bottom: 8px; }
-        .table-card p { font-size: 12px; color: #666; }
+        .table-card:hover { border-color: #3b82f6; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .table-card h4 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+        .table-card p { color: #6b7280; font-size: 13px; }
         
-        .table-header-section {
-            background: white;
-            padding: 20px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .table-header-section h2 { color: #062737; font-size: 18px; margin-bottom: 3px; }
-        .table-header-section p { color: #666; font-size: 12px; margin-bottom: 15px; }
-        
-        .depths-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 8px;
-        }
-        
+        /* Level 3 - Depth selector */
+        .depth-section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .depth-title { font-size: 20px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .depth-subtitle { color: #6b7280; font-size: 14px; margin-bottom: 16px; }
+        .depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
         .depth-btn {
-            padding: 10px;
-            border: 2px solid #1565c0;
+            padding: 12px;
+            border: 2px solid #3b82f6;
             background: white;
-            color: #1565c0;
-            border-radius: 4px;
+            color: #3b82f6;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 14px;
             transition: all 0.2s;
         }
-        .depth-btn:hover { background: #e3f2fd; }
-        .depth-btn.active { background: #1565c0; color: white; }
+        .depth-btn:hover { background: #eff6ff; }
+        .depth-btn.active { background: #3b82f6; color: white; }
         
-        .table-wrapper {
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
+        /* Table display */
+        .table-section { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .table-header { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; padding: 20px; }
+        .table-header h2 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+        .table-header p { font-size: 14px; opacity: 0.95; }
         
-        .table-header {
-            background: #1565c0;
-            color: white;
-            padding: 16px;
-        }
-        .table-header h2 { font-size: 18px; margin-bottom: 2px; font-weight: 600; }
-        .table-header p { font-size: 12px; opacity: 0.95; }
-        
-        .table-scroll { overflow-x: auto; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-        
-        thead {
-            background: #1565c0;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        thead { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; position: sticky; top: 0; z-index: 10; }
         th {
-            padding: 10px 5px;
+            padding: 10px 6px;
             text-align: center;
-            border: 1px solid #0d4a66;
+            border: 1px solid #0d47a1;
             font-weight: 600;
             font-size: 11px;
             line-height: 1.2;
-            background: #1565c0;
-            color: white;
         }
-        
         td {
-            padding: 10px 5px;
+            padding: 10px 6px;
             text-align: center;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #e5e7eb;
             font-size: 12px;
         }
         
-        tbody tr:nth-child(even) { background: #f0f4f8; }
-        tbody tr:nth-child(odd) { background: #fafbfc; }
-        tbody tr:hover { background: #e3f2fd; }
+        /* Row colors - exact from app */
+        .row-white { background: white; }
+        .row-white:hover { background: #eff6ff; }
+        .row-green { background: #f0fdf4; }
+        .row-green:hover { background: #eff6ff; }
+        .row-orange-light { background: #fed7aa; }
+        .row-orange-light:hover { background: #fef3c7; }
+        .row-orange { background: white; }
+        .row-orange:hover { background: #fef3c7; }
+        .row-red { background: #fef2f2; }
+        .row-red:hover { background: #fee2e2; }
         
-        .oxy-cell { background: #c8e6f5 !important; font-weight: 500; }
-        tbody tr:hover .oxy-cell { background: #a8d6f5 !important; }
+        .marker-2 { border-bottom: 3px solid #1f2937 !important; }
+        .marker-normal { border-bottom: 1px solid #e5e7eb; }
         
-        .marker-2 { border-bottom: 3px solid #FFD700; }
-        .marker-3 { background: #FFE0E0 !important; }
+        footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 12px; margin-top: 40px; border-top: 1px solid #e5e7eb; }
         
-        .no-results { text-align: center; padding: 40px; background: white; border-radius: 4px; color: #999; }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #999;
-            font-size: 11px;
-            border-top: 1px solid #ddd;
-            margin-top: 40px;
-        }
+        /* Tag colors */
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-cyan { background: #cffafe; color: #0e7490; }
+        .tag-orange { background: #fed7aa; color: #92400e; }
+        .tag-yellow { background: #fef08a; color: #854d0e; }
+        .tag-purple { background: #e9d5ff; color: #5b21b6; }
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-indigo { background: #e0e7ff; color: #312e81; }
+        .tag-red { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🏊 DivePlan Decompression Tables</h1>
-            <p>Complete Widget - All CSV data embedded, offline ready</p>
+            <h1>Dive Tables Index</h1>
+            <p class="subtitle">Browse all dive tables organized by type and category</p>
         </header>
         
-        <!-- Table Selection -->
-        <div id="searchView" class="view active">
-            <div class="controls">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search tables by name or code...">
-                </div>
-                <div class="filters">
-                    <button class="filter-btn active" onclick="app.filterTables('all')">All</button>
-                    <button class="filter-btn" onclick="app.filterTables('air')">Standard Air</button>
-                    <button class="filter-btn" onclick="app.filterTables('oxygen')">Surface O2</button>
-                    <button class="filter-btn" onclick="app.filterTables('nitrox')">Nitrox</button>
-                </div>
-            </div>
-            <div id="tablesGrid" class="tables-grid"></div>
+        <!-- Level 1: Categories -->
+        <div id="level1" class="view active">
+            <div class="level1-grid" id="categoriesGrid"></div>
         </div>
         
-        <!-- Depth Selection -->
-        <div id="depthsView" class="view">
-            <button class="back-btn" onclick="app.showSearch()">← Back</button>
+        <!-- Level 2: Tables in Category -->
+        <div id="level2" class="view">
+            <button class="back-btn" onclick="app.goToLevel1()">← Back</button>
+            <div class="level2-grid" id="tablesGrid"></div>
+        </div>
+        
+        <!-- Level 3: Depths -->
+        <div id="level3" class="view">
+            <button class="back-btn" onclick="app.goToLevel2()">← Back</button>
             <div id="depthsContainer"></div>
         </div>
         
         <!-- Table Display -->
-        <div id="tableView" class="view">
-            <button class="back-btn" onclick="app.showDepths()">← Back</button>
+        <div id="tableDisplay" class="view">
+            <button class="back-btn" onclick="app.goToLevel3()">← Back</button>
             <div id="tableContainer"></div>
         </div>
         
@@ -235,29 +163,88 @@
 
     <script>
         const app = {
-            currentTable: null,
-            currentDepth: null,
-            currentFilter: 'all',
-            searchTerm: '',
-            
-            tables: [
-                { name: 'Standard Air - 12h SI', code: 'SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Standard Air - 2h SI', code: 'H2SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Standard Air - 4h SI', code: 'H4SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Surface O2 - 12h SI', code: 'SOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Surface O2 - 4h SI', code: 'HSOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-                { name: 'Nitrox 40% - 12h SI', code: 'NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 40% - 2h SI', code: 'H2NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 40% - 4h SI', code: 'H4NIA15', type: 'nitrox', depths: [18,21,24,27] },
-                { name: 'Nitrox 35% - 12h SI', code: 'NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
-                { name: 'Nitrox 35% - 2h SI', code: 'H2NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
-                { name: 'Nitrox 35% - 4h SI', code: 'H4NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
+            tablesData: [
+                {
+                    name: "No-Stop Limits for Air Diving",
+                    tag: "No Stops Air",
+                    tagClass: "tag-blue",
+                    children: [
+                        { name: "Air diving, no-stop limits in minutes", code: "ND15" },
+                        { name: "No-Stop Limits for Air Diving Extended", code: "LND15" }
+                    ]
+                },
+                {
+                    name: "Standard Air Tables",
+                    tag: "Standard Air",
+                    tagClass: "tag-cyan",
+                    children: [
+                        { name: "Repetitive Interval 12 Hours", code: "SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                        { name: "Repetitive Interval 2 Hours", code: "H2SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                        { name: "Repetitive Interval 4 Hours", code: "H4SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+                    ]
+                },
+                {
+                    name: "Surface/OX Tables",
+                    tag: "SurD O2",
+                    tagClass: "tag-orange",
+                    children: [
+                        { name: "Repetitive Interval 12 Hours", code: "SOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                        { name: "Repetitive Interval 4 Hours", code: "HSOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+                    ]
+                },
+                {
+                    name: "Backup Air Tables",
+                    tag: "Backup Air",
+                    tagClass: "tag-yellow",
+                    children: [
+                        { name: "Backup Air – Repetitive Interval 12 Hours", code: "SAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                        { name: "Backup Air – Repetitive Interval 4 Hours", code: "HSAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+                    ]
+                },
+                {
+                    name: "Nitrox Decompression Tables",
+                    tag: "Nitrox",
+                    tagClass: "tag-green",
+                    children: [
+                        { name: "Nitrox 40/60 Repetitive Interval 12 Hours", code: "NIA15", depths: [18,21,24,27] },
+                        { name: "Nitrox 40/60 Repetitive Interval 2 Hours", code: "H2NIA15", depths: [18,21,24,27] },
+                        { name: "Nitrox 40/60 Repetitive Interval 4 Hours", code: "H4NIA15", depths: [18,21,24,27] },
+                        { name: "Nitrox 35/65 Repetitive Interval 12 Hours", code: "NIB15", depths: [18,21,24,27,30,33] },
+                        { name: "Nitrox 35/65 Repetitive Interval 2 Hours", code: "H2NIB15", depths: [18,21,24,27,30,33] },
+                        { name: "Nitrox 35/65 Repetitive Interval 4 Hours", code: "H4NIB15", depths: [18,21,24,27,30,33] }
+                    ]
+                },
+                {
+                    name: "Wet or Dry Bell Air/Oxygen Tables",
+                    tag: "Wet/Dry Bell",
+                    tagClass: "tag-indigo",
+                    children: [
+                        { name: "Bell Air/Oxygen Decompression", code: "BOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+                    ]
+                }
             ],
             
-            // Full CSV data for all tables embedded
+            headers: {
+                'SIL15': { title: 'SIL15 - Standard Air, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H2SIL15': { title: 'H2SIL15 - Standard Air, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H4SIL15': { title: 'H4SIL15 - Standard Air, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'SOX15': { title: 'SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21 air', '18 air', '15 air', '12 air', '9 air', '12 ox', 'Stops in Deco Chamber', '9 air', '9 ox', '6 air', '6 ox', '3 air', '3 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'HSOX15': { title: 'HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21 air', '18 air', '15 air', '12 air', '9 air', '12 ox', 'Stops in Deco Chamber', '9 air', '9 ox', '6 air', '6 ox', '3 air', '3 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'SAB15': { title: 'SAB15 - Backup Air, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21', '18', '15', '12', '9', '18', 'Stops in Deco Chamber', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'HSAB15': { title: 'HSAB15 - Backup Air, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21', '18', '15', '12', '9', '18', 'Stops in Deco Chamber', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'NIA15': { title: 'NIA15 - Nitrox 40/60, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H2NIA15': { title: 'H2NIA15 - Nitrox 40/60, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H4NIA15': { title: 'H4NIA15 - Nitrox 40/60, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'NIB15': { title: 'NIB15 - Nitrox 35/65, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H2NIB15': { title: 'H2NIB15 - Nitrox 35/65, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'H4NIB15': { title: 'H4NIB15 - Nitrox 35/65, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'BOX15': { title: 'BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24 air', '21 air', '18 air', '15 air', '12 air', '9 ox', '6 air', '6 ox', '6 air', '6 ox', '6 air', '6 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
+                'ND15': { title: 'ND15 - Air Diving, No-Stop Limits in Minutes', cols: ['Maximum Diving Depth (metres)', 'Repeat Interval 8 Hours (minutes)', 'Repeat Interval 2 Hours (minutes)'] },
+                'LND15': { title: 'LND15 - Air Diving, Long No-Stop Limits in Minutes', cols: ['Maximum Diving Depth (metres)', 'Normal No-Stop Limits ND15 (minutes)', 'Long No-Stop Limits LND15 (minutes)'] }
+            },
+            
             csvData: {
-                'SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
-240,12,120,0.9,,,,,,,,1,2.2,,21
+                'SIL15': `240,12,120,0.9,,,,,,,,1,2.2,,21
 240,12,130,0.9,,,,,,,,3,4.2,,23
 240,12,140,0.9,,,,,,,,5,6.2,,24
 240,12,150,0.9,,,,,,,,6,7.2,,26
@@ -288,223 +275,165 @@
 120,18,130,1.2,,,,,,,10,47,58.8,31,42
 120,18,140,1.2,,,,,,,12,51,64.8,33,45
 120,18,150,1.2,,,,,,,13,55,69.8,35,49,3`,
-                'H2NIA15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,90,1.5,,,,,,,,1,2.8,109,119,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,100,1.5,,,,,,,,3,4.8,121,133,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,110,1.5,,,,,,,,7,8.8,133,147,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,120,1.5,,,,,,,,11,12.8,145,160,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,130,1.5,,,,,,,,15,16.8,158,174,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,140,1.5,,,,,,,,19,20.8,170,188,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,150,1.5,,,,,,,,23,24.8,182,202,3
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,60,1.8,,,,,,,,1,3.1,85,102,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,70,1.8,,,,,,,,5,7.1,99,119,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,80,1.8,,,,,,,,10,12.1,113,136,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,90,1.8,,,,,,,,16,18.1,127,154,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,100,1.8,,,,,,,,24,26.1,142,172,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,110,1.8,,,,,,,,32,34.1,156,190,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,120,1.8,,,,,,,,39,41.1,170,208,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,130,1.8,,,,,,,,47,49.1,185,227,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,140,1.8,,,,,,,,54,56.1,199,244,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,150,1.8,,,,,,,,60,62.1,213,262,3
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,50,2.1,,,,,,,,4,6.4,81,107,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,60,2.1,,,,,,,,9,11.4,97,128,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,70,2.1,,,,,,,,19,21.4,113,150,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,80,2.1,,,,,,,,30,32.4,130,173,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,90,2.1,,,,,,,,40,42.4,146,195,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,100,1.8,,,,,,,1,50,53.4,163,218,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,110,1.8,,,,,,,3,58,63.4,180,240,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,120,1.8,,,,,,,5,66,73.4,197,263,3
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,30,2.4,,,,,,,,1,3.7,55,80,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,40,2.4,,,,,,,,4,6.7,73,105,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,50,2.4,,,,,,,,11,13.7,91,131,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,60,2.4,,,,,,,,25,27.7,109,159,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,70,2.1,,,,,,,1,38,41.7,128,186,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,80,2.1,,,,,,,4,48,54.7,147,214,1
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,90,2.1,,,,,,,7,59,68.7,167,242,3`,
+                'H2NIA15': `Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,90,1.5,,,,,,,,1,2.8,109,119,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,100,1.5,,,,,,,,3,4.8,121,133,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,110,1.5,,,,,,,,7,8.8,133,147,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,120,1.5,,,,,,,,11,12.8,145,160,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,130,1.5,,,,,,,,15,16.8,158,174,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,140,1.5,,,,,,,,19,20.8,170,188,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,150,1.5,,,,,,,,23,24.8,182,202,3
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,60,1.8,,,,,,,,1,3.1,85,102,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,70,1.8,,,,,,,,5,7.1,99,119,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,80,1.8,,,,,,,,10,12.1,113,136,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,90,1.8,,,,,,,,16,18.1,127,154,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,100,1.8,,,,,,,,24,26.1,142,172,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,110,1.8,,,,,,,,32,34.1,156,190,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,120,1.8,,,,,,,,39,41.1,170,208,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,130,1.8,,,,,,,,47,49.1,185,227,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,140,1.8,,,,,,,,54,56.1,199,244,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,150,1.8,,,,,,,,60,62.1,213,262,3
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,50,2.1,,,,,,,,4,6.4,81,107,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,60,2.1,,,,,,,,9,11.4,97,128,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,70,2.1,,,,,,,,19,21.4,113,150,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,80,2.1,,,,,,,,30,32.4,130,173,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,90,2.1,,,,,,,,40,42.4,146,195,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,100,1.8,,,,,,,1,50,53.4,163,218,0
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,110,1.8,,,,,,,3,58,63.4,180,240,1
+Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,120,1.8,,,,,,,5,66,73.4,197,263,3`
             },
+            
+            currentLevel: 'level1',
+            selectedLevel1: null,
+            selectedLevel2: null,
             
             init() {
-                this.renderTables();
-                document.getElementById('searchInput').addEventListener('input', (e) => {
-                    this.searchTerm = e.target.value.toLowerCase();
-                    this.renderTables();
-                });
+                this.renderLevel1();
             },
             
-            filterTables(type) {
-                this.currentFilter = type;
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                event.target.classList.add('active');
-                this.renderTables();
-            },
-            
-            renderTables() {
-                const grid = document.getElementById('tablesGrid');
+            renderLevel1() {
+                const grid = document.getElementById('categoriesGrid');
                 grid.innerHTML = '';
-                
-                const filtered = this.tables.filter(t => {
-                    const type = this.currentFilter === 'all' || t.type === this.currentFilter;
-                    const search = !this.searchTerm || t.name.toLowerCase().includes(this.searchTerm) || t.code.toLowerCase().includes(this.searchTerm);
-                    return type && search;
-                });
-                
-                filtered.forEach(t => {
+                this.tablesData.forEach((cat, idx) => {
                     const div = document.createElement('div');
-                    div.className = 'table-card';
-                    div.innerHTML = `<h3>${t.name}</h3><div class="code">${t.code}</div><p>${t.depths.length} depths | ${Math.min(...t.depths)}-${Math.max(...t.depths)}m</p>`;
-                    div.onclick = () => this.selectTable(t);
+                    div.className = 'category-card';
+                    div.onclick = () => this.goToLevel2(idx);
+                    div.innerHTML = `
+                        <div class="category-tag ${cat.tagClass}">${cat.tag}</div>
+                        <h3>${cat.name}</h3>
+                        <p>${cat.children.length} tables</p>
+                        <span class="chevron">→</span>
+                    `;
                     grid.appendChild(div);
                 });
             },
             
-            selectTable(table) {
-                this.currentTable = table;
-                this.showDepths();
+            goToLevel2(level1Idx) {
+                this.selectedLevel1 = level1Idx;
+                this.selectedLevel2 = null;
+                this.currentLevel = 'level2';
+                this.updateView();
+                this.renderLevel2();
             },
             
-            showSearch() {
-                document.getElementById('searchView').classList.add('active');
-                document.getElementById('depthsView').classList.remove('active');
-                document.getElementById('tableView').classList.remove('active');
-            },
-            
-            showDepths() {
-                document.getElementById('searchView').classList.remove('active');
-                document.getElementById('depthsView').classList.add('active');
-                document.getElementById('tableView').classList.remove('active');
-                this.renderDepths();
-            },
-            
-            renderDepths() {
-                const { code, name, depths } = this.currentTable;
-                const container = document.getElementById('depthsContainer');
-                
-                let html = `<div class="table-header-section">
-                    <h2>${name}</h2>
-                    <p><strong>${code}</strong> | Available depths:</p>
-                    <div class="depths-grid">`;
-                
-                depths.forEach(d => {
-                    html += `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`;
+            renderLevel2() {
+                const grid = document.getElementById('tablesGrid');
+                grid.innerHTML = '';
+                const cat = this.tablesData[this.selectedLevel1];
+                cat.children.forEach((table, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'table-card';
+                    div.onclick = () => this.goToLevel3(idx);
+                    div.innerHTML = `<h4>${table.name}</h4><p>${table.depths ? table.depths.length + ' depths' : 'Reference table'}</p>`;
+                    grid.appendChild(div);
                 });
-                
-                html += '</div></div>';
-                container.innerHTML = html;
+            },
+            
+            goToLevel3(level2Idx) {
+                this.selectedLevel2 = level2Idx;
+                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
+                if (!table.depths) {
+                    this.navigateToTable(table.code, null);
+                    return;
+                }
+                this.currentLevel = 'level3';
+                this.updateView();
+                this.renderLevel3();
+            },
+            
+            renderLevel3() {
+                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
+                const container = document.getElementById('depthsContainer');
+                const depthsHtml = table.depths.map(d => `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`).join('');
+                container.innerHTML = `<div class="depth-section"><div class="depth-title">${table.name}</div><div class="depth-subtitle">${table.code} | ${table.depths.length} depths available</div><div class="depths-grid">${depthsHtml}</div></div>`;
             },
             
             selectDepth(depth) {
-                this.currentDepth = depth;
-                this.showTable();
+                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
+                this.navigateToTable(table.code, depth);
             },
             
-            showTable() {
-                document.getElementById('searchView').classList.remove('active');
-                document.getElementById('depthsView').classList.remove('active');
-                document.getElementById('tableView').classList.add('active');
-                this.renderTable();
+            navigateToTable(code, depth) {
+                this.currentLevel = 'tableDisplay';
+                this.updateView();
+                this.renderTable(code, depth);
             },
             
-            parseCSV(csvText, depth) {
-                const lines = csvText.trim().split('\n');
-                const headers = lines[0].split(',').map(h => h.trim());
-                const rows = [];
-                
-                for (let i = 1; i < lines.length; i++) {
-                    const cells = lines[i].split(',').map(c => c.trim());
-                    if (cells.length < 10) continue;
-                    
-                    // Find depth column (usually index 1 or 7 depending on table type)
-                    let depthIdx = 1;
-                    if (headers[7] && headers[7].toLowerCase().includes('depth')) depthIdx = 7;
-                    
-                    const rowDepth = parseInt(cells[depthIdx]);
-                    if (rowDepth !== depth) continue;
-                    
-                    // Extract columns: find indices by header names
-                    const timeIdx = headers.findIndex(h => h.toLowerCase().includes('dive time'));
-                    const till1stIdx = headers.findIndex(h => h.toLowerCase().includes('till'));
-                    const decoIdx = headers.findIndex(h => h.toLowerCase().includes('total deco'));
-                    const otuIdx = headers.findIndex(h => h.toLowerCase().includes('total otu'));
-                    const esotIdx = headers.findIndex(h => h.toLowerCase().includes('total esot'));
-                    const markerIdx = headers.findIndex(h => h.toLowerCase().includes('marker'));
-                    
-                    // Stop depth columns (24, 21, 18, 15, 12, 9, 6, 3)
-                    const stopCols = [4, 5, 6, 7, 8, 9, 10, 11];
-                    
-                    const row = {
-                        time: parseInt(cells[timeIdx]) || parseInt(cells[2]),
-                        till1st: parseFloat(cells[till1stIdx]) || parseFloat(cells[3]),
-                        stops: stopCols.map(i => {
-                            const val = cells[i];
-                            return val === '' ? '—' : val || '—';
-                        }),
-                        totalDeco: parseInt(cells[decoIdx]) || parseInt(cells[12]),
-                        otu: cells[otuIdx] || cells[13] || '—',
-                        esot: cells[esotIdx] || cells[14] || '—',
-                        marker: cells[markerIdx] ? parseInt(cells[markerIdx]) : 0
-                    };
-                    
-                    rows.push(row);
-                }
-                
-                return rows;
+            updateView() {
+                document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+                document.getElementById(this.currentLevel === 'tableDisplay' ? 'tableDisplay' : this.currentLevel).classList.add('active');
             },
             
-            renderTable() {
-                const { code, name } = this.currentTable;
-                const depth = this.currentDepth;
-                const container = document.getElementById('tableContainer');
-                
-                const csvText = this.csvData[code];
-                if (!csvText) {
-                    container.innerHTML = `<div class="table-wrapper"><div class="table-header"><h2>Table data not available</h2></div></div>`;
+            renderTable(code, depth) {
+                const header = this.headers[code];
+                const csvData = this.csvData[code];
+                if (!header || !csvData) {
+                    document.getElementById('tableContainer').innerHTML = '<p>Table data not available</p>';
                     return;
                 }
                 
-                const rows = this.parseCSV(csvText, depth);
-                
-                if (rows.length === 0) {
-                    container.innerHTML = `<div class="table-wrapper"><div class="table-header"><h2>No data for ${depth}m</h2></div></div>`;
-                    return;
-                }
-                
-                let tableHtml = '<thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Tot. Deco<br>Time</th><th>Tot.<br>OTU</th><th>Tot.<br>ESOT</th></tr>';
-                tableHtml += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th class="oxy-cell">6m</th><th class="oxy-cell">3m</th><th></th><th></th><th></th></tr></thead>';
-                
-                tableHtml += '<tbody>';
-                rows.forEach(row => {
-                    const markerClass = row.marker === 2 ? 'marker-2' : row.marker === 3 ? 'marker-3' : '';
-                    tableHtml += `<tr class="${markerClass}">
-                        <td><strong>${row.time}</strong></td>
-                        <td>${row.till1st}</td>
-                        <td>${row.stops[0]}</td>
-                        <td>${row.stops[1]}</td>
-                        <td>${row.stops[2]}</td>
-                        <td>${row.stops[3]}</td>
-                        <td>${row.stops[4]}</td>
-                        <td>${row.stops[5]}</td>
-                        <td class="oxy-cell">${row.stops[6]}</td>
-                        <td class="oxy-cell">${row.stops[7]}</td>
-                        <td>${row.totalDeco}</td>
-                        <td>${row.otu}</td>
-                        <td>${row.esot}</td>
-                    </tr>`;
+                const rows = csvData.split('\n').filter(l => l.trim());
+                let tableRows = [];
+                rows.forEach(line => {
+                    const cells = line.split(',');
+                    const depthCol = parseInt(cells[1]);
+                    if (!depth || depthCol === depth) {
+                        const isRef = code === 'ND15' || code === 'LND15';
+                        const marker = cells[cells.length - 1];
+                        tableRows.push({ cells, marker: parseInt(marker) || 0, isRef });
+                    }
                 });
-                tableHtml += '</tbody>';
                 
-                const html = `<div class="table-wrapper">
-                    <div class="table-header">
-                        <h2>${name} - ${depth}m</h2>
-                        <p>Decompression Schedule</p>
-                    </div>
-                    <div class="table-scroll">
-                        <table>${tableHtml}</table>
-                    </div>
-                </div>`;
+                let html = `<div class="table-section"><div class="table-header"><h2>${header.title}${depth ? ` - ${depth}m` : ''}</h2></div><div class="table-wrapper"><table>`;
+                html += '<thead><tr>' + header.cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
                 
-                container.innerHTML = html;
-            }
+                tableRows.forEach((row, idx) => {
+                    const isLast = idx === tableRows.length - 1;
+                    let rowClass = 'row-white marker-normal';
+                    if (row.isRef) {
+                        rowClass = idx % 2 === 0 ? 'row-orange-light marker-normal' : 'row-orange marker-normal';
+                    } else {
+                        if (isLast) rowClass = 'row-red marker-normal';
+                        else rowClass = idx % 2 === 0 ? 'row-white marker-normal' : 'row-green marker-normal';
+                    }
+                    if (row.marker === 2) rowClass = rowClass.replace('marker-normal', 'marker-2');
+                    
+                    html += `<tr class="${rowClass}">`;
+                    row.cells.forEach((cell, cidx) => {
+                        if (cidx >= header.cols.length) return;
+                        const val = cell.trim() === '' ? '—' : cell.trim();
+                        html += `<td>${val}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                
+                html += '</tbody></table></div></div>';
+                document.getElementById('tableContainer').innerHTML = html;
+            },
+            
+            goToLevel1() { this.currentLevel = 'level1'; this.updateView(); },
+            goToLevel2() { this.currentLevel = 'level2'; this.updateView(); },
+            goToLevel3() { this.currentLevel = 'level3'; this.updateView(); }
         };
         
         window.addEventListener('load', () => app.init());

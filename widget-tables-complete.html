@@ -39,13 +39,14 @@
         border-radius: 6px;
         cursor: pointer;
         margin-bottom: 20px;
+        font-size: 14px;
       }
       .back-btn:hover {
         background: #2563eb;
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 16px;
       }
       .card {
@@ -69,6 +70,7 @@
       .card p {
         font-size: 13px;
         color: #6b7280;
+        margin-bottom: 8px;
       }
       .card .tag {
         display: inline-block;
@@ -113,21 +115,28 @@
         font-size: 18px;
         font-weight: 600;
         color: #1f2937;
+        margin-bottom: 8px;
+      }
+      .section p {
+        font-size: 13px;
+        color: #6b7280;
       }
       .depths-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
         gap: 10px;
         margin-top: 16px;
       }
       .depth-btn {
-        padding: 12px;
+        padding: 10px 8px;
         border: 2px solid #3b82f6;
         background: white;
         color: #3b82f6;
         border-radius: 6px;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 13px;
+        transition: all 0.2s;
       }
       .depth-btn:hover {
         background: #eff6ff;
@@ -137,16 +146,23 @@
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
       }
       .table-header {
         background: linear-gradient(to bottom, #1d4ed8, #1e40af);
         color: white;
         padding: 16px;
+        margin-bottom: 0;
       }
       .table-header h2 {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
         margin-bottom: 2px;
+      }
+      .table-header p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
       }
       .table-scroll {
         overflow-x: auto;
@@ -163,14 +179,15 @@
         top: 0;
       }
       th {
-        padding: 10px 6px;
+        padding: 8px 4px;
         text-align: center;
         border: 1px solid #0d47a1;
         font-weight: 600;
-        font-size: 11px;
+        font-size: 10px;
+        line-height: 1.3;
       }
       td {
-        padding: 10px 6px;
+        padding: 8px 4px;
         text-align: center;
         border: 1px solid #e5e7eb;
       }
@@ -184,7 +201,7 @@
         background: #f0fdf4;
       }
       .row-green:hover {
-        background: #eff6ff;
+        background: #dcfce7;
       }
       .row-red {
         background: #fef2f2;
@@ -192,14 +209,35 @@
       .row-red:hover {
         background: #fee2e2;
       }
+      .row-amber {
+        background: #fffbeb;
+      }
+      .row-amber:hover {
+        background: #fef3c7;
+      }
       .marker-2 {
         border-bottom: 3px solid #1f2937 !important;
+      }
+      .marker-3 {
+        background: #fef2f2 !important;
+      }
+      .error {
+        background: #fee2e2;
+        color: #991b1b;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 16px 0;
+      }
+      .loading {
+        text-align: center;
+        padding: 20px;
+        color: #6b7280;
       }
       footer {
         text-align: center;
         padding: 20px;
         color: #9ca3af;
-        font-size: 12px;
+        font-size: 11px;
         margin-top: 40px;
       }
     </style>
@@ -224,12 +262,14 @@
               {
                 name: "Air",
                 code: "ND15",
-                depths: [9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+                depths: [],
+                isReference: true,
               },
               {
                 name: "Air Extended",
                 code: "LND15",
-                depths: [9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+                depths: [],
+                isReference: true,
               },
             ],
           },
@@ -240,23 +280,17 @@
               {
                 name: "12 Hour SI",
                 code: "SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
               {
                 name: "2 Hour SI",
                 code: "H2SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
               {
                 name: "4 Hour SI",
                 code: "H4SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
             ],
           },
@@ -267,16 +301,12 @@
               {
                 name: "12 Hour SI",
                 code: "SOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
               {
                 name: "4 Hour SI",
                 code: "HSOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
             ],
           },
@@ -287,16 +317,12 @@
               {
                 name: "12 Hour SI",
                 code: "SAB15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
               {
                 name: "4 Hour SI",
                 code: "HSAB15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
             ],
           },
@@ -331,9 +357,7 @@
               {
                 name: "Wet/Dry Bell",
                 code: "BOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
+                depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
               },
             ],
           },
@@ -341,47 +365,95 @@
 
         csvCache: {},
 
-        parseCSV(text, code, wantedDepth) {
+        async loadCSV(code) {
+          if (this.csvCache[code]) return this.csvCache[code];
+
+          try {
+            const response = await fetch(`/data/tables/${code}.csv`);
+            if (!response.ok) return null;
+            const text = await response.text();
+            this.csvCache[code] = text;
+            return text;
+          } catch (e) {
+            console.error("CSV load error:", e);
+            return null;
+          }
+        },
+
+        parseReferenceTableCSV(text) {
           const lines = text.trim().split("\n");
           if (lines.length < 2) return [];
 
-          // Special handling for reference tables (ND15, LND15)
-          if (code === "ND15" || code === "LND15") {
-            return this.parseReferenceTable(text);
+          const rows = [];
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const values = line.split(",").map((v) => v.trim());
+            if (values.length < 3) continue;
+
+            const depth = parseInt(values[0]);
+            if (isNaN(depth)) continue;
+
+            const col1 = values[1] === "" ? null : parseInt(values[1]);
+            const col2 = values[2] === "" ? null : parseInt(values[2]);
+
+            rows.push({
+              depth,
+              col1,
+              col2,
+            });
           }
+
+          return rows;
+        },
+
+        parseStandardTableCSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
 
           const headers = lines[0]
             .split(",")
             .map((h) => h.trim().toLowerCase());
-          const rows = [];
 
-          // Find column indices dynamically (same as React code)
           const depthIndex = headers.findIndex(
-            (h) =>
-              h.includes("depth") && !h.includes("deco") && !h.includes("stop"),
+            (h) => h.includes("depth") && !h.includes("deco")
           );
           const timeIndex = headers.findIndex(
-            (h) => h.includes("dive") && h.includes("time"),
+            (h) => h.includes("dive") && h.includes("time")
           );
           const tillIndex = headers.findIndex(
-            (h) => h.includes("till") || h.includes("1st"),
+            (h) => h.includes("till") || h.includes("1st")
           );
           const decoIndex = headers.findIndex(
-            (h) => h.includes("deco") && h.includes("time"),
+            (h) => h.includes("deco") && h.includes("time")
           );
           const otuIndex = headers.findIndex((h) => h.includes("otu"));
           const esotIndex = headers.findIndex((h) => h.includes("esot"));
-          const markerIndex = esotIndex + 1;
+          const dvisIndex = headers.findIndex((h) => h.includes("dvis"));
+
+          const markerIndex = esotIndex >= 0 ? esotIndex + 1 : -1;
           const stopStart = tillIndex + 1;
           const stopEnd = decoIndex;
+
+          const rows = [];
+          let dvis5 = null;
+          let foundFirst = false;
 
           for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
 
             const cols = line.split(",").map((v) => v.trim());
+
             const depth = parseInt(cols[depthIndex]);
-            if (isNaN(depth) || depth !== wantedDepth) continue;
+            if (isNaN(depth) || depth !== targetDepth) continue;
+
+            if (!foundFirst && dvisIndex >= 0) {
+              const dvisVal = parseInt(cols[dvisIndex]);
+              if (!isNaN(dvisVal)) dvis5 = dvisVal;
+              foundFirst = true;
+            }
 
             const time = parseInt(cols[timeIndex]);
             if (isNaN(time)) continue;
@@ -389,74 +461,32 @@
             const stops = [];
             for (let j = stopStart; j < stopEnd && j < cols.length; j++) {
               const val = cols[j];
-              stops.push(val === "" ? null : parseInt(val) || null);
+              if (val === "") {
+                stops.push(null);
+              } else {
+                const num = parseInt(val);
+                stops.push(isNaN(num) ? null : num);
+              }
+            }
+
+            let marker = 0;
+            if (markerIndex >= 0 && markerIndex < cols.length) {
+              const markerVal = parseInt(cols[markerIndex]);
+              if (markerVal === 2 || markerVal === 3) marker = markerVal;
             }
 
             rows.push({
               time,
-              till1st: cols[tillIndex],
+              till1st: cols[tillIndex] || "",
               stops,
               deco: cols[decoIndex] || "",
               otu: cols[otuIndex] || "",
               esot: cols[esotIndex] || "",
-              marker: parseInt(cols[markerIndex]) || 0,
+              marker,
             });
           }
 
-          return rows;
-        },
-
-        parseReferenceTable(text) {
-          const lines = text.trim().split("\n");
-          const rows = [];
-
-          for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (!line) continue;
-
-            const cols = line.split(",").map((v) => v.trim());
-            const depth = parseInt(cols[0]);
-            if (isNaN(depth)) continue;
-
-            const val1 = cols[1] || "";
-            const val2 = cols[2] || "";
-
-            rows.push({
-              time: depth,
-              till1st: val1,
-              stops: [
-                parseInt(val1) || null,
-                parseInt(val2) || null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-              ],
-              deco: "",
-              otu: "",
-              esot: "",
-              marker: 0,
-            });
-          }
-
-          return rows;
-        },
-
-        async loadCSV(code) {
-          if (this.csvCache[code]) return this.csvCache[code];
-
-          try {
-            const response = await fetch(`/data/tables/${code}.csv`);
-            if (!response.ok) return "";
-            const text = await response.text();
-            this.csvCache[code] = text;
-            return text;
-          } catch (e) {
-            console.error("CSV load error:", e);
-            return "";
-          }
+          return { rows, dvis5 };
         },
 
         renderLevel1() {
@@ -481,52 +511,108 @@
             html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})">
                         <div class="tag ${g.tag}">${g.name}</div>
                         <h3>${t.name}</h3>
-                        <p>${t.code}</p>
+                        <p>Code: ${t.code}</p>
                     </div>`;
           });
-          document.getElementById("content").innerHTML = html + "</div></div>";
+          document.getElementById("content").innerHTML = html + "</div>";
         },
 
         renderLevel3(gIdx, tIdx) {
           const g = this.groups[gIdx];
           const t = g.tables[tIdx];
+
           let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
           html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
-          html += '<div class="depths-grid">';
-          t.depths.forEach((d) => {
-            html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
+
+          if (t.isReference) {
+            html += `<div class="depths-grid">
+                      <button class="depth-btn" onclick="app.renderReferenceTable(${gIdx}, ${tIdx})">Show Table</button>
+                    </div>`;
+          } else {
+            html += '<div class="depths-grid">';
+            t.depths.forEach((d) => {
+              html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
+            });
+            html += "</div>";
+          }
+
+          document.getElementById("content").innerHTML = html;
+        },
+
+        renderReferenceTable(gIdx, tIdx) {
+          const g = this.groups[gIdx];
+          const t = g.tables[tIdx];
+
+          let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
+
+          document.getElementById("content").innerHTML =
+            html + '<div class="loading">Loading table...</div>';
+
+          this.loadCSV(t.code).then((csv) => {
+            if (!csv) {
+              html += '<div class="error">Unable to load table data</div>';
+              document.getElementById("content").innerHTML = html;
+              return;
+            }
+
+            const rows = this.parseReferenceTableCSV(csv);
+
+            let tableHtml = `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2></div>`;
+            tableHtml += '<div class="table-scroll"><table><thead><tr>';
+            tableHtml += '<th>Depth<br>(metres)</th>';
+            tableHtml += '<th>Repeat<br>Interval<br>8 Hours</th>';
+            tableHtml += '<th>Repeat<br>Interval<br>2 Hours</th>';
+            tableHtml += "</tr></thead><tbody>";
+
+            rows.forEach((row) => {
+              tableHtml += `<tr class="row-white">
+                            <td><strong>${row.depth}</strong></td>
+                            <td>${row.col1 !== null ? row.col1 : "—"}</td>
+                            <td>${row.col2 !== null ? row.col2 : "—"}</td>
+                        </tr>`;
+            });
+
+            tableHtml += "</tbody></table></div></div>";
+            document.getElementById("content").innerHTML = html + tableHtml;
           });
-          document.getElementById("content").innerHTML = html + "</div>";
         },
 
         async renderTable(gIdx, tIdx, depth) {
           const g = this.groups[gIdx];
           const t = g.tables[tIdx];
+
           let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
+          document.getElementById("content").innerHTML =
+            html + '<div class="loading">Loading table...</div>';
 
           const csv = await this.loadCSV(t.code);
           if (!csv) {
-            html += "<p>Unable to load table data</p>";
+            html += '<div class="error">Unable to load table data</div>';
             document.getElementById("content").innerHTML = html;
             return;
           }
 
-          const rows = this.parseCSV(csv, t.code, depth);
+          const { rows, dvis5 } = this.parseStandardTableCSV(csv, depth);
 
-          html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2></div>`;
+          if (rows.length === 0) {
+            html += '<div class="error">No data found for this depth</div>';
+            document.getElementById("content").innerHTML = html;
+            return;
+          }
+
+          html += `<div class="table-wrapper"><div class="table-header">
+                    <h2>${t.name} - ${depth}m</h2>
+                    ${dvis5 ? `<p>DVIS 5 Time Limit: ${dvis5} minutes</p>` : ""}
+                  </div>`;
           html +=
-            '<div class="table-scroll"><table><thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Deco</th><th>OTU</th><th>ESOT</th></tr>';
+            '<div class="table-scroll"><table><thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop<br>(min)</th><th colspan="8">Stop Depth (metres)</th><th>Total<br>Deco<br>(min)</th><th>OTU</th><th>ESOT</th></tr>';
           html +=
             "<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr></thead><tbody>";
 
-          rows.forEach((row, i) => {
-            const isLast = i === rows.length - 1;
-            let cls = isLast
-              ? "row-red"
-              : i % 2 === 0
-                ? "row-white"
-                : "row-green";
+          rows.forEach((row) => {
+            let cls = "row-white";
             if (row.marker === 2) cls += " marker-2";
+            if (row.marker === 3) cls += " marker-3";
 
             html += `<tr class="${cls}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
             for (let j = 0; j < 8; j++) {

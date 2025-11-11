@@ -205,27 +205,21 @@
     <script>
       const app = {
         tables: [
-          {
-            cat: "Air",
-            tag: "tag-cyan",
-            name: "Standard Air",
-            code: "SIL15",
-            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-          },
-          {
-            cat: "O2",
-            tag: "tag-orange",
-            name: "Surface O2",
-            code: "SOX15",
-            depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
-          },
-          {
-            cat: "Nitrox",
-            tag: "tag-green",
-            name: "Nitrox 40%",
-            code: "NIA15",
-            depths: [18, 21, 24, 27],
-          },
+          { cat: "No-Stop", tag: "tag-blue", name: "No-Stop Limits Air", code: "ND15", depths: [9,12,15,18,21,24,27,30,33,36] },
+          { cat: "Air", tag: "tag-cyan", name: "Standard Air 12h", code: "SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "Air", tag: "tag-cyan", name: "Standard Air 2h", code: "H2SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "Air", tag: "tag-cyan", name: "Standard Air 4h", code: "H4SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "O2", tag: "tag-orange", name: "Surface O2 12h", code: "SOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "O2", tag: "tag-orange", name: "Surface O2 4h", code: "HSOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "Backup", tag: "tag-yellow", name: "Backup Air 12h", code: "SAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "Backup", tag: "tag-yellow", name: "Backup Air 4h", code: "HSAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIA 40% 12h", code: "NIA15", depths: [18,21,24,27] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIA 40% 2h", code: "H2NIA15", depths: [18,21,24,27] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIA 40% 4h", code: "H4NIA15", depths: [18,21,24,27] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIB 35% 12h", code: "NIB15", depths: [18,21,24,27,30,33] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIB 35% 2h", code: "H2NIB15", depths: [18,21,24,27,30,33] },
+          { cat: "Nitrox", tag: "tag-green", name: "NIB 35% 4h", code: "H4NIB15", depths: [18,21,24,27,30,33] },
+          { cat: "Box", tag: "tag-indigo", name: "Box Air/O2", code: "BOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
         ],
 
         csvCache: {},

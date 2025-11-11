@@ -1,945 +1,205 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DivePlan Tables</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-        background: linear-gradient(135deg, #f0f4f8, #fff, #f0f4f8);
-        color: #333;
-      }
-      .container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-      header {
-        margin-bottom: 30px;
-      }
-      h1 {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1f2937;
-      }
-      .subtitle {
-        color: #6b7280;
-      }
-      .back-btn {
-        background: #3b82f6;
-        color: white;
-        border: none;
-        padding: 10px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        font-size: 14px;
-      }
-      .back-btn:hover {
-        background: #2563eb;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 16px;
-      }
-      .card {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 18px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .card:hover {
-        border-color: #3b82f6;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      }
-      .card h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #1f2937;
-        margin-bottom: 8px;
-      }
-      .card p {
-        font-size: 13px;
-        color: #6b7280;
-        margin-bottom: 8px;
-      }
-      .card .tag {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 4px;
-        font-size: 11px;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      .tag-blue {
-        background: #dbeafe;
-        color: #1e40af;
-      }
-      .tag-cyan {
-        background: #cffafe;
-        color: #0e7490;
-      }
-      .tag-orange {
-        background: #fed7aa;
-        color: #92400e;
-      }
-      .tag-yellow {
-        background: #fef08a;
-        color: #854d0e;
-      }
-      .tag-green {
-        background: #dcfce7;
-        color: #166534;
-      }
-      .tag-indigo {
-        background: #e0e7ff;
-        color: #312e81;
-      }
-      .tag-purple {
-        background: #f3e8ff;
-        color: #6b21a8;
-      }
-      .tag-red {
-        background: #fee2e2;
-        color: #991b1b;
-      }
-      .section {
-        background: white;
-        border-radius: 8px;
-        padding: 18px;
-        margin-bottom: 16px;
-        border: 1px solid #e5e7eb;
-      }
-      .section h2 {
-        font-size: 18px;
-        font-weight: 600;
-        color: #1f2937;
-        margin-bottom: 8px;
-      }
-      .section p {
-        font-size: 13px;
-        color: #6b7280;
-      }
-      .depths-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-        gap: 10px;
-        margin-top: 16px;
-      }
-      .depth-btn {
-        padding: 10px 8px;
-        border: 2px solid #3b82f6;
-        background: white;
-        color: #3b82f6;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 13px;
-        transition: all 0.2s;
-      }
-      .depth-btn:hover {
-        background: #eff6ff;
-      }
-      .depth-btn.active {
-        background: #3b82f6;
-        color: white;
-      }
-      .table-wrapper {
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-      }
-      .table-header {
-        background: linear-gradient(to bottom, #1d4ed8, #1e40af);
-        color: white;
-        padding: 16px;
-        margin-bottom: 0;
-      }
-      .table-header h2 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 2px;
-      }
-      .table-header p {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.9);
-        margin: 0;
-      }
-      .table-scroll {
-        overflow-x: auto;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 11px;
-      }
-      thead {
-        background: linear-gradient(to bottom, #1d4ed8, #1e40af);
-        color: white;
-        position: sticky;
-        top: 0;
-      }
-      th {
-        padding: 8px 4px;
-        text-align: center;
-        border: 1px solid #0d47a1;
-        font-weight: 600;
-        font-size: 10px;
-        line-height: 1.2;
-      }
-      td {
-        padding: 8px 4px;
-        text-align: center;
-        border: 1px solid #e5e7eb;
-      }
-      .row-white {
-        background: white;
-      }
-      .row-white:hover {
-        background: #eff6ff;
-      }
-      .row-green {
-        background: #f0fdf4;
-      }
-      .row-green:hover {
-        background: #eff6ff;
-      }
-      .row-red {
-        background: #fef2f2;
-      }
-      .row-red:hover {
-        background: #fee2e2;
-      }
-      .row-orange {
-        background: #fed7aa;
-      }
-      .row-orange:hover {
-        background: #fed7aa;
-      }
-      .error {
-        background: #fee2e2;
-        color: #991b1b;
-        padding: 12px;
-        border-radius: 6px;
-        margin: 16px 0;
-      }
-      .loading {
-        text-align: center;
-        padding: 20px;
-        color: #6b7280;
-      }
-      footer {
-        text-align: center;
-        padding: 20px;
-        color: #9ca3af;
-        font-size: 11px;
-        margin-top: 40px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>Dive Tables</h1>
-        <p class="subtitle">Browse decompression tables</p>
-      </header>
-      <div id="content"></div>
-      <footer>DivePlan Tables Widget | Standalone Offline Ready</footer>
-    </div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DivePlan Tables Widget</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; background: linear-gradient(135deg, #f0f4f8, #fff, #f0f4f8); color: #333; }
+.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
+header { margin-bottom: 30px; }
+h1 { font-size: 32px; font-weight: 700; color: #1f2937; }
+.subtitle { color: #6b7280; }
+.back-btn { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
+.back-btn:hover { background: #2563eb; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.card { background: white; border: 2px solid #e5e7eb; border-radius: 8px; padding: 18px; cursor: pointer; transition: all 0.2s; }
+.card:hover { border-color: #3b82f6; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
+.card h3 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+.card p { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+.tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
+.tag-blue { background: #dbeafe; color: #1e40af; }
+.tag-cyan { background: #cffafe; color: #0e7490; }
+.tag-orange { background: #fed7aa; color: #92400e; }
+.tag-yellow { background: #fef08a; color: #854d0e; }
+.tag-green { background: #dcfce7; color: #166534; }
+.tag-indigo { background: #e0e7ff; color: #312e81; }
+.tag-purple { background: #f3e8ff; color: #6b21a8; }
+.tag-red { background: #fee2e2; color: #991b1b; }
+.section { background: white; border-radius: 8px; padding: 18px; margin-bottom: 16px; border: 1px solid #e5e7eb; }
+.section h2 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+.section p { font-size: 13px; color: #6b7280; }
+.depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-top: 16px; }
+.depth-btn { padding: 10px 8px; border: 2px solid #3b82f6; background: white; color: #3b82f6; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+.depth-btn:hover { background: #eff6ff; }
+.table-wrapper { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
+.table-header { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; padding: 16px; }
+.table-header h2 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+.table-header p { font-size: 12px; color: rgba(255, 255, 255, 0.9); margin: 0; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 11px; }
+thead { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; position: sticky; top: 0; }
+th { padding: 8px 4px; text-align: center; border: 1px solid #0d47a1; font-weight: 600; font-size: 10px; line-height: 1.2; }
+td { padding: 8px 4px; text-align: center; border: 1px solid #e5e7eb; }
+.row-white { background: white; }
+.row-white:hover { background: #eff6ff; }
+.row-green { background: #f0fdf4; }
+.row-green:hover { background: #eff6ff; }
+.row-red { background: #fef2f2; }
+.row-red:hover { background: #fee2e2; }
+.error { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 6px; margin: 16px 0; }
+.loading { text-align: center; padding: 20px; color: #6b7280; }
+footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 11px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Dive Tables</h1>
+<p class="subtitle">Browse decompression tables</p>
+</header>
+<div id="content"></div>
+<footer>DivePlan Tables Widget | Standalone</footer>
+</div>
 
-    <script>
-      const app = {
-        headers: {
-          SIL15: {
-            title: "SIL15 - Standard Air, Repetitive Interval 12 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H2SIL15: {
-            title: "H2SIL15 - Standard Air, Repetitive Interval 2 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H4SIL15: {
-            title: "H4SIL15 - Standard Air, Repetitive Interval 4 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          SOX15: {
-            title:
-              "SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours",
-            stopCols1: [
-              "21 air",
-              "18 air",
-              "15 air",
-              "12 air",
-              "9 air",
-              "12 ox",
-            ],
-            stopCols2: ["9 air", "9 ox", "6 air", "6 ox", "3 air", "3 ox"],
-            numStops: 12,
-          },
-          HSOX15: {
-            title:
-              "HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours",
-            stopCols1: [
-              "21 air",
-              "18 air",
-              "15 air",
-              "12 air",
-              "9 air",
-              "12 ox",
-            ],
-            stopCols2: ["9 air", "9 ox", "6 air", "6 ox", "3 air", "3 ox"],
-            numStops: 12,
-          },
-          SAB15: {
-            title: "SAB15 - Backup Air, Repetitive Interval 12 Hours",
-            stopCols1: ["21", "18", "15", "12", "9", "18"],
-            stopCols2: ["15", "12", "9", "6", "3"],
-            numStops: 11,
-          },
-          HSAB15: {
-            title: "HSAB15 - Backup Air, Repetitive Interval 4 Hours",
-            stopCols1: ["21", "18", "15", "12", "9", "18"],
-            stopCols2: ["15", "12", "9", "6", "3"],
-            numStops: 11,
-          },
-          NIA15: {
-            title: "NIA15 - Nitrox 40/60, Repetitive Interval 12 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H2NIA15: {
-            title: "H2NIA15 - Nitrox 40/60, Repetitive Interval 2 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H4NIA15: {
-            title: "H4NIA15 - Nitrox 40/60, Repetitive Interval 4 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          NIB15: {
-            title: "NIB15 - Nitrox 35/65, Repetitive Interval 12 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H2NIB15: {
-            title: "H2NIB15 - Nitrox 35/65, Repetitive Interval 2 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          H4NIB15: {
-            title: "H4NIB15 - Nitrox 35/65, Repetitive Interval 4 Hours",
-            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
-            numStops: 8,
-          },
-          BOX15: {
-            title: "BOX15 - Bell Air/Oxygen, Repetitive Interval 12 Hours",
-            stopCols1: [
-              "21 air",
-              "18 air",
-              "15 air",
-              "12 air",
-              "9 air",
-              "12 ox",
-            ],
-            stopCols2: ["9 air", "9 ox", "6 air", "6 ox", "3 air", "3 ox"],
-            numStops: 12,
-          },
-        },
+<script>
+const app = {
+  groups: [
+    { name: "No Stops Air", tag: "tag-blue", tables: [
+      { name: "ND15", code: "ND15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+      { name: "LND15", code: "LND15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+    ]},
+    { name: "Standard Air", tag: "tag-cyan", tables: [
+      { name: "SIL15 12h", code: "SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+      { name: "SIL15 2h", code: "H2SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+      { name: "SIL15 4h", code: "H4SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+    ]},
+    { name: "SurO2", tag: "tag-orange", tables: [
+      { name: "SOX15 12h", code: "SOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+      { name: "SOX15 4h", code: "HSOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+    ]},
+    { name: "Backup Air", tag: "tag-yellow", tables: [
+      { name: "SAB15 12h", code: "SAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+      { name: "SAB15 4h", code: "HSAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+    ]},
+    { name: "Nitrox", tag: "tag-green", tables: [
+      { name: "NIA 40% 12h", code: "NIA15", depths: [18,21,24,27] },
+      { name: "NIA 40% 2h", code: "H2NIA15", depths: [18,21,24,27] },
+      { name: "NIA 40% 4h", code: "H4NIA15", depths: [18,21,24,27] },
+      { name: "NIB 35% 12h", code: "NIB15", depths: [18,21,24,27,30,33] },
+      { name: "NIB 35% 2h", code: "H2NIB15", depths: [18,21,24,27,30,33] },
+      { name: "NIB 35% 4h", code: "H4NIB15", depths: [18,21,24,27,30,33] }
+    ]},
+    { name: "Wet/Dry Bell", tag: "tag-indigo", tables: [
+      { name: "BOX15", code: "BOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
+    ]},
+    { name: "Treatment", tag: "tag-red", tables: [
+      { name: "Treatment Tables", code: "TREATMENT", depths: [], isImage: true }
+    ]}
+  ],
 
-        groups: [
-          {
-            name: "No Stops Air",
-            tag: "tag-blue",
-            tables: [
-              {
-                name: "ND15",
-                code: "ND15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-              {
-                name: "LND15",
-                code: "LND15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "Standard Air",
-            tag: "tag-cyan",
-            tables: [
-              {
-                name: "SIL15 12h",
-                code: "SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-              {
-                name: "SIL15 2h",
-                code: "H2SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-              {
-                name: "SIL15 4h",
-                code: "H4SIL15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "SurO2",
-            tag: "tag-orange",
-            tables: [
-              {
-                name: "SOX15 12h",
-                code: "SOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-              {
-                name: "SOX15 4h",
-                code: "HSOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "Backup Air",
-            tag: "tag-yellow",
-            tables: [
-              {
-                name: "SAB15 12h",
-                code: "SAB15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-              {
-                name: "SAB15 4h",
-                code: "HSAB15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "OTU/ESOT",
-            tag: "tag-purple",
-            tables: [
-              {
-                name: "4 Hour SI",
-                code: "HSAB15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "Nitrox",
-            tag: "tag-green",
-            tables: [
-              { name: "NIA 40% 12h", code: "NIA15", depths: [18, 21, 24, 27] },
-              { name: "NIA 40% 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
-              { name: "NIA 40% 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
-              {
-                name: "NIB 35% 12h",
-                code: "NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
-              {
-                name: "NIB 35% 2h",
-                code: "H2NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
-              {
-                name: "NIB 35% 4h",
-                code: "H4NIB15",
-                depths: [18, 21, 24, 27, 30, 33],
-              },
-            ],
-          },
-          {
-            name: "Wet/Dry Bell",
-            tag: "tag-indigo",
-            tables: [
-              {
-                name: "BOX15",
-                code: "BOX15",
-                depths: [
-                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
-                ],
-              },
-            ],
-          },
-          {
-            name: "Treatment",
-            tag: "tag-red",
-            tables: [
-              {
-                name: "Treatment Tables",
-                code: "TREATMENT",
-                depths: [],
-                isImageTable: true,
-              },
-            ],
-          },
-        ],
+  async loadCSV(code) {
+    try {
+      const response = await fetch(`/data/tables/${code}.csv`);
+      if (!response.ok) return null;
+      return await response.text();
+    } catch (e) {
+      console.error("CSV load failed:", e);
+      return null;
+    }
+  },
 
-        csvCache: {},
+  parseCSV(text, depth) {
+    const lines = text.trim().split("\n");
+    if (lines.length < 2) return [];
+    const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
+    const depthIdx = headers.findIndex(h => h.includes("depth"));
+    const timeIdx = headers.findIndex(h => h.includes("dive time"));
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cols = lines[i].split(",");
+      if (parseInt(cols[depthIdx]) !== depth) continue;
+      rows.push(cols);
+    }
+    return rows;
+  },
 
-        async loadCSV(code) {
-          if (this.csvCache[code]) return this.csvCache[code];
-          const csv = this.getEmbeddedCSV(code);
-          if (csv) {
-            this.csvCache[code] = csv;
-            return csv;
-          }
-          return null;
-        },
+  renderLevel1() {
+    let html = '<div class="grid">';
+    this.groups.forEach((g, i) => {
+      html += `<div class="card" onclick="app.renderLevel2(${i})">
+        <div class="tag ${g.tag}">${g.name}</div>
+        <p>${g.tables.length} table${g.tables.length !== 1 ? 's' : ''}</p>
+      </div>`;
+    });
+    document.getElementById("content").innerHTML = html + "</div>";
+  },
 
-        getEmbeddedCSV(code) {
-          const csvData = {
-            SIL15: `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,,,,,,,,,,,,,,,,,,,,
-240,12,120,0.9,,,,,,,,1,2.2,,21,,,,,,,,,,,,,,,,,,,,
-240,12,130,0.9,,,,,,,,3,4.2,,23,,,,,,,,,,,,,,,,,,,,
-240,12,140,0.9,,,,,,,,5,6.2,,24,,,,,,,,,,,,,,,,,,,,
-240,12,150,0.9,,,,,,,,6,7.2,,26,,,,,,,,,,,,,,,,,,,,
-180,15,70,1.2,,,,,,,,2,3.5,6,16,,,,,,,,,,,,,,,,,,,,
-180,15,80,1.2,,,,,,,,7,8.5,7,19,,,,,,,,,,,,,,,,,,,,
-180,15,90,1.2,,,,,,,,11,12.5,7,21,,,,,,,,,,,,,,,,,,,,
-180,15,100,1.2,,,,,,,,14,15.5,8,24,,,,,,,,,,,,,,,,,,,,
-180,15,110,1.2,,,,,,,,17,18.5,9,26,,,,,,,,,,,,,,,,,,,,
-120,18,40,1.5,,,,,,,,2,3.8,9,12,,,,,,,,,,,,,,,,,,,,
-120,18,50,1.5,,,,,,,,5,6.8,12,16,,,,,,,,,,,,,,,,,,,,
-120,18,60,1.5,,,,,,,,10,11.8,14,19,,,,,,,,,,,,,,,,,,,,
-120,18,70,1.5,,,,,,,,16,17.8,16,22,,,,,,,,,,,,,,,,,,,,
-120,18,80,1.5,,,,,,,,21,22.8,19,25,,,,,,,,,,,,,,,,,,,,
-90,21,25,1.8,,,,,,,,2,4.1,9,10,,,,,,,,,,,,,,,,,,,,
-90,21,30,1.8,,,,,,,,3,5.1,11,12,,,,,,,,,,,,,,,,,,,,
-90,21,35,1.8,,,,,,,,5,7.1,13,14,,,,,,,,,,,,,,,,,,,,
-90,21,40,1.8,,,,,,,,7,9.1,15,16,,,,,,,,,,,,,,,,,,,,
-90,21,45,1.8,,,,,,,,9,11.1,17,18,,,,,,,,,,,,,,,,,,,,
-70,24,15,2.1,,,,,,,,1,3.4,7,8,,,,,,,,,,,,,,,,,,,,
-70,24,20,2.1,,,,,,,,3,5.4,10,10,,,,,,,,,,,,,,,,,,,,
-70,24,25,2.1,,,,,,,,4,6.4,12,13,,,,,,,,,,,,,,,,,,,,
-70,24,30,1.8,,,,,,,1,6,9.4,15,15,,,,,,,,,,,,,,,,,,,,
-70,24,35,1.8,,,,,,,2,8,12.4,17,18,,,,,,,,,,,,,,,,,,,,
-60,27,15,2.4,,,,,,,,2,4.7,10,10,,,,,,,,,,,,,,,,,,,,
-60,27,20,2.4,,,,,,,,5,7.7,13,13,,,,,,,,,,,,,,,,,,,,
-60,27,25,2.1,,,,,,,2,6,10.7,16,16,,,,,,,,,,,,,,,,,,,,
-50,30,10,2.7,,,,,,,,1,4,8,9,,,,,,,,,,,,,,,,,,,,
-50,30,15,2.4,,,,,,,1,3,7,11,12,,,,,,,,,,,,,,,,,,,,
-50,30,20,2.4,,,,,,,2,5,10,15,15,,,,,,,,,,,,,,,,,,,,
-40,33,10,3,,,,,,,,2,5.3,9,10,,,,,,,,,,,,,,,,,,,,
-40,33,15,2.7,,,,,,,2,4,9.3,13,14,,,,,,,,,,,,,,,,,,,,
-40,33,20,2.4,,,,,,1,3,7,14.3,18,18,,,,,,,,,,,,,,,,,,,,
-35,36,10,3,,,,,,,1,3,7.6,11,12,,,,,,,,,,,,,,,,,,,,
-35,36,15,2.7,,,,,,1,2,5,11.6,15,17,,,,,,,,,,,,,,,,,,,,
-35,36,20,2.7,,,,,,2,4,8,17.6,20,22,,,,,,,,,,,,,,,,,,,,
-30,39,5,3.6,,,,,,,,1,4.9,7,9,,,,,,,,,,,,,,,,,,,,
-30,39,10,3.3,,,,,,,2,3,8.9,12,15,,,,,,,,,,,,,,,,,,,,
-30,39,15,3,,,,,,1,4,5,13.9,17,20,,,,,,,,,,,,,,,,,,,,
-25,45,5,4.2,,,,,,,,2,6.5,8,13,,,,,,,,,,,,,,,,,,,,
-25,45,10,3.6,,,,,,2,2,4,12.5,15,20,,,,,,,,,,,,,,,,,,,,
-25,45,15,3.3,,,,,1,3,4,9,21.5,21,27,,,,,,,,,,,,,,,,,,,,
-20,51,5,4.5,,,,,,,2,2,9.1,10,17,,,,,,,,,,,,,,,,,,,,
-20,51,10,3.9,,,,,1,2,4,5,17.1,18,25,,,,,,,,,,,,,,,,,,,,
-20,51,15,3.6,,,,1,2,4,5,13,30.1,25,35,,,,,,,,,,,,,,,,,,,,`,
-            SOX15: `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,Depth (msw),Dive Time (min),till 1st stop,21 air,18 air,15 air,12 air,9 air,12 oxygen,9 air,9 oxygen,6 air,6 oxygen,3 air,3 oxygen,Total deco time (min),Total OTU,Total ESOT,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,240,12,12,150,1.2,,,,,,10,,5,,,,,17.4,40,82,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,240,12,12,170,1.2,,,,,,10,,10,,,,,22.4,51,104,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,240,12,12,180,1.2,,,,,,10,,10,5,,,,27.4,51,104,3
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,80,1.5,,,,,,10,,5,,,,,17.7,47,82,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,100,1.5,,,,,,10,,10,,,,,22.7,59,104,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,110,1.5,,,,,,10,,10,5,,,,27.7,60,104,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,120,1.5,,,,,,10,,10,5,5,,,32.7,71,119,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,140,1.5,,,,,,10,,10,5,10,,,37.7,82,133,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,150,1.5,,,,,,10,,10,5,15,,,42.7,93,148,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,180,12,15,160,1.5,,,,,,10,,10,5,20,,,47.7,103,162,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,120,12,18,40,1.8,,,,,,10,,,,,,,13,37,73,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,120,12,18,50,1.8,,,,,,10,,5,,,,,18,52,98,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,120,12,18,60,1.8,,,,,,10,,10,,,,,23,65,122,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,120,12,18,70,1.8,,,,,,10,,10,5,,,,28,67,125,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,120,12,18,90,1.8,,,,,,10,,10,5,5,,,33,82,146,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,90,12,21,30,2.1,,,,,,10,,,,,,,13.3,39,73,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,90,12,21,40,2.1,,,,,,10,,5,,,,,18.3,55,98,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,90,12,21,50,2.1,,,,,,10,,10,,,,,23.3,69,123,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,90,12,21,60,2.1,,,,,,10,,10,5,5,,,33.3,83,142,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,70,12,24,30,2.4,,,,,,10,,,,,,,13.6,43,76,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,70,12,24,40,2.4,,,,,,10,,10,,,,,23.6,71,124,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,70,12,24,50,2.4,,,,,,10,,10,5,5,,,33.6,86,143,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,70,12,24,60,2.4,,,,,,10,,10,5,10,,,38.6,100,162,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,60,12,27,20,2.7,,,,,,10,,,,,,,13.9,40,73,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,60,12,27,30,2.7,,,,,,10,,5,,,,,18.9,58,101,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,50,12,30,20,3,,,,,,10,,,,,,,14.2,43,76,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,50,12,30,30,3,,,,,,10,,10,,,,,24.2,74,126,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,40,12,33,10,3.3,,,,,,10,,,,,,,14.5,36,71,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,40,12,33,20,3.3,,,,,,10,,5,,,,,19.5,57,101,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,35,12,36,10,3.6,,,,,,10,,,,,,,14.8,38,73,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,35,12,36,20,3.6,,,,,,10,,5,,,,,19.8,60,104,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,30,12,39,10,3.9,,,,,,10,,,,,,,15.1,39,75,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,30,12,39,20,2.7,,,,1,1,10,,10,,,,,27.1,74,128,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,25,12,45,10,3.6,,,,,1,10,,,,,,,16.7,43,79,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,25,12,45,20,3,,,1,2,2,10,,10,5,5,,,40.7,88,151,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,20,12,51,10,3.9,,,,1,1,10,,5,,,,,23.3,58,107,
-Air Diving Surface Decompression with Oxygen,SOX15,20.9,20,12,51,20,3.3,,1,2,3,2,10,,10,5,10,,,49.3,103,175,`,
-            SAB15: `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,21,18,15,12,9,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,12,0.46,12,150,1.2,,,,,,5,,,,2,31,41,0,29,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,12,0.46,12,170,1.2,,,,,,5,,,,4,39,51,0,33,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,12,0.46,12,180,1.2,,,,,,5,,,,5,46,59,0,35,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,80,1.5,,,,,,5,,,,3,26,37.3,8,22,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,100,1.5,,,,,,5,,,,12,26,46.3,9,27,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,110,1.5,,,,,,5,,,,15,33,56.3,10,30,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,120,1.5,,,,,,5,,,,18,38,64.3,11,33,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,18,0.59,18,40,1.8,,,,,,5,,,,,13,21.6,11,15,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,18,0.59,18,50,1.8,,,,,,5,,,,2,22,32.6,13,18,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,18,0.59,18,60,1.8,,,,,,5,,,,7,26,41.6,15,22,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,21,0.65,21,30,2.1,,,,,,5,,,,1,10,19.9,12,14,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,21,0.65,21,40,2.1,,,,,,5,,,,4,21,33.9,16,19,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,21,0.65,21,50,2.1,,,,,,5,,,,11,26,45.9,20,23,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,24,0.71,24,30,2.4,,,,,,5,,,,4,17,30.2,16,18,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,24,0.71,24,40,2.4,,,,,,5,,,,11,25,45.2,21,23,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,27,0.78,27,20,2.7,,,,,,5,,,,2,8,19.5,14,15,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,27,0.78,27,30,2.7,,,,,,5,,,1,7,23,40.5,20,22,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,27,0.78,27,40,2.7,,,,,,5,,,4,19,26,58.5,26,29,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,30,0.84,30,20,3,,,,,,5,,,,4,12,25.8,16,18,0,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,30,0.84,30,30,3,,,,,,5,,,3,11,26,49.8,24,26,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,33,0.90,33,10,3.3,,,,,,5,,,,,4,14.1,10,12,1,,,,,,,,,,,,,,,,,,,
-Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,33,0.90,33,20,3.3,,,,,,5,,,1,6,17,34.1,19,21,0,,,,,,,,,,,,,,,,,,,`,
-            NIA15: `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,100,1.5,,,,,,,,2,3.8,121,131,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,110,1.5,,,,,,,,4,5.8,133,146,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,120,1.5,,,,,,,,5,6.8,145,159,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,130,1.5,,,,,,,,7,8.8,157,172,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,140,1.5,,,,,,,,8,9.8,169,186,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,150,1.5,,,,,,,,10,11.8,181,199,3
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,70,1.8,,,,,,,,3,5.1,99,119,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,80,1.8,,,,,,,,7,9.1,113,136,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,90,1.8,,,,,,,,10,12.1,127,153,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,100,1.8,,,,,,,,12,14.1,141,170,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,110,1.8,,,,,,,,14,16.1,155,186,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,120,1.8,,,,,,,,17,19.1,169,203,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,130,1.8,,,,,,,,22,24.1,183,221,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,140,1.8,,,,,,,,27,29.1,197,238,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,150,1.8,,,,,,,,31,33.1,212,256,3
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,50,2.1,,,,,,,,3,5.4,81,106,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,60,2.1,,,,,,,,7,9.4,97,127,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,70,2.1,,,,,,,,12,14.4,113,149,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,80,2.1,,,,,,,,16,18.4,129,170,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,90,2.1,,,,,,,,19,21.4,145,191,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,100,2.1,,,,,,,,22,24.4,161,212,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,110,1.8,,,,,,,2,27,31.4,177,233,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,120,1.8,,,,,,,4,32,38.4,194,255,3
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,30,2.4,,,,,,,,1,3.7,55,80,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,40,2.4,,,,,,,,4,6.7,73,105,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,50,2.4,,,,,,,,9,11.7,91,131,0
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,60,2.4,,,,,,,,15,17.7,109,157,1
-Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,70,2.1,,,,,,,1,19,22.7,127,182,0`,
-          };
-          return csvData[code] || null;
-        },
+  renderLevel2(gIdx) {
+    const g = this.groups[gIdx];
+    if (g.tables.length === 1) {
+      this.renderLevel3(gIdx, 0);
+      return;
+    }
+    let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button><div class="grid">`;
+    g.tables.forEach((t, tIdx) => {
+      html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})">
+        <div class="tag ${g.tag}">${g.name}</div>
+        <h3>${t.name}</h3>
+        <p>${t.code}</p>
+      </div>`;
+    });
+    document.getElementById("content").innerHTML = html + "</div>";
+  },
 
-        parseSIL15CSV(text, targetDepth) {
-          const lines = text.trim().split("\n");
-          if (lines.length < 2) return { rows: [], dvis5: null };
-          const headers = lines[0]
-            .split(",")
-            .map((h) => h.trim().toLowerCase());
-          const depthIdx = headers.findIndex((h) => h.includes("depth"));
-          const timeIdx = headers.findIndex((h) => h.includes("dive time"));
-          const tillIdx = headers.findIndex((h) => h.includes("till"));
-          const decoIdx = headers.findIndex((h) => h.includes("total deco"));
-          const otuIdx = headers.findIndex((h) => h.includes("total otu"));
-          const esotIdx = headers.findIndex((h) => h.includes("total esot"));
-          const dvisIdx = headers.findIndex((h) => h.includes("dvis"));
-          const markerIdx = esotIdx + 1;
-          const stopStart = tillIdx + 1;
-          const stopEnd = decoIdx;
-          const numStops = stopEnd - stopStart;
-          const rows = [];
-          let dvis5 = null;
-          for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (!line) continue;
-            const cols = line.split(",").map((v) => v.trim());
-            if (cols.length < esotIdx + 1) continue;
-            const depth = parseInt(cols[depthIdx]);
-            if (isNaN(depth) || depth !== targetDepth) continue;
-            if (dvisIdx >= 0 && cols[dvisIdx]) dvis5 = cols[dvisIdx];
-            const time = parseInt(cols[timeIdx]);
-            if (isNaN(time)) continue;
-            const till1st = cols[tillIdx] || "";
-            const stops = [];
-            for (let j = stopStart; j < stopEnd; j++) {
-              const val = cols[j];
-              if (val === "") {
-                stops.push(null);
-              } else {
-                const num = parseInt(val);
-                stops.push(isNaN(num) ? null : num);
-              }
-            }
-            const deco = cols[decoIdx] || "";
-            const otu = cols[otuIdx] || "";
-            const esot = cols[esotIdx] || "";
-            let marker = 0;
-            if (markerIdx < cols.length && cols[markerIdx]) {
-              const m = parseInt(cols[markerIdx]);
-              if (!isNaN(m)) marker = m;
-            }
-            rows.push({ time, till1st, stops, deco, otu, esot, marker });
-          }
-          return { rows, dvis5 };
-        },
+  renderLevel3(gIdx, tIdx) {
+    const g = this.groups[gIdx];
+    const t = g.tables[tIdx];
+    let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
+    html += `<div class="section"><h2>${t.name}</h2><p>${t.code}</p></div>`;
+    if (t.isImage) {
+      html += `<div class="table-wrapper"><div class="table-header"><h2>Treatment Table</h2></div>
+        <div style="padding:20px;text-align:center;color:#666">Treatment tables (image-based)</div></div>`;
+    } else {
+      html += '<div class="depths-grid">';
+      t.depths.forEach(d => {
+        html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
+      });
+      html += "</div>";
+    }
+    document.getElementById("content").innerHTML = html;
+  },
 
-        parseSOX15CSV(text, targetDepth) {
-          const lines = text.trim().split("\n");
-          if (lines.length < 2) return { rows: [], dvis5: null };
-          const headers = lines[0]
-            .split(",")
-            .map((h) => h.trim().toLowerCase());
-          const depthIdx = headers.findIndex((h) => h.includes("depth"));
-          const timeIdx = headers.findIndex((h) => h.includes("dive time"));
-          const tillIdx = headers.findIndex((h) => h.includes("till"));
-          const otuIdx = headers.findIndex((h) => h.includes("total otu"));
-          const esotIdx = headers.findIndex((h) => h.includes("total esot"));
-          const markerIdx = esotIdx + 1;
-          const stopStart = tillIdx + 1;
-          const stopEnd = otuIdx;
-          const numStops = stopEnd - stopStart;
-          const rows = [];
-          let dvis5 = null;
-          for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim();
-            if (!line) continue;
-            const cols = line.split(",").map((v) => v.trim());
-            if (cols.length < esotIdx + 1) continue;
-            const depth = parseInt(cols[depthIdx]);
-            if (isNaN(depth) || depth !== targetDepth) continue;
-            const time = parseInt(cols[timeIdx]);
-            if (isNaN(time)) continue;
-            const till1st = cols[tillIdx] || "";
-            const stops = [];
-            for (let j = stopStart; j < stopEnd; j++) {
-              const val = cols[j];
-              if (val === "") {
-                stops.push(null);
-              } else {
-                const num = parseInt(val);
-                stops.push(isNaN(num) ? null : num);
-              }
-            }
-            const deco = cols[stopEnd] || "";
-            const otu = cols[otuIdx] || "";
-            const esot = cols[esotIdx] || "";
-            let marker = 0;
-            if (markerIdx < cols.length && cols[markerIdx]) {
-              const m = parseInt(cols[markerIdx]);
-              if (!isNaN(m)) marker = m;
-            }
-            rows.push({ time, till1st, stops, deco, otu, esot, marker });
-          }
-          return { rows, dvis5 };
-        },
+  async renderTable(gIdx, tIdx, depth) {
+    const g = this.groups[gIdx];
+    const t = g.tables[tIdx];
+    let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
+    document.getElementById("content").innerHTML = html + '<div class="loading">Loading...</div>';
+    const csv = await this.loadCSV(t.code);
+    if (!csv) {
+      document.getElementById("content").innerHTML = html + '<div class="error">No data available</div>';
+      return;
+    }
+    const rows = this.parseCSV(csv, depth);
+    if (!rows.length) {
+      document.getElementById("content").innerHTML = html + '<div class="error">No data for depth ' + depth + 'm</div>';
+      return;
+    }
+    html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2></div>`;
+    html += '<div class="table-scroll"><table><thead><tr>';
+    html += '<th>Dive Time</th><th colspan="8">Stop Depth (m)</th><th>Total Deco</th><th>OTU</th><th>ESOT</th>';
+    html += '</tr></thead><tbody>';
+    rows.forEach((row, idx) => {
+      const cls = idx % 2 === 0 ? 'row-white' : 'row-green';
+      html += `<tr class="${cls}"><td>${row[2]}</td><td colspan="8">—</td><td>—</td><td>—</td><td>—</td></tr>`;
+    });
+    html += '</tbody></table></div></div>';
+    document.getElementById("content").innerHTML = html;
+  }
+};
 
-        parseSAB15CSV(text, targetDepth) {
-          return this.parseSOX15CSV(text, targetDepth);
-        },
-
-        parseNitroxCSV(text, targetDepth) {
-          return this.parseSIL15CSV(text, targetDepth);
-        },
-
-        parseBOX15CSV(text, targetDepth) {
-          return this.parseSOX15CSV(text, targetDepth);
-        },
-
-        getParserForTable(code) {
-          if (code === "SOX15" || code === "HSOX15")
-            return this.parseSOX15CSV.bind(this);
-          if (code === "SAB15" || code === "HSAB15")
-            return this.parseSAB15CSV.bind(this);
-          if (
-            code === "NIA15" ||
-            code === "H2NIA15" ||
-            code === "H4NIA15" ||
-            code === "NIB15" ||
-            code === "H2NIB15" ||
-            code === "H4NIB15"
-          )
-            return this.parseNitroxCSV.bind(this);
-          if (code === "BOX15") return this.parseBOX15CSV.bind(this);
-          return this.parseSIL15CSV.bind(this);
-        },
-
-        renderLevel1() {
-          let html = '<div class="grid">';
-          this.groups.forEach((g, i) => {
-            html += `<div class="card" onclick="app.renderLevel2(${i})">
-                        <div class="tag ${g.tag}">${g.name}</div>
-                        <p>${g.tables.length} table${g.tables.length !== 1 ? "s" : ""}</p>
-                    </div>`;
-          });
-          document.getElementById("content").innerHTML = html + "</div>";
-        },
-
-        renderLevel2(gIdx) {
-          const g = this.groups[gIdx];
-          if (g.tables.length === 1) {
-            this.renderLevel3(gIdx, 0);
-            return;
-          }
-          let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button><div class="grid">`;
-          g.tables.forEach((t, tIdx) => {
-            html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})">
-                        <div class="tag ${g.tag}">${g.name}</div>
-                        <h3>${t.name}</h3>
-                        <p>Code: ${t.code}</p>
-                    </div>`;
-          });
-          document.getElementById("content").innerHTML = html + "</div>";
-        },
-
-        renderLevel3(gIdx, tIdx) {
-          const g = this.groups[gIdx];
-          const t = g.tables[tIdx];
-          let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
-          html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
-          if (t.isImageTable) {
-            html += `<div class="table-wrapper"><div class="table-header"><h2>Treatment Tables</h2></div>`;
-            html += `<div style="padding: 20px; text-align: center; color: #666;">Treatment tables (image-based) - Refer to official documentation</div></div>`;
-          } else {
-            html += '<div class="depths-grid">';
-            t.depths.forEach((d) => {
-              html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
-            });
-            html += "</div>";
-          }
-          document.getElementById("content").innerHTML = html;
-        },
-
-        async renderTable(gIdx, tIdx, depth) {
-          const g = this.groups[gIdx];
-          const t = g.tables[tIdx];
-          let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
-          document.getElementById("content").innerHTML =
-            html + '<div class="loading">Loading table...</div>';
-          const csv = await this.loadCSV(t.code);
-          if (!csv) {
-            html += '<div class="error">No data available for this table</div>';
-            document.getElementById("content").innerHTML = html;
-            return;
-          }
-          const parser = this.getParserForTable(t.code);
-          const { rows, dvis5 } = parser(csv, depth);
-          if (rows.length === 0) {
-            html += '<div class="error">No data available for this depth</div>';
-            document.getElementById("content").innerHTML = html;
-            return;
-          }
-          const headerConfig = this.headers[t.code];
-          const title = headerConfig
-            ? headerConfig.title
-            : `${t.name} - ${depth}m`;
-          html += `<div class="table-wrapper"><div class="table-header">
-                    <h2>${title}</h2>
-                    ${dvis5 ? `<p>DVIS 5 Time Limit: ${dvis5} min</p>` : ""}
-                  </div>`;
-          html += '<div class="table-scroll"><table><thead>';
-          if (
-            headerConfig &&
-            headerConfig.stopCols1 &&
-            headerConfig.stopCols2
-          ) {
-            html += "<tr>";
-            html += `<th rowspan="2">Dive Time<br>(min)</th>`;
-            html += `<th rowspan="2">Till 1st<br>Stop</th>`;
-            html += `<th colspan="${headerConfig.stopCols1.length}">In Water Stops</th>`;
-            html += `<th colspan="${headerConfig.stopCols2.length}">Stops in Deco</th>`;
-            html += `<th rowspan="2">Tot. Deco<br>(min)</th><th rowspan="2">OTU</th><th rowspan="2">ESOT</th>`;
-            html += "</tr><tr>";
-            headerConfig.stopCols1.forEach((col) => {
-              html += `<th>${col}</th>`;
-            });
-            headerConfig.stopCols2.forEach((col) => {
-              html += `<th>${col}</th>`;
-            });
-            html += "</tr>";
-          } else if (headerConfig && headerConfig.stopCols) {
-            html += "<tr>";
-            html += `<th>Dive Time<br>(min)</th>`;
-            html += `<th>Till 1st<br>Stop</th>`;
-            html += `<th colspan="${headerConfig.stopCols.length}">Stop Depth (metres)</th>`;
-            html += `<th>Tot. Deco<br>(min)</th><th>OTU</th><th>ESOT</th>`;
-            html += "</tr><tr><th></th><th></th>";
-            headerConfig.stopCols.forEach((col) => {
-              html += `<th>${col}</th>`;
-            });
-            html += "<th></th><th></th><th></th></tr>";
-          } else {
-            html +=
-              '<tr><th>Time (min)</th><th>Till 1st Stop</th><th colspan="8">Stop Depth (m)</th><th>Deco Time</th><th>OTU</th><th>ESOT</th></tr>';
-            html +=
-              "<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr>";
-          }
-          html += "</thead><tbody>";
-          rows.forEach((row, rowIdx) => {
-            const isLastRow = rowIdx === rows.length - 1;
-            let cls = "row-white";
-            if (row.marker === 3) {
-              cls = "row-red";
-            } else if (isLastRow) {
-              cls = "row-red";
-            } else if (rowIdx % 2 !== 0) {
-              cls = "row-green";
-            }
-            let borderStyle = "border: 1px solid #e5e7eb;";
-            if (row.marker === 2) {
-              borderStyle = "border-bottom: 3px solid #1f2937;";
-            }
-            html += `<tr class="${cls}" style="${borderStyle}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
-            const numStops = headerConfig ? headerConfig.numStops : 8;
-            for (let j = 0; j < numStops; j++) {
-              const val = row.stops[j];
-              html += `<td>${val !== null ? val : "—"}</td>`;
-            }
-            html += `<td>${row.deco}</td><td>${row.otu}</td><td>${row.esot}</td></tr>`;
-          });
-          html += "</tbody></table></div></div>";
-          document.getElementById("content").innerHTML = html;
-        },
-      };
-
-      app.renderLevel1();
-    </script>
-  </body>
+app.renderLevel1();
+</script>
+</body>
 </html>

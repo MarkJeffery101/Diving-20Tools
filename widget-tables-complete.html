@@ -373,30 +373,48 @@
 
         renderLevel1() {
           let html = '<div class="grid">';
-          this.tables.forEach((t, i) => {
+          this.groups.forEach((g, i) => {
             html += `<div class="card" onclick="app.renderLevel2(${i})">
-                        <div class="tag ${t.tag}">${t.cat}</div>
-                        <h3>${t.name}</h3>
-                        <p>${t.code}</p>
+                        <div class="tag ${g.tag}">${g.name}</div>
+                        <p>${g.tables.length} table${g.tables.length !== 1 ? 's' : ''}</p>
                     </div>`;
           });
           document.getElementById("content").innerHTML = html + "</div>";
         },
 
-        renderLevel2(idx) {
-          const t = this.tables[idx];
-          let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button>`;
+        renderLevel2(gIdx) {
+          const g = this.groups[gIdx];
+          if (g.tables.length === 1) {
+            this.renderLevel3(gIdx, 0);
+            return;
+          }
+          let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button><div class="grid">`;
+          g.tables.forEach((t, tIdx) => {
+            html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})">
+                        <div class="tag ${g.tag}">${g.name}</div>
+                        <h3>${t.name}</h3>
+                        <p>${t.code}</p>
+                    </div>`;
+          });
+          document.getElementById("content").innerHTML = html + "</div></div>";
+        },
+
+        renderLevel3(gIdx, tIdx) {
+          const g = this.groups[gIdx];
+          const t = g.tables[tIdx];
+          let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
           html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
           html += '<div class="depths-grid">';
           t.depths.forEach((d) => {
-            html += `<button class="depth-btn" onclick="app.renderTable(${idx}, ${d})">${d}m</button>`;
+            html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
           });
           document.getElementById("content").innerHTML = html + "</div>";
         },
 
-        async renderTable(idx, depth) {
-          const t = this.tables[idx];
-          let html = `<button class="back-btn" onclick="app.renderLevel2(${idx})">← Back</button>`;
+        async renderTable(gIdx, tIdx, depth) {
+          const g = this.groups[gIdx];
+          const t = g.tables[tIdx];
+          let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
 
           const csv = await this.loadCSV(t.code);
           if (!csv) {

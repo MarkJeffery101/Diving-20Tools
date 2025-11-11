@@ -245,6 +245,97 @@
 
     <script>
       const app = {
+        headers: {
+          SIL15: {
+            title: "SIL15 - Standard Air, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H2SIL15: {
+            title: "H2SIL15 - Standard Air, Repetitive Interval 2 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H4SIL15: {
+            title: "H4SIL15 - Standard Air, Repetitive Interval 4 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          SOX15: {
+            title: "SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "In Water Stops", "Stops in Deco", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols1: ["21 air", "18 air", "15 air", "12 air", "9 air", "12 ox"],
+            stopCols2: ["9 air", "9 ox", "6 air", "6 ox", "3 air", "3 ox"],
+            numStops: 12,
+          },
+          HSOX15: {
+            title: "HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "In Water Stops", "Stops in Deco", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols1: ["21 air", "18 air", "15 air", "12 air", "9 air", "12 ox"],
+            stopCols2: ["9 air", "9 ox", "6 air", "6 ox", "3 air", "3 ox"],
+            numStops: 12,
+          },
+          SAB15: {
+            title: "SAB15 - Backup Air, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "In Water Stops", "Stops in Deco", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols1: ["21", "18", "15", "12", "9", "18"],
+            stopCols2: ["15", "12", "9", "6", "3"],
+            numStops: 11,
+          },
+          HSAB15: {
+            title: "HSAB15 - Backup Air, Repetitive Interval 4 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "In Water Stops", "Stops in Deco", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols1: ["21", "18", "15", "12", "9", "18"],
+            stopCols2: ["15", "12", "9", "6", "3"],
+            numStops: 11,
+          },
+          NIA15: {
+            title: "NIA15 - Nitrox 40/60, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H2NIA15: {
+            title: "H2NIA15 - Nitrox 40/60, Repetitive Interval 2 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H4NIA15: {
+            title: "H4NIA15 - Nitrox 40/60, Repetitive Interval 4 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          NIB15: {
+            title: "NIB15 - Nitrox 35/65, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H2NIB15: {
+            title: "H2NIB15 - Nitrox 35/65, Repetitive Interval 2 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          H4NIB15: {
+            title: "H4NIB15 - Nitrox 35/65, Repetitive Interval 4 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24", "21", "18", "15", "12", "9", "6", "3"],
+            numStops: 8,
+          },
+          BOX15: {
+            title: "BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours",
+            mainCols: ["Dive Time (min)", "Till 1st Stop", "Stop Depth (metres)", "Tot. Deco (min)", "OTU", "ESOT"],
+            stopCols: ["24 air", "21 air", "18 air", "15 air", "12 air", "9 ox", "6 air", "6 ox", "6 air", "6 ox", "6 air", "6 ox"],
+            numStops: 12,
+          },
+        },
+
         groups: [
           {
             name: "No-Stop Limits",

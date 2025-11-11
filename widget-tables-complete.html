@@ -6,62 +6,55 @@
     <title>DivePlan - Decompression Tables</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #f0f4f8 100%); color: #333; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f0f4f8, #ffffff, #f0f4f8); color: #333; min-height: 100vh; }
         .container { max-width: 1280px; margin: 0 auto; padding: 20px; }
         header { margin-bottom: 30px; }
-        h1 { font-size: 32px; font-weight: 700; color: #1f2937; margin-bottom: 10px; }
+        h1 { font-size: 32px; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
         .subtitle { color: #6b7280; font-size: 16px; }
         
-        .view { display: none; }
-        .view.active { display: block; }
-        
-        /* Level 1 - Category cards */
-        .level1-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-        .category-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .category-card:hover { border-color: #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .category-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .category-card h3 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
-        .category-card p { color: #6b7280; font-size: 14px; }
-        .chevron { float: right; color: #9ca3af; }
-        
-        /* Level 2 & 3 - Back button & breadcrumbs */
-        .back-btn { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 500; margin-bottom: 20px; }
+        .back-btn { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; margin-bottom: 20px; transition: all 0.2s; }
         .back-btn:hover { background: #2563eb; }
         
-        /* Level 2 - Table cards */
-        .level2-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-        .table-card {
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        
+        .card {
             background: white;
-            border: 1px solid #e5e7eb;
+            border: 2px solid #e5e7eb;
             border-radius: 8px;
-            padding: 16px;
+            padding: 18px;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: left;
         }
-        .table-card:hover { border-color: #3b82f6; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .table-card h4 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
-        .table-card p { color: #6b7280; font-size: 13px; }
+        .card:hover { border-color: #3b82f6; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
         
-        /* Level 3 - Depth selector */
-        .depth-section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-        .depth-title { font-size: 20px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
-        .depth-subtitle { color: #6b7280; font-size: 14px; margin-bottom: 16px; }
-        .depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-cyan { background: #cffafe; color: #0e7490; }
+        .tag-orange { background: #fed7aa; color: #92400e; }
+        .tag-yellow { background: #fef08a; color: #854d0e; }
+        .tag-purple { background: #e9d5ff; color: #5b21b6; }
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-indigo { background: #e0e7ff; color: #312e81; }
+        .tag-red { background: #fee2e2; color: #991b1b; }
+        
+        .card h3 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+        .card p { font-size: 13px; color: #6b7280; }
+        .card .code { font-family: monospace; font-size: 12px; font-weight: bold; color: #3b82f6; margin-top: 8px; }
+        .card .depths { font-size: 12px; color: #6b7280; margin-top: 6px; }
+        
+        .section { background: white; border-radius: 8px; padding: 18px; margin-bottom: 16px; border: 1px solid #e5e7eb; }
+        .section h2 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .section p { font-size: 13px; color: #6b7280; }
+        
+        .depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 16px; }
         .depth-btn {
             padding: 12px;
             border: 2px solid #3b82f6;
@@ -76,31 +69,17 @@
         .depth-btn:hover { background: #eff6ff; }
         .depth-btn.active { background: #3b82f6; color: white; }
         
-        /* Table display */
-        .table-section { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .table-header { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; padding: 20px; }
-        .table-header h2 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
-        .table-header p { font-size: 14px; opacity: 0.95; }
+        .table-wrapper { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .table-header { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; padding: 16px; }
+        .table-header h2 { font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+        .table-header p { font-size: 13px; opacity: 0.95; }
         
-        .table-wrapper { overflow-x: auto; }
+        .table-scroll { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         thead { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; position: sticky; top: 0; z-index: 10; }
-        th {
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid #0d47a1;
-            font-weight: 600;
-            font-size: 11px;
-            line-height: 1.2;
-        }
-        td {
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-            font-size: 12px;
-        }
+        th { padding: 10px 6px; text-align: center; border: 1px solid #0d47a1; font-weight: 600; font-size: 11px; line-height: 1.2; }
+        td { padding: 10px 6px; text-align: center; border: 1px solid #e5e7eb; font-size: 11px; }
         
-        /* Row colors - exact from app */
         .row-white { background: white; }
         .row-white:hover { background: #eff6ff; }
         .row-green { background: #f0fdf4; }
@@ -113,19 +92,8 @@
         .row-red:hover { background: #fee2e2; }
         
         .marker-2 { border-bottom: 3px solid #1f2937 !important; }
-        .marker-normal { border-bottom: 1px solid #e5e7eb; }
         
         footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 12px; margin-top: 40px; border-top: 1px solid #e5e7eb; }
-        
-        /* Tag colors */
-        .tag-blue { background: #dbeafe; color: #1e40af; }
-        .tag-cyan { background: #cffafe; color: #0e7490; }
-        .tag-orange { background: #fed7aa; color: #92400e; }
-        .tag-yellow { background: #fef08a; color: #854d0e; }
-        .tag-purple { background: #e9d5ff; color: #5b21b6; }
-        .tag-green { background: #dcfce7; color: #166534; }
-        .tag-indigo { background: #e0e7ff; color: #312e81; }
-        .tag-red { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
@@ -135,28 +103,7 @@
             <p class="subtitle">Browse all dive tables organized by type and category</p>
         </header>
         
-        <!-- Level 1: Categories -->
-        <div id="level1" class="view active">
-            <div class="level1-grid" id="categoriesGrid"></div>
-        </div>
-        
-        <!-- Level 2: Tables in Category -->
-        <div id="level2" class="view">
-            <button class="back-btn" onclick="app.goToLevel1()">← Back</button>
-            <div class="level2-grid" id="tablesGrid"></div>
-        </div>
-        
-        <!-- Level 3: Depths -->
-        <div id="level3" class="view">
-            <button class="back-btn" onclick="app.goToLevel2()">← Back</button>
-            <div id="depthsContainer"></div>
-        </div>
-        
-        <!-- Table Display -->
-        <div id="tableDisplay" class="view">
-            <button class="back-btn" onclick="app.goToLevel3()">← Back</button>
-            <div id="tableContainer"></div>
-        </div>
+        <div id="content"></div>
         
         <footer>DivePlan Tables Widget v1.0 | All CSV data embedded | Offline ready</footer>
     </div>
@@ -224,216 +171,161 @@
                 }
             ],
             
-            headers: {
-                'SIL15': { title: 'SIL15 - Standard Air, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H2SIL15': { title: 'H2SIL15 - Standard Air, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H4SIL15': { title: 'H4SIL15 - Standard Air, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'SOX15': { title: 'SOX15 - Surface Decompression with Oxygen, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21 air', '18 air', '15 air', '12 air', '9 air', '12 ox', 'Stops in Deco Chamber', '9 air', '9 ox', '6 air', '6 ox', '3 air', '3 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'HSOX15': { title: 'HSOX15 - Surface Decompression with Oxygen, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21 air', '18 air', '15 air', '12 air', '9 air', '12 ox', 'Stops in Deco Chamber', '9 air', '9 ox', '6 air', '6 ox', '3 air', '3 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'SAB15': { title: 'SAB15 - Backup Air, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21', '18', '15', '12', '9', '18', 'Stops in Deco Chamber', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'HSAB15': { title: 'HSAB15 - Backup Air, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', 'In Water Stops', '21', '18', '15', '12', '9', '18', 'Stops in Deco Chamber', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'NIA15': { title: 'NIA15 - Nitrox 40/60, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H2NIA15': { title: 'H2NIA15 - Nitrox 40/60, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H4NIA15': { title: 'H4NIA15 - Nitrox 40/60, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'NIB15': { title: 'NIB15 - Nitrox 35/65, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H2NIB15': { title: 'H2NIB15 - Nitrox 35/65, Repetitive Interval 2 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'H4NIB15': { title: 'H4NIB15 - Nitrox 35/65, Repetitive Interval 4 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24', '21', '18', '15', '12', '9', '6', '3', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'BOX15': { title: 'BOX15 - Wet or Dry Bell Air/Oxygen Tables, Repetitive Interval 12 Hours', cols: ['Dive Time (min)', 'Till 1st Stop', '24 air', '21 air', '18 air', '15 air', '12 air', '9 ox', '6 air', '6 ox', '6 air', '6 ox', '6 air', '6 ox', 'Tot. Deco Time (min)', 'Tot. OTU', 'Tot. ESOT'] },
-                'ND15': { title: 'ND15 - Air Diving, No-Stop Limits in Minutes', cols: ['Maximum Diving Depth (metres)', 'Repeat Interval 8 Hours (minutes)', 'Repeat Interval 2 Hours (minutes)'] },
-                'LND15': { title: 'LND15 - Air Diving, Long No-Stop Limits in Minutes', cols: ['Maximum Diving Depth (metres)', 'Normal No-Stop Limits ND15 (minutes)', 'Long No-Stop Limits LND15 (minutes)'] }
-            },
-            
             csvData: {
-                'SIL15': `240,12,120,0.9,,,,,,,,1,2.2,,21
-240,12,130,0.9,,,,,,,,3,4.2,,23
-240,12,140,0.9,,,,,,,,5,6.2,,24
-240,12,150,0.9,,,,,,,,6,7.2,,26
-240,12,160,0.9,,,,,,,,7,8.2,,28
-240,12,170,0.9,,,,,,,,9,10.2,,30
-240,12,180,0.9,,,,,,,,13,14.2,,32,3
-180,15,70,1.2,,,,,,,,2,3.5,6,16
-180,15,80,1.2,,,,,,,,7,8.5,7,19
-180,15,90,1.2,,,,,,,,11,12.5,7,21
-180,15,100,1.2,,,,,,,,14,15.5,8,24
-180,15,110,1.2,,,,,,,,17,18.5,9,26
-180,15,120,1.2,,,,,,,,19,20.5,10,29
-180,15,130,1.2,,,,,,,,24,25.5,11,31
-180,15,140,1.2,,,,,,,,31,32.5,12,34,2
-180,15,150,1.2,,,,,,,,36,37.5,12,36
-180,15,160,1.2,,,,,,,,41,42.5,13,39
-180,15,170,1.2,,,,,,,,45,46.5,14,42
-180,15,180,1.2,,,,,,,,49,50.5,15,44,3
-120,18,40,1.5,,,,,,,,2,3.8,9,12
-120,18,50,1.5,,,,,,,,5,6.8,12,16
-120,18,60,1.5,,,,,,,,10,11.8,14,19
-120,18,70,1.5,,,,,,,,16,17.8,16,22
-120,18,80,1.5,,,,,,,,21,22.8,19,25
-120,18,90,1.5,,,,,,,,25,26.8,21,28
-120,18,100,1.2,,,,,,,2,28,31.8,24,32,2
-120,18,110,1.2,,,,,,,5,35,41.8,26,35
-120,18,120,1.2,,,,,,,8,41,50.8,28,39
-120,18,130,1.2,,,,,,,10,47,58.8,31,42
-120,18,140,1.2,,,,,,,12,51,64.8,33,45
-120,18,150,1.2,,,,,,,13,55,69.8,35,49,3`,
-                'H2NIA15': `Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,90,1.5,,,,,,,,1,2.8,109,119,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,100,1.5,,,,,,,,3,4.8,121,133,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,110,1.5,,,,,,,,7,8.8,133,147,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,120,1.5,,,,,,,,11,12.8,145,160,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,130,1.5,,,,,,,,15,16.8,158,174,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,140,1.5,,,,,,,,19,20.8,170,188,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,240,2,12,1.12,18,150,1.5,,,,,,,,23,24.8,182,202,3
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,60,1.8,,,,,,,,1,3.1,85,102,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,70,1.8,,,,,,,,5,7.1,99,119,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,80,1.8,,,,,,,,10,12.1,113,136,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,90,1.8,,,,,,,,16,18.1,127,154,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,100,1.8,,,,,,,,24,26.1,142,172,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,110,1.8,,,,,,,,32,34.1,156,190,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,120,1.8,,,,,,,,39,41.1,170,208,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,130,1.8,,,,,,,,47,49.1,185,227,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,140,1.8,,,,,,,,54,56.1,199,244,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,180,2,14.4,1.24,21,150,1.8,,,,,,,,60,62.1,213,262,3
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,50,2.1,,,,,,,,4,6.4,81,107,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,60,2.1,,,,,,,,9,11.4,97,128,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,70,2.1,,,,,,,,19,21.4,113,150,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,80,2.1,,,,,,,,30,32.4,130,173,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,90,2.1,,,,,,,,40,42.4,146,195,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,100,1.8,,,,,,,1,50,53.4,163,218,0
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,110,1.8,,,,,,,3,58,63.4,180,240,1
-Nitrox 40%O2 - 60%N2,H2NIA15,40,120,2,16.7,1.36,24,120,1.8,,,,,,,5,66,73.4,197,263,3`
+                'SIL15': [
+                    { depth: 12, time: 120, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '1', d3: '2.2', deco: 21, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 130, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '3', d3: '4.2', deco: 23, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 140, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '5', d3: '6.2', deco: 24, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 150, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '6', d3: '7.2', deco: 26, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 160, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '7', d3: '8.2', deco: 28, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 170, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '9', d3: '10.2', deco: 30, otu: '', esot: '', marker: 0 },
+                    { depth: 12, time: 180, till1st: 0.9, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '13', d3: '14.2', deco: 32, otu: '', esot: '', marker: 3 },
+                    { depth: 15, time: 70, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '2', d3: '3.5', deco: 6, otu: '16', esot: '', marker: 0 },
+                    { depth: 15, time: 80, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '7', d3: '8.5', deco: 7, otu: '19', esot: '', marker: 0 },
+                    { depth: 15, time: 90, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '11', d3: '12.5', deco: 7, otu: '21', esot: '', marker: 0 },
+                    { depth: 15, time: 100, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '14', d3: '15.5', deco: 8, otu: '24', esot: '', marker: 0 },
+                    { depth: 15, time: 110, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '17', d3: '18.5', deco: 9, otu: '26', esot: '', marker: 0 },
+                    { depth: 15, time: 120, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '19', d3: '20.5', deco: 10, otu: '29', esot: '', marker: 0 },
+                    { depth: 15, time: 130, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '24', d3: '25.5', deco: 11, otu: '31', esot: '', marker: 0 },
+                    { depth: 15, time: 140, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '31', d3: '32.5', deco: 12, otu: '34', esot: '', marker: 2 },
+                    { depth: 15, time: 150, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '36', d3: '37.5', deco: 12, otu: '36', esot: '', marker: 0 },
+                    { depth: 15, time: 160, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '41', d3: '42.5', deco: 13, otu: '39', esot: '', marker: 0 },
+                    { depth: 15, time: 170, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '45', d3: '46.5', deco: 14, otu: '42', esot: '', marker: 0 },
+                    { depth: 15, time: 180, till1st: 1.2, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '49', d3: '50.5', deco: 15, otu: '44', esot: '', marker: 3 }
+                ],
+                'H2NIA15': [
+                    { depth: 18, time: 90, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '1', d3: '2.8', deco: 109, otu: '119', esot: '', marker: 0 },
+                    { depth: 18, time: 100, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '3', d3: '4.8', deco: 121, otu: '133', esot: '', marker: 1 },
+                    { depth: 18, time: 110, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '7', d3: '8.8', deco: 133, otu: '147', esot: '', marker: 0 },
+                    { depth: 18, time: 120, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '11', d3: '12.8', deco: 145, otu: '160', esot: '', marker: 1 },
+                    { depth: 18, time: 130, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '15', d3: '16.8', deco: 158, otu: '174', esot: '', marker: 0 },
+                    { depth: 18, time: 140, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '19', d3: '20.8', deco: 170, otu: '188', esot: '', marker: 1 },
+                    { depth: 18, time: 150, till1st: 1.5, d24: '', d21: '', d18: '', d15: '', d12: '', d9: '', d6: '23', d3: '24.8', deco: 182, otu: '202', esot: '', marker: 3 }
+                ]
             },
             
-            currentLevel: 'level1',
-            selectedLevel1: null,
-            selectedLevel2: null,
+            state: { level: 1, l1Index: null, l2Index: null },
             
             init() {
-                this.renderLevel1();
+                this.render();
+            },
+            
+            render() {
+                const content = document.getElementById('content');
+                
+                if (this.state.level === 1) {
+                    this.renderLevel1();
+                } else if (this.state.level === 2) {
+                    this.renderLevel2();
+                } else if (this.state.level === 3) {
+                    this.renderLevel3();
+                } else if (this.state.level === 4) {
+                    this.renderTable();
+                }
             },
             
             renderLevel1() {
-                const grid = document.getElementById('categoriesGrid');
-                grid.innerHTML = '';
+                let html = '<div class="grid">';
                 this.tablesData.forEach((cat, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'category-card';
-                    div.onclick = () => this.goToLevel2(idx);
-                    div.innerHTML = `
-                        <div class="category-tag ${cat.tagClass}">${cat.tag}</div>
+                    html += `<div class="card" onclick="app.selectL1(${idx})">
+                        <div class="tag ${cat.tagClass}">${cat.tag}</div>
                         <h3>${cat.name}</h3>
-                        <p>${cat.children.length} tables</p>
-                        <span class="chevron">→</span>
-                    `;
-                    grid.appendChild(div);
+                        <p>${cat.children.length} table${cat.children.length !== 1 ? 's' : ''}</p>
+                    </div>`;
                 });
-            },
-            
-            goToLevel2(level1Idx) {
-                this.selectedLevel1 = level1Idx;
-                this.selectedLevel2 = null;
-                this.currentLevel = 'level2';
-                this.updateView();
-                this.renderLevel2();
+                html += '</div>';
+                document.getElementById('content').innerHTML = html;
             },
             
             renderLevel2() {
-                const grid = document.getElementById('tablesGrid');
-                grid.innerHTML = '';
-                const cat = this.tablesData[this.selectedLevel1];
+                const cat = this.tablesData[this.state.l1Index];
+                let html = `<button class="back-btn" onclick="app.selectL1(null)">← Back</button><div class="grid">`;
                 cat.children.forEach((table, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'table-card';
-                    div.onclick = () => this.goToLevel3(idx);
-                    div.innerHTML = `<h4>${table.name}</h4><p>${table.depths ? table.depths.length + ' depths' : 'Reference table'}</p>`;
-                    grid.appendChild(div);
+                    html += `<div class="card" onclick="app.selectL2(${idx})">
+                        <div class="tag ${cat.tagClass}">${cat.tag}</div>
+                        <h3>${table.name}</h3>
+                        <div class="code">Code: ${table.code}</div>
+                        ${table.depths ? `<div class="depths">${table.depths.length} depth${table.depths.length !== 1 ? 's' : ''}</div>` : '<div class="depths">Reference table</div>'}
+                    </div>`;
                 });
-            },
-            
-            goToLevel3(level2Idx) {
-                this.selectedLevel2 = level2Idx;
-                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
-                if (!table.depths) {
-                    this.navigateToTable(table.code, null);
-                    return;
-                }
-                this.currentLevel = 'level3';
-                this.updateView();
-                this.renderLevel3();
+                html += '</div>';
+                document.getElementById('content').innerHTML = html;
             },
             
             renderLevel3() {
-                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
-                const container = document.getElementById('depthsContainer');
-                const depthsHtml = table.depths.map(d => `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`).join('');
-                container.innerHTML = `<div class="depth-section"><div class="depth-title">${table.name}</div><div class="depth-subtitle">${table.code} | ${table.depths.length} depths available</div><div class="depths-grid">${depthsHtml}</div></div>`;
-            },
-            
-            selectDepth(depth) {
-                const table = this.tablesData[this.selectedLevel1].children[this.selectedLevel2];
-                this.navigateToTable(table.code, depth);
-            },
-            
-            navigateToTable(code, depth) {
-                this.currentLevel = 'tableDisplay';
-                this.updateView();
-                this.renderTable(code, depth);
-            },
-            
-            updateView() {
-                document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-                document.getElementById(this.currentLevel === 'tableDisplay' ? 'tableDisplay' : this.currentLevel).classList.add('active');
-            },
-            
-            renderTable(code, depth) {
-                const header = this.headers[code];
-                const csvData = this.csvData[code];
-                if (!header || !csvData) {
-                    document.getElementById('tableContainer').innerHTML = '<p>Table data not available</p>';
-                    return;
-                }
-                
-                const rows = csvData.split('\n').filter(l => l.trim());
-                let tableRows = [];
-                rows.forEach(line => {
-                    const cells = line.split(',');
-                    const depthCol = parseInt(cells[1]);
-                    if (!depth || depthCol === depth) {
-                        const isRef = code === 'ND15' || code === 'LND15';
-                        const marker = cells[cells.length - 1];
-                        tableRows.push({ cells, marker: parseInt(marker) || 0, isRef });
-                    }
+                const cat = this.tablesData[this.state.l1Index];
+                const table = cat.children[this.state.l2Index];
+                let html = `<button class="back-btn" onclick="app.selectL2(null)">← Back</button>`;
+                html += `<div class="section"><h2>${table.name}</h2><p>Code: <strong>${table.code}</strong></p></div>`;
+                html += '<div class="depths-grid">';
+                table.depths.forEach(d => {
+                    html += `<button class="depth-btn" onclick="app.selectDepth(${d})">${d}m</button>`;
                 });
+                html += '</div>';
+                document.getElementById('content').innerHTML = html;
+            },
+            
+            renderTable() {
+                const cat = this.tablesData[this.state.l1Index];
+                const table = cat.children[this.state.l2Index];
+                const depth = this.currentDepth;
+                const csv = this.csvData[table.code] || [];
+                const rows = csv.filter(r => r.depth === depth);
                 
-                let html = `<div class="table-section"><div class="table-header"><h2>${header.title}${depth ? ` - ${depth}m` : ''}</h2></div><div class="table-wrapper"><table>`;
-                html += '<thead><tr>' + header.cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+                let html = `<button class="back-btn" onclick="app.selectDepth(null)">← Back</button>`;
+                html += `<div class="table-wrapper"><div class="table-header"><h2>${table.name} - ${depth}m</h2></div>`;
+                html += '<div class="table-scroll"><table><thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Tot. Deco<br>Time (min)</th><th>Tot.<br>OTU</th><th>Tot.<br>ESOT</th></tr>';
+                html += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr></thead><tbody>';
                 
-                tableRows.forEach((row, idx) => {
-                    const isLast = idx === tableRows.length - 1;
-                    let rowClass = 'row-white marker-normal';
-                    if (row.isRef) {
-                        rowClass = idx % 2 === 0 ? 'row-orange-light marker-normal' : 'row-orange marker-normal';
+                rows.forEach((row, idx) => {
+                    const isLast = idx === rows.length - 1;
+                    const isRef = table.code === 'ND15' || table.code === 'LND15';
+                    let rowClass = 'row-white';
+                    if (isRef) {
+                        rowClass = idx % 2 === 0 ? 'row-orange-light' : 'row-orange';
                     } else {
-                        if (isLast) rowClass = 'row-red marker-normal';
-                        else rowClass = idx % 2 === 0 ? 'row-white marker-normal' : 'row-green marker-normal';
+                        if (isLast) rowClass = 'row-red';
+                        else rowClass = idx % 2 === 0 ? 'row-white' : 'row-green';
                     }
-                    if (row.marker === 2) rowClass = rowClass.replace('marker-normal', 'marker-2');
+                    if (row.marker === 2) rowClass += ' marker-2';
                     
-                    html += `<tr class="${rowClass}">`;
-                    row.cells.forEach((cell, cidx) => {
-                        if (cidx >= header.cols.length) return;
-                        const val = cell.trim() === '' ? '—' : cell.trim();
-                        html += `<td>${val}</td>`;
-                    });
-                    html += '</tr>';
+                    html += `<tr class="${rowClass}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
+                    html += `<td>${row.d24 || '—'}</td><td>${row.d21 || '—'}</td><td>${row.d18 || '—'}</td><td>${row.d15 || '—'}</td>`;
+                    html += `<td>${row.d12 || '—'}</td><td>${row.d9 || '—'}</td><td>${row.d6}</td><td>${row.d3}</td>`;
+                    html += `<td>${row.deco}</td><td>${row.otu || '—'}</td><td>${row.esot || '—'}</td></tr>`;
                 });
                 
                 html += '</tbody></table></div></div>';
-                document.getElementById('tableContainer').innerHTML = html;
+                document.getElementById('content').innerHTML = html;
             },
             
-            goToLevel1() { this.currentLevel = 'level1'; this.updateView(); },
-            goToLevel2() { this.currentLevel = 'level2'; this.updateView(); },
-            goToLevel3() { this.currentLevel = 'level3'; this.updateView(); }
+            selectL1(idx) {
+                if (idx === null) {
+                    this.state = { level: 1, l1Index: null, l2Index: null };
+                } else {
+                    this.state = { level: 2, l1Index: idx, l2Index: null };
+                }
+                this.render();
+            },
+            
+            selectL2(idx) {
+                if (idx === null) {
+                    this.state = { level: 2, l1Index: this.state.l1Index, l2Index: null };
+                } else {
+                    this.state = { level: 3, l1Index: this.state.l1Index, l2Index: idx };
+                }
+                this.render();
+            },
+            
+            selectDepth(depth) {
+                if (depth === null) {
+                    this.state = { level: 3, l1Index: this.state.l1Index, l2Index: this.state.l2Index };
+                } else {
+                    this.currentDepth = depth;
+                    this.state = { level: 4, l1Index: this.state.l1Index, l2Index: this.state.l2Index };
+                }
+                this.render();
+            }
         };
         
         window.addEventListener('load', () => app.init());

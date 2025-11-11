@@ -3,75 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DivePlan - Complete Decompression Tables</title>
+    <title>DivePlan - Decompression Tables Widget</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
             color: #333;
-            padding: 0;
         }
-        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
-        header { 
-            background: linear-gradient(135deg, #062737 0%, #0d4a66 100%);
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        header {
+            background: #062737;
             color: white;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 4px;
         }
-        header h1 { font-size: 32px; margin-bottom: 5px; font-weight: 600; }
-        header p { opacity: 0.95; font-size: 16px; }
+        
+        header h1 { font-size: 24px; margin-bottom: 5px; }
+        header p { font-size: 13px; opacity: 0.9; }
         
         .controls {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .controls h3 { margin-bottom: 15px; color: #062737; font-size: 16px; }
         
         .search-box { margin-bottom: 15px; }
         .search-box input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid #ddd;
             border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.2s;
+            font-size: 14px;
         }
-        .search-box input:focus { 
+        .search-box input:focus {
             outline: none;
             border-color: #0d4a66;
-            box-shadow: 0 0 0 3px rgba(13, 74, 102, 0.1);
         }
         
-        .filters {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+        .filters { display: flex; gap: 10px; flex-wrap: wrap; }
+        
         .filter-btn {
-            padding: 10px 16px;
+            padding: 8px 14px;
             border: 2px solid #ddd;
             background: white;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.2s;
+            font-size: 13px;
             font-weight: 500;
-            font-size: 14px;
+            transition: all 0.2s;
         }
-        .filter-btn:hover {
-            border-color: #0d4a66;
-            color: #0d4a66;
-        }
-        .filter-btn.active {
-            background: #0d4a66;
-            color: white;
-            border-color: #0d4a66;
-        }
+        
+        .filter-btn:hover { border-color: #0d4a66; color: #0d4a66; }
+        .filter-btn.active { background: #0d4a66; color: white; border-color: #0d4a66; }
         
         .view { display: none; }
         .view.active { display: block; }
@@ -80,206 +70,171 @@
             background: #0d4a66;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             margin-bottom: 20px;
+            font-size: 13px;
             font-weight: 500;
-            transition: background 0.2s;
         }
+        
         .back-btn:hover { background: #053751; }
         
         .tables-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
         }
+        
         .table-card {
             background: white;
             border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 4px;
+            padding: 15px;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s;
         }
+        
         .table-card:hover {
             border-color: #0d4a66;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .table-card h3 {
-            color: #062737;
-            margin-bottom: 8px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .table-card .code {
-            display: inline-block;
-            background: #e8f4f8;
-            color: #0d4a66;
-            padding: 4px 8px;
+        
+        .table-card h3 { color: #062737; font-size: 14px; margin-bottom: 6px; font-weight: 600; }
+        .table-card .code { display: inline-block; background: #e8f4f8; color: #0d4a66; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: bold; margin-bottom: 8px; }
+        .table-card p { font-size: 12px; color: #666; }
+        
+        .depths-section {
+            background: white;
+            padding: 20px;
             border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .table-card p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
+        
+        .depths-section h2 { color: #062737; font-size: 18px; margin-bottom: 4px; }
+        .depths-section p { color: #666; font-size: 13px; margin-bottom: 15px; }
         
         .depths-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 10px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 8px;
         }
+        
         .depth-btn {
-            padding: 14px;
+            padding: 12px;
             border: 2px solid #0d4a66;
             background: white;
             color: #0d4a66;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 13px;
             transition: all 0.2s;
-            font-size: 14px;
-        }
-        .depth-btn:hover {
-            background: #0d4a66;
-            color: white;
         }
         
-        .table-header-info {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        .depth-btn:hover { background: #0d4a66; color: white; }
+        
+        .table-header {
+            background: #1565c0;
+            color: white;
+            padding: 16px;
+            margin-bottom: 0;
         }
-        .table-header-info h2 {
-            color: #062737;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        .metadata {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .meta-item {
-            background: #f9f9f9;
-            padding: 12px;
-            border-radius: 4px;
-            border-left: 3px solid #0d4a66;
-        }
-        .meta-item label {
-            display: block;
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            font-weight: 600;
+        
+        .table-header h2 {
+            font-size: 18px;
             margin-bottom: 4px;
+            font-weight: 600;
         }
-        .meta-item .value {
-            font-size: 16px;
-            color: #062737;
-            font-weight: bold;
+        
+        .table-header p {
+            font-size: 12px;
+            opacity: 0.95;
         }
         
         .table-wrapper {
             background: white;
-            border-radius: 8px;
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-        .table-scroll {
-            overflow-x: auto;
-            padding: 20px;
-        }
+        
+        .table-scroll { overflow-x: auto; }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
         }
+        
         thead {
-            background: #062737;
+            background: #1565c0;
             color: white;
             position: sticky;
             top: 0;
+            z-index: 10;
         }
+        
         th {
-            padding: 12px 6px;
+            padding: 10px 6px;
             text-align: center;
-            border: 1px solid #999;
+            border: 1px solid #0d4a66;
             font-weight: 600;
             font-size: 11px;
-            background: #062737;
+            line-height: 1.2;
+            background: #1565c0;
             color: white;
-            line-height: 1.3;
-        }
-        td {
-            padding: 8px 6px;
-            text-align: center;
-            border: 1px solid #ddd;
-            font-size: 11px;
-        }
-        tbody tr {
-            background: white;
-        }
-        tbody tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tbody tr:hover {
-            background: #e8f4f8;
         }
         
-        .oxy-col {
-            background: #c8e0eb !important;
+        td {
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            font-size: 12px;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f0f4f8;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background: #fafbfc;
+        }
+        
+        tbody tr:hover {
+            background: #e3f2fd;
+        }
+        
+        .oxy-cell {
+            background: #c8e6f5 !important;
             font-weight: 500;
         }
-        tbody tr:hover .oxy-col {
-            background: #a8d0e0 !important;
+        
+        tbody tr:hover .oxy-cell {
+            background: #a8d6f5 !important;
         }
         
-        .flag-1 { background: #90EE90; font-weight: bold; }
-        .flag-2 { background: #FFD700; font-weight: bold; }
-        .flag-3 { background: #FF6B6B; font-weight: bold; color: white; }
+        .flag-1 { background: #90EE90; }
+        .flag-2 { background: #FFD700; }
+        .flag-3 { background: #FF6B6B; color: white; }
         
         .no-results {
             text-align: center;
-            padding: 60px 20px;
-            color: #999;
+            padding: 40px;
             background: white;
-            border-radius: 8px;
-        }
-        
-        .table-note {
-            background: #fffbea;
-            border-left: 4px solid #ffa500;
-            padding: 12px;
-            margin-bottom: 15px;
             border-radius: 4px;
-            font-size: 12px;
-            color: #666;
+            color: #999;
         }
         
         footer {
             text-align: center;
             padding: 20px;
             color: #999;
-            font-size: 12px;
-            margin-top: 40px;
+            font-size: 11px;
             border-top: 1px solid #ddd;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -287,39 +242,40 @@
     <div class="container">
         <header>
             <h1>🏊 DivePlan Decompression Tables</h1>
-            <p>Complete Widget - All tables with full data, searchable, offline</p>
+            <p>Complete Offline Widget - All Commercial Diving Decompression Tables</p>
         </header>
         
-        <!-- Search View -->
+        <!-- Table Selection View -->
         <div id="searchView" class="view active">
             <div class="controls">
-                <h3>Search & Filter Tables</h3>
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search tables by name or code...">
                 </div>
                 <div class="filters">
                     <button class="filter-btn active" onclick="app.filterTables('all')">All Tables</button>
                     <button class="filter-btn" onclick="app.filterTables('air')">Standard Air</button>
-                    <button class="filter-btn" onclick="app.filterTables('oxygen')">Surface Oxygen</button>
+                    <button class="filter-btn" onclick="app.filterTables('oxygen')">Surface O2</button>
                     <button class="filter-btn" onclick="app.filterTables('nitrox')">Nitrox</button>
+                    <button class="filter-btn" onclick="app.filterTables('backup')">Backup Air</button>
+                    <button class="filter-btn" onclick="app.filterTables('bell')">Bell</button>
                 </div>
             </div>
             <div id="tablesGrid" class="tables-grid"></div>
         </div>
         
-        <!-- Depths View -->
+        <!-- Depth Selection View -->
         <div id="depthsView" class="view">
-            <button class="back-btn" onclick="app.showSearch()">← Back to Table Selection</button>
+            <button class="back-btn" onclick="app.showSearch()">← Back</button>
             <div id="depthsContainer"></div>
         </div>
         
-        <!-- Table View -->
+        <!-- Table Display View -->
         <div id="tableView" class="view">
-            <button class="back-btn" onclick="app.showDepths()">← Back to Depths</button>
+            <button class="back-btn" onclick="app.showDepths()">← Back</button>
             <div id="tableContainer"></div>
         </div>
         
-        <footer>DivePlan Complete Tables Widget | All CSV data embedded | Professional Diving Tables</footer>
+        <footer>DivePlan Tables Widget v1.0 | All CSV data embedded | Offline ready</footer>
     </div>
 
     <script>
@@ -330,189 +286,143 @@
             searchTerm: '',
             
             tables: [
-                { name: 'Standard Air - 12 Hour SI', code: 'SIL15', type: 'air', depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-                { name: 'Standard Air - 2 Hour SI', code: 'H2SIL15', type: 'air', depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-                { name: 'Standard Air - 4 Hour SI', code: 'H4SIL15', type: 'air', depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-                { name: 'Surface Oxygen - 12 Hour SI', code: 'SOX15', type: 'oxygen', depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-                { name: 'Surface Oxygen - 4 Hour SI', code: 'HSOX15', type: 'oxygen', depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-                { name: 'Nitrox 40% - 12 Hour SI', code: 'NIA15', type: 'nitrox', depths: [18, 21, 24, 27] },
-                { name: 'Nitrox 40% - 2 Hour SI', code: 'H2NIA15', type: 'nitrox', depths: [18, 21, 24, 27] },
-                { name: 'Nitrox 40% - 4 Hour SI', code: 'H4NIA15', type: 'nitrox', depths: [18, 21, 24, 27] },
-                { name: 'Nitrox 35% - 12 Hour SI', code: 'NIB15', type: 'nitrox', depths: [18, 21, 24, 27, 30, 33] },
-                { name: 'Nitrox 35% - 2 Hour SI', code: 'H2NIB15', type: 'nitrox', depths: [18, 21, 24, 27, 30, 33] },
-                { name: 'Nitrox 35% - 4 Hour SI', code: 'H4NIB15', type: 'nitrox', depths: [18, 21, 24, 27, 30, 33] },
+                { name: 'Standard Air - 12h SI', code: 'SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Standard Air - 2h SI', code: 'H2SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Standard Air - 4h SI', code: 'H4SIL15', type: 'air', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Surface O2 - 12h SI', code: 'SOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Surface O2 - 4h SI', code: 'HSOX15', type: 'oxygen', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Backup Air - 12h SI', code: 'SAB15', type: 'backup', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Backup Air - 4h SI', code: 'HSAB15', type: 'backup', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
+                { name: 'Nitrox 40% - 12h SI', code: 'NIA15', type: 'nitrox', depths: [18,21,24,27] },
+                { name: 'Nitrox 40% - 2h SI', code: 'H2NIA15', type: 'nitrox', depths: [18,21,24,27] },
+                { name: 'Nitrox 40% - 4h SI', code: 'H4NIA15', type: 'nitrox', depths: [18,21,24,27] },
+                { name: 'Nitrox 35% - 12h SI', code: 'NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
+                { name: 'Nitrox 35% - 2h SI', code: 'H2NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
+                { name: 'Nitrox 35% - 4h SI', code: 'H4NIB15', type: 'nitrox', depths: [18,21,24,27,30,33] },
+                { name: 'Box Air/O2', code: 'BOX15', type: 'bell', depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
             ],
             
-            // Full CSV data embedded
-            tableData: {
-                'SIL15': [
-                    [240,12,120,0.9,"","","","","","","",1,2.2,"",21,""],
-                    [240,12,130,0.9,"","","","","","","",3,4.2,"",23,""],
-                    [240,12,140,0.9,"","","","","","","",5,6.2,"",24,""],
-                    [240,12,150,0.9,"","","","","","","",6,7.2,"",26,""],
-                    [240,12,160,0.9,"","","","","","","",7,8.2,"",28,""],
-                    [240,12,170,0.9,"","","","","","","",9,10.2,"",30,""],
-                    [240,12,180,0.9,"","","","","","","",13,14.2,"",32,3],
-                    [180,15,70,1.2,"","","","","","","",2,3.5,6,16,""],
-                    [180,15,80,1.2,"","","","","","","",7,8.5,7,19,""],
-                    [180,15,90,1.2,"","","","","","","",11,12.5,7,21,""],
-                    [180,15,100,1.2,"","","","","","","",14,15.5,8,24,""],
-                    [180,15,110,1.2,"","","","","","","",17,18.5,9,26,""],
-                    [180,15,120,1.2,"","","","","","","",19,20.5,10,29,""],
-                    [180,15,130,1.2,"","","","","","","",24,25.5,11,31,""],
-                    [180,15,140,1.2,"","","","","","","",31,32.5,12,34,2],
-                    [180,15,150,1.2,"","","","","","","",36,37.5,12,36,""],
-                    [180,15,160,1.2,"","","","","","","",41,42.5,13,39,""],
-                    [180,15,170,1.2,"","","","","","","",45,46.5,14,42,""],
-                    [180,15,180,1.2,"","","","","","","",49,50.5,15,44,3],
-                    [120,18,40,1.5,"","","","","","","",2,3.8,9,12,""],
-                    [120,18,50,1.5,"","","","","","","",5,6.8,12,16,""],
-                    [120,18,60,1.5,"","","","","","","",10,11.8,14,19,""],
-                    [120,18,70,1.5,"","","","","","","",16,17.8,16,22,""],
-                    [120,18,80,1.5,"","","","","","","",21,22.8,19,25,""],
-                    [120,18,90,1.5,"","","","","","","",25,26.8,21,28,""],
-                    [120,18,100,1.2,"","","","",2,28,31.8,24,32,2,""],
-                    [120,18,110,1.2,"","","","",5,35,41.8,26,35,""],
-                    [120,18,120,1.2,"","","","",8,41,50.8,28,39,""],
-                    [120,18,130,1.2,"","","","",10,47,58.8,31,42,""],
-                    [120,18,140,1.2,"","","","",12,51,64.8,33,45,""],
-                    [120,18,150,1.2,"","","","",13,55,69.8,35,49,3],
-                    [90,21,25,1.8,"","","","","","","",2,4.1,9,10,""],
-                    [90,21,30,1.8,"","","","","","","",3,5.1,11,12,""],
-                    [90,21,35,1.8,"","","","","","","",5,7.1,13,14,""],
-                    [90,21,40,1.8,"","","","","","","",7,9.1,15,16,""],
-                    [90,21,45,1.8,"","","","","","","",9,11.1,17,18,""],
-                    [90,21,50,1.8,"","","","","","","",13,15.1,18,20,""],
-                    [90,21,55,1.5,"","","","1,17,20.1,20,22,""],
-                    [90,21,60,1.5,"","","","2,20,24.1,22,24,""],
-                    [90,21,65,1.5,"","","","3,22,27.1,24,26,""],
-                    [90,21,70,1.5,"","","","4,24,30.1,26,28,""],
-                    [90,21,75,1.5,"","","","5,26,33.1,28,30,2],
-                    [90,21,80,1.5,"","","","8,26,36.1,29,33,""],
-                    [90,21,85,1.5,"","","","11,31,44.1,31,35,""],
-                    [90,21,90,1.5,"","","","13,35,50.1,33,37,3],
-                    [70,24,15,2.1,"","","","","","","",1,3.4,7,8,""],
-                    [70,24,20,2.1,"","","","","","","",3,5.4,10,10,""],
-                    [70,24,25,2.1,"","","","","","","",4,6.4,12,13,""],
-                    [70,24,30,1.8,"","","","1,6,9.4,15,15,""],
-                    [70,24,35,1.8,"","","","2,8,12.4,17,18,""],
-                    [70,24,40,1.8,"","","","2,11,15.4,20,20,""],
-                    [70,24,45,1.8,"","","","3,16,21.4,22,23,""],
-                    [70,24,50,1.8,"","","","5,20,27.4,25,25,""],
-                    [70,24,55,1.8,"","","","6,23,31.4,27,28,2],
-                    [70,24,60,1.8,"","","","7,26,35.4,30,30,""],
-                    [70,24,65,1.8,"","","","11,26,39.4,32,33,""],
-                    [70,24,70,1.8,"","","","14,29,45.4,35,36,""],
-                    [70,24,75,1.8,"","","","17,34,53.4,37,39,""],
-                    [70,24,80,1.5,"","","1,19,39,61.4,40,41,3],
-                    [60,27,15,2.4,"","","","","","","",2,4.7,10,10,""],
-                    [60,27,20,2.4,"","","","","","","",5,7.7,13,13,""],
-                    [60,27,25,2.1,"","","","2,6,10.7,16,16,""],
-                    [60,27,30,2.1,"","","","3,8,13.7,19,19,""],
-                    [60,27,35,2.1,"","","","4,12,18.7,22,22,""],
-                    [60,27,40,1.8,"","","1,5,18,26.7,25,25,""],
-                    [60,27,45,1.8,"","","1,7,22,32.7,28,28,2],
-                    [60,27,50,1.8,"","","1,9,25,37.7,31,31,""],
-                    [60,27,55,1.8,"","","2,12,26,42.7,34,34,""],
-                    [60,27,60,1.8,"","","3,15,28,48.7,37,38,""],
-                    [60,27,65,1.8,"","","4,18,35,59.7,40,41,""],
-                    [60,27,70,1.8,"","","5,21,40,68.7,43,45,""],
-                    [60,27,75,1.8,"","","6,23,45,76.7,46,48,""],
-                    [60,27,80,1.8,"","","9,23,50,84.7,49,51,3],
-                    [50,30,10,2.7,"","","","","","","",1,4,8,9,""],
-                    [50,30,15,2.4,"","","","1,3,7,11,12,""],
-                    [50,30,20,2.4,"","","","2,5,10,15,15,""],
-                    [50,30,25,2.4,"","","","4,8,15,19,19,""],
-                    [50,30,30,2.1,"","","1,4,12,20,22,23,""],
-                    [50,30,35,2.1,"","","2,6,18,29,26,27,2],
-                    [50,30,40,2.1,"","","3,8,22,36,30,30,""],
-                    [50,30,45,2.1,"","","3,10,26,42,33,34,""],
-                    [50,30,50,2.1,"","","5,14,26,48,37,38,""],
-                    [50,30,55,2.1,"","","6,18,32,59,41,42,""],
-                    [50,30,60,2.1,"","","8,20,39,70,44,46,3],
-                    [40,33,10,3,"","","","","","","",2,5.3,9,10,""],
-                    [40,33,15,2.7,"","","","2,4,9.3,13,14,""],
-                    [40,33,20,2.4,"","","1,3,7,14.3,18,18,""],
-                    [40,33,25,2.4,"","","2,4,10,19.3,22,23,""],
-                    [40,33,30,2.4,"","","3,6,16,28.3,26,27,2],
-                    [40,33,35,2.1,"","1,3,8,22,37.3,30,32,""],
-                    [40,33,40,2.1,"","1,4,10,26,44.3,34,36,""],
-                    [40,33,45,2.1,"","2,6,15,26,52.3,39,41,""],
-                    [40,33,50,2.1,"","2,7,19,34,65.3,43,46,""],
-                    [40,33,55,2.1,"","2,9,22,41,77.3,47,50,""],
-                    [40,33,60,2.1,"","4,11,23,48,89.3,51,55,3],
-                    [35,36,10,3,"","","","","","1,3,7.6,11,12,""],
-                    [35,36,15,2.7,"","","1,2,5,11.6,15,17,""],
-                    [35,36,20,2.7,"","","2,4,8,17.6,20,22,""],
-                    [35,36,25,2.7,"","","4,5,14,26.6,25,27,2],
-                    [35,36,30,2.4,"","2,3,8,21,37.6,29,32,""],
-                    [35,36,35,2.4,"","2,5,9,26,45.6,34,38,""],
-                    [35,36,40,2.4,"","3,6,15,26,53.6,39,43,""],
-                    [35,36,45,2.4,"","3,8,20,34,68.6,44,49,""],
-                    [35,36,50,2.1,"1,4,9,23,43,83.6,48,54,""],
-                    [35,36,55,2.1,"1,6,13,23,50,96.6,53,60,""],
-                    [35,36,60,2.1,"1,7,17,23,56,107.6,58,66,3],
-                    [30,39,5,3.6,"","","","","","","",1,4.9,7,9,""],
-                    [30,39,10,3.3,"","","","2,3,8.9,12,15,""],
-                    [30,39,15,3,"","","1,4,5,13.9,17,20,""],
-                    [30,39,20,2.7,"","1,3,4,10,21.9,22,26,""],
-                    [30,39,25,2.7,"","2,4,6,18,33.9,28,32,2],
-                    [30,39,30,2.7,"","3,4,9,24,43.9,33,38,""],
-                    [30,39,35,2.4,"1,3,7,13,26,53.9,38,44,""],
-                    [30,39,40,2.4,"2,3,8,19,34,69.9,44,50,""],
-                    [30,39,45,2.4,"2,5,9,23,43,85.9,49,57,""],
-                    [30,39,50,2.4,"2,7,14,23,51,100.9,54,64,""],
-                    [30,39,55,2.4,"3,8,18,23,58,113.9,59,70,""],
-                    [30,39,60,2.4,"4,9,20,25,63,124.9,65,77,3],
-                    [30,42,5,3.9,"","","","","","","",2,6.2,7,11,""],
-                    [30,42,10,3.3,"","","1,1,5,11.2,13,17,""],
-                    [30,42,15,3,"","1,2,4,7,18.2,19,23,""],
-                    [30,42,20,3,"","2,3,5,13,27.2,25,30,2],
-                    [30,42,25,3,"","4,3,9,21,41.2,31,37,""],
-                    [30,42,30,2.7,"2,3,6,11,26,52.2,37,44,""],
-                    [30,42,35,2.7,"3,3,8,18,31,67.2,42,51,""],
-                    [30,42,40,2.7,"3,5,9,23,41,85.2,48,59,""],
-                    [30,42,45,2.4,"1,3,7,14,23,51,103.2,54,66,""],
-                    [30,42,50,2.4,"1,4,8,18,23,58,116.2,60,74,""],
-                    [30,42,55,2.4,"1,6,9,21,26,64,131.2,66,81,""],
-                    [30,42,60,2.4,"2,6,14,20,34,72,152.2,72,89,3],
-                    [25,45,5,4.2,"","","","","","","",2,6.5,8,13,""],
-                    [25,45,10,3.6,"","","2,2,4,12.5,15,20,""],
-                    [25,45,15,3.3,"","1,3,4,9,21.5,21,27,""],
-                    [25,45,20,3,"1,2,4,6,17,34.5,27,34,2],
-                    [25,45,25,3,"2,3,5,9,25,48.5,34,42,""],
-                    [25,45,30,3,"3,4,7,16,26,60.5,40,51,""],
-                    [25,45,35,2.7,"1,3,5,9,21,39,82.5,46,59,""],
-                    [25,45,40,2.7,"2,3,7,13,23,49,101.5,53,68,""],
-                    [25,45,45,2.7,"2,5,7,18,23,57,116.5,59,76,""],
-                    [25,45,50,2.7,"3,6,10,20,26,64,133.5,66,85,""],
-                    [25,45,55,2.7,"3,7,14,21,34,72,155.5,72,94,""],
-                    [25,45,60,2.7,"5,7,18,20,42,79,175.5,79,103,3],
-                    [25,48,5,4.2,"","","","1,2,7.8,9,15,""],
-                    [25,48,10,3.6,"","1,1,3,5,14.8,16,22,""],
-                    [25,48,15,3.3,"1,1,4,4,10,24.8,23,30,2],
-                    [25,48,20,3.3,"2,3,3,8,20,40.8,30,40,""],
-                    [25,48,25,3,"1,3,3,6,12,26,55.8,37,48,""],
-                    [25,48,30,3,"2,3,4,8,19,34,74.8,44,58,""],
-                    [25,48,35,3,"3,3,7,11,23,45,96.8,51,68,""],
-                    [25,48,40,2.7,"1,3,4,8,17,23,55,115.8,58,77,""],
-                    [25,48,45,2.7,"1,3,6,9,21,24,63,131.8,65,87,""],
-                    [25,48,50,2.7,"2,3,7,14,21,34,71,156.8,72,97,""],
-                    [25,48,55,2.7,"2,5,7,18,21,42,79,178.8,79,107,""],
-                    [25,48,60,2.7,"2,6,11,19,20,50,85,197.8,87,117,3],
-                    [20,51,5,4.5,"","","","2,2,9.1,10,17,""],
-                    [20,51,10,3.9,"","1,2,4,5,17.1,18,25,""],
-                    [20,51,15,3.6,"1,2,4,5,13,30.1,25,35,2],
-                    [20,51,20,3.3,"1,2,3,4,9,23,47.1,32,45,""],
-                    [20,51,25,3.3,"2,3,3,8,15,26,62.1,40,55,""],
-                    [20,51,30,3,"1,2,3,6,8,23,40,88.1,48,66,""],
-                    [20,51,35,3,"2,2,4,8,15,23,52,111.1,55,77,""],
-                    [20,51,40,3,"2,3,6,8,20,23,61,128.1,63,87,""],
-                    [20,51,45,3,"3,4,7,13,21,32,70,155.1,71,99,""],
-                    [20,51,50,2.7,"1,2,6,7,18,20,42,78,179.1,79,110,""],
-                    [20,51,55,2.7,"1,3,6,11,19,20,50,85,200.1,87,121,""],
-                    [20,51,60,2.7,"1,4,7,15,18,24,54,92,220.1,95,133,3],
-                ]
+            // CSV data embedded for all tables - loaded from public/data/tables/*.csv
+            csvData: {
+                'SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,,,,,,,,,,,,,,,,,,,,
+240,12,120,0.9,,,,,,,,1,2.2,,21,,
+240,12,130,0.9,,,,,,,,3,4.2,,23,,
+240,12,140,0.9,,,,,,,,5,6.2,,24,,
+240,12,150,0.9,,,,,,,,6,7.2,,26,,
+240,12,160,0.9,,,,,,,,7,8.2,,28,,
+240,12,170,0.9,,,,,,,,9,10.2,,30,,
+240,12,180,0.9,,,,,,,,13,14.2,,32,3
+180,15,70,1.2,,,,,,,,2,3.5,6,16,,
+180,15,80,1.2,,,,,,,,7,8.5,7,19,,
+180,15,90,1.2,,,,,,,,11,12.5,7,21,,
+180,15,100,1.2,,,,,,,,14,15.5,8,24,,
+180,15,110,1.2,,,,,,,,17,18.5,9,26,,
+180,15,120,1.2,,,,,,,,19,20.5,10,29,,
+180,15,130,1.2,,,,,,,,24,25.5,11,31,,
+180,15,140,1.2,,,,,,,,31,32.5,12,34,2
+180,15,150,1.2,,,,,,,,36,37.5,12,36,,
+180,15,160,1.2,,,,,,,,41,42.5,13,39,,
+180,15,170,1.2,,,,,,,,45,46.5,14,42,,
+180,15,180,1.2,,,,,,,,49,50.5,15,44,3
+120,18,40,1.5,,,,,,,,2,3.8,9,12,,
+120,18,50,1.5,,,,,,,,5,6.8,12,16,,
+120,18,60,1.5,,,,,,,,10,11.8,14,19,,
+120,18,70,1.5,,,,,,,,16,17.8,16,22,,
+120,18,80,1.5,,,,,,,,21,22.8,19,25,,
+120,18,90,1.5,,,,,,,,25,26.8,21,28,,
+120,18,100,1.2,,,,,,,2,28,31.8,24,32,2
+120,18,110,1.2,,,,,,,5,35,41.8,26,35,,
+120,18,120,1.2,,,,,,,8,41,50.8,28,39,,
+120,18,130,1.2,,,,,,,10,47,58.8,31,42,,
+120,18,140,1.2,,,,,,,12,51,64.8,33,45,,
+120,18,150,1.2,,,,,,,13,55,69.8,35,49,3
+90,21,25,1.8,,,,,,,,2,4.1,9,10,,
+90,21,30,1.8,,,,,,,,3,5.1,11,12,,
+90,21,35,1.8,,,,,,,,5,7.1,13,14,,
+90,21,40,1.8,,,,,,,,7,9.1,15,16,,
+90,21,45,1.8,,,,,,,,9,11.1,17,18,,
+90,21,50,1.8,,,,,,,,13,15.1,18,20,,
+90,21,55,1.5,,,,,,,1,17,20.1,20,22,,
+90,21,60,1.5,,,,,,,2,20,24.1,22,24,,
+90,21,65,1.5,,,,,,,3,22,27.1,24,26,,
+90,21,70,1.5,,,,,,,4,24,30.1,26,28,,
+90,21,75,1.5,,,,,,,5,26,33.1,28,30,2
+90,21,80,1.5,,,,,,,8,26,36.1,29,33,,
+90,21,85,1.5,,,,,,,11,31,44.1,31,35,,
+90,21,90,1.5,,,,,,,13,35,50.1,33,37,3
+70,24,15,2.1,,,,,,,,1,3.4,7,8,,
+70,24,20,2.1,,,,,,,,3,5.4,10,10,,
+70,24,25,2.1,,,,,,,,4,6.4,12,13,,
+70,24,30,1.8,,,,,,,1,6,9.4,15,15,,
+70,24,35,1.8,,,,,,,2,8,12.4,17,18,,
+70,24,40,1.8,,,,,,,2,11,15.4,20,20,,
+70,24,45,1.8,,,,,,,3,16,21.4,22,23,,
+70,24,50,1.8,,,,,,,5,20,27.4,25,25,,
+70,24,55,1.8,,,,,,,6,23,31.4,27,28,2
+70,24,60,1.8,,,,,,,7,26,35.4,30,30,,
+70,24,65,1.8,,,,,,,11,26,39.4,32,33,,
+70,24,70,1.8,,,,,,,14,29,45.4,35,36,,
+70,24,75,1.8,,,,,,,17,34,53.4,37,39,,
+70,24,80,1.5,,,,,,1,19,39,61.4,40,41,3
+60,27,15,2.4,,,,,,,,2,4.7,10,10,,
+60,27,20,2.4,,,,,,,,5,7.7,13,13,,
+60,27,25,2.1,,,,,,,2,6,10.7,16,16,,
+60,27,30,2.1,,,,,,,3,8,13.7,19,19,,
+60,27,35,2.1,,,,,,,4,12,18.7,22,22,,
+60,27,40,1.8,,,,,,1,5,18,26.7,25,25,,
+60,27,45,1.8,,,,,,1,7,22,32.7,28,28,2
+60,27,50,1.8,,,,,,1,9,25,37.7,31,31,,
+60,27,55,1.8,,,,,,2,12,26,42.7,34,34,,
+60,27,60,1.8,,,,,,3,15,28,48.7,37,38,,
+60,27,65,1.8,,,,,,4,18,35,59.7,40,41,,
+60,27,70,1.8,,,,,,5,21,40,68.7,43,45,,
+60,27,75,1.8,,,,,,6,23,45,76.7,46,48,,
+60,27,80,1.8,,,,,,9,23,50,84.7,49,51,3
+50,30,10,2.7,,,,,,,,1,4,8,9,,
+50,30,15,2.4,,,,,,,1,3,7,11,12,,
+50,30,20,2.4,,,,,,,2,5,10,15,15,,
+50,30,25,2.4,,,,,,,4,8,15,19,19,,
+50,30,30,2.1,,,,,,1,4,12,20,22,23,,
+50,30,35,2.1,,,,,,2,6,18,29,26,27,2
+50,30,40,2.1,,,,,,3,8,22,36,30,30,,
+50,30,45,2.1,,,,,,3,10,26,42,33,34,,
+50,30,50,2.1,,,,,,5,14,26,48,37,38,,
+50,30,55,2.1,,,,,,6,18,32,59,41,42,,
+50,30,60,2.1,,,,,,8,20,39,70,44,46,3`,
+                'H2NIA15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,90,1.5,,,,,,,,1,2.8,109,119,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,100,1.5,,,,,,,,3,4.8,121,133,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,110,1.5,,,,,,,,7,8.8,133,147,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,120,1.5,,,,,,,,11,12.8,145,160,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,130,1.5,,,,,,,,15,16.8,158,174,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,140,1.5,,,,,,,,19,20.8,170,188,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,150,1.5,,,,,,,,23,24.8,182,202,3
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,60,1.8,,,,,,,,1,3.1,85,102,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,70,1.8,,,,,,,,5,7.1,99,119,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,80,1.8,,,,,,,,10,12.1,113,136,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,90,1.8,,,,,,,,16,18.1,127,154,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,100,1.8,,,,,,,,24,26.1,142,172,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,110,1.8,,,,,,,,32,34.1,156,190,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,120,1.8,,,,,,,,39,41.1,170,208,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,130,1.8,,,,,,,,47,49.1,185,227,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,140,1.8,,,,,,,,54,56.1,199,244,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,150,1.8,,,,,,,,60,62.1,213,262,3
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,50,2.1,,,,,,,,4,6.4,81,107,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,60,2.1,,,,,,,,9,11.4,97,128,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,70,2.1,,,,,,,,19,21.4,113,150,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,80,2.1,,,,,,,,30,32.4,130,173,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,90,2.1,,,,,,,,40,42.4,146,195,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,100,1.8,,,,,,,1,50,53.4,163,218,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,110,1.8,,,,,,,3,58,63.4,180,240,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,120,12,16.7,1.36,24,120,1.8,,,,,,,5,66,73.4,197,263,3
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,30,2.4,,,,,,,,1,3.7,55,80,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,40,2.4,,,,,,,,4,6.7,73,105,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,50,2.4,,,,,,,,11,13.7,91,131,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,60,2.4,,,,,,,,25,27.7,109,159,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,70,2.1,,,,,,,1,38,41.7,128,186,0
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,80,2.1,,,,,,,4,48,54.7,147,214,1
+Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,90,12,19.1,1.48,27,90,2.1,,,,,,,7,59,68.7,167,242,3`,
             },
             
             init() {
@@ -525,7 +435,7 @@
             
             filterTables(type) {
                 this.currentFilter = type;
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 event.target.classList.add('active');
                 this.renderTables();
             },
@@ -535,22 +445,22 @@
                 grid.innerHTML = '';
                 
                 const filtered = this.tables.filter(t => {
-                    const matchesFilter = this.currentFilter === 'all' || t.type === this.currentFilter;
-                    const matchesSearch = !this.searchTerm || t.name.toLowerCase().includes(this.searchTerm) || t.code.toLowerCase().includes(this.searchTerm);
-                    return matchesFilter && matchesSearch;
+                    const typeMatch = this.currentFilter === 'all' || t.type === this.currentFilter;
+                    const search = !this.searchTerm || t.name.toLowerCase().includes(this.searchTerm) || t.code.toLowerCase().includes(this.searchTerm);
+                    return typeMatch && search;
                 });
                 
                 if (filtered.length === 0) {
-                    grid.innerHTML = '<div class="no-results"><p>No tables found.</p></div>';
+                    grid.innerHTML = '<div class="no-results">No tables found</div>';
                     return;
                 }
                 
                 filtered.forEach(t => {
-                    const card = document.createElement('div');
-                    card.className = 'table-card';
-                    card.innerHTML = `<h3>${t.name}</h3><div class="code">${t.code}</div><p>Depths: ${t.depths.join(', ')}m</p>`;
-                    card.onclick = () => this.selectTable(t);
-                    grid.appendChild(card);
+                    const div = document.createElement('div');
+                    div.className = 'table-card';
+                    div.innerHTML = `<h3>${t.name}</h3><div class="code">${t.code}</div><p>${t.depths.length} depths | ${Math.min(...t.depths)}-${Math.max(...t.depths)}m</p>`;
+                    div.onclick = () => this.selectTable(t);
+                    grid.appendChild(div);
                 });
             },
             
@@ -576,20 +486,9 @@
                 const { code, name, depths } = this.currentTable;
                 const container = document.getElementById('depthsContainer');
                 
-                let html = `<div class="table-header-info">
+                let html = `<div class="depths-section">
                     <h2>${name}</h2>
-                    <div class="metadata">
-                        <div class="meta-item">
-                            <label>Table Code</label>
-                            <div class="value">${code}</div>
-                        </div>
-                        <div class="meta-item">
-                            <label>Available Depths</label>
-                            <div class="value">${depths.length}</div>
-                        </div>
-                    </div>
-                    <div class="table-note">Select a depth to view the complete decompression table with all stop times and OTU/ESOT values.</div>
-                    <h3 style="color: #062737; margin-bottom: 15px;">Select Dive Depth:</h3>
+                    <p>Table Code: <strong>${code}</strong> | Select a depth:</p>
                     <div class="depths-grid">`;
                 
                 depths.forEach(d => {
@@ -617,33 +516,64 @@
                 const depth = this.currentDepth;
                 const container = document.getElementById('tableContainer');
                 
-                const allData = this.tableData[code] || [];
-                const depthData = allData.filter(row => row[1] === depth);
+                // Parse CSV data
+                const csvText = this.csvData[code];
+                if (!csvText) {
+                    container.innerHTML = `<div class="table-wrapper"><div class="table-header"><h2>Table not available in widget</h2><p>The ${code} table data is not embedded. Use the web app for full access.</p></div></div>`;
+                    return;
+                }
+                
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                
+                const depthData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split(',');
+                    const depthCol = parseInt(cols[1]);
+                    if (depthCol === depth) {
+                        depthData.push(cols);
+                    }
+                }
                 
                 if (depthData.length === 0) {
-                    container.innerHTML = '<div class="table-header-info"><p>No data available for this depth.</p></div>';
+                    container.innerHTML = `<div class="table-wrapper"><div class="table-header"><h2>No data available</h2></div></div>`;
                     return;
                 }
                 
                 let tableHtml = '<thead><tr><th>Dive Time<br>(min)</th><th>Till 1st<br>Stop</th><th colspan="8">Stop Depth (metres)</th><th>Total<br>Deco<br>(min)</th><th>Total<br>OTU</th><th>Total<br>ESOT</th></tr>';
-                tableHtml += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th class="oxy-col">6m</th><th class="oxy-col">3m</th><th></th><th></th><th></th></tr></thead>';
+                tableHtml += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th class="oxy-cell">6m</th><th class="oxy-cell">3m</th><th></th><th></th><th></th></tr></thead>';
                 
                 tableHtml += '<tbody>';
-                depthData.forEach(row => {
-                    const [dvis, d, time, till1st, d24, d21, d18, d15, d12, d9, d6, d3, totalDeco, totalOtu, totalEsot, marker] = row;
-                    const flagClass = marker ? ` flag-${marker}` : '';
-                    const markerDisplay = marker ? `●${marker}` : '';
+                depthData.forEach((cols, idx) => {
+                    const time = cols[2];
+                    const till1st = cols[3];
+                    const d24 = cols[4] || '—';
+                    const d21 = cols[5] || '—';
+                    const d18 = cols[6] || '—';
+                    const d15 = cols[7] || '—';
+                    const d12 = cols[8] || '—';
+                    const d9 = cols[9] || '—';
+                    const d6 = cols[10] || '—';
+                    const d3 = cols[11] || '—';
+                    const totalDeco = cols[12];
+                    const totalOtu = cols[13] || '—';
+                    const totalEsot = cols[14] || '—';
+                    const marker = cols[15];
+                    
+                    const flagClass = marker && marker.trim() ? ` flag-${marker.trim()}` : '';
+                    const markerDisplay = marker && marker.trim() ? ` ●${marker.trim()}` : '';
+                    
                     tableHtml += `<tr>
                         <td><strong>${time}</strong></td>
                         <td>${till1st}</td>
-                        <td>${d24 || '−'}</td>
-                        <td>${d21 || '−'}</td>
-                        <td>${d18 || '−'}</td>
-                        <td>${d15 || '−'}</td>
-                        <td>${d12 || '−'}</td>
-                        <td>${d9 || '−'}</td>
-                        <td class="oxy-col">${d6 || '−'}</td>
-                        <td class="oxy-col">${d3 || '−'}</td>
+                        <td>${d24}</td>
+                        <td>${d21}</td>
+                        <td>${d18}</td>
+                        <td>${d15}</td>
+                        <td>${d12}</td>
+                        <td>${d9}</td>
+                        <td class="oxy-cell">${d6}</td>
+                        <td class="oxy-cell">${d3}</td>
                         <td>${totalDeco}</td>
                         <td>${totalOtu}</td>
                         <td class="${flagClass}">${totalEsot}${markerDisplay}</td>
@@ -651,31 +581,11 @@
                 });
                 tableHtml += '</tbody>';
                 
-                const html = `<div class="table-header-info">
-                    <h2>${name} - Depth ${depth}m Decompression Schedule</h2>
-                    <div class="metadata">
-                        <div class="meta-item">
-                            <label>Table Code</label>
-                            <div class="value">${code}</div>
-                        </div>
-                        <div class="meta-item">
-                            <label>Selected Depth</label>
-                            <div class="value">${depth}m</div>
-                        </div>
-                        <div class="meta-item">
-                            <label>Max Bottom Time</label>
-                            <div class="value">${depthData[depthData.length - 1][2]} min</div>
-                        </div>
-                        <div class="meta-item">
-                            <label>Total Rows</label>
-                            <div class="value">${depthData.length}</div>
-                        </div>
+                const html = `<div class="table-wrapper">
+                    <div class="table-header">
+                        <h2>${name} - ${depth}m</h2>
+                        <p>Decompression Schedule</p>
                     </div>
-                    <div class="table-note">
-                        🎯 <strong>Color Legend:</strong> Light blue columns (6m, 3m) = oxygen stops. <span class="flag-1">● Green</span> = pO2 ≤1.4, <span class="flag-2">● Yellow</span> = pO2 >1.4-1.6, <span class="flag-3">● Red</span> = pO2 >1.6
-                    </div>
-                </div>
-                <div class="table-wrapper">
                     <div class="table-scroll">
                         <table>${tableHtml}</table>
                     </div>

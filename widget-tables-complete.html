@@ -870,10 +870,21 @@
             html += '<tr><th></th><th></th><th>24m</th><th>21m</th><th>18m</th><th>15m</th><th>12m</th><th>9m</th><th>6m</th><th>3m</th><th></th><th></th><th></th></tr>';
           }
           html += '</thead><tbody>';
-          rows.forEach((row) => {
+          rows.forEach((row, rowIdx) => {
+            const isLastRow = rowIdx === rows.length - 1;
             let cls = "row-white";
-            if (row.marker === 3) cls = "row-red";
-            html += `<tr class="${cls}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
+            if (row.marker === 3) {
+              cls = "row-red";
+            } else if (isLastRow) {
+              cls = "row-red";
+            } else if (rowIdx % 2 !== 0) {
+              cls = "row-green";
+            }
+            let borderStyle = "border: 1px solid #e5e7eb;";
+            if (row.marker === 2) {
+              borderStyle = "border-bottom: 3px solid #1f2937;";
+            }
+            html += `<tr class="${cls}" style="${borderStyle}"><td><strong>${row.time}</strong></td><td>${row.till1st}</td>`;
             const numStops = headerConfig ? headerConfig.numStops : 8;
             for (let j = 0; j < numStops; j++) {
               const val = row.stops[j];

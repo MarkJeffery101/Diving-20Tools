@@ -429,25 +429,29 @@
           const lines = text.trim().split("\n");
           if (lines.length < 2) return { rows: [], dvis5: null };
           const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
-          const depthIdx = 1;
-          const timeIdx = 2;
-          const tillIdx = 3;
-          const stopStart = 4;
-          const stopEnd = 12;
-          const decoIdx = 12;
-          const otuIdx = 13;
-          const esotIdx = 14;
-          const dvisIdx = 0;
+
+          const depthIdx = headers.findIndex(h => h.includes("depth") && !h.includes("deco"));
+          const timeIdx = headers.findIndex(h => h.includes("dive") && h.includes("time"));
+          const tillIdx = headers.findIndex(h => h.includes("till") || h.includes("1st"));
+          const decoIdx = headers.findIndex(h => h.includes("deco") && h.includes("time"));
+          const otuIdx = headers.findIndex(h => h.includes("otu"));
+          const esotIdx = headers.findIndex(h => h.includes("esot"));
+          const dvisIdx = headers.findIndex(h => h.includes("dvis"));
+          const markerIdx = esotIdx + 1;
+
+          const stopStart = tillIdx + 1;
+          const stopEnd = decoIdx;
           const rows = [];
           let dvis5 = null;
           let foundFirst = false;
+
           for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
             const cols = line.split(",").map((v) => v.trim());
             const depth = parseInt(cols[depthIdx]);
             if (isNaN(depth) || depth !== targetDepth) continue;
-            if (!foundFirst) {
+            if (!foundFirst && dvisIdx >= 0) {
               const dvisVal = parseInt(cols[dvisIdx]);
               if (!isNaN(dvisVal)) dvis5 = dvisVal;
               foundFirst = true;
@@ -464,8 +468,8 @@
               }
             }
             let marker = 0;
-            if (cols.length > 15) {
-              const markerVal = parseInt(cols[15]);
+            if (markerIdx >= 0 && markerIdx < cols.length) {
+              const markerVal = parseInt(cols[markerIdx]);
               if (markerVal === 2 || markerVal === 3) marker = markerVal;
             }
             rows.push({

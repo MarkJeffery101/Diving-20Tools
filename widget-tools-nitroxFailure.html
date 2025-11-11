@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitrox Failure Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #cc0000 0%, #990000 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 28px; margin-bottom: 5px; }
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h2 { color: #cc0000; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus { outline: none; border-color: #cc0000; }
+        .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .buttons { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #cc0000; color: white; }
+        .btn-primary:hover { background: #990000; }
+        .btn-secondary { background: #ddd; color: #333; }
+        .results { background: #ffe8e8; border: 2px solid #cc0000; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .results h3 { color: #cc0000; margin-bottom: 15px; }
+        .result-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ddd; }
+        .result-item span { font-weight: bold; color: #660000; }
+        .alert { background: #ffe8e8; border-left: 4px solid #cc0000; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 13px; color: #660000; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚠️ Nitrox Failure - Emergency Gas Switch</h1>
+            <p>Calculate EAD when switching from Nitrox to Air mid-dive</p>
+        </header>
+        
+        <div class="alert">
+            <p><strong>EMERGENCY SCENARIO:</strong> Diver is on Nitrox and must switch to emergency air supply mid-dive. This calculates the new EAD and effective nitrogen loading for decompression.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Nitrox Dive Parameters</h2>
+            <div class="row-3">
+                <div class="input-group">
+                    <label>Depth (m)</label>
+                    <input type="number" id="depth" value="30" placeholder="30">
+                </div>
+                <div class="input-group">
+                    <label>Time on Nitrox (min)</label>
+                    <input type="number" id="nitroxTime" value="20" placeholder="20">
+                </div>
+                <div class="input-group">
+                    <label>Nitrox O₂ (%)</label>
+                    <input type="number" id="nitroxO2" value="32" placeholder="32">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Time on Air (remaining bottom time, min)</label>
+                <input type="number" id="airTime" value="10" placeholder="10">
+            </div>
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculator.calculate()">Calculate Emergency Response</button>
+                <button class="btn-secondary" onclick="calculator.reset()">Reset</button>
+            </div>
+        </div>
+        
+        <div id="resultsDiv" style="display:none;">
+            <div class="card results">
+                <h3>Emergency Gas Switch Results</h3>
+                <div class="result-item">
+                    <span>Effective O₂ (weighted):</span>
+                    <span id="effectiveO2">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>New EAD:</span>
+                    <span id="newEad">0m</span>
+                </div>
+                <div class="result-item">
+                    <span>Effective N₂ Loading:</span>
+                    <span id="effectiveN2">0%</span>
+                </div>
+                <div class="result-item">
+                    <span>Decompression Requirement:</span>
+                    <span id="decompReq">—</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>Nitrox Failure Calculator Widget v1.0 | Emergency planning tool</footer>
+    </div>
+
+    <script>
+        const calculator = {
+            calculate() {
+                const depth = parseFloat(document.getElementById('depth').value) || 0;
+                const nitroxTime = parseFloat(document.getElementById('nitroxTime').value) || 0;
+                const nitroxO2 = parseFloat(document.getElementById('nitroxO2').value) || 32;
+                const airTime = parseFloat(document.getElementById('airTime').value) || 0;
+                
+                if (depth < 0 || nitroxO2 < 21 || nitroxO2 > 100) {
+                    alert('Invalid input');
+                    return;
+                }
+                
+                // Calculate weighted oxygen percentage
+                const totalTime = nitroxTime + airTime;
+                const weightedO2 = (nitroxO2 * nitroxTime + 21 * airTime) / totalTime;
+                
+                // EAD for weighted mix
+                const fractionN2 = (100 - weightedO2) / 100;
+                const eadWeighted = (depth + 10) * (fractionN2 / 0.79) - 10;
+                
+                // Effective N2 loading
+                const effectiveN2 = (100 - weightedO2).toFixed(1);
+                
+                // pO2 check
+                const po2 = (weightedO2 / 100) * (depth / 10 + 1);
+                const decompReq = po2 > 1.6 ? 'CAUTION - High pO₂' : 'Use standard air tables for ' + eadWeighted.toFixed(1) + 'm';
+                
+                document.getElementById('effectiveO2').textContent = weightedO2.toFixed(1) + '%';
+                document.getElementById('newEad').textContent = eadWeighted.toFixed(1) + 'm';
+                document.getElementById('effectiveN2').textContent = effectiveN2 + '%';
+                document.getElementById('decompReq').textContent = decompReq;
+                
+                document.getElementById('resultsDiv').style.display = 'block';
+            },
+            
+            reset() {
+                document.getElementById('depth').value = '30';
+                document.getElementById('nitroxTime').value = '20';
+                document.getElementById('nitroxO2').value = '32';
+                document.getElementById('airTime').value = '10';
+                document.getElementById('resultsDiv').style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

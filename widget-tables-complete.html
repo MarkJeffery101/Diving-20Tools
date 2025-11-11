@@ -471,8 +471,8 @@
               html + '<div class="error">No data available</div>';
             return;
           }
-          const rows = this.parseCSV(csv, depth);
-          if (!rows.length) {
+          const parsed = this.parseCSV(csv, depth);
+          if (!parsed.rows.length) {
             document.getElementById("content").innerHTML =
               html +
               '<div class="error">No data for depth ' +
@@ -482,12 +482,17 @@
           }
           html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2></div>`;
           html += '<div class="table-scroll"><table><thead><tr>';
-          html +=
-            '<th>Dive Time</th><th colspan="8">Stop Depth (m)</th><th>Total Deco</th><th>OTU</th><th>ESOT</th>';
+          parsed.headers.forEach((h) => {
+            html += `<th>${h}</th>`;
+          });
           html += "</tr></thead><tbody>";
-          rows.forEach((row, idx) => {
+          parsed.rows.forEach((row, idx) => {
             const cls = idx % 2 === 0 ? "row-white" : "row-green";
-            html += `<tr class="${cls}"><td>${row[2]}</td><td colspan="8">—</td><td>—</td><td>—</td><td>—</td></tr>`;
+            html += "<tr class=\"" + cls + "\">";
+            row.forEach((cell) => {
+              html += `<td>${cell}</td>`;
+            });
+            html += "</tr>";
           });
           html += "</tbody></table></div></div>";
           document.getElementById("content").innerHTML = html;

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAD Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #062737 0%, #0d4a66 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 28px; margin-bottom: 5px; }
+        .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card h2 { color: #0d4a66; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input { width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus { outline: none; border-color: #0d4a66; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .buttons { display: flex; gap: 10px; margin-top: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #0d4a66; color: white; }
+        .btn-primary:hover { background: #062737; }
+        .btn-secondary { background: #ddd; color: #333; }
+        .results { background: #e8f4f8; border: 2px solid #0d4a66; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .results h3 { color: #0d4a66; margin-bottom: 15px; }
+        .result-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #bbb; }
+        .result-item span { font-weight: bold; }
+        .info { background: #fffbea; border-left: 4px solid #ff9800; padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 13px; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 Equivalent Air Depth (EAD)</h1>
+            <p>Nitrox Decompression Calculator</p>
+        </header>
+        
+        <div class="info">
+            <p><strong>EAD:</strong> The equivalent depth at which air would have the same nitrogen partial pressure as your nitrox mix at actual depth. Formula: EAD = (Depth + 10) × ((1 - O₂%) / 0.79) - 10</p>
+        </div>
+        
+        <div class="card">
+            <h2>Nitrox Parameters</h2>
+            <div class="row">
+                <div class="input-group">
+                    <label>Actual Depth (m)</label>
+                    <input type="number" id="depth" value="30" placeholder="30">
+                </div>
+                <div class="input-group">
+                    <label>O₂ Percentage (%)</label>
+                    <input type="number" id="o2" value="32" min="21" max="100" placeholder="32">
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn-primary" onclick="calculator.calculate()">Calculate EAD</button>
+                <button class="btn-secondary" onclick="calculator.reset()">Reset</button>
+            </div>
+        </div>
+        
+        <div id="resultsDiv" style="display:none;">
+            <div class="card results">
+                <h3>EAD Results</h3>
+                <div class="result-item">
+                    <span>Equivalent Air Depth (EAD):</span>
+                    <span id="eadResult">0m</span>
+                </div>
+                <div class="result-item">
+                    <span>pO₂ at Depth:</span>
+                    <span id="po2Result">0 bar/abs</span>
+                </div>
+                <div class="result-item">
+                    <span>Status:</span>
+                    <span id="status">Safe</span>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #bbb; font-size: 13px; color: #666;">
+                    <p><strong>Use Air Decompression Table for Depth:</strong> <span id="tableDepth">—</span>m</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>EAD Calculator Widget v1.0 | Nitrox planning tool</footer>
+    </div>
+
+    <script>
+        const calculator = {
+            calculate() {
+                const depth = parseFloat(document.getElementById('depth').value) || 0;
+                const o2Percent = parseFloat(document.getElementById('o2').value) || 21;
+                
+                if (depth < 0 || o2Percent < 21 || o2Percent > 100) {
+                    alert('Invalid input. Depth must be positive, O₂ between 21-100%');
+                    return;
+                }
+                
+                // EAD = (Depth + 10) × ((1 - O2%) / 0.79) - 10
+                const fractionN2 = (100 - o2Percent) / 100;
+                const ead = (depth + 10) * (fractionN2 / 0.79) - 10;
+                
+                // pO2 = O2% × (Depth/10 + 1)
+                const po2 = (o2Percent / 100) * (depth / 10 + 1);
+                
+                // Status
+                let status = 'Safe';
+                if (po2 > 1.6) status = 'DANGER - pO2 exceeds 1.6 bar';
+                else if (po2 > 1.4) status = 'CAUTION - High pO2';
+                
+                // Standard table depth
+                const tableDepths = [9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51];
+                let tableDepth = 51;
+                for (let d of tableDepths) {
+                    if (ead <= d) {
+                        tableDepth = d;
+                        break;
+                    }
+                }
+                
+                document.getElementById('eadResult').textContent = ead.toFixed(1) + 'm';
+                document.getElementById('po2Result').textContent = po2.toFixed(2) + ' bar/abs';
+                document.getElementById('status').textContent = status;
+                document.getElementById('tableDepth').textContent = tableDepth + 'm';
+                
+                document.getElementById('resultsDiv').style.display = 'block';
+            },
+            
+            reset() {
+                document.getElementById('depth').value = '30';
+                document.getElementById('o2').value = '32';
+                document.getElementById('resultsDiv').style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

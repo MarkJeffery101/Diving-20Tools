@@ -782,14 +782,63 @@
           return { rows, dvis5 };
         },
 
+        parseOTUESOTCSV(text, targetDepth) {
+          const lines = text.trim().split("\n");
+          if (lines.length < 2) return { rows: [], dvis5: null };
+          const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+
+          const depthIdx = headers.findIndex(h => h.includes("depth") && !h.includes("deco"));
+          const timeIdx = headers.findIndex(h => h.includes("dive") && h.includes("time"));
+          const o2Idx = headers.findIndex(h => h.includes("o2"));
+
+          const rows = [];
+          let dvis5 = null;
+
+          for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const cols = line.split(",").map((v) => v.trim());
+            const depth = parseInt(cols[depthIdx]);
+            if (isNaN(depth) || depth !== targetDepth) continue;
+
+            const time = parseInt(cols[timeIdx]);
+            if (isNaN(time)) continue;
+
+            const otuValues = [];
+            for (let j = 0; j < cols.length - 5; j++) {
+              const val = cols[5 + j];
+              if (val === "") {
+                otuValues.push(null);
+              } else {
+                const num = parseInt(val);
+                otuValues.push(isNaN(num) ? null : num);
+              }
+            }
+
+            rows.push({
+              time,
+              till1st: "",
+              stops: otuValues.slice(0, 6),
+              deco: "",
+              otu: "",
+              esot: "",
+              marker: 0,
+            });
+          }
+
+          return { rows, dvis5 };
+        },
+
         getParserForTable(code) {
+          if (code === "SOX15_OTU" || code === "NIA15_OTU" || code === "NIB15_OTU" || code === "BOX15_OTU")
+            return this.parseOTUESOTCSV.bind(this);
           if (code === "SIL15" || code === "H2SIL15" || code === "H4SIL15")
             return this.parseSIL15CSV.bind(this);
           if (code === "SOX15" || code === "HSOX15")
             return this.parseSOX15CSV.bind(this);
           if (code === "SAB15" || code === "HSAB15")
             return this.parseSAB15CSV.bind(this);
-          if (code === "NIA15" || code === "H2NIA15" || code === "H4NIA15" || code === "NIB15" || code === "H2NIB15" || code === "H4NIB15")
+          if (code === "NIA15" || code === "H2NIA15" || code === "H4NIA15" || code === "NIB15" || code === "H2NIB15" || code === "H4NIB15" || code === "NIA2_3" || code === "NIA2_6")
             return this.parseNitroxCSV.bind(this);
           if (code === "BOX15")
             return this.parseBOX15CSV.bind(this);

@@ -271,28 +271,28 @@
       };
 
       const parseCSV = (text, targetDepth) => {
-        const lines = text.trim().split("\n");
+        const lines = text.trim().split("\n").filter((l) => l.trim());
         if (lines.length < 2) return { headers: [], rows: [] };
 
         const headers = parseCSVLine(lines[0]);
         const depthIdx = headers.findIndex((h) =>
           h.toLowerCase().includes("depth"),
         );
+
+        if (depthIdx < 0) {
+          console.warn("Depth column not found", headers);
+          return { headers, rows: [] };
+        }
+
         const rows = [];
-
         for (let i = 1; i < lines.length; i++) {
-          const line = lines[i].trim();
-          if (!line) continue;
-
-          const cols = parseCSVLine(line);
+          const cols = parseCSVLine(lines[i]);
           if (cols.length === 0) continue;
 
-          let depth = null;
-          if (depthIdx >= 0 && depthIdx < cols.length) {
-            depth = parseInt(cols[depthIdx]);
-          }
+          const depthStr = cols[depthIdx] || "";
+          const depth = parseInt(depthStr);
 
-          if (depth === targetDepth) {
+          if (!isNaN(depth) && depth === targetDepth) {
             rows.push(cols);
           }
         }

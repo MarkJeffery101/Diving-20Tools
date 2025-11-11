@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Use Reference - DivePlan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        header { background: linear-gradient(135deg, #062737 0%, #0d4a66 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { font-size: 32px; margin-bottom: 5px; }
+        header p { font-size: 14px; opacity: 0.95; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #ddd; }
+        .tab-btn { padding: 12px 20px; border: none; background: none; cursor: pointer; font-weight: 600; color: #666; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab-btn.active { color: #0d4a66; border-bottom-color: #0d4a66; }
+        .tab-btn:hover { color: #0d4a66; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .info-card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; }
+        .info-card.critical { border-color: #dc2626; background: #fef2f2; }
+        .info-card.warning { border-color: #f59e0b; background: #fffbeb; }
+        .info-card.info { border-color: #0284c7; background: #f0f9ff; }
+        
+        .info-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .info-card.critical h3 { color: #dc2626; }
+        .info-card.warning h3 { color: #f59e0b; }
+        .info-card.info h3 { color: #0284c7; }
+        
+        .info-card ul { list-style: none; }
+        .info-card li { padding: 6px 0; font-size: 13px; padding-left: 20px; position: relative; }
+        .info-card li:before { content: "•"; position: absolute; left: 0; font-weight: bold; }
+        
+        .procedure-section { background: white; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
+        .procedure-header { padding: 15px 20px; background: #f9fafb; border-bottom: 2px solid #ddd; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+        .procedure-header:hover { background: #f3f4f6; }
+        .procedure-toggle { font-size: 20px; transition: transform 0.2s; }
+        .procedure-toggle.open { transform: rotate(180deg); }
+        
+        .procedure-content { display: none; padding: 20px; }
+        .procedure-content.open { display: block; }
+        
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-orange { background: #fed7aa; color: #92400e; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-cyan { background: #cffafe; color: #0e7490; }
+        .badge-green-dark { background: #22c55e; color: white; }
+        .badge-orange-dark { background: #ea580c; color: white; }
+        
+        .procedure-header .badge { margin-bottom: 0; margin-left: 10px; }
+        
+        .content-item { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 13px; }
+        .content-item.title { font-weight: 600; color: #1f2937; padding-left: 0; margin: 15px 0 10px 0; }
+        .content-item.item { list-style: none; }
+        .content-item.item:before { content: "•"; position: absolute; left: 0; font-weight: bold; color: #0d4a66; }
+        .content-item.numbered { list-style: none; }
+        .content-item.numbered:before { content: counter(numbered-list); counter-increment: numbered-list; position: absolute; left: 0; font-weight: bold; color: white; background: #dc2626; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; padding-left: 0; }
+        .procedure-content { counter-reset: numbered-list; }
+        
+        .warning-box { background: #fef2f2; border-left: 4px solid #dc2626; padding: 12px 15px; border-radius: 4px; margin: 15px 0; font-size: 13px; color: #991b1b; }
+        
+        .treatment-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 15px 0; }
+        .treatment-table th { background: #0d4a66; color: white; padding: 8px; text-align: left; font-weight: 600; border: 1px solid #0d4a66; }
+        .treatment-table td { padding: 8px; border: 1px solid #ddd; background: white; }
+        .treatment-table tr:nth-child(even) { background: #f9fafb; }
+        .treatment-table .row-header { background: #f3f4f6; font-weight: 600; }
+        
+        .table-group { margin-bottom: 20px; }
+        .table-group-title { font-size: 14px; font-weight: 700; color: #0d4a66; margin: 20px 0 10px 0; padding-bottom: 8px; border-bottom: 2px solid #0d4a66; }
+        
+        .emergency-flowchart { background: white; border: 2px solid #dc2626; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .emergency-flowchart h3 { color: #dc2626; font-size: 16px; margin-bottom: 15px; }
+        .flowchart-step { margin-bottom: 12px; padding: 10px; background: #fef2f2; border-left: 4px solid #dc2626; }
+        .flowchart-step strong { color: #dc2626; }
+        
+        .scroll-container { overflow-x: auto; }
+        
+        footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 11px; margin-top: 30px; border-top: 1px solid #ddd; }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .tabs { flex-wrap: wrap; }
+            .tab-btn { font-size: 13px; padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📖 Table Use Reference</h1>
+            <p>Comprehensive dive table procedures, safety limits, and emergency protocols</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('safety')">Safety Limits</button>
+            <button class="tab-btn" onclick="switchTab('procedures')">Procedures</button>
+            <button class="tab-btn" onclick="switchTab('treatment')">Treatment Tables</button>
+            <button class="tab-btn" onclick="switchTab('emergency')">Emergency</button>
+        </div>
+
+        <!-- SAFETY LIMITS TAB -->
+        <div id="safety" class="tab-content active">
+            <div class="grid-2">
+                <div class="info-card critical">
+                    <h3>⏱️ Critical Time Limits</h3>
+                    <ul>
+                        <li><strong>Surface to chamber:</strong> 3 min</li>
+                        <li><strong>Extended (clearing):</strong> 5 min</li>
+                        <li><strong>Ascent speed:</strong> 5-10 m/min</li>
+                        <li><strong>Emergency ascent:</strong> Max 10 m/min</li>
+                    </ul>
+                </div>
+                <div class="info-card warning">
+                    <h3>⚡ Oxygen Limits</h3>
+                    <ul>
+                        <li><strong>Max PO₂:</strong> 1.6 bar</li>
+                        <li><strong>IMCA limit:</strong> 1.4 bar</li>
+                        <li><strong>Daily OTU:</strong> 450 max</li>
+                        <li><strong>Weekly OTU:</strong> 2000 max</li>
+                    </ul>
+                </div>
+                <div class="info-card info">
+                    <h3>⏸️ Standby Periods</h3>
+                    <ul>
+                        <li><strong>With O₂:</strong> 2 hours</li>
+                        <li><strong>Without O₂:</strong> 4 hours</li>
+                        <li><strong>Min repeat:</strong> 2-12 hours</li>
+                        <li><strong>Full interval:</strong> 12 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROCEDURES TAB -->
+        <div id="procedures" class="tab-content">
+            <div class="table-group">
+                <div class="table-group-title">🟦 Standard Air Tables (SIL15)</div>
+                
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Normal Use</span>
+                            <span class="badge badge-green">SIL15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="content-item item">Based on a repetitive interval of 12 hours (SIL15)</div>
+                        <div class="content-item item">Repetitive dives possible for intervals of no less than 2 or 4 hours (tables H2SIL15 and H4SIL15)</div>
+                        <div class="content-item item">For dives with an interval of 4 to 12 hours, use the table with the 4-hour interval (H4SIL15)</div>
+                        <div class="content-item item">Recommended: observe at least 12 hours interval following a repetitive dive</div>
+                        <div class="content-item item">More repetitive dives possible in urgent operational circumstances, as long as the part of the table above the bold line is adhered to</div>
+                        <div class="content-item item">Bold lines indicate decompression time on air exceeds 30 minutes (backup for oxygen procedures)</div>
+                        <div class="content-item item">Bold lines may be exceeded in urgent circumstances, but only one repetitive dive recommended after extended decompression</div>
+                        <div class="content-item item">For routine longer dives, use of oxygen is recommended (requires diving bell - use BOX tables)</div>
+                        <div class="content-item item">After decompression dive, repetitive dive possible after not less than 4 hours using H4SOX15</div>
+                        <div class="content-item item">After H4SOX15 repetitive dive, observe interval of not less than 12 hours</div>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Emergency Procedures</span>
+                            <span class="badge badge-red">SIL15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="warning-box">Emergency procedures - follow carefully and consult diving supervisor</div>
+                        <div class="content-item item">If in-water decompression needs to continue on surface:</div>
+                        <div class="content-item item">If repeat interval &gt; 4 hours: use surface decompression tables with oxygen (HSOX15 or SOX15)</div>
+                        <div class="content-item item">Possible even when in-water stops don't comply with surface/ox table</div>
+                        <div class="content-item item">Does not constitute emergency procedure when using normal surface decompression</div>
+                        <div class="content-item item">If in-water stops cannot be made or only partly made: surface/ox table may NOT be used</div>
+                        <div class="content-item item">In this case, choose emergency crash dive procedure</div>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Crash Dive</span>
+                            <span class="badge badge-red">SIL15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="warning-box"><strong>CRASH DIVE</strong> - Critical emergency procedure - all emergency rules apply</div>
+                        <div class="content-item numbered">Use if repeat interval &lt; 4 hours OR total diving time exceeds surface decompression table allowance</div>
+                        <div class="content-item numbered">Ascend to surface at rate &lt; 10 metres per minute (ignore all stops already made)</div>
+                        <div class="content-item numbered">Ensure diver is in chamber within 3 minutes</div>
+                        <div class="content-item numbered">Put under pressure at depth = first in-water stop + 9 metres</div>
+                        <div class="content-item numbered">Stay there for 5 minutes</div>
+                        <div class="content-item numbered">Carry out decompression according to SIL15 for period = actual diving time + 10 minutes</div>
+                        <div class="content-item numbered">If chamber equipped for oxygen: commence oxygen breathing from 12 metre stop in periods of 20 minutes, alternated with 5 minutes on air</div>
+                        <div class="content-item numbered">Crash dive = emergency procedure - all emergency rules apply</div>
+                        <div class="content-item numbered">Observe repeat interval of not less than 12 hours</div>
+                        <div class="content-item numbered">If oxygen used: remain in vicinity of chamber for 2 hours</div>
+                        <div class="content-item numbered">If no oxygen used: remain in vicinity of chamber for 4 hours</div>
+                        <div class="content-item numbered">Risk of decompression sickness increases under these conditions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-group">
+                <div class="table-group-title">🟧 Surface/Oxygen Tables (SOX15)</div>
+                
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Normal Use</span>
+                            <span class="badge badge-orange">SOX15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="content-item item">Tables with oxygen ("SOX" code) are for normal use</div>
+                        <div class="content-item item">Surface decompression tables with air only ("SAB" code) are backup only for oxygen failure</div>
+                        <div class="content-item item">If oxygen fails before planned dive: postpone dive until oxygen is available</div>
+                        <div class="content-item item">Based on repetitive interval of 12 hours</div>
+                        <div class="content-item item">Repetitive dives possible at intervals of not less than 2 or 4 hours using H2SOX15 or H4SOX15</div>
+                        <div class="content-item item">After repetitive dive: observe interval of not less than 12 hours before next dive</div>
+                        <div class="content-item item">In-water stops on air - surface stops on oxygen (20 min periods alternated with 5 min air)</div>
+                        <div class="content-item item">SAB15 (backup air table) - use only if oxygen supply fails during dive</div>
+                        <div class="content-item item">Do NOT plan dives using SAB15 as primary table</div>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Emergency Procedures</span>
+                            <span class="badge badge-red">SOX15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="warning-box">Emergency procedures - follow carefully and consult diving supervisor</div>
+                        <div class="content-item title">Oxygen Failure During Dive</div>
+                        <div class="content-item item">If oxygen fails during in-water decompression: continue on air to surface</div>
+                        <div class="content-item item">Do NOT attempt to complete planned oxygen stops</div>
+                        <div class="content-item item">Once at surface: use emergency protocols and observe strict chamber confinement (4 hours minimum)</div>
+                        <div class="content-item item">If oxygen fails before planned surface decompression: use SAB15 table as contingency</div>
+                        
+                        <div class="content-item title" style="margin-top: 15px;">Delay in Surface Decompression</div>
+                        <div class="content-item item">If delay occurs before reaching surface: extend in-water stops proportionally</div>
+                        <div class="content-item item">If delay &gt; 10 minutes: consult diving supervisor for modified decompression schedule</div>
+                        <div class="content-item item">Always account for total bottom time when calculating surface decompression</div>
+                        
+                        <div class="content-item title" style="margin-top: 15px;">Interruptions During Surface Decompression</div>
+                        <div class="content-item item">If surface decompression interrupted for medical or operational reasons: reassess complete dive</div>
+                        <div class="content-item item">Resume procedures according to conservative oxygen protocol (20 min on / 5 min off)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-group">
+                <div class="table-group-title">🟩 Nitrox Tables (NIA15/NIB15)</div>
+                
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Normal Use</span>
+                            <span class="badge badge-cyan">NIA15/NIB15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="content-item item">NIA15 = 40% nitrox (reduced max depth to 27m)</div>
+                        <div class="content-item item">NIB15 = 35% nitrox (deeper capability to 33m)</div>
+                        <div class="content-item item">Calculate Equivalent Air Depth (EAD) first to select proper table</div>
+                        <div class="content-item item">Decompression time reduces compared to equivalent air depth dives</div>
+                        <div class="content-item item">Based on repetitive interval of 12 hours</div>
+                        <div class="content-item item">Repetitive dives possible at intervals of not less than 2 or 4 hours using H2 and H4 variants</div>
+                        <div class="content-item item">Oxygen limits apply (max PO₂ 1.6 bar, IMCA 1.4 bar)</div>
+                        <div class="content-item item">Monitor PO₂ closely at depths approaching maximum operating depth</div>
+                        <div class="content-item item">After nitrox dive: normal air repetitive dives use conservative estimate</div>
+                    </div>
+                </div>
+
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Emergency Procedures</span>
+                            <span class="badge badge-red">NIA15/NIB15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="warning-box">Emergency procedures - follow carefully and consult diving supervisor</div>
+                        <div class="content-item item">If oxygen supply fails: switch to air breathing gas</div>
+                        <div class="content-item item">Assess depth - if too deep for decompression on air: consider emergency ascent protocol</div>
+                        <div class="content-item item">Calculate new EAD for air at current depth to determine decompression requirement</div>
+                        <div class="content-item item">Extend decompression stops if switching from nitrox to air mid-dive</div>
+                        <div class="content-item item">Contact diving supervisor for guidance on emergency procedures</div>
+                        <div class="content-item item">If unable to complete decompression safely: use crash dive procedure</div>
+                        <div class="content-item item">Observe strict chamber confinement (4 hours minimum) post-emergency</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-group">
+                <div class="table-group-title">🟪 Bell Table (BOX15)</div>
+                
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Normal Use</span>
+                            <span class="badge badge-blue">BOX15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="content-item item">BOX15 = wet/dry bell oxygen decompression table</div>
+                        <div class="content-item item">Allows extended bottom times with oxygen decompression in bell</div>
+                        <div class="content-item item">Diver exposure time tracked separately from bell bottom time</div>
+                        <div class="content-item item">Bell depth and diver depth may differ - use diver depth for decompression calculation</div>
+                        <div class="content-item item">In-water stops at designated depths per table schedule</div>
+                        <div class="content-item item">Oxygen breathing in bell at appropriate stops (follow specific stop time and composition)</div>
+                        <div class="content-item item">Based on repetitive interval of 12 hours</div>
+                        <div class="content-item item">After BOX15 dive: next dive must wait minimum 4 hours or follow surface interval protocol</div>
+                        <div class="content-item item">Bell integrity essential - no decompression without bell support</div>
+                        <div class="content-item item">Bellman exposure tracking critical for OTU and safety compliance</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-group">
+                <div class="table-group-title">🟨 No-Stop Air Tables (ND15)</div>
+                
+                <div class="procedure-section">
+                    <div class="procedure-header" onclick="toggleProcedure(this)">
+                        <div>
+                            <span>Normal Use</span>
+                            <span class="badge badge-orange">ND15</span>
+                        </div>
+                        <span class="procedure-toggle">▼</span>
+                    </div>
+                    <div class="procedure-content">
+                        <div class="content-item item">No-stop tables allow direct ascent to surface without decompression stops</div>
+                        <div class="content-item item">Must remain within no-stop bottom time limits shown in table</div>
+                        <div class="content-item item">Exceeding bottom time requires decompression - use SIL15 table instead</div>
+                        <div class="content-item item">Ascent speed: 5-10 m/min (slower preferred for safety)</div>
+                        <div class="content-item item">Based on repetitive interval of 12 hours</div>
+                        <div class="content-item item">Repetitive dives within 12 hours require using H2 or H4 table variants</div>
+                        <div class="content-item item">Multiple no-stop dives possible: track total exposure and surface intervals</div>
+                        <div class="content-item item">Safety margin recommended: stay 5 minutes under bottom time limit for conservatism</div>
+                        <div class="content-item item">Typically used for shallow water dives (&lt; 20m)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TREATMENT TABLES TAB -->
+        <div id="treatment" class="tab-content">
+            <div class="info-card warning" style="margin-bottom: 20px;">
+                <h3>⚠️ Treatment Table Overview</h3>
+                <p style="font-size: 13px; margin-bottom: 10px;">Treatment tables are for recompression therapy of decompression sickness. These are emergency protocols managed by hyperbaric specialists.</p>
+                <ul>
+                    <li>USN-5: Standard treatment table - most common</li>
+                    <li>USN-6: Extended treatment with extended oxygen</li>
+                    <li>AIR-1A, AIR-2A, AIR-3: Air-only variants when oxygen unavailable</li>
+                </ul>
+            </div>
+
+            <div class="treatment-table">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align: center; background: #dc2626;">USN-5 Treatment Table</th>
+                    </tr>
+                    <tr>
+                        <th>Depth (msw)</th>
+                        <th>Initial Time (min)</th>
+                        <th>Gas</th>
+                        <th>Duration (min)</th>
+                        <th>Total Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-header">18 msw</td>
+                        <td>5</td>
+                        <td>100% O₂</td>
+                        <td>20</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header"></td>
+                        <td></td>
+                        <td>Air</td>
+                        <td>5</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">9 msw</td>
+                        <td></td>
+                        <td>100% O₂</td>
+                        <td>20</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header"></td>
+                        <td></td>
+                        <td>Air</td>
+                        <td>5</td>
+                        <td>55</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header"></td>
+                        <td></td>
+                        <td>100% O₂</td>
+                        <td>20</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">Surface</td>
+                        <td></td>
+                        <td>100% O₂</td>
+                        <td>300 (or until symptoms resolve)</td>
+                        <td>375+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 13px;">
+                <strong style="color: #0d4a66;">Treatment Table Administration:</strong><br>
+                • All treatment tables administered in hyperbaric chamber<br>
+                • Requires trained hyperbaric technician and medical supervision<br>
+                • Patient signs and symptoms monitored continuously<br>
+                • Depth holding times may be extended based on patient response<br>
+                • Never attempt self-treatment or surface treatment<br>
+                • Early recompression critical for best outcomes<br>
+                • Time from accident to chamber time is critical factor in recovery
+            </div>
+        </div>
+
+        <!-- EMERGENCY TAB -->
+        <div id="emergency" class="tab-content">
+            <div class="emergency-flowchart">
+                <h3>🚨 Decompression Sickness (DCS) Recognition</h3>
+                <div class="flowchart-step">
+                    <strong>Immediate Symptoms (Minutes to hours after dive):</strong><br>
+                    Joint pain, muscle aches, tingling, weakness, fatigue, dizziness, nausea
+                </div>
+                <div class="flowchart-step">
+                    <strong>Serious Symptoms (Minutes to hours):</strong><br>
+                    Difficulty breathing, chest pain, paralysis, loss of consciousness, disorientation
+                </div>
+                <div class="flowchart-step">
+                    <strong>ACTION: Call emergency services immediately - patient needs recompression therapy</strong><br>
+                    Do not delay seeking treatment
+                </div>
+            </div>
+
+            <div class="emergency-flowchart">
+                <h3>🏥 Emergency Response Protocol</h3>
+                <div class="flowchart-step">
+                    <strong>1. Alert:</strong> Call emergency medical services / dive emergency number
+                </div>
+                <div class="flowchart-step">
+                    <strong>2. Assessment:</strong> Identify symptoms and time of onset (critical for treatment)
+                </div>
+                <div class="flowchart-step">
+                    <strong>3. First Aid:</strong> Administer 100% oxygen (if available) while awaiting emergency transport
+                </div>
+                <div class="flowchart-step">
+                    <strong>4. Position:</strong> Keep patient horizontal, monitor vitals, prevent aspiration
+                </div>
+                <div class="flowchart-step">
+                    <strong>5. Transport:</strong> Arrange immediate transport to nearest hyperbaric facility
+                </div>
+                <div class="flowchart-step">
+                    <strong>6. Treatment:</strong> Recompression therapy in chamber under medical supervision (USN-5 or USN-6)
+                </div>
+                <div class="flowchart-step">
+                    <strong>7. Follow-up:</strong> Medical evaluation and extended oxygen therapy as prescribed
+                </div>
+            </div>
+
+            <div class="emergency-flowchart">
+                <h3>⚠️ Oxygen Toxicity (OTu/VENTOX-C) Recognition</h3>
+                <div class="flowchart-step">
+                    <strong>Early Warning Signs:</strong> Vision changes (tunnel vision), tinnitus, nausea, twitching, dizziness
+                </div>
+                <div class="flowchart-step">
+                    <strong>Progressive Symptoms:</strong> Disorientation, muscle twitching, chest pain, difficulty breathing
+                </div>
+                <div class="flowchart-step">
+                    <strong>ACTION:</strong> Immediately stop oxygen breathing, switch to air, ascend to shallower depth or surface
+                </div>
+            </div>
+
+            <div class="emergency-flowchart">
+                <h3>🆘 Surface Interval Problems</h3>
+                <div class="flowchart-step">
+                    <strong>If symptoms appear during surface interval:</strong> Remove from further diving, monitor closely
+                </div>
+                <div class="flowchart-step">
+                    <strong>If symptoms worsen:</strong> Contact medical facility, consider recompression therapy assessment
+                </div>
+                <div class="flowchart-step">
+                    <strong>Next dive clearance:</strong> Medical evaluation required - never resume diving without medical clearance
+                </div>
+            </div>
+
+            <div class="info-card critical" style="margin-top: 20px;">
+                <h3>Critical Emergency Numbers</h3>
+                <ul>
+                    <li><strong>Emergency Services:</strong> 911 (USA) / Emergency number for location</li>
+                    <li><strong>Divers Alert Network (DAN):</strong> 919-684-9111 (24/7 emergency hotline)</li>
+                    <li><strong>Locate Hyperbaric Chamber:</strong> Contact DAN or emergency services</li>
+                    <li><strong>Diving Supervisor/Safety Officer:</strong> Contact immediately for operational coordination</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            DivePlan Table Use Reference Widget | Comprehensive Diving Safety Reference<br>
+            Always consult with your diving supervisor and follow your organization's safety protocols
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to button
+            event.target.classList.add('active');
+        }
+
+        function toggleProcedure(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.procedure-toggle');
+            
+            content.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

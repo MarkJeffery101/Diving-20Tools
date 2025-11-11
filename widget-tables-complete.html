@@ -221,54 +221,122 @@
             name: "No-Stop Limits",
             tag: "tag-blue",
             tables: [
-              { name: "Air", code: "ND15", depths: [9,12,15,18,21,24,27,30,33,36] },
-              { name: "Air Extended", code: "LND15", depths: [9,12,15,18,21,24,27,30,33,36] }
-            ]
+              {
+                name: "Air",
+                code: "ND15",
+                depths: [9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+              },
+              {
+                name: "Air Extended",
+                code: "LND15",
+                depths: [9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+              },
+            ],
           },
           {
             name: "Standard Air",
             tag: "tag-cyan",
             tables: [
-              { name: "12 Hour SI", code: "SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-              { name: "2 Hour SI", code: "H2SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-              { name: "4 Hour SI", code: "H4SIL15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
-            ]
+              {
+                name: "12 Hour SI",
+                code: "SIL15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+              {
+                name: "2 Hour SI",
+                code: "H2SIL15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+              {
+                name: "4 Hour SI",
+                code: "H4SIL15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+            ],
           },
           {
             name: "Surface O2",
             tag: "tag-orange",
             tables: [
-              { name: "12 Hour SI", code: "SOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-              { name: "4 Hour SI", code: "HSOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
-            ]
+              {
+                name: "12 Hour SI",
+                code: "SOX15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+              {
+                name: "4 Hour SI",
+                code: "HSOX15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+            ],
           },
           {
             name: "Backup Air",
             tag: "tag-yellow",
             tables: [
-              { name: "12 Hour SI", code: "SAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] },
-              { name: "4 Hour SI", code: "HSAB15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
-            ]
+              {
+                name: "12 Hour SI",
+                code: "SAB15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+              {
+                name: "4 Hour SI",
+                code: "HSAB15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+            ],
           },
           {
             name: "Nitrox",
             tag: "tag-green",
             tables: [
-              { name: "NIA 40% 12h", code: "NIA15", depths: [18,21,24,27] },
-              { name: "NIA 40% 2h", code: "H2NIA15", depths: [18,21,24,27] },
-              { name: "NIA 40% 4h", code: "H4NIA15", depths: [18,21,24,27] },
-              { name: "NIB 35% 12h", code: "NIB15", depths: [18,21,24,27,30,33] },
-              { name: "NIB 35% 2h", code: "H2NIB15", depths: [18,21,24,27,30,33] },
-              { name: "NIB 35% 4h", code: "H4NIB15", depths: [18,21,24,27,30,33] }
-            ]
+              { name: "NIA 40% 12h", code: "NIA15", depths: [18, 21, 24, 27] },
+              { name: "NIA 40% 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
+              { name: "NIA 40% 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
+              {
+                name: "NIB 35% 12h",
+                code: "NIB15",
+                depths: [18, 21, 24, 27, 30, 33],
+              },
+              {
+                name: "NIB 35% 2h",
+                code: "H2NIB15",
+                depths: [18, 21, 24, 27, 30, 33],
+              },
+              {
+                name: "NIB 35% 4h",
+                code: "H4NIB15",
+                depths: [18, 21, 24, 27, 30, 33],
+              },
+            ],
           },
           {
             name: "Box Air/O2",
             tag: "tag-indigo",
             tables: [
-              { name: "Wet/Dry Bell", code: "BOX15", depths: [12,15,18,21,24,27,30,33,36,39,42,45,48,51] }
-            ]
-          }
+              {
+                name: "Wet/Dry Bell",
+                code: "BOX15",
+                depths: [
+                  12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51,
+                ],
+              },
+            ],
+          },
         ],
 
         csvCache: {},
@@ -278,20 +346,31 @@
           if (lines.length < 2) return [];
 
           // Special handling for reference tables (ND15, LND15)
-          if (code === 'ND15' || code === 'LND15') {
+          if (code === "ND15" || code === "LND15") {
             return this.parseReferenceTable(text);
           }
 
-          const headers = lines[0].split(",").map(h => h.trim().toLowerCase());
+          const headers = lines[0]
+            .split(",")
+            .map((h) => h.trim().toLowerCase());
           const rows = [];
 
           // Find column indices dynamically (same as React code)
-          const depthIndex = headers.findIndex(h => h.includes('depth') && !h.includes('deco') && !h.includes('stop'));
-          const timeIndex = headers.findIndex(h => h.includes('dive') && h.includes('time'));
-          const tillIndex = headers.findIndex(h => h.includes('till') || h.includes('1st'));
-          const decoIndex = headers.findIndex(h => h.includes('deco') && h.includes('time'));
-          const otuIndex = headers.findIndex(h => h.includes('otu'));
-          const esotIndex = headers.findIndex(h => h.includes('esot'));
+          const depthIndex = headers.findIndex(
+            (h) =>
+              h.includes("depth") && !h.includes("deco") && !h.includes("stop"),
+          );
+          const timeIndex = headers.findIndex(
+            (h) => h.includes("dive") && h.includes("time"),
+          );
+          const tillIndex = headers.findIndex(
+            (h) => h.includes("till") || h.includes("1st"),
+          );
+          const decoIndex = headers.findIndex(
+            (h) => h.includes("deco") && h.includes("time"),
+          );
+          const otuIndex = headers.findIndex((h) => h.includes("otu"));
+          const esotIndex = headers.findIndex((h) => h.includes("esot"));
           const markerIndex = esotIndex + 1;
           const stopStart = tillIndex + 1;
           const stopEnd = decoIndex;
@@ -300,7 +379,7 @@
             const line = lines[i].trim();
             if (!line) continue;
 
-            const cols = line.split(",").map(v => v.trim());
+            const cols = line.split(",").map((v) => v.trim());
             const depth = parseInt(cols[depthIndex]);
             if (isNaN(depth) || depth !== wantedDepth) continue;
 
@@ -335,7 +414,7 @@
             const line = lines[i].trim();
             if (!line) continue;
 
-            const cols = line.split(",").map(v => v.trim());
+            const cols = line.split(",").map((v) => v.trim());
             const depth = parseInt(cols[0]);
             if (isNaN(depth)) continue;
 
@@ -345,7 +424,16 @@
             rows.push({
               time: depth,
               till1st: val1,
-              stops: [parseInt(val1) || null, parseInt(val2) || null, null, null, null, null, null, null],
+              stops: [
+                parseInt(val1) || null,
+                parseInt(val2) || null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+              ],
               deco: "",
               otu: "",
               esot: "",
@@ -376,7 +464,7 @@
           this.groups.forEach((g, i) => {
             html += `<div class="card" onclick="app.renderLevel2(${i})">
                         <div class="tag ${g.tag}">${g.name}</div>
-                        <p>${g.tables.length} table${g.tables.length !== 1 ? 's' : ''}</p>
+                        <p>${g.tables.length} table${g.tables.length !== 1 ? "s" : ""}</p>
                     </div>`;
           });
           document.getElementById("content").innerHTML = html + "</div>";

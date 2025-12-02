@@ -10,35 +10,36 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         header { background: linear-gradient(135deg, #062737 0%, #0d4a66 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
         header h1 { font-size: 32px; margin-bottom: 5px; }
+        header p { font-size: 14px; opacity: 0.9; }
         .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
         .card { background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .card h2 { color: #062737; margin-bottom: 15px; font-size: 18px; border-bottom: 2px solid #0d4a66; padding-bottom: 10px; }
         .input-group { margin-bottom: 12px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; color: #1f2937; }
         input { width: 100%; padding: 8px; border: 2px solid #ddd; border-radius: 4px; font-size: 13px; }
         input:focus { outline: none; border-color: #0d4a66; }
+        small { display: block; color: #666; font-size: 12px; margin-top: 3px; }
         .output-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
         .output-row span:first-child { font-weight: 600; }
         .output-row span:last-child { font-weight: bold; color: #062737; }
         .buttons { display: flex; gap: 10px; margin-top: 15px; }
-        button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
         .btn-primary { background: #0d4a66; color: white; }
         .btn-primary:hover { background: #062737; }
         .btn-secondary { background: #ddd; color: #333; }
+        .btn-secondary:hover { background: #ccc; }
         .table-wrapper { background: white; border: 4px solid #062737; border-radius: 8px; overflow: hidden; }
         .table-header { background: #062737; color: white; padding: 15px; }
+        .table-header h2 { margin: 0; color: white; border: none; padding: 0; }
         .table-scroll { overflow-x: auto; padding: 15px; max-height: 600px; overflow-y: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        thead { background: #0d4a66; color: white; }
+        thead { background: #0d4a66; color: white; position: sticky; top: 0; }
         th, td { padding: 6px; text-align: center; border: 1px solid #ddd; }
         th { font-weight: bold; }
         tbody tr:nth-child(even) { background: #f9f9f9; }
         tbody tr:hover { background: #e8f4f8; }
         .oxy-col { background: #d4e8f0; }
         .highlight { background: #fff9c4; font-weight: bold; }
-        .green-bg { background: #c8e6c9; }
-        .amber-bg { background: #ffe0b2; }
-        .red-bg { background: #ffcccc; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media (max-width: 1200px) { .layout { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
         footer { text-align: center; padding: 20px; color: #666; font-size: 12px; margin-top: 30px; }
@@ -52,7 +53,6 @@
         </header>
         
         <div class="layout">
-            <!-- Inputs -->
             <div class="card" style="background: #e8f5e9; border-color: #4caf50;">
                 <h2>🔧 Inputs</h2>
                 <div class="input-group">
@@ -62,7 +62,7 @@
                 <div class="input-group">
                     <label>Nitrox O₂ (%)</label>
                     <input type="number" id="o2" value="21" placeholder="21" min="21" max="40">
-                    <small style="color: #666; font-size: 12px;">Only 21 and 30-40 allowed</small>
+                    <small>Only 21 and 30-40 allowed</small>
                 </div>
                 <div class="input-group">
                     <label>Dive Time (min)</label>
@@ -74,7 +74,6 @@
                 </div>
             </div>
             
-            <!-- Outputs -->
             <div class="card" style="background: #f3e5f5; border-color: #9c27b0;">
                 <h2>📊 Outputs</h2>
                 <div class="output-row">
@@ -93,10 +92,15 @@
                     <span>Table to Use (depth):</span>
                     <span id="tableUse">—</span>
                 </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #bbb;">
+                    <p style="font-size: 12px; color: #666;">
+                        <strong>Safety Note:</strong> Always follow your training and local diving regulations. 
+                        EAD calculations help determine decompression requirements for nitrox diving.
+                    </p>
+                </div>
             </div>
         </div>
         
-        <!-- Decompression Table -->
         <div class="table-wrapper">
             <div class="table-header">
                 <h2 style="margin: 0; color: white;">Decompression Table</h2>
@@ -140,24 +144,7 @@
             31: 180, 32: 180, 33: 180, 36: 180, 39: 180, 42: 180, 45: 180, 48: 180, 51: 180
         };
         
-        const DECOMPRESSION_STOPS = [
-            { depth: 24, o2: 21, label: '24 Air' },
-            { depth: 21, o2: 21, label: '21 Air' },
-            { depth: 18, o2: 21, label: '18 Air' },
-            { depth: 15, o2: 21, label: '15 Air TUP' },
-            { depth: 15, o2: 100, label: '15 Oxygen' },
-            { depth: 12, o2: 21, label: '12 Air' },
-            { depth: 12, o2: 100, label: '12 Oxygen' },
-            { depth: 9, o2: 21, label: '9 Air' },
-            { depth: 9, o2: 100, label: '9 Oxygen' },
-            { depth: 6, o2: 21, label: '6 Air' },
-            { depth: 6, o2: 100, label: '6 Oxygen' },
-            { depth: 3, o2: 21, label: '3 Air' },
-            { depth: 3, o2: 100, label: '3 Oxygen' },
-        ];
-        
-        // Sample decompression data
-        const SAMPLE_DECOMPRESSION = {
+        const DECOMPRESSION_DATA = {
             30: [
                 { time: 30, ascent: 1.9, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '', s9o: '', s6: '3', s6o: '', s3: '14', s3o: '', total: 17 },
                 { time: 40, ascent: 1.9, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '', s9o: '', s6: '10', s6o: '', s3: '22', s3o: '', total: 32 },
@@ -169,6 +156,20 @@
                 { time: 40, ascent: 2.1, s24: '', s21: '', s18: '', s15: '2', s15o: '', s12: '', s12o: '', s9: '4', s9o: '', s6: '15', s6o: '', s3: '28', s3o: '', total: 49 },
                 { time: 50, ascent: 2.1, s24: '', s21: '', s18: '2', s15: '4', s15o: '', s12: '3', s12o: '', s9: '8', s9o: '', s6: '22', s6o: '', s3: '36', s3o: '', total: 75 },
                 { time: 60, ascent: 2.1, s24: '', s21: '2', s18: '4', s15: '7', s15o: '', s12: '6', s12o: '', s9: '12', s9o: '', s6: '28', s6o: '', s3: '44', s3o: '', total: 103 },
+            ],
+            42: [
+                { time: 20, ascent: 2.7, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '', s9o: '', s6: '5', s6o: '', s3: '13', s3o: '', total: 18 },
+                { time: 30, ascent: 2.4, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '2', s9o: '', s6: '12', s6o: '', s3: '19', s3o: '', total: 33 },
+                { time: 40, ascent: 2.1, s24: '', s21: '', s18: '', s15: '1', s15o: '', s12: '2', s12o: '', s9: '6', s9o: '', s6: '18', s6o: '', s3: '29', s3o: '', total: 56 },
+                { time: 50, ascent: 2.1, s24: '', s21: '', s18: '1', s15: '3', s15o: '', s12: '4', s12o: '', s9: '10', s9o: '', s6: '25', s6o: '', s3: '37', s3o: '', total: 80 },
+                { time: 60, ascent: 1.8, s24: '', s21: '1', s18: '3', s15: '5', s15o: '', s12: '6', s12o: '', s9: '12', s9o: '', s6: '26', s6o: '', s3: '41', s3o: '', total: 94 },
+            ],
+            45: [
+                { time: 15, ascent: 3.3, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '', s9o: '', s6: '4', s6o: '', s3: '9', s3o: '', total: 13 },
+                { time: 25, ascent: 3.0, s24: '', s21: '', s18: '', s15: '', s15o: '', s12: '', s12o: '', s9: '1', s9o: '', s6: '9', s6o: '', s3: '15', s3o: '', total: 25 },
+                { time: 35, ascent: 2.7, s24: '', s21: '', s18: '', s15: '1', s15o: '', s12: '1', s12o: '', s9: '4', s9o: '', s6: '12', s6o: '', s3: '20', s3o: '', total: 38 },
+                { time: 45, ascent: 2.4, s24: '', s21: '', s18: '1', s15: '2', s15o: '', s12: '3', s12o: '', s9: '8', s9o: '', s6: '18', s6o: '', s3: '28', s3o: '', total: 60 },
+                { time: 55, ascent: 2.1, s24: '', s21: '1', s18: '2', s15: '4', s15o: '', s12: '6', s12o: '', s9: '11', s9o: '', s6: '23', s6o: '', s3: '36', s3o: '', total: 83 },
             ]
         };
         
@@ -178,37 +179,35 @@
                 const o2 = parseFloat(document.getElementById('o2').value) || 21;
                 const diveTime = parseFloat(document.getElementById('diveTime').value) || 0;
                 
-                // Validate O2
+                if (maxDepth < 0 || diveTime < 0) {
+                    alert('Depth and time must be positive values');
+                    return;
+                }
+                
                 if (o2 !== 21 && (o2 < 30 || o2 > 40)) {
                     alert('Only 21% and 30-40% O2 allowed');
                     return;
                 }
                 
-                // EAD calculation
                 const fractionN2 = (100 - o2) / 100;
                 const ead = (maxDepth + 10) * (fractionN2 / 0.79) - 10;
                 const eadRounded = Math.ceil(ead * 10) / 10;
                 
-                // PO2
                 const po2 = (o2 / 100) * (maxDepth / 10 + 1);
                 
-                // IMCA TUP max bottom time
                 const nearestDepth = Object.keys(IMCA_TUP_LIMITS).map(Number).reduce((prev, curr) =>
                     Math.abs(curr - maxDepth) < Math.abs(prev - maxDepth) ? curr : prev
                 );
                 const maxBT = IMCA_TUP_LIMITS[nearestDepth];
                 
-                // Find table depth (next deeper depth with data)
-                const tableDepths = [30, 39, 42, 45];
-                const tableDepth = tableDepths.find(d => ead <= d) || 51;
+                const tableDepths = Object.keys(DECOMPRESSION_DATA).map(Number).sort((a, b) => a - b);
+                const tableDepth = tableDepths.find(d => ead <= d) || tableDepths[tableDepths.length - 1];
                 
-                // Update outputs
                 document.getElementById('ead').textContent = eadRounded.toFixed(1) + ' m';
                 document.getElementById('po2').textContent = po2.toFixed(2) + ' bar';
                 document.getElementById('maxBottomTime').textContent = maxBT + ' min';
                 document.getElementById('tableUse').textContent = tableDepth + ' m';
                 
-                // Render table
                 this.renderTable(tableDepth, diveTime);
             },
             
@@ -216,13 +215,13 @@
                 const tbody = document.getElementById('tableBody');
                 tbody.innerHTML = '';
                 
-                const rows = SAMPLE_DECOMPRESSION[depth] || [];
+                const rows = DECOMPRESSION_DATA[depth] || [];
                 rows.forEach(row => {
                     const isSelected = Math.abs(row.time - selectedTime) < 5;
                     const tr = document.createElement('tr');
                     tr.className = isSelected ? 'highlight' : '';
                     
-                    let html = `
+                    tr.innerHTML = `
                         <td>${depth}</td>
                         <td>${row.time}</td>
                         <td>${row.ascent}</td>
@@ -241,7 +240,6 @@
                         <td class="oxy-col">${row.s3o || '—'}</td>
                         <td><strong>${row.total}</strong></td>
                     `;
-                    tr.innerHTML = html;
                     tbody.appendChild(tr);
                 });
             },

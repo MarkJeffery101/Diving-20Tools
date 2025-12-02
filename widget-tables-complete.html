@@ -60,7 +60,7 @@ footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 11px; mar
 </div>
 
 <script>
-// Embedded CSV data for all tables
+// Embedded CSV data for reference tables (small files)
 const CSV_DATA = {
   'ND15': `Max Depth (metres),Repeat Interval 8 Hours (min),Repeat Interval 2 Hours (min)
 9,300,300
@@ -93,24 +93,7 @@ const CSV_DATA = {
 42,,9
 45,,9
 48,,7
-51,,6`,
-  // Standard Air Tables
-  'SIL15': true, // Will be fetched from server if not available
-  'H2SIL15': true,
-  'H4SIL15': true,
-  // SurO2 Tables
-  'SOX15': true,
-  'HSOX15': true,
-  // Other tables...
-  'SAB15': true,
-  'HSAB15': true,
-  'NIA15': true,
-  'H2NIA15': true,
-  'H4NIA15': true,
-  'NIB15': true,
-  'H2NIB15': true,
-  'H4NIB15': true,
-  'BOX15': true
+51,,6`
 };
 
 function parseCSVLine(line) {

@@ -325,6 +325,10 @@ function loadTableData(code) {
     return null;
 }
 
+function getEmbeddedTables() {
+    return Object.keys(TABLES_DATA);
+}
+
 function renderReferenceTable(gIdx, tIdx) {
     const g = tableGroups[gIdx];
     const t = g.tables[tIdx];

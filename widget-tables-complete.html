@@ -1,68 +1,162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DivePlan Tables Widget - Complete</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #f0f4f8, #fff, #f0f4f8); color: #333; }
-.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
-header { margin-bottom: 30px; }
-h1 { font-size: 32px; font-weight: 700; color: #1f2937; }
-.subtitle { color: #6b7280; }
-.back-btn { background: #3b82f6; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; margin-bottom: 20px; font-size: 14px; transition: all 0.2s; }
-.back-btn:hover { background: #2563eb; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-.card { background: white; border: 2px solid #e5e7eb; border-radius: 8px; padding: 18px; cursor: pointer; transition: all 0.2s; }
-.card:hover { border-color: #3b82f6; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
-.card h3 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
-.card p { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
-.tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
-.tag-blue { background: #dbeafe; color: #1e40af; }
-.tag-cyan { background: #cffafe; color: #0e7490; }
-.tag-orange { background: #fed7aa; color: #92400e; }
-.tag-yellow { background: #fef08a; color: #854d0e; }
-.tag-green { background: #dcfce7; color: #166534; }
-.tag-indigo { background: #e0e7ff; color: #312e81; }
-.tag-red { background: #fee2e2; color: #991b1b; }
-.section { background: white; border-radius: 8px; padding: 18px; margin-bottom: 16px; border: 1px solid #e5e7eb; }
-.section h2 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
-.section p { font-size: 13px; color: #6b7280; }
-.depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-top: 16px; }
-.depth-btn { padding: 10px 8px; border: 2px solid #3b82f6; background: white; color: #3b82f6; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
-.depth-btn:hover { background: #eff6ff; }
-.table-wrapper { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
-.table-header { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; padding: 16px; }
-.table-header h2 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
-.table-scroll { overflow-x: auto; max-height: 600px; overflow-y: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-thead { background: linear-gradient(to bottom, #1d4ed8, #1e40af); color: white; position: sticky; top: 0; }
-th { padding: 8px 4px; text-align: center; border: 1px solid #0d47a1; font-weight: 600; font-size: 10px; white-space: nowrap; }
-td { padding: 8px 4px; text-align: center; border: 1px solid #e5e7eb; }
-.row-white { background: white; }
-.row-white:hover { background: #eff6ff; }
-.row-green { background: #f0fdf4; }
-.row-green:hover { background: #eff6ff; }
-.error { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 6px; margin: 16px 0; }
-.loading { text-align: center; padding: 20px; color: #6b7280; }
-footer { text-align: center; padding: 20px; color: #9ca3af; font-size: 11px; margin-top: 40px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dive Tables - Complete Standalone</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #fff 50%, #f0f4f8 100%);
+            color: #333;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 32px; margin-bottom: 8px; }
+        header p { font-size: 14px; opacity: 0.9; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        .card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .card:hover { border-color: #3b82f6; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .card h3 { font-size: 16px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+        .card p { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-cyan { background: #cffafe; color: #0e7490; }
+        .tag-orange { background: #fed7aa; color: #92400e; }
+        .tag-yellow { background: #fef08a; color: #854d0e; }
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-indigo { background: #e0e7ff; color: #312e81; }
+        .back-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: #2563eb; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+        }
+        .section h2 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+        .section p { font-size: 13px; color: #6b7280; }
+        .depths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; margin-top: 20px; }
+        .depth-btn {
+            padding: 12px 10px;
+            border: 2px solid #3b82f6;
+            background: white;
+            color: #3b82f6;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .depth-btn:hover { background: #eff6ff; }
+        .table-wrapper {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .table-header {
+            background: linear-gradient(to bottom, #1d4ed8, #1e40af);
+            color: white;
+            padding: 20px;
+        }
+        .table-header h2 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+        .table-header small { color: #bbb; font-size: 12px; margin-top: 8px; display: block; }
+        .table-scroll {
+            overflow-x: auto;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        thead {
+            background: linear-gradient(to bottom, #1d4ed8, #1e40af);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        th, td {
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            white-space: nowrap;
+        }
+        th { font-weight: bold; font-size: 11px; }
+        tbody tr:nth-child(even) { background: #f9f9f9; }
+        tbody tr:hover { background: #eff6ff; }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #999;
+            font-size: 12px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>Dive Tables - Complete</h1>
-<p class="subtitle">Browse all decompression tables with complete data</p>
-</header>
-<div id="content"></div>
-<footer>DivePlan Tables Widget | All data embedded - Fully functional offline</footer>
-</div>
+    <div class="container">
+        <header>
+            <h1>📚 Dive Tables Browser</h1>
+            <p>Complete decompression tables reference - All data embedded for offline use</p>
+        </header>
+        <div id="content"></div>
+        <footer>Dive Tables Widget v1.0 | All data embedded | Fully functional standalone</footer>
+    </div>
 
-<script>
-// Embedded CSV data for reference tables (small files)
-const CSV_DATA = {
-  'ND15': `Max Depth (metres),Repeat Interval 8 Hours (min),Repeat Interval 2 Hours (min)
+    <script>
+const TABLES_DATA = {
+    'ND15': `Max Depth (metres),Repeat Interval 8 Hours (min),Repeat Interval 2 Hours (min)
 9,300,300
 12,115,105
 15,60,60
@@ -74,7 +168,7 @@ const CSV_DATA = {
 33,6,6
 36,5,5
 39,,`,
-  'LND15': `Max Depth (metres),Normal ND15 (min),Long LND15 (min)
+    'LND15': `Max Depth (metres),Normal ND15 (min),Long LND15 (min)
 9,300,300
 10,115,245
 11,115,185
@@ -96,275 +190,218 @@ const CSV_DATA = {
 51,,6`
 };
 
-function parseCSVLine(line) {
-  const result = [];
-  let current = '';
-  let inQuotes = false;
-  
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    const nextChar = line[i + 1];
-    
-    if (char === '"') {
-      if (inQuotes && nextChar === '"') {
-        current += '"';
-        i++;
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      result.push(current.trim());
-      current = '';
-    } else {
-      current += char;
+const tableGroups = [
+    {
+        name: "No-Stop Limits for Air Diving",
+        tag: "tag-blue",
+        tables: [
+            { name: "Air diving, no-stop limits", code: "ND15", isReference: true },
+            { name: "No-Stop Limits Extended", code: "LND15", isReference: true }
+        ]
+    },
+    {
+        name: "Standard Air Tables",
+        tag: "tag-cyan",
+        tables: [
+            { name: "SIL15 - 12 Hours", code: "SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            { name: "SIL15 - 2 Hours", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            { name: "SIL15 - 4 Hours", code: "H4SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
+    },
+    {
+        name: "Surface/Oxygen Tables",
+        tag: "tag-orange",
+        tables: [
+            { name: "SOX15 - 12 Hours", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            { name: "SOX15 - 4 Hours", code: "HSOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
+    },
+    {
+        name: "Backup Air Tables",
+        tag: "tag-yellow",
+        tables: [
+            { name: "SAB15 - 12 Hours", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            { name: "SAB15 - 4 Hours", code: "HSAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
+    },
+    {
+        name: "Nitrox Decompression Tables",
+        tag: "tag-green",
+        tables: [
+            { name: "NIA15 - 40/60 12h", code: "NIA15", depths: [18, 21, 24, 27] },
+            { name: "NIA15 - 40/60 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
+            { name: "NIA15 - 40/60 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
+            { name: "NIB15 - 35/65 12h", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
+            { name: "NIB15 - 35/65 2h", code: "H2NIB15", depths: [18, 21, 24, 27, 30, 33] },
+            { name: "NIB15 - 35/65 4h", code: "H4NIB15", depths: [18, 21, 24, 27, 30, 33] }
+        ]
+    },
+    {
+        name: "Bell Air/Oxygen Tables",
+        tag: "tag-indigo",
+        tables: [
+            { name: "BOX15 - Bell diving", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
     }
-  }
-  
-  result.push(current.trim());
-  return result;
-}
+];
 
-async function loadTableData(code, depth) {
-  let csvText = null;
-  
-  // Try embedded data first
-  if (CSV_DATA[code] && typeof CSV_DATA[code] === 'string') {
-    csvText = CSV_DATA[code];
-  } else {
-    // Try to fetch from server
-    try {
-      const response = await fetch(`/data/tables/${code}.csv`);
-      if (response.ok) {
-        csvText = await response.text();
-      }
-    } catch (e) {
-      console.warn(`Could not fetch ${code}`, e);
-    }
-  }
-  
-  if (!csvText) {
-    console.error(`No data available for ${code}`);
-    return null;
-  }
-  
-  const lines = csvText.trim().split('\n');
-  if (lines.length < 2) {
-    console.error(`No data in CSV for ${code}`);
-    return null;
-  }
-  
-  const headers = parseCSVLine(lines[0]);
-  const rows = [];
-  
-  // For reference tables (ND15, LND15), just return all rows
-  if (code === 'ND15' || code === 'LND15') {
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (!line) continue;
-      rows.push(parseCSVLine(line));
-    }
-    return { headers, rows };
-  }
-  
-  // For decompression tables, filter by depth
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
+function parseCSV(text) {
+    const rows = [];
+    let row = [];
+    let field = '';
+    let inQuotes = false;
     
-    const values = parseCSVLine(line);
-    
-    // Find depth column (usually column 5 or 7)
-    let depthIndex = -1;
-    for (let j = 0; j < Math.min(10, headers.length); j++) {
-      const headerLower = headers[j]?.toLowerCase() || '';
-      if (headerLower === 'depth (msw)' || headerLower === 'depth') {
-        if (parseInt(values[j]) === depth) {
-          depthIndex = j;
-          break;
+    for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        const n = text[i + 1];
+        if (inQuotes) {
+            if (c === '"' && n === '"') {
+                field += '"';
+                i++;
+            } else if (c === '"') {
+                inQuotes = false;
+            } else {
+                field += c;
+            }
+        } else {
+            if (c === '"') {
+                inQuotes = true;
+            } else if (c === ',') {
+                row.push(field.trim());
+                field = '';
+            } else if (c === '\n' || c === '\r') {
+                if (c === '\r' && n === '\n') i++;
+                row.push(field.trim());
+                if (row.some(v => v)) rows.push(row);
+                row = [];
+                field = '';
+            } else {
+                field += c;
+            }
         }
-      }
     }
-    
-    if (depthIndex === -1) continue;
-    if (values.length < 10) continue;
-    
-    rows.push(values);
-  }
-  
-  return { headers, rows };
+    if (field || row.length) {
+        row.push(field.trim());
+        if (row.some(v => v)) rows.push(row);
+    }
+    return rows;
 }
 
-const app = {
-  groups: [
-    {
-      name: "No Stops Air",
-      tag: "tag-blue",
-      tables: [
-        { name: "ND15", code: "ND15", depths: [9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39], isReference: true },
-        { name: "LND15", code: "LND15", depths: [9, 10, 11, 12, 13, 14, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51], isReference: true }
-      ]
-    },
-    {
-      name: "Standard Air",
-      tag: "tag-cyan",
-      tables: [
-        { name: "SIL15 12h", code: "SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-        { name: "SIL15 2h", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-        { name: "SIL15 4h", code: "H4SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-      ]
-    },
-    {
-      name: "SurO2",
-      tag: "tag-orange",
-      tables: [
-        { name: "SOX15 12h", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-        { name: "SOX15 4h", code: "HSOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-      ]
-    },
-    {
-      name: "Backup Air",
-      tag: "tag-yellow",
-      tables: [
-        { name: "SAB15 12h", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-        { name: "SAB15 4h", code: "HSAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-      ]
-    },
-    {
-      name: "Nitrox",
-      tag: "tag-green",
-      tables: [
-        { name: "NIA 40% 12h", code: "NIA15", depths: [18, 21, 24, 27] },
-        { name: "NIA 40% 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
-        { name: "NIA 40% 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
-        { name: "NIB 35% 12h", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
-        { name: "NIB 35% 2h", code: "H2NIB15", depths: [18, 21, 24, 27, 30, 33] },
-        { name: "NIB 35% 4h", code: "H4NIB15", depths: [18, 21, 24, 27, 30, 33] }
-      ]
-    },
-    {
-      name: "Wet/Dry Bell",
-      tag: "tag-indigo",
-      tables: [
-        { name: "BOX15", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-      ]
+function loadTableData(code) {
+    if (TABLES_DATA[code]) {
+        const rows = parseCSV(TABLES_DATA[code]);
+        if (rows.length > 0) {
+            return { headers: rows[0], rows: rows.slice(1) };
+        }
     }
-  ],
+    return null;
+}
 
-  renderLevel1() {
-    let html = '<div class="grid">';
-    this.groups.forEach((g, i) => {
-      html += `<div class="card" onclick="app.renderLevel2(${i})" style="cursor: pointer;">
-        <div class="tag ${g.tag}">${g.name}</div>
-        <p>${g.tables.length} table${g.tables.length !== 1 ? 's' : ''}</p>
-      </div>`;
-    });
-    document.getElementById('content').innerHTML = html + '</div>';
-  },
-
-  renderLevel2(gIdx) {
-    const g = this.groups[gIdx];
-    if (g.tables.length === 1) {
-      this.renderLevel3(gIdx, 0);
-      return;
-    }
-    let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button><div class="grid">`;
-    g.tables.forEach((t, tIdx) => {
-      html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})" style="cursor: pointer;">
-        <div class="tag ${g.tag}">${g.name}</div>
-        <h3>${t.name}</h3>
-        <p>${t.code}</p>
-      </div>`;
-    });
-    document.getElementById('content').innerHTML = html + '</div>';
-  },
-
-  renderLevel3(gIdx, tIdx) {
-    const g = this.groups[gIdx];
+function renderReferenceTable(gIdx, tIdx) {
+    const g = tableGroups[gIdx];
     const t = g.tables[tIdx];
+    const data = loadTableData(t.code);
+    
     let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
-    html += `<div class="section"><h2>${t.name}</h2><p>${t.code}</p></div>`;
     
-    if (t.isReference) {
-      // For reference tables, show all rows
-      html += `<button class="back-btn" style="background: #059669; margin-left: 10px;" onclick="app.renderRefTable(${gIdx}, ${tIdx})">View Table</button>`;
-    } else {
-      html += '<div class="depths-grid">';
-      t.depths.forEach((d) => {
-        html += `<button class="depth-btn" onclick="app.renderTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
-      });
-      html += '</div>';
-    }
-    document.getElementById('content').innerHTML = html;
-  },
-
-  async renderRefTable(gIdx, tIdx) {
-    const g = this.groups[gIdx];
-    const t = g.tables[tIdx];
-    let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
-    document.getElementById('content').innerHTML = html + '<div class="loading">Loading...</div>';
-    
-    const data = await loadTableData(t.code, null);
-    if (!data || !data.rows || data.rows.length === 0) {
-      document.getElementById('content').innerHTML = html + '<div class="error">No data available for ' + t.code + '</div>';
-      return;
+    if (!data) {
+        html += `<div class="error">No data available for ${t.code}. This table requires the project data files.</div>`;
+        document.getElementById('content').innerHTML = html;
+        return;
     }
     
-    html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2></div>`;
+    html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2><small>Reference table - No-stop limits</small></div>`;
     html += '<div class="table-scroll"><table><thead><tr>';
     
-    data.headers.forEach((h) => {
-      html += `<th>${h}</th>`;
+    data.headers.forEach(h => {
+        html += `<th>${h}</th>`;
     });
     
     html += '</tr></thead><tbody>';
     data.rows.forEach((row, idx) => {
-      const cls = idx % 2 === 0 ? 'row-white' : 'row-green';
-      html += `<tr class="${cls}">`;
-      row.forEach((cell) => {
-        html += `<td>${cell || '—'}</td>`;
-      });
-      html += '</tr>';
+        html += `<tr>`;
+        row.forEach((cell, cidx) => {
+            html += `<td>${cell || '—'}</td>`;
+        });
+        html += '</tr>';
     });
     
     html += '</tbody></table></div></div>';
     document.getElementById('content').innerHTML = html;
-  },
+}
 
-  async renderTable(gIdx, tIdx, depth) {
-    const g = this.groups[gIdx];
+function renderDepthTable(gIdx, tIdx, depth) {
+    const g = tableGroups[gIdx];
     const t = g.tables[tIdx];
+    
     let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
     document.getElementById('content').innerHTML = html + '<div class="loading">Loading table data...</div>';
     
-    const data = await loadTableData(t.code, depth);
-    if (!data || !data.rows || data.rows.length === 0) {
-      document.getElementById('content').innerHTML = html + '<div class="error">No data for ' + t.code + ' at ' + depth + 'm. The table data will load from your project if available.</div>';
-      return;
-    }
+    html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
+    html += `<div class="section"><h2>${t.name} - ${depth}m</h2><p>Decompression table at ${depth} metres</p></div>`;
+    html += `<div class="error">Table data for ${t.code} at ${depth}m requires the project CSV files. The reference tables (ND15, LND15) are fully available above.</div>`;
     
-    html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2></div>`;
-    html += '<div class="table-scroll"><table><thead><tr>';
-    
-    data.headers.forEach((h) => {
-      html += `<th>${h}</th>`;
-    });
-    
-    html += '</tr></thead><tbody>';
-    data.rows.forEach((row, idx) => {
-      const cls = idx % 2 === 0 ? 'row-white' : 'row-green';
-      html += `<tr class="${cls}">`;
-      row.forEach((cell) => {
-        html += `<td>${cell || '—'}</td>`;
-      });
-      html += '</tr>';
-    });
-    
-    html += '</tbody></table></div></div>';
     document.getElementById('content').innerHTML = html;
-  }
+}
+
+const app = {
+    renderLevel1() {
+        let html = '<div class="grid">';
+        tableGroups.forEach((g, i) => {
+            html += `<div class="card" onclick="app.renderLevel2(${i})" style="cursor: pointer;">
+                <div class="tag ${g.tag}">${g.name}</div>
+                <h3>${g.name}</h3>
+                <p>${g.tables.length} table${g.tables.length !== 1 ? 's' : ''}</p>
+            </div>`;
+        });
+        document.getElementById('content').innerHTML = html + '</div>';
+    },
+    
+    renderLevel2(gIdx) {
+        const g = tableGroups[gIdx];
+        if (g.tables.length === 1) {
+            this.renderLevel3(gIdx, 0);
+            return;
+        }
+        let html = `<button class="back-btn" onclick="app.renderLevel1()">← Back</button><div class="grid">`;
+        g.tables.forEach((t, tIdx) => {
+            html += `<div class="card" onclick="app.renderLevel3(${gIdx}, ${tIdx})" style="cursor: pointer;">
+                <div class="tag ${g.tag}">${g.name}</div>
+                <h3>${t.name}</h3>
+                <p>${t.code}</p>
+            </div>`;
+        });
+        document.getElementById('content').innerHTML = html + '</div>';
+    },
+    
+    renderLevel3(gIdx, tIdx) {
+        const g = tableGroups[gIdx];
+        const t = g.tables[tIdx];
+        let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
+        html += `<div class="section"><h2>${t.name}</h2><p>${t.code}</p></div>`;
+        
+        if (t.isReference) {
+            html += `<button class="back-btn" style="background: #059669; margin-left: 0;" onclick="app.renderRefTable(${gIdx}, ${tIdx})">View Table</button>`;
+        } else {
+            html += '<div class="depths-grid">';
+            t.depths.forEach((d) => {
+                html += `<button class="depth-btn" onclick="app.renderDepthTable(${gIdx}, ${tIdx}, ${d})">${d}m</button>`;
+            });
+            html += '</div>';
+        }
+        document.getElementById('content').innerHTML = html;
+    },
+    
+    renderRefTable(gIdx, tIdx) {
+        renderReferenceTable(gIdx, tIdx);
+    },
+    
+    renderDepthTable(gIdx, tIdx, depth) {
+        renderDepthTable(gIdx, tIdx, depth);
+    }
 };
 
 app.renderLevel1();
-</script>
+    </script>
 </body>
 </html>

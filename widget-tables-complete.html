@@ -225,10 +225,22 @@ const tableGroups = [
         ]
     },
     {
+        name: "OTU & ESOT Tables",
+        tag: "tag-purple",
+        tables: [
+            { name: "SOX15 - Surface OX Repetitive Times", code: "SOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
+            { name: "NIA15 - Nitrox 40/60 Repetitive Times", code: "NIA15_OTU", depths: [18, 21, 24, 27] },
+            { name: "NIB15 - Nitrox 35/65 Repetitive Times", code: "NIB15_OTU", depths: [18, 21, 24, 27, 30, 33] },
+            { name: "BOX15 - Bell Air/Oxygen Repetitive Times", code: "BOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
+    },
+    {
         name: "Nitrox Decompression Tables",
         tag: "tag-green",
         tables: [
             { name: "NIA15 - 40/60 12h", code: "NIA15", depths: [18, 21, 24, 27] },
+            { name: "NIA15 - 40/60 2h (2-3)", code: "NIA2_3", depths: [21, 23, 25, 27] },
+            { name: "NIA15 - 40/60 2h (2-6)", code: "NIA2_6", depths: [21, 23, 25, 27] },
             { name: "NIA15 - 40/60 2h", code: "H2NIA15", depths: [18, 21, 24, 27] },
             { name: "NIA15 - 40/60 4h", code: "H4NIA15", depths: [18, 21, 24, 27] },
             { name: "NIB15 - 35/65 12h", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
@@ -237,10 +249,24 @@ const tableGroups = [
         ]
     },
     {
-        name: "Bell Air/Oxygen Tables",
+        name: "Wet or Dry Bell Air/Oxygen Tables",
         tag: "tag-indigo",
         tables: [
             { name: "BOX15 - Bell diving", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+        ]
+    },
+    {
+        name: "Treatment Tables DCS & AGE",
+        tag: "tag-red",
+        tables: [
+            { name: "COMEX Table CX 12", code: "CX12", isReference: true },
+            { name: "COMEX Table CX 30", code: "CX30", isReference: true },
+            { name: "US Navy Oxygen Treatment Table 5", code: "USN-T5", isReference: true },
+            { name: "US Navy Oxygen Treatment Table 6", code: "USN-T6", isReference: true },
+            { name: "Air Treatment Table 1A", code: "AIR-T1A", isReference: true },
+            { name: "Air Treatment Table 2A", code: "AIR-T2A", isReference: true },
+            { name: "Air Treatment Table 3", code: "AIR-T3", isReference: true },
+            { name: "Air Treatment Table 4", code: "AIR-T4", isReference: true }
         ]
     }
 ];

@@ -365,14 +365,58 @@ function renderReferenceTable(gIdx, tIdx) {
 function renderDepthTable(gIdx, tIdx, depth) {
     const g = tableGroups[gIdx];
     const t = g.tables[tIdx];
-    
+    const embeddedTables = getEmbeddedTables();
+    const dataAvailable = embeddedTables.includes(t.code);
+
     let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
     document.getElementById('content').innerHTML = html + '<div class="loading">Loading table data...</div>';
-    
+
     html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
     html += `<div class="section"><h2>${t.name} - ${depth}m</h2><p>Decompression table at ${depth} metres</p></div>`;
-    html += `<div class="error">Table data for ${t.code} at ${depth}m requires the project CSV files. The reference tables (ND15, LND15) are fully available above.</div>`;
-    
+
+    if (!dataAvailable) {
+        html += `<div class="error"><strong>Data Not Embedded</strong><br/>The ${t.code} table data is not embedded in this standalone widget. To use full table data, access the application through the web interface or add CSV data to the widget file.</div>`;
+        document.getElementById('content').innerHTML = html;
+        return;
+    }
+
+    // If data is available, load and display it
+    const data = loadTableData(t.code);
+    if (!data || !data.rows || data.rows.length === 0) {
+        html += `<div class="error">No data available for ${t.code} at ${depth}m depth.</div>`;
+        document.getElementById('content').innerHTML = html;
+        return;
+    }
+
+    // Filter rows for the specific depth
+    const filteredRows = data.rows.filter(row => {
+        const rowDepth = row[1]; // Assuming depth is in column 2
+        return rowDepth && parseInt(rowDepth) === depth;
+    });
+
+    if (filteredRows.length === 0) {
+        html += `<div class="error">No rows found for depth ${depth}m in ${t.code} table.</div>`;
+        document.getElementById('content').innerHTML = html;
+        return;
+    }
+
+    html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2><small>Decompression schedule for ${depth} metres</small></div>`;
+    html += '<div class="table-scroll"><table><thead><tr>';
+
+    data.headers.forEach(h => {
+        html += `<th>${h}</th>`;
+    });
+
+    html += '</tr></thead><tbody>';
+    filteredRows.forEach((row, idx) => {
+        html += `<tr>`;
+        row.forEach((cell, cidx) => {
+            html += `<td>${cell || '—'}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    html += '</tbody></table></div></div>';
     document.getElementById('content').innerHTML = html;
 }
 

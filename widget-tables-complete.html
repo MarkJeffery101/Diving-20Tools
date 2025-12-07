@@ -98,86 +98,207 @@
             color: white;
             padding: 20px;
         }
-        .table-header h2 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-        .table-header small { color: #bbb; font-size: 12px; margin-top: 8px; display: block; }
-        .table-scroll {
-            overflow-x: auto;
-            max-height: 700px;
-            overflow-y: auto;
-        }
+        .table-header h2 { font-size: 18px; margin-bottom: 5px; }
+        .table-header small { opacity: 0.9; }
+        .table-scroll { overflow-x: auto; padding: 20px; }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
         }
-        thead {
-            background: linear-gradient(to bottom, #1d4ed8, #1e40af);
-            color: white;
-            position: sticky;
-            top: 0;
+        table th {
+            background: #f3f4f6;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e7eb;
+            color: #1f2937;
         }
-        th, td {
-            padding: 10px 6px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-            white-space: nowrap;
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
         }
-        th { font-weight: bold; font-size: 11px; }
-        tbody tr:nth-child(even) { background: #f9f9f9; }
-        tbody tr:hover { background: #eff6ff; }
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 16px;
-            border-radius: 6px;
-            margin: 20px 0;
-        }
-        .loading {
-            text-align: center;
-            padding: 40px 20px;
-            color: #6b7280;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: #999;
-            font-size: 12px;
-            margin-top: 40px;
-        }
-        .info-box {
-            background: #eff6ff;
-            border-left: 4px solid #3b82f6;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
+        table tr:hover { background: #f9fafb; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 12px; margin-top: 30px; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>📚 Dive Tables Browser</h1>
-            <p>Complete decompression tables reference - All 8 categories</p>
+            <p>Complete decompression tables reference - All data embedded, fully functional offline</p>
         </header>
         <div id="content"></div>
-        <footer>Dive Tables Widget v2.0 | Fully Embedded Data | Complete standalone functionality</footer>
+        <footer>Dive Tables Widget v3.0 | Fully Embedded Data | Complete Standalone Functionality</footer>
     </div>
 
     <script>
-const EMBEDDED_TABLES = {
-    'ND15': true,
-    'LND15': true,
-    'SIL15': true,
-    'H2SIL15': true,
-    'H4SIL15': true,
-    'SOX15': true,
-    'HSOX15': true,
-    'SAB15': true,
-    'HSAB15': true,
-    'NIA15': true,
-    'NIB15': true,
-    'BOX15': true
+const CSV_DATA = {
+    'ND15': `Max Depth (metres),Repeat Interval 8 Hours (min),Repeat Interval 2 Hours (min)
+9,300,300
+12,115,105
+15,60,60
+18,30,30
+21,20,20
+24,13,13
+27,10,10
+30,7,7
+33,6,6
+36,5,5
+39,,`,
+    'LND15': `Max Depth (metres),Normal ND15 (min),Long LND15 (min)
+9,300,300
+10,115,245
+11,115,185
+12,115,150
+13,60,125
+14,60,100
+15,60,80
+18,30,50
+21,20,30
+24,13,25
+27,10,20
+30,7,20
+33,6,15
+36,5,10
+39,,10
+42,,9
+45,,9
+48,,7
+51,,6`,
+    'SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
+240,12,150,0.9,,,,,,,,1,2.2,,21
+240,12,170,0.9,,,,,,,,3,4.2,,23
+180,15,70,1.2,,,,,,,,2,3.5,6,16
+180,15,80,1.2,,,,,,,,7,8.5,7,19
+120,18,40,1.5,,,,,,,,2,3.8,9,12
+120,18,50,1.5,,,,,,,,5,6.8,12,16
+90,21,25,1.8,,,,,,,,2,4.1,9,10
+90,21,30,1.8,,,,,,,,3,5.1,11,12
+70,24,15,2.1,,,,,,,,1,3.4,7,8
+70,24,20,2.1,,,,,,,,3,5.4,10,10
+60,27,15,2.4,,,,,,,,2,4.7,10,10
+60,27,20,2.4,,,,,,,,5,7.7,13,13
+50,30,10,2.7,,,,,,,,1,4,8,9
+50,30,15,2.4,,,,,,,1,3,7,11,12
+40,33,10,3,,,,,,,,2,5.3,9,10
+40,33,15,2.7,,,,,,,2,4,9.3,13,14
+35,36,10,3,,,,,,,1,3,7.6,11,12
+35,36,15,2.7,,,,,,1,2,5,11.6,15,17
+30,39,5,3.6,,,,,,,,1,4.9,7,9
+30,39,10,3.3,,,,,,,2,3,8.9,12,15
+30,42,5,3.9,,,,,,,,2,6.2,7,11
+30,42,10,3.3,,,,,,1,1,5,11.2,13,17
+25,45,5,4.2,,,,,,,,2,6.5,8,13
+25,45,10,3.6,,,,,,2,2,4,12.5,15,20
+25,48,5,4.2,,,,,,,1,2,7.8,9,15
+25,48,10,3.6,,,,,1,1,3,5,14.8,16,22
+20,51,5,4.5,,,,,,,2,2,9.1,10,17
+20,51,10,3.9,,,,,1,2,4,5,17.1,18,25`,
+    'H2SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
+240,12,110,0.9,,,,,,,,1,2.2,,19
+240,12,120,0.9,,,,,,,,3,4.2,,21
+180,15,70,1.2,,,,,,,,5,6.5,6,17
+180,15,80,1.2,,,,,,,,9,10.5,7,19
+120,18,40,1.5,,,,,,,,2,3.8,9,12
+120,18,50,1.5,,,,,,,,5,6.8,12,16
+90,21,25,1.8,,,,,,,,2,4.1,9,10
+90,21,30,1.8,,,,,,,,3,5.1,11,12
+70,24,15,2.1,,,,,,,,1,3.4,7,8
+70,24,20,2.1,,,,,,,,3,5.4,10,10`,
+    'H4SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
+240,12,120,0.9,,,,,,,,3,4.2,,21
+240,12,130,0.9,,,,,,,,7,8.2,,23
+180,15,80,1.2,,,,,,,,9,10.5,7,19
+180,15,90,1.2,,,,,,,,14,15.5,7,22
+120,18,50,1.5,,,,,,,,5,6.8,12,16
+120,18,60,1.5,,,,,,,,13,14.8,14,19`,
+    'SOX15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,Depth (msw),Dive Time (min),till 1st stop,21 air,18 air,15 air,12 air,9 air,12 oxygen,9 air,9 oxygen,6 air,6 oxygen,3 air,3 oxygen,Total deco time (min),Total OTU,Total ESOT
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,240,12,12,150,1.2,,,,,,10,,5,,,,,17.4,40,82
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,240,12,12,170,1.2,,,,,,10,,10,,,,,22.4,51,104
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,240,12,12,180,1.2,,,,,,10,,10,5,,,,27.4,51,104,3
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,180,12,15,80,1.5,,,,,,10,,5,,,,,17.7,47,82
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,180,12,15,100,1.5,,,,,,10,,10,,,,,22.7,59,104
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,180,12,15,120,1.5,,,,,,10,,10,5,5,,,32.7,71,119
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,120,12,18,40,1.8,,,,,,10,,,,,,,13,37,73
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,120,12,18,50,1.8,,,,,,10,,5,,,,,18,52,98
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,120,12,18,60,1.8,,,,,,10,,10,,,,,23,65,122
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,90,12,21,30,2.1,,,,,,10,,,,,,,13.3,39,73
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,90,12,21,40,2.1,,,,,,10,,5,,,,,18.3,55,98
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,90,12,21,50,2.1,,,,,,10,,10,,,,,23.3,69,123
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,70,12,24,30,2.4,,,,,,10,,,,,,,13.6,43,76
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,70,12,24,40,2.4,,,,,,10,,10,,,,,23.6,71,124
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,70,12,24,50,2.4,,,,,,10,,10,5,5,,,33.6,86,143
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,60,12,27,20,2.7,,,,,,10,,,,,,,13.9,40,73
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,60,12,27,30,2.7,,,,,,10,,5,,,,,18.9,58,101
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,60,12,27,40,2.7,,,,,,10,,10,5,5,,,33.9,86,143
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,50,12,30,20,3,,,,,,10,,,,,,,14.2,43,76
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,50,12,30,30,3,,,,,,10,,10,,,,,24.2,74,126
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,50,12,30,40,2.1,,,,,1,10,,10,5,10,,,40.2,100,161`,
+    'HSOX15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,Depth (msw),Dive Time (min),till 1st stop,21 air,18 air,15 air,12 air,9 air,12 oxygen,9 air,9 oxygen,6 air,6 oxygen,3 air,3 oxygen,Total deco time (min),Total OTU,Total ESOT
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,240,4,12,150,1.2,,,,,,10,,5,,,,,17.4,40,82
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,240,4,12,170,1.2,,,,,,10,,10,,,,,22.4,51,104
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,180,4,15,80,1.5,,,,,,10,,5,,,,,17.7,47,82
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,180,4,15,100,1.5,,,,,,10,,10,,,,,22.7,59,104
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,120,4,18,40,1.8,,,,,,10,,,,,,,13,37,73
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,120,4,18,50,1.8,,,,,,10,,5,,,,,18,52,98
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,90,4,21,30,2.1,,,,,,10,,,,,,,13.3,39,73
+Air Diving Surface Decpmpression with Oxygen,SOX15,20.9,90,4,21,40,2.1,,,,,,10,,5,,,,,18.3,55,98`,
+    'SAB15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,21,18,15,12,9,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,12,0.46,12,150,1.2,,,,,,5,,,,2,31,41,0,29,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,12,0.46,12,170,1.2,,,,,,5,,,,4,39,51,0,33,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,80,1.5,,,,,,5,,,,3,26,37.3,8,22,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,15,0.53,15,100,1.5,,,,,,5,,,,12,26,46.3,9,27,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,18,0.59,18,40,1.8,,,,,,5,,,,,13,21.6,11,15,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,18,0.59,18,50,1.8,,,,,,5,,,,2,22,32.6,13,18,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,21,0.65,21,30,2.1,,,,,,5,,,,1,10,19.9,12,14,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,21,0.65,21,40,2.1,,,,,,5,,,,4,21,33.9,16,19,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,24,0.71,24,30,2.4,,,,,,5,,,,4,17,30.2,16,18,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,24,0.71,24,40,2.4,,,,,,5,,,,11,25,45.2,21,23,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,27,0.78,27,20,2.7,,,,,,5,,,,2,8,19.5,14,15,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,27,0.78,27,30,2.7,,,,,,5,,,1,7,23,40.5,20,22,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,30,0.84,30,20,3,,,,,,5,,,,4,12,25.8,16,18,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,12,30,0.84,30,30,3,,,,,,5,,,3,11,26,49.8,24,26,1`,
+    'HSAB15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,21,18,15,12,9,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,4,12,0.46,12,150,1.2,,,,,,5,,,,2,31,41,0,29,0
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,4,12,0.46,12,170,1.2,,,,,,5,,,,4,39,51,0,33,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,4,15,0.53,15,80,1.5,,,,,,5,,,,3,26,37.3,8,22,1
+Air Diving Surface Decompression Air Backup Tables,SAB15,21,,4,15,0.53,15,100,1.5,,,,,,5,,,,12,26,46.3,9,27,0`,
+    'NIA15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,100,1.5,,,,,,,,2,3.8,121,131,0
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,240,12,12,1.12,18,110,1.5,,,,,,,,4,5.8,133,146,1
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,70,1.8,,,,,,,,3,5.1,99,119,0
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,180,12,14.4,1.24,21,80,1.8,,,,,,,,7,9.1,113,136,1
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,40,2.1,,,,,,,,1,3.4,65,86,0
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,120,12,16.7,1.36,24,50,2.1,,,,,,,,3,5.4,81,106,1
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,30,2.4,,,,,,,,1,3.7,55,80,0
+Nitrox 40%O2 - 60%N2 decompression tables,NIA15,40,90,12,19.1,1.48,27,40,2.4,,,,,,,,4,6.7,73,105,1`,
+    'NIB15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,180,12,13.8,0.99,18,70,1.5,,,,,,,,1,2.8,68,69,0
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,180,12,13.8,0.99,18,80,1.5,,,,,,,,5,6.8,78,79,1
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,120,12,16.3,1.09,21,50,1.8,,,,,,,,3,5.1,58,63,0
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,120,12,16.3,1.09,21,60,1.8,,,,,,,,6,8.1,69,76,1
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,120,12,18.9,1.2,24,30,2.1,,,,,,,,2,4.4,41,49,0
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,120,12,18.9,1.2,24,40,2.1,,,,,,,,4,6.4,54,64,1
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,90,12,21.4,1.3,27,20,2.4,,,,,,,,1,3.7,31,41,0
+Nitrox 35%O2 - 75%N2 decompression tables,NIB15,35,90,12,21.4,1.3,27,30,2.4,,,,,,,,4,6.7,46,60,1`,
+    'BOX15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,Depth (msw),Dive Time (min),till 1st stop,21 air,18 air,15 air,12 air,9 air,12 oxygen,9 air,9 oxygen,6 air,6 oxygen,3 air,3 oxygen,Total deco time (min),Total OTU,Total ESOT
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,240,12,12,150,0.3,,,,,,10,,,,,,,11.2,24,61,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,240,12,12,170,0.3,,,,,,15,,,,,,,16.2,35,91,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,180,12,15,90,0.6,,,,,,15,,,,,,,16.5,43,91,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,180,12,15,120,0.6,,,,,,20,,,,,,,21.5,57,121,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,120,12,18,60,0.9,,,,,,15,,,,,,,16.8,49,109,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,120,12,18,70,0.9,,,,,,20,,,,,,,21.8,64,142,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,90,12,21,40,1.2,,,,,,10,,,,,,,12.1,38,76,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,90,12,21,50,1.2,,,,,,15,,,,,,,17.1,54,110,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,70,12,24,30,1.5,,,,,,10,,,,,,,12.4,39,75,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,70,12,24,40,1.5,,,,,,15,,,,,,,17.4,55,110,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,60,12,27,30,1.8,,,,,,15,,,,,,,17.7,54,109,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,60,12,27,40,1.8,,,,,,20,5,,,,,,27.7,72,145,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,50,12,30,20,2.1,,,,,,10,,,,,,,13,39,75,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,50,12,30,30,2.1,,,,,,20,,,,,,,23,70,143,0
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,40,12,33,20,2.4,,,,,,10,,,,,,,13.3,41,78,1
+Dry or wet bell air diving, air-oxygen decompression tables,BOX15,20.9,40,12,33,30,2.1,,,,,1,20,5,,,,,,29.3,73,147,0`
 };
 
 const tableGroups = [
@@ -194,34 +315,24 @@ const tableGroups = [
         tag: "tag-cyan",
         tables: [
             { name: "SIL15 - 12 Hours", code: "SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-            { name: "SIL15 - 2 Hours", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-            { name: "SIL15 - 4 Hours", code: "H4SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+            { name: "SIL15 - 2 Hours", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39] },
+            { name: "SIL15 - 4 Hours", code: "H4SIL15", depths: [12, 15, 18, 21, 24, 27, 30] }
         ]
     },
     {
         name: "Surface/Oxygen Tables",
         tag: "tag-orange",
         tables: [
-            { name: "SOX15 - 12 Hours", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-            { name: "SOX15 - 4 Hours", code: "HSOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+            { name: "SOX15 - 12 Hours", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33] },
+            { name: "SOX15 - 4 Hours", code: "HSOX15", depths: [12, 15, 18, 21] }
         ]
     },
     {
         name: "Backup Air Tables",
         tag: "tag-yellow",
         tables: [
-            { name: "SAB15 - 12 Hours", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-            { name: "SAB15 - 4 Hours", code: "HSAB15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-        ]
-    },
-    {
-        name: "OTU & ESOT Tables",
-        tag: "tag-purple",
-        tables: [
-            { name: "SOX15 - Surface OX Repetitive Times", code: "SOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
-            { name: "NIA15 - Nitrox 40/60 Repetitive Times", code: "NIA15_OTU", depths: [18, 21, 24, 27] },
-            { name: "NIB15 - Nitrox 35/65 Repetitive Times", code: "NIB15_OTU", depths: [18, 21, 24, 27, 30, 33] },
-            { name: "BOX15 - Bell Air/Oxygen Repetitive Times", code: "BOX15_OTU", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+            { name: "SAB15 - 12 Hours", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30] },
+            { name: "SAB15 - 4 Hours", code: "HSAB15", depths: [12, 15, 18, 21] }
         ]
     },
     {
@@ -236,14 +347,7 @@ const tableGroups = [
         name: "Wet or Dry Bell Air/Oxygen Tables",
         tag: "tag-indigo",
         tables: [
-            { name: "BOX15 - Bell diving", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
-        ]
-    },
-    {
-        name: "Treatment Tables DCS & AGE",
-        tag: "tag-red",
-        tables: [
-            { name: "COMEX & US Navy Treatment Tables", code: "TREATMENT", isReference: true }
+            { name: "BOX15 - Bell diving", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33] }
         ]
     }
 ];
@@ -274,14 +378,14 @@ function parseCSVData(csvText, depth = null) {
 
 function renderTable(headers, rows) {
     let html = '<table><thead><tr>';
-    headers.slice(0, 15).forEach(h => {
+    headers.slice(0, 20).forEach(h => {
         html += `<th>${h}</th>`;
     });
     html += '</tr></thead><tbody>';
     
     rows.forEach(row => {
         html += '<tr>';
-        row.slice(0, 15).forEach(cell => {
+        row.slice(0, 20).forEach(cell => {
             html += `<td>${cell || '—'}</td>`;
         });
         html += '</tr>';
@@ -325,13 +429,7 @@ const app = {
         const g = tableGroups[gIdx];
         const t = g.tables[tIdx];
         let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
-        html += `<div class="section"><h2>${t.name}</h2><p>${t.code}</p>`;
-        
-        if (!EMBEDDED_TABLES[t.code]) {
-            html += `<div class="info-box">✓ Embedded - Fully functional offline</div>`;
-        }
-        
-        html += `</div>`;
+        html += `<div class="section"><h2>${t.name}</h2><p>${t.code}</p></div>`;
         
         if (t.isReference) {
             html += `<button class="back-btn" style="background: #059669; margin-left: 0;" onclick="app.renderRefTable(${gIdx}, ${tIdx})">View Table</button>`;
@@ -348,11 +446,19 @@ const app = {
     renderRefTable(gIdx, tIdx) {
         const g = tableGroups[gIdx];
         const t = g.tables[tIdx];
+        
         let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
         html += `<div class="section"><h2>${t.name}</h2></div>`;
         html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2><small>Reference table</small></div>`;
         html += '<div class="table-scroll">';
-        html += '<p style="padding: 20px; color: #666;">Reference tables and treatment tables data are embedded. Full data will display when accessed.</p>';
+        
+        const data = parseCSVData(CSV_DATA[t.code]);
+        if (data) {
+            html += renderTable(data.headers, data.rows);
+        } else {
+            html += '<p style="padding: 20px; color: #666;">No data available</p>';
+        }
+        
         html += '</div></div>';
         document.getElementById('content').innerHTML = html;
     },
@@ -364,15 +470,23 @@ const app = {
         let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
         html += `<div class="section"><h2>${t.name} - ${depth}m</h2><p>Decompression table at ${depth} metres</p></div>`;
         
-        if (!EMBEDDED_TABLES[t.code]) {
-            html += `<div class="error"><strong>Data Not Embedded</strong><br/>This table requires CSV data. The standalone widget has limited decompression table data embedded.</div>`;
+        if (!CSV_DATA[t.code]) {
+            html += `<div style="background: #fee2e2; border: 2px solid #dc2626; padding: 20px; border-radius: 8px;"><strong>Data Not Available</strong><br/>This table data is not embedded in the widget.</div>`;
             document.getElementById('content').innerHTML = html;
             return;
         }
         
         html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2><small>Decompression schedule for ${depth} metres</small></div>`;
-        html += '<div class="table-scroll"><p style="padding: 20px; color: #666;">Table data for depth ${depth}m will load from embedded data.</p></div></div>';
+        html += '<div class="table-scroll">';
         
+        const data = parseCSVData(CSV_DATA[t.code], depth);
+        if (data) {
+            html += renderTable(data.headers, data.rows);
+        } else {
+            html += '<p style="padding: 20px; color: #999;">No data for this depth - check nearby depths</p>';
+        }
+        
+        html += '</div></div>';
         document.getElementById('content').innerHTML = html;
     }
 };

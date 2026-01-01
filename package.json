@@ -2,8 +2,12 @@
   "name": "diveplan",
   "version": "1.0.0",
   "description": "Professional dive planning and calculation desktop application",
-  "author": "DivePlan Team",
+  "author": {
+    "name": "DivePlan Team",
+    "email": "support@diveplan.app"
+  },
   "private": true,
+  "type": "module",
   "main": "electron/main.js",
   "pkg": {
     "assets": [
@@ -32,6 +36,7 @@
   "build": {
     "appId": "com.diveplan.app",
     "productName": "DivePlan",
+    "publish": null,
     "files": [
       "dist/**/*",
       "electron/**/*",

@@ -1,5 +1,5 @@
 {
-  "version": "2024-12-19-1630",
+  "version": "2026-01-01-0859",
   "name": "DivePlan: Professional Dive Planning Reference",
   "short_name": "DivePlan",
   "description": "A comprehensive, interlinked dive planning system for commercial, air, and nitrox diving. Access decompression tables, emergency procedures, treatment protocols, and decision logic trees in one integrated platform.",
@@ -23,7 +23,10 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["utilities", "productivity"],
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
   "screenshots": [
     {
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f0f9ff' width='540' height='720'/><text x='270' y='360' font-size='48' font-weight='bold' text-anchor='middle' dominant-baseline='central'>DivePlan</text></svg>",

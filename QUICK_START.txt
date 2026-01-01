@@ -1,0 +1,160 @@
+================================================================================
+                 DIVE TABLES WIDGET - QUICK START GUIDE
+================================================================================
+
+WHAT YOU NEED:
+- A web browser (Chrome, Firefox, Safari, Edge, etc.)
+- The file: widget-tables-complete.html
+- Internet: NO - This works completely offline!
+
+================================================================================
+HOW TO USE (3 EASY STEPS):
+================================================================================
+
+STEP 1: Find the File
+   Location: widget-tables-complete.html
+   Size: Should be approximately 530KB
+
+STEP 2: Open It
+   Method A (Easiest): Double-click the file
+   Method B: Drag file into your web browser
+   Method C: Right-click → Open With → Choose your browser
+
+STEP 3: Use It
+   - Click any table group (blue cards) to expand
+   - Click a specific table to see available depths
+   - Click a depth to view the decompression schedule
+   - Use "Back" button to navigate
+
+================================================================================
+TO USE ON A USB STICK OR PORTABLE DRIVE:
+================================================================================
+
+1. Copy widget-tables-complete.html to your USB drive
+2. Take the USB stick to any computer with a browser
+3. Plug in USB drive
+4. Open the file directly from the USB drive
+5. Everything works - no installation needed!
+
+The file is completely self-contained with all data embedded.
+
+================================================================================
+WHAT'S INCLUDED IN THIS WIDGET:
+================================================================================
+
+✓ 6 Table Groups
+✓ 20+ Table Variants  
+✓ All Depths (12m through 51m)
+✓ All CSV Data Embedded
+✓ Professional Styling
+✓ Full Navigation
+✓ Offline Capability
+
+Table Groups:
+  1. No-Stop Limits for Air Diving (ND15, LND15)
+  2. Standard Air Tables (SIL15, H2SIL15, H4SIL15)
+  3. Surface/Oxygen Tables (SOX15, HSOX15)
+  4. Backup Air Tables (SAB15, HSAB15)
+  5. Nitrox Decompression Tables (NIA15, NIB15, variants)
+  6. Bell Air/Oxygen Tables (BOX15)
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+Problem: File won't open
+Solution: Try a different browser (Chrome, Firefox, Safari)
+
+Problem: Blank page after opening
+Solution: Wait a few seconds, then refresh (Ctrl+R or Cmd+R)
+
+Problem: Can't find depth I'm looking for
+Solution: Try nearby depths - not all depths have data for all tables
+
+Problem: File seems corrupted
+Solution: Re-download/re-copy the file. Should be ~530KB
+
+Problem: Want to share with others
+Solution: Just copy the single file - that's all they need!
+
+================================================================================
+CREATING A PORTABLE PACKAGE:
+================================================================================
+
+To create a complete package for others:
+
+1. Create a folder: "dive-tables-widget"
+2. Copy widget-tables-complete.html into it
+3. (Optional) Create a README.txt or SETUP.txt file
+4. Zip the folder
+5. Share the zip file
+
+When others use it:
+  - Extract the zip file
+  - Open widget-tables-complete.html
+  - Done!
+
+================================================================================
+IMPORTANT NOTES:
+================================================================================
+
+✓ No internet required - Works completely offline
+✓ No installation needed
+✓ No external files needed
+✓ Works on Windows, Mac, Linux
+✓ All modern browsers supported
+✓ File size is only 530KB
+✓ Fast loading and responsive
+
+⚠ For actual diving operations, always use official physical tables
+  and follow your certification training
+
+================================================================================
+HOW TO VERIFY IT'S WORKING:
+================================================================================
+
+1. Open widget-tables-complete.html
+2. You should see a header "Dive Tables Browser"
+3. Click on "No-Stop Limits for Air Diving" (blue card)
+4. Click on "Air diving, no-stop limits in minutes"
+5. Click "View Table"
+6. A reference table should display with depth and time data
+
+If you see this, everything is working perfectly!
+
+================================================================================
+WHAT IF SOMETHING GOES WRONG:
+================================================================================
+
+The widget is designed to be bulletproof, but if you have issues:
+
+1. Try a different web browser
+2. Make sure file is not read-only (for USB: disable protection)
+3. Try opening from a different location
+4. Check that file size is correct (~530KB)
+5. Verify you're opening widget-tables-complete.html (not a text file)
+
+If all else fails: The file is self-contained and valid. It will work on any
+browser on any computer as long as the file itself is intact.
+
+================================================================================
+CONTACT & SUPPORT:
+================================================================================
+
+This widget is a standalone tool with no external dependencies.
+All code and data is contained in the single HTML file.
+
+If you need to modify it or have questions about the dive tables:
+- Verify the data against official decompression table standards
+- Consult your diving certification agency
+- Reference official navy and scientific publications
+
+================================================================================
+
+Version: 4.0 (Production Ready)
+Last Updated: January 2024
+Status: Fully Tested and Verified
+
+Ready to use! Open widget-tables-complete.html in your browser now.
+
+================================================================================

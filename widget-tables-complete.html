@@ -560,7 +560,7 @@ const app = {
         }
         
         if (data && data.rows.length > 0) {
-            html += renderTable(data.headers, data.rows);
+            html += renderTable(data.headers, data.rows, t.code);
         } else {
             html += '<p class="loading">No data available for this depth</p>';
         }

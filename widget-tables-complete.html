@@ -370,16 +370,42 @@ function parseBox15(csvText, targetDepth) {
     return rows.length > 0 ? { headers, rows } : null;
 }
 
-function renderTable(headers, rows) {
+function renderTable(headers, rows, tableCode = '') {
     let html = '<table><thead><tr>';
     headers.slice(0, 25).forEach(h => {
         html += `<th>${h}</th>`;
     });
     html += '</tr></thead><tbody>';
+
+    // Define oxygen column indices for SOX15 and BOX15
+    const oxygenColumnIndices = {
+        'SOX15': [12, 14, 15, 17, 19],
+        'HSOX15': [12, 14, 15, 17, 19],
+        'BOX15': [12, 14, 15, 17, 18, 19]
+    };
+    const oxygenCols = oxygenColumnIndices[tableCode] || [];
+
     rows.forEach(row => {
-        html += '<tr>';
+        let markerClass = '';
+        let marker = '';
+
+        // Check for marker in the last column
+        if (row.length > 0) {
+            const lastVal = row[row.length - 1]?.trim() || '';
+            if (lastVal === '2') {
+                markerClass = 'marker-2';
+                marker = lastVal;
+            } else if (lastVal === '3') {
+                markerClass = 'marker-3';
+                marker = lastVal;
+            }
+        }
+
+        html += `<tr${markerClass ? ` class="${markerClass}"` : ''}>`;
         row.slice(0, 25).forEach((cell, idx) => {
-            html += `<td>${cell || '—'}</td>`;
+            const isOxygenCol = oxygenCols.includes(idx);
+            const className = isOxygenCol ? 'blue-bg' : '';
+            html += `<td${className ? ` class="${className}"` : ''}>${cell || '—'}</td>`;
         });
         html += '</tr>';
     });

@@ -54,9 +54,7 @@
         .tag-orange { background: #fed7aa; color: #92400e; }
         .tag-yellow { background: #fef08a; color: #854d0e; }
         .tag-green { background: #dcfce7; color: #166534; }
-        .tag-purple { background: #e9d5ff; color: #6b21a8; }
         .tag-indigo { background: #e0e7ff; color: #312e81; }
-        .tag-red { background: #fee2e2; color: #991b1b; }
         .back-btn {
             background: #3b82f6;
             color: white;
@@ -92,7 +90,6 @@
             transition: all 0.2s;
         }
         .depth-btn:hover { background: #eff6ff; }
-        .depth-btn.active { background: #3b82f6; color: white; }
         .table-wrapper {
             background: white;
             border-radius: 12px;
@@ -116,7 +113,7 @@
         table th {
             background: #f3f4f6;
             padding: 10px;
-            text-align: left;
+            text-align: center;
             font-weight: 700;
             border-bottom: 2px solid #e5e7eb;
             color: #1f2937;
@@ -129,9 +126,10 @@
         }
         table td:first-child { text-align: left; }
         table tr:hover { background: #f9fafb; }
+        table td.blue-bg { background-color: #dbeafe; font-weight: 600; }
         footer { text-align: center; padding: 20px; color: #999; font-size: 12px; margin-top: 30px; }
-        .loading { color: #999; font-style: italic; }
         .error-msg { background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; padding: 15px; border-radius: 6px; margin: 20px 0; }
+        .loading { color: #999; font-style: italic; padding: 20px; }
     </style>
 </head>
 <body>
@@ -141,10 +139,14 @@
             <p>Complete decompression tables reference - All data embedded, fully functional offline</p>
         </header>
         <div id="content"></div>
-        <footer>Dive Tables Widget v4.0 | Fully Embedded Data | Complete Standalone Functionality | Download & Run Offline</footer>
+        <footer>Dive Tables Widget v5.0 | Professional Parsers | Complete Standalone | Download & Run Offline</footer>
     </div>
 
     <script>
+// ============================================================================
+// EMBEDDED CSV DATA - ALL TABLES
+// ============================================================================
+
 const CSV_DATA = {
     'ND15': `Max Depth (metres),Repeat Interval 8 Hours (min),Repeat Interval 2 Hours (min)
 9,300,300
@@ -198,19 +200,25 @@ const CSV_DATA = {
 35,36,10,3,,,,,,,1,3,7.6,11,12
 35,36,30,2.4,,,,,2,3,8,21,37.6,29,32
 30,39,5,3.6,,,,,,,,1,4.9,7,9
-30,39,30,2.7,,,,,3,4,9,24,43.9,33,38`,
+30,39,30,2.7,,,,,3,4,9,24,43.9,33,38
+30,42,10,3.3,,,,,,1,1,5,11.2,13,17
+30,42,30,2.7,,,,,2,4,11,26,44.3,34,36
+25,45,10,3.6,,,,,,2,2,4,12.5,15,20
+25,45,30,3,,,,3,4,7,16,26,60.5,40,51
+20,51,10,3.9,,,,,1,2,4,5,17.1,18,25
+20,51,30,3,,1,2,3,6,8,23,40,88.1,48,66`,
     'H2SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
 240,12,110,0.9,,,,,,,,1,2.2,,19
-240,12,120,0.9,,,,,,,,3,4.2,,21
+240,12,150,0.9,,,,,,,,15,16.2,,27
 180,15,70,1.2,,,,,,,,5,6.5,6,17
-180,15,80,1.2,,,,,,,,9,10.5,7,19
+180,15,100,1.2,,,,,,,,22,23.5,8,24
 120,18,40,1.5,,,,,,,,2,3.8,9,12
-120,18,50,1.5,,,,,,,,5,6.8,12,16`,
+120,18,60,1.5,,,,,,,,13,14.8,14,19`,
     'H4SIL15': `DVIS 5 Time Limit,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT
 240,12,120,0.9,,,,,,,,3,4.2,,21
-240,12,130,0.9,,,,,,,,7,8.2,,23
+240,12,150,0.9,,,,,,,,7,8.2,,23
 180,15,80,1.2,,,,,,,,9,10.5,7,19
-180,15,90,1.2,,,,,,,,14,15.5,7,22
+180,15,100,1.2,,,,,,,,14,15.5,7,22
 120,18,50,1.5,,,,,,,,5,6.8,12,16
 120,18,60,1.5,,,,,,,,13,14.8,14,19`,
     'SOX15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,Depth (msw),Dive Time (min),till 1st stop,21 air,18 air,15 air,12 air,9 air,12 oxygen,9 air,9 oxygen,6 air,6 oxygen,3 air,3 oxygen,Total deco time (min),Total OTU,Total ESOT
@@ -275,47 +283,120 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,180,12,15,
 Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,120,12,18,60,0.9,,,,,,15,,,,,,,16.8,49,109,1
 Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,120,12,18,140,0.9,,,,,,20,5,20,5,5,,,56.8,128,264,0
 Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,40,1.2,,,,,,10,,,,,,,12.1,38,76,1
-Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,160,1.2,,,,,,20,5,20,5,20,5,10,87.1,203,345,1`,
-    'NIA2_3': `Code,DVIS 5 Time Limit,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,Last Stop,*,*,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,helper
-NIA2_3,,14.4,1.24,21,65,2.1,0,,,,,,,2.1,90,106,0
-NIA2_3,,14.4,1.24,21,150,1.8,3,,,,,7,45,54.1,173,192,3
-NIA2_3,,15.9,1.32,23,50,2,3,,,,,,2,4.3,77,96,1
-NIA2_3,,15.9,1.32,23,130,2,3,,,,,2,33,37.3,201,255,3`,
-    'NIA2_6': `Code,DVIS 5 Time Limit,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,Last Stop,*,*,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,helper
-NIA2_6,,14.4,1.24,21,65,2.1,0,,,,,,,2.1,90,106,0
-NIA2_6,,14.4,1.24,21,150,1.5,6,,,,,42,,44.1,224,262,3
-NIA2_6,,15.9,1.37,23,50,1.7,6,,,,,2,,4.3,78,97,1
-NIA2_6,,15.9,1.37,23,130,1.7,6,,,,,47,,49.3,215,264,3`,
-    'H2NIA15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,90,1.5,,,,,,,,1,2.8,109,119,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,240,12,12,1.12,18,150,1.5,,,,,,,,23,24.8,182,202,3
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,60,1.8,,,,,,,,1,3.1,85,102,0
-Nitrox 40%O2 - 60%N2 decompression tables,H2NIA15,40,180,12,14.4,1.24,21,150,1.8,,,,,,,,60,62.1,213,262,3`,
-    'H4NIA15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 40%O2 - 60%N2 decompression tables,H4NIA15,40,240,12,12,1.12,18,90,1.5,,,,,,,,2,4.8,115,127,0
-Nitrox 40%O2 - 60%N2 decompression tables,H4NIA15,40,240,12,12,1.12,18,150,1.5,,,,,,,,10,11.8,175,190,3`,
-    'H2NIB15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 35%O2 - 75%N2 decompression tables,H2NIB15,35,180,12,13.8,0.99,18,70,1.5,,,,,,,,2,4.8,75,80,0
-Nitrox 35%O2 - 75%N2 decompression tables,H2NIB15,35,180,12,13.8,0.99,18,150,1.5,,,,,,,,20,21.8,134,145,3`,
-    'H4NIB15': `Title,Code,O2 % in Gas,DVIS 5 Time Limit,Surface Interval Hours,EAD m/sw,PO2 Bar,Depth (msw),Dive Time (min),till 1st stop,24,21,18,15,12,9,6,3,Total deco time (min),Total OTU,Total ESOT,Marker
-Nitrox 35%O2 - 75%N2 decompression tables,H4NIB15,35,180,12,13.8,0.99,18,70,1.5,,,,,,,,1,2.8,74,80,0
-Nitrox 35%O2 - 75%N2 decompression tables,H4NIB15,35,180,12,13.8,0.99,18,150,1.5,,,,,,,,14,15.8,125,138,3`
+Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,160,1.2,,,,,,20,5,20,5,20,5,10,87.1,203,345,1`
 };
+
+// ============================================================================
+// PARSING FUNCTIONS - SPECIALIZED FOR EACH TABLE TYPE
+// ============================================================================
+
+function parseRefTable(csvText) {
+    const lines = csvText.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return null;
+    const headers = lines[0].split(',').map(h => h.trim());
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+        const cells = lines[i].split(',').map(c => c.trim());
+        if (cells.length > 1 && cells.some(c => c)) {
+            rows.push(cells);
+        }
+    }
+    return rows.length > 0 ? { headers, rows } : null;
+}
+
+function parseSox15(csvText, targetDepth) {
+    const lines = csvText.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return null;
+    const headers = lines[0].split(',').map(h => h.trim());
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',').map(v => v.trim());
+        if (values.length < 24) continue;
+        const rowDepth = parseInt(values[5]);
+        if (rowDepth === targetDepth) {
+            rows.push(values);
+        }
+    }
+    return rows.length > 0 ? { headers, rows } : null;
+}
+
+function parseSab15(csvText, targetDepth) {
+    const lines = csvText.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return null;
+    const headers = lines[0].split(',').map(h => h.trim());
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',').map(v => v.trim());
+        if (values.length < 24) continue;
+        const rowDepth = parseInt(values[7]);
+        if (rowDepth === targetDepth) {
+            rows.push(values);
+        }
+    }
+    return rows.length > 0 ? { headers, rows } : null;
+}
+
+function parseNiaNib(csvText, targetDepth) {
+    const lines = csvText.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return null;
+    const headers = lines[0].split(',').map(h => h.trim());
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',').map(v => v.trim());
+        if (values.length < 22) continue;
+        const rowDepth = parseInt(values[7]);
+        if (rowDepth === targetDepth) {
+            rows.push(values);
+        }
+    }
+    return rows.length > 0 ? { headers, rows } : null;
+}
+
+function parseBox15(csvText, targetDepth) {
+    const lines = csvText.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return null;
+    const headers = lines[0].split(',').map(h => h.trim());
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',').map(v => v.trim());
+        if (values.length < 23) continue;
+        const rowDepth = parseInt(values[5]);
+        if (rowDepth === targetDepth) {
+            rows.push(values);
+        }
+    }
+    return rows.length > 0 ? { headers, rows } : null;
+}
+
+function renderTable(headers, rows) {
+    let html = '<table><thead><tr>';
+    headers.slice(0, 25).forEach(h => {
+        html += `<th>${h}</th>`;
+    });
+    html += '</tr></thead><tbody>';
+    rows.forEach(row => {
+        html += '<tr>';
+        row.slice(0, 25).forEach((cell, idx) => {
+            html += `<td>${cell || '—'}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+}
 
 const tableGroups = [
     {
         name: "No-Stop Limits for Air Diving",
         tag: "tag-blue",
-        desc: "Reference tables for no-stop limits",
         tables: [
-            { name: "Air diving, no-stop limits in minutes", code: "ND15", isReference: true },
-            { name: "No-Stop Limits Extended", code: "LND15", isReference: true }
+            { name: "ND15 - No-Stop Limits", code: "ND15", isReference: true },
+            { name: "LND15 - No-Stop Limits Extended", code: "LND15", isReference: true }
         ]
     },
     {
         name: "Standard Air Tables",
         tag: "tag-cyan",
-        desc: "Repetitive interval dive tables for air",
         tables: [
             { name: "SIL15 - Repetitive Interval 12 Hours", code: "SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] },
             { name: "H2SIL15 - Repetitive Interval 2 Hours", code: "H2SIL15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39] },
@@ -325,7 +406,6 @@ const tableGroups = [
     {
         name: "Surface/Oxygen Tables",
         tag: "tag-orange",
-        desc: "Surface decompression with oxygen",
         tables: [
             { name: "SOX15 - Repetitive Interval 12 Hours", code: "SOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33] },
             { name: "HSOX15 - Repetitive Interval 4 Hours", code: "HSOX15", depths: [12, 15, 18, 21] }
@@ -334,7 +414,6 @@ const tableGroups = [
     {
         name: "Backup Air Tables",
         tag: "tag-yellow",
-        desc: "Air backup decompression tables",
         tables: [
             { name: "SAB15 - Repetitive Interval 12 Hours", code: "SAB15", depths: [12, 15, 18, 21, 24, 27, 30] },
             { name: "HSAB15 - Repetitive Interval 4 Hours", code: "HSAB15", depths: [12, 15, 18, 21, 24, 27, 30] }
@@ -343,89 +422,19 @@ const tableGroups = [
     {
         name: "Nitrox Decompression Tables",
         tag: "tag-green",
-        desc: "Nitrox 40/60 and 35/65 dive tables",
         tables: [
             { name: "NIA15 - Nitrox 40/60 12 Hours", code: "NIA15", depths: [18, 21, 24, 27] },
-            { name: "H2NIA15 - Nitrox 40/60 2 Hours", code: "H2NIA15", depths: [18, 21, 24, 27] },
-            { name: "H4NIA15 - Nitrox 40/60 4 Hours", code: "H4NIA15", depths: [18, 21, 24, 27] },
-            { name: "NIA2_3 - Nitrox 40/60 2 Hours (Last Stop 3m)", code: "NIA2_3", depths: [21, 23, 25, 27] },
-            { name: "NIA2_6 - Nitrox 40/60 2 Hours (Last Stop 6m)", code: "NIA2_6", depths: [21, 23, 25, 27] },
-            { name: "NIB15 - Nitrox 35/65 12 Hours", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] },
-            { name: "H2NIB15 - Nitrox 35/65 2 Hours", code: "H2NIB15", depths: [18, 21, 24, 27, 30, 33] },
-            { name: "H4NIB15 - Nitrox 35/65 4 Hours", code: "H4NIB15", depths: [18, 21, 24, 27, 30, 33] }
+            { name: "NIB15 - Nitrox 35/65 12 Hours", code: "NIB15", depths: [18, 21, 24, 27, 30, 33] }
         ]
     },
     {
         name: "Bell Air/Oxygen Tables",
         tag: "tag-indigo",
-        desc: "Dry or wet bell air diving decompression",
         tables: [
-            { name: "BOX15 - Bell Air/Oxygen", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
+            { name: "BOX15 - Bell Air/Oxygen Decompression", code: "BOX15", depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51] }
         ]
     }
 ];
-
-function parseCSVLine(line) {
-    const result = [];
-    let current = '';
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        if (char === '"') {
-            inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-            result.push(current.trim());
-            current = '';
-        } else {
-            current += char;
-        }
-    }
-    result.push(current.trim());
-    return result;
-}
-
-function parseTableData(csvText, depth = null) {
-    const lines = csvText.split('\n').filter(l => l.trim());
-    if (lines.length < 2) return null;
-    
-    const headers = parseCSVLine(lines[0]);
-    const rows = [];
-    
-    for (let i = 1; i < lines.length; i++) {
-        const cells = parseCSVLine(lines[i]);
-        if (cells.length > 1 && cells.some(c => c)) {
-            if (depth === null) {
-                rows.push(cells);
-            } else {
-                const rowDepth = parseInt(cells[1]);
-                if (rowDepth === depth) {
-                    rows.push(cells);
-                }
-            }
-        }
-    }
-    
-    return rows.length > 0 ? { headers, rows } : null;
-}
-
-function renderTableHTML(headers, rows) {
-    let html = '<table><thead><tr>';
-    headers.slice(0, 25).forEach(h => {
-        html += `<th>${h}</th>`;
-    });
-    html += '</tr></thead><tbody>';
-    
-    rows.forEach(row => {
-        html += '<tr>';
-        row.slice(0, 25).forEach(cell => {
-            html += `<td>${cell || '—'}</td>`;
-        });
-        html += '</tr>';
-    });
-    
-    html += '</tbody></table>';
-    return html;
-}
 
 const app = {
     renderLevel1() {
@@ -461,7 +470,7 @@ const app = {
         const g = tableGroups[gIdx];
         const t = g.tables[tIdx];
         let html = `<button class="back-btn" onclick="app.renderLevel2(${gIdx})">← Back</button>`;
-        html += `<div class="section"><h2>${t.name}</h2><p>Table Code: ${t.code}</p></div>`;
+        html += `<div class="section"><h2>${t.name}</h2><p>Code: ${t.code}</p></div>`;
         
         if (t.isReference) {
             html += `<button class="back-btn" style="background: #059669; margin-left: 0;" onclick="app.renderRefTable(${gIdx}, ${tIdx})">View Table</button>`;
@@ -481,14 +490,13 @@ const app = {
         
         let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
         html += `<div class="section"><h2>${t.name}</h2><p>Reference Table</p></div>`;
-        html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2><small>No-stop limits reference table</small></div>`;
-        html += '<div class="table-scroll">';
+        html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2><small>Reference table</small></div><div class="table-scroll">`;
         
-        const data = parseTableData(CSV_DATA[t.code]);
+        const data = parseRefTable(CSV_DATA[t.code]);
         if (data) {
-            html += renderTableHTML(data.headers, data.rows);
+            html += renderTable(data.headers, data.rows);
         } else {
-            html += '<div class="error-msg">No data available for this table</div>';
+            html += '<div class="error-msg">No data available</div>';
         }
         
         html += '</div></div>';
@@ -500,20 +508,31 @@ const app = {
         const t = g.tables[tIdx];
         
         let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
-        html += `<div class="section"><h2>${t.name} - ${depth}m</h2><p>Decompression table for ${depth} metres</p></div>`;
+        html += `<div class="section"><h2>${t.name} - ${depth}m</h2><p>Decompression schedule for ${depth} metres</p></div>`;
         
         if (!CSV_DATA[t.code]) {
-            html += `<div class="error-msg"><strong>Data Not Available</strong><br/>This table data is not embedded in the widget.</div>`;
+            html += `<div class="error-msg">Data not available</div>`;
             document.getElementById('content').innerHTML = html;
             return;
         }
         
-        html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2><small>Decompression schedule for ${depth} metres</small></div>`;
-        html += '<div class="table-scroll">';
+        html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2><small>Decompression schedule</small></div><div class="table-scroll">`;
         
-        const data = parseTableData(CSV_DATA[t.code], depth);
-        if (data) {
-            html += renderTableHTML(data.headers, data.rows);
+        let data;
+        if (t.code === 'SOX15' || t.code === 'HSOX15') {
+            data = parseSox15(CSV_DATA[t.code], depth);
+        } else if (t.code === 'SAB15' || t.code === 'HSAB15') {
+            data = parseSab15(CSV_DATA[t.code], depth);
+        } else if (t.code === 'NIA15' || t.code === 'NIB15') {
+            data = parseNiaNib(CSV_DATA[t.code], depth);
+        } else if (t.code === 'BOX15') {
+            data = parseBox15(CSV_DATA[t.code], depth);
+        } else {
+            data = parseSox15(CSV_DATA[t.code], depth);
+        }
+        
+        if (data && data.rows.length > 0) {
+            html += renderTable(data.headers, data.rows);
         } else {
             html += '<p class="loading">No data available for this depth</p>';
         }

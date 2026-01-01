@@ -6,9 +6,26 @@ DivePlan is now available as a **standalone desktop application** that runs on y
 
 ## Download & Installation
 
-### For Linux Users
+### For Windows 11 Users 🪟
 
-You have two options:
+**You need to build the app on your Windows machine!**
+
+👉 **See [WINDOWS_BUILD_GUIDE.md](WINDOWS_BUILD_GUIDE.md) for complete step-by-step instructions.**
+
+**Quick steps:**
+1. Open PowerShell or Command Prompt in the project folder
+2. Run: `pnpm install`
+3. Run: `pnpm run build:electron:win`
+4. Find the app in `release/DivePlan 1.0.0.exe`
+5. Double-click to run!
+
+The build creates:
+- **DivePlan 1.0.0.exe** - Portable version (recommended, no installation needed)
+- **DivePlan Setup 1.0.0.exe** - Standard Windows installer
+
+### For Linux Users 🐧
+
+Pre-built applications are available in the `release/` folder:
 
 #### Option 1: AppImage (Recommended - Works on ALL Linux distributions)
 1. Download `DivePlan-1.0.0.AppImage` from the release folder
@@ -20,18 +37,7 @@ You have two options:
 2. Install it: `sudo dpkg -i diveplan_1.0.0_amd64.deb`
 3. Run from Applications menu or terminal: `diveplan`
 
-### For Windows Users
-
-To build for Windows:
-```bash
-pnpm run build:electron:win
-```
-
-This creates:
-- **DivePlan Setup 1.0.0.exe** - Standard installer
-- **DivePlan 1.0.0.exe** - Portable version (no installation needed)
-
-### For macOS Users
+### For macOS Users 🍎
 
 To build for macOS:
 ```bash

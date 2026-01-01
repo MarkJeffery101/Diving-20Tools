@@ -8,12 +8,33 @@ DivePlan is now available as a standalone desktop application! No browser or int
 
 ### Quick Start (Desktop)
 
-1. **Download** the application for your platform from the `release/` folder
-2. **Linux**: Run `DivePlan-1.0.0.AppImage` or install `diveplan_1.0.0_amd64.deb`
-3. **Windows**: Run the installer or portable `.exe`
-4. **macOS**: Open the `.dmg` or extract the `.zip`
+#### For Windows 11 Users 🪟
 
-See [DESKTOP_APP_GUIDE.md](DESKTOP_APP_GUIDE.md) for detailed instructions.
+Building on your Windows machine is easy! See **[WINDOWS_BUILD_GUIDE.md](WINDOWS_BUILD_GUIDE.md)** for complete instructions.
+
+**Quick build:**
+```powershell
+pnpm install
+pnpm run build:electron:win
+```
+
+Then run `release/DivePlan 1.0.0.exe` (portable version, no installation needed!)
+
+#### For Linux Users 🐧
+
+Pre-built applications are available in the `release/` folder:
+- **AppImage**: `DivePlan-1.0.0.AppImage` (universal, works on all distros)
+- **Debian Package**: `diveplan_1.0.0_amd64.deb` (for Ubuntu/Debian/Mint)
+
+#### For macOS Users 🍎
+
+Build on your Mac:
+```bash
+pnpm install
+pnpm run build:electron:mac
+```
+
+See [DESKTOP_APP_GUIDE.md](DESKTOP_APP_GUIDE.md) for detailed platform-specific instructions.
 
 ## Features
 

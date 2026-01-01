@@ -515,18 +515,18 @@ const app = {
     renderRefTable(gIdx, tIdx) {
         const g = tableGroups[gIdx];
         const t = g.tables[tIdx];
-        
+
         let html = `<button class="back-btn" onclick="app.renderLevel3(${gIdx}, ${tIdx})">← Back</button>`;
         html += `<div class="section"><h2>${t.name}</h2><p>Reference Table</p></div>`;
         html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name}</h2><small>Reference table</small></div><div class="table-scroll">`;
-        
+
         const data = parseRefTable(CSV_DATA[t.code]);
         if (data) {
-            html += renderTable(data.headers, data.rows);
+            html += renderTable(data.headers, data.rows, t.code);
         } else {
             html += '<div class="error-msg">No data available</div>';
         }
-        
+
         html += '</div></div>';
         document.getElementById('content').innerHTML = html;
     },

@@ -1,7 +1,14 @@
 {
-  "name": "fusion-starter",
+  "name": "diveplan",
+  "version": "1.0.0",
+  "description": "Professional dive planning and calculation desktop application",
+  "author": {
+    "name": "DivePlan Team",
+    "email": "support@diveplan.app"
+  },
   "private": true,
   "type": "module",
+  "main": "electron/main.js",
   "pkg": {
     "assets": [
       "dist/spa/*"
@@ -12,13 +19,47 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:electron": "concurrently \"cross-env NODE_ENV=development npm run dev\" \"wait-on http://localhost:8080 && cross-env NODE_ENV=development electron .\"",
     "build": "npm run build:client && npm run build:server",
     "build:client": "node scripts/update-manifest-version.js && vite build",
     "build:server": "vite build --config vite.config.server.ts",
+    "build:electron": "npm run build && electron-builder",
+    "build:electron:win": "npm run build && electron-builder --win",
+    "build:electron:mac": "npm run build && electron-builder --mac",
+    "build:electron:linux": "npm run build && electron-builder --linux",
     "start": "node dist/server/node-build.mjs",
+    "start:electron": "electron .",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc"
+  },
+  "build": {
+    "appId": "com.diveplan.app",
+    "productName": "DivePlan",
+    "publish": null,
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "public/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "public/icon.png"
+    },
+    "mac": {
+      "target": ["dmg", "zip"],
+      "icon": "public/icon.png",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "public/icon.png",
+      "category": "Utility"
+    }
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.80.0",
@@ -72,8 +113,12 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "concurrently": "^9.2.1",
     "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
     "date-fns": "^4.1.0",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.12",
     "globals": "^16.3.0",
@@ -99,7 +144,8 @@
     "typescript": "^5.9.2",
     "vaul": "^1.1.2",
     "vite": "^7.1.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "wait-on": "^9.0.3"
   },
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }

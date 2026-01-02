@@ -487,19 +487,23 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
 
         // Define oxygen column indices for SOX15, HSOX15, and BOX15
         const hasOxygenColumns = ["SOX15", "HSOX15", "BOX15"].includes(
-          tableCode
+          tableCode,
         );
         const oxygenCols = [13, 15, 17, 19];
 
         // Determine which tables have markers and at which index
-        const markerIndex =
-          ["NIA15", "H2NIA15", "H4NIA15", "NIB15", "H2NIB15", "H4NIB15"].includes(
-            tableCode
-          )
-            ? 21
-            : ["BOX15"].includes(tableCode)
-              ? 23
-              : -1;
+        const markerIndex = [
+          "NIA15",
+          "H2NIA15",
+          "H4NIA15",
+          "NIB15",
+          "H2NIB15",
+          "H4NIB15",
+        ].includes(tableCode)
+          ? 21
+          : ["BOX15"].includes(tableCode)
+            ? 23
+            : -1;
 
         rows.forEach((row) => {
           let markerClass = "";
@@ -519,8 +523,7 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
           const endIdx = markerIndex !== -1 ? markerIndex : row.length;
           for (let idx = 0; idx < endIdx; idx++) {
             const cell = row[idx] || "";
-            const isOxygenCol =
-              hasOxygenColumns && oxygenCols.includes(idx);
+            const isOxygenCol = hasOxygenColumns && oxygenCols.includes(idx);
             const className = isOxygenCol ? "blue-bg" : "";
             html += `<td${className ? ` class="${className}"` : ""}>${cell || "—"}</td>`;
           }

@@ -480,41 +480,39 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
 
       function renderTable(headers, rows, tableCode = "") {
         let html = "<table><thead><tr>";
-        headers.slice(0, 25).forEach((h) => {
+        headers.slice(0, 23).forEach((h) => {
           html += `<th>${h}</th>`;
         });
         html += "</tr></thead><tbody>";
 
-        // Define oxygen column indices for SOX15 and BOX15
-        const oxygenColumnIndices = {
-          SOX15: [12, 14, 15, 17, 19],
-          HSOX15: [12, 14, 15, 17, 19],
-          BOX15: [12, 14, 15, 17, 18, 19],
-        };
-        const oxygenCols = oxygenColumnIndices[tableCode] || [];
+        // Define oxygen column indices for SOX15, HSOX15, and BOX15 (indices 13, 15, 17, 19)
+        const hasOxygenColumns = ["SOX15", "HSOX15", "BOX15"].includes(
+          tableCode
+        );
+        const oxygenCols = [13, 15, 17, 19];
 
         rows.forEach((row) => {
           let markerClass = "";
-          let marker = "";
 
-          // Check for marker in the last column
-          if (row.length > 0) {
-            const lastVal = row[row.length - 1]?.trim() || "";
-            if (lastVal === "2") {
+          // Check for marker in column 23 (0-based index)
+          if (row.length > 23) {
+            const markerVal = row[23]?.trim() || "";
+            if (markerVal === "2") {
               markerClass = "marker-2";
-              marker = lastVal;
-            } else if (lastVal === "3") {
+            } else if (markerVal === "3") {
               markerClass = "marker-3";
-              marker = lastVal;
             }
           }
 
           html += `<tr${markerClass ? ` class="${markerClass}"` : ""}>`;
-          row.slice(0, 25).forEach((cell, idx) => {
-            const isOxygenCol = oxygenCols.includes(idx);
+          // Only render columns 0-22 (skip marker at 23)
+          for (let idx = 0; idx < 23; idx++) {
+            const cell = row[idx] || "";
+            const isOxygenCol =
+              hasOxygenColumns && oxygenCols.includes(idx);
             const className = isOxygenCol ? "blue-bg" : "";
             html += `<td${className ? ` class="${className}"` : ""}>${cell || "—"}</td>`;
-          });
+          }
           html += "</tr>";
         });
         html += "</tbody></table>";

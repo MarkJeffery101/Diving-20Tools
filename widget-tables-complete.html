@@ -813,14 +813,38 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
           html += `<div class="table-wrapper"><div class="table-header"><h2>${t.name} - ${depth}m</h2><small>Decompression schedule</small></div><div class="table-scroll">`;
 
           let data;
-          if (t.code === "SOX15" || t.code === "HSOX15") {
+          if (
+            t.code === "SOX15_OTU" ||
+            t.code === "NIA15_OTU" ||
+            t.code === "NIB15_OTU" ||
+            t.code === "BOX15_OTU"
+          ) {
+            data = parseOtuTable(CSV_DATA[t.code], depth);
+            if (!data) {
+              html += '<p class="loading">OTU/ESOT data not yet available</p>';
+              html += "</div></div>";
+              document.getElementById("content").innerHTML = html;
+              return;
+            }
+          } else if (t.code === "SOX15" || t.code === "HSOX15") {
             data = parseSox15(CSV_DATA[t.code], depth);
           } else if (t.code === "SAB15" || t.code === "HSAB15") {
             data = parseSab15(CSV_DATA[t.code], depth);
-          } else if (t.code === "NIA15" || t.code === "NIB15") {
+          } else if (
+            t.code === "NIA15" ||
+            t.code === "NIA2_3" ||
+            t.code === "NIA2_6" ||
+            t.code === "H2NIA15" ||
+            t.code === "H4NIA15" ||
+            t.code === "NIB15" ||
+            t.code === "H2NIB15" ||
+            t.code === "H4NIB15"
+          ) {
             data = parseNiaNib(CSV_DATA[t.code], depth);
           } else if (t.code === "BOX15") {
             data = parseBox15(CSV_DATA[t.code], depth);
+          } else if (t.code === "SIL15" || t.code === "H2SIL15" || t.code === "H4SIL15") {
+            data = parseSox15(CSV_DATA[t.code], depth);
           } else {
             data = parseSox15(CSV_DATA[t.code], depth);
           }

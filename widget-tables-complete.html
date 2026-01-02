@@ -540,7 +540,7 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
           tables: [
             { name: "ND15 - No-Stop Limits", code: "ND15", isReference: true },
             {
-              name: "LND15 - No-Stop Limits Extended",
+              name: "LND15 - Long No-Stop Limits",
               code: "LND15",
               isReference: true,
             },
@@ -558,12 +558,12 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
             {
               name: "H2SIL15 - Repetitive Interval 2 Hours",
               code: "H2SIL15",
-              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
             {
               name: "H4SIL15 - Repetitive Interval 4 Hours",
               code: "H4SIL15",
-              depths: [12, 15, 18, 21, 24, 27, 30],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
           ],
         },
@@ -574,12 +574,17 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
             {
               name: "SOX15 - Repetitive Interval 12 Hours",
               code: "SOX15",
-              depths: [12, 15, 18, 21, 24, 27, 30, 33],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
             {
               name: "HSOX15 - Repetitive Interval 4 Hours",
               code: "HSOX15",
-              depths: [12, 15, 18, 21],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
+            },
+            {
+              name: "SOX15_OTU - OTU/ESOT Repetitive Times",
+              code: "SOX15_OTU",
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
           ],
         },
@@ -590,12 +595,12 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
             {
               name: "SAB15 - Repetitive Interval 12 Hours",
               code: "SAB15",
-              depths: [12, 15, 18, 21, 24, 27, 30],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
             {
               name: "HSAB15 - Repetitive Interval 4 Hours",
               code: "HSAB15",
-              depths: [12, 15, 18, 21, 24, 27, 30],
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
           ],
         },
@@ -604,14 +609,65 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
           tag: "tag-green",
           tables: [
             {
-              name: "NIA15 - Nitrox 40/60 12 Hours",
+              name: "NIA15 - Nitrox 40/60, Repetitive Interval 12 Hours",
               code: "NIA15",
               depths: [18, 21, 24, 27],
             },
             {
-              name: "NIB15 - Nitrox 35/65 12 Hours",
+              name: "NIA2_3 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop 3m)",
+              code: "NIA2_3",
+              depths: [21, 23, 25, 27],
+            },
+            {
+              name: "NIA2_6 - Nitrox 40/60, Repetitive Interval 2 Hours (Last Stop 6m)",
+              code: "NIA2_6",
+              depths: [21, 23, 25, 27],
+            },
+            {
+              name: "H2NIA15 - Nitrox 40/60, Repetitive Interval 2 Hours",
+              code: "H2NIA15",
+              depths: [18, 21, 24, 27],
+            },
+            {
+              name: "H4NIA15 - Nitrox 40/60, Repetitive Interval 4 Hours",
+              code: "H4NIA15",
+              depths: [18, 21, 24, 27],
+            },
+            {
+              name: "NIB15 - Nitrox 35/65, Repetitive Interval 12 Hours",
               code: "NIB15",
               depths: [18, 21, 24, 27, 30, 33],
+            },
+            {
+              name: "H2NIB15 - Nitrox 35/65, Repetitive Interval 2 Hours",
+              code: "H2NIB15",
+              depths: [18, 21, 24, 27, 30, 33],
+            },
+            {
+              name: "H4NIB15 - Nitrox 35/65, Repetitive Interval 4 Hours",
+              code: "H4NIB15",
+              depths: [18, 21, 24, 27, 30, 33],
+            },
+          ],
+        },
+        {
+          name: "OTU & ESOT Repetitive Times",
+          tag: "tag-purple",
+          tables: [
+            {
+              name: "NIA15_OTU - Nitrox 40/60 Repetitive Times",
+              code: "NIA15_OTU",
+              depths: [18, 21, 24, 27],
+            },
+            {
+              name: "NIB15_OTU - Nitrox 35/65 Repetitive Times",
+              code: "NIB15_OTU",
+              depths: [18, 21, 24, 27, 30, 33],
+            },
+            {
+              name: "BOX15_OTU - Bell Air/Oxygen Repetitive Times",
+              code: "BOX15_OTU",
+              depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
           ],
         },
@@ -620,7 +676,7 @@ Dry or wet bell air diving air-oxygen decompression tables,BOX15,20.9,90,12,21,1
           tag: "tag-indigo",
           tables: [
             {
-              name: "BOX15 - Bell Air/Oxygen Decompression",
+              name: "BOX15 - Wet or Dry Bell Air/Oxygen, Repetitive Interval 12 Hours",
               code: "BOX15",
               depths: [12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51],
             },
